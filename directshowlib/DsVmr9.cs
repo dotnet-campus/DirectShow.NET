@@ -11,13 +11,12 @@ using System.Runtime.InteropServices;
 
 namespace DShowNET
 {
-
 	[ComVisible(false)]
 	public enum VMRMode9 : uint
 	{
-		Windowed                         = 0x00000001,
-		Windowless                       = 0x00000002,
-		Renderless                       = 0x00000004,
+		Windowed = 0x00000001,
+		Windowless = 0x00000002,
+		Renderless = 0x00000004,
 	}
 
 	[ComVisible(false)]
@@ -28,35 +27,35 @@ namespace DShowNET
 	}
 
 	[ComVisible(true), ComImport,
-	Guid("5a804648-4f66-4867-9c43-4f5c822cf1b8"),
-	InterfaceType( ComInterfaceType.InterfaceIsIUnknown )]
+		Guid("5a804648-4f66-4867-9c43-4f5c822cf1b8"),
+		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IVMRFilterConfig9
 	{
 		[PreserveSig]
-		int SetImageCompositor( [In] IntPtr lpVMRImgCompositor );
+		int SetImageCompositor([In] IntPtr lpVMRImgCompositor);
 
 		[PreserveSig]
-		int SetNumberOfStreams( [In] uint dwMaxStreams );
+		int SetNumberOfStreams([In] uint dwMaxStreams);
 
 		[PreserveSig]
-		int GetNumberOfStreams( [Out] out uint pdwMaxStreams );
+		int GetNumberOfStreams([Out] out uint pdwMaxStreams);
 
 		[PreserveSig]
-		int SetRenderingPrefs( [In] uint dwRenderFlags );
+		int SetRenderingPrefs([In] uint dwRenderFlags);
 
 		[PreserveSig]
-		int GetRenderingPrefs( [Out] out uint pdwRenderFlags );
+		int GetRenderingPrefs([Out] out uint pdwRenderFlags);
 
 		[PreserveSig]
-		int SetRenderingMode( [In] VMRMode9 Mode );
+		int SetRenderingMode([In] VMRMode9 Mode);
 
 		[PreserveSig]
-		int GetRenderingMode( [Out] out VMRMode9 Mode );
+		int GetRenderingMode([Out] out VMRMode9 Mode);
 	}
 
 	[ComVisible(true), ComImport,
-	Guid("8f537d09-f85e-4414-b23b-502e54c79927"),
-	InterfaceType( ComInterfaceType.InterfaceIsIUnknown )]
+		Guid("8f537d09-f85e-4414-b23b-502e54c79927"),
+		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IVMRWindowlessControl9
 	{
 		//
@@ -65,19 +64,19 @@ namespace DShowNET
 		//////////////////////////////////////////////////////////
 		//
 		int GetNativeVideoSize(
-			[Out] out int		lpWidth,
-			[Out] out int		lpHeight,
-			[Out] out int		lpARWidth,
-			[Out] out int		lpARHeight
+			[Out] out int lpWidth,
+			[Out] out int lpHeight,
+			[Out] out int lpARWidth,
+			[Out] out int lpARHeight
 			);
 
 		int GetMinIdealVideoSize(
-			[Out] out int		lpHeight
+			[Out] out int lpHeight
 			);
 
 		int GetMaxIdealVideoSize(
-			[Out] out int		lpWidth,
-			[Out] out int		lpHeight
+			[Out] out int lpWidth,
+			[Out] out int lpHeight
 			);
 
 		int SetVideoPosition(
@@ -90,20 +89,20 @@ namespace DShowNET
 			[Out, MarshalAs(UnmanagedType.LPStruct)] out RECT lpDSTRect
 			);
 
-		int GetAspectRatioMode( [Out] out VMR9AspectRatioMode lpAspectRatioMode );
+		int GetAspectRatioMode([Out] out VMR9AspectRatioMode lpAspectRatioMode);
 
-		int SetAspectRatioMode( [In] VMR9AspectRatioMode AspectRatioMode );
+		int SetAspectRatioMode([In] VMR9AspectRatioMode AspectRatioMode);
 
 		//
 		//////////////////////////////////////////////////////////
 		// Display and clipping management
 		//////////////////////////////////////////////////////////
 		//
-		int SetVideoClippingWindow( [In] IntPtr	hwnd );
+		int SetVideoClippingWindow([In] IntPtr hwnd);
 
 		int RepaintVideo(
-			[In] IntPtr			hwnd,
-			[In] IntPtr			hdc
+			[In] IntPtr hwnd,
+			[In] IntPtr hdc
 			);
 
 		int DisplayModeChanged();
@@ -124,7 +123,7 @@ namespace DShowNET
 		// playback performed.
 		//////////////////////////////////////////////////////////
 		//
-		int GetCurrentImage( [Out] out IntPtr lpDib );
+		int GetCurrentImage([Out] out IntPtr lpDib);
 
 		//
 		//////////////////////////////////////////////////////////
@@ -139,9 +138,9 @@ namespace DShowNET
 		// rectangle. See SetAspectRatioMode above.
 		//////////////////////////////////////////////////////////
 		//
-		int SetBorderColor( [In] uint Clr );
+		int SetBorderColor([In] uint Clr);
 
-		int GetBorderColor( [Out] out uint lpClr );
+		int GetBorderColor([Out] out uint lpClr);
 
 	}
 

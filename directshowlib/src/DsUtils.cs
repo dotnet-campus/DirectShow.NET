@@ -6,121 +6,122 @@
 // DirectShow utility classes, partial from the SDK Common sources
 
 using System;
-using System.IO;
-using System.Text;
-using System.Runtime.InteropServices;
 using System.Diagnostics;
+using System.IO;
+using System.Runtime.InteropServices;
 
 namespace DShowNET
 {
-
-		[ComVisible(false)]
+	[ComVisible(false)]
 	public class DsUtils
 	{
-
 		public static bool IsCorrectDirectXVersion()
 		{
-			return File.Exists( Path.Combine( Environment.SystemDirectory, @"dpnhpast.dll" ) );
+			return File.Exists(Path.Combine(Environment.SystemDirectory, @"dpnhpast.dll"));
 		}
 
 
-		public static bool ShowCapPinDialog( ICaptureGraphBuilder2 bld, IBaseFilter flt, IntPtr hwnd )
+		public static bool ShowCapPinDialog(ICaptureGraphBuilder2 bld, IBaseFilter flt, IntPtr hwnd)
 		{
 			int hr;
 			object comObj = null;
-			ISpecifyPropertyPages	spec = null;
+			ISpecifyPropertyPages spec = null;
 			DsCAUUID cauuid = new DsCAUUID();
 
-			try {
-				Guid cat  = PinCategory.Capture;
+			try
+			{
+				Guid cat = PinCategory.Capture;
 				Guid type = MediaType.Interleaved;
-				Guid iid = typeof(IAMStreamConfig).GUID;
-				hr = bld.FindInterface( ref cat, ref type, flt, ref iid, out comObj );
-				if( hr != 0 )
+				Guid iid = typeof (IAMStreamConfig).GUID;
+				hr = bld.FindInterface(ref cat, ref type, flt, ref iid, out comObj);
+				if (hr != 0)
 				{
 					type = MediaType.Video;
-					hr = bld.FindInterface( ref cat, ref type, flt, ref iid, out comObj );
-					if( hr != 0 )
+					hr = bld.FindInterface(ref cat, ref type, flt, ref iid, out comObj);
+					if (hr != 0)
 						return false;
 				}
 				spec = comObj as ISpecifyPropertyPages;
-				if( spec == null )
+				if (spec == null)
 					return false;
 
-				hr = spec.GetPages( out cauuid );
-				hr = OleCreatePropertyFrame( hwnd, 30, 30, null, 1,
-						ref comObj, cauuid.cElems, cauuid.pElems, 0, 0, IntPtr.Zero );
+				hr = spec.GetPages(out cauuid);
+				hr = OleCreatePropertyFrame(hwnd, 30, 30, null, 1,
+				                            ref comObj, cauuid.cElems, cauuid.pElems, 0, 0, IntPtr.Zero);
 				return true;
 			}
-			catch( Exception ee )
+			catch (Exception ee)
 			{
-				Trace.WriteLine( "!Ds.NET: ShowCapPinDialog " + ee.Message );
+				Trace.WriteLine("!Ds.NET: ShowCapPinDialog " + ee.Message);
 				return false;
 			}
 			finally
 			{
-				if( cauuid.pElems != IntPtr.Zero )
-					Marshal.FreeCoTaskMem( cauuid.pElems );
-					
+				if (cauuid.pElems != IntPtr.Zero)
+					Marshal.FreeCoTaskMem(cauuid.pElems);
+
 				spec = null;
-				if( comObj != null )
-					Marshal.ReleaseComObject( comObj ); comObj = null;
+				if (comObj != null)
+					Marshal.ReleaseComObject(comObj);
+				comObj = null;
 			}
 		}
 
-		public static bool ShowTunerPinDialog( ICaptureGraphBuilder2 bld, IBaseFilter flt, IntPtr hwnd )
+		public static bool ShowTunerPinDialog(ICaptureGraphBuilder2 bld, IBaseFilter flt, IntPtr hwnd)
 		{
 			int hr;
 			object comObj = null;
-			ISpecifyPropertyPages	spec = null;
+			ISpecifyPropertyPages spec = null;
 			DsCAUUID cauuid = new DsCAUUID();
 
-			try {
-				Guid cat  = PinCategory.Capture;
+			try
+			{
+				Guid cat = PinCategory.Capture;
 				Guid type = MediaType.Interleaved;
-				Guid iid = typeof(IAMTVTuner).GUID;
-				hr = bld.FindInterface( ref cat, ref type, flt, ref iid, out comObj );
-				if( hr != 0 )
+				Guid iid = typeof (IAMTVTuner).GUID;
+				hr = bld.FindInterface(ref cat, ref type, flt, ref iid, out comObj);
+				if (hr != 0)
 				{
 					type = MediaType.Video;
-					hr = bld.FindInterface( ref cat, ref type, flt, ref iid, out comObj );
-					if( hr != 0 )
+					hr = bld.FindInterface(ref cat, ref type, flt, ref iid, out comObj);
+					if (hr != 0)
 						return false;
 				}
 				spec = comObj as ISpecifyPropertyPages;
-				if( spec == null )
+				if (spec == null)
 					return false;
 
-				hr = spec.GetPages( out cauuid );
-				hr = OleCreatePropertyFrame( hwnd, 30, 30, null, 1,
-						ref comObj, cauuid.cElems, cauuid.pElems, 0, 0, IntPtr.Zero );
+				hr = spec.GetPages(out cauuid);
+				hr = OleCreatePropertyFrame(hwnd, 30, 30, null, 1,
+				                            ref comObj, cauuid.cElems, cauuid.pElems, 0, 0, IntPtr.Zero);
 				return true;
 			}
-			catch( Exception ee )
+			catch (Exception ee)
 			{
-				Trace.WriteLine( "!Ds.NET: ShowCapPinDialog " + ee.Message );
+				Trace.WriteLine("!Ds.NET: ShowCapPinDialog " + ee.Message);
 				return false;
 			}
 			finally
 			{
-				if( cauuid.pElems != IntPtr.Zero )
-					Marshal.FreeCoTaskMem( cauuid.pElems );
-					
+				if (cauuid.pElems != IntPtr.Zero)
+					Marshal.FreeCoTaskMem(cauuid.pElems);
+
 				spec = null;
-				if( comObj != null )
-					Marshal.ReleaseComObject( comObj ); comObj = null;
+				if (comObj != null)
+					Marshal.ReleaseComObject(comObj);
+				comObj = null;
 			}
 		}
 
 
 		// from 'DShowUtil.cpp'
-		public int GetPin( IBaseFilter filter, PinDirection dirrequired, int num, out IPin ppPin )
+		public int GetPin(IBaseFilter filter, PinDirection dirrequired, int num, out IPin ppPin)
 		{
 			ppPin = null;
 			int hr;
 			IEnumPins pinEnum;
-			hr = filter.EnumPins( out pinEnum );
-			if( (hr < 0) || (pinEnum == null) )
+			hr = filter.EnumPins(out pinEnum);
+			if ((hr < 0) || (pinEnum == null))
 				return hr;
 
 			IPin[] pins = new IPin[1];
@@ -128,14 +129,14 @@ namespace DShowNET
 			PinDirection dir;
 			do
 			{
-				hr = pinEnum.Next( 1, pins, out f );
-				if( (hr != 0) || (pins[0] == null) )
+				hr = pinEnum.Next(1, pins, out f);
+				if ((hr != 0) || (pins[0] == null))
 					break;
 				dir = (PinDirection) 3;
-				hr = pins[0].QueryDirection( out dir );
-				if( (hr == 0) && (dir == dirrequired) )
+				hr = pins[0].QueryDirection(out dir);
+				if ((hr == 0) && (dir == dirrequired))
 				{
-					if( num == 0 )
+					if (num == 0)
 					{
 						ppPin = pins[0];
 						pins[0] = null;
@@ -143,11 +144,12 @@ namespace DShowNET
 					}
 					num--;
 				}
-				Marshal.ReleaseComObject( pins[0] ); pins[0] = null;
-			}
-			while( hr == 0 );
+				Marshal.ReleaseComObject(pins[0]);
+				pins[0] = null;
+			} while (hr == 0);
 
-			Marshal.ReleaseComObject( pinEnum ); pinEnum = null;
+			Marshal.ReleaseComObject(pinEnum);
+			pinEnum = null;
 			return hr;
 		}
 
@@ -157,186 +159,186 @@ namespace DShowNET
 		/// </summary>
 		public static void FreeAMMediaType(AMMediaType mediaType)
 		{
-			if ( mediaType.formatSize != 0 )
-				Marshal.FreeCoTaskMem( mediaType.formatPtr );
-			if ( mediaType.unkPtr != IntPtr.Zero ) 
-				Marshal.Release( mediaType.unkPtr );
+			if (mediaType.formatSize != 0)
+				Marshal.FreeCoTaskMem(mediaType.formatPtr);
+			if (mediaType.unkPtr != IntPtr.Zero)
+				Marshal.Release(mediaType.unkPtr);
 			mediaType.formatSize = 0;
 			mediaType.formatPtr = IntPtr.Zero;
 			mediaType.unkPtr = IntPtr.Zero;
 		}
 
-		[DllImport("olepro32.dll", CharSet=CharSet.Unicode, ExactSpelling=true) ]
-		private static extern int OleCreatePropertyFrame( IntPtr hwndOwner, int x, int y,
-			string lpszCaption, int cObjects,
-			[In, MarshalAs(UnmanagedType.Interface)] ref object ppUnk,
-			int cPages,	IntPtr pPageClsID, int lcid, int dwReserved, IntPtr pvReserved );
+		[DllImport("olepro32.dll", CharSet=CharSet.Unicode, ExactSpelling=true)]
+		private static extern int OleCreatePropertyFrame(IntPtr hwndOwner, int x, int y,
+		                                                 string lpszCaption, int cObjects,
+		                                                 [In, MarshalAs(UnmanagedType.Interface)] ref object ppUnk,
+		                                                 int cPages, IntPtr pPageClsID, int lcid, int dwReserved, IntPtr pvReserved);
 	}
 
 
 // ---------------------------------------------------------------------------------------
 
 	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
-public struct DsPOINT		// POINT
-{
-	public int		X;
-	public int		Y;
-}
+	public struct DsPOINT // POINT
+	{
+		public int X;
+		public int Y;
+	}
 
 
 // ---------------------------------------------------------------------------------------
 
 	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
-public struct DsRECT		// RECT
-{
-	public int		Left;
-	public int		Top;
-	public int		Right;
-	public int		Bottom;
-}
+	public struct DsRECT // RECT
+	{
+		public int Left;
+		public int Top;
+		public int Right;
+		public int Bottom;
+	}
 
 
 // ---------------------------------------------------------------------------------------
 
 	[StructLayout(LayoutKind.Sequential, Pack=2), ComVisible(false)]
-public struct BitmapInfoHeader
+	public struct BitmapInfoHeader
 	{
-	public int      Size;
-	public int      Width;
-	public int      Height;
-	public short    Planes;
-	public short    BitCount;
-	public int      Compression;
-	public int      ImageSize;
-	public int      XPelsPerMeter;
-	public int      YPelsPerMeter;
-	public int      ClrUsed;
-	public int      ClrImportant;
+		public int Size;
+		public int Width;
+		public int Height;
+		public short Planes;
+		public short BitCount;
+		public int Compression;
+		public int ImageSize;
+		public int XPelsPerMeter;
+		public int YPelsPerMeter;
+		public int ClrUsed;
+		public int ClrImportant;
 	}
-
-
 
 
 // ---------------------------------------------------------------------------------------
 
-		[ComVisible(false)]
+	[ComVisible(false)]
 	public class DsROT
 	{
-		public static bool AddGraphToRot( object graph, out int cookie )
+		public static bool AddGraphToRot(object graph, out int cookie)
 		{
 			cookie = 0;
 			int hr = 0;
 			UCOMIRunningObjectTable rot = null;
 			UCOMIMoniker mk = null;
-			try {
-				hr = GetRunningObjectTable( 0, out rot );
-				if( hr < 0 )
-					Marshal.ThrowExceptionForHR( hr );
+			try
+			{
+				hr = GetRunningObjectTable(0, out rot);
+				if (hr < 0)
+					Marshal.ThrowExceptionForHR(hr);
 
 				int id = GetCurrentProcessId();
-				IntPtr iuPtr = Marshal.GetIUnknownForObject( graph );
+				IntPtr iuPtr = Marshal.GetIUnknownForObject(graph);
 				int iuInt = (int) iuPtr;
-				Marshal.Release( iuPtr );
-				string item = string.Format( "FilterGraph {0} pid {1}", iuInt.ToString("x8"), id.ToString("x8") );
-				hr = CreateItemMoniker( "!", item, out mk );
-				if( hr < 0 )
-					Marshal.ThrowExceptionForHR( hr );
-				
-				rot.Register( ROTFLAGS_REGISTRATIONKEEPSALIVE, graph, mk, out cookie );
+				Marshal.Release(iuPtr);
+				string item = string.Format("FilterGraph {0} pid {1}", iuInt.ToString("x8"), id.ToString("x8"));
+				hr = CreateItemMoniker("!", item, out mk);
+				if (hr < 0)
+					Marshal.ThrowExceptionForHR(hr);
+
+				rot.Register(ROTFLAGS_REGISTRATIONKEEPSALIVE, graph, mk, out cookie);
 				return true;
 			}
-			catch( Exception )
+			catch (Exception)
 			{
 				return false;
 			}
 			finally
 			{
-				if( mk != null )
-					Marshal.ReleaseComObject( mk ); mk = null;
-				if( rot != null )
-					Marshal.ReleaseComObject( rot ); rot = null;
+				if (mk != null)
+					Marshal.ReleaseComObject(mk);
+				mk = null;
+				if (rot != null)
+					Marshal.ReleaseComObject(rot);
+				rot = null;
 			}
 		}
 
-		public static bool RemoveGraphFromRot( ref int cookie )
+		public static bool RemoveGraphFromRot(ref int cookie)
 		{
 			UCOMIRunningObjectTable rot = null;
-			try {
-				int hr = GetRunningObjectTable( 0, out rot );
-				if( hr < 0 )
-					Marshal.ThrowExceptionForHR( hr );
+			try
+			{
+				int hr = GetRunningObjectTable(0, out rot);
+				if (hr < 0)
+					Marshal.ThrowExceptionForHR(hr);
 
-				rot.Revoke( cookie );
+				rot.Revoke(cookie);
 				cookie = 0;
 				return true;
 			}
-			catch( Exception )
+			catch (Exception)
 			{
 				return false;
 			}
 			finally
 			{
-				if( rot != null )
-					Marshal.ReleaseComObject( rot ); rot = null;
+				if (rot != null)
+					Marshal.ReleaseComObject(rot);
+				rot = null;
 			}
 		}
 
-		private const int ROTFLAGS_REGISTRATIONKEEPSALIVE	= 1;
+		private const int ROTFLAGS_REGISTRATIONKEEPSALIVE = 1;
 
-		[DllImport("ole32.dll", ExactSpelling=true) ]
-		private static extern int GetRunningObjectTable( int r,
-			out UCOMIRunningObjectTable pprot );
+		[DllImport("ole32.dll", ExactSpelling=true)]
+		private static extern int GetRunningObjectTable(int r,
+		                                                out UCOMIRunningObjectTable pprot);
 
-		[DllImport("ole32.dll", CharSet=CharSet.Unicode, ExactSpelling=true) ]
-		private static extern int CreateItemMoniker( string delim,
-			string item, out UCOMIMoniker ppmk );
+		[DllImport("ole32.dll", CharSet=CharSet.Unicode, ExactSpelling=true)]
+		private static extern int CreateItemMoniker(string delim,
+		                                            string item, out UCOMIMoniker ppmk);
 
-		[DllImport("kernel32.dll", ExactSpelling=true) ]
+		[DllImport("kernel32.dll", ExactSpelling=true)]
 		private static extern int GetCurrentProcessId();
 	}
-
-
-
 
 
 // ---------------------------------- ocidl.idl ------------------------------------------------
 
 	[ComVisible(true), ComImport,
-	Guid("B196B28B-BAB4-101A-B69C-00AA00341D07"),
-	InterfaceType( ComInterfaceType.InterfaceIsIUnknown )]
-public interface ISpecifyPropertyPages
-{
+		Guid("B196B28B-BAB4-101A-B69C-00AA00341D07"),
+		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	public interface ISpecifyPropertyPages
+	{
 		[PreserveSig]
-	int GetPages( out DsCAUUID pPages );
-}
+		int GetPages(out DsCAUUID pPages);
+	}
 
 	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
-public struct DsCAUUID		// CAUUID
-{
-	public int		cElems;
-	public IntPtr	pElems;
-}
+	public struct DsCAUUID // CAUUID
+	{
+		public int cElems;
+		public IntPtr pElems;
+	}
 
 // ---------------------------------------------------------------------------------------
 
 
 	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
-public class DsOptInt64
-{
-	public DsOptInt64( long Value )
+	public class DsOptInt64
 	{
-		this.Value = Value;
+		public DsOptInt64(long Value)
+		{
+			this.Value = Value;
+		}
+
+		public long Value;
 	}
-	public long		Value;
-}
 
 
 	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
-public class DsOptIntPtr
-{
-	public IntPtr	Pointer;
-}
-
+	public class DsOptIntPtr
+	{
+		public IntPtr Pointer;
+	}
 
 
 } // namespace DShowNET
