@@ -58,20 +58,33 @@
  */
 #endregion
 
-using System.Reflection;
-using System.Runtime.CompilerServices;
+#define ALLOW_UNTESTED_STRUCTS
+#define ALLOW_UNTESTED_INTERFACES
 
-[assembly: AssemblyTitle("")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("")]
-[assembly: AssemblyCopyright("")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]		
+using System;
+using System.Runtime.InteropServices;
 
-[assembly: AssemblyVersion("1.0.*")]
+namespace DirectShowLib
+{
+    #region Interfaces
 
-[assembly: AssemblyDelaySign(false)]
-[assembly: AssemblyKeyFile("")]
-[assembly: AssemblyKeyName("")]
+#if ALLOW_UNTESTED_INTERFACES
+
+    [ComVisible(true), ComImport,
+  Guid("8A674B48-1F63-11d3-B64C-00C04F79498E"),
+  InterfaceType( ComInterfaceType.InterfaceIsIUnknown )]
+  public interface ICreatePropBagOnRegKey
+  {
+    [PreserveSig]
+    int Create(
+      [In] IntPtr hkey, 
+      [In, MarshalAs(UnmanagedType.LPWStr)] string subkey, 
+      [In] int ulOptions, 
+      [In] int samDesired, 
+      [In] Guid iid, 
+      [Out] IntPtr ppBag
+      );
+#endif
+        #endregion
+  }
+}

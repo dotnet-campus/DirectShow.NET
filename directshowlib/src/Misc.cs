@@ -58,20 +58,99 @@
  */
 #endregion
 
-using System.Reflection;
-using System.Runtime.CompilerServices;
+#define ALLOW_UNTESTED_STRUCTS
+#define ALLOW_UNTESTED_INTERFACES
 
-[assembly: AssemblyTitle("")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("")]
-[assembly: AssemblyCopyright("")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]		
+using System;
+using System.Runtime.InteropServices;
 
-[assembly: AssemblyVersion("1.0.*")]
+namespace DirectShowLib
+{
+    #region Declarations
 
-[assembly: AssemblyDelaySign(false)]
-[assembly: AssemblyKeyFile("")]
-[assembly: AssemblyKeyName("")]
+#if ALLOW_UNTESTED_STRUCTS
+    /// <summary>
+    /// From KSMULTIPLE_ITEM - Note that data is returned in the memory IMMEDIATELY following this struct.
+    /// The Size parm indicates ths size of the KSMultipleItem plus the extra bytes.
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential), ComVisible(false)]
+    public class KSMultipleItem
+    {
+        public int Size;
+        public int Count;
+    }
+#endif
+    #endregion
+
+    #region Interfaces
+
+#if ALLOW_UNTESTED_INTERFACES
+    [ComVisible(true), ComImport,
+    Guid("0000010c-0000-0000-C000-000000000046"),
+    InterfaceType( ComInterfaceType.InterfaceIsIUnknown )]
+    public interface IPersist
+    {
+        [PreserveSig]
+        int GetClassID([Out] out Guid	pClassID);
+    }
+
+    [ComVisible(true), ComImport,
+    Guid("0000010c-0000-0000-C000-000000000046"),
+    InterfaceType( ComInterfaceType.InterfaceIsIUnknown )]
+    public interface IPersistStream
+    {
+        [PreserveSig]
+        int GetClassID([Out] out Guid		pClassID);
+    }
+
+    [ComVisible(true), ComImport,
+    Guid("55272A00-42CB-11CE-8135-00AA004BB851"),
+    InterfaceType( ComInterfaceType.InterfaceIsIUnknown )]
+    public interface IPropertyBag
+    {
+        [PreserveSig]
+        int Read(
+            [In, MarshalAs(UnmanagedType.LPWStr)]	string pszPropName,
+            [In, Out]	ref	object pVar,
+            [In] IntPtr pErrorLog
+            );
+
+        [PreserveSig]
+        int Write(
+            [In, MarshalAs(UnmanagedType.LPWStr)] string pszPropName,
+            [In] ref object pVar
+            );
+    }
+
+
+    public interface IStream
+    {
+        //TODO:
+    }
+
+    [ComVisible(true), ComImport,
+    Guid("B196B28B-BAB4-101A-B69C-00AA00341D07"),
+    InterfaceType( ComInterfaceType.InterfaceIsIUnknown )]
+    public interface ISpecifyPropertyPages
+    {
+        [PreserveSig]
+        int GetPages( out DsCAUUID pPages );
+    }
+
+
+    [ComVisible(true), ComImport,
+    Guid("b61178d1-a2d9-11cf-9e53-00aa00a216a1"),
+    InterfaceType( ComInterfaceType.InterfaceIsIUnknown )]
+    interface IKsPin
+    {
+        /// <summary>
+        /// The caller must free the returned structures, using the CoTaskMemFree function
+        /// </summary> 
+        [PreserveSig]
+        int KsQueryMediums(
+            out IntPtr ip);
+    }
+
+#endif
+    #endregion
+}

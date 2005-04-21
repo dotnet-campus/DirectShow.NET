@@ -58,20 +58,28 @@
  */
 #endregion
 
-using System.Reflection;
-using System.Runtime.CompilerServices;
+#define ALLOW_UNTESTED_STRUCTS
+#define ALLOW_UNTESTED_INTERFACES
 
-[assembly: AssemblyTitle("")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("")]
-[assembly: AssemblyCopyright("")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]		
+using System;
+using System.Runtime.InteropServices;
 
-[assembly: AssemblyVersion("1.0.*")]
+namespace DirectShowLib
+{
+    #region Interfaces
+#if ALLOW_UNTESTED_INTERFACES
+    [ComVisible(true), ComImport,
+  Guid("52d6f586-9f0f-4824-8fc8-e32ca04930c2"),
+  InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+  public interface IDMOWrapperFilter
+  {
+    [PreserveSig]
+    int Init(
+      [In] ref Guid clsidDMO,
+      [In] ref Guid catDMO
+      );
+  }
+#endif
+    #endregion
 
-[assembly: AssemblyDelaySign(false)]
-[assembly: AssemblyKeyFile("")]
-[assembly: AssemblyKeyName("")]
+}

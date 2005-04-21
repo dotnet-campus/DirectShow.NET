@@ -58,20 +58,125 @@
  */
 #endregion
 
-using System.Reflection;
-using System.Runtime.CompilerServices;
+#define ALLOW_UNTESTED_STRUCTS
+#define ALLOW_UNTESTED_INTERFACES
 
-[assembly: AssemblyTitle("")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("")]
-[assembly: AssemblyCopyright("")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]		
+using System;
+using System.Runtime.InteropServices;
 
-[assembly: AssemblyVersion("1.0.*")]
+namespace DirectShowLib
+{
+    #region Declarations
 
-[assembly: AssemblyDelaySign(false)]
-[assembly: AssemblyKeyFile("")]
-[assembly: AssemblyKeyName("")]
+#if ALLOW_UNTESTED_STRUCTS
+    /// <summary>
+    /// From AM_LINE21_CCLEVEL
+    /// </summary>
+    [ComVisible(false)]
+    public enum AMLine21CCLevel
+    {
+        TC2 = 0,
+    }
+
+    /// <summary>
+    /// From AM_LINE21_CCSERVICE
+    /// </summary>
+    [ComVisible(false)]
+    public enum AMLine21CCService
+    {
+        None = 0,
+        Caption1,
+        Caption2,
+        Text1,
+        Text2,
+        XDS,
+        DefChannel = 10,
+        Invalid
+    }
+
+    /// <summary>
+    /// From AM_LINE21_CCSTATE
+    /// </summary>
+    [ComVisible(false)]
+    public enum AMLine21CCState
+    {
+        Off = 0,
+        On
+    }
+
+    /// <summary>
+    /// From AM_LINE21_CCSTYLE
+    /// </summary>
+    [ComVisible(false)]
+    public enum AMLine21CCStyle
+    {
+        None = 0,
+        PopOn,
+        PaintOn,
+        RollUp
+    }
+
+    /// <summary>
+    /// From AM_LINE21_DRAWBGMODE
+    /// </summary>
+    [ComVisible(false)]
+    public enum AMLine21DrawBGMode
+    {
+        Opaque,
+        Transparent
+    }
+
+#endif
+    #endregion
+
+    #region Interfaces
+
+#if ALLOW_UNTESTED_INTERFACES
+    [ComVisible(true), ComImport,
+    Guid("6E8D4A21-310C-11d0-B79A-00AA003767A7"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IAMLine21Decoder
+    {
+        [PreserveSig]
+        int GetDecoderLevel([Out] out AMLine21CCLevel lpLevel);
+
+        [PreserveSig]
+        int GetCurrentService([Out] out AMLine21CCService lpService);
+
+        [PreserveSig]
+        int SetCurrentService([In] AMLine21CCService Service);
+
+        [PreserveSig]
+        int GetServiceState([Out] out AMLine21CCState lpState);
+
+        [PreserveSig]
+        int SetServiceState([In] AMLine21CCState State);
+
+        [PreserveSig]
+        int GetOutputFormat([Out] out BitmapInfoHeader lpbmih);
+
+        [PreserveSig]
+        int SetOutputFormat([In] BitmapInfoHeader lpbmih); //TODO: define BitmapInfo
+
+        [PreserveSig]
+        int GetBackgroundColor([Out] out int pdwPhysColor);
+
+        [PreserveSig]
+        int SetBackgroundColor([In] int dwPhysColor);
+
+        [PreserveSig]
+        int GetRedrawAlways([Out, MarshalAs(UnmanagedType.Bool)] out bool lpbOption);
+
+        [PreserveSig]
+        int SetRedrawAlways([In, MarshalAs(UnmanagedType.Bool)] bool bOption);
+
+        [PreserveSig]
+        int GetDrawBackgroundMode([Out] out AMLine21DrawBGMode lpMode);
+
+        [PreserveSig]
+        int SetDrawBackgroundMode([In] AMLine21DrawBGMode Mode);
+    }
+
+#endif
+    #endregion
+}

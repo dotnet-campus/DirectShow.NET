@@ -1,12 +1,8 @@
-// $Id: QEdit.cs,v 1.3 2005-04-19 14:50:47 kawaic Exp $
-// $Author: kawaic $
-// $Revision: 1.3 $
-
 #region license
 /* ====================================================================
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 2000 The Apache Software Foundation.  All rights
+ * Copyright (c) 2005 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -62,99 +58,123 @@
  */
 #endregion
 
-// QEdit
-// Original work from DirectShow .NET by netmaster@swissonline.ch
-// Extended streaming interfaces, ported from qedit.idl
+#define ALLOW_UNTESTED_STRUCTS
+#define ALLOW_UNTESTED_INTERFACES
 
 using System;
+using System.Drawing;
 using System.Runtime.InteropServices;
 
-namespace DShowNET
+namespace DirectShowLib
 {
+    #region Declarations
+
+#if ALLOW_UNTESTED_STRUCTS
+    /// <summary>
+    /// From VIDEOINFOHEADER
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential), ComVisible(false)]
+    public class VideoInfoHeader
+    {
+        public Rectangle	SrcRect;
+        public Rectangle	TargetRect;
+        public int		BitRate;
+        public int		BitErrorRate;
+        public long		AvgTimePerFrame;
+        public BitmapInfoHeader	BmiHeader;
+    }
+
+    /// <summary>
+    /// From VIDEOINFOHEADER2
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential), ComVisible(false)]
+    public class VideoInfoHeader2
+    {
+        public Rectangle			SrcRect;
+        public Rectangle			TargetRect;
+        public int				BitRate;
+        public int				BitErrorRate;
+        public long				AvgTimePerFrame;
+        public int				InterlaceFlags;
+        public int				CopyProtectFlags;
+        public int				PictAspectRatioX; 
+        public int				PictAspectRatioY; 
+        public int				ControlFlags;
+        public int              Reserved2;
+        public BitmapInfoHeader	BmiHeader;
+    };
+
+    /// <summary>
+    /// From WAVEFORMATEX
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential), ComVisible(false)]
+    public class WaveFormatEx
+    {
+        public short wFormatTag;
+        public short nChannels;
+        public int nSamplesPerSec;
+        public int nAvgBytesPerSec;
+        public short nBlockAlign;
+        public short wBitsPerSample;
+        public short cbSize;
+    }
+#endif
+    #endregion
+
+    #region Interfaces
+
+#if ALLOW_UNTESTED_INTERFACES
+
+    [ComVisible(true), ComImport,
+	Guid("6B652FFF-11FE-4fce-92AD-0266B5D7C78F"),
+	InterfaceType( ComInterfaceType.InterfaceIsIUnknown )]
+public interface ISampleGrabber
+{
+		[PreserveSig]
+	int SetOneShot(
+		[In, MarshalAs(UnmanagedType.Bool)]				bool	OneShot );
+
+		[PreserveSig]
+	int SetMediaType(
+		[In, MarshalAs(UnmanagedType.LPStruct)]			AMMediaType	pmt );
+
+		[PreserveSig]
+	int GetConnectedMediaType(
+		[Out, MarshalAs(UnmanagedType.LPStruct)]		AMMediaType	pmt );
+
+		[PreserveSig]
+	int SetBufferSamples(
+		[In, MarshalAs(UnmanagedType.Bool)]				bool	BufferThem );
+
+		[PreserveSig]
+	int GetCurrentBuffer( ref int pBufferSize, IntPtr pBuffer ); // int *
+
+		[PreserveSig]
+	int GetCurrentSample( out IMediaSample ppSample );
+
+		[PreserveSig]
+	int SetCallback( ISampleGrabberCB pCallback, int WhichMethodToCallback );
+}
+
+
+
 	[ComVisible(true), ComImport,
-		Guid("6B652FFF-11FE-4fce-92AD-0266B5D7C78F"),
-		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	public interface ISampleGrabber
-	{
+	Guid("0579154A-2B53-4994-B0D0-E773148EFF85"),
+	InterfaceType( ComInterfaceType.InterfaceIsIUnknown )]
+public interface ISampleGrabberCB
+{
+        /// <summary>
+        /// When called, callee must release pSample
+        /// </summary>
 		[PreserveSig]
-		int SetOneShot(
-			[In, MarshalAs(UnmanagedType.Bool)] bool OneShot);
-
-		[PreserveSig]
-		int SetMediaType(
-			[In, MarshalAs(UnmanagedType.LPStruct)] AMMediaType pmt);
+	int SampleCB( double SampleTime, IMediaSample pSample );
 
 		[PreserveSig]
-		int GetConnectedMediaType(
-			[Out, MarshalAs(UnmanagedType.LPStruct)] AMMediaType pmt);
+	int BufferCB( double SampleTime, IntPtr pBuffer, int BufferLen );
+}
 
-		[PreserveSig]
-		int SetBufferSamples(
-			[In, MarshalAs(UnmanagedType.Bool)] bool BufferThem);
+#endif
+    #endregion
 
-		[PreserveSig]
-		int GetCurrentBuffer(ref int pBufferSize, IntPtr pBuffer);
-
-		[PreserveSig]
-		int GetCurrentSample(IntPtr ppSample);
-
-		[PreserveSig]
-		int SetCallback(ISampleGrabberCB pCallback, int WhichMethodToCallback);
-	}
-
-
-	[ComVisible(true), ComImport,
-		Guid("0579154A-2B53-4994-B0D0-E773148EFF85"),
-		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	public interface ISampleGrabberCB
-	{
-		[PreserveSig]
-		int SampleCB(double SampleTime, IMediaSample pSample);
-
-		[PreserveSig]
-		int BufferCB(double SampleTime, IntPtr pBuffer, int BufferLen);
-	}
-
-
-	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
-	public class VideoInfoHeader // VIDEOINFOHEADER
-	{
-		public DsRECT SrcRect;
-		public DsRECT TargetRect;
-		public int BitRate;
-		public int BitErrorRate;
-		public long AvgTimePerFrame;
-		public BitmapInfoHeader BmiHeader;
-	}
-
-	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
-	public class VideoInfoHeader2 // VIDEOINFOHEADER2
-	{
-		public DsRECT SrcRect;
-		public DsRECT TargetRect;
-		public int BitRate;
-		public int BitErrorRate;
-		public long AvgTimePerFrame;
-		public int InterlaceFlags;
-		public int CopyProtectFlags;
-		public int PictAspectRatioX;
-		public int PictAspectRatioY;
-		public int ControlFlags;
-		public int Reserved2;
-		public BitmapInfoHeader BmiHeader;
-	} ;
-
-
-	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
-	public class WaveFormatEx
-	{
-		public short wFormatTag;
-		public short nChannels;
-		public int nSamplesPerSec;
-		public int nAvgBytesPerSec;
-		public short nBlockAlign;
-		public short wBitsPerSample;
-		public short cbSize;
-	}
 
 } // namespace DShowNET
