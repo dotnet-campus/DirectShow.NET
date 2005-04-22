@@ -60,8 +60,8 @@
 
 #endregion
 
-#define  ALLOW_UNTESTED_STRUCTS
-#define  ALLOW_UNTESTED_INTERFACES
+#define   ALLOW_UNTESTED_STRUCTS
+#define   ALLOW_UNTESTED_INTERFACES
 
 using System;
 using System.Drawing;

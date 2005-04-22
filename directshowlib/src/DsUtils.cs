@@ -60,7 +60,7 @@
 
 #endregion
 
-#define  ALLOW_UNTESTED_CODE
+#define   ALLOW_UNTESTED_CODE
 
 using System;
 using System.Collections;

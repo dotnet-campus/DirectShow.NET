@@ -1,4 +1,5 @@
 #region license
+
 /* ====================================================================
  * The Apache Software License, Version 1.1
  *
@@ -56,53 +57,57 @@
  * originally written at the National Center for Supercomputing Applications,
  * University of Illinois, Urbana-Champaign.
  */
+
 #endregion
 
-#define ALLOW_UNTESTED_STRUCTS
-#define ALLOW_UNTESTED_INTERFACES
+#define  ALLOW_UNTESTED_STRUCTS
+#define  ALLOW_UNTESTED_INTERFACES
 
 using System;
 using System.Runtime.InteropServices;
 
 namespace DirectShowLib
 {
-    #region Declarations
+
+	#region Declarations
 
 #if ALLOW_UNTESTED_STRUCTS
-    /// <summary>
-    /// From CDEF_CLASS_* defines
-    /// </summary>
-    [ComVisible(false), Flags]
-    public enum CDef
-    {
-        ClassDefault        = 0x0001,
-        BypassClassManager  = 0x0002,
-        ClassLegacy         = 0x0004,
-        MeritAboveDoNotUse  = 0x0008,
-        DevmonCMGRDevice    = 0x0010,
-        DevmonDMO           = 0x0020,
-        DevmonPNPDevice     = 0x0040,
-        DevmonFilter        = 0x0080,
-        DevmonSelectiveMask = 0x00f0
-    }
+	/// <summary>
+	/// From CDEF_CLASS_* defines
+	/// </summary>
+	[ComVisible(false), Flags]
+	public enum CDef
+	{
+		ClassDefault = 0x0001,
+		BypassClassManager = 0x0002,
+		ClassLegacy = 0x0004,
+		MeritAboveDoNotUse = 0x0008,
+		DevmonCMGRDevice = 0x0010,
+		DevmonDMO = 0x0020,
+		DevmonPNPDevice = 0x0040,
+		DevmonFilter = 0x0080,
+		DevmonSelectiveMask = 0x00f0
+	}
 #endif
-    #endregion
 
-    #region Interfaces
+	#endregion
+
+	#region Interfaces
+
 #if ALLOW_UNTESTED_INTERFACES
 
-    [ComVisible(true), ComImport,
-    Guid("29840822-5B84-11D0-BD3B-00A0C911CE86"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface ICreateDevEnum
-    {
-        [PreserveSig]
-        int CreateClassEnumerator(
-            [In] ref Guid pType,
-            [Out] out UCOMIEnumMoniker ppEnumMoniker,
-            [In] int dwFlags );
-    }
+	[ComVisible(true), ComImport,
+		Guid("29840822-5B84-11D0-BD3B-00A0C911CE86"),
+		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	public interface ICreateDevEnum
+	{
+		[PreserveSig]
+		int CreateClassEnumerator(
+			[In] ref Guid pType,
+			[Out] out UCOMIEnumMoniker ppEnumMoniker,
+			[In] int dwFlags);
+	}
 #endif
-    #endregion
 
+	#endregion
 }

@@ -1,4 +1,5 @@
 #region license
+
 /* ====================================================================
  * The Apache Software License, Version 1.1
  *
@@ -56,843 +57,851 @@
  * originally written at the National Center for Supercomputing Applications,
  * University of Illinois, Urbana-Champaign.
  */
+
 #endregion
 
-#define ALLOW_UNTESTED_STRUCTS
-#define ALLOW_UNTESTED_INTERFACES
+#define  ALLOW_UNTESTED_STRUCTS
+#define  ALLOW_UNTESTED_INTERFACES
 
 using System;
 using System.Runtime.InteropServices;
 
 namespace DirectShowLib
 {
-    #region Interfaces
+
+	#region Interfaces
+
 #if ALLOW_UNTESTED_INTERFACES
-    [ComVisible(true), ComImport,
-    Guid("56a868b9-0ad4-11ce-b03a-0020af0ba770"),
-    InterfaceType( ComInterfaceType.InterfaceIsDual )]
-    public interface IAMCollection
-    {
-        [PreserveSig]
-        int get_Count([Out] out int plCount);
-
-        [PreserveSig]
-        int Item(
-            [In] int lItem,
-            [Out, MarshalAs(UnmanagedType.IUnknown)] out object	ppUnk
-            );
-
-        [PreserveSig]
-        int get__NewEnum([Out, MarshalAs(UnmanagedType.IUnknown)] out	object ppUnk);
-    }
-
-    [ComVisible(true), ComImport,
-    Guid("56a868b1-0ad4-11ce-b03a-0020af0ba770"),
-    InterfaceType( ComInterfaceType.InterfaceIsDual)]
-    public interface IMediaControl
-    {
-        [PreserveSig]
-        int Run();
-
-        [PreserveSig]
-        int Pause();
-
-        [PreserveSig]
-        int Stop();
-
-        [PreserveSig]
-        int GetState(
-            [In] int msTimeout,
-            [Out] out FilterState pfs
-            );
-
-        [PreserveSig]
-        int RenderFile([In, MarshalAs(UnmanagedType.BStr)] string strFilename);
-
-        [PreserveSig]
-        int AddSourceFilter(
-            [In, MarshalAs(UnmanagedType.BStr)] string strFilename,
-            [Out, MarshalAs(UnmanagedType.IDispatch)]	out object ppUnk
-            );
-
-        [PreserveSig]
-        int get_FilterCollection([Out, MarshalAs(UnmanagedType.IDispatch)] out object ppUnk);
-
-        [PreserveSig]
-        int get_RegFilterCollection([Out, MarshalAs(UnmanagedType.IDispatch)] out object ppUnk);
-
-        [PreserveSig]
-        int StopWhenReady();
-    }
-
-    [ComVisible(true), ComImport,
-    Guid("56a868b6-0ad4-11ce-b03a-0020af0ba770"),
-    InterfaceType( ComInterfaceType.InterfaceIsDual)]
-    public interface IMediaEvent
-    {
-        [PreserveSig]
-        int GetEventHandle([Out] out IntPtr hEvent); // HEVENT
-
-        [PreserveSig]
-        int GetEvent(
-            [Out] out EvCode lEventCode,
-            [Out] out int lParam1,
-            [Out] out int lParam2,
-            [In] int msTimeout
-            );
-
-        [PreserveSig]
-        int WaitForCompletion(
-            [In] int msTimeout,
-            [Out] out int pEvCode
-            );
-
-        [PreserveSig]
-        int CancelDefaultHandling([In] int lEvCode);
-
-        [PreserveSig]
-        int RestoreDefaultHandling([In] int lEvCode);
-
-        [PreserveSig]
-        int FreeEventParams(
-            [In] EvCode lEvCode,
-            [In] int lParam1,
-            [In] int lParam2
-            );
-    }
-
-    [ComVisible(true), ComImport,
-    Guid("56a868c0-0ad4-11ce-b03a-0020af0ba770"),
-    InterfaceType( ComInterfaceType.InterfaceIsDual)]
-    public interface IMediaEventEx : IMediaEvent
-    {
-        #region IMediaEvent Methods
-        [PreserveSig]
-        new int GetEventHandle([Out] out IntPtr hEvent); // HEVENT
-
-        [PreserveSig]
-        new int GetEvent(
-            [Out] out EvCode lEventCode,
-            [Out] out int lParam1,
-            [Out] out int lParam2,
-            [In] int msTimeout
-            );
-
-        [PreserveSig]
-        new int WaitForCompletion(
-            [In] int msTimeout,
-            [Out] out int pEvCode
-            );
-
-        [PreserveSig]
-        new int CancelDefaultHandling([In] int lEvCode);
-
-        [PreserveSig]
-        new int RestoreDefaultHandling([In] int lEvCode);
-
-        [PreserveSig]
-        new int FreeEventParams(
-            [In] EvCode lEvCode,
-            [In] int lParam1,
-            [In] int lParam2
-            );
-        #endregion
-
-        [PreserveSig]
-        int SetNotifyWindow(
-            [In] IntPtr hwnd, // HWND *
-            [In] int lMsg,
-            [In] IntPtr lInstanceData // PVOID
-            );
+	[ComVisible(true), ComImport,
+		Guid("56a868b9-0ad4-11ce-b03a-0020af0ba770"),
+		InterfaceType(ComInterfaceType.InterfaceIsDual)]
+	public interface IAMCollection
+	{
+		[PreserveSig]
+		int get_Count([Out] out int plCount);
+
+		[PreserveSig]
+		int Item(
+			[In] int lItem,
+			[Out, MarshalAs(UnmanagedType.IUnknown)] out object ppUnk
+			);
+
+		[PreserveSig]
+		int get__NewEnum([Out, MarshalAs(UnmanagedType.IUnknown)] out object ppUnk);
+	}
+
+	[ComVisible(true), ComImport,
+		Guid("56a868b1-0ad4-11ce-b03a-0020af0ba770"),
+		InterfaceType(ComInterfaceType.InterfaceIsDual)]
+	public interface IMediaControl
+	{
+		[PreserveSig]
+		int Run();
+
+		[PreserveSig]
+		int Pause();
+
+		[PreserveSig]
+		int Stop();
+
+		[PreserveSig]
+		int GetState(
+			[In] int msTimeout,
+			[Out] out FilterState pfs
+			);
+
+		[PreserveSig]
+		int RenderFile([In, MarshalAs(UnmanagedType.BStr)] string strFilename);
+
+		[PreserveSig]
+		int AddSourceFilter(
+			[In, MarshalAs(UnmanagedType.BStr)] string strFilename,
+			[Out, MarshalAs(UnmanagedType.IDispatch)] out object ppUnk
+			);
+
+		[PreserveSig]
+		int get_FilterCollection([Out, MarshalAs(UnmanagedType.IDispatch)] out object ppUnk);
+
+		[PreserveSig]
+		int get_RegFilterCollection([Out, MarshalAs(UnmanagedType.IDispatch)] out object ppUnk);
+
+		[PreserveSig]
+		int StopWhenReady();
+	}
+
+	[ComVisible(true), ComImport,
+		Guid("56a868b6-0ad4-11ce-b03a-0020af0ba770"),
+		InterfaceType(ComInterfaceType.InterfaceIsDual)]
+	public interface IMediaEvent
+	{
+		[PreserveSig]
+		int GetEventHandle([Out] out IntPtr hEvent); // HEVENT
+
+		[PreserveSig]
+		int GetEvent(
+			[Out] out EvCode lEventCode,
+			[Out] out int lParam1,
+			[Out] out int lParam2,
+			[In] int msTimeout
+			);
+
+		[PreserveSig]
+		int WaitForCompletion(
+			[In] int msTimeout,
+			[Out] out int pEvCode
+			);
+
+		[PreserveSig]
+		int CancelDefaultHandling([In] int lEvCode);
+
+		[PreserveSig]
+		int RestoreDefaultHandling([In] int lEvCode);
+
+		[PreserveSig]
+		int FreeEventParams(
+			[In] EvCode lEvCode,
+			[In] int lParam1,
+			[In] int lParam2
+			);
+	}
+
+	[ComVisible(true), ComImport,
+		Guid("56a868c0-0ad4-11ce-b03a-0020af0ba770"),
+		InterfaceType(ComInterfaceType.InterfaceIsDual)]
+	public interface IMediaEventEx : IMediaEvent
+	{
+		#region IMediaEvent Methods
+
+		[PreserveSig]
+		new int GetEventHandle([Out] out IntPtr hEvent); // HEVENT
+
+		[PreserveSig]
+		new int GetEvent(
+			[Out] out EvCode lEventCode,
+			[Out] out int lParam1,
+			[Out] out int lParam2,
+			[In] int msTimeout
+			);
+
+		[PreserveSig]
+		new int WaitForCompletion(
+			[In] int msTimeout,
+			[Out] out int pEvCode
+			);
+
+		[PreserveSig]
+		new int CancelDefaultHandling([In] int lEvCode);
+
+		[PreserveSig]
+		new int RestoreDefaultHandling([In] int lEvCode);
+
+		[PreserveSig]
+		new int FreeEventParams(
+			[In] EvCode lEvCode,
+			[In] int lParam1,
+			[In] int lParam2
+			);
+
+		#endregion
+
+		[PreserveSig]
+		int SetNotifyWindow(
+			[In] IntPtr hwnd, // HWND *
+			[In] int lMsg,
+			[In] IntPtr lInstanceData // PVOID
+			);
 
-        [PreserveSig]
-        int SetNotifyFlags([In] int lNoNotifyFlags);
+		[PreserveSig]
+		int SetNotifyFlags([In] int lNoNotifyFlags);
 
-        [PreserveSig]
-        int GetNotifyFlags([Out] out int lplNoNotifyFlags);
-    }
+		[PreserveSig]
+		int GetNotifyFlags([Out] out int lplNoNotifyFlags);
+	}
 
-    [ComVisible(true), ComImport,
-    Guid("56a868b2-0ad4-11ce-b03a-0020af0ba770"),
-    InterfaceType( ComInterfaceType.InterfaceIsDual )]
-    public interface IMediaPosition
-    {
-        [PreserveSig]
-        int get_Duration([Out] out double pLength);
+	[ComVisible(true), ComImport,
+		Guid("56a868b2-0ad4-11ce-b03a-0020af0ba770"),
+		InterfaceType(ComInterfaceType.InterfaceIsDual)]
+	public interface IMediaPosition
+	{
+		[PreserveSig]
+		int get_Duration([Out] out double pLength);
 
-        [PreserveSig]
-        int put_CurrentPosition([In] double llTime);
+		[PreserveSig]
+		int put_CurrentPosition([In] double llTime);
 
-        [PreserveSig]
-        int get_CurrentPosition([Out] out double pllTime);
+		[PreserveSig]
+		int get_CurrentPosition([Out] out double pllTime);
 
-        [PreserveSig]
-        int get_StopTime([Out] out double pllTime);
+		[PreserveSig]
+		int get_StopTime([Out] out double pllTime);
 
-        [PreserveSig]
-        int put_StopTime([In] double llTime);
+		[PreserveSig]
+		int put_StopTime([In] double llTime);
 
-        [PreserveSig]
-        int get_PrerollTime([Out] out double pllTime);
+		[PreserveSig]
+		int get_PrerollTime([Out] out double pllTime);
 
-        [PreserveSig]
-        int put_PrerollTime([In] double llTime);
+		[PreserveSig]
+		int put_PrerollTime([In] double llTime);
 
-        [PreserveSig]
-        int put_Rate([In] double dRate);
+		[PreserveSig]
+		int put_Rate([In] double dRate);
 
-        [PreserveSig]
-        int get_Rate([Out] out double pdRate);
+		[PreserveSig]
+		int get_Rate([Out] out double pdRate);
 
-        [PreserveSig]
-        int CanSeekForward([Out] out int pCanSeekForward);
+		[PreserveSig]
+		int CanSeekForward([Out] out int pCanSeekForward);
 
-        [PreserveSig]
-        int CanSeekBackward([Out] out int pCanSeekBackward);
-    }
+		[PreserveSig]
+		int CanSeekBackward([Out] out int pCanSeekBackward);
+	}
 
-    [ComVisible(true), ComImport,
-    Guid("56a868b3-0ad4-11ce-b03a-0020af0ba770"),
-    InterfaceType( ComInterfaceType.InterfaceIsDual )]
-    public interface IBasicAudio
-    {
-        [PreserveSig]
-        int put_Volume([In] int lVolume);
+	[ComVisible(true), ComImport,
+		Guid("56a868b3-0ad4-11ce-b03a-0020af0ba770"),
+		InterfaceType(ComInterfaceType.InterfaceIsDual)]
+	public interface IBasicAudio
+	{
+		[PreserveSig]
+		int put_Volume([In] int lVolume);
 
-        [PreserveSig]
-        int get_Volume([Out] out int plVolume);
+		[PreserveSig]
+		int get_Volume([Out] out int plVolume);
 
-        [PreserveSig]
-        int put_Balance([In] int lBalance);
+		[PreserveSig]
+		int put_Balance([In] int lBalance);
 
-        [PreserveSig]
-        int get_Balance([Out] out int plBalance);
-    }
+		[PreserveSig]
+		int get_Balance([Out] out int plBalance);
+	}
 
-    [ComVisible(true), ComImport,
-    Guid("56a868b4-0ad4-11ce-b03a-0020af0ba770"),
-    InterfaceType( ComInterfaceType.InterfaceIsDual )]
-    public interface IVideoWindow
-    {
-        [PreserveSig]
-        int put_Caption([In, MarshalAs(UnmanagedType.BStr)] string caption);
+	[ComVisible(true), ComImport,
+		Guid("56a868b4-0ad4-11ce-b03a-0020af0ba770"),
+		InterfaceType(ComInterfaceType.InterfaceIsDual)]
+	public interface IVideoWindow
+	{
+		[PreserveSig]
+		int put_Caption([In, MarshalAs(UnmanagedType.BStr)] string caption);
 
-        [PreserveSig]
-        int get_Caption([Out, MarshalAs(UnmanagedType.BStr)] out string caption);
+		[PreserveSig]
+		int get_Caption([Out, MarshalAs(UnmanagedType.BStr)] out string caption);
 
-        [PreserveSig]
-        int put_WindowStyle([In] int windowStyle);
+		[PreserveSig]
+		int put_WindowStyle([In] int windowStyle);
 
-        [PreserveSig]
-        int get_WindowStyle([Out] out int windowStyle);
+		[PreserveSig]
+		int get_WindowStyle([Out] out int windowStyle);
 
-        [PreserveSig]
-        int put_WindowStyleEx([In] int windowStyleEx);
+		[PreserveSig]
+		int put_WindowStyleEx([In] int windowStyleEx);
 
-        [PreserveSig]
-        int get_WindowStyleEx([Out] out int windowStyleEx);
+		[PreserveSig]
+		int get_WindowStyleEx([Out] out int windowStyleEx);
 
-        [PreserveSig]
-        int put_AutoShow([In] int autoShow);
+		[PreserveSig]
+		int put_AutoShow([In] int autoShow);
 
-        [PreserveSig]
-        int get_AutoShow([Out] out int autoShow);
+		[PreserveSig]
+		int get_AutoShow([Out] out int autoShow);
 
-        [PreserveSig]
-        int put_WindowState([In] int windowState);
+		[PreserveSig]
+		int put_WindowState([In] int windowState);
 
-        [PreserveSig]
-        int get_WindowState([Out] out int windowState);
+		[PreserveSig]
+		int get_WindowState([Out] out int windowState);
 
-        [PreserveSig]
-        int put_BackgroundPalette([In] int backgroundPalette);
+		[PreserveSig]
+		int put_BackgroundPalette([In] int backgroundPalette);
 
-        [PreserveSig]
-        int get_BackgroundPalette([Out] out int backgroundPalette);
-
-        [PreserveSig]
-        int put_Visible([In] int visible);
+		[PreserveSig]
+		int get_BackgroundPalette([Out] out int backgroundPalette);
 
-        [PreserveSig]
-        int get_Visible([Out] out int visible);
+		[PreserveSig]
+		int put_Visible([In] int visible);
 
-        [PreserveSig]
-        int put_Left([In] int left);
+		[PreserveSig]
+		int get_Visible([Out] out int visible);
 
-        [PreserveSig]
-        int get_Left([Out] out int left);
-
-        [PreserveSig]
-        int put_Width([In] int width);
-
-        [PreserveSig]
-        int get_Width([Out] out int width);
-
-        [PreserveSig]
-        int put_Top([In] int top);
-
-        [PreserveSig]
-        int get_Top([Out] out int top);
-
-        [PreserveSig]
-        int put_Height([In] int height);
+		[PreserveSig]
+		int put_Left([In] int left);
 
-        [PreserveSig]
-        int get_Height([Out] out int height);
+		[PreserveSig]
+		int get_Left([Out] out int left);
 
-        [PreserveSig]
-        int put_Owner([In] IntPtr owner); // OAHWND *
+		[PreserveSig]
+		int put_Width([In] int width);
+
+		[PreserveSig]
+		int get_Width([Out] out int width);
+
+		[PreserveSig]
+		int put_Top([In] int top);
 
-        [PreserveSig]
-        int get_Owner([Out] out IntPtr owner); // OAHWND *
+		[PreserveSig]
+		int get_Top([Out] out int top);
 
-        [PreserveSig]
-        int put_MessageDrain([In] IntPtr drain); // OAHWND *
+		[PreserveSig]
+		int put_Height([In] int height);
 
-        [PreserveSig]
-        int get_MessageDrain([Out] out IntPtr drain); // OAHWND *
+		[PreserveSig]
+		int get_Height([Out] out int height);
 
-        [PreserveSig]
-        int get_BorderColor([Out] out int color);
+		[PreserveSig]
+		int put_Owner([In] IntPtr owner); // OAHWND *
 
-        [PreserveSig]
-        int put_BorderColor([In] int color);
+		[PreserveSig]
+		int get_Owner([Out] out IntPtr owner); // OAHWND *
 
-        [PreserveSig]
-        int get_FullScreenMode([Out] out int fullScreenMode);
+		[PreserveSig]
+		int put_MessageDrain([In] IntPtr drain); // OAHWND *
 
-        [PreserveSig]
-        int put_FullScreenMode([In] int fullScreenMode);
+		[PreserveSig]
+		int get_MessageDrain([Out] out IntPtr drain); // OAHWND *
 
-        [PreserveSig]
-        int SetWindowForeground([In] int focus);
+		[PreserveSig]
+		int get_BorderColor([Out] out int color);
 
-        [PreserveSig]
-        int NotifyOwnerMessage(
-            [In] IntPtr hwnd,  // HWND *
-            [In] int msg,
-            [In] IntPtr wParam, // WPARAM
-            [In] IntPtr lParam // LPARAM
-            );
+		[PreserveSig]
+		int put_BorderColor([In] int color);
 
-        [PreserveSig]
-        int SetWindowPosition(
-            [In] int left,
-            [In] int top,
-            [In] int width,
-            [In] int height
-            );
+		[PreserveSig]
+		int get_FullScreenMode([Out] out int fullScreenMode);
 
-        [PreserveSig]
-        int GetWindowPosition(
-            [Out] out int left,
-            [Out] out int top,
-            [Out] out int width,
-            [Out] out int height
-            );
+		[PreserveSig]
+		int put_FullScreenMode([In] int fullScreenMode);
 
-        [PreserveSig]
-        int GetMinIdealImageSize(
-            [Out] out int width,
-            [Out] out int height
-            );
+		[PreserveSig]
+		int SetWindowForeground([In] int focus);
 
-        [PreserveSig]
-        int GetMaxIdealImageSize(
-            [Out] out int width,
-            [Out] out int height
-            );
+		[PreserveSig]
+		int NotifyOwnerMessage(
+			[In] IntPtr hwnd, // HWND *
+			[In] int msg,
+			[In] IntPtr wParam, // WPARAM
+			[In] IntPtr lParam // LPARAM
+			);
 
-        [PreserveSig]
-        int GetRestorePosition(
-            [Out] out int left,
-            [Out] out int top,
-            [Out] out int width,
-            [Out] out int height
-            );
+		[PreserveSig]
+		int SetWindowPosition(
+			[In] int left,
+			[In] int top,
+			[In] int width,
+			[In] int height
+			);
 
-        [PreserveSig]
-        int HideCursor([In] int hideCursor);
+		[PreserveSig]
+		int GetWindowPosition(
+			[Out] out int left,
+			[Out] out int top,
+			[Out] out int width,
+			[Out] out int height
+			);
 
-        [PreserveSig]
-        int IsCursorHidden([Out] out int hideCursor);
-    }
+		[PreserveSig]
+		int GetMinIdealImageSize(
+			[Out] out int width,
+			[Out] out int height
+			);
 
-    [ComVisible(true), ComImport,
-    Guid("56a868b5-0ad4-11ce-b03a-0020af0ba770"),
-    InterfaceType( ComInterfaceType.InterfaceIsDual)]
-    public interface IBasicVideo
-    {
-        [PreserveSig]
-        int get_AvgTimePerFrame([Out] out double pAvgTimePerFrame);
+		[PreserveSig]
+		int GetMaxIdealImageSize(
+			[Out] out int width,
+			[Out] out int height
+			);
 
-        [PreserveSig]
-        int get_BitRate([Out] out int pBitRate);
+		[PreserveSig]
+		int GetRestorePosition(
+			[Out] out int left,
+			[Out] out int top,
+			[Out] out int width,
+			[Out] out int height
+			);
 
-        [PreserveSig]
-        int get_BitErrorRate([Out] out int pBitRate);
+		[PreserveSig]
+		int HideCursor([In] int hideCursor);
 
-        [PreserveSig]
-        int get_VideoWidth([Out] out int pVideoWidth);
-
-        [PreserveSig]
-        int get_VideoHeight([Out] out int pVideoHeight);
-
-        [PreserveSig]
-        int put_SourceLeft([In] int SourceLeft);
-
-        [PreserveSig]
-        int get_SourceLeft([Out] out int pSourceLeft);
-
-        [PreserveSig]
-        int put_SourceWidth([In] int SourceWidth );
-
-        [PreserveSig]
-        int get_SourceWidth([Out] out int pSourceWidth);
-
-        [PreserveSig]
-        int put_SourceTop([In] int SourceTop);
-
-        [PreserveSig]
-        int get_SourceTop([Out] out int pSourceTop);
-
-        [PreserveSig]
-        int put_SourceHeight([In] int SourceHeight);
-
-        [PreserveSig]
-        int get_SourceHeight([Out] out int pSourceHeight);
-
-        [PreserveSig]
-        int put_DestinationLeft([In] int DestinationLeft);
-
-        [PreserveSig]
-        int get_DestinationLeft([Out] out int pDestinationLeft);
-
-        [PreserveSig]
-        int put_DestinationWidth([In] int DestinationWidth);
-
-        [PreserveSig]
-        int get_DestinationWidth([Out] out int pDestinationWidth);
-
-        [PreserveSig]
-        int put_DestinationTop([In] int DestinationTop);
-
-        [PreserveSig]
-        int get_DestinationTop([Out] out int pDestinationTop);
-
-        [PreserveSig]
-        int put_DestinationHeight([In] int DestinationHeight);
-
-        [PreserveSig]
-        int get_DestinationHeight([Out] out int pDestinationHeight);
-
-        [PreserveSig]
-        int SetSourcePosition(
-            [In] int left,
-            [In] int top,
-            [In] int width,
-            [In] int height
-            );
+		[PreserveSig]
+		int IsCursorHidden([Out] out int hideCursor);
+	}
 
-        [PreserveSig]
-        int GetSourcePosition(
-            [Out] out int left,
-            [Out] out int top,
-            [Out] out int width,
-            [Out] out int height
-            );
+	[ComVisible(true), ComImport,
+		Guid("56a868b5-0ad4-11ce-b03a-0020af0ba770"),
+		InterfaceType(ComInterfaceType.InterfaceIsDual)]
+	public interface IBasicVideo
+	{
+		[PreserveSig]
+		int get_AvgTimePerFrame([Out] out double pAvgTimePerFrame);
 
-        [PreserveSig]
-        int SetDefaultSourcePosition();
+		[PreserveSig]
+		int get_BitRate([Out] out int pBitRate);
 
-        [PreserveSig]
-        int SetDestinationPosition(
-            [In] int left,
-            [In] int top,
-            [In] int width,
-            [In] int height
-            );
+		[PreserveSig]
+		int get_BitErrorRate([Out] out int pBitRate);
 
-        [PreserveSig]
-        int GetDestinationPosition(
-            [Out] out int left,
-            [Out] out int top,
-            [Out] out int width,
-            [Out] out int height
-            );
+		[PreserveSig]
+		int get_VideoWidth([Out] out int pVideoWidth);
 
-        [PreserveSig]
-        int SetDefaultDestinationPosition();
+		[PreserveSig]
+		int get_VideoHeight([Out] out int pVideoHeight);
+
+		[PreserveSig]
+		int put_SourceLeft([In] int SourceLeft);
+
+		[PreserveSig]
+		int get_SourceLeft([Out] out int pSourceLeft);
+
+		[PreserveSig]
+		int put_SourceWidth([In] int SourceWidth);
+
+		[PreserveSig]
+		int get_SourceWidth([Out] out int pSourceWidth);
+
+		[PreserveSig]
+		int put_SourceTop([In] int SourceTop);
+
+		[PreserveSig]
+		int get_SourceTop([Out] out int pSourceTop);
+
+		[PreserveSig]
+		int put_SourceHeight([In] int SourceHeight);
+
+		[PreserveSig]
+		int get_SourceHeight([Out] out int pSourceHeight);
+
+		[PreserveSig]
+		int put_DestinationLeft([In] int DestinationLeft);
+
+		[PreserveSig]
+		int get_DestinationLeft([Out] out int pDestinationLeft);
+
+		[PreserveSig]
+		int put_DestinationWidth([In] int DestinationWidth);
 
-        [PreserveSig]
-        int GetVideoSize(
-            [Out] out int pWidth,
-            [Out] out int pHeight
-            );
+		[PreserveSig]
+		int get_DestinationWidth([Out] out int pDestinationWidth);
 
-        [PreserveSig]
-        int GetVideoPaletteEntries(
-            [In] int StartIndex,
-            [In] int Entries,
-            [Out] out int pRetrieved,
-            [Out] out IntPtr pPalette // int *
-            );
+		[PreserveSig]
+		int put_DestinationTop([In] int DestinationTop);
 
-        [PreserveSig]
-        int GetCurrentImage(
-            [In, Out] ref int pBufferSize,
-            [Out] IntPtr pDIBImage // int *
-            );
+		[PreserveSig]
+		int get_DestinationTop([Out] out int pDestinationTop);
 
-        [PreserveSig]
-        int IsUsingDefaultSource();
-
-        [PreserveSig]
-        int IsUsingDefaultDestination();
-    }
-
-    [ComVisible(true), ComImport,
-    Guid("329bb360-f6ea-11d1-9038-00a0c9697298"),
-    InterfaceType( ComInterfaceType.InterfaceIsDual)]
-    public interface IBasicVideo2 : IBasicVideo
-    {
-      #region IBasicVideo Methods
-        [PreserveSig]
-        new int get_AvgTimePerFrame([Out] out double pAvgTimePerFrame);
-
-        [PreserveSig]
-        new int get_BitRate([Out] out int pBitRate);
-
-        [PreserveSig]
-        new int get_BitErrorRate([Out] out int pBitRate);
-
-        [PreserveSig]
-        new int get_VideoWidth([Out] out int pVideoWidth);
-
-        [PreserveSig]
-        new int get_VideoHeight([Out] out int pVideoHeight);
-
-        [PreserveSig]
-        new int put_SourceLeft([In] int SourceLeft);
-
-        [PreserveSig]
-        new int get_SourceLeft([Out] out int pSourceLeft);
-
-        [PreserveSig]
-        new int put_SourceWidth([In] int SourceWidth );
-
-        [PreserveSig]
-        new int get_SourceWidth([Out] out int pSourceWidth);
-
-        [PreserveSig]
-        new int put_SourceTop([In] int SourceTop);
-
-        [PreserveSig]
-        new int get_SourceTop([Out] out int pSourceTop);
-
-        [PreserveSig]
-        new int put_SourceHeight([In] int SourceHeight);
-
-        [PreserveSig]
-        new int get_SourceHeight([Out] out int pSourceHeight);
-
-        [PreserveSig]
-        new int put_DestinationLeft([In] int DestinationLeft);
-
-        [PreserveSig]
-        new int get_DestinationLeft([Out] out int pDestinationLeft);
-
-        [PreserveSig]
-        new int put_DestinationWidth([In] int DestinationWidth);
-
-        [PreserveSig]
-        new int get_DestinationWidth([Out] out int pDestinationWidth);
-
-        [PreserveSig]
-        new int put_DestinationTop([In] int DestinationTop);
-
-        [PreserveSig]
-        new int get_DestinationTop([Out] out int pDestinationTop);
-
-        [PreserveSig]
-        new int put_DestinationHeight([In] int DestinationHeight);
-
-        [PreserveSig]
-        new int get_DestinationHeight([Out] out int pDestinationHeight);
-
-        [PreserveSig]
-        new int SetSourcePosition(
-            [In] int left,
-            [In] int top,
-            [In] int width,
-            [In] int height
-            );
-
-        [PreserveSig]
-        new int GetSourcePosition(
-            [Out] out int left,
-            [Out] out int top,
-            [Out] out int width,
-            [Out] out int height
-            );
-
-        [PreserveSig]
-        new int SetDefaultSourcePosition();
-
-        [PreserveSig]
-        new int SetDestinationPosition(
-            [In] int left,
-            [In] int top,
-            [In] int width,
-            [In] int height
-            );
-
-        [PreserveSig]
-        new int GetDestinationPosition(
-            [Out] out int left,
-            [Out] out int top,
-            [Out] out int width,
-            [Out] out int height
-            );
-
-        [PreserveSig]
-        new int SetDefaultDestinationPosition();
-
-        [PreserveSig]
-        new int GetVideoSize(
-            [Out] out int pWidth,
-            [Out] out int pHeight
-            );
-
-        [PreserveSig]
-        new int GetVideoPaletteEntries(
-            [In] int StartIndex,
-            [In] int Entries,
-            [Out] out int pRetrieved,
-            [Out] out IntPtr pPalette //int *
-            );
-
-        [PreserveSig]
-        new int GetCurrentImage(
-            [In, Out] ref int pBufferSize,
-            [Out] IntPtr pDIBImage // int *
-            );
-
-        [PreserveSig]
-        new int IsUsingDefaultSource();
-
-        [PreserveSig]
-        new int IsUsingDefaultDestination();
-      #endregion
-
-        [PreserveSig]
-        int GetPreferredAspectRatio(
-            [Out] out int plAspectX,
-            [Out] out int plAspectY
-            );
-    }
-
-    [ComVisible(true), ComImport,
-    Guid("56a868b8-0ad4-11ce-b03a-0020af0ba770"),
-    InterfaceType( ComInterfaceType.InterfaceIsIUnknown )]
-    public interface IDeferredCommand
-    {
-        [PreserveSig]
-        int Cancel();
-
-        [PreserveSig]
-        int Confidence([Out] out int pConfidence);
-
-        [PreserveSig]
-        int Postpone([In] long newtime);
-
-        [PreserveSig]
-        int GetHResult([Out] out int phrResult);
-    }
-
-    [ComVisible(true), ComImport,
-    Guid("56a868b7-0ad4-11ce-b03a-0020af0ba770"),
-    InterfaceType( ComInterfaceType.InterfaceIsIUnknown )]
-    public interface IQueueCommand
-    {
-        [PreserveSig]
-        int InvokeAtStreamTime(
-            [Out] out IDeferredCommand pCmd,
-            [In] long time,
-            [In] Guid iid,
-            [In] int dispidMethod,
-            [In] short wFlags,
-            [In] int cArgs,
-            [In] object[] pDispParams,
-            [Out] out object pvarResult,
-            [Out] out short puArgErr
-            );
-
-        int InvokeAtPresentationTime(
-            [In] long time,
-            [In] Guid iid,
-            [In] int dispidMethod,
-            [In] short wFlags,
-            [In] int cArgs,
-            [In] object[] pDispParams,
-            [Out] out object pvarResult,
-            [Out] out short puArgErr
-            );
-    }
-
-    [ComVisible(true), ComImport,
-    Guid("56a868ba-0ad4-11ce-b03a-0020af0ba770"),
-    InterfaceType( ComInterfaceType.InterfaceIsDual )]
-    public interface IFilterInfo
-    {
-        [PreserveSig]
-        int FindPin(
-            [In, MarshalAs(UnmanagedType.BStr)] string strPinID,
-            [Out, MarshalAs(UnmanagedType.IDispatch)] out object ppUnk
-            );
-
-        [PreserveSig]
-        int get_Name([Out, MarshalAs(UnmanagedType.BStr)] out string strName);
-
-        [PreserveSig]
-        int get_VendorInfo([Out, MarshalAs(UnmanagedType.BStr)] string strVendorInfo);
-
-        [PreserveSig]
-        int get_Filter([Out, MarshalAs(UnmanagedType.IUnknown)] out object ppUnk);
-
-        [PreserveSig]
-        int get_Pins([Out, MarshalAs(UnmanagedType.IDispatch)] out object ppUnk);
-
-        [PreserveSig]
-        int get_IsFileSource([Out] out int pbIsSource);
-
-        [PreserveSig]
-        int get_Filename([Out, MarshalAs(UnmanagedType.BStr)] out string pstrFilename);
-
-        [PreserveSig]
-        int put_Filename([In, MarshalAs(UnmanagedType.BStr)] string strFilename);
-    }
-
-    [ComVisible(true), ComImport,
-    Guid("56a868bb-0ad4-11ce-b03a-0020af0ba770"),
-    InterfaceType( ComInterfaceType.InterfaceIsDual )]
-    public interface IRegFilterInfo
-    {
-        [PreserveSig]
-        int get_Name([Out, MarshalAs(UnmanagedType.BStr)] out string strName);
-
-        [PreserveSig]
-        int Filter([Out, MarshalAs(UnmanagedType.IDispatch)] out object ppUnk);
-    }
-
-    [ComVisible(true), ComImport,
-    Guid("56a868bc-0ad4-11ce-b03a-0020af0ba770"),
-    InterfaceType( ComInterfaceType.InterfaceIsDual )]
-    public interface IMediaTypeInfo
-    {
-        [PreserveSig]
-        int get_Type([Out, MarshalAs(UnmanagedType.BStr)] out string strType);
-
-        [PreserveSig]
-        int get_Subtype([Out, MarshalAs(UnmanagedType.BStr)] out string strType);
-    }
-
-    [ComVisible(true), ComImport,
-    Guid("56a868bd-0ad4-11ce-b03a-0020af0ba770"),
-    InterfaceType( ComInterfaceType.InterfaceIsDual )]
-    public interface IPinInfo
-    {
-        [PreserveSig]
-        int get_Pin([Out, MarshalAs(UnmanagedType.IUnknown)] out object ppUnk);
-
-        [PreserveSig]
-        int get_ConnectedTo([Out, MarshalAs(UnmanagedType.IDispatch)] out object ppUnk);
-
-        [PreserveSig]
-        int get_ConnectionMediaType([Out, MarshalAs(UnmanagedType.IUnknown)] out object ppUnk);
-
-        [PreserveSig]
-        int get_FilterInfo([Out, MarshalAs(UnmanagedType.IUnknown)] out object ppUnk);
-
-        [PreserveSig]
-        int get_Name([Out, MarshalAs(UnmanagedType.BStr)] out string ppUnk);
-
-        [PreserveSig]
-        int get_Direction([Out] int ppDirection);
-
-        [PreserveSig]
-        int get_PinID([Out, MarshalAs(UnmanagedType.BStr)] out string strPinID);
-
-        [PreserveSig]
-        int get_MediaTypes([Out, MarshalAs(UnmanagedType.IUnknown)] out object ppUnk);
-
-        [PreserveSig]
-        int Connect([In, MarshalAs(UnmanagedType.IUnknown)] object pPin);
-
-        [PreserveSig]
-        int ConnectDirect([In, MarshalAs(UnmanagedType.IUnknown)] object pPin);
-
-        [PreserveSig]
-        int ConnectWithType(
-            [In, MarshalAs(UnmanagedType.IUnknown)] object pPin,
-            [In, MarshalAs(UnmanagedType.IUnknown)] object pMediaType
-            );
-
-        [PreserveSig]
-        int Disconnect();
-
-        [PreserveSig]
-        int Render();
-    }
-
-    [ComVisible(true), ComImport,
-    Guid("bc9bcf80-dcd2-11d2-abf6-00a0c905f375"),
-    InterfaceType( ComInterfaceType.InterfaceIsDual )]
-    public interface IAMStats
-    {
-        [PreserveSig]
-        int Reset();
-
-        [PreserveSig]
-        int get_Count([Out] out int plCount);
-
-        [PreserveSig]
-        int GetValueByIndex(
-            [In] int lIndex,
-            [Out, MarshalAs(UnmanagedType.BStr)] out string szName,
-            [Out] out int lCount,
-            [Out] out double dLast,
-            [Out] out double dAverage,
-            [Out] out double dStdDev,
-            [Out] out double dMin,
-            [Out] out double dMax
-            );
-
-        [PreserveSig]
-        int GetValueByName(
-            [In, MarshalAs(UnmanagedType.BStr)] string szName,
-            [Out] out int lIndex,
-            [Out] out int lCount,
-            [Out] out double dLast,
-            [Out] out double dAverage,
-            [Out] out double dStdDev,
-            [Out] out double dMin,
-            [Out] out double dMax
-            );
-
-        [PreserveSig]
-        int GetIndex(
-            [In, MarshalAs(UnmanagedType.BStr)] string szName,
-            [In] int lCreate,
-            [Out] out int plIndex
-            );
-
-        [PreserveSig]
-        int AddValue(
-            [In] long lIndex,
-            [In] double dValue
-            );
-    }
+		[PreserveSig]
+		int put_DestinationHeight([In] int DestinationHeight);
+
+		[PreserveSig]
+		int get_DestinationHeight([Out] out int pDestinationHeight);
+
+		[PreserveSig]
+		int SetSourcePosition(
+			[In] int left,
+			[In] int top,
+			[In] int width,
+			[In] int height
+			);
+
+		[PreserveSig]
+		int GetSourcePosition(
+			[Out] out int left,
+			[Out] out int top,
+			[Out] out int width,
+			[Out] out int height
+			);
+
+		[PreserveSig]
+		int SetDefaultSourcePosition();
+
+		[PreserveSig]
+		int SetDestinationPosition(
+			[In] int left,
+			[In] int top,
+			[In] int width,
+			[In] int height
+			);
+
+		[PreserveSig]
+		int GetDestinationPosition(
+			[Out] out int left,
+			[Out] out int top,
+			[Out] out int width,
+			[Out] out int height
+			);
+
+		[PreserveSig]
+		int SetDefaultDestinationPosition();
+
+		[PreserveSig]
+		int GetVideoSize(
+			[Out] out int pWidth,
+			[Out] out int pHeight
+			);
+
+		[PreserveSig]
+		int GetVideoPaletteEntries(
+			[In] int StartIndex,
+			[In] int Entries,
+			[Out] out int pRetrieved,
+			[Out] out IntPtr pPalette // int *
+			);
+
+		[PreserveSig]
+		int GetCurrentImage(
+			[In, Out] ref int pBufferSize,
+			[Out] IntPtr pDIBImage // int *
+			);
+
+		[PreserveSig]
+		int IsUsingDefaultSource();
+
+		[PreserveSig]
+		int IsUsingDefaultDestination();
+	}
+
+	[ComVisible(true), ComImport,
+		Guid("329bb360-f6ea-11d1-9038-00a0c9697298"),
+		InterfaceType(ComInterfaceType.InterfaceIsDual)]
+	public interface IBasicVideo2 : IBasicVideo
+	{
+		#region IBasicVideo Methods
+
+		[PreserveSig]
+		new int get_AvgTimePerFrame([Out] out double pAvgTimePerFrame);
+
+		[PreserveSig]
+		new int get_BitRate([Out] out int pBitRate);
+
+		[PreserveSig]
+		new int get_BitErrorRate([Out] out int pBitRate);
+
+		[PreserveSig]
+		new int get_VideoWidth([Out] out int pVideoWidth);
+
+		[PreserveSig]
+		new int get_VideoHeight([Out] out int pVideoHeight);
+
+		[PreserveSig]
+		new int put_SourceLeft([In] int SourceLeft);
+
+		[PreserveSig]
+		new int get_SourceLeft([Out] out int pSourceLeft);
+
+		[PreserveSig]
+		new int put_SourceWidth([In] int SourceWidth);
+
+		[PreserveSig]
+		new int get_SourceWidth([Out] out int pSourceWidth);
+
+		[PreserveSig]
+		new int put_SourceTop([In] int SourceTop);
+
+		[PreserveSig]
+		new int get_SourceTop([Out] out int pSourceTop);
+
+		[PreserveSig]
+		new int put_SourceHeight([In] int SourceHeight);
+
+		[PreserveSig]
+		new int get_SourceHeight([Out] out int pSourceHeight);
+
+		[PreserveSig]
+		new int put_DestinationLeft([In] int DestinationLeft);
+
+		[PreserveSig]
+		new int get_DestinationLeft([Out] out int pDestinationLeft);
+
+		[PreserveSig]
+		new int put_DestinationWidth([In] int DestinationWidth);
+
+		[PreserveSig]
+		new int get_DestinationWidth([Out] out int pDestinationWidth);
+
+		[PreserveSig]
+		new int put_DestinationTop([In] int DestinationTop);
+
+		[PreserveSig]
+		new int get_DestinationTop([Out] out int pDestinationTop);
+
+		[PreserveSig]
+		new int put_DestinationHeight([In] int DestinationHeight);
+
+		[PreserveSig]
+		new int get_DestinationHeight([Out] out int pDestinationHeight);
+
+		[PreserveSig]
+		new int SetSourcePosition(
+			[In] int left,
+			[In] int top,
+			[In] int width,
+			[In] int height
+			);
+
+		[PreserveSig]
+		new int GetSourcePosition(
+			[Out] out int left,
+			[Out] out int top,
+			[Out] out int width,
+			[Out] out int height
+			);
+
+		[PreserveSig]
+		new int SetDefaultSourcePosition();
+
+		[PreserveSig]
+		new int SetDestinationPosition(
+			[In] int left,
+			[In] int top,
+			[In] int width,
+			[In] int height
+			);
+
+		[PreserveSig]
+		new int GetDestinationPosition(
+			[Out] out int left,
+			[Out] out int top,
+			[Out] out int width,
+			[Out] out int height
+			);
+
+		[PreserveSig]
+		new int SetDefaultDestinationPosition();
+
+		[PreserveSig]
+		new int GetVideoSize(
+			[Out] out int pWidth,
+			[Out] out int pHeight
+			);
+
+		[PreserveSig]
+		new int GetVideoPaletteEntries(
+			[In] int StartIndex,
+			[In] int Entries,
+			[Out] out int pRetrieved,
+			[Out] out IntPtr pPalette //int *
+			);
+
+		[PreserveSig]
+		new int GetCurrentImage(
+			[In, Out] ref int pBufferSize,
+			[Out] IntPtr pDIBImage // int *
+			);
+
+		[PreserveSig]
+		new int IsUsingDefaultSource();
+
+		[PreserveSig]
+		new int IsUsingDefaultDestination();
+
+		#endregion
+
+		[PreserveSig]
+		int GetPreferredAspectRatio(
+			[Out] out int plAspectX,
+			[Out] out int plAspectY
+			);
+	}
+
+	[ComVisible(true), ComImport,
+		Guid("56a868b8-0ad4-11ce-b03a-0020af0ba770"),
+		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	public interface IDeferredCommand
+	{
+		[PreserveSig]
+		int Cancel();
+
+		[PreserveSig]
+		int Confidence([Out] out int pConfidence);
+
+		[PreserveSig]
+		int Postpone([In] long newtime);
+
+		[PreserveSig]
+		int GetHResult([Out] out int phrResult);
+	}
+
+	[ComVisible(true), ComImport,
+		Guid("56a868b7-0ad4-11ce-b03a-0020af0ba770"),
+		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	public interface IQueueCommand
+	{
+		[PreserveSig]
+		int InvokeAtStreamTime(
+			[Out] out IDeferredCommand pCmd,
+			[In] long time,
+			[In] Guid iid,
+			[In] int dispidMethod,
+			[In] short wFlags,
+			[In] int cArgs,
+			[In] object[] pDispParams,
+			[Out] out object pvarResult,
+			[Out] out short puArgErr
+			);
+
+		int InvokeAtPresentationTime(
+			[In] long time,
+			[In] Guid iid,
+			[In] int dispidMethod,
+			[In] short wFlags,
+			[In] int cArgs,
+			[In] object[] pDispParams,
+			[Out] out object pvarResult,
+			[Out] out short puArgErr
+			);
+	}
+
+	[ComVisible(true), ComImport,
+		Guid("56a868ba-0ad4-11ce-b03a-0020af0ba770"),
+		InterfaceType(ComInterfaceType.InterfaceIsDual)]
+	public interface IFilterInfo
+	{
+		[PreserveSig]
+		int FindPin(
+			[In, MarshalAs(UnmanagedType.BStr)] string strPinID,
+			[Out, MarshalAs(UnmanagedType.IDispatch)] out object ppUnk
+			);
+
+		[PreserveSig]
+		int get_Name([Out, MarshalAs(UnmanagedType.BStr)] out string strName);
+
+		[PreserveSig]
+		int get_VendorInfo([Out, MarshalAs(UnmanagedType.BStr)] string strVendorInfo);
+
+		[PreserveSig]
+		int get_Filter([Out, MarshalAs(UnmanagedType.IUnknown)] out object ppUnk);
+
+		[PreserveSig]
+		int get_Pins([Out, MarshalAs(UnmanagedType.IDispatch)] out object ppUnk);
+
+		[PreserveSig]
+		int get_IsFileSource([Out] out int pbIsSource);
+
+		[PreserveSig]
+		int get_Filename([Out, MarshalAs(UnmanagedType.BStr)] out string pstrFilename);
+
+		[PreserveSig]
+		int put_Filename([In, MarshalAs(UnmanagedType.BStr)] string strFilename);
+	}
+
+	[ComVisible(true), ComImport,
+		Guid("56a868bb-0ad4-11ce-b03a-0020af0ba770"),
+		InterfaceType(ComInterfaceType.InterfaceIsDual)]
+	public interface IRegFilterInfo
+	{
+		[PreserveSig]
+		int get_Name([Out, MarshalAs(UnmanagedType.BStr)] out string strName);
+
+		[PreserveSig]
+		int Filter([Out, MarshalAs(UnmanagedType.IDispatch)] out object ppUnk);
+	}
+
+	[ComVisible(true), ComImport,
+		Guid("56a868bc-0ad4-11ce-b03a-0020af0ba770"),
+		InterfaceType(ComInterfaceType.InterfaceIsDual)]
+	public interface IMediaTypeInfo
+	{
+		[PreserveSig]
+		int get_Type([Out, MarshalAs(UnmanagedType.BStr)] out string strType);
+
+		[PreserveSig]
+		int get_Subtype([Out, MarshalAs(UnmanagedType.BStr)] out string strType);
+	}
+
+	[ComVisible(true), ComImport,
+		Guid("56a868bd-0ad4-11ce-b03a-0020af0ba770"),
+		InterfaceType(ComInterfaceType.InterfaceIsDual)]
+	public interface IPinInfo
+	{
+		[PreserveSig]
+		int get_Pin([Out, MarshalAs(UnmanagedType.IUnknown)] out object ppUnk);
+
+		[PreserveSig]
+		int get_ConnectedTo([Out, MarshalAs(UnmanagedType.IDispatch)] out object ppUnk);
+
+		[PreserveSig]
+		int get_ConnectionMediaType([Out, MarshalAs(UnmanagedType.IUnknown)] out object ppUnk);
+
+		[PreserveSig]
+		int get_FilterInfo([Out, MarshalAs(UnmanagedType.IUnknown)] out object ppUnk);
+
+		[PreserveSig]
+		int get_Name([Out, MarshalAs(UnmanagedType.BStr)] out string ppUnk);
+
+		[PreserveSig]
+		int get_Direction([Out] int ppDirection);
+
+		[PreserveSig]
+		int get_PinID([Out, MarshalAs(UnmanagedType.BStr)] out string strPinID);
+
+		[PreserveSig]
+		int get_MediaTypes([Out, MarshalAs(UnmanagedType.IUnknown)] out object ppUnk);
+
+		[PreserveSig]
+		int Connect([In, MarshalAs(UnmanagedType.IUnknown)] object pPin);
+
+		[PreserveSig]
+		int ConnectDirect([In, MarshalAs(UnmanagedType.IUnknown)] object pPin);
+
+		[PreserveSig]
+		int ConnectWithType(
+			[In, MarshalAs(UnmanagedType.IUnknown)] object pPin,
+			[In, MarshalAs(UnmanagedType.IUnknown)] object pMediaType
+			);
+
+		[PreserveSig]
+		int Disconnect();
+
+		[PreserveSig]
+		int Render();
+	}
+
+	[ComVisible(true), ComImport,
+		Guid("bc9bcf80-dcd2-11d2-abf6-00a0c905f375"),
+		InterfaceType(ComInterfaceType.InterfaceIsDual)]
+	public interface IAMStats
+	{
+		[PreserveSig]
+		int Reset();
+
+		[PreserveSig]
+		int get_Count([Out] out int plCount);
+
+		[PreserveSig]
+		int GetValueByIndex(
+			[In] int lIndex,
+			[Out, MarshalAs(UnmanagedType.BStr)] out string szName,
+			[Out] out int lCount,
+			[Out] out double dLast,
+			[Out] out double dAverage,
+			[Out] out double dStdDev,
+			[Out] out double dMin,
+			[Out] out double dMax
+			);
+
+		[PreserveSig]
+		int GetValueByName(
+			[In, MarshalAs(UnmanagedType.BStr)] string szName,
+			[Out] out int lIndex,
+			[Out] out int lCount,
+			[Out] out double dLast,
+			[Out] out double dAverage,
+			[Out] out double dStdDev,
+			[Out] out double dMin,
+			[Out] out double dMax
+			);
+
+		[PreserveSig]
+		int GetIndex(
+			[In, MarshalAs(UnmanagedType.BStr)] string szName,
+			[In] int lCreate,
+			[Out] out int plIndex
+			);
+
+		[PreserveSig]
+		int AddValue(
+			[In] long lIndex,
+			[In] double dValue
+			);
+	}
 #endif
-    #endregion
+
+	#endregion
 }
