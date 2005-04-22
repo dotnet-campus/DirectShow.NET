@@ -1,4 +1,5 @@
 #region license
+
 /* ====================================================================
  * The Apache Software License, Version 1.1
  *
@@ -56,22 +57,19 @@
  * originally written at the National Center for Supercomputing Applications,
  * University of Illinois, Urbana-Champaign.
  */
+
 #endregion
 
 using System.Reflection;
-using System.Runtime.CompilerServices;
-
-[assembly: AssemblyTitle("")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("")]
-[assembly: AssemblyCopyright("")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]		
-
-[assembly: AssemblyVersion("1.0.*")]
-
-[assembly: AssemblyDelaySign(false)]
-[assembly: AssemblyKeyFile("")]
-[assembly: AssemblyKeyName("")]
+[assembly : AssemblyTitle("Direct Show Net Library")]
+[assembly : AssemblyDescription("")]
+[assembly : AssemblyConfiguration("")]
+[assembly : AssemblyCompany("")]
+[assembly : AssemblyProduct("")]
+[assembly : AssemblyCopyright("")]
+[assembly : AssemblyTrademark("")]
+[assembly : AssemblyCulture("")]
+[assembly : AssemblyVersion("1.0.*")]
+[assembly : AssemblyDelaySign(false)]
+[assembly : AssemblyKeyFile("")]
+[assembly : AssemblyKeyName("")]

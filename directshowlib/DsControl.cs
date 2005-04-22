@@ -1,8 +1,9 @@
-// $Id: DsControl.cs,v 1.3 2005-04-19 14:48:48 kawaic Exp $
+// $Id: DsControl.cs,v 1.4 2005-04-22 20:41:58 kawaic Exp $
 // $Author: kawaic $
-// $Revision: 1.3 $
+// $Revision: 1.4 $
 
 #region license
+
 /* ====================================================================
  * The Apache Software License, Version 1.1
  *
@@ -60,6 +61,7 @@
  * originally written at the National Center for Supercomputing Applications,
  * University of Illinois, Urbana-Champaign.
  */
+
 #endregion
 
 // ---------------------------------------------------------------------------------
@@ -72,7 +74,9 @@ using System.Runtime.InteropServices;
 
 namespace DShowNET
 {
+
 	#region IMediaControl
+
 	[ComVisible(true), ComImport,
 		Guid("56a868b1-0ad4-11ce-b03a-0020af0ba770"),
 		InterfaceType(ComInterfaceType.InterfaceIsDual)]

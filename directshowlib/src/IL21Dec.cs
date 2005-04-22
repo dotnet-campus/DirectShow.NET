@@ -1,4 +1,5 @@
 #region license
+
 /* ====================================================================
  * The Apache Software License, Version 1.1
  *
@@ -56,127 +57,130 @@
  * originally written at the National Center for Supercomputing Applications,
  * University of Illinois, Urbana-Champaign.
  */
+
 #endregion
 
-#define ALLOW_UNTESTED_STRUCTS
-#define ALLOW_UNTESTED_INTERFACES
+#define  ALLOW_UNTESTED_STRUCTS
+#define  ALLOW_UNTESTED_INTERFACES
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace DirectShowLib
 {
-    #region Declarations
+
+	#region Declarations
 
 #if ALLOW_UNTESTED_STRUCTS
-    /// <summary>
-    /// From AM_LINE21_CCLEVEL
-    /// </summary>
-    [ComVisible(false)]
-    public enum AMLine21CCLevel
-    {
-        TC2 = 0,
-    }
+	/// <summary>
+	/// From AM_LINE21_CCLEVEL
+	/// </summary>
+	[ComVisible(false)]
+	public enum AMLine21CCLevel
+	{
+		TC2 = 0,
+	}
 
-    /// <summary>
-    /// From AM_LINE21_CCSERVICE
-    /// </summary>
-    [ComVisible(false)]
-    public enum AMLine21CCService
-    {
-        None = 0,
-        Caption1,
-        Caption2,
-        Text1,
-        Text2,
-        XDS,
-        DefChannel = 10,
-        Invalid
-    }
+	/// <summary>
+	/// From AM_LINE21_CCSERVICE
+	/// </summary>
+	[ComVisible(false)]
+	public enum AMLine21CCService
+	{
+		None = 0,
+		Caption1,
+		Caption2,
+		Text1,
+		Text2,
+		XDS,
+		DefChannel = 10,
+		Invalid
+	}
 
-    /// <summary>
-    /// From AM_LINE21_CCSTATE
-    /// </summary>
-    [ComVisible(false)]
-    public enum AMLine21CCState
-    {
-        Off = 0,
-        On
-    }
+	/// <summary>
+	/// From AM_LINE21_CCSTATE
+	/// </summary>
+	[ComVisible(false)]
+	public enum AMLine21CCState
+	{
+		Off = 0,
+		On
+	}
 
-    /// <summary>
-    /// From AM_LINE21_CCSTYLE
-    /// </summary>
-    [ComVisible(false)]
-    public enum AMLine21CCStyle
-    {
-        None = 0,
-        PopOn,
-        PaintOn,
-        RollUp
-    }
+	/// <summary>
+	/// From AM_LINE21_CCSTYLE
+	/// </summary>
+	[ComVisible(false)]
+	public enum AMLine21CCStyle
+	{
+		None = 0,
+		PopOn,
+		PaintOn,
+		RollUp
+	}
 
-    /// <summary>
-    /// From AM_LINE21_DRAWBGMODE
-    /// </summary>
-    [ComVisible(false)]
-    public enum AMLine21DrawBGMode
-    {
-        Opaque,
-        Transparent
-    }
+	/// <summary>
+	/// From AM_LINE21_DRAWBGMODE
+	/// </summary>
+	[ComVisible(false)]
+	public enum AMLine21DrawBGMode
+	{
+		Opaque,
+		Transparent
+	}
 
 #endif
-    #endregion
 
-    #region Interfaces
+	#endregion
+
+	#region Interfaces
 
 #if ALLOW_UNTESTED_INTERFACES
-    [ComVisible(true), ComImport,
-    Guid("6E8D4A21-310C-11d0-B79A-00AA003767A7"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IAMLine21Decoder
-    {
-        [PreserveSig]
-        int GetDecoderLevel([Out] out AMLine21CCLevel lpLevel);
+	[ComVisible(true), ComImport,
+		Guid("6E8D4A21-310C-11d0-B79A-00AA003767A7"),
+		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	public interface IAMLine21Decoder
+	{
+		[PreserveSig]
+		int GetDecoderLevel([Out] out AMLine21CCLevel lpLevel);
 
-        [PreserveSig]
-        int GetCurrentService([Out] out AMLine21CCService lpService);
+		[PreserveSig]
+		int GetCurrentService([Out] out AMLine21CCService lpService);
 
-        [PreserveSig]
-        int SetCurrentService([In] AMLine21CCService Service);
+		[PreserveSig]
+		int SetCurrentService([In] AMLine21CCService Service);
 
-        [PreserveSig]
-        int GetServiceState([Out] out AMLine21CCState lpState);
+		[PreserveSig]
+		int GetServiceState([Out] out AMLine21CCState lpState);
 
-        [PreserveSig]
-        int SetServiceState([In] AMLine21CCState State);
+		[PreserveSig]
+		int SetServiceState([In] AMLine21CCState State);
 
-        [PreserveSig]
-        int GetOutputFormat([Out] out BitmapInfoHeader lpbmih);
+		[PreserveSig]
+		int GetOutputFormat([Out] out BitmapInfoHeader lpbmih);
 
-        [PreserveSig]
-        int SetOutputFormat([In] BitmapInfoHeader lpbmih); //TODO: define BitmapInfo
+		[PreserveSig]
+		int SetOutputFormat([In] BitmapInfoHeader lpbmih); //TODO: define BitmapInfo
 
-        [PreserveSig]
-        int GetBackgroundColor([Out] out int pdwPhysColor);
+		[PreserveSig]
+		int GetBackgroundColor([Out] out int pdwPhysColor);
 
-        [PreserveSig]
-        int SetBackgroundColor([In] int dwPhysColor);
+		[PreserveSig]
+		int SetBackgroundColor([In] int dwPhysColor);
 
-        [PreserveSig]
-        int GetRedrawAlways([Out, MarshalAs(UnmanagedType.Bool)] out bool lpbOption);
+		[PreserveSig]
+		int GetRedrawAlways([Out, MarshalAs(UnmanagedType.Bool)] out bool lpbOption);
 
-        [PreserveSig]
-        int SetRedrawAlways([In, MarshalAs(UnmanagedType.Bool)] bool bOption);
+		[PreserveSig]
+		int SetRedrawAlways([In, MarshalAs(UnmanagedType.Bool)] bool bOption);
 
-        [PreserveSig]
-        int GetDrawBackgroundMode([Out] out AMLine21DrawBGMode lpMode);
+		[PreserveSig]
+		int GetDrawBackgroundMode([Out] out AMLine21DrawBGMode lpMode);
 
-        [PreserveSig]
-        int SetDrawBackgroundMode([In] AMLine21DrawBGMode Mode);
-    }
+		[PreserveSig]
+		int SetDrawBackgroundMode([In] AMLine21DrawBGMode Mode);
+	}
 
 #endif
-    #endregion
+
+	#endregion
 }

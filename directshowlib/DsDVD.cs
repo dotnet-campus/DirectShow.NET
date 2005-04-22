@@ -1,8 +1,9 @@
-// $Id: DsDVD.cs,v 1.3 2005-04-19 14:48:48 kawaic Exp $
+// $Id: DsDVD.cs,v 1.4 2005-04-22 20:41:58 kawaic Exp $
 // $Author: kawaic $
-// $Revision: 1.3 $
+// $Revision: 1.4 $
 
 #region license
+
 /* ====================================================================
  * The Apache Software License, Version 1.1
  *
@@ -60,6 +61,7 @@
  * originally written at the National Center for Supercomputing Applications,
  * University of Illinois, Urbana-Champaign.
  */
+
 #endregion
 
 // DsDVD
@@ -370,6 +372,31 @@ namespace DShowNET.Dvd
 		int SelectDefaultSubpictureLanguage(int Language, DvdSubPicLangExt subpictureExtension);
 	}
 
+	// ---------------------------------------------------------------------------------------
+
+	/// <summary>
+	/// TEMP Added back for compiling, should be replaced with Point in framework or existing class/struct
+	/// </summary>
+	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
+	public struct DsPOINT		// POINT
+	{
+		public int		X;
+		public int		Y;
+	}
+
+	// ---------------------------------------------------------------------------------------
+
+	/// <summary>
+	/// TEMP Added back for compiling, should be replaced with Point in framework or existing class/struct
+	/// </summary>
+	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
+	public struct DsRECT		// RECT
+	{
+		public int		Left;
+		public int		Top;
+		public int		Right;
+		public int		Bottom;
+	}
 
 // ---------------------------------------------------------------------------------------
 

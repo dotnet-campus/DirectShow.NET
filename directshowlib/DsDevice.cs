@@ -1,8 +1,9 @@
-// $Id: DsDevice.cs,v 1.3 2005-04-19 14:48:48 kawaic Exp $
+// $Id: DsDevice.cs,v 1.4 2005-04-22 20:41:58 kawaic Exp $
 // $Author: kawaic $
-// $Revision: 1.3 $
+// $Revision: 1.4 $
 
 #region license
+
 /* ====================================================================
  * The Apache Software License, Version 1.1
  *
@@ -60,8 +61,8 @@
  * originally written at the National Center for Supercomputing Applications,
  * University of Illinois, Urbana-Champaign.
  */
-#endregion
 
+#endregion
 
 // ---------------------------------------------------------------------------------
 // DsDevice

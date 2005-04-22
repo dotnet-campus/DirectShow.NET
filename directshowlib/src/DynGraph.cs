@@ -1,4 +1,5 @@
 #region license
+
 /* ====================================================================
  * The Apache Software License, Version 1.1
  *
@@ -56,219 +57,225 @@
  * originally written at the National Center for Supercomputing Applications,
  * University of Illinois, Urbana-Champaign.
  */
+
 #endregion
 
-#define ALLOW_UNTESTED_STRUCTS
-#define ALLOW_UNTESTED_INTERFACES
+#define  ALLOW_UNTESTED_STRUCTS
+#define  ALLOW_UNTESTED_INTERFACES
 
 using System;
 using System.Runtime.InteropServices;
 
 namespace DirectShowLib
 {
-    #region Declarations
+
+	#region Declarations
+
 #if ALLOW_UNTESTED_STRUCTS
-    /// <summary>
-    /// From _AM_PIN_FLOW_CONTROL_BLOCK_FLAGS
-    /// </summary>
-    [ComVisible(false), Flags]
-    public enum AMPinFlowControl
-    {
-        Block = 0x00000001
-    }
+	/// <summary>
+	/// From _AM_PIN_FLOW_CONTROL_BLOCK_FLAGS
+	/// </summary>
+	[ComVisible(false), Flags]
+	public enum AMPinFlowControl
+	{
+		Block = 0x00000001
+	}
 
-    /// <summary>
-    /// From AM_GRAPH_CONFIG_RECONNECT_FLAGS
-    /// </summary>
-    [ComVisible(false), Flags]
-    public enum AMGraphConfigReconnect
-    {
-        DirectConnect        = 0x00000001,
-        CacheRemovedFilters  = 0x00000002,
-        UseOnlyCachedFilters = 0x00000004
-    }
+	/// <summary>
+	/// From AM_GRAPH_CONFIG_RECONNECT_FLAGS
+	/// </summary>
+	[ComVisible(false), Flags]
+	public enum AMGraphConfigReconnect
+	{
+		DirectConnect = 0x00000001,
+		CacheRemovedFilters = 0x00000002,
+		UseOnlyCachedFilters = 0x00000004
+	}
 
-    /// <summary>
-    /// From _REM_FILTER_FLAGS
-    /// </summary>
-    [ComVisible(false), Flags]
-    public enum RemFilterFlags
-    {
-        LeaveConnected = 0x00000001
-    }
+	/// <summary>
+	/// From _REM_FILTER_FLAGS
+	/// </summary>
+	[ComVisible(false), Flags]
+	public enum RemFilterFlags
+	{
+		LeaveConnected = 0x00000001
+	}
 
-    /// <summary>
-    /// From _AM_FILTER_FLAGS
-    /// </summary>
-    [ComVisible(false), Flags]
-    public enum AMFilterFlags
-    {
-        Removable = 0x00000001
-    }
+	/// <summary>
+	/// From _AM_FILTER_FLAGS
+	/// </summary>
+	[ComVisible(false), Flags]
+	public enum AMFilterFlags
+	{
+		Removable = 0x00000001
+	}
 
 #endif
-    #endregion
 
-    #region Interfaces
+	#endregion
+
+	#region Interfaces
+
 #if ALLOW_UNTESTED_INTERFACES
-    //--------------------------------------------------------------------
-    //
-    //  IPinConnection - supported by input pins
-    //
-    //--------------------------------------------------------------------
+	//--------------------------------------------------------------------
+	//
+	//  IPinConnection - supported by input pins
+	//
+	//--------------------------------------------------------------------
 
-    [ComVisible(true), ComImport,
-    Guid("4a9a62d3-27d4-403d-91e9-89f540e55534"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IPinConnection
-    {
-        [PreserveSig]
-        int DynamicQueryAccept([In] ref AMMediaType pmt);
+	[ComVisible(true), ComImport,
+		Guid("4a9a62d3-27d4-403d-91e9-89f540e55534"),
+		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	public interface IPinConnection
+	{
+		[PreserveSig]
+		int DynamicQueryAccept([In] ref AMMediaType pmt);
 
-        [PreserveSig]
-        int NotifyEndOfStream([In] IntPtr hNotifyEvent); // HEVENT
+		[PreserveSig]
+		int NotifyEndOfStream([In] IntPtr hNotifyEvent); // HEVENT
 
-        [PreserveSig]
-        int IsEndPin();
+		[PreserveSig]
+		int IsEndPin();
 
-        [PreserveSig]
-        int DynamicDisconnect();
-    }
+		[PreserveSig]
+		int DynamicDisconnect();
+	}
 
-    //--------------------------------------------------------------------
-    //
-    //  IPinFlowControl - supported by output pins
-    //
-    //--------------------------------------------------------------------
+	//--------------------------------------------------------------------
+	//
+	//  IPinFlowControl - supported by output pins
+	//
+	//--------------------------------------------------------------------
 
-    [ComVisible(true), ComImport,
-    Guid("c56e9858-dbf3-4f6b-8119-384af2060deb"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IPinFlowControl
-    {
-        [PreserveSig]
-        int Block(
-            [In] int dwBlockFlags,
-            [In] IntPtr hEvent // HEVENT
-            );
-    }
+	[ComVisible(true), ComImport,
+		Guid("c56e9858-dbf3-4f6b-8119-384af2060deb"),
+		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	public interface IPinFlowControl
+	{
+		[PreserveSig]
+		int Block(
+			[In] int dwBlockFlags,
+			[In] IntPtr hEvent // HEVENT
+			);
+	}
 
-    //--------------------------------------------------------------------
-    //
-    //  IGraphConfig
-    //
-    //--------------------------------------------------------------------
+	//--------------------------------------------------------------------
+	//
+	//  IGraphConfig
+	//
+	//--------------------------------------------------------------------
 
-    [ComVisible(true), ComImport,
-    Guid("03A1EB8E-32BF-4245-8502-114D08A9CB88"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IGraphConfig
-    {
-        [PreserveSig]
-        int Reconnect(
-            [In] IPin pOutputPin,
-            [In] IPin pInputPin,
-            [In] ref AMMediaType pmtFirstConnection,
-            [In] IBaseFilter pUsingFilter, // can be NULL
-            [In] IntPtr hAbortEvent, // HANDLE 
-            [In] AMGraphConfigReconnect dwFlags
-            );
+	[ComVisible(true), ComImport,
+		Guid("03A1EB8E-32BF-4245-8502-114D08A9CB88"),
+		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	public interface IGraphConfig
+	{
+		[PreserveSig]
+		int Reconnect(
+			[In] IPin pOutputPin,
+			[In] IPin pInputPin,
+			[In] ref AMMediaType pmtFirstConnection,
+			[In] IBaseFilter pUsingFilter, // can be NULL
+			[In] IntPtr hAbortEvent, // HANDLE 
+			[In] AMGraphConfigReconnect dwFlags
+			);
 
-        [PreserveSig]
-        int Reconfigure(
-            [In] IGraphConfigCallback pCallback,
-            [In] IntPtr pvContext, // PVOID
-            [In] int dwFlags,
-            [In] IntPtr hAbortEvent // HANDLE
-            );
+		[PreserveSig]
+		int Reconfigure(
+			[In] IGraphConfigCallback pCallback,
+			[In] IntPtr pvContext, // PVOID
+			[In] int dwFlags,
+			[In] IntPtr hAbortEvent // HANDLE
+			);
 
-        [PreserveSig]
-        int AddFilterToCache([In] IBaseFilter pFilter);
+		[PreserveSig]
+		int AddFilterToCache([In] IBaseFilter pFilter);
 
-        [PreserveSig]
-        int EnumCacheFilter([Out] out IEnumFilters pEnum);
- 
-        [PreserveSig]
-        int RemoveFilterFromCache([In] IBaseFilter pFilter);
+		[PreserveSig]
+		int EnumCacheFilter([Out] out IEnumFilters pEnum);
 
-        [PreserveSig]
-        int GetStartTime([Out] out long prtStart);
+		[PreserveSig]
+		int RemoveFilterFromCache([In] IBaseFilter pFilter);
 
-        [PreserveSig]
-        int PushThroughData(
-            [In] IPin pOutputPin,
-            [In] IPinConnection pConnection,
-            [In] IntPtr hEventAbort // HANDLE
-            );
+		[PreserveSig]
+		int GetStartTime([Out] out long prtStart);
 
-        [PreserveSig]
-        int SetFilterFlags(
-            [In] IBaseFilter pFilter,
-            [In] int dwFlags
-            );
+		[PreserveSig]
+		int PushThroughData(
+			[In] IPin pOutputPin,
+			[In] IPinConnection pConnection,
+			[In] IntPtr hEventAbort // HANDLE
+			);
 
-        [PreserveSig]
-        int GetFilterFlags(
-            [In] IBaseFilter pFilter,
-            [Out] out int pdwFlags
-            );
+		[PreserveSig]
+		int SetFilterFlags(
+			[In] IBaseFilter pFilter,
+			[In] int dwFlags
+			);
 
-        [PreserveSig]
-        int RemoveFilterEx(
-            [In] IBaseFilter pFilter,
-            RemFilterFlags Flags
-            );
-    }
+		[PreserveSig]
+		int GetFilterFlags(
+			[In] IBaseFilter pFilter,
+			[Out] out int pdwFlags
+			);
 
-    //--------------------------------------------------------------------
-    //
-    //  IGraphConfigCallback
-    //
-    //--------------------------------------------------------------------
+		[PreserveSig]
+		int RemoveFilterEx(
+			[In] IBaseFilter pFilter,
+			RemFilterFlags Flags
+			);
+	}
 
-    [ComVisible(true), ComImport,
-    Guid("ade0fd60-d19d-11d2-abf6-00a0c905f375"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IGraphConfigCallback
-    {
-        [PreserveSig]
-        int Reconfigure(
-            IntPtr pvContext, // PVOID
-            int dwFlags
-            );
+	//--------------------------------------------------------------------
+	//
+	//  IGraphConfigCallback
+	//
+	//--------------------------------------------------------------------
 
-    }
+	[ComVisible(true), ComImport,
+		Guid("ade0fd60-d19d-11d2-abf6-00a0c905f375"),
+		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	public interface IGraphConfigCallback
+	{
+		[PreserveSig]
+		int Reconfigure(
+			IntPtr pvContext, // PVOID
+			int dwFlags
+			);
 
-    [ComVisible(true), ComImport,
-    Guid("DCFBDCF6-0DC2-45f5-9AB2-7C330EA09C29"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IFilterChain
-    {
-        [PreserveSig]
-        int StartChain(
-            [In] IBaseFilter pStartFilter,
-            [In] IBaseFilter pEndFilter
-            );
+	}
 
-        [PreserveSig]
-        int PauseChain(
-            [In] IBaseFilter pStartFilter,
-            [In] IBaseFilter pEndFilter
-            );
+	[ComVisible(true), ComImport,
+		Guid("DCFBDCF6-0DC2-45f5-9AB2-7C330EA09C29"),
+		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	public interface IFilterChain
+	{
+		[PreserveSig]
+		int StartChain(
+			[In] IBaseFilter pStartFilter,
+			[In] IBaseFilter pEndFilter
+			);
 
-        [PreserveSig]
-        int StopChain(
-            [In] IBaseFilter pStartFilter,
-            [In] IBaseFilter pEndFilter
-            );
+		[PreserveSig]
+		int PauseChain(
+			[In] IBaseFilter pStartFilter,
+			[In] IBaseFilter pEndFilter
+			);
 
-        [PreserveSig]
-        int RemoveChain(
-            [In] IBaseFilter pStartFilter,
-            [In] IBaseFilter pEndFilter
-            );
-    }
+		[PreserveSig]
+		int StopChain(
+			[In] IBaseFilter pStartFilter,
+			[In] IBaseFilter pEndFilter
+			);
+
+		[PreserveSig]
+		int RemoveChain(
+			[In] IBaseFilter pStartFilter,
+			[In] IBaseFilter pEndFilter
+			);
+	}
 
 #endif
-    #endregion
+
+	#endregion
 }

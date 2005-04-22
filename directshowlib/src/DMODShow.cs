@@ -1,4 +1,5 @@
 #region license
+
 /* ====================================================================
  * The Apache Software License, Version 1.1
  *
@@ -56,30 +57,33 @@
  * originally written at the National Center for Supercomputing Applications,
  * University of Illinois, Urbana-Champaign.
  */
+
 #endregion
 
-#define ALLOW_UNTESTED_STRUCTS
-#define ALLOW_UNTESTED_INTERFACES
+#define  ALLOW_UNTESTED_STRUCTS
+#define  ALLOW_UNTESTED_INTERFACES
 
 using System;
 using System.Runtime.InteropServices;
 
 namespace DirectShowLib
 {
-    #region Interfaces
-#if ALLOW_UNTESTED_INTERFACES
-    [ComVisible(true), ComImport,
-  Guid("52d6f586-9f0f-4824-8fc8-e32ca04930c2"),
-  InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-  public interface IDMOWrapperFilter
-  {
-    [PreserveSig]
-    int Init(
-      [In] ref Guid clsidDMO,
-      [In] ref Guid catDMO
-      );
-  }
-#endif
-    #endregion
 
+	#region Interfaces
+
+#if ALLOW_UNTESTED_INTERFACES
+	[ComVisible(true), ComImport,
+		Guid("52d6f586-9f0f-4824-8fc8-e32ca04930c2"),
+		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	public interface IDMOWrapperFilter
+	{
+		[PreserveSig]
+		int Init(
+			[In] ref Guid clsidDMO,
+			[In] ref Guid catDMO
+			);
+	}
+#endif
+
+	#endregion
 }
