@@ -16,7 +16,7 @@ namespace DirectShowLib.Test
 		/// 
 		/// </summary>
 		[Test]
-		public void testQueryDirection()
+		public void TestQueryDirection()
 		{
 			IPin testPin = GetTestPin();
 			PinDirection pDir;
@@ -28,7 +28,7 @@ namespace DirectShowLib.Test
 
 
 		[Test]
-		public void testQueryPinInfo()
+		public void TestQueryPinInfo()
 		{
 			IPin testPin = GetTestPin();
 			PinInfo pinInfo;
@@ -40,7 +40,7 @@ namespace DirectShowLib.Test
 		}
 
 		[Test]
-		public void testQueryId()
+		public void TestQueryId()
 		{
 			IPin testPin = GetTestPin();
 			string idStr;
@@ -50,9 +50,20 @@ namespace DirectShowLib.Test
 			Assert.IsNotNull(idStr);
 		}
 
+		[Test]
+		public void TestEnumMediaTypes()
+		{
+			IPin testPin = GetTestPin();
+			IEnumMediaTypes enumMediaTypes;
+			int hr = testPin.EnumMediaTypes(out enumMediaTypes);
+			Marshal.ThrowExceptionForHR(hr);
+
+			Assert.IsNotNull(enumMediaTypes);
+		}
+
 
 		[Test]
-		public void testQueryInternalConnections()
+		public void TestQueryInternalConnections()
 		{
 			IPin testPin = GetTestPin();
 			int nPin = 0;
@@ -61,8 +72,6 @@ namespace DirectShowLib.Test
 
 			Marshal.ThrowExceptionForHR(hr);
 			Console.Write(nPin);
-
-			
 
 			Assert.IsNotNull(ppPins);
 		}
