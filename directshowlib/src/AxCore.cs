@@ -285,7 +285,7 @@ namespace DirectShowLib
 
 		[PreserveSig]
 		int QueryInternalConnections(
-			[Out] IntPtr apPin, // IPin **
+			[Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] IPin[] ppPins,
 			[In, Out] ref int nPin
 			);
 

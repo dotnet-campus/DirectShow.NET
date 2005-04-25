@@ -9,7 +9,7 @@
             <Settings
                 ApplicationIcon = ""
                 AssemblyKeyContainerName = ""
-                AssemblyName = "DShowNET"
+                AssemblyName = "DirectShowLib"
                 AssemblyOriginatorKeyFile = ""
                 DefaultClientScript = "JScript"
                 DefaultHTMLPageLayout = "Grid"
@@ -18,7 +18,7 @@
                 OutputType = "Library"
                 PreBuildEvent = ""
                 PostBuildEvent = ""
-                RootNamespace = "DShowNET"
+                RootNamespace = "DirectShowLib"
                 RunPostBuildEvent = "OnBuildSuccess"
                 StartupObject = ""
             >
@@ -83,6 +83,11 @@
                     Name = "System.Drawing"
                     AssemblyName = "System.Drawing"
                     HintPath = "D:\WINDOWS\Microsoft.NET\Framework\v1.0.3705\System.Drawing.dll"
+                />
+                <Reference
+                    Name = "nunit.framework"
+                    AssemblyName = "nunit.framework"
+                    HintPath = "Lib\NUnit\nunit.framework.dll"
                 />
             </References>
         </Build>
@@ -210,6 +215,11 @@
                 />
                 <File
                     RelPath = "VmRender.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\IPinTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
