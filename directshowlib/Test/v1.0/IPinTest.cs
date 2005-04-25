@@ -58,6 +58,8 @@ namespace DirectShowLib.Test
 			int hr = testPin.EnumMediaTypes(out enumMediaTypes);
 			Marshal.ThrowExceptionForHR(hr);
 
+			hr = enumMediaTypes.Reset();
+			Marshal.ThrowExceptionForHR(hr);			
 			Assert.IsNotNull(enumMediaTypes);
 		}
 
