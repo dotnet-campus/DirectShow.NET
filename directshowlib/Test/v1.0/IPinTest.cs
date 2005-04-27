@@ -82,7 +82,7 @@ namespace DirectShowLib.Test
 		}
 
 		[Test]
-		public void TestConnectDisconnect()
+		public void TestConnectDisconnectConnectedTo()
 		{
 			int hr;
 			IBaseFilter aviSplitter = null;
@@ -104,7 +104,7 @@ namespace DirectShowLib.Test
 			Marshal.ThrowExceptionForHR( hr );
 			pinOut = DsGetPin.ByDirection(ibfAVISource, PinDirection.Output);
 
-			// Get the default video renderer
+			// Get the avi splitter
 			aviSplitter = (IBaseFilter) new AviSplitter();
 
 			// Add it to the graph
@@ -117,6 +117,13 @@ namespace DirectShowLib.Test
 
 			hr = pinOut.Connect(pinIn, null); 
 			Marshal.ThrowExceptionForHR( hr );
+
+
+			IPin pinConnect;
+			hr = pinOut.ConnectedTo(out pinConnect);
+			Marshal.ThrowExceptionForHR( hr );
+
+			Assert.AreEqual(pinIn, pinConnect);
 
 			hr = pinOut.Disconnect();
 			Marshal.ThrowExceptionForHR( hr );
