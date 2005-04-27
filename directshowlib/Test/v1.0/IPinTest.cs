@@ -1,5 +1,7 @@
+// $Id: IPinTest.cs,v 1.6 2005-04-27 17:00:10 kawaic Exp $
+// $Author: kawaic $
+// $Revision: 1.6 $
 using System;
-using System.Collections;
 using System.Runtime.InteropServices;
 using NUnit.Framework;
 using TestClasses;
@@ -8,11 +10,13 @@ namespace DirectShowLib.Test
 {
 	/// <summary>
 	/// IPin Test is used to test all the calls for the IPin interface
+	/// IPin::ReceiveConnection, IPin::BeginFlush, IPin::EndFlush, IPin::EndOfStream, IPin::NewSegment is not tested because it should not be called from application
+	/// 
+	/// Still need to test QueryAccept, and fix QueryInternalConnections
 	/// </summary>
 	[TestFixture]
 	public class IPinTest
 	{
-
 		/// <summary>
 		/// 
 		/// </summary>
@@ -21,7 +25,7 @@ namespace DirectShowLib.Test
 		{
 			IPin testPin = GetSmartTeeInputPin();
 			PinDirection pDir;
-			int hr = testPin.QueryDirection(out pDir);			
+			int hr = testPin.QueryDirection(out pDir);
 			Marshal.ThrowExceptionForHR(hr);
 
 			Assert.IsTrue(pDir == PinDirection.Input || pDir == PinDirection.Output);
@@ -36,7 +40,7 @@ namespace DirectShowLib.Test
 			int hr = testPin.QueryPinInfo(out pinInfo);
 			Marshal.ThrowExceptionForHR(hr);
 
-			
+
 			Assert.IsNotNull(pinInfo);
 			Assert.IsNotNull(pinInfo.name);
 			Console.WriteLine(pinInfo.name);
@@ -62,7 +66,7 @@ namespace DirectShowLib.Test
 			Marshal.ThrowExceptionForHR(hr);
 
 			hr = enumMediaTypes.Reset();
-			Marshal.ThrowExceptionForHR(hr);			
+			Marshal.ThrowExceptionForHR(hr);
 			Assert.IsNotNull(enumMediaTypes);
 		}
 
@@ -82,7 +86,7 @@ namespace DirectShowLib.Test
 		}
 
 		[Test]
-		public void TestConnectDisconnectConnectedTo()
+		public void TestConnectDisconnectConnectedToConnectionMediaType()
 		{
 			int hr;
 			IBaseFilter aviSplitter = null;
@@ -91,42 +95,59 @@ namespace DirectShowLib.Test
 			IPin pinOut = null;
 
 			IFilterGraph2 graphBuilder = new FilterGraph() as IFilterGraph2;
+			try
+			{
+				ibfAVISource = new AsyncReader() as IBaseFilter;
 
-			ibfAVISource = new AsyncReader() as IBaseFilter;
+				// Add it to the graph
+				hr = graphBuilder.AddFilter(ibfAVISource, "Ds.NET AsyncReader");
+				Marshal.ThrowExceptionForHR(hr);
 
-			// Add it to the graph
-			hr = graphBuilder.AddFilter( ibfAVISource, "Ds.NET AsyncReader" );
-			Marshal.ThrowExceptionForHR( hr );
+				// Set the file name
+				IFileSourceFilter fsf = ibfAVISource as IFileSourceFilter;
+				hr = fsf.Load(@"foo.avi", null);
+				Marshal.ThrowExceptionForHR(hr);
+				pinOut = DsGetPin.ByDirection(ibfAVISource, PinDirection.Output);
 
-			// Set the file name
-			IFileSourceFilter fsf = ibfAVISource as IFileSourceFilter;
-			hr = fsf.Load(@"foo.avi", null);
-			Marshal.ThrowExceptionForHR( hr );
-			pinOut = DsGetPin.ByDirection(ibfAVISource, PinDirection.Output);
+				// Get the avi splitter
+				aviSplitter = (IBaseFilter) new AviSplitter();
 
-			// Get the avi splitter
-			aviSplitter = (IBaseFilter) new AviSplitter();
+				// Add it to the graph
+				hr = graphBuilder.AddFilter(aviSplitter, "Ds.NET AviSplitter");
+				Marshal.ThrowExceptionForHR(hr);
+				pinIn = DsGetPin.ByDirection(aviSplitter, PinDirection.Input);
 
-			// Add it to the graph
-			hr = graphBuilder.AddFilter( aviSplitter, "Ds.NET AviSplitter" );
-			Marshal.ThrowExceptionForHR( hr );
-			pinIn = DsGetPin.ByDirection(aviSplitter, PinDirection.Input);
+				Assert.IsNotNull(pinOut);
+				Assert.IsNotNull(pinIn);
 
-			Assert.IsNotNull(pinOut);
-			Assert.IsNotNull(pinIn);
-
-			hr = pinOut.Connect(pinIn, null); 
-			Marshal.ThrowExceptionForHR( hr );
+				// Test Connect
+				hr = pinOut.Connect(pinIn, null);
+				Marshal.ThrowExceptionForHR(hr);
 
 
-			IPin pinConnect;
-			hr = pinOut.ConnectedTo(out pinConnect);
-			Marshal.ThrowExceptionForHR( hr );
+				// Test ConnectedTo
+				IPin pinConnect;
+				hr = pinOut.ConnectedTo(out pinConnect);
+				Marshal.ThrowExceptionForHR(hr);
+				Assert.AreEqual(pinIn, pinConnect);
 
-			Assert.AreEqual(pinIn, pinConnect);
 
-			hr = pinOut.Disconnect();
-			Marshal.ThrowExceptionForHR( hr );
+				// Test ConnectionMediaType
+				AMMediaType mediaType = new AMMediaType();
+				hr = pinIn.ConnectionMediaType(mediaType);
+				Marshal.ThrowExceptionForHR(hr);
+				Assert.IsNotNull(mediaType);
+				Assert.IsNotNull(mediaType.majorType);
+
+				// Test Disconnect
+				hr = pinOut.Disconnect();
+				Marshal.ThrowExceptionForHR(hr);
+
+			}
+			finally
+			{
+				Marshal.ReleaseComObject(graphBuilder);
+			}
 		}
 
 
@@ -150,6 +171,6 @@ namespace DirectShowLib.Test
 			Marshal.ReleaseComObject(ppEnum);
 			return pRet;
 		}
-	
+
 	}
 }
