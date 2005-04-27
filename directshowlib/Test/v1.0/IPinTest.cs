@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Runtime.InteropServices;
 using NUnit.Framework;
+using TestClasses;
 
 namespace DirectShowLib.Test
 {
@@ -18,7 +19,7 @@ namespace DirectShowLib.Test
 		[Test]
 		public void TestQueryDirection()
 		{
-			IPin testPin = GetTestPin();
+			IPin testPin = GetSmartTeeInputPin();
 			PinDirection pDir;
 			int hr = testPin.QueryDirection(out pDir);			
 			Marshal.ThrowExceptionForHR(hr);
@@ -30,19 +31,21 @@ namespace DirectShowLib.Test
 		[Test]
 		public void TestQueryPinInfo()
 		{
-			IPin testPin = GetTestPin();
+			IPin testPin = GetSmartTeeInputPin();
 			PinInfo pinInfo;
 			int hr = testPin.QueryPinInfo(out pinInfo);
 			Marshal.ThrowExceptionForHR(hr);
 
+			
 			Assert.IsNotNull(pinInfo);
 			Assert.IsNotNull(pinInfo.name);
+			Console.WriteLine(pinInfo.name);
 		}
 
 		[Test]
 		public void TestQueryId()
 		{
-			IPin testPin = GetTestPin();
+			IPin testPin = GetSmartTeeInputPin();
 			string idStr;
 			int hr = testPin.QueryId(out idStr);
 			Marshal.ThrowExceptionForHR(hr);
@@ -53,7 +56,7 @@ namespace DirectShowLib.Test
 		[Test]
 		public void TestEnumMediaTypes()
 		{
-			IPin testPin = GetTestPin();
+			IPin testPin = GetSmartTeeInputPin();
 			IEnumMediaTypes enumMediaTypes;
 			int hr = testPin.EnumMediaTypes(out enumMediaTypes);
 			Marshal.ThrowExceptionForHR(hr);
@@ -67,7 +70,7 @@ namespace DirectShowLib.Test
 		[Test]
 		public void TestQueryInternalConnections()
 		{
-			IPin testPin = GetTestPin();
+			IPin testPin = GetSmartTeeInputPin();
 			int nPin = 0;
 			IPin[] ppPins = null;
 			int hr = testPin.QueryInternalConnections(ppPins, ref nPin);
@@ -78,46 +81,68 @@ namespace DirectShowLib.Test
 			Assert.IsNotNull(ppPins);
 		}
 
-
-
-
-		private static IPin GetTestPin()
+		[Test]
+		public void TestConnectDisconnect()
 		{
-			ArrayList audioInputDeviceList = new ArrayList();
-			DsDev.GetDevicesOfCat(FilterCategory.AudioInputDevice, out audioInputDeviceList);
-	
-			Assert.IsTrue(audioInputDeviceList.Count > 0);
-			DsDevice audioInputDevice = (DsDevice) audioInputDeviceList[0];
-	
-			Console.WriteLine("Testing with " + audioInputDevice.Name);
-	
-			string monikerName;
-			audioInputDevice.Mon.GetDisplayName(null, null, out monikerName);
-			IBaseFilter inputFilter = (IBaseFilter) Marshal.BindToMoniker(monikerName);
-			
-			
+			int hr;
+			IBaseFilter aviSplitter = null;
+			IBaseFilter ibfAVISource = null;
+			IPin pinIn = null;
+			IPin pinOut = null;
+
+			IFilterGraph2 graphBuilder = new FilterGraph() as IFilterGraph2;
+
+			ibfAVISource = new AsyncReader() as IBaseFilter;
+
+			// Add it to the graph
+			hr = graphBuilder.AddFilter( ibfAVISource, "Ds.NET AsyncReader" );
+			Marshal.ThrowExceptionForHR( hr );
+
+			// Set the file name
+			IFileSourceFilter fsf = ibfAVISource as IFileSourceFilter;
+			hr = fsf.Load(@"foo.avi", null);
+			Marshal.ThrowExceptionForHR( hr );
+			pinOut = DsGetPin.ByDirection(ibfAVISource, PinDirection.Output);
+
+			// Get the default video renderer
+			aviSplitter = (IBaseFilter) new AviSplitter();
+
+			// Add it to the graph
+			hr = graphBuilder.AddFilter( aviSplitter, "Ds.NET AviSplitter" );
+			Marshal.ThrowExceptionForHR( hr );
+			pinIn = DsGetPin.ByDirection(aviSplitter, PinDirection.Input);
+
+			Assert.IsNotNull(pinOut);
+			Assert.IsNotNull(pinIn);
+
+			hr = pinOut.Connect(pinIn, null); 
+			Marshal.ThrowExceptionForHR( hr );
+
+			hr = pinOut.Disconnect();
+			Marshal.ThrowExceptionForHR( hr );
+		}
+
+
+		private static IPin GetSmartTeeInputPin()
+		{
+			IBaseFilter filter = new SmartTee() as IBaseFilter;
 			int hr;
 			int lFetched;
 			IEnumPins ppEnum;
-			PinInfo ppinfo;
 			IPin pRet = null;
 			IPin[] pPins = new IPin[1];
 
-			hr = inputFilter.EnumPins(out ppEnum);
+			hr = filter.EnumPins(out ppEnum);
 			Marshal.ThrowExceptionForHR(hr);
 
 			while ((ppEnum.Next(1, pPins, out lFetched) >= 0) && (lFetched == 1))
 			{
-				hr = pPins[0].QueryPinInfo(out ppinfo);
-				Marshal.ThrowExceptionForHR(hr);
-
 				pRet = pPins[0];
 				break;
 			}
 			Marshal.ReleaseComObject(ppEnum);
-
 			return pRet;
-
 		}
+	
 	}
 }

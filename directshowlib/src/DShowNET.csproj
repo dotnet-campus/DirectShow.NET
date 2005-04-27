@@ -17,7 +17,7 @@
                 DelaySign = "false"
                 OutputType = "Library"
                 PreBuildEvent = ""
-                PostBuildEvent = ""
+                PostBuildEvent = "copy $(SolutionDir)Resources\foo.avi ."
                 RootNamespace = "DirectShowLib"
                 RunPostBuildEvent = "OnBuildSuccess"
                 StartupObject = ""
@@ -220,6 +220,11 @@
                 />
                 <File
                     RelPath = "Test\IPinTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\IVideoWindow.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
