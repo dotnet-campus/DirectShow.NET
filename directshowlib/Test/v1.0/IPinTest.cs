@@ -1,6 +1,6 @@
-// $Id: IPinTest.cs,v 1.6 2005-04-27 17:00:10 kawaic Exp $
+// $Id: IPinTest.cs,v 1.7 2005-04-28 22:40:50 kawaic Exp $
 // $Author: kawaic $
-// $Revision: 1.6 $
+// $Revision: 1.7 $
 using System;
 using System.Runtime.InteropServices;
 using NUnit.Framework;
@@ -65,9 +65,10 @@ namespace DirectShowLib.Test
 			int hr = testPin.EnumMediaTypes(out enumMediaTypes);
 			Marshal.ThrowExceptionForHR(hr);
 
-			hr = enumMediaTypes.Reset();
-			Marshal.ThrowExceptionForHR(hr);
 			Assert.IsNotNull(enumMediaTypes);
+
+			hr = enumMediaTypes.Reset();
+			Marshal.ThrowExceptionForHR(hr);			
 		}
 
 
