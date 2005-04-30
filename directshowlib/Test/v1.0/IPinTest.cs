@@ -1,10 +1,9 @@
-// $Id: IPinTest.cs,v 1.7 2005-04-28 22:40:50 kawaic Exp $
-// $Author: kawaic $
-// $Revision: 1.7 $
+// $Id: IPinTest.cs,v 1.8 2005-04-30 03:26:09 snarfle Exp $
+// $Author: snarfle $
+// $Revision: 1.8 $
 using System;
 using System.Runtime.InteropServices;
 using NUnit.Framework;
-using TestClasses;
 
 namespace DirectShowLib.Test
 {
