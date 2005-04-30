@@ -147,7 +147,7 @@ namespace DirectShowLib.BDA
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IBDA_EthernetFilter
 	{
-		///TODO : Implemente this interface
+		//TODO : Implemente this interface
 	}
 
 	[ComVisible(true), ComImport,
@@ -155,7 +155,7 @@ namespace DirectShowLib.BDA
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IBDA_IPV4Filter
 	{
-		///TODO : Implemente this interface
+		//TODO : Implemente this interface
 	}
 
 	[ComVisible(true), ComImport,
@@ -163,7 +163,7 @@ namespace DirectShowLib.BDA
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IBDA_IPV6Filter
 	{
-		///TODO : Implemente this interface
+		//TODO : Implemente this interface
 	}
 
 	[ComVisible(true), ComImport,
@@ -264,7 +264,7 @@ namespace DirectShowLib.BDA
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IBDA_Topology
 	{
-		///TODO : Implemente this interface
+		//TODO : Implemente this interface
 	}
 
 	[ComVisible(true), ComImport,
@@ -419,7 +419,7 @@ namespace DirectShowLib.BDA
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IBDA_IPSinkControl
 	{
-		///TODO : Implemente this interface
+		//TODO : Implemente this interface
 	}
 
 	[ComVisible(true), ComImport,
@@ -427,7 +427,7 @@ namespace DirectShowLib.BDA
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IBDA_IPSinkInfo
 	{
-		///TODO : Implemente this interface
+		//TODO : Implemente this interface
 	}
 
 
