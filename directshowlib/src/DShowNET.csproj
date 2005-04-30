@@ -224,7 +224,7 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Test\IVideoWindow.cs"
+                    RelPath = "Test\IVideoWindowTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
