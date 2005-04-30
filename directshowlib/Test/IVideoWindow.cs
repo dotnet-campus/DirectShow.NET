@@ -11,6 +11,7 @@
 using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using NUnit.Framework;
 
 namespace DirectShowLib.Test
 {
@@ -20,7 +21,7 @@ namespace DirectShowLib.Test
 	{
 	}
 
-	//[TestFixture]
+	[TestFixture]
 	public class IVideoWindowTest
 	{
 		private const string g_TestFile = @"foo.avi";
@@ -35,7 +36,7 @@ namespace DirectShowLib.Test
 		/// <summary>
 		/// Test all IVideoWindow methods
 		/// </summary>
-		//[Test]
+		[Test]
 		public void DoTests()
 		{
 			m_graphBuilder = BuildGraph(g_TestFile);
