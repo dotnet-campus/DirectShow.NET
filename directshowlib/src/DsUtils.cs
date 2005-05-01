@@ -232,7 +232,7 @@ namespace DirectShowLib
 	}
 
 	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
-	public struct DsOptInt64
+	public class DsOptInt64
 	{
 		public DsOptInt64(long Value)
 		{
@@ -1041,6 +1041,60 @@ namespace DirectShowLib
 			return sRet;
 		}
 	}
+
+    [StructLayout(LayoutKind.Explicit)]
+    public class GUID
+    {
+        [FieldOffset(0)]
+        private Guid guid;
+
+        public static readonly GUID Empty;
+
+        static GUID()
+        {
+            GUID.Empty = new GUID();
+        }
+
+        public GUID()
+        {
+            this.guid = Guid.Empty;
+        }
+
+        public GUID(string g)
+        {
+            this.guid = new Guid(g);
+        }
+
+        public GUID(Guid g)
+        {
+            this.guid = g;
+        }
+
+        public override string ToString()
+        {
+            return this.guid.ToString();
+        }
+
+        public string ToString(string format)
+        {
+            return this.guid.ToString(format);
+        }
+
+        public override int GetHashCode()
+        {
+            return this.guid.GetHashCode();
+        }
+
+        public static implicit operator Guid(GUID g) 
+        {
+            return g.guid;
+        }
+
+        public static implicit operator GUID(Guid g) 
+        {
+            return new GUID(g);
+        }
+    }
 
 	#endregion
 

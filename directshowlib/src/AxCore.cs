@@ -792,80 +792,6 @@ namespace DirectShowLib
 		int Unregister();
 	}
 
-
-	[ComVisible(true), ComImport,
-		Guid("36b73880-c2c8-11cf-8b46-00805f6cef60"),
-		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	public interface IMediaSeeking
-	{
-		[PreserveSig]
-		int GetCapabilities([Out] out AMSeekingSeekingCapabilities pCapabilities);
-
-		[PreserveSig]
-		int CheckCapabilities([In, Out] ref AMSeekingSeekingCapabilities pCapabilities);
-
-		[PreserveSig]
-		int IsFormatSupported([In] ref Guid pFormat);
-
-		[PreserveSig]
-		int QueryPreferredFormat([Out] out Guid pFormat);
-
-		[PreserveSig]
-		int GetTimeFormat([Out] out Guid pFormat);
-
-		[PreserveSig]
-		int IsUsingTimeFormat([In] ref Guid pFormat);
-
-		[PreserveSig]
-		int SetTimeFormat([In] ref Guid pFormat);
-
-		[PreserveSig]
-		int GetDuration([Out] out long pDuration);
-
-		[PreserveSig]
-		int GetStopPosition([Out] out long pStop);
-
-		[PreserveSig]
-		int GetCurrentPosition([Out] out long pCurrent);
-
-		[PreserveSig]
-		int ConvertTimeFormat(
-			[Out] out long pTarget,
-			[In] ref Guid pTargetFormat,
-			[In] long Source,
-			[In] ref Guid pSourceFormat
-			);
-
-		// The old code used a class here (MarshalAs(UnmanagedType.LPStruct)) instead of longs.  Why?
-		[PreserveSig]
-		int SetPositions(
-			[In, Out] ref long pCurrent,
-			[In] AMSeekingSeekingFlags dwCurrentFlags,
-			[In, Out] ref long pStop,
-			[In] AMSeekingSeekingFlags dwStopFlags
-			);
-
-		[PreserveSig]
-		int GetPositions(
-			[Out] out long pCurrent,
-			[Out] out long pStop
-			);
-
-		[PreserveSig]
-		int GetAvailable(
-			[Out] out long pEarliest,
-			[Out] out long pLatest
-			);
-
-		[PreserveSig]
-		int SetRate([In] double dRate);
-
-		[PreserveSig]
-		int GetRate([Out] out double pdRate);
-
-		[PreserveSig]
-		int GetPreroll([Out] out long pllPreroll);
-	}
 #endif
 
     [ComVisible(true), ComImport,
@@ -938,6 +864,80 @@ namespace DirectShowLib
             [In] long tStop,
             [In] double dRate
             );
+    }
+
+
+    [ComVisible(true), ComImport,
+    Guid("36b73880-c2c8-11cf-8b46-00805f6cef60"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IMediaSeeking
+    {
+        [PreserveSig]
+        int GetCapabilities([Out] out AMSeekingSeekingCapabilities pCapabilities);
+
+        [PreserveSig]
+        int CheckCapabilities([In, Out] ref AMSeekingSeekingCapabilities pCapabilities);
+
+        [PreserveSig]
+        int IsFormatSupported([In, MarshalAs(UnmanagedType.LPStruct)] Guid pFormat);
+
+        [PreserveSig]
+        int QueryPreferredFormat([Out] out Guid pFormat);
+
+        [PreserveSig]
+        int GetTimeFormat([Out] out Guid pFormat);
+
+        [PreserveSig]
+        int IsUsingTimeFormat([In, MarshalAs(UnmanagedType.LPStruct)] Guid pFormat);
+
+        [PreserveSig]
+        int SetTimeFormat([In, MarshalAs(UnmanagedType.LPStruct)] Guid pFormat);
+
+        [PreserveSig]
+        int GetDuration([Out] out long pDuration);
+
+        [PreserveSig]
+        int GetStopPosition([Out] out long pStop);
+
+        [PreserveSig]
+        int GetCurrentPosition([Out] out long pCurrent);
+
+        [PreserveSig]
+        int ConvertTimeFormat(
+            [Out] out long pTarget,
+            [In, MarshalAs(UnmanagedType.LPStruct)] GUID pTargetFormat,
+            [In] long Source,
+            [In, MarshalAs(UnmanagedType.LPStruct)] GUID pSourceFormat
+            );
+
+        [PreserveSig]
+        int SetPositions(
+            [In, Out, MarshalAs(UnmanagedType.LPStruct)] DsOptInt64 pCurrent,
+            [In] AMSeekingSeekingFlags dwCurrentFlags,
+            [In, Out, MarshalAs(UnmanagedType.LPStruct)] DsOptInt64 pStop,
+            [In] AMSeekingSeekingFlags dwStopFlags
+            );
+
+        [PreserveSig]
+        int GetPositions(
+            [Out] out long pCurrent,
+            [Out] out long pStop
+            );
+
+        [PreserveSig]
+        int GetAvailable(
+            [Out] out long pEarliest,
+            [Out] out long pLatest
+            );
+
+        [PreserveSig]
+        int SetRate([In] double dRate);
+
+        [PreserveSig]
+        int GetRate([Out] out double pdRate);
+
+        [PreserveSig]
+        int GetPreroll([Out] out long pllPreroll);
     }
 
 	#endregion
