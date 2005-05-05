@@ -511,75 +511,6 @@ namespace DirectShowLib
 
 
 	[ComVisible(true), ComImport,
-		Guid("56a8689a-0ad4-11ce-b03a-0020af0ba770"),
-		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	public interface IMediaSample
-	{
-		[PreserveSig]
-		int GetPointer([Out] out IntPtr ppBuffer); // BYTE **
-
-		[PreserveSig]
-		int GetSize();
-
-		[PreserveSig]
-		int GetTime(
-			[Out] out long pTimeStart,
-			[Out] out long pTimeEnd
-			);
-
-		// The old code used a class here (MarshalAs(UnmanagedType.LPStruct)) instead of longs.  Why?
-		[PreserveSig]
-		int SetTime(
-			[In] long pTimeStart,
-			[In] long pTimeEnd
-			);
-
-		[PreserveSig]
-		int IsSyncPoint();
-
-		[PreserveSig]
-		int SetSyncPoint([In, MarshalAs(UnmanagedType.Bool)] bool bIsSyncPoint);
-
-		[PreserveSig]
-		int IsPreroll();
-
-		[PreserveSig]
-		int SetPreroll([In, MarshalAs(UnmanagedType.Bool)] bool bIsPreroll);
-
-		[PreserveSig]
-		int GetActualDataLength();
-
-		[PreserveSig]
-		int SetActualDataLength([In] int len);
-
-		[PreserveSig]
-		int GetMediaType([Out, MarshalAs(UnmanagedType.LPStruct)] out AMMediaType ppMediaType);
-
-		[PreserveSig]
-		int SetMediaType([In, MarshalAs(UnmanagedType.LPStruct)] AMMediaType pMediaType);
-
-		[PreserveSig]
-		int IsDiscontinuity();
-
-		[PreserveSig]
-		int SetDiscontinuity([In, MarshalAs(UnmanagedType.Bool)] bool bDiscontinuity);
-
-		[PreserveSig]
-		int GetMediaTime(
-			[Out] out long pTimeStart,
-			[Out] out long pTimeEnd
-			);
-
-		// The old code used a class here (MarshalAs(UnmanagedType.LPStruct)) instead of longs.  Why?
-		[PreserveSig]
-		int SetMediaTime(
-			[In] long pTimeStart,
-			[In] long pTimeEnd
-			);
-	}
-
-
-	[ComVisible(true), ComImport,
 		Guid("36b73884-c2c8-11cf-8b46-00805f6cef60"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IMediaSample2 : IMediaSample
@@ -939,6 +870,77 @@ namespace DirectShowLib
         [PreserveSig]
         int GetPreroll([Out] out long pllPreroll);
     }
+
+
+    [ComVisible(true), ComImport,
+    Guid("56a8689a-0ad4-11ce-b03a-0020af0ba770"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IMediaSample
+    {
+        [PreserveSig]
+        int GetPointer([Out] out IntPtr ppBuffer); // BYTE **
+
+        [PreserveSig]
+        int GetSize();
+
+        [PreserveSig]
+        int GetTime(
+            [Out] out long pTimeStart,
+            [Out] out long pTimeEnd
+            );
+
+        [PreserveSig]
+        int SetTime(
+            [In, MarshalAs(UnmanagedType.LPStruct)] DsOptInt64 pTimeStart,
+            [In, MarshalAs(UnmanagedType.LPStruct)] DsOptInt64 pTimeEnd
+            );
+
+        [PreserveSig]
+        int IsSyncPoint();
+
+        [PreserveSig]
+        int SetSyncPoint([In, MarshalAs(UnmanagedType.Bool)] bool bIsSyncPoint);
+
+        [PreserveSig]
+        int IsPreroll();
+
+        [PreserveSig]
+        int SetPreroll([In, MarshalAs(UnmanagedType.Bool)] bool bIsPreroll);
+
+        [PreserveSig]
+        int GetActualDataLength();
+
+        [PreserveSig]
+        int SetActualDataLength([In] int len);
+
+        /// <summary>
+        /// Returned object must be released with DsUtils.FreeAMMediaType()
+        /// </summary>
+        [PreserveSig]
+        int GetMediaType([Out, MarshalAs(UnmanagedType.LPStruct)] out AMMediaType ppMediaType);
+
+        [PreserveSig]
+        int SetMediaType([In, MarshalAs(UnmanagedType.LPStruct)] AMMediaType pMediaType);
+
+        [PreserveSig]
+        int IsDiscontinuity();
+
+        [PreserveSig]
+        int SetDiscontinuity([In, MarshalAs(UnmanagedType.Bool)] bool bDiscontinuity);
+
+        [PreserveSig]
+        int GetMediaTime(
+            [Out] out long pTimeStart,
+            [Out] out long pTimeEnd
+            );
+
+        [PreserveSig]
+        int SetMediaTime(
+            [In, MarshalAs(UnmanagedType.LPStruct)] DsOptInt64 pTimeStart,
+            [In, MarshalAs(UnmanagedType.LPStruct)] DsOptInt64 pTimeEnd
+            );
+    }
+
 
 	#endregion
 }

@@ -20,18 +20,21 @@ namespace DirectShowLib.Test
             // IAMAudioInputMixerTest t3 = new IAMAudioInputMixerTest();
             // t3.DoTests();
 
-            IVideoWindowTest t1 = new IVideoWindowTest();
-            t1.DoTests();
+            //IVideoWindowTest t1 = new IVideoWindowTest();
+            //t1.DoTests();
 
-            IMediaSeekingTest t2 = new IMediaSeekingTest();
-            t2.DoTests();
+            //IMediaSeekingTest t2 = new IMediaSeekingTest();
+            //t2.DoTests();
 
             //IVMRFilterConfig9Test t4 = new IVMRFilterConfig9Test();
             //t4.DoTests();
 
-            IVMRWindowlessControl9Test t5 = new IVMRWindowlessControl9Test();
-            t5.Show();
-            t5.DoTests();
+            //IVMRWindowlessControl9Test t5 = new IVMRWindowlessControl9Test();
+            //t5.Show();
+            //t5.DoTests();
+
+            IMediaSampleTest t6 = new IMediaSampleTest();
+            t6.DoTests();
  
         }
 	}
