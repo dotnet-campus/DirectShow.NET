@@ -67,7 +67,7 @@ using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
 
-namespace DirectShowLib.VMR
+namespace DirectShowLib
 {
 
 	#region Declarations
