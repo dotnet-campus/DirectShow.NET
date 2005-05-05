@@ -67,7 +67,7 @@ using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
 
-namespace DirectShowLib.VMR
+namespace DirectShowLib
 {
 
 	#region Declarations
@@ -511,9 +511,9 @@ namespace DirectShowLib.VMR
 			);
 
 		int SetVideoPosition(
-			[In, MarshalAs(UnmanagedType.Struct)] ref Rectangle lpSRCRect,
-			[In, MarshalAs(UnmanagedType.Struct)] ref Rectangle lpDSTRect
-			);
+      [In, MarshalAs(UnmanagedType.Struct)] ref Rectangle lpSRCRect,
+      [In, MarshalAs(UnmanagedType.Struct)] ref Rectangle lpDSTRect
+      );
 
 		int GetVideoPosition(
 			[Out, MarshalAs(UnmanagedType.Struct)] out Rectangle lpSRCRect,
@@ -657,10 +657,10 @@ namespace DirectShowLib.VMR
 		int GetNumberOfStreams([Out] out int pdwMaxStreams);
 
 		[PreserveSig]
-		int SetRenderingPrefs([In] int dwRenderFlags);
+		int SetRenderingPrefs([In] VMR9RenderPrefs dwRenderFlags);
 
 		[PreserveSig]
-		int GetRenderingPrefs([Out] out int pdwRenderFlags);
+		int GetRenderingPrefs([Out] out VMR9RenderPrefs pdwRenderFlags);
 
 		[PreserveSig]
 		int SetRenderingMode([In] VMR9Mode Mode);
