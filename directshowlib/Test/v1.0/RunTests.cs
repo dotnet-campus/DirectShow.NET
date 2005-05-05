@@ -1,4 +1,5 @@
 using System;
+using System.Windows.Forms;
 
 namespace DirectShowLib.Test
 {
@@ -24,6 +25,14 @@ namespace DirectShowLib.Test
 
             IMediaSeekingTest t2 = new IMediaSeekingTest();
             t2.DoTests();
+
+            //IVMRFilterConfig9Test t4 = new IVMRFilterConfig9Test();
+            //t4.DoTests();
+
+            IVMRWindowlessControl9Test t5 = new IVMRWindowlessControl9Test();
+            t5.Show();
+            t5.DoTests();
+ 
         }
 	}
 }
