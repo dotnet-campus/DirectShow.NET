@@ -3,6 +3,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DShowNET", "DShowNET.csproj
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{7F8E29F9-8C53-4B8C-A8FC-24D25AD0F36B}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfiguration) = preSolution
 		Debug = Debug
@@ -13,6 +17,10 @@ Global
 		{CE009BFA-5EF6-4153-B2A1-2FA79698A9AE}.Debug.Build.0 = Debug|.NET
 		{CE009BFA-5EF6-4153-B2A1-2FA79698A9AE}.Release.ActiveCfg = Release|.NET
 		{CE009BFA-5EF6-4153-B2A1-2FA79698A9AE}.Release.Build.0 = Release|.NET
+		{7F8E29F9-8C53-4B8C-A8FC-24D25AD0F36B}.Debug.ActiveCfg = Debug|.NET
+		{7F8E29F9-8C53-4B8C-A8FC-24D25AD0F36B}.Debug.Build.0 = Debug|.NET
+		{7F8E29F9-8C53-4B8C-A8FC-24D25AD0F36B}.Release.ActiveCfg = Release|.NET
+		{7F8E29F9-8C53-4B8C-A8FC-24D25AD0F36B}.Release.Build.0 = Release|.NET
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection

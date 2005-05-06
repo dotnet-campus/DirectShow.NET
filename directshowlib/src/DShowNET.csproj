@@ -28,8 +28,8 @@
                     BaseAddress = "285212672"
                     CheckForOverflowUnderflow = "false"
                     ConfigurationOverrideFile = ""
-                    DefineConstants = "DEBUG;TRACE"
-                    DocumentationFile = "doc\doc.xml"
+                    DefineConstants = "DEBUG;TRACE;ALLOW_UNTESTED_STRUCTS;ALLOW_UNTESTED_INTERFACES;ALLOW_UNTESTED_STRUCTS;ALLOW_UNTESTED_CODE"
+                    DocumentationFile = ""
                     DebugSymbols = "true"
                     FileAlignment = "4096"
                     IncrementalBuild = "true"
@@ -215,16 +215,6 @@
                 />
                 <File
                     RelPath = "VmRender.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Test\IPinTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Test\IVideoWindowTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
