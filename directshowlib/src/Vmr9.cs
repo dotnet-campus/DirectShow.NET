@@ -643,33 +643,6 @@ namespace DirectShowLib
 	}
 
 	[ComVisible(true), ComImport,
-		Guid("5a804648-4f66-4867-9c43-4f5c822cf1b8"),
-		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	public interface IVMRFilterConfig9
-	{
-		[PreserveSig]
-		int SetImageCompositor([In] IVMRImageCompositor9 lpVMRImgCompositor);
-
-		[PreserveSig]
-		int SetNumberOfStreams([In] int dwMaxStreams);
-
-		[PreserveSig]
-		int GetNumberOfStreams([Out] out int pdwMaxStreams);
-
-		[PreserveSig]
-		int SetRenderingPrefs([In] VMR9RenderPrefs dwRenderFlags);
-
-		[PreserveSig]
-		int GetRenderingPrefs([Out] out VMR9RenderPrefs pdwRenderFlags);
-
-		[PreserveSig]
-		int SetRenderingMode([In] VMR9Mode Mode);
-
-		[PreserveSig]
-		int GetRenderingMode([Out] out VMR9Mode Mode);
-	}
-
-	[ComVisible(true), ComImport,
 		Guid("00d96c29-bbde-4efc-9901-bb5036392146"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IVMRAspectRatioControl9
@@ -781,6 +754,33 @@ namespace DirectShowLib
 			);
 	}
 #endif
+
+  [ComVisible(true), ComImport,
+  Guid("5a804648-4f66-4867-9c43-4f5c822cf1b8"),
+  InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+  public interface IVMRFilterConfig9
+  {
+    [PreserveSig]
+    int SetImageCompositor([In] IVMRImageCompositor9 lpVMRImgCompositor);
+
+    [PreserveSig]
+    int SetNumberOfStreams([In] int dwMaxStreams);
+
+    [PreserveSig]
+    int GetNumberOfStreams([Out] out int pdwMaxStreams);
+
+    [PreserveSig]
+    int SetRenderingPrefs([In] VMR9RenderPrefs dwRenderFlags);
+
+    [PreserveSig]
+    int GetRenderingPrefs([Out] out VMR9RenderPrefs pdwRenderFlags);
+
+    [PreserveSig]
+    int SetRenderingMode([In] VMR9Mode Mode);
+
+    [PreserveSig]
+    int GetRenderingMode([Out] out VMR9Mode Mode);
+  }
 
 	#endregion
 }
