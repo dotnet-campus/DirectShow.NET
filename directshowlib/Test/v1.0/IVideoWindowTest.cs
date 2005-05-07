@@ -4,8 +4,6 @@
 //    converts to -1. Used for "Get/Set AutoShow", "Get/Set BackgroundPalette", "Get/Set Visible"
 //    "Get/Set FullScreenMode", SetWindowForeground, IsCursorHidden, HideCursor
 // Added enum for WindowState - couldn't find .net equiv - Used for "Get/Set WindowsState"
-// Added struct for ColorRef - couldn't use "Color", since the sizes don't match. - Used 
-//    in "Get/Set BorderColor", 
 // Left IntPtr for Owner, MessageDrain, & NotifyOwnerMessage since HWND has no .NET equiv.
 
 using System;
@@ -91,7 +89,7 @@ namespace DirectShowLib.Test
 			Marshal.ThrowExceptionForHR(hr);
 
 			// Make sure the value we set is what we just read
-			Debug.Assert(s == "Foo Bar");
+			Debug.Assert(s == "Foo Bar", "Get/Set Caption");
 		}
 
 		////////////
@@ -388,15 +386,13 @@ namespace DirectShowLib.Test
 		private void TestBorderColor()
 		{
 			int hr;
-			ColorRef ColorRef1, ColorRef2;
+			int ColorRef1, ColorRef2;
 
 			// Read the current value
 			hr = m_ivw.get_BorderColor(out ColorRef1);
 			Marshal.ThrowExceptionForHR(hr);
 
-			ColorRef1.R++;
-			ColorRef1.G++;
-			ColorRef1.B++;
+			ColorRef1++;
 
 			// Change it
 			hr = m_ivw.put_BorderColor(ColorRef1);
@@ -407,9 +403,7 @@ namespace DirectShowLib.Test
 			Marshal.ThrowExceptionForHR(hr);
 
 			// Make sure the value we set is what we just read
-			Debug.Assert(ColorRef2.R == ColorRef2.R, "Put/Get Height R");
-			Debug.Assert(ColorRef2.G == ColorRef2.G, "Put/Get Height G");
-			Debug.Assert(ColorRef2.B == ColorRef2.B, "Put/Get Height B");
+			Debug.Assert(ColorRef1 == ColorRef2, "Put/Get Border Color");
 		}
 
 		////////////////
@@ -458,7 +452,7 @@ namespace DirectShowLib.Test
 		{
 			int hr;
 
-			// No way to set it, so just set both possibilities
+			// No way to get it, so just set both possibilities
 			hr = m_ivw.SetWindowForeground(OABool.True);
 			Marshal.ThrowExceptionForHR(hr);
 

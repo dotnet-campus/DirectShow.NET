@@ -158,17 +158,6 @@ namespace DirectShowLib
         ForceMinimize
     }
 
-    /// <summary>
-    /// From COLORREF
-    /// </summary>
-    [StructLayout(LayoutKind.Sequential, Pack=1), ComVisible(false)]
-    public struct ColorRef
-    {
-        public byte R;
-        public byte G;
-        public byte B;
-        public byte other;  // Apparently unused in COLORREF
-    }
     #endregion
 
 	#region Interfaces
@@ -939,11 +928,13 @@ namespace DirectShowLib
 		[PreserveSig]
 		int get_MessageDrain([Out] out IntPtr drain);
 
-		[PreserveSig]
-		int get_BorderColor([Out] out ColorRef color);
+        // Use ColorTranslator to break out RGB        
+        [PreserveSig]
+		int get_BorderColor([Out] out int color);
 
+        // Use ColorTranslator to break out RGB        
 		[PreserveSig]
-		int put_BorderColor([In] ColorRef color);
+		int put_BorderColor([In] int color);
 
 		[PreserveSig]
 		int get_FullScreenMode([Out] out OABool fullScreenMode);
