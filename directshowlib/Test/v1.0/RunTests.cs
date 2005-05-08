@@ -33,9 +33,11 @@ namespace DirectShowLib.Test
             //t5.Show();
             //t5.DoTests();
 
-            IMediaSampleTest t6 = new IMediaSampleTest();
-            t6.DoTests();
- 
+            //IMediaSampleTest t6 = new IMediaSampleTest();
+            //t6.DoTests();
+
+            IDvdGraphBuilderTest t7 = new IDvdGraphBuilderTest();
+            t7.DoTests(); 
         }
 	}
 }

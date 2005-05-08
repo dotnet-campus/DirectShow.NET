@@ -60,9 +60,6 @@
 
 #endregion
 
-#define   ALLOW_UNTESTED_STRUCTS
-#define   ALLOW_UNTESTED_INTERFACES
-
 using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
@@ -1467,28 +1464,6 @@ namespace DirectShowLib.Dvd
 	}
 
 	[ComVisible(true), ComImport,
-		Guid("FCC152B6-F372-11d0-8E00-00C04FD7C08B"),
-		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	public interface IDvdGraphBuilder
-	{
-		[PreserveSig]
-		int GetFiltergraph([Out] out IGraphBuilder ppGB);
-
-		[PreserveSig]
-		int GetDvdInterface(
-			[In] ref Guid riid,
-			[Out, MarshalAs(UnmanagedType.Interface)] out object ppvIF
-			);
-
-		[PreserveSig]
-		int RenderDvdVideoVolume(
-			[In, MarshalAs(UnmanagedType.LPWStr)] string lpcwszPathName,
-			[In] AMDvdGraphFlags dwFlags,
-			[Out] out AMDvdRenderStatus pStatus
-			);
-	}
-
-	[ComVisible(true), ComImport,
 		Guid("153ACC21-D83B-11d1-82BF-00A0C9696C8F"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IDDrawExclModeVideo
@@ -1565,5 +1540,27 @@ namespace DirectShowLib.Dvd
 	}
 #endif
 
-	#endregion
+    [ComVisible(true), ComImport,
+    Guid("FCC152B6-F372-11d0-8E00-00C04FD7C08B"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IDvdGraphBuilder
+    {
+        [PreserveSig]
+        int GetFiltergraph([Out] out IGraphBuilder ppGB);
+
+        [PreserveSig]
+        int GetDvdInterface(
+            [In, MarshalAs(UnmanagedType.LPStruct)] Guid riid,
+            [Out, MarshalAs(UnmanagedType.Interface)] out object ppvIF
+            );
+
+        [PreserveSig]
+        int RenderDvdVideoVolume(
+            [In, MarshalAs(UnmanagedType.LPWStr)] string lpcwszPathName,
+            [In] AMDvdGraphFlags dwFlags,
+            [Out] out AMDvdRenderStatus pStatus
+            );
+    }
+
+    #endregion
 }
