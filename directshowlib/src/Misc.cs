@@ -84,7 +84,18 @@ namespace DirectShowLib
 	}
 #endif
 
-	#endregion
+    /// <summary>
+    /// From REGPINMEDIUM
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential), ComVisible(false)]
+    public class PinMedium
+    {
+        public Guid clsMedium;
+        public int dw1;
+        public int dw2;
+    }
+
+    #endregion
 
 	#region Interfaces
 
@@ -145,7 +156,7 @@ namespace DirectShowLib
 	[ComVisible(true), ComImport,
 		Guid("b61178d1-a2d9-11cf-9e53-00aa00a216a1"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	internal interface IKsPin
+	public interface IKsPin
 	{
 		/// <summary>
 		/// The caller must free the returned structures, using the CoTaskMemFree function

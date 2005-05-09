@@ -36,8 +36,14 @@ namespace DirectShowLib.Test
             //IMediaSampleTest t6 = new IMediaSampleTest();
             //t6.DoTests();
 
-            IDvdGraphBuilderTest t7 = new IDvdGraphBuilderTest();
-            t7.DoTests(); 
+            //IDvdGraphBuilderTest t7 = new IDvdGraphBuilderTest();
+            //t7.DoTests(); 
+
+            //ISampleGrabberCBTest t8 = new ISampleGrabberCBTest();
+            //t8.DoTests();
+
+            IKsPinTest t9 = new IKsPinTest();
+            t9.DoTests();
         }
 	}
 }

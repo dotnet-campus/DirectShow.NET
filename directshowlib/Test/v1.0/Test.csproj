@@ -119,6 +119,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IKsPinTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IMediaSample.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -130,6 +135,11 @@
                 />
                 <File
                     RelPath = "IPinTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ISampleGrabberCBTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
