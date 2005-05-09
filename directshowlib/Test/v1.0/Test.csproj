@@ -124,7 +124,7 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "IMediaSample.cs"
+                    RelPath = "IMediaSampleTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
