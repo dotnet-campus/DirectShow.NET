@@ -450,8 +450,9 @@ namespace DirectShowLib
 
 		[PreserveSig]
 		int GetMinIdealVideoSize(
-			[Out] out int lpHeight
-			);
+			[Out] out int lpWidth,
+      [Out] out int lpHeight
+      );
 
 		[PreserveSig]
 		int GetMaxIdealVideoSize(
@@ -602,10 +603,10 @@ namespace DirectShowLib
 		int GetNumberOfStreams([Out] out int pdwMaxStreams);
 
 		[PreserveSig]
-		int SetRenderingPrefs([In] int dwRenderFlags);
+		int SetRenderingPrefs([In] VMRRenderPrefs dwRenderFlags);
 
 		[PreserveSig]
-		int GetRenderingPrefs([Out] out int pdwRenderFlags);
+		int GetRenderingPrefs([Out] out VMRRenderPrefs pdwRenderFlags);
 
 		[PreserveSig]
 		int SetRenderingMode([In] VMRMode Mode);
