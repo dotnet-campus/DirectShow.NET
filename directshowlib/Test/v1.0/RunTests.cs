@@ -42,8 +42,14 @@ namespace DirectShowLib.Test
             //ISampleGrabberCBTest t8 = new ISampleGrabberCBTest();
             //t8.DoTests();
 
-            IKsPinTest t9 = new IKsPinTest();
-            t9.DoTests();
-        }
+//            IKsPinTest t9 = new IKsPinTest();
+//            t9.DoTests();
+
+//      IVMRFilterConfigTest t10 = new IVMRFilterConfigTest();
+//      t10.DoTests();
+
+      IVMRWindowlessControlTest t11 = new IVMRWindowlessControlTest();
+      t11.DoTests();
+    }
 	}
 }
