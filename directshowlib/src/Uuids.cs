@@ -148,7 +148,10 @@ namespace DirectShowLib
 
 		/// <summary> CLSID_MPEG2Demultiplexer </summary>
 		public static readonly Guid MPEG2Demultiplexer = new Guid(0xafb6c280, 0x2c41, 0x11d3, 0x8a, 0x60, 0x00, 0x00, 0xf8, 0x1e, 0x0e, 0x4a);
-	}
+
+    /// <summary> CLSID_SystemClock </summary>
+    public static readonly Guid SystemClock = new Guid(0xe436ebb1, 0x524f, 0x11ce, 0x9f, 0x53, 0x00, 0x20, 0xaf, 0x0b, 0xa7, 0x70);
+  }
 
 	[ComVisible(false)]
 	public class KSProxyClsId // uuids.h  :  CLSID_*
