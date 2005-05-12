@@ -172,6 +172,11 @@ namespace DirectShowLib
   {
   }
 
+  [ComVisible(false), ComImport,
+  Guid("79376820-07D0-11CF-A24D-0020AFD79767")]
+  public class DSoundRender
+  {
+  }
 
 	[ComVisible(false)]
 	public class DsHlp
