@@ -59,6 +59,9 @@ namespace DirectShowLib.Test
 
       IBaseFilterTest t14 = new IBaseFilterTest();
       t14.DoTests();
+
+      IBasicAudioTest t15 = new IBasicAudioTest();
+      t15.DoTests();
   
     }
 	}
