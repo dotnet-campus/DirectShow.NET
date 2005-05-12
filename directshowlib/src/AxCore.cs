@@ -184,11 +184,11 @@ namespace DirectShowLib
 	/// From FILTER_INFO
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential, CharSet=CharSet.Unicode), ComVisible(false)]
-	public class FilterInfo
-	{
-		[MarshalAs(UnmanagedType.ByValTStr, SizeConst=128)] public string achName;
-		[MarshalAs(UnmanagedType.IUnknown)] public IFilterGraph pGraph;
-	}
+  public struct FilterInfo
+    {
+    [MarshalAs(UnmanagedType.ByValTStr, SizeConst=128)] public string achName;
+    [MarshalAs(UnmanagedType.IUnknown)] public IFilterGraph pGraph;
+  }
 #endif
 
     /// <summary>
@@ -434,8 +434,8 @@ namespace DirectShowLib
 			[Out] out IPin ppPin
 			);
 
-		[PreserveSig]
-		int QueryFilterInfo([Out] FilterInfo pInfo);
+    [PreserveSig]
+    int QueryFilterInfo([In, Out] ref FilterInfo pInfo);
 
 		[PreserveSig]
 		int JoinFilterGraph(
