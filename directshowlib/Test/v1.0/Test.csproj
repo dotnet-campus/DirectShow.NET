@@ -114,6 +114,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IBaseFilterTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IDvdGraphBuilderTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -124,12 +129,22 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IMediaFilterTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IMediaSampleTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
                     RelPath = "IMediaSeekingTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IPersistTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -154,7 +169,22 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IVMRFilterConfigTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IVMRWindowlessControl9Test.cs"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IVMRWindowlessControl9Test.resx"
+                    DependentUpon = "IVMRWindowlessControl9Test.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "IVMRWindowlessControlTest.cs"
                     SubType = "Form"
                     BuildAction = "Compile"
                 />
