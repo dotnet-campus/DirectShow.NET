@@ -166,6 +166,12 @@ namespace DirectShowLib
 	{
 	}
 
+  [ComVisible(false), ComImport,
+  Guid("e436ebb1-524f-11ce-9f53-0020af0ba770")]
+  public class SystemClock
+  {
+  }
+
 
 	[ComVisible(false)]
 	public class DsHlp
