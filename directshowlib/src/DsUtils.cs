@@ -66,6 +66,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Reflection;
 
 namespace DirectShowLib
 
@@ -1093,250 +1094,85 @@ namespace DirectShowLib
 
     [ComVisible(false)]
     public class DsToString
-	{
+    {
         private DsToString()
         {
             // Prevent people from trying to instantiate this class
         }
 
-		/// <summary>
-		/// Produces a usable string that describes the MediaType object
-		/// </summary>
-		/// <returns>Concatenation of MajorType + SubType + FormatType + Fixed + Temporal + SampleSize.ToString</returns>
-		public static string AMMediaTypeToString(ref AMMediaType pmt)
-		{
-			return MediaTypeToString(pmt.majorType) + " " + MediaSubTypeToString(pmt.subType) + " " +
-				MediaFormatTypeToString(pmt.formatType) + " " +
-				(pmt.fixedSizeSamples ? "FixedSamples" : "NotFixedSamples") + " " +
-				(pmt.temporalCompression ? "temporalCompression" : "NottemporalCompression") + " " +
-				pmt.sampleSize.ToString();
-		}
+        /// <summary>
+        /// Produces a usable string that describes the MediaType object
+        /// </summary>
+        /// <returns>Concatenation of MajorType + SubType + FormatType + Fixed + Temporal + SampleSize.ToString</returns>
+        public static string AMMediaTypeToString(ref AMMediaType pmt)
+        {
+            return MediaTypeToString(pmt.majorType) + " " + MediaSubTypeToString(pmt.subType) + " " +
+                MediaFormatTypeToString(pmt.formatType) + " " +
+                (pmt.fixedSizeSamples ? "FixedSamples" : "NotFixedSamples") + " " +
+                (pmt.temporalCompression ? "temporalCompression" : "NottemporalCompression") + " " +
+                pmt.sampleSize.ToString();
+        }
 
-		/// <summary>
-		/// Converts AMMediaType.MajorType Guid to a readable string
-		/// </summary>
-		/// <returns>MajorType Guid as a readable string or Guid if unrecognized</returns>
-		public static string MediaTypeToString(Guid guid)
-		{
-			string sRet;
+        /// <summary>
+        /// Converts AMMediaType.MajorType Guid to a readable string
+        /// </summary>
+        /// <returns>MajorType Guid as a readable string or Guid if unrecognized</returns>
+        public static string MediaTypeToString(Guid guid)
+        {
+            // Walk the MediaSubType class looking for a match
+            return WalkClass(typeof(MediaType), guid);
+        }
 
-			if (guid == MediaType.Audio)
-			{
-				sRet = "Audio";
-			}
-			else if (guid == MediaType.Interleaved)
-			{
-				sRet = "Interleaved";
-			}
-			else if (guid == MediaType.Stream)
-			{
-				sRet = "Stream";
-			}
-			else if (guid == MediaType.Text)
-			{
-				sRet = "Text";
-			}
-			else if (guid == MediaType.Video)
-			{
-				sRet = "Video";
-			}
-			else
-			{
-				sRet = guid.ToString();
-			}
+        /// <summary>
+        /// Converts the AMMediaType.SubType Guid to a readable string
+        /// </summary>
+        /// <returns>SubType Guid as a readable string or Guid if unrecognized</returns>
+        public static string MediaSubTypeToString(Guid guid)
+        {
+            // Walk the MediaSubType class looking for a match
+            return WalkClass(typeof(MediaSubType), guid);
+        }
 
-			return sRet;
-		}
+        /// <summary>
+        /// Converts the AMMediaType.FormatType Guid to a readable string
+        /// </summary>
+        /// <returns>FormatType Guid as a readable string or Guid if unrecognized</returns>
+        public static string MediaFormatTypeToString(Guid guid)
+        {
+            // Walk the FormatType class looking for a match
+            return WalkClass(typeof(FormatType), guid);
 
-		/// <summary>
-		/// Converts the AMMediaType.SubType Guid to a readable string
-		/// </summary>
-		/// <returns>SubType Guid as a readable string or Guid if unrecognized</returns>
-		public static string MediaSubTypeToString(Guid guid)
-		{
-			string sRet;
+        }
 
-			// Video types
-			if (guid == MediaSubType.CLPL)
-			{
-				sRet = "CLPL";
-			}
-			else if (guid == MediaSubType.YUYV)
-			{
-				sRet = "YUYV";
-			}
-			else if (guid == MediaSubType.IYUV)
-			{
-				sRet = "IYUV";
-			}
-			else if (guid == MediaSubType.YVU9)
-			{
-				sRet = "YVU9";
-			}
-			else if (guid == MediaSubType.Y411)
-			{
-				sRet = "Y411";
-			}
-			else if (guid == MediaSubType.Y41P)
-			{
-				sRet = "Y41P";
-			}
-			else if (guid == MediaSubType.YUY2)
-			{
-				sRet = "YUY2";
-			}
-			else if (guid == MediaSubType.YVYU)
-			{
-				sRet = "YVYU";
-			}
-			else if (guid == MediaSubType.UYVY)
-			{
-				sRet = "UYVY";
-			}
-			else if (guid == MediaSubType.Y211)
-			{
-				sRet = "Y211";
-			}
-			else if (guid == MediaSubType.YV12)
-			{
-				sRet = "YV12";
-			}
-			else if (guid == MediaSubType.IF09)
-			{
-				sRet = "IF09";
-			}
-			else if (guid == MediaSubType.MJPG)
-			{
-				sRet = "MJPG";
-			}
-			else if (guid == MediaSubType.TVMJ)
-			{
-				sRet = "TVMJ";
-			}
-			else if (guid == MediaSubType.WAKE)
-			{
-				sRet = "WAKE";
-			}
-			else if (guid == MediaSubType.CFCC)
-			{
-				sRet = "CFCC";
-			}
-			else if (guid == MediaSubType.IJPG)
-			{
-				sRet = "IJPG";
-			}
-			else if (guid == MediaSubType.CLPL)
-			{
-				sRet = "YUY2";
-			}
-			else if (guid == MediaSubType.PLUM)
-			{
-				sRet = "PLUM";
-			}
-			else if (guid == MediaSubType.DVCS)
-			{
-				sRet = "DVCS";
-			}
-			else if (guid == MediaSubType.DVSD)
-			{
-				sRet = "DVSD";
-			}
-			else if (guid == MediaSubType.MDVF)
-			{
-				sRet = "MDVF";
-			}
-			else if (guid == MediaSubType.RGB1)
-			{
-				sRet = "RGB1";
-			}
-			else if (guid == MediaSubType.RGB4)
-			{
-				sRet = "RGB4";
-			}
-			else if (guid == MediaSubType.RGB8)
-			{
-				sRet = "RGB8";
-			}
-			else if (guid == MediaSubType.RGB565)
-			{
-				sRet = "RGB565";
-			}
-			else if (guid == MediaSubType.RGB555)
-			{
-				sRet = "RGB555";
-			}
-			else if (guid == MediaSubType.RGB24)
-			{
-				sRet = "RGB24";
-			}
-			else if (guid == MediaSubType.RGB32)
-			{
-				sRet = "RGB32";
-			}
-			else if (guid == MediaSubType.CLJR)
-			{
-				sRet = "CLJR";
-			}
-			else if (guid == MediaSubType.I420)
-			{
-				sRet = "I420";
-			}
-			else if (guid == MediaSubType.PCM)
-			{
-				sRet = "PCM";
-			}
-			else
-			{
-				sRet = guid.ToString();
-			}
+        /// <summary>
+        /// Use reflection to walk a class looking for a property containing a specified guid
+        /// </summary>
+        /// <param name="MyType">Class to scan</param>
+        /// <param name="guid">Guid to scan for</param>
+        /// <returns>String representing property name that matches, or Guid.ToString() for no match</returns>
+        private static string WalkClass(Type MyType, Guid guid)
+        {
+            object o = null;
+       
+            // Read the fields from the class
+            FieldInfo[] Fields = MyType.GetFields();
 
-			return sRet;
-		}
+            // Walk the returned array
+            foreach (FieldInfo m in Fields)
+            {
+                // Read the value of the property.  The parameter is ignored.
+                o = m.GetValue(o);
 
-		/// <summary>
-		/// Converts the AMMediaType.FormatType Guid to a readable string
-		/// </summary>
-		/// <returns>FormatType Guid as a readable string or Guid if unrecognized</returns>
-		public static string MediaFormatTypeToString(Guid guid)
-		{
-			string sRet;
+                // Compare it with the sought value
+                if ((Guid)o == guid)
+                {
+                    return m.Name;
+                }
+            }
 
-			if (guid == FormatType.DvInfo)
-			{
-				sRet = "DvInfo";
-			}
-			else if (guid == FormatType.MpegStreams)
-			{
-				sRet = "MpegStreams";
-			}
-			else if (guid == FormatType.MpegVideo)
-			{
-				sRet = "MpegVideo";
-			}
-			else if (guid == FormatType.None)
-			{
-				sRet = "None";
-			}
-			else if (guid == FormatType.VideoInfo)
-			{
-				sRet = "VideoInfo";
-			}
-			else if (guid == FormatType.VideoInfo2)
-			{
-				sRet = "VideoInfo2";
-			}
-			else if (guid == FormatType.WaveEx)
-			{
-				sRet = "WaveEx";
-			}
-			else
-			{
-				sRet = guid.ToString();
-			}
-
-			return sRet;
-		}
-	}
+            return guid.ToString();
+        }
+    }
 
 	#endregion
 
