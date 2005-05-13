@@ -236,7 +236,7 @@ namespace DirectShowLib.Test
 
       try
       {
-        pinOut = DsGetPin.ByDirection(sourceFilter, PinDirection.Output);
+        pinOut = DsFindPin.ByDirection(sourceFilter, PinDirection.Output, 0);
 
         hr = graphBuilder.RenderEx(pinOut, AMRenderExFlags.RenderToExistingRenderers, IntPtr.Zero);
         Marshal.ThrowExceptionForHR(hr);

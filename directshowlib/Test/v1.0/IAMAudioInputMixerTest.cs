@@ -27,7 +27,7 @@ namespace DirectShowLib.Test
 
             // While some IAMAudioImputMixer methods work on both filters
             // and pins, some (like Enable) require a pin.  Get the first input pin.
-            IPin inPin = DsGetPin.ByDirection(m_AudioFilter, PinDirection.Input);
+            IPin inPin = DsFindPin.ByDirection(m_AudioFilter, PinDirection.Input, 0);
 
             // QI to an IAMAudioInputMixer
 			m_iaim = inPin as IAMAudioInputMixer;
@@ -293,7 +293,8 @@ namespace DirectShowLib.Test
             ArrayList capDevices;
 
             // Get the collection of video devices
-            if( ! DsDev.GetDevicesOfCat( FilterCategory.AudioInputDevice, out capDevices ) )
+            DsDevice.GetDevicesOfCat( FilterCategory.AudioInputDevice, out capDevices );
+            if( capDevices.Count == 0 )
             {
                 throw new Exception("No audio capture devices found!");
             }

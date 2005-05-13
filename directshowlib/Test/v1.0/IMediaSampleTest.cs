@@ -55,7 +55,7 @@ namespace DirectShowLib.Test
 
             if (m_MediaType != null)
             {
-                DsUtils.FreeAMMediaType(ref m_MediaType);
+                DsUtils.FreeAMMediaType(m_MediaType);
                 m_MediaType = null;
             }
 
@@ -260,7 +260,8 @@ namespace DirectShowLib.Test
             Debug.Assert(m_MediaType.majorType == mt1.majorType, "Major type");
             Debug.Assert(m_MediaType.subType == mt1.subType, "Sub type");
 
-            DsUtils.FreeAMMediaType(ref mt1);
+            DsUtils.FreeAMMediaType(mt1);
+            mt1 = null;
         }
 
         void TestPointer()
@@ -325,7 +326,7 @@ namespace DirectShowLib.Test
                 hr = fsf.Load(sFileName, null);
                 Marshal.ThrowExceptionForHR(hr);
 
-                IPinOut = DsGetPin.ByDirection(ibfAVISource, PinDirection.Output);
+                IPinOut = DsFindPin.ByDirection(ibfAVISource, PinDirection.Output, 0);
 
                 // Get a SampleGrabber
                 sg = new SampleGrabber();
@@ -336,8 +337,8 @@ namespace DirectShowLib.Test
                 hr = graphBuilder.AddFilter(grabFilt, "Ds.NET SampleGrabber");
                 Marshal.ThrowExceptionForHR(hr);
 
-                iSampleIn = DsGetPin.ByDirection(grabFilt, PinDirection.Input);
-                iSampleOut = DsGetPin.ByDirection(grabFilt, PinDirection.Output);
+                iSampleIn = DsFindPin.ByDirection(grabFilt, PinDirection.Input, 0);
+                iSampleOut = DsFindPin.ByDirection(grabFilt, PinDirection.Output, 0);
 
                 // Get the default video renderer
                 ibfRenderer = (IBaseFilter) new VideoRendererDefault();
@@ -345,7 +346,7 @@ namespace DirectShowLib.Test
                 // Add it to the graph
                 hr = graphBuilder.AddFilter(ibfRenderer, "Ds.NET VideoRendererDefault");
                 Marshal.ThrowExceptionForHR(hr);
-                IPinIn = DsGetPin.ByDirection(ibfRenderer, PinDirection.Input);
+                IPinIn = DsFindPin.ByDirection(ibfRenderer, PinDirection.Input, 0);
 
                 // Connect the file to the sample grabber
                 hr = graphBuilder.Connect(IPinOut, iSampleIn);

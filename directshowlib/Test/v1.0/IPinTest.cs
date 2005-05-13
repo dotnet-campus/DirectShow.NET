@@ -1,6 +1,6 @@
-// $Id: IPinTest.cs,v 1.8 2005-04-30 03:26:09 snarfle Exp $
+// $Id: IPinTest.cs,v 1.9 2005-05-13 06:37:13 snarfle Exp $
 // $Author: snarfle $
-// $Revision: 1.8 $
+// $Revision: 1.9 $
 using System;
 using System.Runtime.InteropServices;
 using NUnit.Framework;
@@ -107,7 +107,7 @@ namespace DirectShowLib.Test
 				IFileSourceFilter fsf = ibfAVISource as IFileSourceFilter;
 				hr = fsf.Load(@"foo.avi", null);
 				Marshal.ThrowExceptionForHR(hr);
-				pinOut = DsGetPin.ByDirection(ibfAVISource, PinDirection.Output);
+				pinOut = DsFindPin.ByDirection(ibfAVISource, PinDirection.Output, 0);
 
 				// Get the avi splitter
 				aviSplitter = (IBaseFilter) new AviSplitter();
@@ -115,7 +115,7 @@ namespace DirectShowLib.Test
 				// Add it to the graph
 				hr = graphBuilder.AddFilter(aviSplitter, "Ds.NET AviSplitter");
 				Marshal.ThrowExceptionForHR(hr);
-				pinIn = DsGetPin.ByDirection(aviSplitter, PinDirection.Input);
+				pinIn = DsFindPin.ByDirection(aviSplitter, PinDirection.Input, 0);
 
 				Assert.IsNotNull(pinOut);
 				Assert.IsNotNull(pinIn);

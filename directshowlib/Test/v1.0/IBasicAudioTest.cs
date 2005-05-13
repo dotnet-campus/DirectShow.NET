@@ -99,7 +99,7 @@ namespace DirectShowLib.Test
         audioFilter = (IBaseFilter) new DSoundRender();
         hr = graphBuilder.AddFilter(audioFilter, "DirectSound Renderer");
 
-        pinOut = DsGetPin.ByDirection(sourceFilter, PinDirection.Output);
+        pinOut = DsFindPin.ByDirection(sourceFilter, PinDirection.Output, 0);
 
         hr = graphBuilder.RenderEx(pinOut, AMRenderExFlags.RenderToExistingRenderers, IntPtr.Zero);
         Marshal.ThrowExceptionForHR(hr);

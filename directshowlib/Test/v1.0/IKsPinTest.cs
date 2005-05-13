@@ -88,19 +88,19 @@ namespace DirectShowLib.Test
                 ArrayList capDevices;
 
                 // Get the collection of video devices
-                if( ! DsDev.GetDevicesOfCat( FilterCategory.VideoInputDevice, out capDevices ) )
+                DsDevice.GetDevicesOfCat( FilterCategory.VideoInputDevice, out capDevices );
+                if( capDevices.Count == 0 )
                 {
                     throw new Exception("No video capture devices found!");
                 }
 
                 DsDevice dev = capDevices[0] as DsDevice;
 
-
                 // Add it to the graph
                 hr = graphBuilder.AddSourceFilterForMoniker(dev.Mon, null, "Ds.NET CaptureDevice", out ibfAVISource);
                 Marshal.ThrowExceptionForHR(hr);
 
-                m_IPinOut = DsGetPin.ByDirection(ibfAVISource, PinDirection.Output);
+                m_IPinOut = DsFindPin.ByDirection(ibfAVISource, PinDirection.Output, 0);
 
             }
             catch

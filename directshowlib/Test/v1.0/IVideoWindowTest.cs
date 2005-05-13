@@ -655,7 +655,7 @@ namespace DirectShowLib.Test
 				hr = fsf.Load(sFileName, null);
 				Marshal.ThrowExceptionForHR(hr);
 
-				IPinOut = DsGetPin.ByDirection(ibfAVISource, PinDirection.Output);
+				IPinOut = DsFindPin.ByDirection(ibfAVISource, PinDirection.Output, 0);
 
 				// Get the default video renderer
 				ibfRenderer = (IBaseFilter) new VideoRendererDefault();
@@ -663,7 +663,7 @@ namespace DirectShowLib.Test
 				// Add it to the graph
 				hr = graphBuilder.AddFilter(ibfRenderer, "Ds.NET VideoRendererDefault");
 				Marshal.ThrowExceptionForHR(hr);
-				IPinIn = DsGetPin.ByDirection(ibfRenderer, PinDirection.Input);
+				IPinIn = DsFindPin.ByDirection(ibfRenderer, PinDirection.Input, 0);
 
 				hr = graphBuilder.Connect(IPinOut, IPinIn);
 				Marshal.ThrowExceptionForHR(hr);

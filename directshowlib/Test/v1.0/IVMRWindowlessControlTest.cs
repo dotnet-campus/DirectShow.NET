@@ -35,7 +35,7 @@ namespace DirectShowLib.Test
     {
       int hr = 0;
       IVMRFilterConfig vmrConfig = null;
-      int cookie = 0;
+      DsROTEntry ROT = null;
 
       this.Show();
 
@@ -60,7 +60,7 @@ namespace DirectShowLib.Test
 
         // Connect source filter with the VMR7
         ConnectGraph(ref this.graphBuilder, ref this.sourceFilter, ref this.vmr7Filter);
-        DsROT.AddGraphToRot(this.graphBuilder, out cookie);
+        ROT = new DsROTEntry(this.graphBuilder);
 
         // Run the graph to test other methods
         this.mediaControl = this.graphBuilder as IMediaControl;
@@ -81,7 +81,10 @@ namespace DirectShowLib.Test
       }
       finally
       {
-        DsROT.RemoveGraphFromRot(ref cookie);
+          if (ROT != null)
+          {
+              ROT.Dispose();
+          }
         if (this.mediaControl != null)
           this.mediaControl.Stop();
         Marshal.ReleaseComObject(this.vmr7Filter);
@@ -278,7 +281,7 @@ namespace DirectShowLib.Test
 
       try
       {
-        pinOut = DsGetPin.ByDirection(sourceFilter, PinDirection.Output);
+        pinOut = DsFindPin.ByDirection(sourceFilter, PinDirection.Output, 0);
 
         hr = graphBuilder.RenderEx(pinOut, AMRenderExFlags.RenderToExistingRenderers, IntPtr.Zero);
         Marshal.ThrowExceptionForHR(hr);

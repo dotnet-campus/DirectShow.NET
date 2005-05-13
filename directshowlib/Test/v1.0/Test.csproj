@@ -184,11 +184,6 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "IVMRWindowlessControl9Test.resx"
-                    DependentUpon = "IVMRWindowlessControl9Test.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
                     RelPath = "IVMRWindowlessControlTest.cs"
                     SubType = "Form"
                     BuildAction = "Compile"
