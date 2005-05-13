@@ -82,11 +82,18 @@ namespace DirectShowLib
 	}
 
 
-	[ComVisible(false), ComImport,
-		Guid("e436ebb3-524f-11ce-9f53-0020af0ba770")]
-	public class FilterGraph
-	{
-	}
+    [ComVisible(false), ComImport,
+    Guid("e436ebb3-524f-11ce-9f53-0020af0ba770")]
+    public class FilterGraph
+    {
+    }
+
+
+    [ComVisible(false), ComImport,
+    Guid("e436ebb8-524f-11ce-9f53-0020af0ba770")]
+    public class FilterGraphNoThread
+    {
+    }
 
 
 	[ComVisible(false), ComImport,
@@ -106,6 +113,62 @@ namespace DirectShowLib
     [ComVisible(false), ComImport,
     Guid("BF87B6E0-8C27-11d0-B3F0-00AA003761C5")]
     public class CaptureGraphBuilder
+    {
+    }
+
+
+    [ComVisible(false), ComImport,
+    Guid("FA8A68B2-C864-4ba2-AD53-D3876A87494B")]
+    public class StreamBufferConfig
+    {
+    }
+
+
+    [ComVisible(false), ComImport,
+    Guid("D682C4BA-A90A-42fe-B9E1-03109849C423")]
+    public class StreamBufferComposeRecording
+    {
+    }
+
+
+    [ComVisible(false), ComImport,
+    Guid("060AF76C-68DD-11d0-8FC1-00C04FD9189D")]
+    public class SeekingPassThru
+    {
+    }
+
+
+    [ComVisible(false), ComImport,
+    Guid("CDA42200-BD88-11d0-BD4E-00A0C911CE86")]
+    public class FilterMapper2
+    {
+    }
+
+
+    [ComVisible(false), ComImport,
+    Guid("1e651cc0-b199-11d0-8212-00c04fc32c45")]
+    public class MemoryAllocator
+    {
+    }
+
+
+    [ComVisible(false), ComImport,
+    Guid("CDBD8D00-C193-11d0-BD4E-00A0C911CE86")]
+    public class MediaPropertyBag
+    {
+    }
+
+
+    [ComVisible(false), ComImport,
+    Guid("f963c5cf-a659-4a93-9638-caf3cd277d13")]
+    public class DVDState
+    {
+    }
+
+
+    [ComVisible(false), ComImport,
+    Guid("94297043-bd82-4dfd-b0de-8177739c6d20")]
+    public class DMOWrapperFilter
     {
     }
 
@@ -497,6 +560,15 @@ namespace DirectShowLib
     public class WSTDecoder
     {
     }
+
+
+    [ComVisible(false), ComImport,
+    Guid("6CFAD761-735D-4aa5-8AFC-AF91A7D61EBA")]
+    public class Mpeg2VideoStreamAnalyzer
+    {
+    }
+
+
     #endregion
 
 	#region Declarations
@@ -852,6 +924,7 @@ namespace DirectShowLib
                 hr = enumDev.CreateClassEnumerator(ref devcat, out enumMon, 0);
                 Marshal.ThrowExceptionForHR(hr);
 
+                // CreateClassEnumerator returns null for enumMon if there are no entries
                 if (hr != 1)
                 {
                     int lFetched;
@@ -1106,11 +1179,13 @@ namespace DirectShowLib
         /// <returns>Concatenation of MajorType + SubType + FormatType + Fixed + Temporal + SampleSize.ToString</returns>
         public static string AMMediaTypeToString(ref AMMediaType pmt)
         {
-            return MediaTypeToString(pmt.majorType) + " " + MediaSubTypeToString(pmt.subType) + " " +
-                MediaFormatTypeToString(pmt.formatType) + " " +
-                (pmt.fixedSizeSamples ? "FixedSamples" : "NotFixedSamples") + " " +
-                (pmt.temporalCompression ? "temporalCompression" : "NottemporalCompression") + " " +
-                pmt.sampleSize.ToString();
+            return string.Format("{0} {1} {2} {3} {4} {5}",
+                MediaTypeToString(pmt.majorType),
+                MediaSubTypeToString(pmt.subType),
+                MediaFormatTypeToString(pmt.formatType),
+                (pmt.fixedSizeSamples ? "FixedSamples" : "NotFixedSamples"),
+                (pmt.temporalCompression ? "temporalCompression" : "NottemporalCompression"),
+                pmt.sampleSize.ToString());
         }
 
         /// <summary>
