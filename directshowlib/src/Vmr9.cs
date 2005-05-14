@@ -489,58 +489,6 @@ namespace DirectShowLib
 	}
 
 	[ComVisible(true), ComImport,
-		Guid("8f537d09-f85e-4414-b23b-502e54c79927"),
-		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	public interface IVMRWindowlessControl9
-	{
-		int GetNativeVideoSize(
-			[Out] out int lpWidth,
-			[Out] out int lpHeight,
-			[Out] out int lpARWidth,
-			[Out] out int lpARHeight
-			);
-
-		int GetMinIdealVideoSize(
-			[Out] out int lpWidth,
-			[Out] out int lpHeight
-			);
-
-		int GetMaxIdealVideoSize(
-			[Out] out int lpWidth,
-			[Out] out int lpHeight
-			);
-
-		int SetVideoPosition(
-      [In, MarshalAs(UnmanagedType.Struct)] ref Rectangle lpSRCRect,
-      [In, MarshalAs(UnmanagedType.Struct)] ref Rectangle lpDSTRect
-      );
-
-		int GetVideoPosition(
-			[Out, MarshalAs(UnmanagedType.Struct)] out Rectangle lpSRCRect,
-			[Out, MarshalAs(UnmanagedType.Struct)] out Rectangle lpDSTRect
-			);
-
-		int GetAspectRatioMode([Out] out VMR9AspectRatioMode lpAspectRatioMode);
-
-		int SetAspectRatioMode([In] VMR9AspectRatioMode AspectRatioMode);
-
-		int SetVideoClippingWindow([In] IntPtr hwnd); // HWND
-
-		int RepaintVideo(
-			[In] IntPtr hwnd, // HWND
-			[In] IntPtr hdc // HDC
-			);
-
-		int DisplayModeChanged();
-
-		int GetCurrentImage([Out] out IntPtr lpDib); // BYTE**
-
-		int SetBorderColor([In] int Clr);
-
-		int GetBorderColor([Out] out int lpClr);
-	}
-
-	[ComVisible(true), ComImport,
 		Guid("1a777eaa-47c8-4930-b2c9-8fee1c1b0f3b"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IVMRMixerControl9
@@ -782,5 +730,57 @@ namespace DirectShowLib
     int GetRenderingMode([Out] out VMR9Mode Mode);
   }
 
-	#endregion
+    [ComVisible(true), ComImport,
+    Guid("8f537d09-f85e-4414-b23b-502e54c79927"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IVMRWindowlessControl9
+    {
+        int GetNativeVideoSize(
+            [Out] out int lpWidth,
+            [Out] out int lpHeight,
+            [Out] out int lpARWidth,
+            [Out] out int lpARHeight
+            );
+
+        int GetMinIdealVideoSize(
+            [Out] out int lpWidth,
+            [Out] out int lpHeight
+            );
+
+        int GetMaxIdealVideoSize(
+            [Out] out int lpWidth,
+            [Out] out int lpHeight
+            );
+
+        int SetVideoPosition(
+            [In, MarshalAs(UnmanagedType.Struct)] ref Rectangle lpSRCRect,
+            [In, MarshalAs(UnmanagedType.Struct)] ref Rectangle lpDSTRect
+            );
+
+        int GetVideoPosition(
+            [Out, MarshalAs(UnmanagedType.Struct)] out Rectangle lpSRCRect,
+            [Out, MarshalAs(UnmanagedType.Struct)] out Rectangle lpDSTRect
+            );
+
+        int GetAspectRatioMode([Out] out VMR9AspectRatioMode lpAspectRatioMode);
+
+        int SetAspectRatioMode([In] VMR9AspectRatioMode AspectRatioMode);
+
+        int SetVideoClippingWindow([In] IntPtr hwnd); // HWND
+
+        int RepaintVideo(
+            [In] IntPtr hwnd, // HWND
+            [In] IntPtr hdc // HDC
+            );
+
+        int DisplayModeChanged();
+
+        int GetCurrentImage([Out] out IntPtr lpDib); // BYTE**
+
+        int SetBorderColor([In] int Clr);
+
+        int GetBorderColor([Out] out int lpClr);
+    }
+
+    #endregion
 }

@@ -101,16 +101,7 @@ namespace DirectShowLib
 
 #if ALLOW_UNTESTED_INTERFACES
 	[ComVisible(true), ComImport,
-		Guid("0000010c-0000-0000-C000-000000000046"),
-		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	public interface IPersist
-	{
-		[PreserveSig]
-		int GetClassID([Out] out Guid pClassID);
-	}
-
-	[ComVisible(true), ComImport,
-		Guid("0000010c-0000-0000-C000-000000000046"),
+		Guid("00000109-0000-0000-C000-000000000046"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IPersistStream
 	{
@@ -168,5 +159,14 @@ namespace DirectShowLib
 
 #endif
 
-	#endregion
+    [ComVisible(true), ComImport,
+    Guid("0000010c-0000-0000-C000-000000000046"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IPersist
+    {
+        [PreserveSig]
+        int GetClassID([Out] out Guid pClassID);
+    }
+
+    #endregion
 }

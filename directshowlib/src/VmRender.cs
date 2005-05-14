@@ -436,80 +436,6 @@ namespace DirectShowLib
 	}
 
 	[ComVisible(true), ComImport,
-		Guid("0eb1088c-4dcd-46f0-878f-39dae86a51b7"),
-		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	public interface IVMRWindowlessControl
-	{
-		[PreserveSig]
-		int GetNativeVideoSize(
-			[Out] out int lpWidth,
-			[Out] out int lpHeight,
-			[Out] out int lpARWidth,
-			[Out] out int lpARHeight
-			);
-
-		[PreserveSig]
-		int GetMinIdealVideoSize(
-			[Out] out int lpWidth,
-      [Out] out int lpHeight
-      );
-
-		[PreserveSig]
-		int GetMaxIdealVideoSize(
-			[Out] out int lpWidth,
-			[Out] out int lpHeight
-			);
-
-		[PreserveSig]
-		int SetVideoPosition(
-			[In] ref Rectangle lpSRCRect,
-			[In] ref Rectangle lpDSTRect
-			);
-
-		[PreserveSig]
-		int GetVideoPosition(
-			[Out] out Rectangle lpSRCRect,
-			[Out] out Rectangle lpDSTRect
-			);
-
-		[PreserveSig]
-		int GetAspectRatioMode([Out] out VMRAspectRatioMode lpAspectRatioMode);
-
-		[PreserveSig]
-		int SetAspectRatioMode([In] VMRAspectRatioMode AspectRatioMode);
-
-		[PreserveSig]
-		int SetVideoClippingWindow([In] IntPtr hwnd); // HWND
-
-		[PreserveSig]
-		int RepaintVideo(
-			[In] IntPtr hwnd, // HWND
-			[In] IntPtr hdc // HDC
-			);
-
-		[PreserveSig]
-		int DisplayModeChanged();
-
-		/// <summary>
-		/// the caller is responsible for free the returned memory by calling CoTaskMemFree.
-		/// </summary>
-		[PreserveSig]
-		int GetCurrentImage([Out] out IntPtr lpDib); // BYTE**
-
-		[PreserveSig]
-		int SetBorderColor([In] int Clr);
-
-		[PreserveSig]
-		int GetBorderColor([Out] out int lpClr);
-
-		[PreserveSig]
-		int SetColorKey([In] int Clr);
-
-		[PreserveSig]
-		int GetColorKey([Out] out int lpClr);
-	}
-
-	[ComVisible(true), ComImport,
 		Guid("1c1a17b0-bed0-415d-974b-dc6696131599"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IVMRMixerControl
@@ -586,33 +512,6 @@ namespace DirectShowLib
 			[In] int dwMaxInfoArraySize,
 			[Out] out int pdwNumDevices
 			);
-	}
-
-	[ComVisible(true), ComImport,
-		Guid("9e5530c5-7034-48b4-bb46-0b8a6efc8e36"),
-		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	public interface IVMRFilterConfig
-	{
-		[PreserveSig]
-		int SetImageCompositor([In] IVMRImageCompositor lpVMRImgCompositor);
-
-		[PreserveSig]
-		int SetNumberOfStreams([In] int dwMaxStreams);
-
-		[PreserveSig]
-		int GetNumberOfStreams([Out] out int pdwMaxStreams);
-
-		[PreserveSig]
-		int SetRenderingPrefs([In] VMRRenderPrefs dwRenderFlags);
-
-		[PreserveSig]
-		int GetRenderingPrefs([Out] out VMRRenderPrefs pdwRenderFlags);
-
-		[PreserveSig]
-		int SetRenderingMode([In] VMRMode Mode);
-
-		[PreserveSig]
-		int GetRenderingMode([Out] out VMRMode Mode);
 	}
 
 	[ComVisible(true), ComImport,
@@ -812,5 +711,106 @@ namespace DirectShowLib
 	}
 #endif
 
-	#endregion
+    [ComVisible(true), ComImport,
+    Guid("9e5530c5-7034-48b4-bb46-0b8a6efc8e36"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IVMRFilterConfig
+    {
+        [PreserveSig]
+        int SetImageCompositor([In] IVMRImageCompositor lpVMRImgCompositor);
+
+        [PreserveSig]
+        int SetNumberOfStreams([In] int dwMaxStreams);
+
+        [PreserveSig]
+        int GetNumberOfStreams([Out] out int pdwMaxStreams);
+
+        [PreserveSig]
+        int SetRenderingPrefs([In] VMRRenderPrefs dwRenderFlags);
+
+        [PreserveSig]
+        int GetRenderingPrefs([Out] out VMRRenderPrefs pdwRenderFlags);
+
+        [PreserveSig]
+        int SetRenderingMode([In] VMRMode Mode);
+
+        [PreserveSig]
+        int GetRenderingMode([Out] out VMRMode Mode);
+    }
+
+    [ComVisible(true), ComImport,
+    Guid("0eb1088c-4dcd-46f0-878f-39dae86a51b7"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IVMRWindowlessControl
+    {
+        [PreserveSig]
+        int GetNativeVideoSize(
+            [Out] out int lpWidth,
+            [Out] out int lpHeight,
+            [Out] out int lpARWidth,
+            [Out] out int lpARHeight
+            );
+
+        [PreserveSig]
+        int GetMinIdealVideoSize(
+            [Out] out int lpWidth,
+            [Out] out int lpHeight
+            );
+
+        [PreserveSig]
+        int GetMaxIdealVideoSize(
+            [Out] out int lpWidth,
+            [Out] out int lpHeight
+            );
+
+        [PreserveSig]
+        int SetVideoPosition(
+            [In] ref Rectangle lpSRCRect,
+            [In] ref Rectangle lpDSTRect
+            );
+
+        [PreserveSig]
+        int GetVideoPosition(
+            [Out] out Rectangle lpSRCRect,
+            [Out] out Rectangle lpDSTRect
+            );
+
+        [PreserveSig]
+        int GetAspectRatioMode([Out] out VMRAspectRatioMode lpAspectRatioMode);
+
+        [PreserveSig]
+        int SetAspectRatioMode([In] VMRAspectRatioMode AspectRatioMode);
+
+        [PreserveSig]
+        int SetVideoClippingWindow([In] IntPtr hwnd); // HWND
+
+        [PreserveSig]
+        int RepaintVideo(
+            [In] IntPtr hwnd, // HWND
+            [In] IntPtr hdc // HDC
+            );
+
+        [PreserveSig]
+        int DisplayModeChanged();
+
+        /// <summary>
+        /// the caller is responsible for free the returned memory by calling CoTaskMemFree.
+        /// </summary>
+        [PreserveSig]
+        int GetCurrentImage([Out] out IntPtr lpDib); // BYTE**
+
+        [PreserveSig]
+        int SetBorderColor([In] int Clr);
+
+        [PreserveSig]
+        int GetBorderColor([Out] out int lpClr);
+
+        [PreserveSig]
+        int SetColorKey([In] int Clr);
+
+        [PreserveSig]
+        int GetColorKey([Out] out int lpClr);
+    }
+
+    #endregion
 }
