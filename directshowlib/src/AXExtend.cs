@@ -112,6 +112,7 @@ namespace DirectShowLib
 	[ComVisible(false), Flags]
 	public enum AMRenderExFlags
 	{
+    Zero = 0,
 		RenderToExistingRenderers = 1
 	}
 
