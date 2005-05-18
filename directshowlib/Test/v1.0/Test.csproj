@@ -134,6 +134,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IFilterGraph2Test.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IFilterGraphTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
