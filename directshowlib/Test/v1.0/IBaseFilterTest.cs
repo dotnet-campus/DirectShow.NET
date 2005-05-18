@@ -71,9 +71,9 @@ namespace DirectShowLib.Test
     public void TestQueryFilterInfo()
     {
       int hr = 0;
-      FilterInfo filterInfo = new FilterInfo();
+      FilterInfo filterInfo;
 
-      hr = this.filter.QueryFilterInfo(ref filterInfo);
+      hr = this.filter.QueryFilterInfo(out filterInfo);
       Marshal.ThrowExceptionForHR(hr);
 
       // QueryFilterInfo do an AddRef before returning. We have to release it.
