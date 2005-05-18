@@ -399,7 +399,7 @@ namespace DirectShowLib
 			);
 
     [PreserveSig]
-    int QueryFilterInfo([In, Out] ref FilterInfo pInfo);
+    int QueryFilterInfo([Out] out FilterInfo pInfo);
 
 		[PreserveSig]
 		int JoinFilterGraph(
