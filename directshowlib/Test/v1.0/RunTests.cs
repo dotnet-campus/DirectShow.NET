@@ -65,6 +65,9 @@ namespace DirectShowLib.Test
 
       IFilterGraphTest t16 = new IFilterGraphTest();
       t16.DoTests();
+
+      IGraphBuilderTest t17 = new IGraphBuilderTest();
+      t17.DoTests();
   
     }
 	}
