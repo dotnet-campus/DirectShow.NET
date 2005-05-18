@@ -310,6 +310,7 @@ namespace DirectShowLib
 			);
 
 		[PreserveSig]
+    [Obsolete("This method is obsolete; use the IFilterGraph2.ReconnectEx method instead.")]
 		int Reconnect([In] IPin ppin);
 
 		[PreserveSig]
