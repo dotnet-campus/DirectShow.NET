@@ -71,6 +71,9 @@ namespace DirectShowLib.Test
   
       IFilterGraph2Test t18 = new IFilterGraph2Test();
       t18.DoTests();
+
+      ISpecifyPropertyPagesTest t19 = new ISpecifyPropertyPagesTest();
+      t19.DoTests();
     }
 	}
 }

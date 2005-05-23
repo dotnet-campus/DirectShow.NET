@@ -194,6 +194,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "ISpecifyPropertyPagesTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IVideoWindowTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
