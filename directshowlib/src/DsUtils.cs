@@ -609,6 +609,29 @@ namespace DirectShowLib
 	{
 		public int cElems;
 		public IntPtr pElems;
+
+    /// <summary>
+    /// Perform a manual marshaling of pElems to retrieve an array of System.Guid.
+    /// Assume this structure has been already filled by the ISpecifyPropertyPages.GetPages() method.
+    /// </summary>
+    /// <returns>A managed representation of pElems</returns>
+    public Guid[] ToGuidArray()
+    {
+      Guid[] retval;
+
+      if (this.cElems == 0)
+        return null;
+    
+      retval = new Guid[this.cElems];
+      for (int i=0; i<this.cElems; i++)
+      {
+        // In 32Bits OSs IntPtr constructor cast Int64 as Int32. 
+        // It should work on 32Bits and 64 Bits OSs...
+        IntPtr ptr = new IntPtr(this.pElems.ToInt64() + (IntPtr.Size * i));
+        retval[i] = (Guid) Marshal.PtrToStructure(ptr, typeof(Guid));
+      }
+      return retval;
+    }
 	}
 
 	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
