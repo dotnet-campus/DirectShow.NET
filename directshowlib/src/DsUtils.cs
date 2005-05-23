@@ -62,8 +62,6 @@
 
 using System;
 using System.Collections;
-using System.Diagnostics;
-using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Reflection;
@@ -73,13 +71,13 @@ namespace DirectShowLib
 {
 #if ALLOW_UNTESTED_CODE
 
-	#region COM Class Objects
+    #region COM Class Objects
 
-	[ComVisible(false), ComImport,
-		Guid("62BE5D10-60EB-11d0-BD3B-00A0C911CE86")]
-	public class CreateDevEnum
-	{
-	}
+    [ComVisible(false), ComImport,
+    Guid("62BE5D10-60EB-11d0-BD3B-00A0C911CE86")]
+    public class CreateDevEnum
+    {
+    }
 
 
     [ComVisible(false), ComImport,
@@ -96,11 +94,11 @@ namespace DirectShowLib
     }
 
 
-	[ComVisible(false), ComImport,
-		Guid("BF87B6E1-8C27-11d0-B3F0-00AA003761C5")]
-	public class CaptureGraphBuilder2
-	{
-	}
+    [ComVisible(false), ComImport,
+    Guid("BF87B6E1-8C27-11d0-B3F0-00AA003761C5")]
+    public class CaptureGraphBuilder2
+    {
+    }
 
 
     [ComVisible(false), ComImport,
@@ -172,16 +170,6 @@ namespace DirectShowLib
     {
     }
 
-
-    [ComVisible(false)]
-    public class DsHlp
-    {
-        public const int OATRUE = -1;
-        public const int OAFALSE = 0;
-
-        [DllImport("quartz.dll", CharSet=CharSet.Auto)]
-        public static extern int AMGetErrorText(int hr, StringBuilder buf, int max);
-    }
 
     #endregion
 
@@ -571,7 +559,7 @@ namespace DirectShowLib
 
     #endregion
 
-	#region Declarations
+    #region Declarations
 
 	[StructLayout(LayoutKind.Sequential, Pack=2), ComVisible(false)]
 	public struct BitmapInfoHeader
@@ -692,7 +680,45 @@ namespace DirectShowLib
 
 	#region Utility Classes
 
-	[ComVisible(false)]
+    [ComVisible(false)]
+    public class DsError
+    {
+        [DllImport("quartz.dll", CharSet=CharSet.Auto)]
+        public static extern int AMGetErrorText(int hr, StringBuilder buf, int max);
+
+        /// <summary>
+        /// If hr has a "failed" status code (E_*), throw an exception.  Note that status
+        /// messages (S_*) are not considered failure codes.  If DirectShow error text
+        /// is available, it is used to build the exception, otherwise a generic com error
+        /// is thrown.
+        /// </summary>
+        /// <param name="hr">The HRESULT to check</param>
+        public static void ThrowExceptionForHR(int hr)
+        {
+            const int MAX_ERROR_TEXT_LEN = 160;
+
+            // If a severe error has occurred
+            if (hr < 0)
+            {
+                // Make a buffer to hold the string
+                StringBuilder buf = new StringBuilder(MAX_ERROR_TEXT_LEN, MAX_ERROR_TEXT_LEN);
+
+                // If a string is returned, build a com error from it
+                if (AMGetErrorText(hr, buf, MAX_ERROR_TEXT_LEN) > 0)
+                {
+                    throw new COMException(buf.ToString(), hr);
+                }
+                else
+                {
+                    // No string, just use standard com error
+                    Marshal.ThrowExceptionForHR(hr);
+                }
+            }
+        }
+
+    }
+
+    [ComVisible(false)]
 	public class DsUtils
 	{
         private DsUtils()
@@ -726,7 +752,7 @@ namespace DirectShowLib
                 {
                     // Query for the Category
                     hr = pKs.Get(ref g, AMPropertyPin.Category, IntPtr.Zero, 0, ipOut, iSize, out cbBytes);
-                    Marshal.ThrowExceptionForHR(hr);
+                    DsError.ThrowExceptionForHR(hr);
 
                     // Marshal it to the return variable
                     guidRet = (Guid) Marshal.PtrToStructure(ipOut, typeof (Guid));
@@ -812,7 +838,7 @@ namespace DirectShowLib
             {
                 // First, get a pointer to the running object table
                 hr = GetRunningObjectTable(0, out rot);
-                Marshal.ThrowExceptionForHR(hr);
+                DsError.ThrowExceptionForHR(hr);
 
                 // Build up the object to add to the table
                 int id = GetCurrentProcessId();
@@ -821,7 +847,7 @@ namespace DirectShowLib
                 Marshal.Release(iuPtr);
                 string item = string.Format("FilterGraph {0} pid {1}", iuInt.ToString("x8"), id.ToString("x8"));
                 hr = CreateItemMoniker("!", item, out mk);
-                Marshal.ThrowExceptionForHR(hr);
+                DsError.ThrowExceptionForHR(hr);
 
                 // Add the object to the table
                 rot.Register((int)ROTFlags.RegistrationKeepsAlive, graph, mk, out m_cookie);
@@ -855,7 +881,7 @@ namespace DirectShowLib
                 {
                     // Get a pointer to the running object table
                     int hr = GetRunningObjectTable(0, out rot);
-                    Marshal.ThrowExceptionForHR(hr);
+                    DsError.ThrowExceptionForHR(hr);
 
                     // Remove our entry
                     rot.Revoke(m_cookie);
@@ -922,7 +948,7 @@ namespace DirectShowLib
             {
                 enumDev = (ICreateDevEnum) new CreateDevEnum();
                 hr = enumDev.CreateClassEnumerator(ref devcat, out enumMon, 0);
-                Marshal.ThrowExceptionForHR(hr);
+                DsError.ThrowExceptionForHR(hr);
 
                 // CreateClassEnumerator returns null for enumMon if there are no entries
                 if (hr != 1)
@@ -978,7 +1004,7 @@ namespace DirectShowLib
                 bag = (IPropertyBag) bagObj;
 
                 int hr = bag.Read("FriendlyName", ref val, IntPtr.Zero);
-                Marshal.ThrowExceptionForHR(hr);
+                DsError.ThrowExceptionForHR(hr);
 
                 ret = val as string;
             }
@@ -1037,7 +1063,7 @@ namespace DirectShowLib
 
             // Get the pin enumerator
 			hr = vSource.EnumPins(out ppEnum);
-			Marshal.ThrowExceptionForHR(hr);
+			DsError.ThrowExceptionForHR(hr);
 
             try
             {
@@ -1046,7 +1072,7 @@ namespace DirectShowLib
                 {
                     // Read the direction
                     hr = pPins[0].QueryDirection(out ppindir);
-                    Marshal.ThrowExceptionForHR(hr);
+                    DsError.ThrowExceptionForHR(hr);
 
                     // Is it the right direction?
                     if (ppindir == vDir)
@@ -1087,7 +1113,7 @@ namespace DirectShowLib
 
             // Get the pin enumerator
             hr = vSource.EnumPins(out ppEnum);
-			Marshal.ThrowExceptionForHR(hr);
+			DsError.ThrowExceptionForHR(hr);
 
             try
             {
@@ -1096,7 +1122,7 @@ namespace DirectShowLib
                 {
                     // Read the info
                     hr = pPins[0].QueryPinInfo(out ppinfo);
-                    Marshal.ThrowExceptionForHR(hr);
+                    DsError.ThrowExceptionForHR(hr);
 
                     // Is it the right name?
                     if (ppinfo.name == vPinName)
@@ -1134,7 +1160,7 @@ namespace DirectShowLib
 
             // Get the pin enumerator
             hr = vSource.EnumPins(out ppEnum);
-			Marshal.ThrowExceptionForHR(hr);
+			DsError.ThrowExceptionForHR(hr);
 
             try
             {
