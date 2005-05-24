@@ -244,15 +244,18 @@ namespace DirectShowLib
 		[PreserveSig]
 		int Next(
 			[In] int cPins,
-			[Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] IPin[] ppPins,
+			[Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] IPin[] ppPins,
 			[Out] out int pcFetched
 			);
 
 		[PreserveSig]
 		int Skip([In] int cPins);
 
-		void Reset();
-		void Clone([Out] out IEnumPins ppEnum);
+		[PreserveSig]
+		int Reset();
+
+		[PreserveSig]
+		int Clone([Out] out IEnumPins ppEnum);
 	}
 
 
