@@ -139,11 +139,6 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "IEnumMediaTypesTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "IEnumPinsTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -200,6 +195,11 @@
                 />
                 <File
                     RelPath = "ISpecifyPropertyPagesTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IVideoFrameStepTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
