@@ -1,6 +1,6 @@
-// $Id: IEnumMediaTypesTest.cs,v 1.1 2005-05-24 17:29:50 kawaic Exp $
+// $Id: IEnumMediaTypesTest.cs,v 1.2 2005-05-24 21:45:59 kawaic Exp $
 // $Author: kawaic $
-// $Revision: 1.1 $
+// $Revision: 1.2 $
 using System.Runtime.InteropServices;
 using NUnit.Framework;
 
@@ -10,7 +10,7 @@ namespace DirectShowLib.Test
 	/// 
 	/// </summary>
 	[TestFixture]
-	public class IEnumPinsTest
+	public class IEnumMediaTypesTest
 	{
 		[Test]
 		public void TestNext()
@@ -37,9 +37,9 @@ namespace DirectShowLib.Test
 		}
 
 
-		private IEnumPins GetTestEnum()
+		private IEnumMediaTypes GetTestEnum()
 		{
-			
+			return null;
 		}
 
 	}
