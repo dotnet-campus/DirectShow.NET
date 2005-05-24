@@ -73,7 +73,7 @@ namespace DirectShowLib.Test
 
       // Render the output pin of the source filter to build the graph.
       // This method use the Audio Renderer we have added in TestAddSourceFilterForMoniker()
-      hr = this.filterGraph2.RenderEx(pinOut, AMRenderExFlags.Zero, IntPtr.Zero);
+      hr = this.filterGraph2.RenderEx(pinOut, AMRenderExFlags.None, IntPtr.Zero);
       Marshal.ThrowExceptionForHR(hr);
 
       // hr == 0 if the graph is fully builded
