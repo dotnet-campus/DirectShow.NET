@@ -267,7 +267,7 @@ namespace DirectShowLib
 		[PreserveSig]
 		int Next(
 			[In] int cMediaTypes,
-			[Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] AMMediaType[] ppMediaTypes,
+			[Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] AMMediaType[] ppMediaTypes,
 			[Out] out int pcFetched
 			);
 
