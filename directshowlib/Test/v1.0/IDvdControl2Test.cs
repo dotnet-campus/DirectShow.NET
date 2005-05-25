@@ -1,4 +1,4 @@
-// ???SelectParentalCountry
+// ???SelectParentalCountry->string
 // PlayAtTimeInTitle -> lpstruct
 // SelectKaraokeAudioPresentationMode -> DvdKaraokeDownMix
 // SelectVideoModePreference -> DvdPreferredDisplayMode
@@ -716,7 +716,6 @@ namespace DirectShowLib.Test
             int hr;
             int pulParentalLevel;
             IDvdCmd ppCmd;
-            short sb;
 
             AllowPlay();
             hr = m_idc2.PlayChapterInTitle(1, 2, DvdCmdFlags.Flush | DvdCmdFlags.SendEvents, out ppCmd);
@@ -730,13 +729,17 @@ namespace DirectShowLib.Test
             hr = m_idc2.SelectParentalLevel(3);
             DsError.ThrowExceptionForHR(hr);
 
-            hr = m_idc2.SelectParentalCountry("CA");
+            byte[] cc2 = new byte[2];
+            cc2[0] = 67; //'C'
+            cc2[1] = 65; //'A'
+            hr = m_idc2.SelectParentalCountry(cc2);
             DsError.ThrowExceptionForHR(hr);
 
-            hr = m_idi2.GetPlayerParentalLevel(out pulParentalLevel, out sb);
+            byte[] cc = new byte[3];
+            hr = m_idi2.GetPlayerParentalLevel(out pulParentalLevel, cc);
             DsError.ThrowExceptionForHR(hr);
 
-            Debug.Assert(sb == 16707, "TestParentalLevel");
+            Debug.Assert(cc[0] == 'C' && cc[1] == 'A', "TestParentalLevel");
             Debug.Assert(pulParentalLevel == 3, "TestParentalLevel2");
         }
 
@@ -777,7 +780,7 @@ namespace DirectShowLib.Test
             hr = m_idc2.SelectVideoModePreference(DvdPreferredDisplayMode.DisplayContentDefault);
             DsError.ThrowExceptionForHR(hr);
         }
-         
+
         //////////////////////////////////////////////////////
         void TestDirectory()
         {
@@ -831,7 +834,7 @@ namespace DirectShowLib.Test
             hr = m_idc2.SelectDefaultAudioLanguage(1036, DvdAudioLangExt.NotSpecified);
             DsError.ThrowExceptionForHR(hr);
         }
-         
+
         void TestDefaultSubpictureLanguage()
         {
             int hr;
@@ -841,13 +844,15 @@ namespace DirectShowLib.Test
             hr = m_idc2.PlayChapterInTitle(1, 2, DvdCmdFlags.Flush | DvdCmdFlags.SendEvents, out ppCmd);
             DsError.ThrowExceptionForHR(hr);
 
+            Thread.Sleep(500);
+
             hr = m_idc2.Stop();
             DsError.ThrowExceptionForHR(hr);
 
             hr = m_idc2.SelectDefaultSubpictureLanguage(1036, DvdSubPictureLangExt.NotSpecified);
             DsError.ThrowExceptionForHR(hr);
         }
-         
+
         void TestSelectAudioStream()
         {
             int hr;
@@ -944,15 +949,16 @@ namespace DirectShowLib.Test
             hr = m_idc2.Stop();
             DsError.ThrowExceptionForHR(hr);
 
-            Thread.Sleep(500);
+            Thread.Sleep(1000);
 
+            // Returns an error if not Karaoke disk
             hr = m_idc2.SelectKaraokeAudioPresentationMode(DvdKaraokeDownMix.Mix_0to0);
-            DsError.ThrowExceptionForHR(hr);
+            //DsError.ThrowExceptionForHR(hr);
 
             hr = m_idc2.AcceptParentalLevelChange(true);
             DsError.ThrowExceptionForHR(hr);
         }
-         
+
         void TestState()
         {
             int hr;
@@ -973,22 +979,12 @@ namespace DirectShowLib.Test
             hr = m_idc2.Stop();
             DsError.ThrowExceptionForHR(hr);
 
-            long uid;
-            int pl;
-            hr = dss.GetDiscID(out uid);
-            hr = dss.GetParentalLevel(out pl);
-
             Thread.Sleep(500);
-
-            hr = m_idc2.Pause(true);
-            DsError.ThrowExceptionForHR(hr);
 
             // Returns a State corrupted error.  C++ returns the same thing.
             hr = m_idc2.SetState(dss, DvdCmdFlags.Block, out ppCmd);
             //DsError.ThrowExceptionForHR(hr);
 
-            hr = m_idc2.Stop();
-            DsError.ThrowExceptionForHR(hr);
         }
 
 

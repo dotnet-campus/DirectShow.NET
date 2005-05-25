@@ -129,6 +129,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IDvdControl2Test.resx"
+                    DependentUpon = "IDvdControl2Test.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "IDvdGraphBuilderTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

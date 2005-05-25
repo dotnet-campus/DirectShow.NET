@@ -6,14 +6,14 @@ namespace DirectShowLib.Test
 	/// <summary>
 	/// Summary description for Class1.
 	/// </summary>
-	class Class1
-	{
-		/// <summary>
-		/// The main entry point for the application.
-		/// </summary>
-		[STAThread]
-		static void Main(string[] args)
-		{
+    class Class1
+    {
+        /// <summary>
+        /// The main entry point for the application.
+        /// </summary>
+        [STAThread]
+        static void Main(string[] args)
+        {
             // This code, while complete, won't run on all machines.  The problem
             // is that not all audio cards support all these capabilities.  As a
             // result, some (or all) of the calls return E_NOTIMPLEMENTED.
@@ -45,35 +45,41 @@ namespace DirectShowLib.Test
             //IKsPinTest t9 = new IKsPinTest();
             //t9.DoTests();
 
-//      IVMRFilterConfigTest t10 = new IVMRFilterConfigTest();
-//      t10.DoTests();
+            //      IVMRFilterConfigTest t10 = new IVMRFilterConfigTest();
+            //      t10.DoTests();
 
-//      IVMRWindowlessControlTest t11 = new IVMRWindowlessControlTest();
-//      t11.DoTests();
+            //      IVMRWindowlessControlTest t11 = new IVMRWindowlessControlTest();
+            //      t11.DoTests();
 
-      //IPersistTest t12 = new IPersistTest();
-      //t12.DoTests();
+            //IPersistTest t12 = new IPersistTest();
+            //t12.DoTests();
 
-      //IMediaFilterTest t13 = new IMediaFilterTest();
-      //t13.DoTests();
+            //IMediaFilterTest t13 = new IMediaFilterTest();
+            //t13.DoTests();
 
-      //IBaseFilterTest t14 = new IBaseFilterTest();
-      //t14.DoTests();
+            //IBaseFilterTest t14 = new IBaseFilterTest();
+            //t14.DoTests();
 
-      //IBasicAudioTest t15 = new IBasicAudioTest();
-      //t15.DoTests();
+            //IBasicAudioTest t15 = new IBasicAudioTest();
+            //t15.DoTests();
 
-      IFilterGraphTest t16 = new IFilterGraphTest();
-      t16.DoTests();
+            //IFilterGraphTest t16 = new IFilterGraphTest();
+            //t16.DoTests();
 
-      IGraphBuilderTest t17 = new IGraphBuilderTest();
-      t17.DoTests();
+            //IGraphBuilderTest t17 = new IGraphBuilderTest();
+            //t17.DoTests();
   
-      IFilterGraph2Test t18 = new IFilterGraph2Test();
-      t18.DoTests();
+            //IFilterGraph2Test t18 = new IFilterGraph2Test();
+            //t18.DoTests();
 
-      ISpecifyPropertyPagesTest t19 = new ISpecifyPropertyPagesTest();
-      t19.DoTests();
+            //ISpecifyPropertyPagesTest t19 = new ISpecifyPropertyPagesTest();
+            //t19.DoTests();
+
+            IDvdInfo2Test t20 = new IDvdInfo2Test();
+            t20.DoTests();
+
+            //IDvdControl2Test t21 = new IDvdControl2Test();
+            //t21.DoTests();
+        }
     }
-	}
 }

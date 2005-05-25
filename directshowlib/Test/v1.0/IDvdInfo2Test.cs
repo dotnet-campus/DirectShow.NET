@@ -1,20 +1,21 @@
-// Tested in IDvdControl2:
+// These methods are tested in IDvdControl2:
 //      GetCurrentLocation
 //      GetCurrentButton
 //      GetAllGPRMs
 //      GetPlayerParentalLevel
 //      GetState
+//      GetCmdFromEvent
 
-// ??? GetPlayerParentalLevel -> short
-// ??? GetTitleAttributes -> custom marshaler
-// ??? GetKaraokeAttributes
-// ??? GetCmdFromEvent
+// Changes to IDvdInfo2:
+// GetPlayerParentalLevel -> LPArray, SizeConst
+// GetKaraokeAttributes -> custom marshaler
+// GetTitleAttributes -> custom marshaler
 // GetCurrentUOPS -> ValidUOPFlag
 // GetDVDTextStringAsNative -> string
 // GetDVDTextStringAsUnicode -> stringbuilder
 // GetTitleParentalLevels -> DvdParentalLevel
 // GetDVDDirectory -> stringbuilder
-// GetMenuLanguages -> LPArray, SizeParmIn
+// GetMenuLanguages -> LPArray
 
 using System;
 using System.Text;
@@ -72,6 +73,15 @@ namespace DirectShowLib.Test
                 /// These routines need a fancier dvd than I can make with my dvd software.  I've tested
                 /// using "The Thomas Crown Affair".  Note that TestDirectory changes the drive from MyDisk
                 /// to OtherDisk.
+
+                // Map to a different drive.  One that has multiple streams, angles, etc
+                int hr;
+                hr = m_imc.Stop();
+                DsError.ThrowExceptionForHR(hr);
+                hr = m_idc2.SetDVDDirectory(OtherDisk);
+                DsError.ThrowExceptionForHR(hr);
+                StartGraph();
+
                 TestStrings();
                 TestMenuLang();
                 TestAudio();
@@ -370,7 +380,7 @@ namespace DirectShowLib.Test
             hr = m_idi2.GetTitleParentalLevels(1, out pulTParentalLevels);
             DsError.ThrowExceptionForHR(hr);
 
-            Debug.Assert(pulTParentalLevels == 
+            Debug.Assert(pulTParentalLevels ==
                 (DvdParentalLevel.Level1 | DvdParentalLevel.Level2 | DvdParentalLevel.Level3 |
                 DvdParentalLevel.Level4 | DvdParentalLevel.Level5 | DvdParentalLevel.Level6 |
                 DvdParentalLevel.Level7 | DvdParentalLevel.Level8),
@@ -381,7 +391,7 @@ namespace DirectShowLib.Test
             hr = m_idi2.GetDecoderCaps(ref pCaps);
             DsError.ThrowExceptionForHR(hr);
 
-            Debug.Assert(pCaps.dwAudioCaps == 
+            Debug.Assert(pCaps.dwAudioCaps ==
                 (DvdAudioCaps.AC3 | DvdAudioCaps.MPEG2 | DvdAudioCaps.DTS | DvdAudioCaps.SDDS),
                 "TestTitle3");
 
@@ -399,6 +409,10 @@ namespace DirectShowLib.Test
         {
             int hr;
             int pulButtonIndex;
+            IDvdCmd ppCmd = null;
+
+            hr = m_idc2.ShowMenu(DvdMenuId.Title, DvdCmdFlags.Flush, out ppCmd);
+            DsError.ThrowExceptionForHR(hr);
 
             Rectangle pRect;
             hr = m_idi2.GetButtonRect(1, out pRect);
@@ -426,12 +440,12 @@ namespace DirectShowLib.Test
             DsError.ThrowExceptionForHR(hr);
 
             Debug.Assert(pVATR.sourceResolutionX == 720, "GetCurrentVideoAttributes");
+
+            // This won't work for non-karaoke disks
+            DvdKaraokeAttributes pKATR = new DvdKaraokeAttributes();
+            hr = m_idi2.GetKaraokeAttributes(0, pKATR);
+            //DsError.ThrowExceptionForHR(hr);
         }
-#if false
-        DvdKaraokeAttributes pKATR;
-        hr = m_idi2.GetKaraokeAttributes(0, out pKATR);
-        ThrowExceptionForHR(hr);
-#endif
 
         IDvdGraphBuilder GetDvdGraph()
         {
@@ -485,6 +499,7 @@ namespace DirectShowLib.Test
             Thread.Sleep(500);
         }
 
+        // Get past all the menus to a point where titles can be played.
         void AllowPlay()
         {
             int hr;

@@ -618,7 +618,7 @@ namespace DirectShowLib.Dvd
     /// From DVD_KaraokeAttributes
     /// </summary>
     [StructLayout(LayoutKind.Sequential, Pack=1)]
-    public struct DvdKaraokeAttributes
+    public class DvdKaraokeAttributes
     {
         public byte bVersion;
         public bool fMasterOfCeremoniesInGuideVocal1;
@@ -665,7 +665,7 @@ namespace DirectShowLib.Dvd
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public class DvdTitleAttributes
-    { 
+    {
         public DvdTitleAppMode AppMode;
         public DvdVideoAttributes VideoAttributes;
         public int ulNumberOfAudioStreams;
@@ -1246,7 +1246,7 @@ namespace DirectShowLib.Dvd
         int SelectParentalLevel([In] int ulParentalLevel);
 
         [PreserveSig]
-        int SelectParentalCountry([In, MarshalAs(UnmanagedType.LPStr)] string bCountry);
+        int SelectParentalCountry([In, MarshalAs(UnmanagedType.LPArray)] byte[] bCountry);
 
         [PreserveSig]
         int SelectKaraokeAudioPresentationMode([In] DvdKaraokeDownMix ulMode);
@@ -1406,8 +1406,8 @@ namespace DirectShowLib.Dvd
         [PreserveSig]
         int GetKaraokeAttributes(
             [In] int ulStream,
-            [Out] out DvdKaraokeAttributes pAttributes
-            );
+            [In, Out, MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(DKAMarshaler))] DvdKaraokeAttributes pAttributes
+                );
 
         [PreserveSig]
         int GetSubpictureAttributes(
@@ -1457,8 +1457,9 @@ namespace DirectShowLib.Dvd
         [PreserveSig]
         int GetPlayerParentalLevel(
             [Out] out int pulParentalLevel,
-            [Out] out short pbCountryCode
-            );
+            [Out, MarshalAs(UnmanagedType.LPArray, SizeConst=2)] byte[] pbCountryCode
+            //[In, Out, MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(ByteMarshaler))] byte[] pbCountryCode
+                );
 
         [PreserveSig]
         int GetNumberOfChapters(
@@ -1496,7 +1497,7 @@ namespace DirectShowLib.Dvd
 
         [PreserveSig]
         int GetMenuLanguages(
-            [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] int [] pLanguages, // LCID *
+            [MarshalAs(UnmanagedType.LPArray)] int [] pLanguages, // LCID *
             [In] int ulMaxLanguages,
             [Out] out int pulActualLanguages
             );
@@ -1546,40 +1547,24 @@ namespace DirectShowLib.Dvd
 
     #endregion
 
-    // c# does not correctly create structures that contain ByValArrays of structures.  Instead
-    // of allocating enough room for the ByValArray of structures, it only reserves room for a ref,
-    // even when decorated with ByValArray and SizeConst.  Needless to say, if DirectShow tries to 
-    // write to this too-short buffer, bad things will happen.
+    // This abstract class contains definitions for use in implementing a custom marshaler.
     //
-    // To work around this for the DvdTitleAttributes structure, I'm using a custom marshaler.  
-    // By declaring the parameter DvdTitleAttributes as:
-    //
-    //    [In, Out, MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(DTAMarshaler))] 
-    //    DvdTitleAttributes pTitle
-    //
-    // MarshalManagedToNative() gets called before the COM method, and MarshalNativeToManaged() gets 
-    // called after.  This allows me to allocate a correctly sized memory block for the COM call, 
-    // then to break up the memory block and build a DvdTitleAttributes that c# can digest.
-    //
-    // Unfortunately, although pTitle is actually an out parameter, if you declare it as an out parameter,
-    // MarshalManagedToNative does not get called.  This would prevent me from providing a correctly sized
-    // buffer.
+    // MarshalManagedToNative() gets called before the COM method, and MarshalNativeToManaged() gets
+    // called after.  This allows for allocating a correctly sized memory block for the COM call,
+    // then to break up the memory block and build an object that c# can digest.
 
-    internal class DTAMarshaler : ICustomMarshaler
+    abstract internal class DVDMarshaler : ICustomMarshaler
     {
         #region Data Members
-        // The actual size of a DvdTitleAttributes structure.
-        private const int DvdTitleAttributesSize = 3208;
-
         // The cookie isn't currently being used.
-        private string m_cookie;
+        protected string m_cookie;
 
         // The managed object passed in to MarshalManagedToNative, and modified in MarshalNativeToManaged
-        private DvdTitleAttributes m_dta;
+        protected object m_obj;
         #endregion
 
         // The constructor.  This is called from GetInstance (below)
-        public DTAMarshaler(string cookie)
+        public DVDMarshaler(string cookie)
         {
             // If we get a cookie, save it.
             m_cookie = cookie;
@@ -1587,97 +1572,27 @@ namespace DirectShowLib.Dvd
 
         // Called just before invoking the COM method.  The returned IntPtr is what goes on the stack
         // for the COM call.  The input arg is the DvdTitleAttributes that was passed to the method.
-        public IntPtr MarshalManagedToNative(object managedObj)
+        virtual public IntPtr MarshalManagedToNative(object managedObj)
         {
-            // Make sure we got what we expected
-            if(!(managedObj is DvdTitleAttributes))
-            {
-                throw new MarshalDirectiveException("This custom marshaler must be used on a DvdTitleAttributes class.");
-            }
-
             // Save off the passed-in value.  Safe since we just checked the type.
-            m_dta = managedObj as DvdTitleAttributes;
+            m_obj = managedObj;
 
-            // Create an appropriately sized buffer, and send it to the marshaler to 
+            // Create an appropriately sized buffer, and send it to the marshaler to
             // make the COM call with.
-            IntPtr p = Marshal.AllocCoTaskMem(DvdTitleAttributesSize);
+            IntPtr p = Marshal.AllocCoTaskMem(GetNativeDataSize());
 
             return p;
         }
 
         // Called just after invoking the COM method.  The IntPtr is the same one that just got returned
-        // from MarshalManagedToNative.  The return value is apparently unused (go figure).
-        public object MarshalNativeToManaged(IntPtr pNativeData)
+        // from MarshalManagedToNative.  The return value is unused.
+        virtual public object MarshalNativeToManaged(IntPtr pNativeData)
         {
-            // Copy in the value, and advance the pointer
-            m_dta.AppMode = (DvdTitleAppMode)Marshal.ReadInt32(pNativeData);
-            pNativeData = (IntPtr)(pNativeData.ToInt32() + Marshal.SizeOf(typeof(int)));
-
-            // Copy in the value, and advance the pointer
-            m_dta.VideoAttributes = (DvdVideoAttributes) Marshal.PtrToStructure(pNativeData, typeof (DvdVideoAttributes));
-            pNativeData = (IntPtr)(pNativeData.ToInt32() + Marshal.SizeOf(typeof(DvdVideoAttributes)));
-
-            // Copy in the value, and advance the pointer
-            m_dta.ulNumberOfAudioStreams = (int)Marshal.ReadInt32(pNativeData);
-            pNativeData = (IntPtr)(pNativeData.ToInt32() + Marshal.SizeOf(typeof(int)));
-
-            // Allocate a large enough array to hold all the returned structs.
-            m_dta.AudioAttributes = new DvdAudioAttributes[8];
-            for (int x=0; x < 8; x++)
-            {
-                // Copy in the value, and advance the pointer
-                m_dta.AudioAttributes[x] = (DvdAudioAttributes) Marshal.PtrToStructure(pNativeData, typeof (DvdAudioAttributes));
-                pNativeData = (IntPtr)(pNativeData.ToInt32() + Marshal.SizeOf(typeof(DvdAudioAttributes)));
-            }
-
-            // Allocate a large enough array to hold all the returned structs.
-            m_dta.MultichannelAudioAttributes = new DvdMultichannelAudioAttributes[8];
-            for (int x=0; x < 8; x++)
-            {
-                // MultichannelAudioAttributes has nested ByValArrays.  They need to be individually copied.
-
-                m_dta.MultichannelAudioAttributes[x].Info = new DvdMUAMixingInfo[8];
-
-                for (int y=0; y < 8; y++)
-                {
-                    // Copy in the value, and advance the pointer
-                    m_dta.MultichannelAudioAttributes[x].Info[y] = (DvdMUAMixingInfo)Marshal.PtrToStructure(pNativeData, typeof(DvdMUAMixingInfo));
-                    pNativeData = (IntPtr)(pNativeData.ToInt32() + Marshal.SizeOf(typeof(DvdMUAMixingInfo)));
-                }
-
-                m_dta.MultichannelAudioAttributes[x].Coeff = new DvdMUACoeff[8];
-
-                for (int y=0; y < 8; y++)
-                {
-                    // Copy in the value, and advance the pointer
-                    m_dta.MultichannelAudioAttributes[x].Coeff[y] = (DvdMUACoeff)Marshal.PtrToStructure(pNativeData, typeof(DvdMUACoeff));
-                    pNativeData = (IntPtr)(pNativeData.ToInt32() + Marshal.SizeOf(typeof(DvdMUACoeff)));
-                }
-            }
-
-            // The DvdMultichannelAudioAttributes needs to be 16 byte aligned
-            pNativeData = (IntPtr)(pNativeData.ToInt32() + 4);
-
-            // Copy in the value, and advance the pointer
-            m_dta.ulNumberOfSubpictureStreams = (int)Marshal.ReadInt32(pNativeData);
-            pNativeData = (IntPtr)(pNativeData.ToInt32() + Marshal.SizeOf(typeof(int)));
-
-            // Allocate a large enough array to hold all the returned structs.
-            m_dta.SubpictureAttributes = new DvdSubpictureAttributes[32];
-            for (int x=0; x < 32; x++)
-            {
-                // Copy in the value, and advance the pointer
-                m_dta.SubpictureAttributes[x] = (DvdSubpictureAttributes) Marshal.PtrToStructure(pNativeData, typeof (DvdSubpictureAttributes));
-                pNativeData = (IntPtr)(pNativeData.ToInt32() + Marshal.SizeOf(typeof(DvdSubpictureAttributes)));
-            }
-
-            // Note that 4 bytes (more alignment) are unused at the end
-
-            return m_dta;
+            return m_obj;
         }
 
         // Release the (now unused) buffer
-        public void CleanUpNativeData(IntPtr pNativeData)
+        virtual public void CleanUpNativeData(IntPtr pNativeData)
         {
             if (pNativeData != IntPtr.Zero)
             {
@@ -1686,22 +1601,186 @@ namespace DirectShowLib.Dvd
         }
 
         // Release the (now unused) managed object
-        public void CleanUpManagedData(object managedObj)
+        virtual public void CleanUpManagedData(object managedObj)
         {
-            m_dta = null;
+            m_obj = null;
         }
 
-        // This routine is never called.
-        public int GetNativeDataSize()
+        // This routine is (apparently) never called by the marshaler.  However it can be useful.
+        abstract public int GetNativeDataSize();
+
+        // GetInstance is called by the marshaler in preparation to doing custom marshaling.  The (optional)
+        // cookie is the value specified in MarshalCookie="asdf", or "" is none is specified.
+
+        // It is commented out in this abstract class, but MUST be implemented in derived classes
+        //public static ICustomMarshaler GetInstance(string cookie)
+    }
+
+    // c# does not correctly create structures that contain ByValArrays of structures (or enums!).  Instead
+    // of allocating enough room for the ByValArray of structures, it only reserves room for a ref,
+    // even when decorated with ByValArray and SizeConst.  Needless to say, if DirectShow tries to
+    // write to this too-short buffer, bad things will happen.
+    //
+    // To work around this for the DvdTitleAttributes structure, use this custom marshaler
+    // by declaring the parameter DvdTitleAttributes as:
+    //
+    //    [In, Out, MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(DTAMarshaler))]
+    //    DvdTitleAttributes pTitle
+    //
+    // See DVDMarshaler for more info on custom marshalers
+
+    internal class DTAMarshaler : DVDMarshaler
+    {
+        public DTAMarshaler(string cookie) : base(cookie)
         {
-            return DvdTitleAttributesSize;
         }
 
-        // This method is called by the marshaler in preparation to doing custom marshaling.  The (optional) 
+        // Called just after invoking the COM method.  The IntPtr is the same one that just got returned
+        // from MarshalManagedToNative.  The return value is unused.
+        override public object MarshalNativeToManaged(IntPtr pNativeData)
+        {
+            DvdTitleAttributes dta = m_obj as DvdTitleAttributes;
+
+            // Copy in the value, and advance the pointer
+            dta.AppMode = (DvdTitleAppMode)Marshal.ReadInt32(pNativeData);
+            pNativeData = (IntPtr)(pNativeData.ToInt32() + Marshal.SizeOf(typeof(int)));
+
+            // Copy in the value, and advance the pointer
+            dta.VideoAttributes = (DvdVideoAttributes) Marshal.PtrToStructure(pNativeData, typeof (DvdVideoAttributes));
+            pNativeData = (IntPtr)(pNativeData.ToInt32() + Marshal.SizeOf(typeof(DvdVideoAttributes)));
+
+            // Copy in the value, and advance the pointer
+            dta.ulNumberOfAudioStreams = (int)Marshal.ReadInt32(pNativeData);
+            pNativeData = (IntPtr)(pNativeData.ToInt32() + Marshal.SizeOf(typeof(int)));
+
+            // Allocate a large enough array to hold all the returned structs.
+            dta.AudioAttributes = new DvdAudioAttributes[8];
+            for (int x=0; x < 8; x++)
+            {
+                // Copy in the value, and advance the pointer
+                dta.AudioAttributes[x] = (DvdAudioAttributes) Marshal.PtrToStructure(pNativeData, typeof (DvdAudioAttributes));
+                pNativeData = (IntPtr)(pNativeData.ToInt32() + Marshal.SizeOf(typeof(DvdAudioAttributes)));
+            }
+
+            // Allocate a large enough array to hold all the returned structs.
+            dta.MultichannelAudioAttributes = new DvdMultichannelAudioAttributes[8];
+            for (int x=0; x < 8; x++)
+            {
+                // MultichannelAudioAttributes has nested ByValArrays.  They need to be individually copied.
+
+                dta.MultichannelAudioAttributes[x].Info = new DvdMUAMixingInfo[8];
+
+                for (int y=0; y < 8; y++)
+                {
+                    // Copy in the value, and advance the pointer
+                    dta.MultichannelAudioAttributes[x].Info[y] = (DvdMUAMixingInfo)Marshal.PtrToStructure(pNativeData, typeof(DvdMUAMixingInfo));
+                    pNativeData = (IntPtr)(pNativeData.ToInt32() + Marshal.SizeOf(typeof(DvdMUAMixingInfo)));
+                }
+
+                dta.MultichannelAudioAttributes[x].Coeff = new DvdMUACoeff[8];
+
+                for (int y=0; y < 8; y++)
+                {
+                    // Copy in the value, and advance the pointer
+                    dta.MultichannelAudioAttributes[x].Coeff[y] = (DvdMUACoeff)Marshal.PtrToStructure(pNativeData, typeof(DvdMUACoeff));
+                    pNativeData = (IntPtr)(pNativeData.ToInt32() + Marshal.SizeOf(typeof(DvdMUACoeff)));
+                }
+            }
+
+            // The DvdMultichannelAudioAttributes needs to be 16 byte aligned
+            pNativeData = (IntPtr)(pNativeData.ToInt32() + 4);
+
+            // Copy in the value, and advance the pointer
+            dta.ulNumberOfSubpictureStreams = (int)Marshal.ReadInt32(pNativeData);
+            pNativeData = (IntPtr)(pNativeData.ToInt32() + Marshal.SizeOf(typeof(int)));
+
+            // Allocate a large enough array to hold all the returned structs.
+            dta.SubpictureAttributes = new DvdSubpictureAttributes[32];
+            for (int x=0; x < 32; x++)
+            {
+                // Copy in the value, and advance the pointer
+                dta.SubpictureAttributes[x] = (DvdSubpictureAttributes) Marshal.PtrToStructure(pNativeData, typeof (DvdSubpictureAttributes));
+                pNativeData = (IntPtr)(pNativeData.ToInt32() + Marshal.SizeOf(typeof(DvdSubpictureAttributes)));
+            }
+
+            // Note that 4 bytes (more alignment) are unused at the end
+
+            return null;
+        }
+
+        // The number of bytes to marshal out
+        override public int GetNativeDataSize()
+        {
+            // This is the actual size of a DvdTitleAttributes structure
+            return 3208;
+        }
+
+        // This method is called by interop to create the custom marshaler.  The (optional)
         // cookie is the value specified in MarshalCookie="asdf", or "" is none is specified.
         public static ICustomMarshaler GetInstance(string cookie)
         {
             return new DTAMarshaler(cookie);
+        }
+    }
+
+    // See DTAMarshaler for an explanation of the problem.  This class is for marshaling
+    // a DvdKaraokeAttributes structure.
+    internal class DKAMarshaler : DVDMarshaler
+    {
+        // The constructor.  This is called from GetInstance (below)
+        public DKAMarshaler(string cookie) : base(cookie)
+        {
+        }
+
+        // Called just after invoking the COM method.  The IntPtr is the same one that just got returned
+        // from MarshalManagedToNative.  The return value is unused.
+        override public object MarshalNativeToManaged(IntPtr pNativeData)
+        {
+            DvdKaraokeAttributes dka = m_obj as DvdKaraokeAttributes;
+
+            // Copy in the value, and advance the pointer
+            dka.bVersion = (byte)Marshal.ReadByte(pNativeData);
+            pNativeData = (IntPtr)(pNativeData.ToInt32() + Marshal.SizeOf(typeof(byte)));
+
+            // DWORD Align
+            pNativeData = (IntPtr)(pNativeData.ToInt32() + 3);
+
+            // Copy in the value, and advance the pointer
+            dka.fMasterOfCeremoniesInGuideVocal1 = Marshal.ReadInt32(pNativeData) != 0;
+            pNativeData = (IntPtr)(pNativeData.ToInt32() + Marshal.SizeOf(typeof(bool)));
+
+            // Copy in the value, and advance the pointer
+            dka.fDuet = Marshal.ReadInt32(pNativeData) != 0;
+            pNativeData = (IntPtr)(pNativeData.ToInt32() + Marshal.SizeOf(typeof(bool)));
+
+            // Copy in the value, and advance the pointer
+            dka.ChannelAssignment = (DvdKaraokeAssignment)Marshal.ReadInt32(pNativeData);
+            pNativeData = (IntPtr)(pNativeData.ToInt32() + Marshal.SizeOf(DvdKaraokeAssignment.GetUnderlyingType(typeof(DvdKaraokeAssignment))));
+
+            // Allocate a large enough array to hold all the returned structs.
+            dka.wChannelContents = new DvdKaraokeContents[8];
+            for (int x=0; x < 8; x++)
+            {
+                // Copy in the value, and advance the pointer
+                dka.wChannelContents[x] = (DvdKaraokeContents) Marshal.ReadInt16(pNativeData);
+                pNativeData = (IntPtr)(pNativeData.ToInt32() + Marshal.SizeOf(DvdKaraokeContents.GetUnderlyingType(typeof(DvdKaraokeContents))));
+            }
+
+            return null;
+        }
+
+        // The number of bytes to marshal out
+        override public int GetNativeDataSize()
+        {
+            // This is the actual size of a DvdKaraokeAttributes structure.
+            return 32;
+        }
+
+        // This method is called by interop to create the custom marshaler.  The (optional)
+        // cookie is the value specified in MarshalCookie="asdf", or "" is none is specified.
+        public static ICustomMarshaler GetInstance(string cookie)
+        {
+            return new DKAMarshaler(cookie);
         }
     }
 }
