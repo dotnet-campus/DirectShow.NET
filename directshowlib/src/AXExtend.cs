@@ -3339,14 +3339,14 @@ namespace DirectShowLib
 			);
 
 		[PreserveSig]
-		int GetAllSettings([In] IStream pStream);
+		int GetAllSettings([In] UCOMIStream pStream);
 
 		[PreserveSig]
-		int SetAllSettings([In] IStream pStream);
+		int SetAllSettings([In] UCOMIStream pStream);
 
 		[PreserveSig]
 		int SetAllSettingsWithNotify(
-			[In] IStream pStream,
+			[In] UCOMIStream pStream,
 			[Out] out Guid[] ChangedParam,
 			[Out] out int ChangedParamCount
 			);

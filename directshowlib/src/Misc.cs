@@ -112,14 +112,15 @@ namespace DirectShowLib
         int IsDirty();
         
         [PreserveSig]
-        int Load([In] IStream pStm);
+        int Load([In] UCOMIStream pStm);
         
         [PreserveSig]
-        int Save([In] IStream pStm,
-                [In] bool fClearDirty);
+        int Save([In] UCOMIStream pStm, 
+            [In] bool fClearDirty);
+        //[In, MarshalAs(UnmanagedType.Bool)] bool fClearDirty);
         
         [PreserveSig]
-        int GetSizeMax([Out] long pcbSize);
+        int GetSizeMax([Out] out long pcbSize);
     }
 
 	[Guid("55272A00-42CB-11CE-8135-00AA004BB851"),
@@ -140,11 +141,6 @@ namespace DirectShowLib
 			);
 	}
 
-
-	public interface IStream
-	{
-		//TODO:
-	}
 
 	[Guid("B196B28B-BAB4-101A-B69C-00AA00341D07"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
