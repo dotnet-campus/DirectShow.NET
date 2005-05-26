@@ -227,12 +227,12 @@ namespace DirectShowLib.BDA
 	}
 
 
-	[Guid("C5C5C5F0-3ABC-11D6-B25B-00C04FA0C026")]
+	[ComImport, Guid("C5C5C5F0-3ABC-11D6-B25B-00C04FA0C026")]
 	public class XDSToRat
 	{
 	}
 
-	[Guid("C5C5C5F1-3ABC-11D6-B25B-00C04FA0C026")]
+	[ComImport, Guid("C5C5C5F1-3ABC-11D6-B25B-00C04FA0C026")]
 	public class EvalRat
 	{
 	}

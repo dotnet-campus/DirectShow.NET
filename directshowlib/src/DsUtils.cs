@@ -73,85 +73,85 @@ namespace DirectShowLib
 
     #region COM Class Objects
 
-    [Guid("62BE5D10-60EB-11d0-BD3B-00A0C911CE86")]
+    [ComImport, Guid("62BE5D10-60EB-11d0-BD3B-00A0C911CE86")]
     public class CreateDevEnum
     {
     }
 
 
-    [Guid("e436ebb3-524f-11ce-9f53-0020af0ba770")]
+    [ComImport, Guid("e436ebb3-524f-11ce-9f53-0020af0ba770")]
     public class FilterGraph
     {
     }
 
 
-    [Guid("e436ebb8-524f-11ce-9f53-0020af0ba770")]
+    [ComImport, Guid("e436ebb8-524f-11ce-9f53-0020af0ba770")]
     public class FilterGraphNoThread
     {
     }
 
 
-    [Guid("BF87B6E1-8C27-11d0-B3F0-00AA003761C5")]
+    [ComImport, Guid("BF87B6E1-8C27-11d0-B3F0-00AA003761C5")]
     public class CaptureGraphBuilder2
     {
     }
 
 
-    [Guid("FCC152B7-F372-11d0-8E00-00C04FD7C08B")]
+    [ComImport, Guid("FCC152B7-F372-11d0-8E00-00C04FD7C08B")]
     public class DvdGraphBuilder
     {
     }
 
 
-    [Guid("BF87B6E0-8C27-11d0-B3F0-00AA003761C5")]
+    [ComImport, Guid("BF87B6E0-8C27-11d0-B3F0-00AA003761C5")]
     public class CaptureGraphBuilder
     {
     }
 
 
-    [Guid("FA8A68B2-C864-4ba2-AD53-D3876A87494B")]
+    [ComImport, Guid("FA8A68B2-C864-4ba2-AD53-D3876A87494B")]
     public class StreamBufferConfig
     {
     }
 
 
-    [Guid("D682C4BA-A90A-42fe-B9E1-03109849C423")]
+    [ComImport, Guid("D682C4BA-A90A-42fe-B9E1-03109849C423")]
     public class StreamBufferComposeRecording
     {
     }
 
 
-    [Guid("060AF76C-68DD-11d0-8FC1-00C04FD9189D")]
+    [ComImport, Guid("060AF76C-68DD-11d0-8FC1-00C04FD9189D")]
     public class SeekingPassThru
     {
     }
 
 
-    [Guid("CDA42200-BD88-11d0-BD4E-00A0C911CE86")]
+    [ComImport, Guid("CDA42200-BD88-11d0-BD4E-00A0C911CE86")]
     public class FilterMapper2
     {
     }
 
 
-    [Guid("1e651cc0-b199-11d0-8212-00c04fc32c45")]
+    [ComImport, Guid("1e651cc0-b199-11d0-8212-00c04fc32c45")]
     public class MemoryAllocator
     {
     }
 
 
-    [Guid("CDBD8D00-C193-11d0-BD4E-00A0C911CE86")]
+    [ComImport, Guid("CDBD8D00-C193-11d0-BD4E-00A0C911CE86")]
     public class MediaPropertyBag
     {
     }
 
 
-    [Guid("f963c5cf-a659-4a93-9638-caf3cd277d13")]
+    [ComImport, Guid("f963c5cf-a659-4a93-9638-caf3cd277d13")]
     public class DVDState
     {
     }
 
 
-    [Guid("94297043-bd82-4dfd-b0de-8177739c6d20")]
+    [ComImport, Guid("94297043-bd82-4dfd-b0de-8177739c6d20")]
     public class DMOWrapperFilter
     {
     }
@@ -160,329 +160,329 @@ namespace DirectShowLib
     #endregion
 
     #region Filter Classes
-    [Guid("2DB47AE5-CF39-43c2-B4D6-0CD8D90946F4")]
+    [ComImport, Guid("2DB47AE5-CF39-43c2-B4D6-0CD8D90946F4")]
     public class StreamBufferSink
     {
     }
 
 
-    [Guid("C1F400A0-3F08-11d3-9F0B-006008039E37")]
+    [ComImport, Guid("C1F400A0-3F08-11d3-9F0B-006008039E37")]
     public class SampleGrabber
     {
     }
 
 
-    [Guid("C9F5FE02-F851-4eb5-99EE-AD602AF1E619")]
+    [ComImport, Guid("C9F5FE02-F851-4eb5-99EE-AD602AF1E619")]
     public class StreamBufferSource
     {
     }
 
 
-    [Guid("B87BEB7B-8D29-423f-AE4D-6582C10175AC")]
+    [ComImport, Guid("B87BEB7B-8D29-423f-AE4D-6582C10175AC")]
     public class VideoMixingRenderer
     {
     }
 
 
-    [Guid("51b4abf3-748f-4e3b-a276-c828330e926a")]
+    [ComImport, Guid("51b4abf3-748f-4e3b-a276-c828330e926a")]
     public class VideoMixingRenderer9
     {
     }
 
 
-    [Guid("6BC1CFFA-8FC1-4261-AC22-CFB4CC38DB50")]
+    [ComImport, Guid("6BC1CFFA-8FC1-4261-AC22-CFB4CC38DB50")]
     public class VideoRendererDefault
     {
     }
 
 
-    [Guid("1b544c20-fd0b-11ce-8c63-00aa0044b51e")]
+    [ComImport, Guid("1b544c20-fd0b-11ce-8c63-00aa0044b51e")]
     public class AviSplitter
     {
     }
 
 
-    [Guid("CC58E280-8AA1-11d1-B3F1-00AA003761C5")]
+    [ComImport, Guid("CC58E280-8AA1-11d1-B3F1-00AA003761C5")]
     public class SmartTee
     {
     }
 
 
-    [Guid("C1F400A4-3F08-11d3-9F0B-006008039E37")]
+    [ComImport, Guid("C1F400A4-3F08-11d3-9F0B-006008039E37")]
     public class NullRenderer
     {
     }
 
 
-    [Guid("6a08cf80-0e18-11cf-a24d-0020afd79767")]
+    [ComImport, Guid("6a08cf80-0e18-11cf-a24d-0020afd79767")]
     public class ACMWrapper
     {
     }
 
 
-    [Guid("e30629d1-27e5-11ce-875d-00608cb78066")]
+    [ComImport, Guid("e30629d1-27e5-11ce-875d-00608cb78066")]
     public class AudioRender
     {
     }
 
 
-    [Guid("CF49D4E0-1115-11ce-B03A-0020AF0BA770")]
+    [ComImport, Guid("CF49D4E0-1115-11ce-B03A-0020AF0BA770")]
     public class AVIDec
     {
     }
 
 
-    [Guid("A888DF60-1E90-11cf-AC98-00AA004C0FA9")]
+    [ComImport, Guid("A888DF60-1E90-11cf-AC98-00AA004C0FA9")]
     public class AVIDraw
     {
     }
 
 
-    [Guid("E2510970-F137-11CE-8B67-00AA00A3F1A6")]
+    [ComImport, Guid("E2510970-F137-11CE-8B67-00AA00A3F1A6")]
     public class AviDest
     {
     }
 
 
-    [Guid("0DAD2FDD-5FD7-11D3-8F50-00C04F7971E2")]
+    [ComImport, Guid("0DAD2FDD-5FD7-11D3-8F50-00C04F7971E2")]
     public class ATSCNetworkProvider
     {
     }
 
 
-    [Guid("DC0C0FE7-0485-4266-B93F-68FBF80ED834")]
+    [ComImport, Guid("DC0C0FE7-0485-4266-B93F-68FBF80ED834")]
     public class DVBCNetworkProvider
     {
     }
 
 
-    [Guid("FA4B375A-45B4-4d45-8440-263957B11623")]
+    [ComImport, Guid("FA4B375A-45B4-4d45-8440-263957B11623")]
     public class DVBSNetworkProvider
     {
     }
 
 
-    [Guid("216C62DF-6D7F-4e9a-8571-05F14EDB766A")]
+    [ComImport, Guid("216C62DF-6D7F-4e9a-8571-05F14EDB766A")]
     public class DVBTNetworkProvider
     {
     }
 
 
-    [Guid("1643e180-90f5-11ce-97d5-00aa0055595a")]
+    [ComImport, Guid("1643e180-90f5-11ce-97d5-00aa0055595a")]
     public class Colour
     {
     }
 
 
-    [Guid("79376820-07D0-11cf-A24D-0020AFD79767")]
+    [ComImport, Guid("79376820-07D0-11cf-A24D-0020AFD79767")]
     public class DSoundRender
     {
     }
 
 
-    [Guid("129D7E40-C10D-11d0-AFB9-00AA00B67A42")]
+    [ComImport, Guid("129D7E40-C10D-11d0-AFB9-00AA00B67A42")]
     public class DVMux
     {
     }
 
 
-    [Guid("4EB31670-9FC6-11cf-AF6E-00AA00B67A42")]
+    [ComImport, Guid("4EB31670-9FC6-11cf-AF6E-00AA00B67A42")]
     public class DVSplitter
     {
     }
 
 
-    [Guid("B1B77C00-C3E4-11cf-AF79-00AA00B67A42")]
+    [ComImport, Guid("B1B77C00-C3E4-11cf-AF79-00AA00B67A42")]
     public class DVVideoCodec
     {
     }
 
 
-    [Guid("13AA3650-BB6F-11d0-AFB9-00AA00B67A42")]
+    [ComImport, Guid("13AA3650-BB6F-11d0-AFB9-00AA00B67A42")]
     public class DVVideoEnc
     {
     }
 
 
-    [Guid("9B8C4620-2C1A-11d0-8493-00A02438AD48")]
+    [ComImport, Guid("9B8C4620-2C1A-11d0-8493-00A02438AD48")]
     public class DVDNavigator
     {
     }
 
 
-    [Guid("e436ebb5-524f-11ce-9f53-0020af0ba770")]
+    [ComImport, Guid("e436ebb5-524f-11ce-9f53-0020af0ba770")]
     public class AsyncReader
     {
     }
 
 
-    [Guid("e436ebb6-524f-11ce-9f53-0020af0ba770")]
+    [ComImport, Guid("e436ebb6-524f-11ce-9f53-0020af0ba770")]
     public class URLReader
     {
     }
 
 
-    [Guid("8596E5F0-0DA5-11d0-BD21-00A0C911CE86")]
+    [ComImport, Guid("8596E5F0-0DA5-11d0-BD21-00A0C911CE86")]
     public class FileWriter
     {
     }
 
 
-    [Guid("07167665-5011-11cf-BF33-00AA0055595A")]
+    [ComImport, Guid("07167665-5011-11cf-BF33-00AA0055595A")]
     public class ModexRenderer
     {
     }
 
 
-    [Guid("F8388A40-D5BB-11d0-BE5A-0080C706568E")]
+    [ComImport, Guid("F8388A40-D5BB-11d0-BE5A-0080C706568E")]
     public class InfTee
     {
     }
 
 
-    [Guid("6E8D4A20-310C-11d0-B79A-00AA003767A7")]
+    [ComImport, Guid("6E8D4A20-310C-11d0-B79A-00AA003767A7")]
     public class Line21Decoder
     {
     }
 
 
-    [Guid("E4206432-01A1-4BEE-B3E1-3702C8EDC574")]
+    [ComImport, Guid("E4206432-01A1-4BEE-B3E1-3702C8EDC574")]
     public class Line21Decoder2
     {
     }
 
 
-    [Guid("07b65360-c445-11ce-afde-00aa006c14f4")]
+    [ComImport, Guid("07b65360-c445-11ce-afde-00aa006c14f4")]
     public class AVIMIDIRender
     {
     }
 
 
-    [Guid("B80AB0A0-7416-11d2-9EEB-006008039E37")]
+    [ComImport, Guid("B80AB0A0-7416-11d2-9EEB-006008039E37")]
     public class MJPGEnc
     {
     }
 
 
-    [Guid("301056D0-6DFF-11d2-9EEB-006008039E37")]
+    [ComImport, Guid("301056D0-6DFF-11d2-9EEB-006008039E37")]
     public class MjpegDec
     {
     }
 
 
-    [Guid("4a2286e0-7bef-11ce-9bd9-0000e202599c")]
+    [ComImport, Guid("4a2286e0-7bef-11ce-9bd9-0000e202599c")]
     public class CMpegAudioCodec
     {
     }
 
 
-    [Guid("336475d0-942a-11ce-a870-00aa002feab5")]
+    [ComImport, Guid("336475d0-942a-11ce-a870-00aa002feab5")]
     public class MPEG1Splitter
     {
     }
 
 
-    [Guid("feb50740-7bef-11ce-9bd9-0000e202599c")]
+    [ComImport, Guid("feb50740-7bef-11ce-9bd9-0000e202599c")]
     public class CMpegVideoCodec
     {
     }
 
 
-    [Guid("afb6c280-2c41-11d3-8a60-0000f81e0e4a")]
+    [ComImport, Guid("afb6c280-2c41-11d3-8a60-0000f81e0e4a")]
     public class MPEG2Demultiplexer
     {
     }
 
 
-    [Guid("3ae86b20-7be8-11d1-abe6-00a0c905f375")]
+    [ComImport, Guid("3ae86b20-7be8-11d1-abe6-00a0c905f375")]
     public class MMSPLITTER
     {
     }
 
 
-    [Guid("CD8743A1-3736-11d0-9E69-00C04FD7C15B")]
+    [ComImport, Guid("CD8743A1-3736-11d0-9E69-00C04FD7C15B")]
     public class OverlayMixer
     {
     }
 
 
-    [Guid("FDFE9681-74A3-11d0-AFA7-00AA00B67A42")]
+    [ComImport, Guid("FDFE9681-74A3-11d0-AFA7-00AA00B67A42")]
     public class QTDec
     {
     }
 
 
-    [Guid("D51BD5A0-7548-11cf-A520-0080C77EF58A")]
+    [ComImport, Guid("D51BD5A0-7548-11cf-A520-0080C77EF58A")]
     public class QuickTimeParser
     {
     }
 
 
-    [Guid("71F96463-78F3-11d0-A18C-00A0C9118956")]
+    [ComImport, Guid("71F96463-78F3-11d0-A18C-00A0C9118956")]
     public class TVAudioFilterPropertyPage
     {
     }
 
 
-    [Guid("266EEE41-6C63-11cf-8A03-00AA006ECB65")]
+    [ComImport, Guid("266EEE41-6C63-11cf-8A03-00AA006ECB65")]
     public class TVTunerFilterPropertyPage
     {
     }
 
 
-    [Guid("814B9800-1C88-11d1-BAD9-00609744111A")]
+    [ComImport, Guid("814B9800-1C88-11d1-BAD9-00609744111A")]
     public class VBISurfaces
     {
     }
 
 
-    [Guid("1b544c22-fd0b-11ce-8c63-00aa0044b51e")]
+    [ComImport, Guid("1b544c22-fd0b-11ce-8c63-00aa0044b51e")]
     public class VfwCapture
     {
     }
 
 
-    [Guid("1da08500-9edc-11cf-bc10-00aa00ac74f6")]
+    [ComImport, Guid("1da08500-9edc-11cf-bc10-00aa00ac74f6")]
     public class Dither
     {
     }
 
 
-    [Guid("6f26a6cd-967b-47fd-874a-7aed2c9d25a2")]
+    [ComImport, Guid("6f26a6cd-967b-47fd-874a-7aed2c9d25a2")]
     public class VideoPortManager
     {
     }
 
 
-    [Guid("70e102b0-5556-11ce-97c0-00aa0055595a")]
+    [ComImport, Guid("70e102b0-5556-11ce-97c0-00aa0055595a")]
     public class VideoRenderer
     {
     }
 
 
-    [Guid("187463A0-5BB7-11d3-ACBE-0080C75E246E")]
+    [ComImport, Guid("187463A0-5BB7-11d3-ACBE-0080C75E246E")]
     public class WMAsfReader
     {
     }
 
-    [Guid("e436ebb1-524f-11ce-9f53-0020af0ba770")]
+    [ComImport, Guid("e436ebb1-524f-11ce-9f53-0020af0ba770")]
     public class SystemClock
     {
     }
 
-    [Guid("7c23220e-55bb-11d3-8b16-00c04fb6bd3d")]
+    [ComImport, Guid("7c23220e-55bb-11d3-8b16-00c04fb6bd3d")]
     public class WMAsfWriter
     {
     }
 
 
-    [Guid("70BC06E0-5666-11d3-A184-00105AEF9F33")]
+    [ComImport, Guid("70BC06E0-5666-11d3-A184-00105AEF9F33")]
     public class WSTDecoder
     {
     }
 
 
-    [Guid("6CFAD761-735D-4aa5-8AFC-AF91A7D61EBA")]
+    [ComImport, Guid("6CFAD761-735D-4aa5-8AFC-AF91A7D61EBA")]
     public class Mpeg2VideoStreamAnalyzer
     {
     }

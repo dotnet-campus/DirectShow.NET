@@ -226,137 +226,137 @@ namespace DirectShowLib.BDA
 	}
 
 
-	[Guid("D02AAC50-027E-11d3-9D8E-00C04F72D980")]
+	[ComImport, Guid("D02AAC50-027E-11d3-9D8E-00C04F72D980")]
 	public class SystemTuningSpaces
 	{
 	}
 
-	[Guid("5FFDC5E6-B83A-4b55-B6E8-C69E765FE9DB")]
+	[ComImport, Guid("5FFDC5E6-B83A-4b55-B6E8-C69E765FE9DB")]
 	public class TuningSpace
 	{
 	}
 
-	[Guid("A2E30750-6C3D-11d3-B653-00C04F79498E")]
+	[ComImport, Guid("A2E30750-6C3D-11d3-B653-00C04F79498E")]
 	public class ATSCTuningSpace
 	{
 	}
 
-	[Guid("8A674B4C-1F63-11d3-B64C-00C04F79498E")]
+	[ComImport, Guid("8A674B4C-1F63-11d3-B64C-00C04F79498E")]
 	public class AnalogRadioTuningSpace
 	{
 	}
 
-	[Guid("F9769A06-7ACA-4e39-9CFB-97BB35F0E77E")]
+	[ComImport, Guid("F9769A06-7ACA-4e39-9CFB-97BB35F0E77E")]
 	public class AuxInTuningSpace
 	{
 	}
 
-	[Guid("8A674B4D-1F63-11d3-B64C-00C04F79498E")]
+	[ComImport, Guid("8A674B4D-1F63-11d3-B64C-00C04F79498E")]
 	public class AnalogTVTuningSpace
 	{
 	}
 
-	[Guid("C6B14B32-76AA-4a86-A7AC-5C79AAF58DA7")]
+	[ComImport, Guid("C6B14B32-76AA-4a86-A7AC-5C79AAF58DA7")]
 	public class DVBTuningSpace
 	{
 	}
 
-	[Guid("B64016F3-C9A2-4066-96F0-BD9563314726")]
+	[ComImport, Guid("B64016F3-C9A2-4066-96F0-BD9563314726")]
 	public class DVBSTuningSpace
 	{
 	}
 
-	[Guid("A1A2B1C4-0E3A-11d3-9D8E-00C04F72D980")]
+	[ComImport, Guid("A1A2B1C4-0E3A-11d3-9D8E-00C04F72D980")]
 	public class ComponentTypes
 	{
 	}
 
-	[Guid("823535A0-0318-11d3-9D8E-00C04F72D980")]
+	[ComImport, Guid("823535A0-0318-11d3-9D8E-00C04F72D980")]
 	public class ComponentType
 	{
 	}
 
-	[Guid("1BE49F30-0E1B-11d3-9D8E-00C04F72D980")]
+	[ComImport, Guid("1BE49F30-0E1B-11d3-9D8E-00C04F72D980")]
 	public class LanguageComponentType
 	{
 	}
 
-	[Guid("418008F3-CF67-4668-9628-10DC52BE1D08")]
+	[ComImport, Guid("418008F3-CF67-4668-9628-10DC52BE1D08")]
 	public class MPEG2ComponentType
 	{
 	}
 
-	[Guid("A8DCF3D5-0780-4ef4-8A83-2CFFAACB8ACE")]
+	[ComImport, Guid("A8DCF3D5-0780-4ef4-8A83-2CFFAACB8ACE")]
 	public class ATSCComponentType
 	{
 	}
 
-	[Guid("809B6661-94C4-49e6-B6EC-3F0F862215AA")]
+	[ComImport, Guid("809B6661-94C4-49e6-B6EC-3F0F862215AA")]
 	public class Components
 	{
 	}
 
-	[Guid("59DC47A8-116C-11d3-9D8E-00C04F72D980")]
+	[ComImport, Guid("59DC47A8-116C-11d3-9D8E-00C04F72D980")]
 	public class Component
 	{
 	}
 
-	[Guid("055CB2D7-2969-45cd-914B-76890722F112")]
+	[ComImport, Guid("055CB2D7-2969-45cd-914B-76890722F112")]
 	public class MPEG2Component
 	{
 	}
 
-	[Guid("B46E0D38-AB35-4a06-A137-70576B01B39F")]
+	[ComImport, Guid("B46E0D38-AB35-4a06-A137-70576B01B39F")]
 	public class TuneRequest
 	{
 	}
 
-	[Guid("0369B4E5-45B6-11d3-B650-00C04F79498E")]
+	[ComImport, Guid("0369B4E5-45B6-11d3-B650-00C04F79498E")]
 	public class ChannelTuneRequest
 	{
 	}
 
-	[Guid("0369B4E6-45B6-11d3-B650-00C04F79498E")]
+	[ComImport, Guid("0369B4E6-45B6-11d3-B650-00C04F79498E")]
 	public class ATSCChannelTuneRequest
 	{
 	}
 
-	[Guid("0955AC62-BF2E-4cba-A2B9-A63F772D46CF")]
+	[ComImport, Guid("0955AC62-BF2E-4cba-A2B9-A63F772D46CF")]
 	public class MPEG2TuneRequest
 	{
 	}
 
-	[Guid("2C63E4EB-4CEA-41b8-919C-E947EA19A77C")]
+	[ComImport, Guid("2C63E4EB-4CEA-41b8-919C-E947EA19A77C")]
 	public class MPEG2TuneRequestFactory
 	{
 	}
 
-	[Guid("0888C883-AC4F-4943-B516-2C38D9B34562")]
+	[ComImport, Guid("0888C883-AC4F-4943-B516-2C38D9B34562")]
 	public class Locator
 	{
 	}
 
-	[Guid("8872FF1B-98FA-4d7a-8D93-C9F1055F85BB")]
+	[ComImport, Guid("8872FF1B-98FA-4d7a-8D93-C9F1055F85BB")]
 	public class ATSCLocator
 	{
 	}
 
-	[Guid("9CD64701-BDF3-4d14-8E03-F12983D86664")]
+	[ComImport, Guid("9CD64701-BDF3-4d14-8E03-F12983D86664")]
 	public class DVBTLocator
 	{
 	}
 
-	[Guid("1DF7D126-4050-47f0-A7CF-4C4CA9241333")]
+	[ComImport, Guid("1DF7D126-4050-47f0-A7CF-4C4CA9241333")]
 	public class DVBSLocator
 	{
 	}
 
-	[Guid("C531D9FD-9685-4028-8B68-6E1232079F1E")]
+	[ComImport, Guid("C531D9FD-9685-4028-8B68-6E1232079F1E")]
 	public class DVBCLocator
 	{
 	}
 
-	[Guid("15D6504A-5494-499c-886C-973C9E53B9F1")]
+	[ComImport, Guid("15D6504A-5494-499c-886C-973C9E53B9F1")]
 	public class DVBTuneRequest
 	{
 	}
