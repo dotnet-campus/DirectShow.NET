@@ -99,15 +99,6 @@ namespace DirectShowLib
 	}
 
 	/// <summary>
-	/// From VMR9AspectRatioMode
-	/// </summary>
-	public enum VMR9AspectRatioMode
-	{
-		None,
-		LetterBox,
-	}
-
-	/// <summary>
 	/// From VMR9MixerPrefs
 	/// </summary>
 	[Flags]
@@ -164,28 +155,6 @@ namespace DirectShowLib
 		SrcColorKey = 0x00000008,
 		SrcRect = 0x00000010,
 		FilterMode = 0x00000020
-	}
-
-	/// <summary>
-	/// From VMR9RenderPrefs
-	/// </summary>
-	[Flags]
-	public enum VMR9RenderPrefs
-	{
-		DoNotRenderBorder = 0x00000001, // app paints color keys
-		Mask = 0x00000001, // OR of all above flags
-	}
-
-	/// <summary>
-	/// From VMR9Mode
-	/// </summary>
-	[Flags]
-	public enum VMR9Mode
-	{
-		Windowed = 0x00000001,
-		Windowless = 0x00000002,
-		Renderless = 0x00000004,
-		Mask = 0x00000007
 	}
 
 	/// <summary>
@@ -396,7 +365,38 @@ namespace DirectShowLib
 	}
 #endif
 
-	#endregion
+    /// <summary>
+    /// From VMR9RenderPrefs
+    /// </summary>
+    [Flags]
+    public enum VMR9RenderPrefs
+    {
+        DoNotRenderBorder = 0x00000001, // app paints color keys
+        Mask = 0x00000001, // OR of all above flags
+    }
+
+    /// <summary>
+    /// From VMR9Mode
+    /// </summary>
+    [Flags]
+    public enum VMR9Mode
+    {
+        Windowed = 0x00000001,
+        Windowless = 0x00000002,
+        Renderless = 0x00000004,
+        Mask = 0x00000007
+    }
+
+    /// <summary>
+    /// From VMR9AspectRatioMode
+    /// </summary>
+    public enum VMR9AspectRatioMode
+    {
+        None,
+        LetterBox,
+    }
+
+    #endregion
 
 	#region Interfaces
 

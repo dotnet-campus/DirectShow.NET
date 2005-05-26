@@ -99,15 +99,6 @@ namespace DirectShowLib
 	}
 
 	/// <summary>
-	/// From VMR_ASPECT_RATIO_MODE
-	/// </summary>
-	public enum VMRAspectRatioMode
-	{
-		None,
-		LetterBox
-	}
-
-	/// <summary>
 	/// From VMRMixerPrefs
 	/// </summary>
 	[Flags]
@@ -137,35 +128,6 @@ namespace DirectShowLib
 
 		DynamicReserved = 0x000C0000,
 		DynamicMask = 0x000F0000
-	}
-
-	/// <summary>
-	/// From VMRMixerPrefs
-	/// </summary>
-	[Flags]
-	public enum VMRRenderPrefs
-	{
-		RestrictToInitialMonitor = 0x00000000,
-		ForceOffscreen = 0x00000001,
-		ForceOverlays = 0x00000002,
-		AllowOverlays = 0x00000000,
-		AllowOffscreen = 0x00000000,
-		DoNotRenderColorKeyAndBorder = 0x00000008,
-		Reserved = 0x00000010,
-		PreferAGPMemWhenMixing = 0x00000020,
-
-		Mask = 0x0000003f,
-	}
-
-	/// <summary>
-	/// From VMRMode
-	/// </summary>
-	[Flags]
-	public enum VMRMode
-	{
-		Windowed = 0x00000001,
-		Windowless = 0x00000002,
-		Renderless = 0x00000004,
 	}
 
 	/// <summary>
@@ -343,7 +305,45 @@ namespace DirectShowLib
 
 #endif
 
-	#endregion
+    /// <summary>
+    /// From VMRMixerPrefs
+    /// </summary>
+    [Flags]
+    public enum VMRRenderPrefs
+    {
+        RestrictToInitialMonitor = 0x00000000,
+        ForceOffscreen = 0x00000001,
+        ForceOverlays = 0x00000002,
+        AllowOverlays = 0x00000000,
+        AllowOffscreen = 0x00000000,
+        DoNotRenderColorKeyAndBorder = 0x00000008,
+        Reserved = 0x00000010,
+        PreferAGPMemWhenMixing = 0x00000020,
+
+        Mask = 0x0000003f,
+    }
+
+    /// <summary>
+    /// From VMRMode
+    /// </summary>
+    [Flags]
+    public enum VMRMode
+    {
+        Windowed = 0x00000001,
+        Windowless = 0x00000002,
+        Renderless = 0x00000004,
+    }
+
+    /// <summary>
+    /// From VMR_ASPECT_RATIO_MODE
+    /// </summary>
+    public enum VMRAspectRatioMode
+    {
+        None,
+        LetterBox
+    }
+
+    #endregion
 
 	#region Interfaces
 

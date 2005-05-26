@@ -70,16 +70,6 @@ namespace DirectShowLib
 
 #if ALLOW_UNTESTED_STRUCTS
 
-    /// <summary>
-	/// From FILTER_STATE
-	/// </summary>
-	public enum FilterState
-	{
-		Stopped,
-		Paused,
-		Running
-	}
-
 	/// <summary>
 	/// From AM_SAMPLE_PROPERTY_FLAGS
 	/// </summary>
@@ -129,23 +119,6 @@ namespace DirectShowLib
 	}
 
 	/// <summary>
-	/// From AM_SEEKING_SeekingCapabilities
-	/// </summary>
-	[Flags]
-	public enum AMSeekingSeekingCapabilities
-	{
-		CanSeekAbsolute = 0x001,
-		CanSeekForwards = 0x002,
-		CanSeekBackwards = 0x004,
-		CanGetCurrentPos = 0x008,
-		CanGetStopPos = 0x010,
-		CanGetDuration = 0x020,
-		CanPlayBackwards = 0x040,
-		CanDoSegments = 0x080,
-		Source = 0x100
-	}
-
-	/// <summary>
 	/// From ALLOCATOR_PROPERTIES
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
@@ -176,15 +149,6 @@ namespace DirectShowLib
 	}
 
 
-	/// <summary>
-	/// From FILTER_INFO
-	/// </summary>
-	[StructLayout(LayoutKind.Sequential, CharSet=CharSet.Unicode)]
-  public struct FilterInfo
-    {
-    [MarshalAs(UnmanagedType.ByValTStr, SizeConst=128)] public string achName;
-    [MarshalAs(UnmanagedType.IUnknown)] public IFilterGraph pGraph;
-  }
 #endif
 
     /// <summary>
@@ -225,7 +189,43 @@ namespace DirectShowLib
         Output
     }
 
-	#endregion
+    /// <summary>
+    /// From AM_SEEKING_SeekingCapabilities
+    /// </summary>
+    [Flags]
+    public enum AMSeekingSeekingCapabilities
+    {
+        CanSeekAbsolute = 0x001,
+        CanSeekForwards = 0x002,
+        CanSeekBackwards = 0x004,
+        CanGetCurrentPos = 0x008,
+        CanGetStopPos = 0x010,
+        CanGetDuration = 0x020,
+        CanPlayBackwards = 0x040,
+        CanDoSegments = 0x080,
+        Source = 0x100
+    }
+
+    /// <summary>
+    /// From FILTER_STATE
+    /// </summary>
+    public enum FilterState
+    {
+        Stopped,
+        Paused,
+        Running
+    }
+
+    /// <summary>
+    /// From FILTER_INFO
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, CharSet=CharSet.Unicode)]
+    public struct FilterInfo
+    {
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst=128)] public string achName;
+        [MarshalAs(UnmanagedType.IUnknown)] public IFilterGraph pGraph;
+    }
+    #endregion
 
 	#region Interfaces
 
@@ -275,47 +275,6 @@ namespace DirectShowLib
 	}
 
 
-	[Guid("56a8689f-0ad4-11ce-b03a-0020af0ba770"),
-		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	public interface IFilterGraph
-	{
-		[PreserveSig]
-		int AddFilter(
-			[In] IBaseFilter pFilter,
-			[In, MarshalAs(UnmanagedType.LPWStr)] string pName
-			);
-
-		[PreserveSig]
-		int RemoveFilter([In] IBaseFilter pFilter);
-
-		[PreserveSig]
-		int EnumFilters([Out] out IEnumFilters ppEnum);
-
-		[PreserveSig]
-		int FindFilterByName(
-			[In, MarshalAs(UnmanagedType.LPWStr)] string pName,
-			[Out] out IBaseFilter ppFilter
-			);
-
-		[PreserveSig]
-		int ConnectDirect(
-			[In] IPin ppinOut,
-			[In] IPin ppinIn,
-			[In, MarshalAs(UnmanagedType.LPStruct)] AMMediaType pmt
-			);
-
-		[PreserveSig]
-    [Obsolete("This method is obsolete; use the IFilterGraph2.ReconnectEx method instead.")]
-		int Reconnect([In] IPin ppin);
-
-		[PreserveSig]
-		int Disconnect([In] IPin ppin);
-
-		[PreserveSig]
-		int SetDefaultSyncSource();
-	}
-
-
 	[Guid("56a86893-0ad4-11ce-b03a-0020af0ba770"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IEnumFilters
@@ -346,63 +305,6 @@ namespace DirectShowLib
 
 		[PreserveSig]
 		int Clone([Out] out IEnumFilters ppEnum);
-	}
-
-
-	[Guid("56a86895-0ad4-11ce-b03a-0020af0ba770"),
-		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	public interface IBaseFilter : IMediaFilter
-	{
-		#region "IPersist Methods"
-
-		[PreserveSig]
-		new int GetClassID(
-			[Out] out Guid pClassID);
-
-		#endregion
-
-		#region "IMediaFilter Methods"
-
-		[PreserveSig]
-		new int Stop();
-
-		[PreserveSig]
-		new int Pause();
-
-		[PreserveSig]
-		new int Run(long tStart);
-
-		[PreserveSig]
-		new int GetState([In] int dwMilliSecsTimeout, [Out] out FilterState filtState);
-
-		[PreserveSig]
-		new int SetSyncSource([In] IReferenceClock pClock);
-
-		[PreserveSig]
-		new int GetSyncSource([Out] out IReferenceClock pClock);
-
-		#endregion
-
-		[PreserveSig]
-		int EnumPins([Out] out IEnumPins ppEnum);
-
-		[PreserveSig]
-		int FindPin(
-			[In, MarshalAs(UnmanagedType.LPWStr)] string Id,
-			[Out] out IPin ppPin
-			);
-
-    [PreserveSig]
-    int QueryFilterInfo([Out] out FilterInfo pInfo);
-
-		[PreserveSig]
-		int JoinFilterGraph(
-			[In] IFilterGraph pGraph,
-			[In, MarshalAs(UnmanagedType.LPWStr)] string pName
-			);
-
-		[PreserveSig]
-		int QueryVendorInfo([Out, MarshalAs(UnmanagedType.LPWStr)] out string pVendorInfo);
 	}
 
 
@@ -921,6 +823,103 @@ namespace DirectShowLib
 
         [PreserveSig]
         int GetSyncSource([Out] out IReferenceClock pClock);
+    }
+
+    [Guid("56a86895-0ad4-11ce-b03a-0020af0ba770"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IBaseFilter : IMediaFilter
+    {
+        #region "IPersist Methods"
+
+        [PreserveSig]
+        new int GetClassID(
+            [Out] out Guid pClassID);
+
+        #endregion
+
+        #region "IMediaFilter Methods"
+
+        [PreserveSig]
+        new int Stop();
+
+        [PreserveSig]
+        new int Pause();
+
+        [PreserveSig]
+        new int Run(long tStart);
+
+        [PreserveSig]
+        new int GetState([In] int dwMilliSecsTimeout, [Out] out FilterState filtState);
+
+        [PreserveSig]
+        new int SetSyncSource([In] IReferenceClock pClock);
+
+        [PreserveSig]
+        new int GetSyncSource([Out] out IReferenceClock pClock);
+
+        #endregion
+
+        [PreserveSig]
+        int EnumPins([Out] out IEnumPins ppEnum);
+
+        [PreserveSig]
+        int FindPin(
+            [In, MarshalAs(UnmanagedType.LPWStr)] string Id,
+            [Out] out IPin ppPin
+            );
+
+        [PreserveSig]
+        int QueryFilterInfo([Out] out FilterInfo pInfo);
+
+        [PreserveSig]
+        int JoinFilterGraph(
+            [In] IFilterGraph pGraph,
+            [In, MarshalAs(UnmanagedType.LPWStr)] string pName
+            );
+
+        [PreserveSig]
+        int QueryVendorInfo([Out, MarshalAs(UnmanagedType.LPWStr)] out string pVendorInfo);
+    }
+
+
+    [Guid("56a8689f-0ad4-11ce-b03a-0020af0ba770"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IFilterGraph
+    {
+        [PreserveSig]
+        int AddFilter(
+            [In] IBaseFilter pFilter,
+            [In, MarshalAs(UnmanagedType.LPWStr)] string pName
+            );
+
+        [PreserveSig]
+        int RemoveFilter([In] IBaseFilter pFilter);
+
+        [PreserveSig]
+        int EnumFilters([Out] out IEnumFilters ppEnum);
+
+        [PreserveSig]
+        int FindFilterByName(
+            [In, MarshalAs(UnmanagedType.LPWStr)] string pName,
+            [Out] out IBaseFilter ppFilter
+            );
+
+        [PreserveSig]
+        int ConnectDirect(
+            [In] IPin ppinOut,
+            [In] IPin ppinIn,
+            [In, MarshalAs(UnmanagedType.LPStruct)] AMMediaType pmt
+            );
+
+        [PreserveSig]
+        [Obsolete("This method is obsolete; use the IFilterGraph2.ReconnectEx method instead.")]
+        int Reconnect([In] IPin ppin);
+
+        [PreserveSig]
+        int Disconnect([In] IPin ppin);
+
+        [PreserveSig]
+        int SetDefaultSyncSource();
     }
 
 
