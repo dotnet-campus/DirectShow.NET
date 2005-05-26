@@ -67,7 +67,7 @@ namespace DirectShowLib
 
 	#region Declarations
 
-	public enum EvCode
+	public enum EventCode
 	{
 		// EvCod.h
 		Complete = 0x01, // EC_COMPLETE

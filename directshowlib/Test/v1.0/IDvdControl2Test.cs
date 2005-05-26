@@ -48,7 +48,7 @@ namespace DirectShowLib.Test
             {
                     // If this is a windows media message
                 case WM_GRAPHNOTIFY:
-                    EvCode eventCode;
+                    EventCode eventCode;
                     int p1, p2, hr;
 
                     hr = m_mediaEvent.GetEvent(out eventCode, out p1, out p2, 0);
@@ -56,7 +56,7 @@ namespace DirectShowLib.Test
                     {
                         switch(eventCode)
                         {
-                            case EvCode.DvdCmdEnd:
+                            case EventCode.DvdCmdEnd:
                             {
                                 IDvdCmd pCmdObj = null;
 
@@ -66,7 +66,7 @@ namespace DirectShowLib.Test
                                 Debug.WriteLine(eventCode);
                                 break;
                             }
-                            case EvCode.DvdCmdStart:
+                            case EventCode.DvdCmdStart:
                             {
                                 IDvdCmd pCmdObj = null;
 
