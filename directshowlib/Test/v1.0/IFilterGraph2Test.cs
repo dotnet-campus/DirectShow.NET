@@ -42,13 +42,12 @@ namespace DirectShowLib.Test
       int hr = 0;
       ICreateDevEnum devEnum = (ICreateDevEnum) new CreateDevEnum();
       UCOMIEnumMoniker enumMoniker = null;
-      Guid filterCat = FilterCategory.AudioRendererCategory;
       UCOMIMoniker[] monikers = new UCOMIMoniker[1];
       int fetched = 0;
 
       // In this method, i try to add an Audio Renderer by browsing the 
       // AudioRenderer Filters Category...
-      hr = devEnum.CreateClassEnumerator(ref filterCat, out enumMoniker, 0);
+      hr = devEnum.CreateClassEnumerator(FilterCategory.AudioRendererCategory, out enumMoniker, 0);
       Marshal.ThrowExceptionForHR(hr);
       Marshal.ReleaseComObject(devEnum);
 

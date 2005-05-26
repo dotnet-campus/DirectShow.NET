@@ -65,16 +65,15 @@ using System.Runtime.InteropServices;
 
 namespace DirectShowLib
 {
-
 	#region Declarations
 
-#if ALLOW_UNTESTED_STRUCTS
 	/// <summary>
 	/// From CDEF_CLASS_* defines
 	/// </summary>
 	[Flags]
 	public enum CDef
 	{
+        None = 0,
 		ClassDefault = 0x0001,
 		BypassClassManager = 0x0002,
 		ClassLegacy = 0x0004,
@@ -85,13 +84,10 @@ namespace DirectShowLib
 		DevmonFilter = 0x0080,
 		DevmonSelectiveMask = 0x00f0
 	}
-#endif
 
 	#endregion
 
 	#region Interfaces
-
-#if ALLOW_UNTESTED_INTERFACES
 
 	[Guid("29840822-5B84-11D0-BD3B-00A0C911CE86"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -99,11 +95,10 @@ namespace DirectShowLib
 	{
 		[PreserveSig]
 		int CreateClassEnumerator(
-			[In] ref Guid pType,
+			[In, MarshalAs(UnmanagedType.LPStruct)] Guid pType,
 			[Out] out UCOMIEnumMoniker ppEnumMoniker,
-			[In] int dwFlags);
+			[In] CDef dwFlags);
 	}
-#endif
 
 	#endregion
 }

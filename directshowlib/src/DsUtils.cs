@@ -897,7 +897,7 @@ namespace DirectShowLib
             try
             {
                 enumDev = (ICreateDevEnum) new CreateDevEnum();
-                hr = enumDev.CreateClassEnumerator(ref devcat, out enumMon, 0);
+                hr = enumDev.CreateClassEnumerator(devcat, out enumMon, 0);
                 DsError.ThrowExceptionForHR(hr);
 
                 // CreateClassEnumerator returns null for enumMon if there are no entries
