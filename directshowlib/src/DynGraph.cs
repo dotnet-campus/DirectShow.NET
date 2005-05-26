@@ -60,9 +60,6 @@
 
 #endregion
 
-#define   ALLOW_UNTESTED_STRUCTS
-#define   ALLOW_UNTESTED_INTERFACES
-
 using System;
 using System.Runtime.InteropServices;
 
@@ -75,7 +72,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From _AM_PIN_FLOW_CONTROL_BLOCK_FLAGS
 	/// </summary>
-	[ComVisible(false), Flags]
+	[Flags]
 	public enum AMPinFlowControl
 	{
 		Block = 0x00000001
@@ -84,7 +81,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From AM_GRAPH_CONFIG_RECONNECT_FLAGS
 	/// </summary>
-	[ComVisible(false), Flags]
+	[Flags]
 	public enum AMGraphConfigReconnect
 	{
 		DirectConnect = 0x00000001,
@@ -95,7 +92,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From _REM_FILTER_FLAGS
 	/// </summary>
-	[ComVisible(false), Flags]
+	[Flags]
 	public enum RemFilterFlags
 	{
 		LeaveConnected = 0x00000001
@@ -104,7 +101,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From _AM_FILTER_FLAGS
 	/// </summary>
-	[ComVisible(false), Flags]
+	[Flags]
 	public enum AMFilterFlags
 	{
 		Removable = 0x00000001
@@ -123,8 +120,7 @@ namespace DirectShowLib
 	//
 	//--------------------------------------------------------------------
 
-	[ComVisible(true), ComImport,
-		Guid("4a9a62d3-27d4-403d-91e9-89f540e55534"),
+	[Guid("4a9a62d3-27d4-403d-91e9-89f540e55534"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IPinConnection
 	{
@@ -147,8 +143,7 @@ namespace DirectShowLib
 	//
 	//--------------------------------------------------------------------
 
-	[ComVisible(true), ComImport,
-		Guid("c56e9858-dbf3-4f6b-8119-384af2060deb"),
+	[Guid("c56e9858-dbf3-4f6b-8119-384af2060deb"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IPinFlowControl
 	{
@@ -165,8 +160,7 @@ namespace DirectShowLib
 	//
 	//--------------------------------------------------------------------
 
-	[ComVisible(true), ComImport,
-		Guid("03A1EB8E-32BF-4245-8502-114D08A9CB88"),
+	[Guid("03A1EB8E-32BF-4245-8502-114D08A9CB88"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IGraphConfig
 	{
@@ -232,8 +226,7 @@ namespace DirectShowLib
 	//
 	//--------------------------------------------------------------------
 
-	[ComVisible(true), ComImport,
-		Guid("ade0fd60-d19d-11d2-abf6-00a0c905f375"),
+	[Guid("ade0fd60-d19d-11d2-abf6-00a0c905f375"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IGraphConfigCallback
 	{
@@ -245,8 +238,7 @@ namespace DirectShowLib
 
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("DCFBDCF6-0DC2-45f5-9AB2-7C330EA09C29"),
+	[Guid("DCFBDCF6-0DC2-45f5-9AB2-7C330EA09C29"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IFilterChain
 	{

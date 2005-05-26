@@ -60,9 +60,6 @@
 
 #endregion
 
-#define   ALLOW_UNTESTED_STRUCTS
-#define   ALLOW_UNTESTED_INTERFACES
-
 using System;
 using System.Runtime.InteropServices;
 
@@ -76,7 +73,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From KSTOPOLOGY_CONNECTION
 	/// </summary>
-	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
+	[StructLayout(LayoutKind.Sequential)]
 	public struct KSTopologyConnection
 	{
 		public int FromNode;
@@ -93,8 +90,7 @@ namespace DirectShowLib
 
 #if ALLOW_UNTESTED_INTERFACES
 
-	[ComVisible(true), ComImport,
-		Guid("720D4AC0-7533-11D0-A5D6-28DB04C10000"),
+	[Guid("720D4AC0-7533-11D0-A5D6-28DB04C10000"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IKsTopologyInfo
 	{
@@ -141,8 +137,7 @@ namespace DirectShowLib
 			);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("1ABDAECA-68B6-4F83-9371-B413907C7B9F"),
+	[Guid("1ABDAECA-68B6-4F83-9371-B413907C7B9F"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface ISelector
 	{
@@ -156,8 +151,7 @@ namespace DirectShowLib
 		int put_SourceNodeId([In] int dwPinId);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("11737C14-24A7-4bb5-81A0-0D003813B0C4"),
+	[Guid("11737C14-24A7-4bb5-81A0-0D003813B0C4"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IKsNodeControl
 	{

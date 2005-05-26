@@ -60,9 +60,6 @@
 
 #endregion
 
-#define   ALLOW_UNTESTED_STRUCTS
-#define   ALLOW_UNTESTED_INTERFACES
-
 using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
@@ -77,7 +74,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From MIXER_DATA_* defines
 	/// </summary>
-	[ComVisible(false), Flags]
+	[Flags]
 	public enum MixerData
 	{
 		AspectRatio = 0x00000001, // picture aspect ratio changed
@@ -88,7 +85,6 @@ namespace DirectShowLib
 	/// <summary>
 	/// #define MIXER_STATE_* defines
 	/// </summary>
-	[ComVisible(false)]
 	public enum MixerState
 	{
 		Mask = 0x00000003, // use this mask with state status bits
@@ -106,8 +102,7 @@ namespace DirectShowLib
 
 #if ALLOW_UNTESTED_INTERFACES
 
-	[ComVisible(true), ComImport,
-		Guid("81A3BD31-DEE1-11d1-8508-00A0C91F9CA0"),
+	[Guid("81A3BD31-DEE1-11d1-8508-00A0C91F9CA0"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IMixerOCXNotify
 	{
@@ -121,8 +116,7 @@ namespace DirectShowLib
 		int OnDataChange([In] int ulDataFlags);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("81A3BD32-DEE1-11d1-8508-00A0C91F9CA0"),
+	[Guid("81A3BD32-DEE1-11d1-8508-00A0C91F9CA0"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IMixerOCX
 	{

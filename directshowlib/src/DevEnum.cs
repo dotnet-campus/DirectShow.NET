@@ -60,9 +60,6 @@
 
 #endregion
 
-#define  ALLOW_UNTESTED_STRUCTS
-#define  ALLOW_UNTESTED_INTERFACES
-
 using System;
 using System.Runtime.InteropServices;
 
@@ -75,7 +72,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From CDEF_CLASS_* defines
 	/// </summary>
-	[ComVisible(false), Flags]
+	[Flags]
 	public enum CDef
 	{
 		ClassDefault = 0x0001,
@@ -96,8 +93,7 @@ namespace DirectShowLib
 
 #if ALLOW_UNTESTED_INTERFACES
 
-	[ComVisible(true), ComImport,
-		Guid("29840822-5B84-11D0-BD3B-00A0C911CE86"),
+	[Guid("29840822-5B84-11D0-BD3B-00A0C911CE86"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface ICreateDevEnum
 	{

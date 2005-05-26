@@ -60,9 +60,6 @@
 
 #endregion
 
-#define   ALLOW_UNTESTED_STRUCTS
-#define   ALLOW_UNTESTED_INTERFACES
-
 using System;
 using System.Runtime.InteropServices;
 
@@ -72,8 +69,7 @@ namespace DirectShowLib
 	#region Interfaces
 
 #if ALLOW_UNTESTED_INTERFACES
-	[ComVisible(true), ComImport,
-		Guid("52d6f586-9f0f-4824-8fc8-e32ca04930c2"),
+	[Guid("52d6f586-9f0f-4824-8fc8-e32ca04930c2"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IDMOWrapperFilter
 	{

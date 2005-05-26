@@ -60,9 +60,6 @@
 
 #endregion
 
-#define   ALLOW_UNTESTED_STRUCTS
-#define   ALLOW_UNTESTED_INTERFACES
-
 using System;
 using System.Runtime.InteropServices;
 
@@ -76,7 +73,7 @@ namespace DirectShowLib
 	/// From KSMULTIPLE_ITEM - Note that data is returned in the memory IMMEDIATELY following this struct.
 	/// The Size parm indicates ths size of the KSMultipleItem plus the extra bytes.
 	/// </summary>
-	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
+	[StructLayout(LayoutKind.Sequential)]
 	public class KSMultipleItem
 	{
 		public int Size;
@@ -87,7 +84,7 @@ namespace DirectShowLib
     /// <summary>
     /// From REGPINMEDIUM
     /// </summary>
-    [StructLayout(LayoutKind.Sequential), ComVisible(false)]
+    [StructLayout(LayoutKind.Sequential)]
     public class PinMedium
     {
         public Guid clsMedium;
@@ -100,8 +97,7 @@ namespace DirectShowLib
 	#region Interfaces
 
 #if ALLOW_UNTESTED_INTERFACES
-	[ComVisible(true), ComImport,
-		Guid("00000109-0000-0000-C000-000000000046"),
+	[Guid("00000109-0000-0000-C000-000000000046"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IPersistStream
 	{
@@ -109,8 +105,7 @@ namespace DirectShowLib
 		int GetClassID([Out] out Guid pClassID);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("55272A00-42CB-11CE-8135-00AA004BB851"),
+	[Guid("55272A00-42CB-11CE-8135-00AA004BB851"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IPropertyBag
 	{
@@ -134,8 +129,7 @@ namespace DirectShowLib
 		//TODO:
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("B196B28B-BAB4-101A-B69C-00AA00341D07"),
+	[Guid("B196B28B-BAB4-101A-B69C-00AA00341D07"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface ISpecifyPropertyPages
 	{
@@ -144,8 +138,7 @@ namespace DirectShowLib
 	}
 
 
-	[ComVisible(true), ComImport,
-		Guid("b61178d1-a2d9-11cf-9e53-00aa00a216a1"),
+	[Guid("b61178d1-a2d9-11cf-9e53-00aa00a216a1"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IKsPin
 	{
@@ -159,8 +152,7 @@ namespace DirectShowLib
 
 #endif
 
-    [ComVisible(true), ComImport,
-    Guid("0000010c-0000-0000-C000-000000000046"),
+    [Guid("0000010c-0000-0000-C000-000000000046"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPersist
     {

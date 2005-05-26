@@ -60,9 +60,6 @@
 
 #endregion
 
-#define   ALLOW_UNTESTED_STRUCTS
-#define   ALLOW_UNTESTED_INTERFACES
-
 using System;
 using System.Runtime.InteropServices;
 
@@ -76,7 +73,6 @@ namespace DirectShowLib.BDA
 	/// <summary>
 	/// From EnTvRat_System
 	/// </summary>
-	[ComVisible(false)]
 	public enum EnTvRat_System
 	{
 		MPAA = 0,
@@ -94,7 +90,6 @@ namespace DirectShowLib.BDA
 	/// <summary>
 	/// From EnTvRat_GenericLevel
 	/// </summary>
-	[ComVisible(false)]
 	public enum EnTvRat_GenericLevel
 	{
 		TvRat_0 = 0,
@@ -112,7 +107,6 @@ namespace DirectShowLib.BDA
 	/// <summary>
 	/// From EnTvRat_MPAA
 	/// </summary>
-	[ComVisible(false)]
 	public enum EnTvRat_MPAA
 	{
 		MPAA_NotApplicable = EnTvRat_GenericLevel.TvRat_0,
@@ -128,7 +122,6 @@ namespace DirectShowLib.BDA
 	/// <summary>
 	/// From EnTvRat_US_TV
 	/// </summary>
-	[ComVisible(false)]
 	public enum EnTvRat_US_TV
 	{
 		US_TV_None = EnTvRat_GenericLevel.TvRat_0,
@@ -144,7 +137,6 @@ namespace DirectShowLib.BDA
 	/// <summary>
 	/// From EnTvRat_CAE_TV
 	/// </summary>
-	[ComVisible(false)]
 	public enum EnTvRat_CAE_TV
 	{
 		CAE_TV_Exempt = EnTvRat_GenericLevel.TvRat_0,
@@ -160,7 +152,6 @@ namespace DirectShowLib.BDA
 	/// <summary>
 	/// From EnTvRat_CAF_TV
 	/// </summary>
-	[ComVisible(false)]
 	public enum EnTvRat_CAF_TV
 	{
 		CAF_TV_Exempt = EnTvRat_GenericLevel.TvRat_0,
@@ -176,7 +167,7 @@ namespace DirectShowLib.BDA
 	/// <summary>
 	/// From BfEnTvRat_GenericAttributes
 	/// </summary>
-	[ComVisible(false), Flags]
+	[Flags]
 	public enum BfEnTvRat_GenericAttributes
 	{
 		BfAttrNone = 0,
@@ -194,7 +185,7 @@ namespace DirectShowLib.BDA
 	/// <summary>
 	/// From BfEnTvRat_Attributes_US_TV
 	/// </summary>
-	[ComVisible(false), Flags]
+	[Flags]
 	public enum BfEnTvRat_Attributes_US_TV
 	{
 		US_TV_IsBlocked = BfEnTvRat_GenericAttributes.BfIsBlocked,
@@ -208,7 +199,7 @@ namespace DirectShowLib.BDA
 	/// <summary>
 	/// From BfEnTvRat_Attributes_MPAA
 	/// </summary>
-	[ComVisible(false), Flags]
+	[Flags]
 	public enum BfEnTvRat_Attributes_MPAA
 	{
 		MPAA_IsBlocked = BfEnTvRat_GenericAttributes.BfIsBlocked,
@@ -218,7 +209,7 @@ namespace DirectShowLib.BDA
 	/// <summary>
 	/// From BfEnTvRat_Attributes_CAE_TV
 	/// </summary>
-	[ComVisible(false), Flags]
+	[Flags]
 	public enum BfEnTvRat_Attributes_CAE_TV
 	{
 		CAE_IsBlocked = BfEnTvRat_GenericAttributes.BfIsBlocked,
@@ -228,7 +219,7 @@ namespace DirectShowLib.BDA
 	/// <summary>
 	/// From BfEnTvRat_Attributes_CAF_TV
 	/// </summary>
-	[ComVisible(false), Flags]
+	[Flags]
 	public enum BfEnTvRat_Attributes_CAF_TV
 	{
 		CAF_IsBlocked = BfEnTvRat_GenericAttributes.BfIsBlocked,
@@ -236,12 +227,12 @@ namespace DirectShowLib.BDA
 	}
 
 
-	[ComImport, Guid("C5C5C5F0-3ABC-11D6-B25B-00C04FA0C026")]
+	[Guid("C5C5C5F0-3ABC-11D6-B25B-00C04FA0C026")]
 	public class XDSToRat
 	{
 	}
 
-	[ComImport, Guid("C5C5C5F1-3ABC-11D6-B25B-00C04FA0C026")]
+	[Guid("C5C5C5F1-3ABC-11D6-B25B-00C04FA0C026")]
 	public class EvalRat
 	{
 	}
@@ -253,8 +244,7 @@ namespace DirectShowLib.BDA
 
 #if ALLOW_UNTESTED_INTERFACES
 
-	[ComVisible(true), ComImport,
-		Guid("C5C5C5B0-3ABC-11D6-B25B-00C04FA0C026"),
+	[Guid("C5C5C5B0-3ABC-11D6-B25B-00C04FA0C026"),
 		InterfaceType(ComInterfaceType.InterfaceIsDual)]
 	public interface IXDSToRat
 	{
@@ -271,8 +261,7 @@ namespace DirectShowLib.BDA
 			);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("C5C5C5B1-3ABC-11D6-B25B-00C04FA0C026"),
+	[Guid("C5C5C5B1-3ABC-11D6-B25B-00C04FA0C026"),
 		InterfaceType(ComInterfaceType.InterfaceIsDual)]
 	public interface IEvalRat
 	{

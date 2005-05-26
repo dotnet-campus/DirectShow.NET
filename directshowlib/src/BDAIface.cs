@@ -60,9 +60,6 @@
 
 #endregion
 
-#define  ALLOW_UNTESTED_STRUCTS
-#define  ALLOW_UNTESTED_INTERFACES
-
 using System;
 using System.Runtime.InteropServices;
 
@@ -75,7 +72,6 @@ namespace DirectShowLib.BDA
 	/// <summary>
 	/// From KSPROPERTY_IPSINK
 	/// </summary>
-	[ComVisible(false)]
 	public enum KSPropertyIPSink
 	{
 		MULTICASTLIST,
@@ -86,7 +82,6 @@ namespace DirectShowLib.BDA
 	/// <summary>
 	/// From MEDIA_SAMPLE_CONTENT
 	/// </summary>
-	[ComVisible(false)]
 	public enum MediaSampleContent
 	{
 		TRANSPORT_PACKET, //  complete TS packet e.g. pass-through mode
@@ -98,7 +93,7 @@ namespace DirectShowLib.BDA
 	/// <summary>
 	/// From PID_MAP
 	/// </summary>
-	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
+	[StructLayout(LayoutKind.Sequential)]
 	public struct PIDMap
 	{
 		public int ulPID;
@@ -112,8 +107,7 @@ namespace DirectShowLib.BDA
 	#region Interfaces
 
 #if ALLOW_UNTESTED_INTERFACES
-	[ComVisible(true), ComImport,
-		Guid("fd501041-8ebe-11ce-8183-00aa00577da2"),
+	[Guid("fd501041-8ebe-11ce-8183-00aa00577da2"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IBDA_NetworkProvider
 	{
@@ -142,32 +136,28 @@ namespace DirectShowLib.BDA
 		int UnRegisterDeviceFilter([In] int pvRegistrationContext);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("71985F43-1CA1-11d3-9CC8-00C04F7971E0"),
+	[Guid("71985F43-1CA1-11d3-9CC8-00C04F7971E0"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IBDA_EthernetFilter
 	{
 		//TODO : Implemente this interface
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("71985F44-1CA1-11d3-9CC8-00C04F7971E0"),
+	[Guid("71985F44-1CA1-11d3-9CC8-00C04F7971E0"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IBDA_IPV4Filter
 	{
 		//TODO : Implemente this interface
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("E1785A74-2A23-4fb3-9245-A8F88017EF33"),
+	[Guid("E1785A74-2A23-4fb3-9245-A8F88017EF33"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IBDA_IPV6Filter
 	{
 		//TODO : Implemente this interface
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("FD0A5AF3-B41D-11d2-9C95-00C04F7971E0"),
+	[Guid("FD0A5AF3-B41D-11d2-9C95-00C04F7971E0"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IBDA_DeviceControl
 	{
@@ -184,8 +174,7 @@ namespace DirectShowLib.BDA
 		int GetChangeState([Out] out int pState);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("FD0A5AF3-B41D-11d2-9C95-00C04F7971E0"),
+	[Guid("FD0A5AF3-B41D-11d2-9C95-00C04F7971E0"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IBDA_PinControl
 	{
@@ -199,8 +188,7 @@ namespace DirectShowLib.BDA
 		int RegistrationContext([Out] out int pulRegistrationCtx);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("D2F1644B-B409-11d2-BC69-00A0C9EE9E16"),
+	[Guid("D2F1644B-B409-11d2-BC69-00A0C9EE9E16"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IBDA_SignalProperties
 	{
@@ -223,8 +211,7 @@ namespace DirectShowLib.BDA
 		int GetTuningSpace([Out] out Guid pguidTuingSpace);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("1347D106-CF3A-428a-A5CB-AC0D9A2A4338"),
+	[Guid("1347D106-CF3A-428a-A5CB-AC0D9A2A4338"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IBDA_SignalStatistics
 	{
@@ -259,16 +246,14 @@ namespace DirectShowLib.BDA
 		int get_SampleTime([Out] out int plmsSampleTime);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("79B56888-7FEA-4690-B45D-38FD3C7849BE"),
+	[Guid("79B56888-7FEA-4690-B45D-38FD3C7849BE"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IBDA_Topology
 	{
 		//TODO : Implemente this interface
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("71985F46-1CA1-11d3-9CC8-00C04F7971E0"),
+	[Guid("71985F46-1CA1-11d3-9CC8-00C04F7971E0"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IBDA_VoidTransform
 	{
@@ -279,8 +264,7 @@ namespace DirectShowLib.BDA
 		int Stop();
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("DDF15B0D-BD25-11d2-9CA0-00C04F7971E0"),
+	[Guid("DDF15B0D-BD25-11d2-9CA0-00C04F7971E0"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IBDA_NullTransform
 	{
@@ -291,8 +275,7 @@ namespace DirectShowLib.BDA
 		int Stop();
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("71985F47-1CA1-11d3-9CC8-00C04F7971E0"),
+	[Guid("71985F47-1CA1-11d3-9CC8-00C04F7971E0"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IBDA_FrequencyFilter
 	{
@@ -333,8 +316,7 @@ namespace DirectShowLib.BDA
 		int get_FrequencyMultiplier([Out] out int pulMultiplier);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("992CF102-49F9-4719-A664-C4F23E2408F4"),
+	[Guid("992CF102-49F9-4719-A664-C4F23E2408F4"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IBDA_LNBInfo
 	{
@@ -357,8 +339,7 @@ namespace DirectShowLib.BDA
 		int get_HighLowSwitchFrequency([Out] out int pulSwitchFrequency);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("DDF15B12-BD25-11d2-9CA0-00C04F7971E0"),
+	[Guid("DDF15B12-BD25-11d2-9CA0-00C04F7971E0"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IBDA_AutoDemodulate
 	{
@@ -366,8 +347,7 @@ namespace DirectShowLib.BDA
 		int put_AutoDemodulate();
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("EF30F379-985B-4d10-B640-A79D5E04E1E0"),
+	[Guid("EF30F379-985B-4d10-B640-A79D5E04E1E0"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IBDA_DigitalDemodulator
 	{
@@ -414,16 +394,14 @@ namespace DirectShowLib.BDA
 		int get_SpectralInversion([Out] out SpectralInversion pSpectralInversion);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("3F4DC8E2-4050-11d3-8F4B-00C04F7971E2"),
+	[Guid("3F4DC8E2-4050-11d3-8F4B-00C04F7971E2"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IBDA_IPSinkControl
 	{
 		//TODO : Implemente this interface
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("A750108F-492E-4d51-95F7-649B23FF7AD7"),
+	[Guid("A750108F-492E-4d51-95F7-649B23FF7AD7"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IBDA_IPSinkInfo
 	{
@@ -431,8 +409,7 @@ namespace DirectShowLib.BDA
 	}
 
 
-	[ComVisible(true), ComImport,
-		Guid("afb6c2a2-2c41-11d3-8a60-0000f81e0e4a"),
+	[Guid("afb6c2a2-2c41-11d3-8a60-0000f81e0e4a"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IEnumPIDMap
 	{
@@ -453,8 +430,7 @@ namespace DirectShowLib.BDA
 		int Clone([Out] out IEnumPIDMap ppIEnumPIDMap);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("afb6c2a1-2c41-11d3-8a60-0000f81e0e4a"),
+	[Guid("afb6c2a1-2c41-11d3-8a60-0000f81e0e4a"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IMPEG2PIDMap
 	{
@@ -475,8 +451,7 @@ namespace DirectShowLib.BDA
 		int EnumPIDMap([Out] out IEnumPIDMap pIEnumPIDMap);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("06FB45C1-693C-4ea7-B79F-7A6A54D8DEF2"),
+	[Guid("06FB45C1-693C-4ea7-B79F-7A6A54D8DEF2"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IFrequencyMap
 	{

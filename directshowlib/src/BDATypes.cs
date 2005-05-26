@@ -60,9 +60,6 @@
 
 #endregion
 
-#define  ALLOW_UNTESTED_STRUCTS
-#define  ALLOW_UNTESTED_INTERFACES
-
 using System;
 using System.Runtime.InteropServices;
 
@@ -76,7 +73,6 @@ namespace DirectShowLib.BDA
 	/// <summary>
 	/// From BDA_EVENT_ID
 	/// </summary>
-	[ComVisible(false)]
 	public enum BDAEventID
 	{
 		SIGNAL_LOSS = 0,
@@ -104,7 +100,6 @@ namespace DirectShowLib.BDA
 	/// <summary>
 	/// From DVBSystemType
 	/// </summary>
-	[ComVisible(false)]
 	public enum DVBSystemType
 	{
 		Cable,
@@ -115,7 +110,6 @@ namespace DirectShowLib.BDA
 	/// <summary>
 	/// From ComponentCategory
 	/// </summary>
-	[ComVisible(false)]
 	public enum ComponentCategory
 	{
 		NotSet = -1,
@@ -129,7 +123,6 @@ namespace DirectShowLib.BDA
 	/// <summary>
 	/// From ComponentStatus
 	/// </summary>
-	[ComVisible(false)]
 	public enum ComponentStatus
 	{
 		Active,
@@ -140,7 +133,6 @@ namespace DirectShowLib.BDA
 	/// <summary>
 	/// From MPEG2StreamType
 	/// </summary>
-	[ComVisible(false)]
 	public enum MPEG2StreamType
 	{
 		BDA_UNITIALIZED_MPEG2STREAMTYPE = -1,
@@ -166,7 +158,7 @@ namespace DirectShowLib.BDA
 	/// <summary>
 	/// From ATSCComponentTypeFlags
 	/// </summary>
-	[ComVisible(false), Flags]
+	[Flags]
 	public enum ATSCComponentTypeFlags
 	{
 		ATSCCT_AC3 = 0x00000001
@@ -175,7 +167,6 @@ namespace DirectShowLib.BDA
 	/// <summary>
 	/// From BinaryConvolutionCodeRate
 	/// </summary>
-	[ComVisible(false)]
 	public enum BinaryConvolutionCodeRate
 	{
 		RATE_NOT_SET = -1,
@@ -194,7 +185,6 @@ namespace DirectShowLib.BDA
 	/// <summary>
 	/// From FECMethod
 	/// </summary>
-	[ComVisible(false)]
 	public enum FECMethod
 	{
 		METHOD_NOT_SET = -1,
@@ -207,7 +197,6 @@ namespace DirectShowLib.BDA
 	/// <summary>
 	/// From ModulationType
 	/// </summary>
-	[ComVisible(false)]
 	public enum ModulationType
 	{
 		MOD_NOT_SET = -1,
@@ -244,7 +233,6 @@ namespace DirectShowLib.BDA
 	/// <summary>
 	/// From SpectralInversion
 	/// </summary>
-	[ComVisible(false)]
 	public enum SpectralInversion
 	{
 		NOT_SET = -1,
@@ -258,7 +246,6 @@ namespace DirectShowLib.BDA
 	/// <summary>
 	/// From Polarisation
 	/// </summary>
-	[ComVisible(false)]
 	public enum Polarisation
 	{
 		NOT_SET = -1,
@@ -273,7 +260,6 @@ namespace DirectShowLib.BDA
 	/// <summary>
 	/// From GuardInterval
 	/// </summary>
-	[ComVisible(false)]
 	public enum GuardInterval
 	{
 		GUARD_NOT_SET = -1,
@@ -288,7 +274,6 @@ namespace DirectShowLib.BDA
 	/// <summary>
 	/// From HierarchyAlpha
 	/// </summary>
-	[ComVisible(false)]
 	public enum HierarchyAlpha
 	{
 		HALPHA_NOT_SET = -1,
@@ -302,7 +287,6 @@ namespace DirectShowLib.BDA
 	/// <summary>
 	/// From TransmissionMode
 	/// </summary>
-	[ComVisible(false)]
 	public enum TransmissionMode
 	{
 		MODE_NOT_SET = -1,
@@ -315,7 +299,7 @@ namespace DirectShowLib.BDA
 	/// <summary>
 	/// From BDA_TEMPLATE_CONNECTION
 	/// </summary>
-	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
+	[StructLayout(LayoutKind.Sequential)]
 	public struct BDATemplateConnection
 	{
 		public int FromNodeType;
@@ -327,7 +311,7 @@ namespace DirectShowLib.BDA
 	/// <summary>
 	/// From BDA_TEMPLATE_PIN_JOINT
 	/// </summary>
-	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
+	[StructLayout(LayoutKind.Sequential)]
 	public struct BDATemplatePinJoint
 	{
 		public int uliTemplateConnection;
@@ -337,7 +321,7 @@ namespace DirectShowLib.BDA
 	/// <summary>
 	/// From KS_BDA_FRAME_INFO
 	/// </summary>
-	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
+	[StructLayout(LayoutKind.Sequential)]
 	public struct KSBDAFrameInfo
 	{
 		public int ExtendedHeaderSize; // Size of this extended header
@@ -352,7 +336,7 @@ namespace DirectShowLib.BDA
 	/// <summary>
 	/// From MPEG2_TRANSPORT_STRIDE
 	/// </summary>
-	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
+	[StructLayout(LayoutKind.Sequential)]
 	public struct MPEG2TransportStride
 	{
 		public int dwOffset;

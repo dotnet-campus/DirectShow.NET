@@ -60,9 +60,6 @@
 
 #endregion
 
-#define  ALLOW_UNTESTED_STRUCTS
-#define  ALLOW_UNTESTED_INTERFACES
-
 using System;
 using System.Runtime.InteropServices;
 
@@ -81,7 +78,7 @@ namespace DirectShowLib
     /// <summary>
     /// From WS_* defines
     /// </summary>
-    [ComVisible(false), Flags]
+    [Flags]
     public enum WindowStyle
     {
         Overlapped     =  0x00000000,
@@ -109,7 +106,7 @@ namespace DirectShowLib
     /// <summary>
     /// From WS_EX_* defines
     /// </summary>
-    [ComVisible(false), Flags]
+    [Flags]
     public enum WindowStyleEx
     {
         DlgModalFrame   =  0x00000001,
@@ -141,7 +138,6 @@ namespace DirectShowLib
     /// <summary>
     /// From SW_* defines
     /// </summary>
-    [ComVisible(false)]
     public enum WindowState
     {
         Hide = 0,
@@ -163,8 +159,7 @@ namespace DirectShowLib
 	#region Interfaces
 
 #if ALLOW_UNTESTED_INTERFACES
-	[ComVisible(true), ComImport,
-		Guid("56a868b9-0ad4-11ce-b03a-0020af0ba770"),
+	[Guid("56a868b9-0ad4-11ce-b03a-0020af0ba770"),
 		InterfaceType(ComInterfaceType.InterfaceIsDual)]
 	public interface IAMCollection
 	{
@@ -181,8 +176,7 @@ namespace DirectShowLib
 		int get__NewEnum([Out, MarshalAs(UnmanagedType.IUnknown)] out object ppUnk);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("56a868b1-0ad4-11ce-b03a-0020af0ba770"),
+	[Guid("56a868b1-0ad4-11ce-b03a-0020af0ba770"),
 		InterfaceType(ComInterfaceType.InterfaceIsDual)]
 	public interface IMediaControl
 	{
@@ -220,8 +214,7 @@ namespace DirectShowLib
 		int StopWhenReady();
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("56a868b6-0ad4-11ce-b03a-0020af0ba770"),
+	[Guid("56a868b6-0ad4-11ce-b03a-0020af0ba770"),
 		InterfaceType(ComInterfaceType.InterfaceIsDual)]
 	public interface IMediaEvent
 	{
@@ -256,8 +249,7 @@ namespace DirectShowLib
 			);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("56a868c0-0ad4-11ce-b03a-0020af0ba770"),
+	[Guid("56a868c0-0ad4-11ce-b03a-0020af0ba770"),
 		InterfaceType(ComInterfaceType.InterfaceIsDual)]
 	public interface IMediaEventEx : IMediaEvent
 	{
@@ -309,8 +301,7 @@ namespace DirectShowLib
 		int GetNotifyFlags([Out] out int lplNoNotifyFlags);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("56a868b2-0ad4-11ce-b03a-0020af0ba770"),
+	[Guid("56a868b2-0ad4-11ce-b03a-0020af0ba770"),
 		InterfaceType(ComInterfaceType.InterfaceIsDual)]
 	public interface IMediaPosition
 	{
@@ -348,8 +339,7 @@ namespace DirectShowLib
 		int CanSeekBackward([Out] out int pCanSeekBackward);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("56a868b5-0ad4-11ce-b03a-0020af0ba770"),
+	[Guid("56a868b5-0ad4-11ce-b03a-0020af0ba770"),
 		InterfaceType(ComInterfaceType.InterfaceIsDual)]
 	public interface IBasicVideo
 	{
@@ -481,8 +471,7 @@ namespace DirectShowLib
 		int IsUsingDefaultDestination();
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("329bb360-f6ea-11d1-9038-00a0c9697298"),
+	[Guid("329bb360-f6ea-11d1-9038-00a0c9697298"),
 		InterfaceType(ComInterfaceType.InterfaceIsDual)]
 	public interface IBasicVideo2 : IBasicVideo
 	{
@@ -624,8 +613,7 @@ namespace DirectShowLib
 			);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("56a868b8-0ad4-11ce-b03a-0020af0ba770"),
+	[Guid("56a868b8-0ad4-11ce-b03a-0020af0ba770"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IDeferredCommand
 	{
@@ -642,8 +630,7 @@ namespace DirectShowLib
 		int GetHResult([Out] out int phrResult);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("56a868b7-0ad4-11ce-b03a-0020af0ba770"),
+	[Guid("56a868b7-0ad4-11ce-b03a-0020af0ba770"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IQueueCommand
 	{
@@ -672,8 +659,7 @@ namespace DirectShowLib
 			);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("56a868ba-0ad4-11ce-b03a-0020af0ba770"),
+	[Guid("56a868ba-0ad4-11ce-b03a-0020af0ba770"),
 		InterfaceType(ComInterfaceType.InterfaceIsDual)]
 	public interface IFilterInfo
 	{
@@ -705,8 +691,7 @@ namespace DirectShowLib
 		int put_Filename([In, MarshalAs(UnmanagedType.BStr)] string strFilename);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("56a868bb-0ad4-11ce-b03a-0020af0ba770"),
+	[Guid("56a868bb-0ad4-11ce-b03a-0020af0ba770"),
 		InterfaceType(ComInterfaceType.InterfaceIsDual)]
 	public interface IRegFilterInfo
 	{
@@ -717,8 +702,7 @@ namespace DirectShowLib
 		int Filter([Out, MarshalAs(UnmanagedType.IDispatch)] out object ppUnk);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("56a868bc-0ad4-11ce-b03a-0020af0ba770"),
+	[Guid("56a868bc-0ad4-11ce-b03a-0020af0ba770"),
 		InterfaceType(ComInterfaceType.InterfaceIsDual)]
 	public interface IMediaTypeInfo
 	{
@@ -729,8 +713,7 @@ namespace DirectShowLib
 		int get_Subtype([Out, MarshalAs(UnmanagedType.BStr)] out string strType);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("56a868bd-0ad4-11ce-b03a-0020af0ba770"),
+	[Guid("56a868bd-0ad4-11ce-b03a-0020af0ba770"),
 		InterfaceType(ComInterfaceType.InterfaceIsDual)]
 	public interface IPinInfo
 	{
@@ -777,8 +760,7 @@ namespace DirectShowLib
 		int Render();
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("bc9bcf80-dcd2-11d2-abf6-00a0c905f375"),
+	[Guid("bc9bcf80-dcd2-11d2-abf6-00a0c905f375"),
 		InterfaceType(ComInterfaceType.InterfaceIsDual)]
 	public interface IAMStats
 	{
@@ -827,8 +809,7 @@ namespace DirectShowLib
 	}
 #endif
 
-	[ComVisible(true), ComImport,
-		Guid("56a868b4-0ad4-11ce-b03a-0020af0ba770"),
+	[Guid("56a868b4-0ad4-11ce-b03a-0020af0ba770"),
 		InterfaceType(ComInterfaceType.InterfaceIsDual)]
 	public interface IVideoWindow
 	{
@@ -978,23 +959,22 @@ namespace DirectShowLib
 		int IsCursorHidden([Out] out OABool hideCursor);
 	}
 
-  [ComVisible(true), ComImport,
-  Guid("56a868b3-0ad4-11ce-b03a-0020af0ba770"),
-  InterfaceType(ComInterfaceType.InterfaceIsDual)]
-  public interface IBasicAudio
-  {
-    [PreserveSig]
-    int put_Volume([In] int lVolume);
+    [Guid("56a868b3-0ad4-11ce-b03a-0020af0ba770"),
+    InterfaceType(ComInterfaceType.InterfaceIsDual)]
+    public interface IBasicAudio
+    {
+        [PreserveSig]
+        int put_Volume([In] int lVolume);
 
-    [PreserveSig]
-    int get_Volume([Out] out int plVolume);
+        [PreserveSig]
+        int get_Volume([Out] out int plVolume);
 
-    [PreserveSig]
-    int put_Balance([In] int lBalance);
+        [PreserveSig]
+        int put_Balance([In] int lBalance);
 
-    [PreserveSig]
-    int get_Balance([Out] out int plBalance);
-  }
+        [PreserveSig]
+        int get_Balance([Out] out int plBalance);
+    }
 
   #endregion
 }

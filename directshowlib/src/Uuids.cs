@@ -65,7 +65,6 @@ using System.Runtime.InteropServices;
 
 namespace DirectShowLib
 {
-    [ComVisible(false)]
     public class FilterCategory // uuids.h  :  CLSID_*
     {
         /// <summary> CLSID_AudioInputDeviceCategory, audio capture category </summary>
@@ -168,7 +167,6 @@ namespace DirectShowLib
         public static readonly Guid AMKSSplitter = new Guid(0x0A4252A0, 0x7E70, 0x11D0, 0xA5, 0xD6, 0x28, 0xDB, 0x04, 0xC1, 0x00, 0x00);
     }
 
-	[ComVisible(false)]
 	public class KSProxyClsId // uuids.h  :  CLSID_*
 	{
 		// -------------------------------------------------------------------------
@@ -184,7 +182,6 @@ namespace DirectShowLib
 		public static readonly Guid AudioRendererAdvancedProperties = new Guid(0x37e92a92, 0xd9aa, 0x11d2, 0xbf, 0x84, 0x8e, 0xf2, 0xb1, 0x55, 0x5a, 0xed);
 	}
 
-	[ComVisible(false)]
 	public class VMRClsId // uuids.h  :  CLSID_*
 	{
 		// -------------------------------------------------------------------------
@@ -208,7 +205,6 @@ namespace DirectShowLib
 		public static readonly Guid VideoMixingRenderer9 = new Guid(0x51b4abf3, 0x748f, 0x4e3b, 0xa2, 0x76, 0xc8, 0x28, 0x33, 0x0e, 0x92, 0x6a);
 	}
 
-	[ComVisible(false)]
 	public class BDAClsId // uuids.h  :  CLSID_*
 	{
 		// -------------------------------------------------------------------------
@@ -221,7 +217,6 @@ namespace DirectShowLib
 		public static readonly Guid DVBCNetworkProvider = new Guid(0xdc0c0fe7, 0x485, 0x4266, 0xb9, 0x3f, 0x68, 0xfb, 0xf8, 0xe, 0xd8, 0x34);
 	}
 
-	[ComVisible(false)]
 	public class TVEClsId // uuids.h  :  CLSID_*
 	{
 		// -------------------------------------------------------------------------
@@ -240,7 +235,6 @@ namespace DirectShowLib
         public static readonly Guid TVEFilterStatsProperties = new Guid(0x05500283, 0xFAA5, 0x4DF9, 0x82, 0x46, 0xBF, 0xC2, 0x3A, 0xC5, 0xCE, 0xA8);
 	}
 
-	[ComVisible(false)]
 	public class ENCAPIClsId // uuids.h  :  CLSID_*
 	{
 		// -------------------------------------------------------------------------
@@ -262,7 +256,6 @@ namespace DirectShowLib
         public static readonly Guid Line21Decoder2 = new Guid(0xe4206432, 0x01a1, 0x4bee, 0xb3, 0xe1, 0x37, 0x02, 0xc8, 0xed, 0xc5, 0x74);
 	}
 
-    [ComVisible(false)]
     public class MediaType // MEDIATYPE_*
     {
         public static readonly Guid Null = Guid.Empty;
@@ -313,7 +306,6 @@ namespace DirectShowLib
         public static readonly Guid AnalogAudio = new Guid(0x482dee1, 0x7817, 0x11cf, 0x8a, 0x3, 0x0, 0xaa, 0x0, 0x6e, 0xcb, 0x65);
     }
 
-	[ComVisible(false)]
 	public class MediaSubType // MEDIASUBTYPE_*
 	{
         public static readonly Guid Null = Guid.Empty;
@@ -659,7 +651,6 @@ namespace DirectShowLib
 
     }
 
-	[ComVisible(false)]
 	public class FormatType // FORMAT_*
 	{
         public static readonly Guid Null = Guid.Empty;
@@ -690,7 +681,6 @@ namespace DirectShowLib
 
     }
 
-	[ComVisible(false)]
 	public class PropSetID
 	{
 		/// <summary> AMPROPSETID_Pin</summary>
@@ -731,7 +721,6 @@ namespace DirectShowLib
 
     }
 
-	[ComVisible(false)]
 	public class PinCategory // PIN_CATEGORY_*
 	{
 		/// <summary> PIN_CATEGORY_CAPTURE </summary>
@@ -772,7 +761,6 @@ namespace DirectShowLib
 
 	}
 
-	[ComVisible(false)]
 	public class FindDirection
 	{
 		/// <summary> LOOK_UPSTREAM_ONLY </summary>
@@ -782,7 +770,6 @@ namespace DirectShowLib
 		public static readonly Guid DownstreamOnly = new Guid(0xac798be1, 0x98e3, 0x11d1, 0xb3, 0xf1, 0x0, 0xaa, 0x0, 0x37, 0x61, 0xc5);
 	}
 
-    [ComVisible(false)]
     public class TimeFormat
     {
         // 00000000-0000-0000-0000-000000000000 TIME_FORMAT_NONE
@@ -803,7 +790,7 @@ namespace DirectShowLib
         // 7b785574-8c82-11cf-bc0c-00aa00ac74f6 TIME_FORMAT_MEDIA_TIME
         public static readonly Guid MediaTime = new Guid(0x7b785574, 0x8c82, 0x11cf, 0xbc, 0xc, 0x0, 0xaa, 0x0, 0xac, 0x74, 0xf6);
     }
-    [ComVisible(false)]
+
     public class PropertyPages
     {
         /// <summary> CLSID_CrossbarFilterPropertyPage </summary>

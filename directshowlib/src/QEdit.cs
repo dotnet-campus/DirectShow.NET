@@ -60,9 +60,6 @@
 
 #endregion
 
-#define   ALLOW_UNTESTED_STRUCTS
-#define   ALLOW_UNTESTED_INTERFACES
-
 using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
@@ -76,7 +73,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From VIDEOINFOHEADER
 	/// </summary>
-	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
+	[StructLayout(LayoutKind.Sequential)]
 	public class VideoInfoHeader
 	{
 		public Rectangle SrcRect;
@@ -90,7 +87,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From VIDEOINFOHEADER2
 	/// </summary>
-	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
+	[StructLayout(LayoutKind.Sequential)]
 	public class VideoInfoHeader2
 	{
 		public Rectangle SrcRect;
@@ -110,7 +107,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From WAVEFORMATEX
 	/// </summary>
-	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
+	[StructLayout(LayoutKind.Sequential)]
 	public class WaveFormatEx
 	{
 		public short wFormatTag;
@@ -129,8 +126,7 @@ namespace DirectShowLib
 
 #if ALLOW_UNTESTED_INTERFACES
 
-	[ComVisible(true), ComImport,
-		Guid("6B652FFF-11FE-4fce-92AD-0266B5D7C78F"),
+	[Guid("6B652FFF-11FE-4fce-92AD-0266B5D7C78F"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface ISampleGrabber
 	{
@@ -161,8 +157,7 @@ namespace DirectShowLib
 	}
 
 
-	[ComVisible(true), ComImport,
-		Guid("0579154A-2B53-4994-B0D0-E773148EFF85"),
+	[Guid("0579154A-2B53-4994-B0D0-E773148EFF85"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface ISampleGrabberCB
 	{

@@ -60,9 +60,6 @@
 
 #endregion
 
-#define   ALLOW_UNTESTED_STRUCTS
-#define   ALLOW_UNTESTED_INTERFACES
-
 using System;
 using System.Runtime.InteropServices;
 
@@ -76,7 +73,6 @@ namespace DirectShowLib.SBE
 	/// <summary>
 	/// From unnamed structure
 	/// </summary>
-	[ComVisible(false)]
 	public enum RecordingType
 	{
 		Content = 0, //  no post-recording or overlapped
@@ -86,7 +82,6 @@ namespace DirectShowLib.SBE
 	/// <summary>
 	/// From STREAMBUFFER_ATTR_DATATYPE
 	/// </summary>
-	[ComVisible(false)]
 	public enum StreamBufferAttrDataType
 	{
 		DWord = 0,
@@ -101,7 +96,6 @@ namespace DirectShowLib.SBE
 	/// <summary>
 	/// From unnamed structure
 	/// </summary>
-	[ComVisible(false)]
 	public enum StreamBufferEventCode
 	{
 		TimeHole = 0x0326, // STREAMBUFFER_EC_TIMEHOLE
@@ -117,7 +111,6 @@ namespace DirectShowLib.SBE
 	/// <summary>
 	/// From g_wszStreamBufferRecording* static const WCHAR 
 	/// </summary>
-	[ComVisible(false)]
 	public class StreamBufferRecording
 	{
 		////////////////////////////////////////////////////////////////
@@ -225,7 +218,7 @@ namespace DirectShowLib.SBE
 	/// <summary>
 	/// From STREAMBUFFER_ATTRIBUTE
 	/// </summary>
-	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
+	[StructLayout(LayoutKind.Sequential)]
 	public struct StreamBufferAttribute
 	{
 		[MarshalAs(UnmanagedType.LPWStr)] public string pszName;
@@ -237,7 +230,7 @@ namespace DirectShowLib.SBE
 	/// <summary>
 	/// From SBE_PIN_DATA
 	/// </summary>
-	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
+	[StructLayout(LayoutKind.Sequential)]
 	public struct SBEPinData
 	{
 		public long cDataBytes; //  total sample payload bytes
@@ -255,8 +248,7 @@ namespace DirectShowLib.SBE
 
 #if ALLOW_UNTESTED_INTERFACES
 
-	[ComVisible(true), ComImport,
-		Guid("9ce50f2d-6ba7-40fb-a034-50b1a674ec78"),
+	[Guid("9ce50f2d-6ba7-40fb-a034-50b1a674ec78"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IStreamBufferInitialize
 	{
@@ -270,8 +262,7 @@ namespace DirectShowLib.SBE
 			);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("afd1f242-7efd-45ee-ba4e-407a25c9a77a"),
+	[Guid("afd1f242-7efd-45ee-ba4e-407a25c9a77a"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IStreamBufferSink
 	{
@@ -289,8 +280,7 @@ namespace DirectShowLib.SBE
 		int IsProfileLocked();
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("DB94A660-F4FB-4bfa-BCC6-FE159A4EEA93"),
+	[Guid("DB94A660-F4FB-4bfa-BCC6-FE159A4EEA93"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IStreamBufferSink2 : IStreamBufferSink
 	{
@@ -315,8 +305,7 @@ namespace DirectShowLib.SBE
 		int UnlockProfile();
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("974723f2-887a-4452-9366-2cff3057bc8f"),
+	[Guid("974723f2-887a-4452-9366-2cff3057bc8f"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IStreamBufferSink3 : IStreamBufferSink2
 	{
@@ -348,8 +337,7 @@ namespace DirectShowLib.SBE
 		int SetAvailableFilter([In, Out] ref long prtMin);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("1c5bd776-6ced-4f44-8164-5eab0e98db12"),
+	[Guid("1c5bd776-6ced-4f44-8164-5eab0e98db12"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IStreamBufferSource
 	{
@@ -357,8 +345,7 @@ namespace DirectShowLib.SBE
 		int SetStreamSink([In] ref IStreamBufferSink pIStreamBufferSink);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("ba9b6c99-f3c7-4ff2-92db-cfdd4851bf31"),
+	[Guid("ba9b6c99-f3c7-4ff2-92db-cfdd4851bf31"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IStreamBufferRecordControl
 	{
@@ -376,8 +363,7 @@ namespace DirectShowLib.SBE
 			);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("9E259A9B-8815-42ae-B09F-221970B154FD"),
+	[Guid("9E259A9B-8815-42ae-B09F-221970B154FD"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IStreamBufferRecComp
 	{
@@ -407,8 +393,7 @@ namespace DirectShowLib.SBE
 		int Cancel();
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("16CA4E03-FE69-4705-BD41-5B7DFC0C95F3"),
+	[Guid("16CA4E03-FE69-4705-BD41-5B7DFC0C95F3"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IStreamBufferRecordingAttribute
 	{
@@ -450,8 +435,7 @@ namespace DirectShowLib.SBE
 		int EnumAttributes([Out] out IEnumStreamBufferRecordingAttrib ppIEnumStreamBufferAttrib);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("16CA4E03-FE69-4705-BD41-5B7DFC0C95F3"),
+	[Guid("16CA4E03-FE69-4705-BD41-5B7DFC0C95F3"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IEnumStreamBufferRecordingAttrib
 	{
@@ -472,8 +456,7 @@ namespace DirectShowLib.SBE
 		int Clone([Out] out IEnumStreamBufferRecordingAttrib ppIEnumStreamBufferAttrib);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("ce14dfae-4098-4af7-bbf7-d6511f835414"),
+	[Guid("ce14dfae-4098-4af7-bbf7-d6511f835414"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IStreamBufferConfigure
 	{
@@ -502,8 +485,7 @@ namespace DirectShowLib.SBE
 		int GetBackingFileDuration([Out] out int pdwSeconds);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("53E037BF-3992-4282-AE34-2487B4DAE06B"),
+	[Guid("53E037BF-3992-4282-AE34-2487B4DAE06B"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IStreamBufferConfigure2 : IStreamBufferConfigure
 	{
@@ -555,8 +537,7 @@ namespace DirectShowLib.SBE
 	}
 
 	///TODO : Check IMediaSeeking !!!
-	[ComVisible(true), ComImport,
-		Guid("f61f5c26-863d-4afa-b0ba-2f81dc978596"),
+	[Guid("f61f5c26-863d-4afa-b0ba-2f81dc978596"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IStreamBufferMediaSeeking : IMediaSeeking
 	{
@@ -569,7 +550,7 @@ namespace DirectShowLib.SBE
 		new int CheckCapabilities([In, Out] ref AMSeekingSeekingCapabilities pCapabilities);
 
 		[PreserveSig]
-		new int IsFormatSupported([In] ref Guid pFormat);
+        new int IsFormatSupported([In, MarshalAs(UnmanagedType.LPStruct)] Guid pFormat);
 
 		[PreserveSig]
 		new int QueryPreferredFormat([Out] out Guid pFormat);
@@ -578,10 +559,10 @@ namespace DirectShowLib.SBE
 		new int GetTimeFormat([Out] out Guid pFormat);
 
 		[PreserveSig]
-		new int IsUsingTimeFormat([In] ref Guid pFormat);
+        new int IsUsingTimeFormat([In, MarshalAs(UnmanagedType.LPStruct)] Guid pFormat);
 
 		[PreserveSig]
-		new int SetTimeFormat([In] ref Guid pFormat);
+        new int SetTimeFormat([In, MarshalAs(UnmanagedType.LPStruct)] Guid pFormat);
 
 		[PreserveSig]
 		new int GetDuration([Out] out long pDuration);
@@ -592,21 +573,21 @@ namespace DirectShowLib.SBE
 		[PreserveSig]
 		new int GetCurrentPosition([Out] out long pCurrent);
 
-		[PreserveSig]
-		new int ConvertTimeFormat(
-			[Out] out long pTarget,
-			[In] ref Guid pTargetFormat,
-			[In] long Source,
-			[In] ref Guid pSourceFormat
-			);
+        [PreserveSig]
+        new int ConvertTimeFormat(
+            [Out] out long pTarget,
+            [In, MarshalAs(UnmanagedType.LPStruct)] GUID pTargetFormat,
+            [In] long Source,
+            [In, MarshalAs(UnmanagedType.LPStruct)] GUID pSourceFormat
+            );
 
-		[PreserveSig]
-		new int SetPositions(
-			[In, Out] ref long pCurrent,
-			[In] AMSeekingSeekingFlags dwCurrentFlags,
-			[In, Out] ref long pStop,
-			[In] AMSeekingSeekingFlags dwStopFlags
-			);
+        [PreserveSig]
+        new int SetPositions(
+            [In, Out, MarshalAs(UnmanagedType.LPStruct)] DsOptInt64 pCurrent,
+            [In] AMSeekingSeekingFlags dwCurrentFlags,
+            [In, Out, MarshalAs(UnmanagedType.LPStruct)] DsOptInt64 pStop,
+            [In] AMSeekingSeekingFlags dwStopFlags
+            );
 
 		[PreserveSig]
 		new int GetPositions(
@@ -632,8 +613,7 @@ namespace DirectShowLib.SBE
 		#endregion
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("3a439ab0-155f-470a-86a6-9ea54afd6eaf"),
+	[Guid("3a439ab0-155f-470a-86a6-9ea54afd6eaf"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IStreamBufferMediaSeeking2 : IStreamBufferMediaSeeking
 	{
@@ -646,7 +626,7 @@ namespace DirectShowLib.SBE
 		new int CheckCapabilities([In, Out] ref AMSeekingSeekingCapabilities pCapabilities);
 
 		[PreserveSig]
-		new int IsFormatSupported([In] ref Guid pFormat);
+        new int IsFormatSupported([In, MarshalAs(UnmanagedType.LPStruct)] Guid pFormat);
 
 		[PreserveSig]
 		new int QueryPreferredFormat([Out] out Guid pFormat);
@@ -655,10 +635,10 @@ namespace DirectShowLib.SBE
 		new int GetTimeFormat([Out] out Guid pFormat);
 
 		[PreserveSig]
-		new int IsUsingTimeFormat([In] ref Guid pFormat);
+        new int IsUsingTimeFormat([In, MarshalAs(UnmanagedType.LPStruct)] Guid pFormat);
 
 		[PreserveSig]
-		new int SetTimeFormat([In] ref Guid pFormat);
+        new int SetTimeFormat([In, MarshalAs(UnmanagedType.LPStruct)] Guid pFormat);
 
 		[PreserveSig]
 		new int GetDuration([Out] out long pDuration);
@@ -669,23 +649,23 @@ namespace DirectShowLib.SBE
 		[PreserveSig]
 		new int GetCurrentPosition([Out] out long pCurrent);
 
-		[PreserveSig]
-		new int ConvertTimeFormat(
-			[Out] out long pTarget,
-			[In] ref Guid pTargetFormat,
-			[In] long Source,
-			[In] ref Guid pSourceFormat
-			);
+        [PreserveSig]
+        new int ConvertTimeFormat(
+            [Out] out long pTarget,
+            [In, MarshalAs(UnmanagedType.LPStruct)] GUID pTargetFormat,
+            [In] long Source,
+            [In, MarshalAs(UnmanagedType.LPStruct)] GUID pSourceFormat
+            );
 
-		[PreserveSig]
-		new int SetPositions(
-			[In, Out] ref long pCurrent,
-			[In] AMSeekingSeekingFlags dwCurrentFlags,
-			[In, Out] ref long pStop,
-			[In] AMSeekingSeekingFlags dwStopFlags
-			);
+        [PreserveSig]
+        new int SetPositions(
+            [In, Out, MarshalAs(UnmanagedType.LPStruct)] DsOptInt64 pCurrent,
+            [In] AMSeekingSeekingFlags dwCurrentFlags,
+            [In, Out, MarshalAs(UnmanagedType.LPStruct)] DsOptInt64 pStop,
+            [In] AMSeekingSeekingFlags dwStopFlags
+            );
 
-		[PreserveSig]
+        [PreserveSig]
 		new int GetPositions(
 			[Out] out long pCurrent,
 			[Out] out long pStop
@@ -715,8 +695,7 @@ namespace DirectShowLib.SBE
 			);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("9D2A2563-31AB-402e-9A6B-ADB903489440"),
+	[Guid("9D2A2563-31AB-402e-9A6B-ADB903489440"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IStreamBufferDataCounters
 	{

@@ -730,8 +730,7 @@ namespace DirectShowLib.Dvd
     #region Interfaces
 
 #if ALLOW_UNTESTED_INTERFACES
-    [ComImport,
-    Guid("A70EFE61-E2A3-11d0-A9BE-00AA0061BE93"),
+    [Guid("A70EFE61-E2A3-11d0-A9BE-00AA0061BE93"),
     Obsolete("The IDvdControl interface is deprecated. Use IDvdControl2 instead.", false),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IDvdControl
@@ -855,8 +854,7 @@ namespace DirectShowLib.Dvd
             );
     }
 
-    [ComImport,
-    Guid("A70EFE60-E2A3-11d0-A9BE-00AA0061BE93"),
+    [Guid("A70EFE60-E2A3-11d0-A9BE-00AA0061BE93"),
     Obsolete("The IDvdInfo interface is deprecated. Use IDvdInfo2 instead.", false),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IDvdInfo
@@ -977,8 +975,7 @@ namespace DirectShowLib.Dvd
             );
     }
 
-    [ComImport,
-    Guid("5a4a97e4-94ee-4a55-9751-74b5643aa27d"),
+    [Guid("5a4a97e4-94ee-4a55-9751-74b5643aa27d"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IDvdCmd
     {
@@ -989,8 +986,7 @@ namespace DirectShowLib.Dvd
         int WaitForEnd();
     }
 
-    [ComImport,
-    Guid("86303d6d-1c4a-4087-ab42-f711167048ef"),
+    [Guid("86303d6d-1c4a-4087-ab42-f711167048ef"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IDvdState
     {
@@ -1001,8 +997,7 @@ namespace DirectShowLib.Dvd
         int GetParentalLevel([Out] out int pulParentalLevel);
     }
 
-    [ComImport,
-    Guid("153ACC21-D83B-11d1-82BF-00A0C9696C8F"),
+    [Guid("153ACC21-D83B-11d1-82BF-00A0C9696C8F"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IDDrawExclModeVideo
     {
@@ -1045,8 +1040,7 @@ namespace DirectShowLib.Dvd
             );
     }
 
-    [ComImport,
-    Guid("913c24a0-20ab-11d2-9038-00a0c9697298"),
+    [Guid("913c24a0-20ab-11d2-9038-00a0c9697298"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IDDrawExclModeVideoCallback
     {
@@ -1078,8 +1072,7 @@ namespace DirectShowLib.Dvd
     }
 #endif
 
-    [ComImport,
-    Guid("FCC152B6-F372-11d0-8E00-00C04FD7C08B"),
+    [Guid("FCC152B6-F372-11d0-8E00-00C04FD7C08B"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IDvdGraphBuilder
     {
@@ -1100,8 +1093,7 @@ namespace DirectShowLib.Dvd
             );
     }
 
-    [ComImport,
-    Guid("33BC7430-EEC0-11D2-8201-00A0C9D74842"),
+    [Guid("33BC7430-EEC0-11D2-8201-00A0C9D74842"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IDvdControl2
     {
@@ -1321,8 +1313,7 @@ namespace DirectShowLib.Dvd
             );
     }
 
-    [ComImport,
-    Guid("34151510-EEC0-11D2-8201-00A0C9D74842"),
+    [Guid("34151510-EEC0-11D2-8201-00A0C9D74842"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IDvdInfo2
     {

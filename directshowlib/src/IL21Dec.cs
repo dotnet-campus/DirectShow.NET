@@ -60,9 +60,6 @@
 
 #endregion
 
-#define   ALLOW_UNTESTED_STRUCTS
-#define   ALLOW_UNTESTED_INTERFACES
-
 using System.Runtime.InteropServices;
 
 namespace DirectShowLib
@@ -74,7 +71,6 @@ namespace DirectShowLib
 	/// <summary>
 	/// From AM_LINE21_CCLEVEL
 	/// </summary>
-	[ComVisible(false)]
 	public enum AMLine21CCLevel
 	{
 		TC2 = 0,
@@ -83,7 +79,6 @@ namespace DirectShowLib
 	/// <summary>
 	/// From AM_LINE21_CCSERVICE
 	/// </summary>
-	[ComVisible(false)]
 	public enum AMLine21CCService
 	{
 		None = 0,
@@ -99,7 +94,6 @@ namespace DirectShowLib
 	/// <summary>
 	/// From AM_LINE21_CCSTATE
 	/// </summary>
-	[ComVisible(false)]
 	public enum AMLine21CCState
 	{
 		Off = 0,
@@ -109,7 +103,6 @@ namespace DirectShowLib
 	/// <summary>
 	/// From AM_LINE21_CCSTYLE
 	/// </summary>
-	[ComVisible(false)]
 	public enum AMLine21CCStyle
 	{
 		None = 0,
@@ -121,7 +114,6 @@ namespace DirectShowLib
 	/// <summary>
 	/// From AM_LINE21_DRAWBGMODE
 	/// </summary>
-	[ComVisible(false)]
 	public enum AMLine21DrawBGMode
 	{
 		Opaque,
@@ -135,8 +127,7 @@ namespace DirectShowLib
 	#region Interfaces
 
 #if ALLOW_UNTESTED_INTERFACES
-	[ComVisible(true), ComImport,
-		Guid("6E8D4A21-310C-11d0-B79A-00AA003767A7"),
+	[Guid("6E8D4A21-310C-11d0-B79A-00AA003767A7"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAMLine21Decoder
 	{

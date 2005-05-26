@@ -60,9 +60,6 @@
 
 #endregion
 
-#define   ALLOW_UNTESTED_STRUCTS
-#define   ALLOW_UNTESTED_INTERFACES
-
 using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
@@ -77,7 +74,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From VMR9PresentationFlags
 	/// </summary>
-	[ComVisible(false), Flags]
+	[Flags]
 	public enum VMR9PresentationFlags
 	{
 		SyncPoint = 0x00000001,
@@ -90,7 +87,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From VMR9SurfaceAllocationFlags
 	/// </summary>
-	[ComVisible(false), Flags]
+	[Flags]
 	public enum VMR9SurfaceAllocationFlags
 	{
 		_3DRenderTarget = 0x0001,
@@ -104,7 +101,6 @@ namespace DirectShowLib
 	/// <summary>
 	/// From VMR9AspectRatioMode
 	/// </summary>
-	[ComVisible(false)]
 	public enum VMR9AspectRatioMode
 	{
 		None,
@@ -114,7 +110,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From VMR9MixerPrefs
 	/// </summary>
-	[ComVisible(false), Flags]
+	[Flags]
 	public enum VMR9MixerPrefs
 	{
 		NoDecimation = 0x00000001, // No decimation - full size
@@ -146,7 +142,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From VMR9ProcAmpControlFlags
 	/// </summary>
-	[ComVisible(false), Flags]
+	[Flags]
 	public enum VMR9ProcAmpControlFlags
 	{
 		Brightness = 0x00000001,
@@ -159,7 +155,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From VMR9AlphaBitmapFlags
 	/// </summary>
-	[ComVisible(false), Flags]
+	[Flags]
 	public enum VMR9AlphaBitmapFlags
 	{
 		Disable = 0x00000001,
@@ -173,7 +169,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From VMR9RenderPrefs
 	/// </summary>
-	[ComVisible(false), Flags]
+	[Flags]
 	public enum VMR9RenderPrefs
 	{
 		DoNotRenderBorder = 0x00000001, // app paints color keys
@@ -183,7 +179,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From VMR9Mode
 	/// </summary>
-	[ComVisible(false), Flags]
+	[Flags]
 	public enum VMR9Mode
 	{
 		Windowed = 0x00000001,
@@ -195,7 +191,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From VMR9DeinterlacePrefs
 	/// </summary>
-	[ComVisible(false), Flags]
+	[Flags]
 	public enum VMR9DeinterlacePrefs
 	{
 		NextBest = 0x01,
@@ -207,7 +203,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From VMR9DeinterlaceTech
 	/// </summary>
-	[ComVisible(false), Flags]
+	[Flags]
 	public enum VMR9DeinterlaceTech
 	{
 		Unknown = 0x0000,
@@ -223,7 +219,6 @@ namespace DirectShowLib
 	/// <summary>
 	/// From VMR9_SampleFormat
 	/// </summary>
-	[ComVisible(false)]
 	public enum VMR9_SampleFormat
 	{
 		Reserved = 1,
@@ -238,7 +233,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From VMR9PresentationInfo
 	/// </summary>
-	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
+	[StructLayout(LayoutKind.Sequential)]
 	public struct VMR9PresentationInfo
 	{
 		public VMR9PresentationFlags dwFlags;
@@ -256,7 +251,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From VMR9AllocationInfo
 	/// </summary>
-	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
+	[StructLayout(LayoutKind.Sequential)]
 	public struct VMR9AllocationInfo
 	{
 		public VMR9SurfaceAllocationFlags dwFlags;
@@ -274,7 +269,7 @@ namespace DirectShowLib
 	/// From VMR9NormalizedRect
 	/// </summary>
 	// TODO : Try to substitate with System.Drawing.RectangleF
-	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
+	[StructLayout(LayoutKind.Sequential)]
 	public struct VMR9NormalizedRect
 	{
 		public float left;
@@ -286,7 +281,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From VMR9ProcAmpControl
 	/// </summary>
-	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
+	[StructLayout(LayoutKind.Sequential)]
 	public struct VMR9ProcAmpControl
 	{
 		public int dwSize; // should be 24
@@ -300,7 +295,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From VMR9ProcAmpControlRange
 	/// </summary>
-	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
+	[StructLayout(LayoutKind.Sequential)]
 	public struct VMR9ProcAmpControlRange
 	{
 		public int dwSize; // should be 24
@@ -314,7 +309,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From VMR9AlphaBitmap
 	/// </summary>
-	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
+	[StructLayout(LayoutKind.Sequential)]
 	public struct VMR9AlphaBitmap
 	{
 		public VMR9AlphaBitmapFlags dwFlags;
@@ -330,7 +325,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From VMR9MonitorInfo
 	/// </summary>
-	[StructLayout(LayoutKind.Sequential, CharSet=CharSet.Unicode), ComVisible(false)]
+	[StructLayout(LayoutKind.Sequential, CharSet=CharSet.Unicode)]
 	public struct VMR9MonitorInfo
 	{
 		public int uDevID;
@@ -348,7 +343,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From VMR9Frequency
 	/// </summary>
-	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
+	[StructLayout(LayoutKind.Sequential)]
 	public struct VMR9Frequency
 	{
 		public int dwNumerator;
@@ -358,7 +353,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From VMR9VideoDesc
 	/// </summary>
-	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
+	[StructLayout(LayoutKind.Sequential)]
 	public struct VMR9VideoDesc
 	{
 		public int dwSize;
@@ -373,7 +368,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From VMR9DeinterlaceCaps
 	/// </summary>
-	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
+	[StructLayout(LayoutKind.Sequential)]
 	public struct VMR9DeinterlaceCaps
 	{
 		public int dwSize;
@@ -386,7 +381,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From VMR9VideoStreamInfo
 	/// </summary>
-	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
+	[StructLayout(LayoutKind.Sequential)]
 	public struct VMR9VideoStreamInfo
 	{
 		[MarshalAs(UnmanagedType.IUnknown)] public object pddsVideoSurface; // IDirect3DSurface9
@@ -407,8 +402,7 @@ namespace DirectShowLib
 
 #if ALLOW_UNTESTED_INTERFACES
 
-	[ComVisible(true), ComImport,
-		Guid("69188c61-12a3-40f0-8ffc-342e7b433fd7"),
+	[Guid("69188c61-12a3-40f0-8ffc-342e7b433fd7"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IVMRImagePresenter9
 	{
@@ -423,8 +417,7 @@ namespace DirectShowLib
 
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("8d5148ea-3f5d-46cf-9df1-d1b896eedb1f"),
+	[Guid("8d5148ea-3f5d-46cf-9df1-d1b896eedb1f"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IVMRSurfaceAllocator9
 	{
@@ -450,8 +443,7 @@ namespace DirectShowLib
 		int AdviseNotify([In] IVMRSurfaceAllocatorNotify9 lpIVMRSurfAllocNotify);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("dca3f5df-bb3a-4d03-bd81-84614bfbfa0c"),
+	[Guid("dca3f5df-bb3a-4d03-bd81-84614bfbfa0c"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IVMRSurfaceAllocatorNotify9
 	{
@@ -488,8 +480,7 @@ namespace DirectShowLib
 			);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("1a777eaa-47c8-4930-b2c9-8fee1c1b0f3b"),
+	[Guid("1a777eaa-47c8-4930-b2c9-8fee1c1b0f3b"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IVMRMixerControl9
 	{
@@ -533,8 +524,7 @@ namespace DirectShowLib
 		int GetProcAmpControlRange([In] int dwStreamID, [In, Out] ref VMR9ProcAmpControlRange lpClrControl);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("ced175e5-1935-4820-81bd-ff6ad00c9108"),
+	[Guid("ced175e5-1935-4820-81bd-ff6ad00c9108"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IVMRMixerBitmap9
 	{
@@ -548,8 +538,7 @@ namespace DirectShowLib
 		int GetAlphaBitmapParameters([Out] out VMR9AlphaBitmap pBmpParms);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("dfc581a1-6e1f-4c3a-8d0a-5e9792ea2afc"),
+	[Guid("dfc581a1-6e1f-4c3a-8d0a-5e9792ea2afc"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IVMRSurface9
 	{
@@ -566,8 +555,7 @@ namespace DirectShowLib
 		int GetSurface([Out, MarshalAs(UnmanagedType.IUnknown)] out object lplpSurface);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("45c15cab-6e22-420a-8043-ae1f0ac02c7d"),
+	[Guid("45c15cab-6e22-420a-8043-ae1f0ac02c7d"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IVMRImagePresenterConfig9
 	{
@@ -578,8 +566,7 @@ namespace DirectShowLib
 		int GetRenderingPrefs([Out] out VMR9RenderPrefs dwRenderFlags);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("d0cfe38b-93e7-4772-8957-0400c49a4485"),
+	[Guid("d0cfe38b-93e7-4772-8957-0400c49a4485"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IVMRVideoStreamControl9
 	{
@@ -590,8 +577,7 @@ namespace DirectShowLib
 		int GetStreamActiveState([Out, MarshalAs(UnmanagedType.Bool)] out bool fActive);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("00d96c29-bbde-4efc-9901-bb5036392146"),
+	[Guid("00d96c29-bbde-4efc-9901-bb5036392146"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IVMRAspectRatioControl9
 	{
@@ -602,8 +588,7 @@ namespace DirectShowLib
 		int SetAspectRatioMode([In] VMR9AspectRatioMode lpdwARMode);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("46c2e457-8ba0-4eef-b80b-0680f0978749"),
+	[Guid("46c2e457-8ba0-4eef-b80b-0680f0978749"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IVMRMonitorConfig9
 	{
@@ -627,8 +612,7 @@ namespace DirectShowLib
 			);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("a215fb8d-13c2-4f7f-993c-003d6271a459"),
+	[Guid("a215fb8d-13c2-4f7f-993c-003d6271a459"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IVMRDeinterlaceControl9
 	{
@@ -671,8 +655,7 @@ namespace DirectShowLib
 			);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("4a5c89eb-df51-4654-ac2a-e48e02bbabf6"),
+	[Guid("4a5c89eb-df51-4654-ac2a-e48e02bbabf6"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IVMRImageCompositor9
 	{
@@ -703,35 +686,33 @@ namespace DirectShowLib
 	}
 #endif
 
-  [ComVisible(true), ComImport,
-  Guid("5a804648-4f66-4867-9c43-4f5c822cf1b8"),
-  InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-  public interface IVMRFilterConfig9
-  {
-    [PreserveSig]
-    int SetImageCompositor([In] IVMRImageCompositor9 lpVMRImgCompositor);
+    [Guid("5a804648-4f66-4867-9c43-4f5c822cf1b8"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IVMRFilterConfig9
+    {
+        [PreserveSig]
+        int SetImageCompositor([In] IVMRImageCompositor9 lpVMRImgCompositor);
 
-    [PreserveSig]
-    int SetNumberOfStreams([In] int dwMaxStreams);
+        [PreserveSig]
+        int SetNumberOfStreams([In] int dwMaxStreams);
 
-    [PreserveSig]
-    int GetNumberOfStreams([Out] out int pdwMaxStreams);
+        [PreserveSig]
+        int GetNumberOfStreams([Out] out int pdwMaxStreams);
 
-    [PreserveSig]
-    int SetRenderingPrefs([In] VMR9RenderPrefs dwRenderFlags);
+        [PreserveSig]
+        int SetRenderingPrefs([In] VMR9RenderPrefs dwRenderFlags);
 
-    [PreserveSig]
-    int GetRenderingPrefs([Out] out VMR9RenderPrefs pdwRenderFlags);
+        [PreserveSig]
+        int GetRenderingPrefs([Out] out VMR9RenderPrefs pdwRenderFlags);
 
-    [PreserveSig]
-    int SetRenderingMode([In] VMR9Mode Mode);
+        [PreserveSig]
+        int SetRenderingMode([In] VMR9Mode Mode);
 
-    [PreserveSig]
-    int GetRenderingMode([Out] out VMR9Mode Mode);
-  }
+        [PreserveSig]
+        int GetRenderingMode([Out] out VMR9Mode Mode);
+    }
 
-    [ComVisible(true), ComImport,
-    Guid("8f537d09-f85e-4414-b23b-502e54c79927"),
+    [Guid("8f537d09-f85e-4414-b23b-502e54c79927"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IVMRWindowlessControl9
     {

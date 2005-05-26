@@ -60,9 +60,6 @@
 
 #endregion
 
-#define  ALLOW_UNTESTED_STRUCTS
-#define  ALLOW_UNTESTED_INTERFACES
-
 using System.Runtime.InteropServices;
 
 namespace DirectShowLib.BDA
@@ -84,8 +81,7 @@ namespace DirectShowLib.BDA
 
 #if ALLOW_UNTESTED_INTERFACES
 
-	[ComVisible(true), ComImport,
-		Guid("DFEF4A68-EE61-415f-9CCB-CD95F2F98A3A"),
+	[Guid("DFEF4A68-EE61-415f-9CCB-CD95F2F98A3A"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IBDA_TIF_REGISTRATION
 	{
@@ -100,8 +96,7 @@ namespace DirectShowLib.BDA
 		int UnregisterTIF([In] int pvRegistrationContext);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("F9BAC2F9-4149-4916-B2EF-FAA202326862"),
+	[Guid("F9BAC2F9-4149-4916-B2EF-FAA202326862"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IMPEG2_TIF_CONTROL
 	{
@@ -136,8 +131,7 @@ namespace DirectShowLib.BDA
 			);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("A3B152DF-7A90-4218-AC54-9830BEE8C0B6"),
+	[Guid("A3B152DF-7A90-4218-AC54-9830BEE8C0B6"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface ITuneRequestInfo
 	{
@@ -175,8 +169,7 @@ namespace DirectShowLib.BDA
 			);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("EFDA0C80-F395-42c3-9B3C-56B37DEC7BB7"),
+	[Guid("EFDA0C80-F395-42c3-9B3C-56B37DEC7BB7"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IGuideDataEvent
 	{
@@ -202,8 +195,7 @@ namespace DirectShowLib.BDA
 		int ScheduleDeleted([In] object varProgramDescriptionID);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("88EC5E58-BB73-41d6-99CE-66C524B8B591"),
+	[Guid("88EC5E58-BB73-41d6-99CE-66C524B8B591"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IGuideDataProperty
 	{
@@ -217,8 +209,7 @@ namespace DirectShowLib.BDA
 		int get_Value([Out] out object pvar);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("AE44423B-4571-475c-AD2C-F40A771D80EF"),
+	[Guid("AE44423B-4571-475c-AD2C-F40A771D80EF"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IEnumGuideDataProperties
 	{
@@ -239,8 +230,7 @@ namespace DirectShowLib.BDA
 		int Clone([Out] out IEnumGuideDataProperties ppenum);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("1993299C-CED6-4788-87A3-420067DCE0C7"),
+	[Guid("1993299C-CED6-4788-87A3-420067DCE0C7"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IEnumTuneRequests
 	{
@@ -261,8 +251,7 @@ namespace DirectShowLib.BDA
 		int Clone([Out] out IEnumTuneRequests ppenum);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("61571138-5B01-43cd-AEAF-60B784A0BF93"),
+	[Guid("61571138-5B01-43cd-AEAF-60B784A0BF93"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IGuideData
 	{
@@ -294,8 +283,7 @@ namespace DirectShowLib.BDA
 			);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("4764ff7c-fa95-4525-af4d-d32236db9e38"),
+	[Guid("4764ff7c-fa95-4525-af4d-d32236db9e38"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IGuideDataLoader
 	{

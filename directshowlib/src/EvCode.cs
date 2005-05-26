@@ -60,9 +60,6 @@
 
 #endregion
 
-#define   ALLOW_UNTESTED_STRUCTS
-#define   ALLOW_UNTESTED_INTERFACES
-
 using System.Runtime.InteropServices;
 
 namespace DirectShowLib
@@ -70,8 +67,6 @@ namespace DirectShowLib
 
 	#region Declarations
 
-#if ALLOW_UNTESTED_STRUCTS
-	[ComVisible(false)]
 	public enum EvCode
 	{
 		// EvCod.h
@@ -165,7 +160,6 @@ namespace DirectShowLib
 		StreamBufferReadFailure = 0x032b, // STREAMBUFFER_EC_READ_FAILURE
 		StreamBufferRateChanged = 0x032c, // STREAMBUFFER_EC_RATE_CHANGED
 	}
-#endif
 
 	#endregion
 }

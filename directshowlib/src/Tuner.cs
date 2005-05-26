@@ -60,9 +60,6 @@
 
 #endregion
 
-#define   ALLOW_UNTESTED_STRUCTS
-#define   ALLOW_UNTESTED_INTERFACES
-
 using System;
 using System.Runtime.InteropServices;
 
@@ -229,137 +226,137 @@ namespace DirectShowLib.BDA
 	}
 
 
-	[ComImport, Guid("D02AAC50-027E-11d3-9D8E-00C04F72D980")]
+	[Guid("D02AAC50-027E-11d3-9D8E-00C04F72D980")]
 	public class SystemTuningSpaces
 	{
 	}
 
-	[ComImport, Guid("5FFDC5E6-B83A-4b55-B6E8-C69E765FE9DB")]
+	[Guid("5FFDC5E6-B83A-4b55-B6E8-C69E765FE9DB")]
 	public class TuningSpace
 	{
 	}
 
-	[ComImport, Guid("A2E30750-6C3D-11d3-B653-00C04F79498E")]
+	[Guid("A2E30750-6C3D-11d3-B653-00C04F79498E")]
 	public class ATSCTuningSpace
 	{
 	}
 
-	[ComImport, Guid("8A674B4C-1F63-11d3-B64C-00C04F79498E")]
+	[Guid("8A674B4C-1F63-11d3-B64C-00C04F79498E")]
 	public class AnalogRadioTuningSpace
 	{
 	}
 
-	[ComImport, Guid("F9769A06-7ACA-4e39-9CFB-97BB35F0E77E")]
+	[Guid("F9769A06-7ACA-4e39-9CFB-97BB35F0E77E")]
 	public class AuxInTuningSpace
 	{
 	}
 
-	[ComImport, Guid("8A674B4D-1F63-11d3-B64C-00C04F79498E")]
+	[Guid("8A674B4D-1F63-11d3-B64C-00C04F79498E")]
 	public class AnalogTVTuningSpace
 	{
 	}
 
-	[ComImport, Guid("C6B14B32-76AA-4a86-A7AC-5C79AAF58DA7")]
+	[Guid("C6B14B32-76AA-4a86-A7AC-5C79AAF58DA7")]
 	public class DVBTuningSpace
 	{
 	}
 
-	[ComImport, Guid("B64016F3-C9A2-4066-96F0-BD9563314726")]
+	[Guid("B64016F3-C9A2-4066-96F0-BD9563314726")]
 	public class DVBSTuningSpace
 	{
 	}
 
-	[ComImport, Guid("A1A2B1C4-0E3A-11d3-9D8E-00C04F72D980")]
+	[Guid("A1A2B1C4-0E3A-11d3-9D8E-00C04F72D980")]
 	public class ComponentTypes
 	{
 	}
 
-	[ComImport, Guid("823535A0-0318-11d3-9D8E-00C04F72D980")]
+	[Guid("823535A0-0318-11d3-9D8E-00C04F72D980")]
 	public class ComponentType
 	{
 	}
 
-	[ComImport, Guid("1BE49F30-0E1B-11d3-9D8E-00C04F72D980")]
+	[Guid("1BE49F30-0E1B-11d3-9D8E-00C04F72D980")]
 	public class LanguageComponentType
 	{
 	}
 
-	[ComImport, Guid("418008F3-CF67-4668-9628-10DC52BE1D08")]
+	[Guid("418008F3-CF67-4668-9628-10DC52BE1D08")]
 	public class MPEG2ComponentType
 	{
 	}
 
-	[ComImport, Guid("A8DCF3D5-0780-4ef4-8A83-2CFFAACB8ACE")]
+	[Guid("A8DCF3D5-0780-4ef4-8A83-2CFFAACB8ACE")]
 	public class ATSCComponentType
 	{
 	}
 
-	[ComImport, Guid("809B6661-94C4-49e6-B6EC-3F0F862215AA")]
+	[Guid("809B6661-94C4-49e6-B6EC-3F0F862215AA")]
 	public class Components
 	{
 	}
 
-	[ComImport, Guid("59DC47A8-116C-11d3-9D8E-00C04F72D980")]
+	[Guid("59DC47A8-116C-11d3-9D8E-00C04F72D980")]
 	public class Component
 	{
 	}
 
-	[ComImport, Guid("055CB2D7-2969-45cd-914B-76890722F112")]
+	[Guid("055CB2D7-2969-45cd-914B-76890722F112")]
 	public class MPEG2Component
 	{
 	}
 
-	[ComImport, Guid("B46E0D38-AB35-4a06-A137-70576B01B39F")]
+	[Guid("B46E0D38-AB35-4a06-A137-70576B01B39F")]
 	public class TuneRequest
 	{
 	}
 
-	[ComImport, Guid("0369B4E5-45B6-11d3-B650-00C04F79498E")]
+	[Guid("0369B4E5-45B6-11d3-B650-00C04F79498E")]
 	public class ChannelTuneRequest
 	{
 	}
 
-	[ComImport, Guid("0369B4E6-45B6-11d3-B650-00C04F79498E")]
+	[Guid("0369B4E6-45B6-11d3-B650-00C04F79498E")]
 	public class ATSCChannelTuneRequest
 	{
 	}
 
-	[ComImport, Guid("0955AC62-BF2E-4cba-A2B9-A63F772D46CF")]
+	[Guid("0955AC62-BF2E-4cba-A2B9-A63F772D46CF")]
 	public class MPEG2TuneRequest
 	{
 	}
 
-	[ComImport, Guid("2C63E4EB-4CEA-41b8-919C-E947EA19A77C")]
+	[Guid("2C63E4EB-4CEA-41b8-919C-E947EA19A77C")]
 	public class MPEG2TuneRequestFactory
 	{
 	}
 
-	[ComImport, Guid("0888C883-AC4F-4943-B516-2C38D9B34562")]
+	[Guid("0888C883-AC4F-4943-B516-2C38D9B34562")]
 	public class Locator
 	{
 	}
 
-	[ComImport, Guid("8872FF1B-98FA-4d7a-8D93-C9F1055F85BB")]
+	[Guid("8872FF1B-98FA-4d7a-8D93-C9F1055F85BB")]
 	public class ATSCLocator
 	{
 	}
 
-	[ComImport, Guid("9CD64701-BDF3-4d14-8E03-F12983D86664")]
+	[Guid("9CD64701-BDF3-4d14-8E03-F12983D86664")]
 	public class DVBTLocator
 	{
 	}
 
-	[ComImport, Guid("1DF7D126-4050-47f0-A7CF-4C4CA9241333")]
+	[Guid("1DF7D126-4050-47f0-A7CF-4C4CA9241333")]
 	public class DVBSLocator
 	{
 	}
 
-	[ComImport, Guid("C531D9FD-9685-4028-8B68-6E1232079F1E")]
+	[Guid("C531D9FD-9685-4028-8B68-6E1232079F1E")]
 	public class DVBCLocator
 	{
 	}
 
-	[ComImport, Guid("15D6504A-5494-499c-886C-973C9E53B9F1")]
+	[Guid("15D6504A-5494-499c-886C-973C9E53B9F1")]
 	public class DVBTuneRequest
 	{
 	}
@@ -371,8 +368,7 @@ namespace DirectShowLib.BDA
 	#region Interfaces
 
 #if ALLOW_UNTESTED_INTERFACES
-	[ComVisible(true), ComImport,
-		Guid("901284E4-33FE-4b69-8D63-634A596F3756"),
+	[Guid("901284E4-33FE-4b69-8D63-634A596F3756"),
 		InterfaceType(ComInterfaceType.InterfaceIsDual)]
 	public interface ITuningSpaces
 	{
@@ -395,8 +391,7 @@ namespace DirectShowLib.BDA
 	//////////////////////////////////////////////////////////////////////////////////////
 	// Tuning Space Container
 	//////////////////////////////////////////////////////////////////////////////////////
-	[ComVisible(true), ComImport,
-		Guid("5B692E84-E2F1-11d2-9493-00C04F72D980"),
+	[Guid("5B692E84-E2F1-11d2-9493-00C04F72D980"),
 		InterfaceType(ComInterfaceType.InterfaceIsDual)]
 	public interface ITuningSpaceContainer
 	{
@@ -464,8 +459,7 @@ namespace DirectShowLib.BDA
 	//////////////////////////////////////////////////////////////////////////////////////
 	// Tuning Space Interfaces
 	//////////////////////////////////////////////////////////////////////////////////////
-	[ComVisible(true), ComImport,
-		Guid("061C6E30-E622-11d2-9493-00C04F72D980"),
+	[Guid("061C6E30-E622-11d2-9493-00C04F72D980"),
 		InterfaceType(ComInterfaceType.InterfaceIsDual)]
 	public interface ITuningSpace
 	{
@@ -527,8 +521,7 @@ namespace DirectShowLib.BDA
 		int Clone([Out] out ITuningSpace NewTS);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("8B8EB248-FC2B-11d2-9D8C-00C04F72D980"),
+	[Guid("8B8EB248-FC2B-11d2-9D8C-00C04F72D980"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IEnumTuningSpaces
 	{
@@ -545,8 +538,7 @@ namespace DirectShowLib.BDA
 		int Clone([Out] out IEnumTuningSpaces ppEnum);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("ADA0B268-3B19-4e5b-ACC4-49F852BE13BA"),
+	[Guid("ADA0B268-3B19-4e5b-ACC4-49F852BE13BA"),
 		InterfaceType(ComInterfaceType.InterfaceIsDual)]
 	public interface IDVBTuningSpace : ITuningSpace
 	{
@@ -614,8 +606,7 @@ namespace DirectShowLib.BDA
 		int put_SystemType([In] DVBSystemType SysType);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("843188B4-CE62-43db-966B-8145A094E040"),
+	[Guid("843188B4-CE62-43db-966B-8145A094E040"),
 		InterfaceType(ComInterfaceType.InterfaceIsDual)]
 	public interface IDVBTuningSpace2 : IDVBTuningSpace
 	{
@@ -689,8 +680,7 @@ namespace DirectShowLib.BDA
 		int put_NetworkID([In] int NetworkID);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("CDF7BE60-D954-42fd-A972-78971958E470"),
+	[Guid("CDF7BE60-D954-42fd-A972-78971958E470"),
 		InterfaceType(ComInterfaceType.InterfaceIsDual)]
 	public interface IDVBSTuningSpace : IDVBTuningSpace2
 	{
@@ -797,8 +787,7 @@ namespace DirectShowLib.BDA
 		int put_SpectralInversion([In] SpectralInversion SpectralInversionVal);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("E48244B8-7E17-4f76-A763-5090FF1E2F30"),
+	[Guid("E48244B8-7E17-4f76-A763-5090FF1E2F30"),
 		InterfaceType(ComInterfaceType.InterfaceIsDual)]
 	public interface IAuxInTuningSpace : ITuningSpace
 	{
@@ -860,8 +849,7 @@ namespace DirectShowLib.BDA
 		new int Clone([Out] out ITuningSpace NewTS);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("2A6E293C-2595-11d3-B64C-00C04F79498E"),
+	[Guid("2A6E293C-2595-11d3-B64C-00C04F79498E"),
 		InterfaceType(ComInterfaceType.InterfaceIsDual)]
 	public interface IAnalogTVTuningSpace : ITuningSpace
 	{
@@ -947,8 +935,7 @@ namespace DirectShowLib.BDA
 		int put_CountryCode([In] int NewCountryCodeVal);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("0369B4E2-45B6-11d3-B650-00C04F79498E"),
+	[Guid("0369B4E2-45B6-11d3-B650-00C04F79498E"),
 		InterfaceType(ComInterfaceType.InterfaceIsDual)]
 	public interface IATSCTuningSpace : IAnalogTVTuningSpace
 	{
@@ -1058,8 +1045,7 @@ namespace DirectShowLib.BDA
 		int put_MaxPhysicalChannel([In] int NewMaxPhysicalChannelVal);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("2A6E293B-2595-11d3-B64C-00C04F79498E"),
+	[Guid("2A6E293B-2595-11d3-B64C-00C04F79498E"),
 		InterfaceType(ComInterfaceType.InterfaceIsDual)]
 	public interface IAnalogRadioTuningSpace : ITuningSpace
 	{
@@ -1139,8 +1125,7 @@ namespace DirectShowLib.BDA
 		int put_Step([In] int StepVal);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("07DDC146-FC3D-11d2-9D8C-00C04F72D980"),
+	[Guid("07DDC146-FC3D-11d2-9D8C-00C04F72D980"),
 		InterfaceType(ComInterfaceType.InterfaceIsDual)]
 	public interface ITuneRequest
 	{
@@ -1160,8 +1145,7 @@ namespace DirectShowLib.BDA
 		int put_Locator([In] ILocator Locator);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("0369B4E0-45B6-11d3-B650-00C04F79498E"),
+	[Guid("0369B4E0-45B6-11d3-B650-00C04F79498E"),
 		InterfaceType(ComInterfaceType.InterfaceIsDual)]
 	public interface IChannelTuneRequest : ITuneRequest
 	{
@@ -1187,8 +1171,7 @@ namespace DirectShowLib.BDA
 		int put_Channel([In] int Channel);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("0369B4E1-45B6-11d3-B650-00C04F79498E"),
+	[Guid("0369B4E1-45B6-11d3-B650-00C04F79498E"),
 		InterfaceType(ComInterfaceType.InterfaceIsDual)]
 	public interface IATSCChannelTuneRequest : IChannelTuneRequest
 	{
@@ -1220,8 +1203,7 @@ namespace DirectShowLib.BDA
 		int put_MinorChannel([In] int MinorChannel);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("0D6F567E-A636-42bb-83BA-CE4C1704AFA2"),
+	[Guid("0D6F567E-A636-42bb-83BA-CE4C1704AFA2"),
 		InterfaceType(ComInterfaceType.InterfaceIsDual)]
 	public interface IDVBTuneRequest : ITuneRequest
 	{
@@ -1259,8 +1241,7 @@ namespace DirectShowLib.BDA
 		int put_SID([In] int SID);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("EB7D987F-8A01-42ad-B8AE-574DEEE44D1A"),
+	[Guid("EB7D987F-8A01-42ad-B8AE-574DEEE44D1A"),
 		InterfaceType(ComInterfaceType.InterfaceIsDual)]
 	public interface IMPEG2TuneRequest : ITuneRequest
 	{
@@ -1292,8 +1273,7 @@ namespace DirectShowLib.BDA
 		int put_ProgNo([In] int ProgNo);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("14E11ABD-EE37-4893-9EA1-6964DE933E39"),
+	[Guid("14E11ABD-EE37-4893-9EA1-6964DE933E39"),
 		InterfaceType(ComInterfaceType.InterfaceIsDual)]
 	public interface IMPEG2TuneRequestFactory
 	{
@@ -1304,8 +1284,7 @@ namespace DirectShowLib.BDA
 			);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("1B9D5FC3-5BBC-4b6c-BB18-B9D10E3EEEBF"),
+	[Guid("1B9D5FC3-5BBC-4b6c-BB18-B9D10E3EEEBF"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IMPEG2TuneRequestSupport
 	{
@@ -1314,8 +1293,7 @@ namespace DirectShowLib.BDA
 	//////////////////////////////////////////////////////////////////////////////////////
 	// Tuner Interfaces
 	//////////////////////////////////////////////////////////////////////////////////////
-	[ComVisible(true), ComImport,
-		Guid("28C52640-018A-11d3-9D8E-00C04F72D980"),
+	[Guid("28C52640-018A-11d3-9D8E-00C04F72D980"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface ITuner
 	{
@@ -1350,8 +1328,7 @@ namespace DirectShowLib.BDA
 		int TriggerSignalEvents([In] int Interval);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("1DFD0A5C-0284-11d3-9D8E-00C04F72D980"),
+	[Guid("1DFD0A5C-0284-11d3-9D8E-00C04F72D980"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IScanningTuner : ITuner
 	{
@@ -1404,8 +1381,7 @@ namespace DirectShowLib.BDA
 	//////////////////////////////////////////////////////////////////////////////////////
 	// Component Type Interfaces
 	//////////////////////////////////////////////////////////////////////////////////////
-	[ComVisible(true), ComImport,
-		Guid("6A340DC0-0311-11d3-9D8E-00C04F72D980"),
+	[Guid("6A340DC0-0311-11d3-9D8E-00C04F72D980"),
 		InterfaceType(ComInterfaceType.InterfaceIsDual)]
 	public interface IComponentType
 	{
@@ -1461,8 +1437,7 @@ namespace DirectShowLib.BDA
 		int Clone([Out] out IComponentType NewCT);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("B874C8BA-0FA2-11d3-9D8E-00C04F72D980"),
+	[Guid("B874C8BA-0FA2-11d3-9D8E-00C04F72D980"),
 		InterfaceType(ComInterfaceType.InterfaceIsDual)]
 	public interface ILanguageComponentType : IComponentType
 	{
@@ -1524,8 +1499,7 @@ namespace DirectShowLib.BDA
 		int put_LangID([In] int LangID);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("2C073D84-B51C-48c9-AA9F-68971E1F6E38"),
+	[Guid("2C073D84-B51C-48c9-AA9F-68971E1F6E38"),
 		InterfaceType(ComInterfaceType.InterfaceIsDual)]
 	public interface IMPEG2ComponentType : ILanguageComponentType
 	{
@@ -1593,8 +1567,7 @@ namespace DirectShowLib.BDA
 		int put_StreamType([In] MPEG2StreamType MP2StreamType);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("FC189E4D-7BD4-4125-B3B3-3A76A332CC96"),
+	[Guid("FC189E4D-7BD4-4125-B3B3-3A76A332CC96"),
 		InterfaceType(ComInterfaceType.InterfaceIsDual)]
 	public interface IATSCComponentType : IMPEG2ComponentType
 	{
@@ -1668,8 +1641,7 @@ namespace DirectShowLib.BDA
 		int put_Flags([In] int Flags);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("8A674B4A-1F63-11d3-B64C-00C04F79498E"),
+	[Guid("8A674B4A-1F63-11d3-B64C-00C04F79498E"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IEnumComponentTypes
 	{
@@ -1689,8 +1661,7 @@ namespace DirectShowLib.BDA
 	//////////////////////////////////////////////////////////////////////////////////////
 	// Component Type Container
 	//////////////////////////////////////////////////////////////////////////////////////
-	[ComVisible(true), ComImport,
-		Guid("0DC13D4A-0313-11d3-9D8E-00C04F72D980"),
+	[Guid("0DC13D4A-0313-11d3-9D8E-00C04F72D980"),
 		InterfaceType(ComInterfaceType.InterfaceIsDual)]
 	public interface IComponentTypes
 	{
@@ -1725,8 +1696,7 @@ namespace DirectShowLib.BDA
 	//////////////////////////////////////////////////////////////////////////////////////
 	// Component Interfaces
 	//////////////////////////////////////////////////////////////////////////////////////
-	[ComVisible(true), ComImport,
-		Guid("1A5576FC-0E19-11d3-9D8E-00C04F72D980"),
+	[Guid("1A5576FC-0E19-11d3-9D8E-00C04F72D980"),
 		InterfaceType(ComInterfaceType.InterfaceIsDual)]
 	public interface IComponent
 	{
@@ -1758,8 +1728,7 @@ namespace DirectShowLib.BDA
 		int Clone([Out] out IComponent NewComponent);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("1493E353-1EB6-473c-802D-8E6B8EC9D2A9"),
+	[Guid("1493E353-1EB6-473c-802D-8E6B8EC9D2A9"),
 		InterfaceType(ComInterfaceType.InterfaceIsDual)]
 	public interface IMPEG2Component : IComponent
 	{
@@ -1809,8 +1778,7 @@ namespace DirectShowLib.BDA
 		int put_ProgramNumber([In] int ProgramNumber);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("2A6E2939-2595-11d3-B64C-00C04F79498E"),
+	[Guid("2A6E2939-2595-11d3-B64C-00C04F79498E"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IEnumComponents
 	{
@@ -1830,8 +1798,7 @@ namespace DirectShowLib.BDA
 	//////////////////////////////////////////////////////////////////////////////////////
 	// Component Container
 	//////////////////////////////////////////////////////////////////////////////////////
-	[ComVisible(true), ComImport,
-		Guid("FCD01846-0E19-11d3-9D8E-00C04F72D980"),
+	[Guid("FCD01846-0E19-11d3-9D8E-00C04F72D980"),
 		InterfaceType(ComInterfaceType.InterfaceIsDual)]
 	public interface IComponents
 	{
@@ -1863,8 +1830,7 @@ namespace DirectShowLib.BDA
 		int Clone([Out] out IComponents NewList);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("286D7F89-760C-4F89-80C4-66841D2507AA"),
+	[Guid("286D7F89-760C-4F89-80C4-66841D2507AA"),
 		InterfaceType(ComInterfaceType.InterfaceIsDual)]
 	public interface ILocator
 	{
@@ -1914,8 +1880,7 @@ namespace DirectShowLib.BDA
 		int Clone([Out] out ILocator NewLocator);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("BF8D986F-8C2B-4131-94D7-4D3D9FCC21EF"),
+	[Guid("BF8D986F-8C2B-4131-94D7-4D3D9FCC21EF"),
 		InterfaceType(ComInterfaceType.InterfaceIsDual)]
 	public interface IATSCLocator : ILocator
 	{
@@ -1977,8 +1942,7 @@ namespace DirectShowLib.BDA
 		int put_TSID([In] int TSID);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("8664DA16-DDA2-42ac-926A-C18F9127C302"),
+	[Guid("8664DA16-DDA2-42ac-926A-C18F9127C302"),
 		InterfaceType(ComInterfaceType.InterfaceIsDual)]
 	public interface IDVBTLocator : ILocator
 	{
@@ -2070,8 +2034,7 @@ namespace DirectShowLib.BDA
 		int put_OtherFrequencyInUse([In, MarshalAs(UnmanagedType.VariantBool)] bool OtherFrequencyInUseVal);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("3D7C353C-0D04-45f1-A742-F97CC1188DC8"),
+	[Guid("3D7C353C-0D04-45f1-A742-F97CC1188DC8"),
 		InterfaceType(ComInterfaceType.InterfaceIsDual)]
 	public interface IDVBSLocator : ILocator
 	{
@@ -2151,8 +2114,7 @@ namespace DirectShowLib.BDA
 		int put_Elevation([In] int Elevation);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("6E42F36E-1DD2-43c4-9F78-69D25AE39034"),
+	[Guid("6E42F36E-1DD2-43c4-9F78-69D25AE39034"),
 		InterfaceType(ComInterfaceType.InterfaceIsDual)]
 	public interface IDVBCLocator : ILocator
 	{
@@ -2205,8 +2167,7 @@ namespace DirectShowLib.BDA
 	///////////////////////////////////////////////////////////////////////////////////////
 	// utility interfaces
 	///////////////////////////////////////////////////////////////////////////////////////
-	[ComVisible(true), ComImport,
-		Guid("3B21263F-26E8-489d-AAC4-924F7EFD9511"),
+	[Guid("3B21263F-26E8-489d-AAC4-924F7EFD9511"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IBroadcastEvent
 	{

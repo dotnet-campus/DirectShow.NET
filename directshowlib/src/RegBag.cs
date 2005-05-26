@@ -60,9 +60,6 @@
 
 #endregion
 
-#define   ALLOW_UNTESTED_STRUCTS
-#define   ALLOW_UNTESTED_INTERFACES
-
 using System;
 using System.Runtime.InteropServices;
 
@@ -73,8 +70,7 @@ namespace DirectShowLib
 
 #if ALLOW_UNTESTED_INTERFACES
 
-	[ComVisible(true), ComImport,
-		Guid("8A674B48-1F63-11d3-B64C-00C04F79498E"),
+	[Guid("8A674B48-1F63-11d3-B64C-00C04F79498E"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface ICreatePropBagOnRegKey
 	{
@@ -87,8 +83,8 @@ namespace DirectShowLib
 			[In] Guid iid,
 			[Out] IntPtr ppBag
 			);
+	}
 #endif
 
 		#endregion
-	}
 }

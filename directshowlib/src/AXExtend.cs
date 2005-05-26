@@ -60,9 +60,6 @@
 
 #endregion
 
-#define  ALLOW_UNTESTED_STRUCTS
-#define  ALLOW_UNTESTED_INTERFACES
-
 using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
@@ -76,7 +73,6 @@ namespace DirectShowLib
 	/// <summary>
 	/// unnamed enum
 	/// </summary>
-	[ComVisible(false)]
 	public enum Merit
 	{
 		Preferred = 0x800000,
@@ -90,7 +86,6 @@ namespace DirectShowLib
 	/// <summary>
 	/// From QualityMessageType
 	/// </summary>
-	[ComVisible(false)]
 	public enum QualityMessageType
 	{
 		Famine,
@@ -100,7 +95,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From AM_FILESINK_FLAGS
 	/// </summary>
-	[ComVisible(false), Flags]
+	[Flags]
 	public enum AMFileSinkFlags
 	{
 		OverWrite = 0x00000001
@@ -109,7 +104,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From _AM_RENSDEREXFLAGS
 	/// </summary>
-	[ComVisible(false), Flags]
+	[Flags]
 	public enum AMRenderExFlags
 	{
     None = 0,
@@ -119,7 +114,6 @@ namespace DirectShowLib
 	/// <summary>
 	/// From InterleavingMode
 	/// </summary>
-	[ComVisible(false)]
 	public enum InterleavingMode
 	{
 		None,
@@ -131,7 +125,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// CompressionCaps
 	/// </summary>
-	[ComVisible(false), Flags]
+	[Flags]
 	public enum CompressionCaps
 	{
 		CanQuality = 0x01,
@@ -144,7 +138,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From VfwCaptureDialogs
 	/// </summary>
-	[ComVisible(false), Flags]
+	[Flags]
 	public enum VfwCaptureDialogs
 	{
 		Source = 0x01,
@@ -155,7 +149,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From VfwCompressDialogs
 	/// </summary>
-	[ComVisible(false), Flags]
+	[Flags]
 	public enum VfwCompressDialogs
 	{
 		Config = 0x01,
@@ -167,7 +161,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From AnalogVideoStandard
 	/// </summary>
-	[ComVisible(false), Flags]
+	[Flags]
 	public enum AnalogVideoStandard
 	{
 		None = 0x00000000,
@@ -200,7 +194,6 @@ namespace DirectShowLib
 	/// <summary>
 	/// From TunerInputType
 	/// </summary>
-	[ComVisible(false)]
 	public enum TunerInputType
 	{
 		Cable,
@@ -210,7 +203,6 @@ namespace DirectShowLib
 	/// <summary>
 	/// From VideoCopyProtectionType
 	/// </summary>
-	[ComVisible(false)]
 	public enum VideoCopyProtectionType
 	{
 		MacrovisionBasic,
@@ -220,7 +212,6 @@ namespace DirectShowLib
 	/// <summary>
 	/// From PhysicalConnectorType
 	/// </summary>
-	[ComVisible(false)]
 	public enum PhysicalConnectorType
 	{
 		Video_Tuner = 1,
@@ -254,7 +245,6 @@ namespace DirectShowLib
 	/// <summary>
 	/// VideoProcAmpProperty
 	/// </summary>
-	[ComVisible(false)]
 	public enum VideoProcAmpProperty
 	{
 		Brightness,
@@ -272,7 +262,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// VideoProcAmpFlags
 	/// </summary>
-	[ComVisible(false), Flags]
+	[Flags]
 	public enum VideoProcAmpFlags
 	{
 		Auto = 0x0001,
@@ -282,7 +272,6 @@ namespace DirectShowLib
 	/// <summary>
 	/// CameraControlProperty
 	/// </summary>
-	[ComVisible(false)]
 	public enum CameraControlProperty
 	{
 		Pan,
@@ -297,7 +286,6 @@ namespace DirectShowLib
 	/// <summary>
 	/// CameraControlFlags
 	/// </summary>
-	[ComVisible(false)]
 	public enum CameraControlFlags
 	{
 		Auto = 0x0001,
@@ -307,7 +295,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// VideoControlFlags
 	/// </summary>
-	[ComVisible(false), Flags]
+	[Flags]
 	public enum VideoControlFlags
 	{
 		FlipHorizontal = 0x0001,
@@ -319,7 +307,6 @@ namespace DirectShowLib
 	/// <summary>
 	/// AMTunerSubChannel
 	/// </summary>
-	[ComVisible(false)]
 	public enum AMTunerSubChannel
 	{
 		NoTune = -2,
@@ -329,7 +316,6 @@ namespace DirectShowLib
 	/// <summary>
 	/// AMTunerSignalStrength
 	/// </summary>
-	[ComVisible(false)]
 	public enum AMTunerSignalStrength
 	{
 		HasNoSignalStrength = -1,
@@ -340,7 +326,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// AMTunerModeType
 	/// </summary>
-	[ComVisible(false), Flags]
+	[Flags]
 	public enum AMTunerModeType
 	{
 		Default = 0x0000,
@@ -353,7 +339,6 @@ namespace DirectShowLib
 	/// <summary>
 	/// AMTunerEventType
 	/// </summary>
-	[ComVisible(false)]
 	public enum AMTunerEventType
 	{
 		Changed = 0x0001
@@ -362,7 +347,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// TVAudioMode
 	/// </summary>
-	[ComVisible(false), Flags]
+	[Flags]
 	public enum TVAudioMode
 	{
 		Mono = 0x0001,
@@ -375,7 +360,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// AMTVAudioEventType
 	/// </summary>
-	[ComVisible(false), Flags]
+	[Flags]
 	public enum AMTVAudioEventType
 	{
 		Changed = 0x0001
@@ -384,7 +369,6 @@ namespace DirectShowLib
 	/// <summary>
 	/// AMPROPERTY_PIN
 	/// </summary>
-	[ComVisible(false)]
 	public enum AMPropertyPin
 	{
 		Category,
@@ -394,7 +378,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From _AMSTREAMSELECTINFOFLAGS
 	/// </summary>
-	[ComVisible(false), Flags]
+	[Flags]
 	public enum AMStreamSelectInfoFlags
 	{
 		Enabled = 0x01,
@@ -404,7 +388,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From _AMSTREAMSELECTENABLEFLAGS
 	/// </summary>
-	[ComVisible(false), Flags]
+	[Flags]
 	public enum AMStreamSelectEnableFlags
 	{
 		Enable = 0x01,
@@ -414,7 +398,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// _AMRESCTL_RESERVEFLAGS
 	/// </summary>
-	[ComVisible(false), Flags]
+	[Flags]
 	public enum AMResCtlReserveFlags
 	{
 		Reserve = 0x00,
@@ -424,7 +408,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From _AM_FILTER_MISC_FLAGS
 	/// </summary>
-	[ComVisible(false), Flags]
+	[Flags]
 	public enum AMFilterMiscFlags
 	{
 		IsRenderer = 0x00000001,
@@ -434,7 +418,6 @@ namespace DirectShowLib
 	/// <summary>
 	/// From DECIMATION_USAGE
 	/// </summary>
-	[ComVisible(false)]
 	public enum DecimationUsage
 	{
 		Legacy,
@@ -447,7 +430,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From _AM_PUSHSOURCE_FLAGS
 	/// </summary>
-	[ComVisible(false), Flags]
+	[Flags]
 	public enum AMPushSourceFlags
 	{
 		InternalRM = 0x00000001,
@@ -460,7 +443,6 @@ namespace DirectShowLib
 	/// <summary>
 	/// From _DVDECODERRESOLUTION
 	/// </summary>
-	[ComVisible(false)]
 	public enum DVDecoderResolution
 	{
 		_720x480 = 1000,
@@ -472,7 +454,6 @@ namespace DirectShowLib
 	/// <summary>
 	/// From _DVResolution
 	/// </summary>
-	[ComVisible(false)]
 	public enum DVResolution
 	{
 		Full = 1000,
@@ -484,7 +465,6 @@ namespace DirectShowLib
 	/// <summary>
 	/// From _AM_AUDIO_RENDERER_STAT_PARAM
 	/// </summary>
-	[ComVisible(false)]
 	public enum AMAudioRendererStatParam
 	{
 		BreakCount = 1,
@@ -504,7 +484,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From _AM_INTF_SEARCH_FLAGS
 	/// </summary>
-	[ComVisible(false), Flags]
+	[Flags]
 	public enum AMIntfSearchFlags
 	{
 		InputPin = 0x00000001,
@@ -515,7 +495,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From AMOVERLAYFX
 	/// </summary>
-	[ComVisible(false), Flags]
+	[Flags]
 	public enum AMOverlayFX
 	{
 		NoFX = 0x00000000,
@@ -527,7 +507,6 @@ namespace DirectShowLib
 	/// <summary>
 	/// From VIDEOENCODER_BITRATE_MODE
 	/// </summary>
-	[ComVisible(false)]
 	public enum VideoEncoderBitrateMode
 	{
 		ConstantBitRate = 0,
@@ -538,7 +517,6 @@ namespace DirectShowLib
 	/// <summary>
 	/// From AM_QUERY_DECODER_* defines
 	/// </summary>
-	[ComVisible(false)]
 	public enum AMQueryDecoder
 	{
 		VMRSupport = 0x00000001,
@@ -552,7 +530,6 @@ namespace DirectShowLib
 	/// <summary>
 	/// From DECODER_CAP_* defines
 	/// </summary>
-	[ComVisible(false)]
 	public enum DecoderCap
 	{
 		NotSupported = 0x00000000,
@@ -562,7 +539,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From unnamed enum (REG_PINFLAG_B_*)
 	/// </summary>
-	[ComVisible(false), Flags]
+	[Flags]
 	public enum RegPinFlag
 	{
 		Zero = 0x1,
@@ -574,7 +551,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From unnamed enum (ADVISE_*)
 	/// </summary>
-	[ComVisible(false), Flags]
+	[Flags]
 	public enum Advise
 	{
 		None = 0x0,
@@ -590,7 +567,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From AM_STREAM_INFO_FLAGS
 	/// </summary>
-	[ComVisible(false), Flags]
+	[Flags]
 	public enum AMStreamInfoFlags
 	{
 		StartDefined = 0x00000001,
@@ -602,7 +579,6 @@ namespace DirectShowLib
 	/// <summary>
 	/// From _DVENCODERRESOLUTION
 	/// </summary>
-	[ComVisible(false)]
 	public enum DVEncoderResolution
 	{
 		_720x480 = 2012,
@@ -614,7 +590,6 @@ namespace DirectShowLib
 	/// <summary>
 	/// From _DVENCODERVIDEOFORMAT
 	/// </summary>
-	[ComVisible(false)]
 	public enum DVEncoderVideoFormat
 	{
 		NTSC = 2000,
@@ -624,7 +599,6 @@ namespace DirectShowLib
 	/// <summary>
 	/// From _DVENCODERFORMAT
 	/// </summary>
-	[ComVisible(false)]
 	public enum DVEncoderFormat
 	{
 		DVSD = 2007,
@@ -635,7 +609,6 @@ namespace DirectShowLib
 	/// <summary>
 	/// From MPEG2_PROGRAM_* defines
 	/// </summary>
-	[ComVisible(false)]
 	public enum MPEG2Program
 	{
 		StreamMap = 0x00000000,
@@ -649,7 +622,6 @@ namespace DirectShowLib
 	/// <summary>
 	/// From KSPROPERTY_SUPPORT_* defines
 	/// </summary>
-	[ComVisible(false)]
 	public enum KSPropertySupport
 	{
 		Get = 1,
@@ -661,7 +633,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From REGFILTER
 	/// </summary>
-	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
+	[StructLayout(LayoutKind.Sequential)]
 	public struct RegFilter
 	{
 		public Guid Clsid;
@@ -671,7 +643,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From REGPINTYPES
 	/// </summary>
-	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
+	[StructLayout(LayoutKind.Sequential)]
 	public struct RegPinTypes
 	{
 		public Guid clsMajorType;
@@ -681,7 +653,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From Quality
 	/// </summary>
-	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
+	[StructLayout(LayoutKind.Sequential)]
 	public struct Quality
 	{
 		public QualityMessageType Type;
@@ -693,7 +665,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From REGFILTERPINS
 	/// </summary>
-	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
+	[StructLayout(LayoutKind.Sequential)]
 	public struct RegFilterPins
 	{
 		[MarshalAs(UnmanagedType.LPWStr)] public string strName;
@@ -710,7 +682,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From REGPINMEDIUM
 	/// </summary>
-	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
+	[StructLayout(LayoutKind.Sequential)]
 	public class RegPinMedium
 	{
 		public Guid clsMedium;
@@ -721,7 +693,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From REGFILTERPINS2
 	/// </summary>
-	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
+	[StructLayout(LayoutKind.Sequential)]
 	public struct RegFilterPins2
 	{
 		public RegPinFlag dwFlags;
@@ -736,7 +708,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From REGFILTER2
 	/// </summary>
-	[StructLayout(LayoutKind.Explicit), ComVisible(false)]
+	[StructLayout(LayoutKind.Explicit)]
 	public struct RegFilter2
 	{
 		[FieldOffset(0)] public int dwVersion;
@@ -750,7 +722,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From COLORKEY
 	/// </summary>
-	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
+	[StructLayout(LayoutKind.Sequential)]
 	public struct ColorKey
 	{
 		public int KeyType;
@@ -762,7 +734,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From RGNDATAHEADER
 	/// </summary>
-	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
+	[StructLayout(LayoutKind.Sequential)]
 	public struct RgnDataHeader
 	{
 		public int dwSize;
@@ -775,7 +747,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From RGNDATA
 	/// </summary>
-	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
+	[StructLayout(LayoutKind.Sequential)]
 	public struct RgnData
 	{
 		public RgnDataHeader rdh;
@@ -785,7 +757,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From AM_STREAM_INFO
 	/// </summary>
-	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
+	[StructLayout(LayoutKind.Sequential)]
 	public struct AMStreamInfo
 	{
 		public long tStart;
@@ -798,7 +770,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From VIDEO_STREAM_CONFIG_CAPS
 	/// </summary>
-	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
+	[StructLayout(LayoutKind.Sequential)]
 	public class VideoStreamConfigCaps
 	{
 		public Guid guid;
@@ -827,7 +799,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From AUDIO_STREAM_CONFIG_CAPS
 	/// </summary>
-	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
+	[StructLayout(LayoutKind.Sequential)]
 	public class AudioStreamConfigCaps
 	{
 		public Guid guid;
@@ -845,7 +817,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From TIMECODE
 	/// </summary>
-	[StructLayout(LayoutKind.Sequential, Pack=1), ComVisible(false)]
+	[StructLayout(LayoutKind.Sequential, Pack=1)]
 	public struct TimeCode
 	{
 		public short wFrameRate;
@@ -856,7 +828,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From TIMECODE_SAMPLE
 	/// </summary>
-	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
+	[StructLayout(LayoutKind.Sequential)]
 	public struct TimeCodeSample
 	{
 		public long qwTick;
@@ -868,7 +840,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From DVINFO
 	/// </summary>
-	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
+	[StructLayout(LayoutKind.Sequential)]
 	public struct DVInfo
 	{
 		public int dwDVAAuxSrc;
@@ -884,7 +856,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From STREAM_ID_MAP
 	/// </summary>
-	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
+	[StructLayout(LayoutKind.Sequential)]
 	public struct StreamIdMap
 	{
 		public int stream_id;
@@ -896,7 +868,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From CodecAPIEventData
 	/// </summary>
-	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
+	[StructLayout(LayoutKind.Sequential)]
 	public struct CodecAPIEventData
 	{
 		public Guid guid;
@@ -909,7 +881,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From AMCOPPSignature
 	/// </summary>
-	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
+	[StructLayout(LayoutKind.Sequential)]
 	public struct AMCOPPSignature
 	{
 		[MarshalAs(UnmanagedType.ByValArray, ArraySubType=UnmanagedType.I1, SizeConst=256)] public byte[] Signature;
@@ -918,7 +890,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From AMCOPPCommand
 	/// </summary>
-	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
+	[StructLayout(LayoutKind.Sequential)]
 	public struct AMCOPPCommand
 	{
 		public Guid macKDI;
@@ -931,7 +903,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From AMCOPPStatusInput
 	/// </summary>
-	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
+	[StructLayout(LayoutKind.Sequential)]
 	public struct AMCOPPStatusInput
 	{
 		public Guid rApp;
@@ -944,7 +916,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From AMCOPPStatusOutput
 	/// </summary>
-	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
+	[StructLayout(LayoutKind.Sequential)]
 	public struct AMCOPPStatusOutput
 	{
 		public Guid macKDI;
@@ -960,8 +932,7 @@ namespace DirectShowLib
 
 #if ALLOW_UNTESTED_INTERFACES
 
-	[ComVisible(true), ComImport,
-		Guid("56a868a4-0ad4-11ce-b03a-0020af0ba770"),
+	[Guid("56a868a4-0ad4-11ce-b03a-0020af0ba770"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IEnumRegFilters
 	{
@@ -982,8 +953,7 @@ namespace DirectShowLib
 		int Clone([Out] out IEnumRegFilters ppEnum);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("56a868a3-0ad4-11ce-b03a-0020af0ba770"),
+	[Guid("56a868a3-0ad4-11ce-b03a-0020af0ba770"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IFilterMapper
 	{
@@ -1047,8 +1017,7 @@ namespace DirectShowLib
 			);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("b79bb0b0-33c1-11d1-abe1-00a0c905f375"),
+	[Guid("b79bb0b0-33c1-11d1-abe1-00a0c905f375"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IFilterMapper2
 	{
@@ -1096,8 +1065,7 @@ namespace DirectShowLib
 			);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("b79bb0b1-33c1-11d1-abe1-00a0c905f375"),
+	[Guid("b79bb0b1-33c1-11d1-abe1-00a0c905f375"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IFilterMapper3 : IFilterMapper2
 	{
@@ -1152,8 +1120,7 @@ namespace DirectShowLib
 		int GetICreateDevEnum([Out] out ICreateDevEnum ppEnum);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("56a868a5-0ad4-11ce-b03a-0020af0ba770"),
+	[Guid("56a868a5-0ad4-11ce-b03a-0020af0ba770"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IQualityControl
 	{
@@ -1167,8 +1134,7 @@ namespace DirectShowLib
 		int SetSink([In] IQualityControl piqc);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("56a868a0-0ad4-11ce-b03a-0020af0ba770"),
+	[Guid("56a868a0-0ad4-11ce-b03a-0020af0ba770"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IOverlayNotify
 	{
@@ -1195,8 +1161,7 @@ namespace DirectShowLib
 			);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("680EFA10-D535-11D1-87C8-00A0C9223196"),
+	[Guid("680EFA10-D535-11D1-87C8-00A0C9223196"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IOverlayNotify2 : IOverlayNotify
 	{
@@ -1230,8 +1195,7 @@ namespace DirectShowLib
 		int OnDisplayChange(IntPtr hMonitor); // HMONITOR
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("56a868a1-0ad4-11ce-b03a-0020af0ba770"),
+	[Guid("56a868a1-0ad4-11ce-b03a-0020af0ba770"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IOverlay
 	{
@@ -1282,8 +1246,7 @@ namespace DirectShowLib
 		int Unadvise();
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("56a868a2-0ad4-11ce-b03a-0020af0ba770"),
+	[Guid("56a868a2-0ad4-11ce-b03a-0020af0ba770"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IMediaEventSink
 	{
@@ -1295,8 +1258,7 @@ namespace DirectShowLib
 			);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("56a868a6-0ad4-11ce-b03a-0020af0ba770"),
+	[Guid("56a868a6-0ad4-11ce-b03a-0020af0ba770"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IFileSourceFilter
 	{
@@ -1313,8 +1275,7 @@ namespace DirectShowLib
 			);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("a2104830-7c70-11cf-8bce-00aa00a3f1a6"),
+	[Guid("a2104830-7c70-11cf-8bce-00aa00a3f1a6"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IFileSinkFilter
 	{
@@ -1331,8 +1292,7 @@ namespace DirectShowLib
 			);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("00855B90-CE1B-11d0-BD4F-00A0C911CE86"),
+	[Guid("00855B90-CE1B-11d0-BD4F-00A0C911CE86"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IFileSinkFilter2 : IFileSinkFilter
 	{
@@ -1359,8 +1319,7 @@ namespace DirectShowLib
 		int GetMode([Out] out AMFileSinkFlags dwFlags);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("56a868a9-0ad4-11ce-b03a-0020af0ba770"),
+	[Guid("56a868a9-0ad4-11ce-b03a-0020af0ba770"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IGraphBuilder : IFilterGraph
 	{
@@ -1435,8 +1394,7 @@ namespace DirectShowLib
 		int ShouldOperationContinue();
 	}
 
-	[ComVisible(true), ComImport, Obsolete("Use IGraphBuilder2", false),
-		Guid("bf87b6e0-8c27-11d0-b3f0-00aa003761c5"),
+	[Guid("bf87b6e0-8c27-11d0-b3f0-00aa003761c5"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface ICaptureGraphBuilder
 	{
@@ -1495,8 +1453,7 @@ namespace DirectShowLib
 			);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("670d1d20-a068-11d0-b3f0-00aa003761c5"),
+	[Guid("670d1d20-a068-11d0-b3f0-00aa003761c5"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAMCopyCaptureFileProgress
 	{
@@ -1504,8 +1461,7 @@ namespace DirectShowLib
 		int Progress(int iProgress);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("93E5A4E0-2D50-11d2-ABFA-00A0C9C6E38D"),
+	[Guid("93E5A4E0-2D50-11d2-ABFA-00A0C9C6E38D"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface ICaptureGraphBuilder2
 	{
@@ -1578,8 +1534,7 @@ namespace DirectShowLib
 			);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("36b73882-c2c8-11cf-8b46-00805f6cef60"),
+	[Guid("36b73882-c2c8-11cf-8b46-00805f6cef60"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IFilterGraph2 : IGraphBuilder
 	{
@@ -1679,8 +1634,7 @@ namespace DirectShowLib
 			);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("56a868bf-0ad4-11ce-b03a-0020af0ba770"),
+	[Guid("56a868bf-0ad4-11ce-b03a-0020af0ba770"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IStreamBuilder
 	{
@@ -1697,8 +1651,7 @@ namespace DirectShowLib
 			);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("56a868aa-0ad4-11ce-b03a-0020af0ba770"),
+	[Guid("56a868aa-0ad4-11ce-b03a-0020af0ba770"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAsyncReader
 	{
@@ -1745,8 +1698,7 @@ namespace DirectShowLib
 		int EndFlush();
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("56a868ab-0ad4-11ce-b03a-0020af0ba770"),
+	[Guid("56a868ab-0ad4-11ce-b03a-0020af0ba770"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IGraphVersion
 	{
@@ -1754,8 +1706,7 @@ namespace DirectShowLib
 		int QueryVersion([Out] out int pVersion);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("56a868ad-0ad4-11ce-b03a-0020af0ba770"),
+	[Guid("56a868ad-0ad4-11ce-b03a-0020af0ba770"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IResourceConsumer
 	{
@@ -1766,8 +1717,7 @@ namespace DirectShowLib
 		int ReleaseResource([In] int idResource);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("56a868ac-0ad4-11ce-b03a-0020af0ba770"),
+	[Guid("56a868ac-0ad4-11ce-b03a-0020af0ba770"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IResourceManager
 	{
@@ -1820,8 +1770,7 @@ namespace DirectShowLib
 		int ReleaseFocus([In, MarshalAs(UnmanagedType.IUnknown)] object pFocusObject);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("56a868af-0ad4-11ce-b03a-0020af0ba770"),
+	[Guid("56a868af-0ad4-11ce-b03a-0020af0ba770"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IDistributorNotify
 	{
@@ -1841,8 +1790,7 @@ namespace DirectShowLib
 		int NotifyGraphChange();
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("36b73881-c2c8-11cf-8b46-00805f6cef60"),
+	[Guid("36b73881-c2c8-11cf-8b46-00805f6cef60"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAMStreamControl
 	{
@@ -1863,8 +1811,7 @@ namespace DirectShowLib
 		int GetInfo([Out] out AMStreamInfo pInfo);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("36b73883-c2c8-11cf-8b46-00805f6cef60"),
+	[Guid("36b73883-c2c8-11cf-8b46-00805f6cef60"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface ISeekingPassThru
 	{
@@ -1874,8 +1821,7 @@ namespace DirectShowLib
 			);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("C6E13340-30AC-11d0-A18C-00A0C9118956"),
+	[Guid("C6E13340-30AC-11d0-A18C-00A0C9118956"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAMStreamConfig
 	{
@@ -1896,8 +1842,7 @@ namespace DirectShowLib
 			);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("BEE3D220-157B-11d0-BD23-00A0C911CE86"),
+	[Guid("BEE3D220-157B-11d0-BD23-00A0C911CE86"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IConfigInterleaving
 	{
@@ -1920,8 +1865,7 @@ namespace DirectShowLib
 			);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("5ACD6AA0-F482-11ce-8B67-00AA00A3F1A6"),
+	[Guid("5ACD6AA0-F482-11ce-8B67-00AA00A3F1A6"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IConfigAviMux
 	{
@@ -1938,8 +1882,7 @@ namespace DirectShowLib
 		int GetOutputCompatibilityIndex([Out, MarshalAs(UnmanagedType.Bool)] bool pfOldIndex);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("C6E13343-30AC-11d0-A18C-00A0C9118956"),
+	[Guid("C6E13343-30AC-11d0-A18C-00A0C9118956"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAMVideoCompression
 	{
@@ -1989,8 +1932,7 @@ namespace DirectShowLib
 			);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("D8D715A0-6E5E-11D0-B3F0-00AA003761C5"),
+	[Guid("D8D715A0-6E5E-11D0-B3F0-00AA003761C5"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAMVfwCaptureDialogs
 	{
@@ -2012,8 +1954,7 @@ namespace DirectShowLib
 			);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("D8D715A3-6E5E-11D0-B3F0-00AA003761C5"),
+	[Guid("D8D715A3-6E5E-11D0-B3F0-00AA003761C5"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAMVfwCompressDialogs
 	{
@@ -2043,8 +1984,7 @@ namespace DirectShowLib
 			);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("C6E13344-30AC-11d0-A18C-00A0C9118956"),
+	[Guid("C6E13344-30AC-11d0-A18C-00A0C9118956"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAMDroppedFrames
 	{
@@ -2065,8 +2005,7 @@ namespace DirectShowLib
 		int GetAverageFrameSize([Out] out int plAverageSize);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("54C39221-8380-11d0-B3F0-00AA003761C5"),
+	[Guid("54C39221-8380-11d0-B3F0-00AA003761C5"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAMAudioInputMixer
 	{
@@ -2119,8 +2058,7 @@ namespace DirectShowLib
 		int get_BassRange([Out] out double pRange);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("56ED71A0-AF5F-11D0-B3F0-00AA003761C5"),
+	[Guid("56ED71A0-AF5F-11D0-B3F0-00AA003761C5"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAMBufferNegotiation
 	{
@@ -2131,8 +2069,7 @@ namespace DirectShowLib
 		int GetAllocatorProperties([Out] out AllocatorProperties pprop);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("C6E13350-30AC-11d0-A18C-00A0C9118956"),
+	[Guid("C6E13350-30AC-11d0-A18C-00A0C9118956"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAMAnalogVideoDecoder
 	{
@@ -2164,8 +2101,7 @@ namespace DirectShowLib
 		int get_OutputEnable([Out] out int plOutputEnable);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("C6E13360-30AC-11d0-A18C-00A0C9118956"),
+	[Guid("C6E13360-30AC-11d0-A18C-00A0C9118956"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAMVideoProcAmp
 	{
@@ -2194,8 +2130,7 @@ namespace DirectShowLib
 			);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("C6E13370-30AC-11d0-A18C-00A0C9118956"),
+	[Guid("C6E13370-30AC-11d0-A18C-00A0C9118956"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAMCameraControl
 	{
@@ -2224,8 +2159,7 @@ namespace DirectShowLib
 			);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("6a2e0670-28e4-11d0-a18c-00a0c9118956"),
+	[Guid("6a2e0670-28e4-11d0-a18c-00a0c9118956"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAMVideoControl
 	{
@@ -2271,8 +2205,7 @@ namespace DirectShowLib
 			);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("C6E13380-30AC-11d0-A18C-00A0C9118956"),
+	[Guid("C6E13380-30AC-11d0-A18C-00A0C9118956"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAMCrossbar
 	{
@@ -2309,8 +2242,7 @@ namespace DirectShowLib
 			);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("211A8761-03AC-11d1-8D13-00AA00BD8339"),
+	[Guid("211A8761-03AC-11d1-8D13-00AA00BD8339"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAMTuner
 	{
@@ -2374,8 +2306,7 @@ namespace DirectShowLib
 		int UnRegisterNotificationCallBack([In] IAMTunerNotification pNotify);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("211A8760-03AC-11d1-8D13-00AA00BD8339"),
+	[Guid("211A8760-03AC-11d1-8D13-00AA00BD8339"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAMTunerNotification
 	{
@@ -2383,8 +2314,7 @@ namespace DirectShowLib
 		int OnEvent([In] AMTunerEventType Event);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("211A8766-03AC-11d1-8D13-00AA00BD8339"),
+	[Guid("211A8766-03AC-11d1-8D13-00AA00BD8339"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAMTVTuner : IAMTuner
 	{
@@ -2494,8 +2424,7 @@ namespace DirectShowLib
 		int get_AudioFrequency([Out] out int lFreq);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("211A8765-03AC-11d1-8D13-00AA00BD8339"),
+	[Guid("211A8765-03AC-11d1-8D13-00AA00BD8339"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IBPCSatelliteTuner : IAMTuner
 	{
@@ -2578,8 +2507,7 @@ namespace DirectShowLib
 		int IsTapingPermitted();
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("83EC1C30-23D1-11d1-99E6-00A0C9560266"),
+	[Guid("83EC1C30-23D1-11d1-99E6-00A0C9560266"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAMTVAudio
 	{
@@ -2605,8 +2533,7 @@ namespace DirectShowLib
 		int UnRegisterNotificationCallBack([In] IAMTunerNotification pNotify);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("83EC1C33-23D1-11d1-99E6-00A0C9560266"),
+	[Guid("83EC1C33-23D1-11d1-99E6-00A0C9560266"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAMTVAudioNotification
 	{
@@ -2614,8 +2541,7 @@ namespace DirectShowLib
 		int OnEvent([In] AMTVAudioEventType Event);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("C6E133B0-30AC-11d0-A18C-00A0C9118956"),
+	[Guid("C6E133B0-30AC-11d0-A18C-00A0C9118956"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAMAnalogVideoEncoder
 	{
@@ -2642,8 +2568,7 @@ namespace DirectShowLib
 		int get_CCEnable([Out] out int lCCEnable);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("31EFAC30-515C-11d0-A9AA-00AA0061BE93"),
+	[Guid("31EFAC30-515C-11d0-A9AA-00AA0061BE93"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IKsPropertySet
 	{
@@ -2676,8 +2601,7 @@ namespace DirectShowLib
 			);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("6025A880-C0D5-11d0-BD4E-00A0C911CE86"),
+	[Guid("6025A880-C0D5-11d0-BD4E-00A0C911CE86"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IMediaPropertyBag : IPropertyBag
 	{
@@ -2706,8 +2630,7 @@ namespace DirectShowLib
 			);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("5738E040-B67F-11d0-BD4D-00A0C911CE86"),
+	[Guid("5738E040-B67F-11d0-BD4D-00A0C911CE86"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IPersistMediaPropertyBag : IPersist
 	{
@@ -2735,8 +2658,7 @@ namespace DirectShowLib
 			);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("F938C991-3029-11cf-8C44-00AA006B6814"),
+	[Guid("F938C991-3029-11cf-8C44-00AA006B6814"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAMPhysicalPinInfo
 	{
@@ -2747,8 +2669,7 @@ namespace DirectShowLib
 			);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("B5730A90-1A2C-11cf-8C23-00AA006B6814"),
+	[Guid("B5730A90-1A2C-11cf-8C23-00AA006B6814"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAMExtDevice
 	{
@@ -2785,8 +2706,7 @@ namespace DirectShowLib
 		int get_DevicePort([Out] out int pDevicePort);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("A03CD5F0-3045-11cf-8C44-00AA006B6814"),
+	[Guid("A03CD5F0-3045-11cf-8C44-00AA006B6814"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAMExtTransport
 	{
@@ -2930,8 +2850,7 @@ namespace DirectShowLib
 		int put_EditStart([In] int Value);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("9B496CE1-811B-11cf-8C77-00AA006B6814"),
+	[Guid("9B496CE1-811B-11cf-8C77-00AA006B6814"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAMTimecodeReader
 	{
@@ -2957,8 +2876,7 @@ namespace DirectShowLib
 		int GetTimecode([Out] out TimeCodeSample pTimecodeSample);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("9B496CE0-811B-11cf-8C77-00AA006B6814"),
+	[Guid("9B496CE0-811B-11cf-8C77-00AA006B6814"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAMTimecodeGenerator
 	{
@@ -2988,8 +2906,7 @@ namespace DirectShowLib
 		int GetTimecode([Out] TimeCodeSample pTimecodeSample);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("9B496CE2-811B-11cf-8C77-00AA006B6814"),
+	[Guid("9B496CE2-811B-11cf-8C77-00AA006B6814"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAMTimecodeDisplay
 	{
@@ -3012,8 +2929,7 @@ namespace DirectShowLib
 			);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("c6545bf0-e76b-11d0-bd52-00a0c911ce86"),
+	[Guid("c6545bf0-e76b-11d0-bd52-00a0c911ce86"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAMDevMemoryAllocator
 	{
@@ -3044,8 +2960,7 @@ namespace DirectShowLib
 			);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("c6545bf1-e76b-11d0-bd52-00a0c911ce86"),
+	[Guid("c6545bf1-e76b-11d0-bd52-00a0c911ce86"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAMDevMemoryControl
 	{
@@ -3059,8 +2974,7 @@ namespace DirectShowLib
 		int GetDevId([Out] out int pdwDevId);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("c1960960-17f5-11d1-abe1-00a0c905f375"),
+	[Guid("c1960960-17f5-11d1-abe1-00a0c905f375"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAMStreamSelect
 	{
@@ -3086,8 +3000,7 @@ namespace DirectShowLib
 			);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("8389d2d0-77d7-11d1-abe6-00a0c905f375"),
+	[Guid("8389d2d0-77d7-11d1-abe6-00a0c905f375"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAMResourceControl
 	{
@@ -3098,8 +3011,7 @@ namespace DirectShowLib
 			);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("4d5466b0-a49c-11d1-abe8-00a0c905f375"),
+	[Guid("4d5466b0-a49c-11d1-abe8-00a0c905f375"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAMClockAdjust
 	{
@@ -3107,8 +3019,7 @@ namespace DirectShowLib
 		int SetClockDelta([In] long rtDelta);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("2dd74950-a890-11d1-abe8-00a0c905f375"),
+	[Guid("2dd74950-a890-11d1-abe8-00a0c905f375"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAMFilterMiscFlags
 	{
@@ -3116,8 +3027,7 @@ namespace DirectShowLib
 		int GetMiscFlags();
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("48efb120-ab49-11d2-aed2-00a0c995e8d5"),
+	[Guid("48efb120-ab49-11d2-aed2-00a0c995e8d5"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IDrawVideoImage
 	{
@@ -3135,8 +3045,7 @@ namespace DirectShowLib
 			);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("2e5ea3e0-e924-11d2-b6da-00a0c995e8df"),
+	[Guid("2e5ea3e0-e924-11d2-b6da-00a0c995e8df"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IDecimateVideoImage
 	{
@@ -3150,8 +3059,7 @@ namespace DirectShowLib
 		int ResetDecimationImageSize();
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("60d32930-13da-11d3-9ec6-c4fcaef5c7be"),
+	[Guid("60d32930-13da-11d3-9ec6-c4fcaef5c7be"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAMVideoDecimationProperties
 	{
@@ -3162,8 +3070,7 @@ namespace DirectShowLib
 		int SetDecimationUsage([In] DecimationUsage Usage);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("e46a9787-2b71-444d-a4b5-1fab7b708d6a"),
+	[Guid("e46a9787-2b71-444d-a4b5-1fab7b708d6a"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IVideoFrameStep
 	{
@@ -3183,8 +3090,7 @@ namespace DirectShowLib
 		int CancelStep();
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("F185FE76-E64E-11d2-B76E-00C04FB6BD3D"),
+	[Guid("F185FE76-E64E-11d2-B76E-00C04FB6BD3D"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAMPushSource
 	{
@@ -3207,8 +3113,7 @@ namespace DirectShowLib
 		int SetMaxStreamOffset([In] long rtMaxOffset);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("f90a6130-b658-11d2-ae49-0000f8754b99"),
+	[Guid("f90a6130-b658-11d2-ae49-0000f8754b99"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAMDeviceRemoval
 	{
@@ -3225,8 +3130,7 @@ namespace DirectShowLib
 		int Disassociate();
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("d18e17a0-aacb-11d0-afb0-00aa00b67a42"),
+	[Guid("d18e17a0-aacb-11d0-afb0-00aa00b67a42"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IDVEnc
 	{
@@ -3249,8 +3153,7 @@ namespace DirectShowLib
 			);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("b8e8bd60-0bfe-11d0-af91-00aa00b67a42"),
+	[Guid("b8e8bd60-0bfe-11d0-af91-00aa00b67a42"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IIPDVDec
 	{
@@ -3261,8 +3164,7 @@ namespace DirectShowLib
 		int put_IPDisplay([In] int displayPix);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("58473A19-2BC8-4663-8012-25F81BABDDD1"),
+	[Guid("58473A19-2BC8-4663-8012-25F81BABDDD1"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IDVRGB219
 	{
@@ -3270,8 +3172,7 @@ namespace DirectShowLib
 		int SetRGB219([In, MarshalAs(UnmanagedType.Bool)] bool bState);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("92a3a302-da7c-4a1f-ba7e-1802bb5d2d02"),
+	[Guid("92a3a302-da7c-4a1f-ba7e-1802bb5d2d02"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IDVSplitter
 	{
@@ -3279,8 +3180,7 @@ namespace DirectShowLib
 		int DiscardAlternateVideoFrames([In] int nDiscard);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("22320CB2-D41A-11d2-BF7C-D7CB9DF0BF93"),
+	[Guid("22320CB2-D41A-11d2-BF7C-D7CB9DF0BF93"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAMAudioRendererStats
 	{
@@ -3292,8 +3192,7 @@ namespace DirectShowLib
 			);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("62EA93BA-EC62-11d2-B770-00C04FB6BD3D"),
+	[Guid("62EA93BA-EC62-11d2-B770-00C04FB6BD3D"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAMLatency
 	{
@@ -3301,8 +3200,7 @@ namespace DirectShowLib
 		int GetLatency([In] long prtLatency);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("632105FA-072E-11d3-8AF9-00C04FB6BD3D"),
+	[Guid("632105FA-072E-11d3-8AF9-00C04FB6BD3D"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAMGraphStreams
 	{
@@ -3321,8 +3219,7 @@ namespace DirectShowLib
 		int SetMaxGraphLatency([In] long rtMaxGraphLatency);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("62fae250-7e65-4460-bfc9-6398b322073c"),
+	[Guid("62fae250-7e65-4460-bfc9-6398b322073c"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAMOverlayFX
 	{
@@ -3336,8 +3233,7 @@ namespace DirectShowLib
 		int GetOverlayFX([Out] out AMOverlayFX lpdwOverlayFX);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("8E1C39A1-DE53-11cf-AA63-0080C744528D"),
+	[Guid("8E1C39A1-DE53-11cf-AA63-0080C744528D"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAMOpenProgress
 	{
@@ -3351,8 +3247,7 @@ namespace DirectShowLib
 		int AbortOperation();
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("436eee9c-264f-4242-90e1-4e330c107512"),
+	[Guid("436eee9c-264f-4242-90e1-4e330c107512"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IMpeg2Demultiplexer
 	{
@@ -3373,8 +3268,7 @@ namespace DirectShowLib
 		int DeleteOutputPin([In, MarshalAs(UnmanagedType.LPWStr)] string pszPinName);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("945C1566-6202-46fc-96C7-D87F289C6534"),
+	[Guid("945C1566-6202-46fc-96C7-D87F289C6534"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IEnumStreamIdMap
 	{
@@ -3395,8 +3289,7 @@ namespace DirectShowLib
 		int Clone([Out] out IEnumStreamIdMap ppIEnumStreamIdMap);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("D0E04C47-25B8-4369-925A-362A01D95444"),
+	[Guid("D0E04C47-25B8-4369-925A-362A01D95444"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IMPEG2StreamIdMap
 	{
@@ -3418,8 +3311,7 @@ namespace DirectShowLib
 		int EnumStreamIdMap([Out] out IEnumStreamIdMap ppIEnumStreamIdMap);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("7B3A2F01-0751-48DD-B556-004785171C54"),
+	[Guid("7B3A2F01-0751-48DD-B556-004785171C54"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IRegisterServiceProvider
 	{
@@ -3430,8 +3322,7 @@ namespace DirectShowLib
 			);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("9FD52741-176D-4b36-8F51-CA8F933223BE"),
+	[Guid("9FD52741-176D-4b36-8F51-CA8F933223BE"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAMClockSlave
 	{
@@ -3442,8 +3333,7 @@ namespace DirectShowLib
 		int GetErrorTolerance([Out] out int pdwTolerance);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("4995f511-9ddb-4f12-bd3b-f04611807b79"),
+	[Guid("4995f511-9ddb-4f12-bd3b-f04611807b79"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAMGraphBuilderCallback
 	{
@@ -3454,8 +3344,7 @@ namespace DirectShowLib
 		int CreatedFilter([In] IBaseFilter pFil);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("901db4c7-31ce-41a2-85dc-8fa0bf41b8da"),
+	[Guid("901db4c7-31ce-41a2-85dc-8fa0bf41b8da"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface ICodecAPI
 	{
@@ -3538,8 +3427,7 @@ namespace DirectShowLib
 			);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("70423839-6ACC-4b23-B079-21DBF08156A5"),
+	[Guid("70423839-6ACC-4b23-B079-21DBF08156A5"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IEncoderAPI
 	{
@@ -3583,8 +3471,7 @@ namespace DirectShowLib
 			);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("02997C3B-8E1B-460e-9270-545E0DE9563E"),
+	[Guid("02997C3B-8E1B-460e-9270-545E0DE9563E"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IVideoEncoder : IEncoderAPI
 	{
@@ -3632,8 +3519,7 @@ namespace DirectShowLib
 		#endregion
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("c0dff467-d499-4986-972b-e1d9090fa941"),
+	[Guid("c0dff467-d499-4986-972b-e1d9090fa941"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAMDecoderCaps
 	{
@@ -3644,8 +3530,7 @@ namespace DirectShowLib
 			);
 	}
 
-	[ComVisible(true), ComImport,
-		Guid("6feded3e-0ff1-4901-a2f1-43f7012c8515"),
+	[Guid("6feded3e-0ff1-4901-a2f1-43f7012c8515"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAMCertifiedOutputProtection
 	{

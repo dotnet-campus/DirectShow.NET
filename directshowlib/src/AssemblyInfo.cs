@@ -61,6 +61,8 @@
 #endregion
 
 using System.Reflection;
+using System.Runtime.InteropServices;
+
 [assembly : AssemblyTitle("Direct Show Net Library")]
 [assembly : AssemblyDescription("")]
 [assembly : AssemblyConfiguration("")]
@@ -73,3 +75,4 @@ using System.Reflection;
 [assembly : AssemblyDelaySign(false)]
 [assembly : AssemblyKeyFile("")]
 [assembly : AssemblyKeyName("")]
+[assembly : ComVisible(false)]

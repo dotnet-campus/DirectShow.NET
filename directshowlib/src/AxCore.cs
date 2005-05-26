@@ -60,9 +60,6 @@
 
 #endregion
 
-#define  ALLOW_UNTESTED_STRUCTS
-#define  ALLOW_UNTESTED_INTERFACES
-
 using System;
 using System.Runtime.InteropServices;
 
@@ -76,7 +73,6 @@ namespace DirectShowLib
     /// <summary>
 	/// From FILTER_STATE
 	/// </summary>
-	[ComVisible(false)]
 	public enum FilterState
 	{
 		Stopped,
@@ -87,7 +83,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From AM_SAMPLE_PROPERTY_FLAGS
 	/// </summary>
-	[ComVisible(false), Flags] // May not be flags?
+	[Flags] // May not be flags?
 		public enum AMSamplePropertyFlags
 	{
 		SplicePoint = 0x01,
@@ -106,7 +102,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From AM_GBF_* defines
 	/// </summary>
-	[ComVisible(false), Flags]
+	[Flags]
 	public enum AMGBF
 	{
 		PrevFrameSkipped = 1,
@@ -118,7 +114,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From AM_SEEKING_SeekingFlags
 	/// </summary>
-	[ComVisible(false), Flags]
+	[Flags]
 	public enum AMSeekingSeekingFlags
 	{
 		NoPositioning = 0x00,
@@ -135,7 +131,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From AM_SEEKING_SeekingCapabilities
 	/// </summary>
-	[ComVisible(false), Flags]
+	[Flags]
 	public enum AMSeekingSeekingCapabilities
 	{
 		CanSeekAbsolute = 0x001,
@@ -152,7 +148,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From ALLOCATOR_PROPERTIES
 	/// </summary>
-	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
+	[StructLayout(LayoutKind.Sequential)]
 	public struct AllocatorProperties
 	{
 		public int cBuffers;
@@ -164,7 +160,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From AM_SAMPLE2_PROPERTIES
 	/// </summary>
-	[StructLayout(LayoutKind.Sequential), ComVisible(false)]
+	[StructLayout(LayoutKind.Sequential)]
 	public struct AMSample2Properties
 	{
 		public int cbData;
@@ -183,7 +179,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From FILTER_INFO
 	/// </summary>
-	[StructLayout(LayoutKind.Sequential, CharSet=CharSet.Unicode), ComVisible(false)]
+	[StructLayout(LayoutKind.Sequential, CharSet=CharSet.Unicode)]
   public struct FilterInfo
     {
     [MarshalAs(UnmanagedType.ByValTStr, SizeConst=128)] public string achName;
@@ -194,7 +190,7 @@ namespace DirectShowLib
     /// <summary>
     /// From PIN_INFO
     /// </summary>
-    [StructLayout(LayoutKind.Sequential, Pack=1, CharSet=CharSet.Unicode), ComVisible(false)]
+    [StructLayout(LayoutKind.Sequential, Pack=1, CharSet=CharSet.Unicode)]
     public struct PinInfo
     {
         public IBaseFilter filter;
@@ -206,7 +202,7 @@ namespace DirectShowLib
     /// From AM_MEDIA_TYPE - When you are done with an instance of this class,
     /// it should be released with FreeAMMediaType() to avoid leaking
     /// </summary>
-    [StructLayout(LayoutKind.Sequential, Pack=1), ComVisible(false)]
+    [StructLayout(LayoutKind.Sequential, Pack=1)]
     public class AMMediaType
     {
         public Guid majorType;
@@ -223,7 +219,6 @@ namespace DirectShowLib
     /// <summary>
     /// From PIN_DIRECTION
     /// </summary>
-    [ComVisible(false)]
     public enum PinDirection
     {
         Input,
@@ -236,8 +231,7 @@ namespace DirectShowLib
 
 #if ALLOW_UNTESTED_INTERFACES
 
-	[ComVisible(true), ComImport,
-		Guid("56a86892-0ad4-11ce-b03a-0020af0ba770"),
+	[Guid("56a86892-0ad4-11ce-b03a-0020af0ba770"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IEnumPins
 	{
@@ -259,8 +253,7 @@ namespace DirectShowLib
 	}
 
 
-	[ComVisible(true), ComImport,
-		Guid("89c31040-846b-11ce-97d3-00aa0055595a"),
+	[Guid("89c31040-846b-11ce-97d3-00aa0055595a"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IEnumMediaTypes
 	{
@@ -282,8 +275,7 @@ namespace DirectShowLib
 	}
 
 
-	[ComVisible(true), ComImport,
-		Guid("56a8689f-0ad4-11ce-b03a-0020af0ba770"),
+	[Guid("56a8689f-0ad4-11ce-b03a-0020af0ba770"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IFilterGraph
 	{
@@ -324,8 +316,7 @@ namespace DirectShowLib
 	}
 
 
-	[ComVisible(true), ComImport,
-		Guid("56a86893-0ad4-11ce-b03a-0020af0ba770"),
+	[Guid("56a86893-0ad4-11ce-b03a-0020af0ba770"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IEnumFilters
 	{
@@ -358,8 +349,7 @@ namespace DirectShowLib
 	}
 
 
-	[ComVisible(true), ComImport,
-		Guid("56a86895-0ad4-11ce-b03a-0020af0ba770"),
+	[Guid("56a86895-0ad4-11ce-b03a-0020af0ba770"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IBaseFilter : IMediaFilter
 	{
@@ -416,8 +406,7 @@ namespace DirectShowLib
 	}
 
 
-	[ComVisible(true), ComImport,
-		Guid("56a86897-0ad4-11ce-b03a-0020af0ba770"),
+	[Guid("56a86897-0ad4-11ce-b03a-0020af0ba770"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IReferenceClock
 	{
@@ -445,8 +434,7 @@ namespace DirectShowLib
 	}
 
 
-	[ComVisible(true), ComImport,
-		Guid("36b73885-c2c8-11cf-8b46-00805f6cef60"),
+	[Guid("36b73885-c2c8-11cf-8b46-00805f6cef60"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IReferenceClock2 : IReferenceClock
 	{
@@ -478,8 +466,7 @@ namespace DirectShowLib
 	}
 
 
-	[ComVisible(true), ComImport,
-		Guid("36b73884-c2c8-11cf-8b46-00805f6cef60"),
+	[Guid("36b73884-c2c8-11cf-8b46-00805f6cef60"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IMediaSample2 : IMediaSample
 	{
@@ -497,11 +484,11 @@ namespace DirectShowLib
 			[Out] out long pTimeEnd
 			);
 
-		[PreserveSig]
-		new int SetTime(
-			[In] long pTimeStart,
-			[In] long pTimeEnd
-			);
+        [PreserveSig]
+        new int SetTime(
+            [In, MarshalAs(UnmanagedType.LPStruct)] DsOptInt64 pTimeStart,
+            [In, MarshalAs(UnmanagedType.LPStruct)] DsOptInt64 pTimeEnd
+            );
 
 		[PreserveSig]
 		new int IsSyncPoint();
@@ -539,11 +526,11 @@ namespace DirectShowLib
 			[Out] out long pTimeEnd
 			);
 
-		[PreserveSig]
-		new int SetMediaTime(
-			[In] long pTimeStart,
-			[In] long pTimeEnd
-			);
+        [PreserveSig]
+        new int SetMediaTime(
+            [In, MarshalAs(UnmanagedType.LPStruct)] DsOptInt64 pTimeStart,
+            [In, MarshalAs(UnmanagedType.LPStruct)] DsOptInt64 pTimeEnd
+            );
 
 		#endregion
 
@@ -561,8 +548,7 @@ namespace DirectShowLib
 	}
 
 
-	[ComVisible(true), ComImport,
-		Guid("56a8689c-0ad4-11ce-b03a-0020af0ba770"),
+	[Guid("56a8689c-0ad4-11ce-b03a-0020af0ba770"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IMemAllocator
 	{
@@ -594,8 +580,7 @@ namespace DirectShowLib
 	}
 
 
-	[ComVisible(true), ComImport,
-		Guid("379a0cf0-c1de-11d2-abf5-00a0c905f375"),
+	[Guid("379a0cf0-c1de-11d2-abf5-00a0c905f375"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IMemAllocatorCallbackTemp : IMemAllocator
 	{
@@ -637,8 +622,7 @@ namespace DirectShowLib
 	}
 
 
-	[ComVisible(true), ComImport,
-		Guid("92980b30-c1de-11d2-abf5-00a0c905f375"),
+	[Guid("92980b30-c1de-11d2-abf5-00a0c905f375"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IMemAllocatorNotifyCallbackTemp
 	{
@@ -647,8 +631,7 @@ namespace DirectShowLib
 	}
 
 
-	[ComVisible(true), ComImport,
-		Guid("56a8689d-0ad4-11ce-b03a-0020af0ba770"),
+	[Guid("56a8689d-0ad4-11ce-b03a-0020af0ba770"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IMemInputPin
 	{
@@ -679,8 +662,7 @@ namespace DirectShowLib
 	}
 
 
-	[ComVisible(true), ComImport,
-		Guid("a3d8cec0-7e5a-11cf-bbc5-00805f6cef20"),
+	[Guid("a3d8cec0-7e5a-11cf-bbc5-00805f6cef20"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAMovieSetup
 	{
@@ -693,8 +675,7 @@ namespace DirectShowLib
 
 #endif
 
-    [ComVisible(true), ComImport,
-    Guid("56a86891-0ad4-11ce-b03a-0020af0ba770"),
+    [Guid("56a86891-0ad4-11ce-b03a-0020af0ba770"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPin
     {
@@ -766,8 +747,7 @@ namespace DirectShowLib
     }
 
 
-    [ComVisible(true), ComImport,
-    Guid("36b73880-c2c8-11cf-8b46-00805f6cef60"),
+    [Guid("36b73880-c2c8-11cf-8b46-00805f6cef60"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IMediaSeeking
     {
@@ -840,8 +820,7 @@ namespace DirectShowLib
     }
 
 
-    [ComVisible(true), ComImport,
-    Guid("56a8689a-0ad4-11ce-b03a-0020af0ba770"),
+    [Guid("56a8689a-0ad4-11ce-b03a-0020af0ba770"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IMediaSample
     {
@@ -910,8 +889,7 @@ namespace DirectShowLib
     }
 
 
-    [ComVisible(true), ComImport,
-    Guid("56a86899-0ad4-11ce-b03a-0020af0ba770"),
+    [Guid("56a86899-0ad4-11ce-b03a-0020af0ba770"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IMediaFilter : IPersist
     {
