@@ -149,7 +149,7 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "IDvdState.cs"
+                    RelPath = "IDvdStateTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -195,6 +195,11 @@
                 />
                 <File
                     RelPath = "IMediaSeekingTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IPersistStreamTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

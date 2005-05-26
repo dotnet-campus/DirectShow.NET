@@ -99,11 +99,28 @@ namespace DirectShowLib
 #if ALLOW_UNTESTED_INTERFACES
 	[Guid("00000109-0000-0000-C000-000000000046"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	public interface IPersistStream
+	public interface IPersistStream : IPersist
 	{
+        #region IPersist Methods
+
 		[PreserveSig]
-		int GetClassID([Out] out Guid pClassID);
-	}
+		new int GetClassID([Out] out Guid pClassID);
+
+        #endregion
+
+        [PreserveSig]
+        int IsDirty();
+        
+        [PreserveSig]
+        int Load([In] IStream pStm);
+        
+        [PreserveSig]
+        int Save([In] IStream pStm,
+                [In] bool fClearDirty);
+        
+        [PreserveSig]
+        int GetSizeMax([Out] long pcbSize);
+    }
 
 	[Guid("55272A00-42CB-11CE-8135-00AA004BB851"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]

@@ -87,8 +87,11 @@ namespace DirectShowLib.Test
             //IDvdCmdTest dpw23 = new IDvdCmdTest();
             //dpw23.DoTests();
 
-            IDvdStateTest dpw24 = new IDvdStateTest();
-            dpw24.DoTests();
+            //IDvdStateTest dpw24 = new IDvdStateTest();
+            //dpw24.DoTests();
+
+            IPersistStreamTest dpw25 = new IPersistStreamTest();
+            dpw25.DoTests();
         }
     }
 }
