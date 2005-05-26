@@ -17,7 +17,7 @@
                 DelaySign = "false"
                 OutputType = "Exe"
                 PreBuildEvent = ""
-                PostBuildEvent = ""
+                PostBuildEvent = "copy $(SolutionDir)Resources\foo.avi ."
                 RootNamespace = "Test"
                 RunPostBuildEvent = "OnBuildSuccess"
                 StartupObject = ""
@@ -109,6 +109,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "BaseTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IAMAudioInputMixerTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -180,6 +185,11 @@
                 />
                 <File
                     RelPath = "IKsPinTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IMediaControlTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
