@@ -124,6 +124,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IDvdCmdTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IDvdControl2Test.cs"
                     SubType = "Form"
                     BuildAction = "Compile"
@@ -140,6 +145,11 @@
                 />
                 <File
                     RelPath = "IDvdInfo2Test.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IDvdState.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

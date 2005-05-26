@@ -1,4 +1,4 @@
-// ???SelectParentalCountry->string
+// SelectParentalCountry->byte[]
 // PlayAtTimeInTitle -> lpstruct
 // SelectKaraokeAudioPresentationMode -> DvdKaraokeDownMix
 // SelectVideoModePreference -> DvdPreferredDisplayMode

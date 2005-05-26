@@ -66,8 +66,8 @@ namespace DirectShowLib.Test
             //IFilterGraphTest t16 = new IFilterGraphTest();
             //t16.DoTests();
 
-            IGraphBuilderTest t17 = new IGraphBuilderTest();
-            t17.DoTests();
+            //IGraphBuilderTest t17 = new IGraphBuilderTest();
+            //t17.DoTests();
   
             //IFilterGraph2Test t18 = new IFilterGraph2Test();
             //t18.DoTests();
@@ -80,6 +80,15 @@ namespace DirectShowLib.Test
 
             //IDvdControl2Test t21 = new IDvdControl2Test();
             //t21.DoTests();
+
+            //IVideoFrameStepTest t22 = new IVideoFrameStepTest();
+            //t22.DoTests();
+
+            //IDvdCmdTest dpw23 = new IDvdCmdTest();
+            //dpw23.DoTests();
+
+            IDvdStateTest dpw24 = new IDvdStateTest();
+            dpw24.DoTests();
         }
     }
 }
