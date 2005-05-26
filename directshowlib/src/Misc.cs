@@ -117,7 +117,6 @@ namespace DirectShowLib
         [PreserveSig]
         int Save([In] UCOMIStream pStm, 
             [In] bool fClearDirty);
-        //[In, MarshalAs(UnmanagedType.Bool)] bool fClearDirty);
         
         [PreserveSig]
         int GetSizeMax([Out] out long pcbSize);
