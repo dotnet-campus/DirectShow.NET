@@ -105,8 +105,13 @@ namespace DirectShowLib.Test
             //IFileSinkFilterTest dpw29 = new IFileSinkFilterTest();
             //dpw29.DoTests();
 
-            IFileSinkFilter2Test dpw30 = new IFileSinkFilter2Test();
-            dpw30.DoTests();
+            //IFileSinkFilter2Test dpw30 = new IFileSinkFilter2Test();
+            //dpw30.DoTests();
+
+          IFileSourceFilterTest en01 = new IFileSourceFilterTest();
+          en01.DoTests();
+
+            
         }
     }
 }
