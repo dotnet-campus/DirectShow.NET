@@ -184,6 +184,16 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IFileSinkFilter2Test.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IFileSinkFilterTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IFilterGraph2Test.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

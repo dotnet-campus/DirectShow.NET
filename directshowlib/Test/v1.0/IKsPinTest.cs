@@ -88,7 +88,7 @@ namespace DirectShowLib.Test
                 ArrayList capDevices;
 
                 // Get the collection of video devices
-                DsDevice.GetDevicesOfCat( FilterCategory.VideoInputDevice, out capDevices );
+                capDevices = DsDevice.GetDevicesOfCat( FilterCategory.VideoInputDevice);
                 if( capDevices.Count == 0 )
                 {
                     throw new Exception("No video capture devices found!");

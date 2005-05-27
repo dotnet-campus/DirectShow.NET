@@ -886,10 +886,9 @@ namespace DirectShowLib
         /// Returns an array of DsDevices of type devcat.
         /// </summary>
         /// <param name="cat">Any one of FilterCategory</param>
-        /// <param name="devs">An array of zero or more devices</param>
-        public static void GetDevicesOfCat(Guid devcat, out ArrayList devs)
+        public static ArrayList GetDevicesOfCat(Guid devcat)
         {
-            devs = new ArrayList();
+            ArrayList devs = new ArrayList();
             int hr;
             ICreateDevEnum enumDev = null;
             UCOMIEnumMoniker enumMon = null;
@@ -933,6 +932,8 @@ namespace DirectShowLib
                     enumMon = null;
                 }
             }
+
+            return devs;
         }
 
         /// <summary>

@@ -98,6 +98,7 @@ namespace DirectShowLib
 	[Flags]
 	public enum AMFileSinkFlags
 	{
+        None = 0,
 		OverWrite = 0x00000001
 	}
 

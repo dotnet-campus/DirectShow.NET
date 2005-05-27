@@ -99,9 +99,14 @@ namespace DirectShowLib.Test
             //IConfigAviMuxTest dpw27 = new IConfigAviMuxTest();
             //dpw27.DoTests();
 
-            IConfigInterleavingTest dpw28 = new IConfigInterleavingTest();
-            dpw28.DoTests();
+            //IConfigInterleavingTest dpw28 = new IConfigInterleavingTest();
+            //dpw28.DoTests();
 
+            //IFileSinkFilterTest dpw29 = new IFileSinkFilterTest();
+            //dpw29.DoTests();
+
+            IFileSinkFilter2Test dpw30 = new IFileSinkFilter2Test();
+            dpw30.DoTests();
         }
     }
 }
