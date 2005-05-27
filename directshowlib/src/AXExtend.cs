@@ -1272,8 +1272,8 @@ namespace DirectShowLib
 		[PreserveSig]
 		int GetCurFile(
 			[Out, MarshalAs(UnmanagedType.LPWStr)] out string pszFileName,
-			[Out, MarshalAs(UnmanagedType.LPStruct)] out AMMediaType pmt
-			);
+      [Out, MarshalAs(UnmanagedType.LPStruct)] AMMediaType pmt
+      );
 	}
 
 	[Guid("a2104830-7c70-11cf-8bce-00aa00a3f1a6"),
