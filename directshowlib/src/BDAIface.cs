@@ -121,7 +121,7 @@ namespace DirectShowLib.BDA
 		int GetNetworkType([Out] out Guid pguidNetworkType);
 
 		[PreserveSig]
-		int PutTuningSpace([In] ref Guid guidTuningSpace);
+		int PutTuningSpace([In, MarshalAs(UnmanagedType.LPStruct)] Guid guidTuningSpace);
 
 		[PreserveSig]
 		int GetTuningSpace([Out] out Guid pguidTuingSpace);
@@ -193,7 +193,7 @@ namespace DirectShowLib.BDA
 	public interface IBDA_SignalProperties
 	{
 		[PreserveSig]
-		int PutNetworkType([In] ref Guid guidNetworkType);
+		int PutNetworkType([In, MarshalAs(UnmanagedType.LPStruct)] Guid guidNetworkType);
 
 		[PreserveSig]
 		int GetNetworkType([Out] out Guid pguidNetworkType);
@@ -205,7 +205,7 @@ namespace DirectShowLib.BDA
 		int GetSignalSource([Out] out int pulSignalSource);
 
 		[PreserveSig]
-		int PutTuningSpace([In] ref Guid guidTuningSpace);
+		int PutTuningSpace([In, MarshalAs(UnmanagedType.LPStruct)] Guid guidTuningSpace);
 
 		[PreserveSig]
 		int GetTuningSpace([Out] out Guid pguidTuingSpace);

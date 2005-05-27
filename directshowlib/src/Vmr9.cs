@@ -625,7 +625,7 @@ namespace DirectShowLib
 
 		[PreserveSig]
 		int GetDeinterlaceModeCaps(
-			[In] ref Guid lpDeinterlaceMode,
+			[In, MarshalAs(UnmanagedType.LPStruct)] Guid lpDeinterlaceMode,
 			[In] ref VMR9VideoDesc lpVideoDescription,
 			[Out] out VMR9DeinterlaceCaps lpDeinterlaceCaps
 			);
@@ -639,7 +639,7 @@ namespace DirectShowLib
 		[PreserveSig]
 		int SetDeinterlaceMode(
 			[In] int dwStreamID,
-			[In] ref Guid lpDeinterlaceMode
+			[In, MarshalAs(UnmanagedType.LPStruct)] Guid lpDeinterlaceMode
 			);
 
 		[PreserveSig]

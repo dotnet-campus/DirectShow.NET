@@ -421,7 +421,7 @@ namespace DirectShowLib.BDA
 
 		[PreserveSig]
 		int _TuningSpacesForCLSID(
-			[In] ref Guid SpaceCLSID,
+			[In, MarshalAs(UnmanagedType.LPStruct)] Guid SpaceCLSID,
 			[Out] out ITuningSpaces NewColl
 			);
 
@@ -488,7 +488,7 @@ namespace DirectShowLib.BDA
 		int get__NetworkType([Out] out Guid NetworkTypeGuid);
 
 		[PreserveSig, DispId((int) DispIDTuner.TS__NETWORKTYPE)]
-		int put__NetworkType([In] ref Guid NetworkTypeGuid);
+		int put__NetworkType([In, MarshalAs(UnmanagedType.LPStruct)] Guid NetworkTypeGuid);
 
 		[PreserveSig, DispId((int) DispIDTuner.TS_CREATETUNEREQUEST)]
 		int CreateTuneRequest([Out] out ITuneRequest TuneRequest);
@@ -567,7 +567,7 @@ namespace DirectShowLib.BDA
 		new int get__NetworkType([Out] out Guid NetworkTypeGuid);
 
 		[PreserveSig, DispId((int) DispIDTuner.TS__NETWORKTYPE)]
-		new int put__NetworkType([In] ref Guid NetworkTypeGuid);
+		new int put__NetworkType([In, MarshalAs(UnmanagedType.LPStruct)] Guid NetworkTypeGuid);
 
 		[PreserveSig, DispId((int) DispIDTuner.TS_CREATETUNEREQUEST)]
 		new int CreateTuneRequest([Out] out ITuneRequest TuneRequest);
@@ -635,7 +635,7 @@ namespace DirectShowLib.BDA
 		new int get__NetworkType([Out] out Guid NetworkTypeGuid);
 
 		[PreserveSig, DispId((int) DispIDTuner.TS__NETWORKTYPE)]
-		new int put__NetworkType([In] ref Guid NetworkTypeGuid);
+		new int put__NetworkType([In, MarshalAs(UnmanagedType.LPStruct)] Guid NetworkTypeGuid);
 
 		[PreserveSig, DispId((int) DispIDTuner.TS_CREATETUNEREQUEST)]
 		new int CreateTuneRequest([Out] out ITuneRequest TuneRequest);
@@ -709,7 +709,7 @@ namespace DirectShowLib.BDA
 		new int get__NetworkType([Out] out Guid NetworkTypeGuid);
 
 		[PreserveSig, DispId((int) DispIDTuner.TS__NETWORKTYPE)]
-		new int put__NetworkType([In] ref Guid NetworkTypeGuid);
+		new int put__NetworkType([In, MarshalAs(UnmanagedType.LPStruct)] Guid NetworkTypeGuid);
 
 		[PreserveSig, DispId((int) DispIDTuner.TS_CREATETUNEREQUEST)]
 		new int CreateTuneRequest([Out] out ITuneRequest TuneRequest);
@@ -816,7 +816,7 @@ namespace DirectShowLib.BDA
 		new int get__NetworkType([Out] out Guid NetworkTypeGuid);
 
 		[PreserveSig, DispId((int) DispIDTuner.TS__NETWORKTYPE)]
-		new int put__NetworkType([In] ref Guid NetworkTypeGuid);
+		new int put__NetworkType([In, MarshalAs(UnmanagedType.LPStruct)] Guid NetworkTypeGuid);
 
 		[PreserveSig, DispId((int) DispIDTuner.TS_CREATETUNEREQUEST)]
 		new int CreateTuneRequest([Out] out ITuneRequest TuneRequest);
@@ -878,7 +878,7 @@ namespace DirectShowLib.BDA
 		new int get__NetworkType([Out] out Guid NetworkTypeGuid);
 
 		[PreserveSig, DispId((int) DispIDTuner.TS__NETWORKTYPE)]
-		new int put__NetworkType([In] ref Guid NetworkTypeGuid);
+		new int put__NetworkType([In, MarshalAs(UnmanagedType.LPStruct)] Guid NetworkTypeGuid);
 
 		[PreserveSig, DispId((int) DispIDTuner.TS_CREATETUNEREQUEST)]
 		new int CreateTuneRequest([Out] out ITuneRequest TuneRequest);
@@ -964,7 +964,7 @@ namespace DirectShowLib.BDA
 		new int get__NetworkType([Out] out Guid NetworkTypeGuid);
 
 		[PreserveSig, DispId((int) DispIDTuner.TS__NETWORKTYPE)]
-		new int put__NetworkType([In] ref Guid NetworkTypeGuid);
+		new int put__NetworkType([In, MarshalAs(UnmanagedType.LPStruct)] Guid NetworkTypeGuid);
 
 		[PreserveSig, DispId((int) DispIDTuner.TS_CREATETUNEREQUEST)]
 		new int CreateTuneRequest([Out] out ITuneRequest TuneRequest);
@@ -1074,7 +1074,7 @@ namespace DirectShowLib.BDA
 		new int get__NetworkType([Out] out Guid NetworkTypeGuid);
 
 		[PreserveSig, DispId((int) DispIDTuner.TS__NETWORKTYPE)]
-		new int put__NetworkType([In] ref Guid NetworkTypeGuid);
+		new int put__NetworkType([In, MarshalAs(UnmanagedType.LPStruct)] Guid NetworkTypeGuid);
 
 		[PreserveSig, DispId((int) DispIDTuner.TS_CREATETUNEREQUEST)]
 		new int CreateTuneRequest([Out] out ITuneRequest TuneRequest);
@@ -1401,7 +1401,7 @@ namespace DirectShowLib.BDA
 		int get__MediaMajorType([Out] out Guid MediaMajorType);
 
 		[PreserveSig, DispId((int) DispIDTuner.CT__MEDIAMAJORTYPE)]
-		int put__MediaMajorType([In] ref Guid MediaMajorType);
+		int put__MediaMajorType([In, MarshalAs(UnmanagedType.LPStruct)] Guid MediaMajorType);
 
 		[PreserveSig, DispId((int) DispIDTuner.CT_MEDIASUBTYPE)]
 		int get_MediaSubType([Out, MarshalAs(UnmanagedType.BStr)] out string MediaSubType);
@@ -1413,7 +1413,7 @@ namespace DirectShowLib.BDA
 		int get__MediaSubType([Out] out Guid MediaSubType);
 
 		[PreserveSig, DispId((int) DispIDTuner.CT__MEDIASUBTYPE)]
-		int put__MediaSubType([In] ref Guid MediaSubType);
+		int put__MediaSubType([In, MarshalAs(UnmanagedType.LPStruct)] Guid MediaSubType);
 
 		[PreserveSig, DispId((int) DispIDTuner.CT_MEDIAFORMATTYPE)]
 		int get_MediaFormatType([Out, MarshalAs(UnmanagedType.BStr)] out string MediaFormatType);
@@ -1425,7 +1425,7 @@ namespace DirectShowLib.BDA
 		int get__MediaFormatType([Out] out Guid MediaFormatType);
 
 		[PreserveSig, DispId((int) DispIDTuner.CT__MEDIAFORMATTYPE)]
-		int put__MediaFormatType([In] ref Guid MediaFormatType);
+		int put__MediaFormatType([In, MarshalAs(UnmanagedType.LPStruct)] Guid MediaFormatType);
 
 		[PreserveSig, DispId((int) DispIDTuner.CT_MEDIATYPE)]
 		int get_MediaType([Out] out AMMediaType MediaType);
@@ -1457,7 +1457,7 @@ namespace DirectShowLib.BDA
 		new int get__MediaMajorType([Out] out Guid MediaMajorType);
 
 		[PreserveSig, DispId((int) DispIDTuner.CT__MEDIAMAJORTYPE)]
-		new int put__MediaMajorType([In] ref Guid MediaMajorType);
+		new int put__MediaMajorType([In, MarshalAs(UnmanagedType.LPStruct)] Guid MediaMajorType);
 
 		[PreserveSig, DispId((int) DispIDTuner.CT_MEDIASUBTYPE)]
 		new int get_MediaSubType([Out, MarshalAs(UnmanagedType.BStr)] out string MediaSubType);
@@ -1469,7 +1469,7 @@ namespace DirectShowLib.BDA
 		new int get__MediaSubType([Out] out Guid MediaSubType);
 
 		[PreserveSig, DispId((int) DispIDTuner.CT__MEDIASUBTYPE)]
-		new int put__MediaSubType([In] ref Guid MediaSubType);
+		new int put__MediaSubType([In, MarshalAs(UnmanagedType.LPStruct)] Guid MediaSubType);
 
 		[PreserveSig, DispId((int) DispIDTuner.CT_MEDIAFORMATTYPE)]
 		new int get_MediaFormatType([Out, MarshalAs(UnmanagedType.BStr)] out string MediaFormatType);
@@ -1481,7 +1481,7 @@ namespace DirectShowLib.BDA
 		new int get__MediaFormatType([Out] out Guid MediaFormatType);
 
 		[PreserveSig, DispId((int) DispIDTuner.CT__MEDIAFORMATTYPE)]
-		new int put__MediaFormatType([In] ref Guid MediaFormatType);
+		new int put__MediaFormatType([In, MarshalAs(UnmanagedType.LPStruct)] Guid MediaFormatType);
 
 		[PreserveSig, DispId((int) DispIDTuner.CT_MEDIATYPE)]
 		new int get_MediaType([Out] out AMMediaType MediaType);
@@ -1519,7 +1519,7 @@ namespace DirectShowLib.BDA
 		new int get__MediaMajorType([Out] out Guid MediaMajorType);
 
 		[PreserveSig, DispId((int) DispIDTuner.CT__MEDIAMAJORTYPE)]
-		new int put__MediaMajorType([In] ref Guid MediaMajorType);
+		new int put__MediaMajorType([In, MarshalAs(UnmanagedType.LPStruct)] Guid MediaMajorType);
 
 		[PreserveSig, DispId((int) DispIDTuner.CT_MEDIASUBTYPE)]
 		new int get_MediaSubType([Out, MarshalAs(UnmanagedType.BStr)] out string MediaSubType);
@@ -1531,7 +1531,7 @@ namespace DirectShowLib.BDA
 		new int get__MediaSubType([Out] out Guid MediaSubType);
 
 		[PreserveSig, DispId((int) DispIDTuner.CT__MEDIASUBTYPE)]
-		new int put__MediaSubType([In] ref Guid MediaSubType);
+		new int put__MediaSubType([In, MarshalAs(UnmanagedType.LPStruct)] Guid MediaSubType);
 
 		[PreserveSig, DispId((int) DispIDTuner.CT_MEDIAFORMATTYPE)]
 		new int get_MediaFormatType([Out, MarshalAs(UnmanagedType.BStr)] out string MediaFormatType);
@@ -1543,7 +1543,7 @@ namespace DirectShowLib.BDA
 		new int get__MediaFormatType([Out] out Guid MediaFormatType);
 
 		[PreserveSig, DispId((int) DispIDTuner.CT__MEDIAFORMATTYPE)]
-		new int put__MediaFormatType([In] ref Guid MediaFormatType);
+		new int put__MediaFormatType([In, MarshalAs(UnmanagedType.LPStruct)] Guid MediaFormatType);
 
 		[PreserveSig, DispId((int) DispIDTuner.CT_MEDIATYPE)]
 		new int get_MediaType([Out] out AMMediaType MediaType);
@@ -1587,7 +1587,7 @@ namespace DirectShowLib.BDA
 		new int get__MediaMajorType([Out] out Guid MediaMajorType);
 
 		[PreserveSig, DispId((int) DispIDTuner.CT__MEDIAMAJORTYPE)]
-		new int put__MediaMajorType([In] ref Guid MediaMajorType);
+		new int put__MediaMajorType([In, MarshalAs(UnmanagedType.LPStruct)] Guid MediaMajorType);
 
 		[PreserveSig, DispId((int) DispIDTuner.CT_MEDIASUBTYPE)]
 		new int get_MediaSubType([Out, MarshalAs(UnmanagedType.BStr)] out string MediaSubType);
@@ -1599,7 +1599,7 @@ namespace DirectShowLib.BDA
 		new int get__MediaSubType([Out] out Guid MediaSubType);
 
 		[PreserveSig, DispId((int) DispIDTuner.CT__MEDIASUBTYPE)]
-		new int put__MediaSubType([In] ref Guid MediaSubType);
+		new int put__MediaSubType([In, MarshalAs(UnmanagedType.LPStruct)] Guid MediaSubType);
 
 		[PreserveSig, DispId((int) DispIDTuner.CT_MEDIAFORMATTYPE)]
 		new int get_MediaFormatType([Out, MarshalAs(UnmanagedType.BStr)] out string MediaFormatType);
@@ -1611,7 +1611,7 @@ namespace DirectShowLib.BDA
 		new int get__MediaFormatType([Out] out Guid MediaFormatType);
 
 		[PreserveSig, DispId((int) DispIDTuner.CT__MEDIAFORMATTYPE)]
-		new int put__MediaFormatType([In] ref Guid MediaFormatType);
+		new int put__MediaFormatType([In, MarshalAs(UnmanagedType.LPStruct)] Guid MediaFormatType);
 
 		[PreserveSig, DispId((int) DispIDTuner.CT_MEDIATYPE)]
 		new int get_MediaType([Out] out AMMediaType MediaType);

@@ -75,8 +75,8 @@ namespace DirectShowLib
 	{
 		[PreserveSig]
 		int Init(
-			[In] ref Guid clsidDMO,
-			[In] ref Guid catDMO
+			[In, MarshalAs(UnmanagedType.LPStruct)] Guid clsidDMO,
+			[In, MarshalAs(UnmanagedType.LPStruct)] Guid catDMO
 			);
 	}
 #endif
