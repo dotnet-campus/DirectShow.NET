@@ -1331,7 +1331,7 @@ namespace DirectShowLib
 
 		[PreserveSig]
 		int SetOutputFileName(
-			[In] ref Guid pType,
+			[In, MarshalAs(UnmanagedType.LPStruct)] Guid pType,
 			[In, MarshalAs(UnmanagedType.LPWStr)] string lpstrFile,
 			[Out] out IBaseFilter ppbf,
 			[Out] out IFileSinkFilter ppSink
@@ -1339,15 +1339,15 @@ namespace DirectShowLib
 
 		[PreserveSig]
 		int FindInterface(
-			[In] ref Guid pCategory,
+			[In, MarshalAs(UnmanagedType.LPStruct)] Guid pCategory,
 			[In] IBaseFilter pf,
-			[In] ref Guid riid,
+			[In, MarshalAs(UnmanagedType.LPStruct)] Guid riid,
 			[Out, MarshalAs(UnmanagedType.IUnknown)] out object ppint
 			);
 
 		[PreserveSig]
 		int RenderStream(
-			[In] ref Guid pCategory,
+			[In, MarshalAs(UnmanagedType.LPStruct)] Guid pCategory,
 			[In, MarshalAs(UnmanagedType.IUnknown)] object pSource,
 			[In] IBaseFilter pfCompressor,
 			[In] IBaseFilter pfRenderer
@@ -1355,7 +1355,7 @@ namespace DirectShowLib
 
 		[PreserveSig]
 		int ControlStream(
-			[In] ref Guid pCategory,
+			[In, MarshalAs(UnmanagedType.LPStruct)] Guid pCategory,
 			[In] IBaseFilter pFilter,
 			[In] long pstart,
 			[In] long pstop,
@@ -1398,25 +1398,25 @@ namespace DirectShowLib
 
 		[PreserveSig]
 		int SetOutputFileName(
-			[In] ref Guid pType,
-			[In, MarshalAs(UnmanagedType.LPWStr)] string lpstrFile,
+            [In, MarshalAs(UnmanagedType.LPStruct)] Guid pType,
+            [In, MarshalAs(UnmanagedType.LPWStr)] string lpstrFile,
 			[Out] out IBaseFilter ppbf,
 			[Out] out IFileSinkFilter ppSink
 			);
 
 		[PreserveSig]
 		int FindInterface(
-			[In] ref Guid pCategory,
-			[In] ref Guid pType,
+			[In, MarshalAs(UnmanagedType.LPStruct)] Guid pCategory,
+			[In, MarshalAs(UnmanagedType.LPStruct)] Guid pType,
 			[In] IBaseFilter pbf,
-			[In] ref Guid riid,
+			[In, MarshalAs(UnmanagedType.LPStruct)] Guid riid,
 			[Out, MarshalAs(UnmanagedType.IUnknown)] out object ppint
 			);
 
 		[PreserveSig]
 		int RenderStream(
-			[In] ref Guid pCategory,
-			[In] ref Guid pType,
+            [In, MarshalAs(UnmanagedType.LPStruct)] Guid pCategory,
+            [In, MarshalAs(UnmanagedType.LPStruct)] Guid pType,
 			[In, MarshalAs(UnmanagedType.IUnknown)] object pSource,
 			[In] IBaseFilter pfCompressor,
 			[In] IBaseFilter pfRenderer
@@ -1424,8 +1424,8 @@ namespace DirectShowLib
 
 		[PreserveSig]
 		int ControlStream(
-			[In] ref Guid pCategory,
-			[In] ref Guid pType,
+			[In, MarshalAs(UnmanagedType.LPStruct)] Guid pCategory,
+			[In, MarshalAs(UnmanagedType.LPStruct)] Guid pType,
 			[In] IBaseFilter pFilter,
 			[In] long pstart,
 			[In] long pstop,
@@ -1451,8 +1451,8 @@ namespace DirectShowLib
 		int FindPin(
 			[In] object pSource,
 			[In] PinDirection pindir,
-			[In] ref Guid pCategory,
-			[In] ref Guid pType,
+			[In, MarshalAs(UnmanagedType.LPStruct)] Guid pCategory,
+			[In, MarshalAs(UnmanagedType.LPStruct)] Guid pType,
 			[In, MarshalAs(UnmanagedType.Bool)] bool fUnconnected,
 			[In] int num,
 			[Out] out IPin ppPin
@@ -1779,7 +1779,7 @@ namespace DirectShowLib
 
 		[PreserveSig]
 		int put_Interleaving(
-			[In] ref long prtInterleave,
+            [In] ref long prtInterleave,
 			[In] ref long prtPreroll
 			);
 
@@ -1804,7 +1804,7 @@ namespace DirectShowLib
 		int SetOutputCompatibilityIndex([In, MarshalAs(UnmanagedType.Bool)] bool fOldIndex);
 
 		[PreserveSig]
-		int GetOutputCompatibilityIndex([Out, MarshalAs(UnmanagedType.Bool)] bool pfOldIndex);
+		int GetOutputCompatibilityIndex([Out, MarshalAs(UnmanagedType.Bool)] out bool pfOldIndex);
 	}
 
 	[Guid("C6E13343-30AC-11d0-A18C-00A0C9118956"),
@@ -2499,7 +2499,7 @@ namespace DirectShowLib
 	{
 		[PreserveSig]
 		int Set(
-			[In] ref Guid guidPropSet,
+			[In, MarshalAs(UnmanagedType.LPStruct)] Guid guidPropSet,
 			[In] AMPropertyPin dwPropID,
 			[In] IntPtr pInstanceData, // LPVOID
 			[In] int cbInstanceData,
@@ -2509,7 +2509,7 @@ namespace DirectShowLib
 
 		[PreserveSig]
 		int Get(
-			[In] ref Guid guidPropSet,
+			[In, MarshalAs(UnmanagedType.LPStruct)] Guid guidPropSet,
 			[In] AMPropertyPin dwPropID,
 			[In] IntPtr pInstanceData, // LPVOID
 			[In] int cbInstanceData,
@@ -2520,7 +2520,7 @@ namespace DirectShowLib
 
 		[PreserveSig]
 		int QuerySupported(
-			[In] ref Guid guidPropSet,
+			[In, MarshalAs(UnmanagedType.LPStruct)] Guid guidPropSet,
 			[In] AMPropertyPin dwPropID,
 			[Out] out KSPropertySupport pTypeSupport
 			);
@@ -3242,7 +3242,7 @@ namespace DirectShowLib
 	{
 		[PreserveSig]
 		int RegisterService(
-			[In] ref Guid guidService,
+			[In, MarshalAs(UnmanagedType.LPStruct)] Guid guidService,
 			[In, MarshalAs(UnmanagedType.IUnknown)] object pUnkObject
 			);
 	}
@@ -3556,4 +3556,5 @@ namespace DirectShowLib
     }
 
     #endregion
+
 }

@@ -703,7 +703,7 @@ namespace DirectShowLib
                 if (pKs != null)
                 {
                     // Query for the Category
-                    hr = pKs.Get(ref g, AMPropertyPin.Category, IntPtr.Zero, 0, ipOut, iSize, out cbBytes);
+                    hr = pKs.Get(g, AMPropertyPin.Category, IntPtr.Zero, 0, ipOut, iSize, out cbBytes);
                     DsError.ThrowExceptionForHR(hr);
 
                     // Marshal it to the return variable
