@@ -93,8 +93,14 @@ namespace DirectShowLib.Test
             //IPersistStreamTest dpw25 = new IPersistStreamTest();
             //dpw25.DoTests();
 
-            ICreateDevEnumTest dpw26 = new ICreateDevEnumTest();
-            dpw26.DoTests();
+            //ICreateDevEnumTest dpw26 = new ICreateDevEnumTest();
+            //dpw26.DoTests();
+
+            //IConfigAviMuxTest dpw27 = new IConfigAviMuxTest();
+            //dpw27.DoTests();
+
+            IConfigInterleavingTest dpw28 = new IConfigInterleavingTest();
+            dpw28.DoTests();
 
         }
     }
