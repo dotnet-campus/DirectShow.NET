@@ -129,6 +129,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IBasicVideoTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IConfigAviMuxTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

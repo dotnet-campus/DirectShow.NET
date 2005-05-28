@@ -455,7 +455,7 @@ namespace DirectShowLib
 			[In] int StartIndex,
 			[In] int Entries,
 			[Out] out int pRetrieved,
-			[Out] out IntPtr pPalette // int *
+			[Out] out int [] pPalette
 			);
 
 		[PreserveSig]

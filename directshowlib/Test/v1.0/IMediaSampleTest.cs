@@ -198,7 +198,7 @@ namespace DirectShowLib.Test
 
             // Read the time, should fail (because of the nulls)
             hr = m_ims.GetTime(out TimeStart1, out TimeEnd1);
-            Debug.Assert(hr == -2147220919, "Get/Set time null");
+            Debug.Assert(hr == DsError.VFW_E_SAMPLE_TIME_NOT_SET, "Get/Set time null");
 
             // Put it back to where it started
             hr = m_ims.SetTime(new DsOptInt64(TimeStart1), new DsOptInt64(TimeEnd1));
@@ -233,7 +233,7 @@ namespace DirectShowLib.Test
 
             // Read the time, should fail (because of the nulls)
             hr = m_ims.GetMediaTime(out TimeStart1, out TimeEnd1);
-            Debug.Assert(hr == -2147220911, "Get/Set MediaTime null");
+            Debug.Assert(hr == DsError.VFW_E_MEDIA_TIME_NOT_SET, "Get/Set MediaTime null");
 
             // Put it back to where it started
             hr = m_ims.SetMediaTime(new DsOptInt64(TimeStart1), new DsOptInt64(TimeEnd1));
