@@ -2501,7 +2501,7 @@ namespace DirectShowLib
 		[PreserveSig]
 		int Set(
 			[In, MarshalAs(UnmanagedType.LPStruct)] Guid guidPropSet,
-			[In] AMPropertyPin dwPropID,
+			[In] int dwPropID,
 			[In] IntPtr pInstanceData, // LPVOID
 			[In] int cbInstanceData,
 			[In] IntPtr pPropData, // LPVOID
@@ -2511,7 +2511,7 @@ namespace DirectShowLib
 		[PreserveSig]
 		int Get(
 			[In, MarshalAs(UnmanagedType.LPStruct)] Guid guidPropSet,
-			[In] AMPropertyPin dwPropID,
+			[In] int dwPropID,
 			[In] IntPtr pInstanceData, // LPVOID
 			[In] int cbInstanceData,
 			[In, Out] IntPtr pPropData, // LPVOID
@@ -2522,7 +2522,7 @@ namespace DirectShowLib
 		[PreserveSig]
 		int QuerySupported(
 			[In, MarshalAs(UnmanagedType.LPStruct)] Guid guidPropSet,
-			[In] AMPropertyPin dwPropID,
+			[In] int dwPropID,
 			[Out] out KSPropertySupport pTypeSupport
 			);
 	}

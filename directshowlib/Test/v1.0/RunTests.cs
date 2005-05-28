@@ -114,8 +114,11 @@ namespace DirectShowLib.Test
             //IBasicVideoTest dpw31 = new IBasicVideoTest();
             //dpw31.DoTests();   
 
-            IBasicVideo2Test dpw32 = new IBasicVideo2Test();
-            dpw32.DoTests();   
+            //IBasicVideo2Test dpw32 = new IBasicVideo2Test();
+            //dpw32.DoTests();   
+
+            IKsPropertySetTest dpw33 = new IKsPropertySetTest();
+            dpw33.DoTests();
         }
     }
 }
