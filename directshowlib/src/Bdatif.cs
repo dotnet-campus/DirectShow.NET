@@ -68,7 +68,6 @@ namespace DirectShowLib.BDA
 	#region Declarations
 
 #if ALLOW_UNTESTED_STRUCTS
-	///TODO: A verifier !!!
 	[ComImport, Guid("14EB8748-1753-4393-95AE-4F7E7A87AAD6")]
 	public class TIFLoad
 	{

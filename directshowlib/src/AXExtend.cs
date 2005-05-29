@@ -752,7 +752,7 @@ namespace DirectShowLib
 	public struct RgnData
 	{
 		public RgnDataHeader rdh;
-		public byte[] Buffer; //TODO: Check this : probably wrong !
+		public IntPtr Buffer;
 	}
 
 	/// <summary>
@@ -2533,12 +2533,12 @@ namespace DirectShowLib
 	{
 		#region IPropertyBag Methods
 
-		[PreserveSig]
-		new int Read(
-			[In, MarshalAs(UnmanagedType.LPWStr)] string pszPropName,
-			[In, Out] ref object pVar,
-			[In] IntPtr pErrorLog // IErrorLog *
-			);
+        [PreserveSig]
+        new int Read(
+            [In, MarshalAs(UnmanagedType.LPWStr)] string pszPropName,
+            [Out, MarshalAs(UnmanagedType.Struct)] out object pVar,
+            [In] IErrorLog pErrorLog
+            );
 
 		[PreserveSig]
 		new int Write(

@@ -536,7 +536,6 @@ namespace DirectShowLib.SBE
 			);
 	}
 
-	///TODO : Check IMediaSeeking !!!
 	[Guid("f61f5c26-863d-4afa-b0ba-2f81dc978596"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IStreamBufferMediaSeeking : IMediaSeeking

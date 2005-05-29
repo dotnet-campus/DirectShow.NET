@@ -150,7 +150,7 @@ namespace DirectShowLib
 		int GetOutputFormat([Out] out BitmapInfoHeader lpbmih);
 
 		[PreserveSig]
-		int SetOutputFormat([In] BitmapInfoHeader lpbmih); //TODO: define BitmapInfo
+		int SetOutputFormat([In] BitmapInfo lpbmih);
 
 		[PreserveSig]
 		int GetBackgroundColor([Out] out int pdwPhysColor);
