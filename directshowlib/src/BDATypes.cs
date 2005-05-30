@@ -332,7 +332,6 @@ namespace DirectShowLib.BDA
 		public int ulReason; //
 	}
 
-	//TODO: Add missing enum & struct
 	/// <summary>
 	/// From MPEG2_TRANSPORT_STRIDE
 	/// </summary>

@@ -684,6 +684,9 @@ namespace DirectShowLib
 
     #region Declarations
 
+    /// <summary>
+    /// From BITMAPINFO
+    /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct BitmapInfo 
     { 
@@ -691,6 +694,9 @@ namespace DirectShowLib
         int []         bmiColors;
     }
 
+    /// <summary>
+    /// From BITMAPINFOHEADER
+    /// </summary>
     [StructLayout(LayoutKind.Sequential, Pack=2)]
 	public struct BitmapInfoHeader
 	{
@@ -707,6 +713,9 @@ namespace DirectShowLib
 		public int ClrImportant;
 	}
 
+    /// <summary>
+    /// From DDPIXELFORMAT
+    /// </summary>
 	[StructLayout(LayoutKind.Explicit)]
 	public struct DDPixelFormat
 	{
@@ -734,8 +743,11 @@ namespace DirectShowLib
 		[FieldOffset(28)] public int dwYUVZBitMask;
 	}
 
+    /// <summary>
+    /// From CAUUID
+    /// </summary>
 	[StructLayout(LayoutKind.Sequential)]
-	public struct DsCAUUID // CAUUID
+	public struct DsCAUUID
 	{
 		public int cElems;
 		public IntPtr pElems;
@@ -1010,6 +1022,7 @@ namespace DirectShowLib
         }
 
     }
+
 
 	public class DsUtils
 	{
