@@ -491,6 +491,7 @@ namespace DirectShowLib.Dvd
     [Flags]
     public enum AMDvdGraphFlags
     {
+        None = 0,
         HWDecPrefer = 0x01, // AM_DVD_HWDEC_PREFER
         HWDecOnly = 0x02, // AM_DVD_HWDEC_ONLY
         SWDecPrefer = 0x04, // AM_DVD_SWDEC_PREFER
