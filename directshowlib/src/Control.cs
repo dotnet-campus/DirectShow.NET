@@ -190,10 +190,7 @@ namespace DirectShowLib
 		int Stop();
 
 		[PreserveSig]
-		int GetState(
-			[In] int msTimeout,
-			[Out] out FilterState pfs
-			);
+		int GetState([In] int msTimeout, [Out] out FilterState pfs);
 
 		[PreserveSig]
 		int RenderFile([In, MarshalAs(UnmanagedType.BStr)] string strFilename);
