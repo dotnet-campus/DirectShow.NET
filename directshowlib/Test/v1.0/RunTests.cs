@@ -17,8 +17,8 @@ namespace DirectShowLib.Test
             // This code, while complete, won't run on all machines.  The problem
             // is that not all audio cards support all these capabilities.  As a
             // result, some (or all) of the calls return E_NOTIMPLEMENTED.
-            // IAMAudioInputMixerTest t3 = new IAMAudioInputMixerTest();
-            // t3.DoTests();
+             //IAMAudioInputMixerTest t3 = new IAMAudioInputMixerTest();
+              //t3.DoTests();
 
             //IVideoWindowTest t1 = new IVideoWindowTest();
             //t1.DoTests();
@@ -123,8 +123,14 @@ namespace DirectShowLib.Test
             //IPropertyBagTest dpw34 = new IPropertyBagTest();
             //dpw34.DoTests();
 
-            IEnumFiltersTest en01 = new IEnumFiltersTest();
-            en01.DoTests();
+            //IEnumMediaTypesTest dpw35 = new IEnumMediaTypesTest();
+            //dpw35.TestNext();
+
+            //IMediaEventTest dpw36 = new IMediaEventTest();
+            //dpw36.DoTests();
+
+            IMediaEventExTest dpw37 = new IMediaEventExTest();
+            dpw37.DoTests();
         }
     }
 }

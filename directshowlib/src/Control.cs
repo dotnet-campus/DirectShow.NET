@@ -66,6 +66,17 @@ using System.Runtime.InteropServices;
 namespace DirectShowLib
 {
     #region Declarations
+
+    /// <summary>
+    /// From define AM_MEDIAEVENT_NONOTIFY
+    /// </summary>
+    [Flags]
+    public enum NotifyFlags
+    {
+        None,
+        NoNotify
+    }
+
     /// <summary>
     /// From #define OATRUE/OAFALSE
     /// </summary>
@@ -229,14 +240,14 @@ namespace DirectShowLib
 		[PreserveSig]
 		int WaitForCompletion(
 			[In] int msTimeout,
-			[Out] out int pEvCode
+			[Out] out EventCode pEvCode
 			);
 
 		[PreserveSig]
-		int CancelDefaultHandling([In] int lEvCode);
+		int CancelDefaultHandling([In] EventCode lEvCode);
 
 		[PreserveSig]
-		int RestoreDefaultHandling([In] int lEvCode);
+		int RestoreDefaultHandling([In] EventCode lEvCode);
 
 		[PreserveSig]
 		int FreeEventParams(
@@ -266,14 +277,14 @@ namespace DirectShowLib
 		[PreserveSig]
 		new int WaitForCompletion(
 			[In] int msTimeout,
-			[Out] out int pEvCode
+			[Out] out EventCode pEvCode
 			);
 
 		[PreserveSig]
-		new int CancelDefaultHandling([In] int lEvCode);
+		new int CancelDefaultHandling([In] EventCode lEvCode);
 
 		[PreserveSig]
-		new int RestoreDefaultHandling([In] int lEvCode);
+		new int RestoreDefaultHandling([In] EventCode lEvCode);
 
 		[PreserveSig]
 		new int FreeEventParams(
@@ -292,10 +303,10 @@ namespace DirectShowLib
 			);
 
 		[PreserveSig]
-		int SetNotifyFlags([In] int lNoNotifyFlags);
+		int SetNotifyFlags([In] NotifyFlags lNoNotifyFlags);
 
 		[PreserveSig]
-		int GetNotifyFlags([Out] out int lplNoNotifyFlags);
+		int GetNotifyFlags([Out] out NotifyFlags lplNoNotifyFlags);
 	}
 
 	[Guid("56a868b2-0ad4-11ce-b03a-0020af0ba770"),

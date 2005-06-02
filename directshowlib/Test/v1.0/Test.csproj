@@ -244,6 +244,16 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IMediaEventExTest.cs"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IMediaEventTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IMediaFilterTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
