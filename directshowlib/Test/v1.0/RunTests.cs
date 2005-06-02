@@ -135,8 +135,11 @@ namespace DirectShowLib.Test
             //IMediaEventExTest dpw37 = new IMediaEventExTest();
             //dpw37.DoTests();
 
-            IReferenceClockTest dpw38 = new IReferenceClockTest();
-            dpw38.DoTests();
+            //IReferenceClockTest dpw38 = new IReferenceClockTest();
+            //dpw38.DoTests();
+
+            IMediaPositionTest dpw39 = new IMediaPositionTest();
+            dpw39.DoTests();
         }
     }
 }

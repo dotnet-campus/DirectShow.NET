@@ -341,10 +341,10 @@ namespace DirectShowLib
 		int get_Rate([Out] out double pdRate);
 
 		[PreserveSig]
-		int CanSeekForward([Out] out int pCanSeekForward);
+		int CanSeekForward([Out] out OABool pCanSeekForward);
 
 		[PreserveSig]
-		int CanSeekBackward([Out] out int pCanSeekBackward);
+		int CanSeekBackward([Out] out OABool pCanSeekBackward);
 	}
 
 	[Guid("56a868b5-0ad4-11ce-b03a-0020af0ba770"),
