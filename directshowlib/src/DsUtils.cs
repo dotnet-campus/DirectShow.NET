@@ -685,6 +685,15 @@ namespace DirectShowLib
     #region Declarations
 
     /// <summary>
+    /// Not from DirectShow
+    /// </summary>
+    public enum PinConnectedStatus
+    {
+        Unconnected,
+        Connected
+    }
+
+    /// <summary>
     /// From BITMAPINFO
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -1491,7 +1500,68 @@ namespace DirectShowLib
 
 			return pRet;
 		}
-	}
+        /// <summary>
+        /// Scans a filter's pins looking for a pin with the specified connection status
+        /// </summary>
+        /// <param name="vSource">The filter to scan</param>
+        /// <param name="vStat">The status to find (connected/unconnected)</param>
+        /// <param name="iIndex">Zero based index (ie 2 will return the third pin with the specified status)</param>
+        /// <returns>The matching pin, or null if not found</returns>
+        public static IPin ByConnectionStatus(IBaseFilter vSource, PinConnectedStatus vStat, int iIndex)
+        {
+            int hr;
+            int lFetched;
+            IEnumPins ppEnum;
+            IPin pRet = null;
+            IPin pOutPin;
+            IPin[] pPins = new IPin[1];
+
+            // Get the pin enumerator
+            hr = vSource.EnumPins(out ppEnum);
+            DsError.ThrowExceptionForHR(hr);
+
+            try
+            {
+                // Walk the pins looking for a match
+                while ((ppEnum.Next(1, pPins, out lFetched) >= 0) && (lFetched == 1))
+                {
+                    // Read the connected status
+                    hr = pPins[0].ConnectedTo(out pOutPin);
+
+                    // Check for VFW_E_NOT_CONNECTED.  Anything else is bad.
+                    if (hr != DsError.VFW_E_NOT_CONNECTED)
+                    {
+                        DsError.ThrowExceptionForHR(hr);
+
+                        // The ConnectedTo call succeeded, release the interface
+                        Marshal.ReleaseComObject(pOutPin);
+                    }
+
+                    // Is it the right status?
+                    if (
+                        (hr == 0 && vStat == PinConnectedStatus.Connected) ||
+                        (hr == DsError.VFW_E_NOT_CONNECTED && vStat == PinConnectedStatus.Unconnected)
+                        )
+                    {
+                        // Is is the right index?
+                        if (iIndex == 0)
+                        {
+                            pRet = pPins[0];
+                            break;
+                        }
+                        iIndex--;
+                    }
+                    Marshal.ReleaseComObject(pPins[0]);
+                }
+            }
+            finally
+            {
+                Marshal.ReleaseComObject(ppEnum);
+            }
+
+            return pRet;
+        }
+    }
 
 
     public class DsToString
