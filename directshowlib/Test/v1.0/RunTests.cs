@@ -96,8 +96,8 @@ namespace DirectShowLib.Test
             //ICreateDevEnumTest dpw26 = new ICreateDevEnumTest();
             //dpw26.DoTests();
 
-            IConfigAviMuxTest dpw27 = new IConfigAviMuxTest();
-            dpw27.DoTests();
+            //IConfigAviMuxTest dpw27 = new IConfigAviMuxTest();
+            //dpw27.DoTests();
 
             //IConfigInterleavingTest dpw28 = new IConfigInterleavingTest();
             //dpw28.DoTests();
@@ -120,8 +120,11 @@ namespace DirectShowLib.Test
             //IKsPropertySetTest dpw33 = new IKsPropertySetTest();
             //dpw33.DoTests();
 
-            IPropertyBagTest dpw34 = new IPropertyBagTest();
-            dpw34.DoTests();
+            //IPropertyBagTest dpw34 = new IPropertyBagTest();
+            //dpw34.DoTests();
+
+            IEnumFiltersTest en01 = new IEnumFiltersTest();
+            en01.DoTests();
         }
     }
 }

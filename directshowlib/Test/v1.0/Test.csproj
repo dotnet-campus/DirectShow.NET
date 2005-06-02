@@ -184,6 +184,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IEnumFiltersTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IEnumMediaTypesTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
