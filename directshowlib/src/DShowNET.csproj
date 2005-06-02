@@ -94,6 +94,11 @@
         <Files>
             <Include>
                 <File
+                    RelPath = "amvideo.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "AssemblyInfo.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -184,6 +189,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "qnetwork.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "RegBag.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -210,6 +220,11 @@
                 />
                 <File
                     RelPath = "Vidcap.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "VidPort.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
