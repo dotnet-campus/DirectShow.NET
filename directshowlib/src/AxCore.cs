@@ -279,23 +279,12 @@ namespace DirectShowLib
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IEnumFilters
 	{
-		/*
-        [PreserveSig]
-        int Next(
-          [In] int cFilters,
-          [Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)]	IBaseFilter[]	ppFilter,
-          [Out] out int	pcFetched
-          );
-        */
-
-		// As written, this can only return 1 at a time.  Why is the code above
-		// which looks correct commented out?
-		[PreserveSig]
-		int Next(
-			[In] int cFilters,
-			[Out] out IBaseFilter ppFilter,
-			[Out] out int pcFetched
-			);
+    [PreserveSig]
+    int Next(
+      [In] int cFilters,
+      [Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)]	IBaseFilter[]	ppFilter,
+      [Out] out int	pcFetched
+      );
 
 		[PreserveSig]
 		int Skip([In] int cFilters);
