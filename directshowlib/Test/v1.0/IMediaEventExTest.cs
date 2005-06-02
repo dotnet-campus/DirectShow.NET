@@ -58,7 +58,7 @@ namespace DirectShowLib.Test
         {
             BuildGraph();
 
-            //TestNotifyFlags();
+            TestNotifyFlags();
             TestNotifyWindow();
         }
 
