@@ -123,8 +123,8 @@ namespace DirectShowLib.Test
             //IPropertyBagTest dpw34 = new IPropertyBagTest();
             //dpw34.DoTests();
 
-            IEnumFiltersTest en01 = new IEnumFiltersTest();
-            en01.DoTests();
+            //IEnumFiltersTest en01 = new IEnumFiltersTest();
+            //en01.DoTests();
 
             //IEnumMediaTypesTest dpw35 = new IEnumMediaTypesTest();
             //dpw35.TestNext();
@@ -134,6 +134,9 @@ namespace DirectShowLib.Test
 
             //IMediaEventExTest dpw37 = new IMediaEventExTest();
             //dpw37.DoTests();
+
+            IReferenceClockTest dpw38 = new IReferenceClockTest();
+            dpw38.DoTests();
         }
     }
 }

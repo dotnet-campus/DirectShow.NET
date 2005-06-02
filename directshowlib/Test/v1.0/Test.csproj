@@ -249,6 +249,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IMediaEventExTest.resx"
+                    DependentUpon = "IMediaEventExTest.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "IMediaEventTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -285,6 +290,11 @@
                 />
                 <File
                     RelPath = "IPropertyBagTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IReferenceClockTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
