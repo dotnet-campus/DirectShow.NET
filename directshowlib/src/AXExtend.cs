@@ -589,16 +589,6 @@ namespace DirectShowLib
 		SystemHeader = 0x00000005,
 	}
 
-	/// <summary>
-	/// From KSPROPERTY_SUPPORT_* defines
-	/// </summary>
-	[Flags]
-	public enum KSPropertySupport
-	{
-		Get = 1,
-		Set = 2
-	}
-
 	// ------------------------------------------------------------------------
 
 	/// <summary>
@@ -926,6 +916,16 @@ namespace DirectShowLib
     {
         None = 0,
         OverWrite = 0x00000001
+    }
+
+    /// <summary>
+    /// From KSPROPERTY_SUPPORT_* defines
+    /// </summary>
+    [Flags]
+    public enum KSPropertySupport
+    {
+        Get = 1,
+        Set = 2
     }
 
     #endregion
