@@ -119,6 +119,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IAMVideoProcAmpTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IBaseFilterTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
