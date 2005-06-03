@@ -93,37 +93,6 @@ namespace DirectShowLib
 	}
 
 	/// <summary>
-	/// From AM_FILESINK_FLAGS
-	/// </summary>
-	[Flags]
-	public enum AMFileSinkFlags
-	{
-        None = 0,
-		OverWrite = 0x00000001
-	}
-
-	/// <summary>
-	/// From _AM_RENSDEREXFLAGS
-	/// </summary>
-	[Flags]
-	public enum AMRenderExFlags
-	{
-    None = 0,
-		RenderToExistingRenderers = 1
-	}
-
-	/// <summary>
-	/// From InterleavingMode
-	/// </summary>
-	public enum InterleavingMode
-	{
-		None,
-		Capture,
-		Full,
-		NoneBuffered
-	}
-
-	/// <summary>
 	/// CompressionCaps
 	/// </summary>
 	[Flags]
@@ -623,10 +592,11 @@ namespace DirectShowLib
 	/// <summary>
 	/// From KSPROPERTY_SUPPORT_* defines
 	/// </summary>
+	[Flags]
 	public enum KSPropertySupport
 	{
 		Get = 1,
-		Set
+		Set = 2
 	}
 
 	// ------------------------------------------------------------------------
@@ -927,7 +897,38 @@ namespace DirectShowLib
 
 #endif
 
-	#endregion
+    /// <summary>
+    /// From _AM_RENSDEREXFLAGS
+    /// </summary>
+    [Flags]
+    public enum AMRenderExFlags
+    {
+        None = 0,
+        RenderToExistingRenderers = 1
+    }
+
+    /// <summary>
+    /// From InterleavingMode
+    /// </summary>
+    public enum InterleavingMode
+    {
+        None,
+        Capture,
+        Full,
+        NoneBuffered
+    }
+
+    /// <summary>
+    /// From AM_FILESINK_FLAGS
+    /// </summary>
+    [Flags]
+    public enum AMFileSinkFlags
+    {
+        None = 0,
+        OverWrite = 0x00000001
+    }
+
+    #endregion
 
 	#region Interfaces
 
@@ -1257,67 +1258,6 @@ namespace DirectShowLib
 			[In] int EventParam1,
 			[In] int EventParam2
 			);
-	}
-
-	[Guid("56a868a6-0ad4-11ce-b03a-0020af0ba770"),
-		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	public interface IFileSourceFilter
-	{
-		[PreserveSig]
-		int Load(
-			[In, MarshalAs(UnmanagedType.LPWStr)] string pszFileName,
-			[In, MarshalAs(UnmanagedType.LPStruct)] AMMediaType pmt
-			);
-
-		[PreserveSig]
-		int GetCurFile(
-			[Out, MarshalAs(UnmanagedType.LPWStr)] out string pszFileName,
-      [Out, MarshalAs(UnmanagedType.LPStruct)] AMMediaType pmt
-      );
-	}
-
-	[Guid("a2104830-7c70-11cf-8bce-00aa00a3f1a6"),
-		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	public interface IFileSinkFilter
-	{
-		[PreserveSig]
-		int SetFileName(
-			[In, MarshalAs(UnmanagedType.LPWStr)] string pszFileName,
-			[In, MarshalAs(UnmanagedType.LPStruct)] AMMediaType pmt
-			);
-
-		[PreserveSig]
-		int GetCurFile(
-			[Out, MarshalAs(UnmanagedType.LPWStr)] out string pszFileName,
-			[Out, MarshalAs(UnmanagedType.LPStruct)] AMMediaType pmt
-			);
-	}
-
-	[Guid("00855B90-CE1B-11d0-BD4F-00A0C911CE86"),
-		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	public interface IFileSinkFilter2 : IFileSinkFilter
-	{
-		#region IFileSinkFilter Methods
-
-		[PreserveSig]
-		new int SetFileName(
-			[In, MarshalAs(UnmanagedType.LPWStr)] string pszFileName,
-			[In, MarshalAs(UnmanagedType.LPStruct)] AMMediaType pmt
-			);
-
-		[PreserveSig]
-		new int GetCurFile(
-			[Out, MarshalAs(UnmanagedType.LPWStr)] out string pszFileName,
-			[Out, MarshalAs(UnmanagedType.LPStruct)] AMMediaType pmt
-			);
-
-		#endregion
-
-		[PreserveSig]
-		int SetMode([In] AMFileSinkFlags dwFlags);
-
-		[PreserveSig]
-		int GetMode([Out] out AMFileSinkFlags dwFlags);
 	}
 
 	[Guid("bf87b6e0-8c27-11d0-b3f0-00aa003761c5"),
@@ -1666,46 +1606,6 @@ namespace DirectShowLib
 			[Out] out AMMediaType ppmt,
 			IntPtr pSCC // BYTE *
 			);
-	}
-
-	[Guid("BEE3D220-157B-11d0-BD23-00A0C911CE86"),
-		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	public interface IConfigInterleaving
-	{
-		[PreserveSig]
-		int put_Mode([In] InterleavingMode mode);
-
-		[PreserveSig]
-		int get_Mode([Out] out InterleavingMode pMode);
-
-		[PreserveSig]
-		int put_Interleaving(
-            [In] ref long prtInterleave,
-			[In] ref long prtPreroll
-			);
-
-		[PreserveSig]
-		int get_Interleaving(
-			[Out] out long prtInterleave,
-			[Out] out long prtPreroll
-			);
-	}
-
-	[Guid("5ACD6AA0-F482-11ce-8B67-00AA00A3F1A6"),
-		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	public interface IConfigAviMux
-	{
-		[PreserveSig]
-		int SetMasterStream([In] int iStream);
-
-		[PreserveSig]
-		int GetMasterStream([Out] out int pStream);
-
-		[PreserveSig]
-		int SetOutputCompatibilityIndex([In, MarshalAs(UnmanagedType.Bool)] bool fOldIndex);
-
-		[PreserveSig]
-		int GetOutputCompatibilityIndex([Out, MarshalAs(UnmanagedType.Bool)] out bool pfOldIndex);
 	}
 
 	[Guid("C6E13343-30AC-11d0-A18C-00A0C9118956"),
@@ -2394,39 +2294,6 @@ namespace DirectShowLib
 		int get_CCEnable([Out] out int lCCEnable);
 	}
 
-	[Guid("31EFAC30-515C-11d0-A9AA-00AA0061BE93"),
-		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	public interface IKsPropertySet
-	{
-		[PreserveSig]
-		int Set(
-			[In, MarshalAs(UnmanagedType.LPStruct)] Guid guidPropSet,
-			[In] int dwPropID,
-			[In] IntPtr pInstanceData, // LPVOID
-			[In] int cbInstanceData,
-			[In] IntPtr pPropData, // LPVOID
-			[In] int cbPropData
-			);
-
-		[PreserveSig]
-		int Get(
-			[In, MarshalAs(UnmanagedType.LPStruct)] Guid guidPropSet,
-			[In] int dwPropID,
-			[In] IntPtr pInstanceData, // LPVOID
-			[In] int cbInstanceData,
-			[In, Out] IntPtr pPropData, // LPVOID
-			[In] int cbPropData,
-			[Out] out int pcbReturned // DWORD *
-			);
-
-		[PreserveSig]
-		int QuerySupported(
-			[In, MarshalAs(UnmanagedType.LPStruct)] Guid guidPropSet,
-			[In] int dwPropID,
-			[Out] out KSPropertySupport pTypeSupport
-			);
-	}
-
 	[Guid("6025A880-C0D5-11d0-BD4E-00A0C911CE86"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IMediaPropertyBag : IPropertyBag
@@ -2894,26 +2761,6 @@ namespace DirectShowLib
 
 		[PreserveSig]
 		int SetDecimationUsage([In] DecimationUsage Usage);
-	}
-
-	[Guid("e46a9787-2b71-444d-a4b5-1fab7b708d6a"),
-		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	public interface IVideoFrameStep
-	{
-		[PreserveSig]
-		int Step(
-			[In] int dwFrames,
-			[In, MarshalAs(UnmanagedType.IUnknown)] object pStepObject
-			);
-
-		[PreserveSig]
-		int CanStep(
-			[In] int bMultiple,
-			[In, MarshalAs(UnmanagedType.IUnknown)] object pStepObject
-			);
-
-		[PreserveSig]
-		int CancelStep();
 	}
 
 	[Guid("F185FE76-E64E-11d2-B76E-00C04FB6BD3D"),
@@ -3555,6 +3402,160 @@ namespace DirectShowLib
       [In] IntPtr pvContext // DWORD *
       );
   }
+    [Guid("5ACD6AA0-F482-11ce-8B67-00AA00A3F1A6"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IConfigAviMux
+    {
+        [PreserveSig]
+        int SetMasterStream([In] int iStream);
+
+        [PreserveSig]
+        int GetMasterStream([Out] out int pStream);
+
+        [PreserveSig]
+        int SetOutputCompatibilityIndex([In, MarshalAs(UnmanagedType.Bool)] bool fOldIndex);
+
+        [PreserveSig]
+        int GetOutputCompatibilityIndex([Out, MarshalAs(UnmanagedType.Bool)] out bool pfOldIndex);
+    }
+
+    [Guid("BEE3D220-157B-11d0-BD23-00A0C911CE86"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IConfigInterleaving
+    {
+        [PreserveSig]
+        int put_Mode([In] InterleavingMode mode);
+
+        [PreserveSig]
+        int get_Mode([Out] out InterleavingMode pMode);
+
+        [PreserveSig]
+        int put_Interleaving(
+            [In] ref long prtInterleave,
+            [In] ref long prtPreroll
+            );
+
+        [PreserveSig]
+        int get_Interleaving(
+            [Out] out long prtInterleave,
+            [Out] out long prtPreroll
+            );
+    }
+
+    [Guid("a2104830-7c70-11cf-8bce-00aa00a3f1a6"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IFileSinkFilter
+    {
+        [PreserveSig]
+        int SetFileName(
+            [In, MarshalAs(UnmanagedType.LPWStr)] string pszFileName,
+            [In, MarshalAs(UnmanagedType.LPStruct)] AMMediaType pmt
+            );
+
+        [PreserveSig]
+        int GetCurFile(
+            [Out, MarshalAs(UnmanagedType.LPWStr)] out string pszFileName,
+            [Out, MarshalAs(UnmanagedType.LPStruct)] AMMediaType pmt
+            );
+    }
+
+    [Guid("00855B90-CE1B-11d0-BD4F-00A0C911CE86"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IFileSinkFilter2 : IFileSinkFilter
+    {
+        #region IFileSinkFilter Methods
+
+        [PreserveSig]
+        new int SetFileName(
+            [In, MarshalAs(UnmanagedType.LPWStr)] string pszFileName,
+            [In, MarshalAs(UnmanagedType.LPStruct)] AMMediaType pmt
+            );
+
+        [PreserveSig]
+        new int GetCurFile(
+            [Out, MarshalAs(UnmanagedType.LPWStr)] out string pszFileName,
+            [Out, MarshalAs(UnmanagedType.LPStruct)] AMMediaType pmt
+            );
+
+        #endregion
+
+        [PreserveSig]
+        int SetMode([In] AMFileSinkFlags dwFlags);
+
+        [PreserveSig]
+        int GetMode([Out] out AMFileSinkFlags dwFlags);
+    }
+
+    [Guid("56a868a6-0ad4-11ce-b03a-0020af0ba770"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IFileSourceFilter
+    {
+        [PreserveSig]
+        int Load(
+            [In, MarshalAs(UnmanagedType.LPWStr)] string pszFileName,
+            [In, MarshalAs(UnmanagedType.LPStruct)] AMMediaType pmt
+            );
+
+        [PreserveSig]
+        int GetCurFile(
+            [Out, MarshalAs(UnmanagedType.LPWStr)] out string pszFileName,
+            [Out, MarshalAs(UnmanagedType.LPStruct)] AMMediaType pmt
+            );
+    }
+
+    [Guid("e46a9787-2b71-444d-a4b5-1fab7b708d6a"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IVideoFrameStep
+    {
+        [PreserveSig]
+        int Step(
+            [In] int dwFrames,
+            [In, MarshalAs(UnmanagedType.IUnknown)] object pStepObject
+            );
+
+        [PreserveSig]
+        int CanStep(
+            [In] int bMultiple,
+            [In, MarshalAs(UnmanagedType.IUnknown)] object pStepObject
+            );
+
+        [PreserveSig]
+        int CancelStep();
+    }
+
+    [Guid("31EFAC30-515C-11d0-A9AA-00AA0061BE93"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IKsPropertySet
+    {
+        [PreserveSig]
+        int Set(
+            [In, MarshalAs(UnmanagedType.LPStruct)] Guid guidPropSet,
+            [In] int dwPropID,
+            [In] IntPtr pInstanceData,
+            [In] int cbInstanceData,
+            [In] IntPtr pPropData,
+            [In] int cbPropData
+            );
+
+        [PreserveSig]
+        int Get(
+            [In, MarshalAs(UnmanagedType.LPStruct)] Guid guidPropSet,
+            [In] int dwPropID,
+            [In] IntPtr pInstanceData,
+            [In] int cbInstanceData,
+            [In, Out] IntPtr pPropData,
+            [In] int cbPropData,
+            [Out] out int pcbReturned
+            );
+
+        [PreserveSig]
+        int QuerySupported(
+            [In, MarshalAs(UnmanagedType.LPStruct)] Guid guidPropSet,
+            [In] int dwPropID,
+            [Out] out KSPropertySupport pTypeSupport
+            );
+    }
+
     #endregion
 
 }

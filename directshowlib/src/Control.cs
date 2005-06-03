@@ -222,405 +222,6 @@ namespace DirectShowLib
 		int StopWhenReady();
 	}
 
-	[Guid("56a868b6-0ad4-11ce-b03a-0020af0ba770"),
-		InterfaceType(ComInterfaceType.InterfaceIsDual)]
-	public interface IMediaEvent
-	{
-		[PreserveSig]
-		int GetEventHandle([Out] out IntPtr hEvent); // HEVENT
-
-		[PreserveSig]
-		int GetEvent(
-			[Out] out EventCode lEventCode,
-			[Out] out int lParam1,
-			[Out] out int lParam2,
-			[In] int msTimeout
-			);
-
-		[PreserveSig]
-		int WaitForCompletion(
-			[In] int msTimeout,
-			[Out] out EventCode pEvCode
-			);
-
-		[PreserveSig]
-		int CancelDefaultHandling([In] EventCode lEvCode);
-
-		[PreserveSig]
-		int RestoreDefaultHandling([In] EventCode lEvCode);
-
-		[PreserveSig]
-		int FreeEventParams(
-			[In] EventCode lEvCode,
-			[In] int lParam1,
-			[In] int lParam2
-			);
-	}
-
-	[Guid("56a868c0-0ad4-11ce-b03a-0020af0ba770"),
-		InterfaceType(ComInterfaceType.InterfaceIsDual)]
-	public interface IMediaEventEx : IMediaEvent
-	{
-		#region IMediaEvent Methods
-
-		[PreserveSig]
-		new int GetEventHandle([Out] out IntPtr hEvent); // HEVENT
-
-		[PreserveSig]
-		new int GetEvent(
-			[Out] out EventCode lEventCode,
-			[Out] out int lParam1,
-			[Out] out int lParam2,
-			[In] int msTimeout
-			);
-
-		[PreserveSig]
-		new int WaitForCompletion(
-			[In] int msTimeout,
-			[Out] out EventCode pEvCode
-			);
-
-		[PreserveSig]
-		new int CancelDefaultHandling([In] EventCode lEvCode);
-
-		[PreserveSig]
-		new int RestoreDefaultHandling([In] EventCode lEvCode);
-
-		[PreserveSig]
-		new int FreeEventParams(
-			[In] EventCode lEvCode,
-			[In] int lParam1,
-			[In] int lParam2
-			);
-
-		#endregion
-
-		[PreserveSig]
-		int SetNotifyWindow(
-			[In] IntPtr hwnd, // HWND *
-			[In] int lMsg,
-			[In] IntPtr lInstanceData // PVOID
-			);
-
-		[PreserveSig]
-		int SetNotifyFlags([In] NotifyFlags lNoNotifyFlags);
-
-		[PreserveSig]
-		int GetNotifyFlags([Out] out NotifyFlags lplNoNotifyFlags);
-	}
-
-	[Guid("56a868b2-0ad4-11ce-b03a-0020af0ba770"),
-		InterfaceType(ComInterfaceType.InterfaceIsDual)]
-	public interface IMediaPosition
-	{
-		[PreserveSig]
-		int get_Duration([Out] out double pLength);
-
-		[PreserveSig]
-		int put_CurrentPosition([In] double llTime);
-
-		[PreserveSig]
-		int get_CurrentPosition([Out] out double pllTime);
-
-		[PreserveSig]
-		int get_StopTime([Out] out double pllTime);
-
-		[PreserveSig]
-		int put_StopTime([In] double llTime);
-
-		[PreserveSig]
-		int get_PrerollTime([Out] out double pllTime);
-
-		[PreserveSig]
-		int put_PrerollTime([In] double llTime);
-
-		[PreserveSig]
-		int put_Rate([In] double dRate);
-
-		[PreserveSig]
-		int get_Rate([Out] out double pdRate);
-
-		[PreserveSig]
-		int CanSeekForward([Out] out OABool pCanSeekForward);
-
-		[PreserveSig]
-		int CanSeekBackward([Out] out OABool pCanSeekBackward);
-	}
-
-	[Guid("56a868b5-0ad4-11ce-b03a-0020af0ba770"),
-		InterfaceType(ComInterfaceType.InterfaceIsDual)]
-	public interface IBasicVideo
-	{
-		[PreserveSig]
-		int get_AvgTimePerFrame([Out] out double pAvgTimePerFrame);
-
-		[PreserveSig]
-		int get_BitRate([Out] out int pBitRate);
-
-		[PreserveSig]
-		int get_BitErrorRate([Out] out int pBitRate);
-
-		[PreserveSig]
-		int get_VideoWidth([Out] out int pVideoWidth);
-
-		[PreserveSig]
-		int get_VideoHeight([Out] out int pVideoHeight);
-
-		[PreserveSig]
-		int put_SourceLeft([In] int SourceLeft);
-
-		[PreserveSig]
-		int get_SourceLeft([Out] out int pSourceLeft);
-
-		[PreserveSig]
-		int put_SourceWidth([In] int SourceWidth);
-
-		[PreserveSig]
-		int get_SourceWidth([Out] out int pSourceWidth);
-
-		[PreserveSig]
-		int put_SourceTop([In] int SourceTop);
-
-		[PreserveSig]
-		int get_SourceTop([Out] out int pSourceTop);
-
-		[PreserveSig]
-		int put_SourceHeight([In] int SourceHeight);
-
-		[PreserveSig]
-		int get_SourceHeight([Out] out int pSourceHeight);
-
-		[PreserveSig]
-		int put_DestinationLeft([In] int DestinationLeft);
-
-		[PreserveSig]
-		int get_DestinationLeft([Out] out int pDestinationLeft);
-
-		[PreserveSig]
-		int put_DestinationWidth([In] int DestinationWidth);
-
-		[PreserveSig]
-		int get_DestinationWidth([Out] out int pDestinationWidth);
-
-		[PreserveSig]
-		int put_DestinationTop([In] int DestinationTop);
-
-		[PreserveSig]
-		int get_DestinationTop([Out] out int pDestinationTop);
-
-		[PreserveSig]
-		int put_DestinationHeight([In] int DestinationHeight);
-
-		[PreserveSig]
-		int get_DestinationHeight([Out] out int pDestinationHeight);
-
-		[PreserveSig]
-		int SetSourcePosition(
-			[In] int left,
-			[In] int top,
-			[In] int width,
-			[In] int height
-			);
-
-		[PreserveSig]
-		int GetSourcePosition(
-			[Out] out int left,
-			[Out] out int top,
-			[Out] out int width,
-			[Out] out int height
-			);
-
-		[PreserveSig]
-		int SetDefaultSourcePosition();
-
-		[PreserveSig]
-		int SetDestinationPosition(
-			[In] int left,
-			[In] int top,
-			[In] int width,
-			[In] int height
-			);
-
-		[PreserveSig]
-		int GetDestinationPosition(
-			[Out] out int left,
-			[Out] out int top,
-			[Out] out int width,
-			[Out] out int height
-			);
-
-		[PreserveSig]
-		int SetDefaultDestinationPosition();
-
-		[PreserveSig]
-		int GetVideoSize(
-			[Out] out int pWidth,
-			[Out] out int pHeight
-			);
-
-		[PreserveSig]
-		int GetVideoPaletteEntries(
-			[In] int StartIndex,
-			[In] int Entries,
-			[Out] out int pRetrieved,
-			[Out] out int [] pPalette
-			);
-
-		[PreserveSig]
-		int GetCurrentImage(
-			[In, Out] ref int pBufferSize,
-			[Out] IntPtr pDIBImage // int *
-			);
-
-		[PreserveSig]
-		int IsUsingDefaultSource();
-
-		[PreserveSig]
-		int IsUsingDefaultDestination();
-	}
-
-	[Guid("329bb360-f6ea-11d1-9038-00a0c9697298"),
-		InterfaceType(ComInterfaceType.InterfaceIsDual)]
-	public interface IBasicVideo2 : IBasicVideo
-	{
-		#region IBasicVideo Methods
-
-		[PreserveSig]
-		new int get_AvgTimePerFrame([Out] out double pAvgTimePerFrame);
-
-		[PreserveSig]
-		new int get_BitRate([Out] out int pBitRate);
-
-		[PreserveSig]
-		new int get_BitErrorRate([Out] out int pBitRate);
-
-		[PreserveSig]
-		new int get_VideoWidth([Out] out int pVideoWidth);
-
-		[PreserveSig]
-		new int get_VideoHeight([Out] out int pVideoHeight);
-
-		[PreserveSig]
-		new int put_SourceLeft([In] int SourceLeft);
-
-		[PreserveSig]
-		new int get_SourceLeft([Out] out int pSourceLeft);
-
-		[PreserveSig]
-		new int put_SourceWidth([In] int SourceWidth);
-
-		[PreserveSig]
-		new int get_SourceWidth([Out] out int pSourceWidth);
-
-		[PreserveSig]
-		new int put_SourceTop([In] int SourceTop);
-
-		[PreserveSig]
-		new int get_SourceTop([Out] out int pSourceTop);
-
-		[PreserveSig]
-		new int put_SourceHeight([In] int SourceHeight);
-
-		[PreserveSig]
-		new int get_SourceHeight([Out] out int pSourceHeight);
-
-		[PreserveSig]
-		new int put_DestinationLeft([In] int DestinationLeft);
-
-		[PreserveSig]
-		new int get_DestinationLeft([Out] out int pDestinationLeft);
-
-		[PreserveSig]
-		new int put_DestinationWidth([In] int DestinationWidth);
-
-		[PreserveSig]
-		new int get_DestinationWidth([Out] out int pDestinationWidth);
-
-		[PreserveSig]
-		new int put_DestinationTop([In] int DestinationTop);
-
-		[PreserveSig]
-		new int get_DestinationTop([Out] out int pDestinationTop);
-
-		[PreserveSig]
-		new int put_DestinationHeight([In] int DestinationHeight);
-
-		[PreserveSig]
-		new int get_DestinationHeight([Out] out int pDestinationHeight);
-
-		[PreserveSig]
-		new int SetSourcePosition(
-			[In] int left,
-			[In] int top,
-			[In] int width,
-			[In] int height
-			);
-
-		[PreserveSig]
-		new int GetSourcePosition(
-			[Out] out int left,
-			[Out] out int top,
-			[Out] out int width,
-			[Out] out int height
-			);
-
-		[PreserveSig]
-		new int SetDefaultSourcePosition();
-
-		[PreserveSig]
-		new int SetDestinationPosition(
-			[In] int left,
-			[In] int top,
-			[In] int width,
-			[In] int height
-			);
-
-		[PreserveSig]
-		new int GetDestinationPosition(
-			[Out] out int left,
-			[Out] out int top,
-			[Out] out int width,
-			[Out] out int height
-			);
-
-		[PreserveSig]
-		new int SetDefaultDestinationPosition();
-
-		[PreserveSig]
-		new int GetVideoSize(
-			[Out] out int pWidth,
-			[Out] out int pHeight
-			);
-
-		[PreserveSig]
-		new int GetVideoPaletteEntries(
-			[In] int StartIndex,
-			[In] int Entries,
-			[Out] out int pRetrieved,
-            [Out] out int [] pPalette
-            );
-
-		[PreserveSig]
-		new int GetCurrentImage(
-			[In, Out] ref int pBufferSize,
-			[Out] IntPtr pDIBImage // int *
-			);
-
-		[PreserveSig]
-		new int IsUsingDefaultSource();
-
-		[PreserveSig]
-		new int IsUsingDefaultDestination();
-
-		#endregion
-
-		[PreserveSig]
-		int GetPreferredAspectRatio(
-			[Out] out int plAspectX,
-			[Out] out int plAspectY
-			);
-	}
-
 	[Guid("56a868b8-0ad4-11ce-b03a-0020af0ba770"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IDeferredCommand
@@ -984,5 +585,404 @@ namespace DirectShowLib
         int get_Balance([Out] out int plBalance);
     }
 
-  #endregion
+    [Guid("56a868b5-0ad4-11ce-b03a-0020af0ba770"),
+    InterfaceType(ComInterfaceType.InterfaceIsDual)]
+    public interface IBasicVideo
+    {
+        [PreserveSig]
+        int get_AvgTimePerFrame([Out] out double pAvgTimePerFrame);
+
+        [PreserveSig]
+        int get_BitRate([Out] out int pBitRate);
+
+        [PreserveSig]
+        int get_BitErrorRate([Out] out int pBitRate);
+
+        [PreserveSig]
+        int get_VideoWidth([Out] out int pVideoWidth);
+
+        [PreserveSig]
+        int get_VideoHeight([Out] out int pVideoHeight);
+
+        [PreserveSig]
+        int put_SourceLeft([In] int SourceLeft);
+
+        [PreserveSig]
+        int get_SourceLeft([Out] out int pSourceLeft);
+
+        [PreserveSig]
+        int put_SourceWidth([In] int SourceWidth);
+
+        [PreserveSig]
+        int get_SourceWidth([Out] out int pSourceWidth);
+
+        [PreserveSig]
+        int put_SourceTop([In] int SourceTop);
+
+        [PreserveSig]
+        int get_SourceTop([Out] out int pSourceTop);
+
+        [PreserveSig]
+        int put_SourceHeight([In] int SourceHeight);
+
+        [PreserveSig]
+        int get_SourceHeight([Out] out int pSourceHeight);
+
+        [PreserveSig]
+        int put_DestinationLeft([In] int DestinationLeft);
+
+        [PreserveSig]
+        int get_DestinationLeft([Out] out int pDestinationLeft);
+
+        [PreserveSig]
+        int put_DestinationWidth([In] int DestinationWidth);
+
+        [PreserveSig]
+        int get_DestinationWidth([Out] out int pDestinationWidth);
+
+        [PreserveSig]
+        int put_DestinationTop([In] int DestinationTop);
+
+        [PreserveSig]
+        int get_DestinationTop([Out] out int pDestinationTop);
+
+        [PreserveSig]
+        int put_DestinationHeight([In] int DestinationHeight);
+
+        [PreserveSig]
+        int get_DestinationHeight([Out] out int pDestinationHeight);
+
+        [PreserveSig]
+        int SetSourcePosition(
+            [In] int left,
+            [In] int top,
+            [In] int width,
+            [In] int height
+            );
+
+        [PreserveSig]
+        int GetSourcePosition(
+            [Out] out int left,
+            [Out] out int top,
+            [Out] out int width,
+            [Out] out int height
+            );
+
+        [PreserveSig]
+        int SetDefaultSourcePosition();
+
+        [PreserveSig]
+        int SetDestinationPosition(
+            [In] int left,
+            [In] int top,
+            [In] int width,
+            [In] int height
+            );
+
+        [PreserveSig]
+        int GetDestinationPosition(
+            [Out] out int left,
+            [Out] out int top,
+            [Out] out int width,
+            [Out] out int height
+            );
+
+        [PreserveSig]
+        int SetDefaultDestinationPosition();
+
+        [PreserveSig]
+        int GetVideoSize(
+            [Out] out int pWidth,
+            [Out] out int pHeight
+            );
+
+        [PreserveSig]
+        int GetVideoPaletteEntries(
+            [In] int StartIndex,
+            [In] int Entries,
+            [Out] out int pRetrieved,
+            [Out] out int [] pPalette
+            );
+
+        [PreserveSig]
+        int GetCurrentImage(
+            [In, Out] ref int pBufferSize,
+            [Out] IntPtr pDIBImage // int *
+            );
+
+        [PreserveSig]
+        int IsUsingDefaultSource();
+
+        [PreserveSig]
+        int IsUsingDefaultDestination();
+    }
+
+    [Guid("329bb360-f6ea-11d1-9038-00a0c9697298"),
+    InterfaceType(ComInterfaceType.InterfaceIsDual)]
+    public interface IBasicVideo2 : IBasicVideo
+    {
+        #region IBasicVideo Methods
+
+        [PreserveSig]
+        new int get_AvgTimePerFrame([Out] out double pAvgTimePerFrame);
+
+        [PreserveSig]
+        new int get_BitRate([Out] out int pBitRate);
+
+        [PreserveSig]
+        new int get_BitErrorRate([Out] out int pBitRate);
+
+        [PreserveSig]
+        new int get_VideoWidth([Out] out int pVideoWidth);
+
+        [PreserveSig]
+        new int get_VideoHeight([Out] out int pVideoHeight);
+
+        [PreserveSig]
+        new int put_SourceLeft([In] int SourceLeft);
+
+        [PreserveSig]
+        new int get_SourceLeft([Out] out int pSourceLeft);
+
+        [PreserveSig]
+        new int put_SourceWidth([In] int SourceWidth);
+
+        [PreserveSig]
+        new int get_SourceWidth([Out] out int pSourceWidth);
+
+        [PreserveSig]
+        new int put_SourceTop([In] int SourceTop);
+
+        [PreserveSig]
+        new int get_SourceTop([Out] out int pSourceTop);
+
+        [PreserveSig]
+        new int put_SourceHeight([In] int SourceHeight);
+
+        [PreserveSig]
+        new int get_SourceHeight([Out] out int pSourceHeight);
+
+        [PreserveSig]
+        new int put_DestinationLeft([In] int DestinationLeft);
+
+        [PreserveSig]
+        new int get_DestinationLeft([Out] out int pDestinationLeft);
+
+        [PreserveSig]
+        new int put_DestinationWidth([In] int DestinationWidth);
+
+        [PreserveSig]
+        new int get_DestinationWidth([Out] out int pDestinationWidth);
+
+        [PreserveSig]
+        new int put_DestinationTop([In] int DestinationTop);
+
+        [PreserveSig]
+        new int get_DestinationTop([Out] out int pDestinationTop);
+
+        [PreserveSig]
+        new int put_DestinationHeight([In] int DestinationHeight);
+
+        [PreserveSig]
+        new int get_DestinationHeight([Out] out int pDestinationHeight);
+
+        [PreserveSig]
+        new int SetSourcePosition(
+            [In] int left,
+            [In] int top,
+            [In] int width,
+            [In] int height
+            );
+
+        [PreserveSig]
+        new int GetSourcePosition(
+            [Out] out int left,
+            [Out] out int top,
+            [Out] out int width,
+            [Out] out int height
+            );
+
+        [PreserveSig]
+        new int SetDefaultSourcePosition();
+
+        [PreserveSig]
+        new int SetDestinationPosition(
+            [In] int left,
+            [In] int top,
+            [In] int width,
+            [In] int height
+            );
+
+        [PreserveSig]
+        new int GetDestinationPosition(
+            [Out] out int left,
+            [Out] out int top,
+            [Out] out int width,
+            [Out] out int height
+            );
+
+        [PreserveSig]
+        new int SetDefaultDestinationPosition();
+
+        [PreserveSig]
+        new int GetVideoSize(
+            [Out] out int pWidth,
+            [Out] out int pHeight
+            );
+
+        [PreserveSig]
+        new int GetVideoPaletteEntries(
+            [In] int StartIndex,
+            [In] int Entries,
+            [Out] out int pRetrieved,
+            [Out] out int [] pPalette
+            );
+
+        [PreserveSig]
+        new int GetCurrentImage(
+            [In, Out] ref int pBufferSize,
+            [Out] IntPtr pDIBImage // int *
+            );
+
+        [PreserveSig]
+        new int IsUsingDefaultSource();
+
+        [PreserveSig]
+        new int IsUsingDefaultDestination();
+
+        #endregion
+
+        [PreserveSig]
+        int GetPreferredAspectRatio(
+            [Out] out int plAspectX,
+            [Out] out int plAspectY
+            );
+    }
+
+    [Guid("56a868b6-0ad4-11ce-b03a-0020af0ba770"),
+    InterfaceType(ComInterfaceType.InterfaceIsDual)]
+    public interface IMediaEvent
+    {
+        [PreserveSig]
+        int GetEventHandle([Out] out IntPtr hEvent); // HEVENT
+
+        [PreserveSig]
+        int GetEvent(
+            [Out] out EventCode lEventCode,
+            [Out] out int lParam1,
+            [Out] out int lParam2,
+            [In] int msTimeout
+            );
+
+        [PreserveSig]
+        int WaitForCompletion(
+            [In] int msTimeout,
+            [Out] out EventCode pEvCode
+            );
+
+        [PreserveSig]
+        int CancelDefaultHandling([In] EventCode lEvCode);
+
+        [PreserveSig]
+        int RestoreDefaultHandling([In] EventCode lEvCode);
+
+        [PreserveSig]
+        int FreeEventParams(
+            [In] EventCode lEvCode,
+            [In] int lParam1,
+            [In] int lParam2
+            );
+    }
+
+    [Guid("56a868c0-0ad4-11ce-b03a-0020af0ba770"),
+    InterfaceType(ComInterfaceType.InterfaceIsDual)]
+    public interface IMediaEventEx : IMediaEvent
+    {
+        #region IMediaEvent Methods
+
+        [PreserveSig]
+        new int GetEventHandle([Out] out IntPtr hEvent); // HEVENT
+
+        [PreserveSig]
+        new int GetEvent(
+            [Out] out EventCode lEventCode,
+            [Out] out int lParam1,
+            [Out] out int lParam2,
+            [In] int msTimeout
+            );
+
+        [PreserveSig]
+        new int WaitForCompletion(
+            [In] int msTimeout,
+            [Out] out EventCode pEvCode
+            );
+
+        [PreserveSig]
+        new int CancelDefaultHandling([In] EventCode lEvCode);
+
+        [PreserveSig]
+        new int RestoreDefaultHandling([In] EventCode lEvCode);
+
+        [PreserveSig]
+        new int FreeEventParams(
+            [In] EventCode lEvCode,
+            [In] int lParam1,
+            [In] int lParam2
+            );
+
+        #endregion
+
+        [PreserveSig]
+        int SetNotifyWindow(
+            [In] IntPtr hwnd, // HWND *
+            [In] int lMsg,
+            [In] IntPtr lInstanceData // PVOID
+            );
+
+        [PreserveSig]
+        int SetNotifyFlags([In] NotifyFlags lNoNotifyFlags);
+
+        [PreserveSig]
+        int GetNotifyFlags([Out] out NotifyFlags lplNoNotifyFlags);
+    }
+
+    [Guid("56a868b2-0ad4-11ce-b03a-0020af0ba770"),
+    InterfaceType(ComInterfaceType.InterfaceIsDual)]
+    public interface IMediaPosition
+    {
+        [PreserveSig]
+        int get_Duration([Out] out double pLength);
+
+        [PreserveSig]
+        int put_CurrentPosition([In] double llTime);
+
+        [PreserveSig]
+        int get_CurrentPosition([Out] out double pllTime);
+
+        [PreserveSig]
+        int get_StopTime([Out] out double pllTime);
+
+        [PreserveSig]
+        int put_StopTime([In] double llTime);
+
+        [PreserveSig]
+        int get_PrerollTime([Out] out double pllTime);
+
+        [PreserveSig]
+        int put_PrerollTime([In] double llTime);
+
+        [PreserveSig]
+        int put_Rate([In] double dRate);
+
+        [PreserveSig]
+        int get_Rate([Out] out double pdRate);
+
+        [PreserveSig]
+        int CanSeekForward([Out] out OABool pCanSeekForward);
+
+        [PreserveSig]
+        int CanSeekBackward([Out] out OABool pCanSeekBackward);
+    }
+
+    #endregion
 }

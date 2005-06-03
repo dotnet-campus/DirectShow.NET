@@ -231,28 +231,6 @@ namespace DirectShowLib
 
 #if ALLOW_UNTESTED_INTERFACES
 
-	[Guid("56a86892-0ad4-11ce-b03a-0020af0ba770"),
-		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	public interface IEnumPins
-	{
-		[PreserveSig]
-		int Next(
-			[In] int cPins,
-			[Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] IPin[] ppPins,
-			[Out] out int pcFetched
-			);
-
-		[PreserveSig]
-		int Skip([In] int cPins);
-
-		[PreserveSig]
-		int Reset();
-
-		[PreserveSig]
-		int Clone([Out] out IEnumPins ppEnum);
-	}
-
-
 	[Guid("89c31040-846b-11ce-97d3-00aa0055595a"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IEnumMediaTypes
@@ -272,56 +250,6 @@ namespace DirectShowLib
 
 		[PreserveSig]
 		int Clone([Out] out IEnumMediaTypes ppEnum);
-	}
-
-
-	[Guid("56a86893-0ad4-11ce-b03a-0020af0ba770"),
-		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	public interface IEnumFilters
-	{
-    [PreserveSig]
-    int Next(
-      [In] int cFilters,
-      [Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)]	IBaseFilter[]	ppFilter,
-      [Out] out int	pcFetched
-      );
-
-		[PreserveSig]
-		int Skip([In] int cFilters);
-
-		[PreserveSig]
-		int Reset();
-
-		[PreserveSig]
-		int Clone([Out] out IEnumFilters ppEnum);
-	}
-
-
-	[Guid("56a86897-0ad4-11ce-b03a-0020af0ba770"),
-		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	public interface IReferenceClock
-	{
-		[PreserveSig]
-		int GetTime([Out] out long pTime);
-
-		[PreserveSig]
-		int AdviseTime(
-			[In] long baseTime,
-			[In] long streamTime,
-			[In] IntPtr hEvent, // System.Threading.WaitHandle?
-			[Out] out int pdwAdviseCookie
-			);
-
-		[PreserveSig]
-		int AdvisePeriodic(
-			[In] long startTime,
-			[In] long periodTime,
-			[In] IntPtr hSemaphore, // System.Threading.WaitHandle?
-			[Out] out int pdwAdviseCookie
-			);
-
-		[PreserveSig]
-		int Unadvise([In] int dwAdviseCookie);
 	}
 
 
@@ -814,6 +742,7 @@ namespace DirectShowLib
         int GetSyncSource([Out] out IReferenceClock pClock);
     }
 
+
     [Guid("56a86895-0ad4-11ce-b03a-0020af0ba770"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IBaseFilter : IMediaFilter
@@ -909,6 +838,78 @@ namespace DirectShowLib
 
         [PreserveSig]
         int SetDefaultSyncSource();
+    }
+
+
+    [Guid("56a86893-0ad4-11ce-b03a-0020af0ba770"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IEnumFilters
+    {
+        [PreserveSig]
+        int Next(
+            [In] int cFilters,
+            [Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)]	IBaseFilter[]	ppFilter,
+            [Out] out int	pcFetched
+            );
+
+        [PreserveSig]
+        int Skip([In] int cFilters);
+
+        [PreserveSig]
+        int Reset();
+
+        [PreserveSig]
+        int Clone([Out] out IEnumFilters ppEnum);
+    }
+
+
+    [Guid("56a86892-0ad4-11ce-b03a-0020af0ba770"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IEnumPins
+    {
+        [PreserveSig]
+        int Next(
+            [In] int cPins,
+            [Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] IPin[] ppPins,
+            [Out] out int pcFetched
+            );
+
+        [PreserveSig]
+        int Skip([In] int cPins);
+
+        [PreserveSig]
+        int Reset();
+
+        [PreserveSig]
+        int Clone([Out] out IEnumPins ppEnum);
+    }
+
+
+    [Guid("56a86897-0ad4-11ce-b03a-0020af0ba770"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IReferenceClock
+    {
+        [PreserveSig]
+        int GetTime([Out] out long pTime);
+
+        [PreserveSig]
+        int AdviseTime(
+            [In] long baseTime,
+            [In] long streamTime,
+            [In] IntPtr hEvent, // System.Threading.WaitHandle?
+            [Out] out int pdwAdviseCookie
+            );
+
+        [PreserveSig]
+        int AdvisePeriodic(
+            [In] long startTime,
+            [In] long periodTime,
+            [In] IntPtr hSemaphore, // System.Threading.WaitHandle?
+            [Out] out int pdwAdviseCookie
+            );
+
+        [PreserveSig]
+        int Unadvise([In] int dwAdviseCookie);
     }
 
 

@@ -976,28 +976,6 @@ namespace DirectShowLib.Dvd
             );
     }
 
-    [Guid("5a4a97e4-94ee-4a55-9751-74b5643aa27d"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IDvdCmd
-    {
-        [PreserveSig]
-        int WaitForStart();
-
-        [PreserveSig]
-        int WaitForEnd();
-    }
-
-    [Guid("86303d6d-1c4a-4087-ab42-f711167048ef"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IDvdState
-    {
-        [PreserveSig]
-        int GetDiscID([Out] out long pullUniqueID);
-
-        [PreserveSig]
-        int GetParentalLevel([Out] out int pulParentalLevel);
-    }
-
     [Guid("153ACC21-D83B-11d1-82BF-00A0C9696C8F"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IDDrawExclModeVideo
@@ -1535,6 +1513,28 @@ namespace DirectShowLib.Dvd
             [In] int ulStreamNum,
             [Out, MarshalAs(UnmanagedType.Bool)] out bool pbEnabled
             );
+    }
+
+    [Guid("5a4a97e4-94ee-4a55-9751-74b5643aa27d"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IDvdCmd
+    {
+        [PreserveSig]
+        int WaitForStart();
+
+        [PreserveSig]
+        int WaitForEnd();
+    }
+
+    [Guid("86303d6d-1c4a-4087-ab42-f711167048ef"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IDvdState
+    {
+        [PreserveSig]
+        int GetDiscID([Out] out long pullUniqueID);
+
+        [PreserveSig]
+        int GetParentalLevel([Out] out int pulParentalLevel);
     }
 
     #endregion
