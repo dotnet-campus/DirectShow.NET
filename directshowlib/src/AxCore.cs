@@ -102,23 +102,6 @@ namespace DirectShowLib
 	}
 
 	/// <summary>
-	/// From AM_SEEKING_SeekingFlags
-	/// </summary>
-	[Flags]
-	public enum AMSeekingSeekingFlags
-	{
-		NoPositioning = 0x00,
-		AbsolutePositioning = 0x01,
-		RelativePositioning = 0x02,
-		IncrementalPositioning = 0x03,
-		PositioningBitsMask = 0x03,
-		SeekToKeyFrame = 0x04,
-		ReturnTime = 0x08,
-		Segment = 0x10,
-		NoFlush = 0x20
-	}
-
-	/// <summary>
 	/// From ALLOCATOR_PROPERTIES
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
@@ -225,6 +208,24 @@ namespace DirectShowLib
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst=128)] public string achName;
         [MarshalAs(UnmanagedType.IUnknown)] public IFilterGraph pGraph;
     }
+
+    /// <summary>
+    /// From AM_SEEKING_SeekingFlags
+    /// </summary>
+    [Flags]
+    public enum AMSeekingSeekingFlags
+    {
+        NoPositioning = 0x00,
+        AbsolutePositioning = 0x01,
+        RelativePositioning = 0x02,
+        IncrementalPositioning = 0x03,
+        PositioningBitsMask = 0x03,
+        SeekToKeyFrame = 0x04,
+        ReturnTime = 0x08,
+        Segment = 0x10,
+        NoFlush = 0x20
+    }
+
     #endregion
 
 	#region Interfaces
@@ -305,8 +306,8 @@ namespace DirectShowLib
 
         [PreserveSig]
         new int SetTime(
-            [In, MarshalAs(UnmanagedType.LPStruct)] DsOptInt64 pTimeStart,
-            [In, MarshalAs(UnmanagedType.LPStruct)] DsOptInt64 pTimeEnd
+            [In, MarshalAs(UnmanagedType.LPStruct)] DsLong pTimeStart,
+            [In, MarshalAs(UnmanagedType.LPStruct)] DsLong pTimeEnd
             );
 
 		[PreserveSig]
@@ -347,8 +348,8 @@ namespace DirectShowLib
 
         [PreserveSig]
         new int SetMediaTime(
-            [In, MarshalAs(UnmanagedType.LPStruct)] DsOptInt64 pTimeStart,
-            [In, MarshalAs(UnmanagedType.LPStruct)] DsOptInt64 pTimeEnd
+            [In, MarshalAs(UnmanagedType.LPStruct)] DsLong pTimeStart,
+            [In, MarshalAs(UnmanagedType.LPStruct)] DsLong pTimeEnd
             );
 
 		#endregion
@@ -603,16 +604,16 @@ namespace DirectShowLib
         [PreserveSig]
         int ConvertTimeFormat(
             [Out] out long pTarget,
-            [In, MarshalAs(UnmanagedType.LPStruct)] GUID pTargetFormat,
+            [In, MarshalAs(UnmanagedType.LPStruct)] DsGuid pTargetFormat,
             [In] long Source,
-            [In, MarshalAs(UnmanagedType.LPStruct)] GUID pSourceFormat
+            [In, MarshalAs(UnmanagedType.LPStruct)] DsGuid pSourceFormat
             );
 
         [PreserveSig]
         int SetPositions(
-            [In, Out, MarshalAs(UnmanagedType.LPStruct)] DsOptInt64 pCurrent,
+            [In, Out, MarshalAs(UnmanagedType.LPStruct)] DsLong pCurrent,
             [In] AMSeekingSeekingFlags dwCurrentFlags,
-            [In, Out, MarshalAs(UnmanagedType.LPStruct)] DsOptInt64 pStop,
+            [In, Out, MarshalAs(UnmanagedType.LPStruct)] DsLong pStop,
             [In] AMSeekingSeekingFlags dwStopFlags
             );
 
@@ -657,8 +658,8 @@ namespace DirectShowLib
 
         [PreserveSig]
         int SetTime(
-            [In, MarshalAs(UnmanagedType.LPStruct)] DsOptInt64 pTimeStart,
-            [In, MarshalAs(UnmanagedType.LPStruct)] DsOptInt64 pTimeEnd
+            [In, MarshalAs(UnmanagedType.LPStruct)] DsLong pTimeStart,
+            [In, MarshalAs(UnmanagedType.LPStruct)] DsLong pTimeEnd
             );
 
         [PreserveSig]
@@ -702,8 +703,8 @@ namespace DirectShowLib
 
         [PreserveSig]
         int SetMediaTime(
-            [In, MarshalAs(UnmanagedType.LPStruct)] DsOptInt64 pTimeStart,
-            [In, MarshalAs(UnmanagedType.LPStruct)] DsOptInt64 pTimeEnd
+            [In, MarshalAs(UnmanagedType.LPStruct)] DsLong pTimeStart,
+            [In, MarshalAs(UnmanagedType.LPStruct)] DsLong pTimeEnd
             );
     }
 

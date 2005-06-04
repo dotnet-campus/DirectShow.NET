@@ -79,7 +79,7 @@ namespace DirectShowLib.Test
             IBaseFilter ppbf, ppFilter;
             ICaptureGraphBuilder2 icgb2;
             IFileSinkFilter ppsink;
-            ArrayList devs;
+            DsDevice [] devs;
 
             IGraphBuilder graphBuilder = new FilterGraph() as IGraphBuilder;
             icgb2 = (ICaptureGraphBuilder2) new CaptureGraphBuilder2();
@@ -89,7 +89,7 @@ namespace DirectShowLib.Test
             IFilterGraph2 ifg2 = graphBuilder as IFilterGraph2;
 
             devs = DsDevice.GetDevicesOfCat(FilterCategory.VideoInputDevice);
-            DsDevice dev = (DsDevice)devs[0];
+            DsDevice dev = devs[0];
 
             hr = ifg2.AddSourceFilterForMoniker(dev.Mon, null, dev.Name, out ppFilter);
             DsError.ThrowExceptionForHR(hr);

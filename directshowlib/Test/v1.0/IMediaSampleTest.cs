@@ -181,7 +181,7 @@ namespace DirectShowLib.Test
             Marshal.ThrowExceptionForHR(hr);
 
             // Change the value
-            hr = m_ims.SetTime(new DsOptInt64(TimeStart1 + 1), new DsOptInt64(TimeEnd1 - 1));
+            hr = m_ims.SetTime(new DsLong(TimeStart1 + 1), new DsLong(TimeEnd1 - 1));
             Marshal.ThrowExceptionForHR(hr);
 
             // Re-read the value
@@ -198,10 +198,10 @@ namespace DirectShowLib.Test
 
             // Read the time, should fail (because of the nulls)
             hr = m_ims.GetTime(out TimeStart1, out TimeEnd1);
-            Debug.Assert(hr == DsError.VFW_E_SAMPLE_TIME_NOT_SET, "Get/Set time null");
+            Debug.Assert(hr == DsResults.E_SampleTimeNotSet, "Get/Set time null");
 
             // Put it back to where it started
-            hr = m_ims.SetTime(new DsOptInt64(TimeStart1), new DsOptInt64(TimeEnd1));
+            hr = m_ims.SetTime(new DsLong(TimeStart1), new DsLong(TimeEnd1));
             Marshal.ThrowExceptionForHR(hr);
         }
 
@@ -216,7 +216,7 @@ namespace DirectShowLib.Test
             Marshal.ThrowExceptionForHR(hr);
 
             // Change the value
-            hr = m_ims.SetMediaTime(new DsOptInt64(TimeStart1 + 1), new DsOptInt64(TimeEnd1 - 1));
+            hr = m_ims.SetMediaTime(new DsLong(TimeStart1 + 1), new DsLong(TimeEnd1 - 1));
             Marshal.ThrowExceptionForHR(hr);
 
             // Re-read the value
@@ -233,10 +233,10 @@ namespace DirectShowLib.Test
 
             // Read the time, should fail (because of the nulls)
             hr = m_ims.GetMediaTime(out TimeStart1, out TimeEnd1);
-            Debug.Assert(hr == DsError.VFW_E_MEDIA_TIME_NOT_SET, "Get/Set MediaTime null");
+            Debug.Assert(hr == DsResults.E_MediaTimeNotSet, "Get/Set MediaTime null");
 
             // Put it back to where it started
-            hr = m_ims.SetMediaTime(new DsOptInt64(TimeStart1), new DsOptInt64(TimeEnd1));
+            hr = m_ims.SetMediaTime(new DsLong(TimeStart1), new DsLong(TimeEnd1));
             Marshal.ThrowExceptionForHR(hr);
         }
 

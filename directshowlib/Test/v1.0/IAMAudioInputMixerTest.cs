@@ -290,16 +290,16 @@ namespace DirectShowLib.Test
         // Find an audio filter
         IBaseFilter GetAudioFilter()
         {
-            ArrayList capDevices;
+            DsDevice [] capDevices;
 
             // Get the collection of video devices
             capDevices = DsDevice.GetDevicesOfCat( FilterCategory.AudioInputDevice );
-            if( capDevices.Count == 0 )
+            if( capDevices.Length == 0 )
             {
                 throw new Exception("No audio capture devices found!");
             }
 
-            DsDevice dev = capDevices[0] as DsDevice;
+            DsDevice dev = capDevices[0];
             string s;
 
             dev.Mon.GetDisplayName(null, null, out s);

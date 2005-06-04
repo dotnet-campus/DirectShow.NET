@@ -76,8 +76,8 @@ namespace DirectShowLib.Test
 
       this.graphBuilder = (IFilterGraph2) new FilterGraph();
 
-      ArrayList devs = DsDevice.GetDevicesOfCat(FilterCategory.VideoInputDevice);
-      DsDevice dev = devs[0] as DsDevice;
+      DsDevice[] devs = DsDevice.GetDevicesOfCat(FilterCategory.VideoInputDevice);
+      DsDevice dev = devs[0];
 
       hr = this.graphBuilder.AddSourceFilterForMoniker(dev.Mon, null, dev.Name, out filter);
       DsError.ThrowExceptionForHR(hr);

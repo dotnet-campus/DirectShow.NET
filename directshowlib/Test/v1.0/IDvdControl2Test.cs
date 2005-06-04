@@ -521,7 +521,7 @@ namespace DirectShowLib.Test
             Thread.Sleep(3100);
 
             hr = m_idi2.GetCurrentLocation(out pLocation);
-            Debug.Assert(hr == DsError.VFW_E_DVD_INVALIDDOMAIN, "TestPlayPeriodInTitleAutoStop");
+            Debug.Assert(hr == DsResults.E_DVDInvalidDomain, "TestPlayPeriodInTitleAutoStop");
         }
 
         void TestPlayChaptersAutoStop()
@@ -538,7 +538,7 @@ namespace DirectShowLib.Test
 
             // Should fail since the playing should be finished
             hr = m_idi2.GetCurrentLocation(out pLocation);
-            Debug.Assert(hr == DsError.VFW_E_DVD_INVALIDDOMAIN, "TestPlayPeriodInTitleAutoStop");
+            Debug.Assert(hr == DsResults.E_DVDInvalidDomain, "TestPlayPeriodInTitleAutoStop");
         }
 
         void TestMenusAndButtons()

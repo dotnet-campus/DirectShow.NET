@@ -326,7 +326,7 @@ namespace DirectShowLib.Test
             hr = m_ibv.GetVideoPaletteEntries(0, pal.Length, out ret, out pal);
 
             // I don't know how to get a palette to check this
-            if (hr != DsError.VFW_E_NO_PALETTE_AVAILABLE)
+            if (hr != DsResults.E_NoPaletteAvailable)
             {
                 DsError.ThrowExceptionForHR(hr);
             }

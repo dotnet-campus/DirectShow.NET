@@ -69,8 +69,6 @@ using System.Reflection;
 namespace DirectShowLib
 
 {
-#if ALLOW_UNTESTED_CODE
-
     #region COM Class Objects
 
     /// <summary>
@@ -783,9 +781,9 @@ namespace DirectShowLib
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
-	public class DsOptInt64
+	public class DsLong
 	{
-		public DsOptInt64(long Value)
+		public DsLong(long Value)
 		{
 			this.Value = Value;
 		}
@@ -794,29 +792,24 @@ namespace DirectShowLib
 	}
 
     [StructLayout(LayoutKind.Explicit)]
-    public class GUID
+    public class DsGuid
     {
         [FieldOffset(0)]
         private Guid guid;
 
-        public static readonly GUID Empty;
+        public static readonly DsGuid Empty = Guid.Empty;
 
-        static GUID()
-        {
-            GUID.Empty = new GUID();
-        }
-
-        public GUID()
+        public DsGuid()
         {
             this.guid = Guid.Empty;
         }
 
-        public GUID(string g)
+        public DsGuid(string g)
         {
             this.guid = new Guid(g);
         }
 
-        public GUID(Guid g)
+        public DsGuid(Guid g)
         {
             this.guid = g;
         }
@@ -836,14 +829,14 @@ namespace DirectShowLib
             return this.guid.GetHashCode();
         }
 
-        public static implicit operator Guid(GUID g)
+        public static implicit operator Guid(DsGuid g)
         {
             return g.guid;
         }
 
-        public static implicit operator GUID(Guid g)
+        public static implicit operator DsGuid(Guid g)
         {
-            return new GUID(g);
+            return new DsGuid(g);
         }
     }
 
@@ -851,151 +844,156 @@ namespace DirectShowLib
 
 	#region Utility Classes
 
+    public class DsResults
+    {
+        public const int E_InvalidMediaType = -2147220992;   // 0x80040200
+        public const int E_InvalidSubType = -2147220991;   // 0x80040201
+        public const int E_NeedOwner = -2147220990;   // 0x80040202
+        public const int E_EnumOutOfSync = -2147220989;   // 0x80040203
+        public const int E_AlreadyConnected = -2147220988;   // 0x80040204
+        public const int E_FilterActive = -2147220987;   // 0x80040205
+        public const int E_NoTypes = -2147220986;   // 0x80040206
+        public const int E_NoAcceptableTypes = -2147220985;   // 0x80040207
+        public const int E_InvalidDirection = -2147220984;   // 0x80040208
+        public const int E_NotConnected = -2147220983;   // 0x80040209
+        public const int E_NoAllocator = -2147220982;   // 0x8004020A
+        public const int E_RunTimeError = -2147220981;   // 0x8004020B
+        public const int E_BufferNotSet = -2147220980;   // 0x8004020C
+        public const int E_BufferOverflow = -2147220979;   // 0x8004020D
+        public const int E_BadAlign = -2147220978;   // 0x8004020E
+        public const int E_AlreadyCommitted = -2147220977;   // 0x8004020F
+        public const int E_BuffersOutstanding = -2147220976;   // 0x80040210
+        public const int E_NotCommitted = -2147220975;   // 0x80040211
+        public const int E_SizeNotSet = -2147220974;   // 0x80040212
+        public const int E_NoClock = -2147220973;   // 0x80040213
+        public const int E_NoSink = -2147220972;   // 0x80040214
+        public const int E_NoInterface = -2147220971;   // 0x80040215
+        public const int E_NotFound = -2147220970;   // 0x80040216
+        public const int E_CannotConnect = -2147220969;   // 0x80040217
+        public const int E_CannotRender = -2147220968;   // 0x80040218
+        public const int E_ChangingFormat = -2147220967;   // 0x80040219
+        public const int E_NoColorKeySet = -2147220966;   // 0x8004021A
+        public const int E_NotOverlayConnection = -2147220965;   // 0x8004021B
+        public const int E_NotSampleConnection = -2147220964;   // 0x8004021C
+        public const int E_PaletteSet = -2147220963;   // 0x8004021D
+        public const int E_ColorKeySet = -2147220962;   // 0x8004021E
+        public const int E_NoColorKeyFound = -2147220961;   // 0x8004021F
+        public const int E_NoPaletteAvailable = -2147220960;   // 0x80040220
+        public const int E_NoDisplayPalette = -2147220959;   // 0x80040221
+        public const int E_TooManyColors = -2147220958;   // 0x80040222
+        public const int E_StateChanged = -2147220957;   // 0x80040223
+        public const int E_NotStopped = -2147220956;   // 0x80040224
+        public const int E_NotPaused = -2147220955;   // 0x80040225
+        public const int E_NotRunning = -2147220954;   // 0x80040226
+        public const int E_WrongState = -2147220953;   // 0x80040227
+        public const int E_StartTimeAfterEnd = -2147220952;   // 0x80040228
+        public const int E_InvalidRect = -2147220951;   // 0x80040229
+        public const int E_TypeNotAccepted = -2147220950;   // 0x8004022A
+        public const int E_SampleRejected = -2147220949;   // 0x8004022B
+        public const int E_SampleRejectedEOS = -2147220948;   // 0x8004022C
+        public const int E_DuplicateName = -2147220947;   // 0x8004022D
+        public const int S_DuplicateName = 262701;   // 0x0004022D
+        public const int E_Timeout = -2147220946;   // 0x8004022E
+        public const int E_InvalidFileFormat = -2147220945;   // 0x8004022F
+        public const int E_EnumOutOfRange = -2147220944;   // 0x80040230
+        public const int E_CircularGraph = -2147220943;   // 0x80040231
+        public const int E_NotAllowedToSave = -2147220942;   // 0x80040232
+        public const int E_TimeAlreadyPassed = -2147220941;   // 0x80040233
+        public const int E_AlreadyCancelled = -2147220940;   // 0x80040234
+        public const int E_CorruptGraphFile = -2147220939;   // 0x80040235
+        public const int E_AdviseAlreadySet = -2147220938;   // 0x80040236
+        public const int S_StateIntermediate = 262711;   // 0x00040237
+        public const int E_NoModexAvailable = -2147220936;   // 0x80040238
+        public const int E_NoAdviseSet = -2147220935;   // 0x80040239
+        public const int E_NoFullScreen = -2147220934;   // 0x8004023A
+        public const int E_InFullScreenMode = -2147220933;   // 0x8004023B
+        public const int E_UnknownFileType = -2147220928;   // 0x80040240
+        public const int E_CannotLoadSourceFilter = -2147220927;   // 0x80040241
+        public const int S_PartialRender = 262722;   // 0x00040242
+        public const int E_FileTooShort = -2147220925;   // 0x80040243
+        public const int E_InvalidFileVersion = -2147220924;   // 0x80040244
+        public const int S_SomeDataIgnored = 262725;   // 0x00040245
+        public const int S_ConnectionsDeferred = 262726;   // 0x00040246
+        public const int E_InvalidCLSID = -2147220921;   // 0x80040247
+        public const int E_InvalidMediaType2 = -2147220920;   // 0x80040248
+        public const int E_BabKey = -2147220494;   // 0x800403F2
+        public const int S_NoMoreItems = 262403;   // 0x00040103
+        public const int E_SampleTimeNotSet = -2147220919;   // 0x80040249
+        public const int S_ResourceNotNeeded = 262736;   // 0x00040250
+        public const int E_MediaTimeNotSet = -2147220911;   // 0x80040251
+        public const int E_NoTimeFormatSet = -2147220910;   // 0x80040252
+        public const int E_MonoAudioHW = -2147220909;   // 0x80040253
+        public const int S_MediaTypeIgnored = 262740;   // 0x00040254
+        public const int E_NoDecompressor = -2147220907;   // 0x80040255
+        public const int E_NoAudioHardware = -2147220906;   // 0x80040256
+        public const int S_VideoNotRendered = 262743;   // 0x00040257
+        public const int S_AudioNotRendered = 262744;   // 0x00040258
+        public const int E_RPZA = -2147220903;   // 0x80040259
+        public const int S_RPZA = 262746;   // 0x0004025A
+        public const int E_ProcessorNotSuitable = -2147220901;   // 0x8004025B
+        public const int E_UnsupportedAudio = -2147220900;   // 0x8004025C
+        public const int E_UnsupportedVideo = -2147220899;   // 0x8004025D
+        public const int E_MPEGNotConstrained = -2147220898;   // 0x8004025E
+        public const int E_NotInGraph = -2147220897;   // 0x8004025F
+        public const int S_Estimated = 262752;   // 0x00040260
+        public const int E_NoTimeFormat = -2147220895;   // 0x80040261
+        public const int E_ReadOnly = -2147220894;   // 0x80040262
+        public const int S_Reserved = 262755;   // 0x00040263
+        public const int E_BufferUnderflow = -2147220892;   // 0x80040264
+        public const int E_UnsupportedStream = -2147220891;   // 0x80040265
+        public const int E_NoTransport = -2147220890;   // 0x80040266
+        public const int S_StreamOff = 262759;   // 0x00040267
+        public const int S_CantCue = 262760;   // 0x00040268
+        public const int E_BadVideoCD = -2147220887;   // 0x80040269
+        public const int S_NoStopTime = 262768;   // 0x00040270
+        public const int E_OutOfVideoMemory = -2147220879;   // 0x80040271
+        public const int E_VPNegotiationFailed = -2147220878;   // 0x80040272
+        public const int E_DDrawCapsNotSuitable = -2147220877;   // 0x80040273
+        public const int E_NoVPHardware = -2147220876;   // 0x80040274
+        public const int E_NoCaptureHardware = -2147220875;   // 0x80040275
+        public const int E_DVDOperationInhibited = -2147220874;   // 0x80040276
+        public const int E_DVDInvalidDomain = -2147220873;   // 0x80040277
+        public const int E_DVDNoButton = -2147220872;   // 0x80040278
+        public const int E_DVDGraphNotReady = -2147220871;   // 0x80040279
+        public const int E_DVDRenderFail = -2147220870;   // 0x8004027A
+        public const int E_DVDDecNotEnough = -2147220869;   // 0x8004027B
+        public const int E_DDrawVersionNotSuitable = -2147220868;   // 0x8004027C
+        public const int E_CopyProtFailed = -2147220867;   // 0x8004027D
+        public const int S_NoPreviewPin = 262782;   // 0x0004027E
+        public const int E_TimeExpired = -2147220865;   // 0x8004027F
+        public const int S_DVDNonOneSequential = 262784;   // 0x00040280
+        public const int E_DVDWrongSpeed = -2147220863;   // 0x80040281
+        public const int E_DVDMenuDoesNotExist = -2147220862;   // 0x80040282
+        public const int E_DVDCmdCancelled = -2147220861;   // 0x80040283
+        public const int E_DVDStateWrongVersion = -2147220860;   // 0x80040284
+        public const int E_DVDStateCorrupt = -2147220859;   // 0x80040285
+        public const int E_DVDStateWrongDisc = -2147220858;   // 0x80040286
+        public const int E_DVDIncompatibleRegion = -2147220857;   // 0x80040287
+        public const int E_DVDNoAttributes = -2147220856;   // 0x80040288
+        public const int E_DVDNoGoupPGC = -2147220855;   // 0x80040289
+        public const int E_DVDLowParentalLevel = -2147220854;   // 0x8004028A
+        public const int E_DVDNotInKaraokeMode = -2147220853;   // 0x8004028B
+        public const int S_DVDChannelContentsNotAvailable = 262796;   // 0x0004028C
+        public const int S_DVDNotAccurate = 262797;   // 0x0004028D
+        public const int E_FrameStepUnsupported = -2147220850;   // 0x8004028E
+        public const int E_DVDStreamDisabled = -2147220849;   // 0x8004028F
+        public const int E_DVDTitleUnknown = -2147220848;   // 0x80040290
+        public const int E_DVDInvalidDisc = -2147220847;   // 0x80040291
+        public const int E_DVDNoResumeInformation = -2147220846;   // 0x80040292
+        public const int E_PinAlreadyBlockedOnThisThread = -2147220845;   // 0x80040293
+        public const int E_PinAlreadyBlocked = -2147220844;   // 0x80040294
+        public const int E_CertificationFailure = -2147220843;   // 0x80040295
+        public const int E_VMRNotInMixerMode = -2147220842;   // 0x80040296
+        public const int E_VMRNoApSupplied = -2147220841;   // 0x80040297
+        public const int E_VMRNoDeinterlace_HW = -2147220840;   // 0x80040298
+        public const int E_VMRNoProcAMPHW = -2147220839;   // 0x80040299
+        public const int E_DVDVMR9IncompatibleDec = -2147220838;   // 0x8004029A
+        public const int E_NoCOPPHW = -2147220837;   // 0x8004029B
+    }
+
+
     public class DsError
     {
-        public const int VFW_E_INVALIDMEDIATYPE = -2147220992;   // 0x80040200
-        public const int VFW_E_INVALIDSUBTYPE = -2147220991;   // 0x80040201
-        public const int VFW_E_NEED_OWNER = -2147220990;   // 0x80040202
-        public const int VFW_E_ENUM_OUT_OF_SYNC = -2147220989;   // 0x80040203
-        public const int VFW_E_ALREADY_CONNECTED = -2147220988;   // 0x80040204
-        public const int VFW_E_FILTER_ACTIVE = -2147220987;   // 0x80040205
-        public const int VFW_E_NO_TYPES = -2147220986;   // 0x80040206
-        public const int VFW_E_NO_ACCEPTABLE_TYPES = -2147220985;   // 0x80040207
-        public const int VFW_E_INVALID_DIRECTION = -2147220984;   // 0x80040208
-        public const int VFW_E_NOT_CONNECTED = -2147220983;   // 0x80040209
-        public const int VFW_E_NO_ALLOCATOR = -2147220982;   // 0x8004020A
-        public const int VFW_E_RUNTIME_ERROR = -2147220981;   // 0x8004020B
-        public const int VFW_E_BUFFER_NOTSET = -2147220980;   // 0x8004020C
-        public const int VFW_E_BUFFER_OVERFLOW = -2147220979;   // 0x8004020D
-        public const int VFW_E_BADALIGN = -2147220978;   // 0x8004020E
-        public const int VFW_E_ALREADY_COMMITTED = -2147220977;   // 0x8004020F
-        public const int VFW_E_BUFFERS_OUTSTANDING = -2147220976;   // 0x80040210
-        public const int VFW_E_NOT_COMMITTED = -2147220975;   // 0x80040211
-        public const int VFW_E_SIZENOTSET = -2147220974;   // 0x80040212
-        public const int VFW_E_NO_CLOCK = -2147220973;   // 0x80040213
-        public const int VFW_E_NO_SINK = -2147220972;   // 0x80040214
-        public const int VFW_E_NO_INTERFACE = -2147220971;   // 0x80040215
-        public const int VFW_E_NOT_FOUND = -2147220970;   // 0x80040216
-        public const int VFW_E_CANNOT_CONNECT = -2147220969;   // 0x80040217
-        public const int VFW_E_CANNOT_RENDER = -2147220968;   // 0x80040218
-        public const int VFW_E_CHANGING_FORMAT = -2147220967;   // 0x80040219
-        public const int VFW_E_NO_COLOR_KEY_SET = -2147220966;   // 0x8004021A
-        public const int VFW_E_NOT_OVERLAY_CONNECTION = -2147220965;   // 0x8004021B
-        public const int VFW_E_NOT_SAMPLE_CONNECTION = -2147220964;   // 0x8004021C
-        public const int VFW_E_PALETTE_SET = -2147220963;   // 0x8004021D
-        public const int VFW_E_COLOR_KEY_SET = -2147220962;   // 0x8004021E
-        public const int VFW_E_NO_COLOR_KEY_FOUND = -2147220961;   // 0x8004021F
-        public const int VFW_E_NO_PALETTE_AVAILABLE = -2147220960;   // 0x80040220
-        public const int VFW_E_NO_DISPLAY_PALETTE = -2147220959;   // 0x80040221
-        public const int VFW_E_TOO_MANY_COLORS = -2147220958;   // 0x80040222
-        public const int VFW_E_STATE_CHANGED = -2147220957;   // 0x80040223
-        public const int VFW_E_NOT_STOPPED = -2147220956;   // 0x80040224
-        public const int VFW_E_NOT_PAUSED = -2147220955;   // 0x80040225
-        public const int VFW_E_NOT_RUNNING = -2147220954;   // 0x80040226
-        public const int VFW_E_WRONG_STATE = -2147220953;   // 0x80040227
-        public const int VFW_E_START_TIME_AFTER_END = -2147220952;   // 0x80040228
-        public const int VFW_E_INVALID_RECT = -2147220951;   // 0x80040229
-        public const int VFW_E_TYPE_NOT_ACCEPTED = -2147220950;   // 0x8004022A
-        public const int VFW_E_SAMPLE_REJECTED = -2147220949;   // 0x8004022B
-        public const int VFW_E_SAMPLE_REJECTED_EOS = -2147220948;   // 0x8004022C
-        public const int VFW_E_DUPLICATE_NAME = -2147220947;   // 0x8004022D
-        public const int VFW_S_DUPLICATE_NAME = 262701;   // 0x0004022D
-        public const int VFW_E_TIMEOUT = -2147220946;   // 0x8004022E
-        public const int VFW_E_INVALID_FILE_FORMAT = -2147220945;   // 0x8004022F
-        public const int VFW_E_ENUM_OUT_OF_RANGE = -2147220944;   // 0x80040230
-        public const int VFW_E_CIRCULAR_GRAPH = -2147220943;   // 0x80040231
-        public const int VFW_E_NOT_ALLOWED_TO_SAVE = -2147220942;   // 0x80040232
-        public const int VFW_E_TIME_ALREADY_PASSED = -2147220941;   // 0x80040233
-        public const int VFW_E_ALREADY_CANCELLED = -2147220940;   // 0x80040234
-        public const int VFW_E_CORRUPT_GRAPH_FILE = -2147220939;   // 0x80040235
-        public const int VFW_E_ADVISE_ALREADY_SET = -2147220938;   // 0x80040236
-        public const int VFW_S_STATE_INTERMEDIATE = 262711;   // 0x00040237
-        public const int VFW_E_NO_MODEX_AVAILABLE = -2147220936;   // 0x80040238
-        public const int VFW_E_NO_ADVISE_SET = -2147220935;   // 0x80040239
-        public const int VFW_E_NO_FULLSCREEN = -2147220934;   // 0x8004023A
-        public const int VFW_E_IN_FULLSCREEN_MODE = -2147220933;   // 0x8004023B
-        public const int VFW_E_UNKNOWN_FILE_TYPE = -2147220928;   // 0x80040240
-        public const int VFW_E_CANNOT_LOAD_SOURCE_FILTER = -2147220927;   // 0x80040241
-        public const int VFW_S_PARTIAL_RENDER = 262722;   // 0x00040242
-        public const int VFW_E_FILE_TOO_SHORT = -2147220925;   // 0x80040243
-        public const int VFW_E_INVALID_FILE_VERSION = -2147220924;   // 0x80040244
-        public const int VFW_S_SOME_DATA_IGNORED = 262725;   // 0x00040245
-        public const int VFW_S_CONNECTIONS_DEFERRED = 262726;   // 0x00040246
-        public const int VFW_E_INVALID_CLSID = -2147220921;   // 0x80040247
-        public const int VFW_E_INVALID_MEDIA_TYPE = -2147220920;   // 0x80040248
-        public const int VFW_E_BAD_KEY = -2147220494;   // 0x800403F2
-        public const int VFW_S_NO_MORE_ITEMS = 262403;   // 0x00040103
-        public const int VFW_E_SAMPLE_TIME_NOT_SET = -2147220919;   // 0x80040249
-        public const int VFW_S_RESOURCE_NOT_NEEDED = 262736;   // 0x00040250
-        public const int VFW_E_MEDIA_TIME_NOT_SET = -2147220911;   // 0x80040251
-        public const int VFW_E_NO_TIME_FORMAT_SET = -2147220910;   // 0x80040252
-        public const int VFW_E_MONO_AUDIO_HW = -2147220909;   // 0x80040253
-        public const int VFW_S_MEDIA_TYPE_IGNORED = 262740;   // 0x00040254
-        public const int VFW_E_NO_DECOMPRESSOR = -2147220907;   // 0x80040255
-        public const int VFW_E_NO_AUDIO_HARDWARE = -2147220906;   // 0x80040256
-        public const int VFW_S_VIDEO_NOT_RENDERED = 262743;   // 0x00040257
-        public const int VFW_S_AUDIO_NOT_RENDERED = 262744;   // 0x00040258
-        public const int VFW_E_RPZA = -2147220903;   // 0x80040259
-        public const int VFW_S_RPZA = 262746;   // 0x0004025A
-        public const int VFW_E_PROCESSOR_NOT_SUITABLE = -2147220901;   // 0x8004025B
-        public const int VFW_E_UNSUPPORTED_AUDIO = -2147220900;   // 0x8004025C
-        public const int VFW_E_UNSUPPORTED_VIDEO = -2147220899;   // 0x8004025D
-        public const int VFW_E_MPEG_NOT_CONSTRAINED = -2147220898;   // 0x8004025E
-        public const int VFW_E_NOT_IN_GRAPH = -2147220897;   // 0x8004025F
-        public const int VFW_S_ESTIMATED = 262752;   // 0x00040260
-        public const int VFW_E_NO_TIME_FORMAT = -2147220895;   // 0x80040261
-        public const int VFW_E_READ_ONLY = -2147220894;   // 0x80040262
-        public const int VFW_S_RESERVED = 262755;   // 0x00040263
-        public const int VFW_E_BUFFER_UNDERFLOW = -2147220892;   // 0x80040264
-        public const int VFW_E_UNSUPPORTED_STREAM = -2147220891;   // 0x80040265
-        public const int VFW_E_NO_TRANSPORT = -2147220890;   // 0x80040266
-        public const int VFW_S_STREAM_OFF = 262759;   // 0x00040267
-        public const int VFW_S_CANT_CUE = 262760;   // 0x00040268
-        public const int VFW_E_BAD_VIDEOCD = -2147220887;   // 0x80040269
-        public const int VFW_S_NO_STOP_TIME = 262768;   // 0x00040270
-        public const int VFW_E_OUT_OF_VIDEO_MEMORY = -2147220879;   // 0x80040271
-        public const int VFW_E_VP_NEGOTIATION_FAILED = -2147220878;   // 0x80040272
-        public const int VFW_E_DDRAW_CAPS_NOT_SUITABLE = -2147220877;   // 0x80040273
-        public const int VFW_E_NO_VP_HARDWARE = -2147220876;   // 0x80040274
-        public const int VFW_E_NO_CAPTURE_HARDWARE = -2147220875;   // 0x80040275
-        public const int VFW_E_DVD_OPERATION_INHIBITED = -2147220874;   // 0x80040276
-        public const int VFW_E_DVD_INVALIDDOMAIN = -2147220873;   // 0x80040277
-        public const int VFW_E_DVD_NO_BUTTON = -2147220872;   // 0x80040278
-        public const int VFW_E_DVD_GRAPHNOTREADY = -2147220871;   // 0x80040279
-        public const int VFW_E_DVD_RENDERFAIL = -2147220870;   // 0x8004027A
-        public const int VFW_E_DVD_DECNOTENOUGH = -2147220869;   // 0x8004027B
-        public const int VFW_E_DDRAW_VERSION_NOT_SUITABLE = -2147220868;   // 0x8004027C
-        public const int VFW_E_COPYPROT_FAILED = -2147220867;   // 0x8004027D
-        public const int VFW_S_NOPREVIEWPIN = 262782;   // 0x0004027E
-        public const int VFW_E_TIME_EXPIRED = -2147220865;   // 0x8004027F
-        public const int VFW_S_DVD_NON_ONE_SEQUENTIAL = 262784;   // 0x00040280
-        public const int VFW_E_DVD_WRONG_SPEED = -2147220863;   // 0x80040281
-        public const int VFW_E_DVD_MENU_DOES_NOT_EXIST = -2147220862;   // 0x80040282
-        public const int VFW_E_DVD_CMD_CANCELLED = -2147220861;   // 0x80040283
-        public const int VFW_E_DVD_STATE_WRONG_VERSION = -2147220860;   // 0x80040284
-        public const int VFW_E_DVD_STATE_CORRUPT = -2147220859;   // 0x80040285
-        public const int VFW_E_DVD_STATE_WRONG_DISC = -2147220858;   // 0x80040286
-        public const int VFW_E_DVD_INCOMPATIBLE_REGION = -2147220857;   // 0x80040287
-        public const int VFW_E_DVD_NO_ATTRIBUTES = -2147220856;   // 0x80040288
-        public const int VFW_E_DVD_NO_GOUP_PGC = -2147220855;   // 0x80040289
-        public const int VFW_E_DVD_LOW_PARENTAL_LEVEL = -2147220854;   // 0x8004028A
-        public const int VFW_E_DVD_NOT_IN_KARAOKE_MODE = -2147220853;   // 0x8004028B
-        public const int VFW_S_DVD_CHANNEL_CONTENTS_NOT_AVAILABLE = 262796;   // 0x0004028C
-        public const int VFW_S_DVD_NOT_ACCURATE = 262797;   // 0x0004028D
-        public const int VFW_E_FRAME_STEP_UNSUPPORTED = -2147220850;   // 0x8004028E
-        public const int VFW_E_DVD_STREAM_DISABLED = -2147220849;   // 0x8004028F
-        public const int VFW_E_DVD_TITLE_UNKNOWN = -2147220848;   // 0x80040290
-        public const int VFW_E_DVD_INVALID_DISC = -2147220847;   // 0x80040291
-        public const int VFW_E_DVD_NO_RESUME_INFORMATION = -2147220846;   // 0x80040292
-        public const int VFW_E_PIN_ALREADY_BLOCKED_ON_THIS_THREAD = -2147220845;   // 0x80040293
-        public const int VFW_E_PIN_ALREADY_BLOCKED = -2147220844;   // 0x80040294
-        public const int VFW_E_CERTIFICATION_FAILURE = -2147220843;   // 0x80040295
-        public const int VFW_E_VMR_NOT_IN_MIXER_MODE = -2147220842;   // 0x80040296
-        public const int VFW_E_VMR_NO_AP_SUPPLIED = -2147220841;   // 0x80040297
-        public const int VFW_E_VMR_NO_DEINTERLACE_HW = -2147220840;   // 0x80040298
-        public const int VFW_E_VMR_NO_PROCAMP_HW = -2147220839;   // 0x80040299
-        public const int VFW_E_DVD_VMR9_INCOMPATIBLEDEC = -2147220838;   // 0x8004029A
-        public const int VFW_E_NO_COPP_HW = -2147220837;   // 0x8004029B
 
         [DllImport("quartz.dll", CharSet=CharSet.Auto)]
         public static extern int AMGetErrorText(int hr, StringBuilder buf, int max);
@@ -1248,13 +1246,16 @@ namespace DirectShowLib
         /// Returns an array of DsDevices of type devcat.
         /// </summary>
         /// <param name="cat">Any one of FilterCategory</param>
-        public static ArrayList GetDevicesOfCat(Guid devcat)
+        public static DsDevice[] GetDevicesOfCat(Guid devcat)
         {
+            // Use arrayList to build the retun list since it is easily resizable
             ArrayList devs = new ArrayList();
+            DsDevice [] devret;
             int hr;
             ICreateDevEnum enumDev = null;
             UCOMIEnumMoniker enumMon = null;
             UCOMIMoniker[] mon = new UCOMIMoniker[1];
+
             try
             {
                 enumDev = (ICreateDevEnum) new CreateDevEnum();
@@ -1271,6 +1272,10 @@ namespace DirectShowLib
                         mon[0] = null;
                     }
                 }
+
+                // Copy the ArrayList to the DsDevicep[]
+                devret = new DsDevice[devs.Count];
+                devs.CopyTo(devret, 0);
             }
             catch (Exception)
             {
@@ -1295,7 +1300,7 @@ namespace DirectShowLib
                 }
             }
 
-            return devs;
+            return devret;
         }
 
         /// <summary>
@@ -1529,7 +1534,7 @@ namespace DirectShowLib
                     hr = pPins[0].ConnectedTo(out pOutPin);
 
                     // Check for VFW_E_NOT_CONNECTED.  Anything else is bad.
-                    if (hr != DsError.VFW_E_NOT_CONNECTED)
+                    if (hr != DsResults.E_NotConnected)
                     {
                         DsError.ThrowExceptionForHR(hr);
 
@@ -1540,7 +1545,7 @@ namespace DirectShowLib
                     // Is it the right status?
                     if (
                         (hr == 0 && vStat == PinConnectedStatus.Connected) ||
-                        (hr == DsError.VFW_E_NOT_CONNECTED && vStat == PinConnectedStatus.Unconnected)
+                        (hr == DsResults.E_NotConnected && vStat == PinConnectedStatus.Unconnected)
                         )
                     {
                         // Is is the right index?
@@ -1647,7 +1652,6 @@ namespace DirectShowLib
         }
     }
 
-	#endregion
 
-#endif
-} // namespace DShowNET
+	#endregion
+}

@@ -180,9 +180,9 @@ namespace DirectShowLib.Test
         void TestSetPosition()
         {
             int hr;
-            DsOptInt64 pc;
+            DsLong pc;
 
-            pc = new DsOptInt64(1);
+            pc = new DsLong(1);
 
             // Move the start forward by one, use null
             // for stop position

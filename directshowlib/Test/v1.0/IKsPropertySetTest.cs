@@ -120,8 +120,8 @@ namespace DirectShowLib.Test
             int hr;
             IBaseFilter ppFilter;
 
-            ArrayList devs = DsDevice.GetDevicesOfCat(FilterCategory.VideoInputDevice);
-            DsDevice dev = devs[0] as DsDevice;
+            DsDevice [] devs = DsDevice.GetDevicesOfCat(FilterCategory.VideoInputDevice);
+            DsDevice dev = devs[0];
 
             IGraphBuilder graphBuilder = new FilterGraph() as IGraphBuilder;
             DsROTEntry ds = new DsROTEntry(graphBuilder);

@@ -575,16 +575,16 @@ namespace DirectShowLib.SBE
         [PreserveSig]
         new int ConvertTimeFormat(
             [Out] out long pTarget,
-            [In, MarshalAs(UnmanagedType.LPStruct)] GUID pTargetFormat,
+            [In, MarshalAs(UnmanagedType.LPStruct)] DsGuid pTargetFormat,
             [In] long Source,
-            [In, MarshalAs(UnmanagedType.LPStruct)] GUID pSourceFormat
+            [In, MarshalAs(UnmanagedType.LPStruct)] DsGuid pSourceFormat
             );
 
         [PreserveSig]
         new int SetPositions(
-            [In, Out, MarshalAs(UnmanagedType.LPStruct)] DsOptInt64 pCurrent,
+            [In, Out, MarshalAs(UnmanagedType.LPStruct)] DsLong pCurrent,
             [In] AMSeekingSeekingFlags dwCurrentFlags,
-            [In, Out, MarshalAs(UnmanagedType.LPStruct)] DsOptInt64 pStop,
+            [In, Out, MarshalAs(UnmanagedType.LPStruct)] DsLong pStop,
             [In] AMSeekingSeekingFlags dwStopFlags
             );
 
@@ -651,16 +651,16 @@ namespace DirectShowLib.SBE
         [PreserveSig]
         new int ConvertTimeFormat(
             [Out] out long pTarget,
-            [In, MarshalAs(UnmanagedType.LPStruct)] GUID pTargetFormat,
+            [In, MarshalAs(UnmanagedType.LPStruct)] DsGuid pTargetFormat,
             [In] long Source,
-            [In, MarshalAs(UnmanagedType.LPStruct)] GUID pSourceFormat
+            [In, MarshalAs(UnmanagedType.LPStruct)] DsGuid pSourceFormat
             );
 
         [PreserveSig]
         new int SetPositions(
-            [In, Out, MarshalAs(UnmanagedType.LPStruct)] DsOptInt64 pCurrent,
+            [In, Out, MarshalAs(UnmanagedType.LPStruct)] DsLong pCurrent,
             [In] AMSeekingSeekingFlags dwCurrentFlags,
-            [In, Out, MarshalAs(UnmanagedType.LPStruct)] DsOptInt64 pStop,
+            [In, Out, MarshalAs(UnmanagedType.LPStruct)] DsLong pStop,
             [In] AMSeekingSeekingFlags dwStopFlags
             );
 

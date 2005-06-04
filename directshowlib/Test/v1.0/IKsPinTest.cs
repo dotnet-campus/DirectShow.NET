@@ -85,16 +85,16 @@ namespace DirectShowLib.Test
 
             try
             {
-                ArrayList capDevices;
+                DsDevice [] capDevices;
 
                 // Get the collection of video devices
                 capDevices = DsDevice.GetDevicesOfCat( FilterCategory.VideoInputDevice);
-                if( capDevices.Count == 0 )
+                if( capDevices.Length == 0 )
                 {
                     throw new Exception("No video capture devices found!");
                 }
 
-                DsDevice dev = capDevices[0] as DsDevice;
+                DsDevice dev = capDevices[0];
 
                 // Add it to the graph
                 hr = graphBuilder.AddSourceFilterForMoniker(dev.Mon, null, "Ds.NET CaptureDevice", out ibfAVISource);
