@@ -9,6 +9,16 @@ using NUnit.Framework;
 
 namespace DirectShowLib.Test
 {
+    class MyErrorLog : IErrorLog
+    {
+        public int AddError(string Desc, EXCEPINFO ex)
+        {
+            Debug.WriteLine(Desc);
+
+            return 0;
+        }
+    }
+
     [TestFixture]
     public class IPropertyBagTest
     {
@@ -31,6 +41,9 @@ namespace DirectShowLib.Test
             int hr;
             object o = "moo";
             object o2 = "zoo";
+            object o3 = "goo";
+
+            IErrorLog iel = new MyErrorLog() as IErrorLog;
 
             hr = m_ipb.Write("name", ref o);
             DsError.ThrowExceptionForHR(hr);
@@ -39,6 +52,9 @@ namespace DirectShowLib.Test
             DsError.ThrowExceptionForHR(hr);
 
             Debug.Assert((string)o2 == (string)o, "Read/Write");
+
+            hr = m_ipb.Read("name", out o3, iel);
+            DsError.ThrowExceptionForHR(hr);
         }
 
         void BuildGraph()
