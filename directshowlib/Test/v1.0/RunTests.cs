@@ -141,8 +141,14 @@ namespace DirectShowLib.Test
             //IMediaPositionTest dpw39 = new IMediaPositionTest();
             //dpw39.DoTests();
 
-            IAMVideoProcAmpTest en02 = new IAMVideoProcAmpTest();
-            en02.DoTests();
+            ISampleGrabberTest dpw40 = new ISampleGrabberTest();
+            dpw40.DoTests();
+
+            //IMediaPositionTest dpw39 = new IMediaPositionTest();
+            //dpw39.DoTests();
+
+            //IAMVideoProcAmpTest en02 = new IAMVideoProcAmpTest();
+            //en02.DoTests();
         }
     }
 }

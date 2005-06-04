@@ -118,13 +118,12 @@ namespace DirectShowLib
 		public short wBitsPerSample;
 		public short cbSize;
 	}
+
 #endif
 
 	#endregion
 
 	#region Interfaces
-
-#if ALLOW_UNTESTED_INTERFACES
 
 	[Guid("6B652FFF-11FE-4fce-92AD-0266B5D7C78F"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -132,7 +131,7 @@ namespace DirectShowLib
 	{
 		[PreserveSig]
 		int SetOneShot(
-			[In, MarshalAs(UnmanagedType.Bool)] bool OneShot);
+        [In, MarshalAs(UnmanagedType.Bool)] bool OneShot);
 
 		[PreserveSig]
 		int SetMediaType(
@@ -147,7 +146,7 @@ namespace DirectShowLib
 			[In, MarshalAs(UnmanagedType.Bool)] bool BufferThem);
 
 		[PreserveSig]
-		int GetCurrentBuffer(ref int pBufferSize, IntPtr pBuffer); // int *
+		int GetCurrentBuffer(ref int pBufferSize, IntPtr pBuffer);
 
 		[PreserveSig]
 		int GetCurrentSample(out IMediaSample ppSample);
@@ -157,21 +156,19 @@ namespace DirectShowLib
 	}
 
 
-	[Guid("0579154A-2B53-4994-B0D0-E773148EFF85"),
-		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	public interface ISampleGrabberCB
-	{
-		/// <summary>
-		/// When called, callee must release pSample
-		/// </summary>
-		[PreserveSig]
-		int SampleCB(double SampleTime, IMediaSample pSample);
+    [Guid("0579154A-2B53-4994-B0D0-E773148EFF85"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface ISampleGrabberCB
+    {
+        /// <summary>
+        /// When called, callee must release pSample
+        /// </summary>
+        [PreserveSig]
+        int SampleCB(double SampleTime, IMediaSample pSample);
 
-		[PreserveSig]
-		int BufferCB(double SampleTime, IntPtr pBuffer, int BufferLen);
-	}
+        [PreserveSig]
+        int BufferCB(double SampleTime, IntPtr pBuffer, int BufferLen);
+    }
 
-#endif
-
-	#endregion
+    #endregion
 } // namespace DShowNET

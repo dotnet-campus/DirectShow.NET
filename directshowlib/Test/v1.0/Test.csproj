@@ -314,6 +314,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "ISampleGrabberTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "ISpecifyPropertyPagesTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
