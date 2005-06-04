@@ -60,7 +60,7 @@ namespace DirectShowLib.Test
 
                 if (pmi.Count > 0) 
                 {
-                    PinMedium pTemp = new PinMedium();
+                    RegPinMedium pTemp = new RegPinMedium();
                     ip = (IntPtr)(ip.ToInt32() + Marshal.SizeOf(typeof(KSMultipleItem)));
 
                     for (int i = 0; i < pmi.Count; i++) 

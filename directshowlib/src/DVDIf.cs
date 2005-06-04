@@ -522,7 +522,7 @@ namespace DirectShowLib.Dvd
 
 
     /// <summary>
-    /// From typedef DVD_REGISTER
+    /// From GPRMARRAY
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct GPRMArray
@@ -531,7 +531,7 @@ namespace DirectShowLib.Dvd
     }
 
     /// <summary>
-    /// From typedef DVD_REGISTER
+    /// From SPRMARRAY
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct SPRMArray

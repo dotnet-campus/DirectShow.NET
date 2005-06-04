@@ -306,7 +306,7 @@ namespace DirectShowLib
 #endif
 
     /// <summary>
-    /// From VMRMixerPrefs
+    /// From VMRRenderPrefs
     /// </summary>
     [Flags]
     public enum VMRRenderPrefs

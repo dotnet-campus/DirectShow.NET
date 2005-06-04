@@ -81,17 +81,6 @@ namespace DirectShowLib
 	}
 #endif
 
-    /// <summary>
-    /// From REGPINMEDIUM
-    /// </summary>
-    [StructLayout(LayoutKind.Sequential)]
-    public class PinMedium
-    {
-        public Guid clsMedium;
-        public int dw1;
-        public int dw2;
-    }
-
     #endregion
 
 	#region Interfaces
