@@ -15,204 +15,206 @@ using System.IO;
 
 namespace DirectShowLib.Test
 {
-    [TestFixture]
-    public class IPersistStreamTest
+  [TestFixture]
+  public class IPersistStreamTest
+  {
+    // The drive containing testme.iso
+    const string MyDisk = @"f:\video_ts";
+
+    IDvdInfo2 m_idi2 = null;
+    IDvdControl2 m_idc2 = null;
+    DsROTEntry m_ROT = null;
+    IMediaControl m_imc = null; // don't release
+    IPersistStream m_ips = null;
+
+    [DllImport("OLE32.DLL")]
+    extern private static int CreateStreamOnHGlobal( 
+      IntPtr hGlobalMemHandle, 
+      bool fDeleteOnRelease, 
+      out UCOMIStream pOutStm);
+
+    public IPersistStreamTest()
     {
-        // The drive containing testme.iso
-        const string MyDisk = @"e:\video_ts";
+    }
+    /// <summary>
+    /// Test all IDvdControl2Test methods
+    /// </summary>
+    [Test]
+    public void DoTests()
+    {
+      IDvdGraphBuilder idgb = GetDvdGraph();
+      try
+      {
+        PopulateMembers(idgb);
+        StartGraph();
+        AllowPlay();
 
-        IDvdInfo2 m_idi2 = null;
-        IDvdControl2 m_idc2 = null;
-        DsROTEntry m_ROT = null;
-        IMediaControl m_imc = null; // don't release
-        IPersistStream m_ips = null;
-
-        [DllImport("OLE32.DLL")]
-        extern private static int CreateStreamOnHGlobal( 
-            IntPtr hGlobalMemHandle, 
-            bool fDeleteOnRelease, 
-            out UCOMIStream pOutStm);
-
-        public IPersistStreamTest()
+        TestGetClassID();
+        TestIsDirty();
+        TestGetSizeMax();
+        TestSaveLoad();
+      }
+      finally
+      {
+        if (m_ROT != null)
         {
+          m_ROT.Dispose();
         }
-        /// <summary>
-        /// Test all IDvdControl2Test methods
-        /// </summary>
-        [Test]
-        public void DoTests()
+        if (idgb != null)
         {
-            IDvdGraphBuilder idgb = GetDvdGraph();
-            try
-            {
-                PopulateMembers(idgb);
-                StartGraph();
-                AllowPlay();
-
-                TestGetClassID();
-                TestIsDirty();
-                TestGetSizeMax();
-                TestSaveLoad();
-            }
-            finally
-            {
-                if (m_ROT != null)
-                {
-                    m_ROT.Dispose();
-                }
-                if (idgb != null)
-                {
-                    Marshal.ReleaseComObject(idgb);
-                    idgb = null;
-                }
-                if (m_idi2 != null)
-                {
-                    Marshal.ReleaseComObject(m_idi2);
-                    m_idi2 = null;
-                }
-                if (m_idc2 != null)
-                {
-                    Marshal.ReleaseComObject(m_idc2);
-                    m_idc2 = null;
-                }
-            }
+          Marshal.ReleaseComObject(idgb);
+          idgb = null;
         }
-
-        // Grab off a couple of interface pointers
-        void PopulateMembers(IDvdGraphBuilder idgb)
+        if (m_idi2 != null)
         {
-            int hr;
-            object obj;
-            hr = idgb.GetDvdInterface(typeof(IDvdInfo2).GUID, out obj);
-            DsError.ThrowExceptionForHR(hr);
-
-            // Get the IDvdGraphBuilder interface
-            m_idi2 = obj as IDvdInfo2;
-
-            hr = idgb.GetDvdInterface(typeof(IDvdControl2).GUID, out obj);
-            DsError.ThrowExceptionForHR(hr);
-
-            // Get the IDvdGraphBuilder interface
-            m_idc2 = obj as IDvdControl2;
+          Marshal.ReleaseComObject(m_idi2);
+          m_idi2 = null;
         }
-
-        // Start the dvd graph.  Wait til a menu appears
-        void StartGraph()
+        if (m_idc2 != null)
         {
-            int hr;
-            DvdDomain dvdd;
-
-            hr = m_imc.Run();
-            DsError.ThrowExceptionForHR(hr);
-
-            do
-            {
-                hr = m_idi2.GetCurrentDomain(out dvdd);
-                DsError.ThrowExceptionForHR(hr);
-                Application.DoEvents();
-                Thread.Sleep(100);
-            } while (dvdd != DvdDomain.VideoManagerMenu && dvdd != DvdDomain.VideoTitleSetMenu);
-
+          Marshal.ReleaseComObject(m_idc2);
+          m_idc2 = null;
         }
+      }
+    }
 
-        // Put us in a mode that allows for playing video
-        void AllowPlay()
+    // Grab off a couple of interface pointers
+    void PopulateMembers(IDvdGraphBuilder idgb)
+    {
+      int hr;
+      object obj;
+      hr = idgb.GetDvdInterface(typeof(IDvdInfo2).GUID, out obj);
+      DsError.ThrowExceptionForHR(hr);
+
+      // Get the IDvdGraphBuilder interface
+      m_idi2 = obj as IDvdInfo2;
+
+      hr = idgb.GetDvdInterface(typeof(IDvdControl2).GUID, out obj);
+      DsError.ThrowExceptionForHR(hr);
+
+      // Get the IDvdGraphBuilder interface
+      m_idc2 = obj as IDvdControl2;
+    }
+
+    // Start the dvd graph.  Wait til a menu appears
+    void StartGraph()
+    {
+      int hr;
+      DvdDomain dvdd;
+
+      hr = m_imc.Run();
+      DsError.ThrowExceptionForHR(hr);
+
+      do
+      {
+        hr = m_idi2.GetCurrentDomain(out dvdd);
+        DsError.ThrowExceptionForHR(hr);
+        Application.DoEvents();
+        Thread.Sleep(100);
+      } while (dvdd != DvdDomain.VideoManagerMenu && dvdd != DvdDomain.VideoTitleSetMenu);
+
+    }
+
+    // Put us in a mode that allows for playing video
+    void AllowPlay()
+    {
+      int hr;
+      int buttonavail, curbutton;
+      DvdDomain dvdd;
+      IDvdState dss;
+
+      // Keep clicking buttons until we start playing a title
+      while ((hr = m_idi2.GetCurrentDomain(out dvdd)) == 0 &&
+        ((dvdd == DvdDomain.VideoManagerMenu) || (dvdd == DvdDomain.VideoTitleSetMenu)))
+      {
+        hr = m_idi2.GetCurrentButton(out buttonavail, out curbutton);
+        DsError.ThrowExceptionForHR(hr);
+
+        if (curbutton > 0)
         {
-            int hr;
-            int buttonavail, curbutton;
-            DvdDomain dvdd;
-            IDvdState dss;
-
-            // Keep clicking buttons until we start playing a title
-            while ((hr = m_idi2.GetCurrentDomain(out dvdd)) == 0 &&
-                ((dvdd == DvdDomain.VideoManagerMenu) || (dvdd == DvdDomain.VideoTitleSetMenu)))
-            {
-                hr = m_idi2.GetCurrentButton(out buttonavail, out curbutton);
-                DsError.ThrowExceptionForHR(hr);
-
-                if (curbutton > 0)
-                {
-                    hr = m_idc2.SelectAndActivateButton(1);
-                    DsError.ThrowExceptionForHR(hr);
-                }
-
-                Thread.Sleep(500);
-            }
-
-            DsError.ThrowExceptionForHR(hr);
-
-            hr = m_idi2.GetState(out dss);
-            DsError.ThrowExceptionForHR(hr);
-
-            m_ips = dss as IPersistStream;
-       }
-
-
-        void TestGetClassID()
-        {
-            int hr;
-            Guid Clsid;
-
-            hr = m_ips.GetClassID(out Clsid);
-            DsError.ThrowExceptionForHR(hr);
-
-            Debug.Assert(Clsid == typeof(DVDState).GUID, "GetClassID");
+          hr = m_idc2.SelectAndActivateButton(1);
+          DsError.ThrowExceptionForHR(hr);
         }
 
-        void TestIsDirty()
-        {
-            int hr;
+        Thread.Sleep(500);
+      }
 
-            hr = m_ips.IsDirty();
+      DsError.ThrowExceptionForHR(hr);
 
-            // zero means it hasn't been saved (dirty)
-            Debug.Assert(hr == 0, "IsDirty");
-        }
+      hr = m_idi2.GetState(out dss);
+      DsError.ThrowExceptionForHR(hr);
 
-        void TestSaveLoad()
-        {
-            int hr;
-            UCOMIStream uis = null;
-            long siz;
-            hr = m_ips.GetSizeMax(out siz);
+      m_ips = dss as IPersistStream;
+    }
 
-            // Create the stream to write to
-            hr = CreateStreamOnHGlobal(IntPtr.Zero, true, out uis);
 
-            // false doesn't seem to work
-            hr = m_ips.Save(uis, true);
-            DsError.ThrowExceptionForHR(hr);
+    void TestGetClassID()
+    {
+      int hr;
+      Guid Clsid;
 
-            // See if the dirty bit got cleared
-            hr = m_ips.IsDirty();
-            Debug.Assert(hr == 1, "dirty3");
+      hr = m_ips.GetClassID(out Clsid);
+      DsError.ThrowExceptionForHR(hr);
 
-            STATSTG p;
-            uis.Stat(out p, 0);
+      Debug.Assert(Clsid == typeof(DVDState).GUID, "GetClassID");
+    }
 
-            // Make sure something got written
-            Debug.Assert(p.cbSize > 0, "Save");
+    void TestIsDirty()
+    {
+      int hr;
 
-            // Read it back
-            uis.Seek(0, 0, IntPtr.Zero);
+      hr = m_ips.IsDirty();
 
-            hr = m_ips.Load(uis);
-            DsError.ThrowExceptionForHR(hr);
-        }
+      // zero means it hasn't been saved (dirty)
+      Debug.Assert(hr == 0, "IsDirty");
+    }
 
-        void TestGetSizeMax()
-        {
-            int hr;
-            long siz;
+    void TestSaveLoad()
+    {
+      int hr;
+      UCOMIStream uis = null;
+      long siz;
+      hr = m_ips.GetSizeMax(out siz);
 
-            hr = m_ips.GetSizeMax(out siz);
-            DsError.ThrowExceptionForHR(hr);
+      // Create the stream to write to
+      //hr = CreateStreamOnHGlobal(IntPtr.Zero, true, out uis);
 
-            // The max size of a DvdState
-            Debug.Assert(siz == 1036, "GetSizeMax");
-        }
+      uis = new MyNullStream(siz);
 
-        // Not used - But there are things here that may be useful some day
+      // false doesn't seem to work
+      hr = m_ips.Save(uis, true);
+      DsError.ThrowExceptionForHR(hr);
+
+      // See if the dirty bit got cleared
+      hr = m_ips.IsDirty();
+      Debug.Assert(hr == 1, "dirty3");
+
+      STATSTG p;
+      uis.Stat(out p, 0);
+
+      // Make sure something got written
+      Debug.Assert(p.cbSize > 0, "Save");
+
+      // Read it back
+      uis.Seek(0, 0, IntPtr.Zero);
+
+      hr = m_ips.Load(uis);
+      DsError.ThrowExceptionForHR(hr);
+    }
+
+    void TestGetSizeMax()
+    {
+      int hr;
+      long siz;
+
+      hr = m_ips.GetSizeMax(out siz);
+      DsError.ThrowExceptionForHR(hr);
+
+      // The max size of a DvdState
+      Debug.Assert(siz == 1036, "GetSizeMax");
+    }
+
+    // Not used - But there are things here that may be useful some day
 #if false
         void TestSave2()
         {
@@ -384,37 +386,158 @@ namespace DirectShowLib.Test
         }
 #endif
         
-        IDvdGraphBuilder GetDvdGraph()
-        {
-            int hr;
-            DvdGraphBuilder dgb = null;
-            IGraphBuilder gb = null;
-            AMDvdRenderStatus drs;
-            IDvdGraphBuilder idgb = null;
+    IDvdGraphBuilder GetDvdGraph()
+    {
+      int hr;
+      DvdGraphBuilder dgb = null;
+      IGraphBuilder gb = null;
+      AMDvdRenderStatus drs;
+      IDvdGraphBuilder idgb = null;
 
-            // Get a dvd graph object
-            dgb = new DvdGraphBuilder();
-            Debug.Assert(dgb != null, "new DvdGraphBuilder");
+      // Get a dvd graph object
+      dgb = new DvdGraphBuilder();
+      Debug.Assert(dgb != null, "new DvdGraphBuilder");
 
-            // Get the IDvdGraphBuilder interface
-            idgb = dgb as IDvdGraphBuilder;
+      // Get the IDvdGraphBuilder interface
+      idgb = dgb as IDvdGraphBuilder;
 
-            hr = idgb.RenderDvdVideoVolume(MyDisk, AMDvdGraphFlags.HWDecPrefer, out drs);
-            DsError.ThrowExceptionForHR(hr);
+      hr = idgb.RenderDvdVideoVolume(MyDisk, AMDvdGraphFlags.HWDecPrefer, out drs);
+      DsError.ThrowExceptionForHR(hr);
 
-            // If there is no dvd in the player, you get hr == S_FALSE (1)
-            Debug.Assert(hr == 0, "Can't find dvd");
+      // If there is no dvd in the player, you get hr == S_FALSE (1)
+      Debug.Assert(hr == 0, "Can't find dvd");
 
-            // Get an IFilterGraph interface
-            hr = idgb.GetFiltergraph(out gb);
-            DsError.ThrowExceptionForHR(hr);
+      // Get an IFilterGraph interface
+      hr = idgb.GetFiltergraph(out gb);
+      DsError.ThrowExceptionForHR(hr);
 
-            Debug.Assert(gb != null, "GetFiltergraph");
-            m_ROT = new DsROTEntry(gb);
+      Debug.Assert(gb != null, "GetFiltergraph");
+      m_ROT = new DsROTEntry(gb);
 
-            m_imc = gb as IMediaControl;
+      m_imc = gb as IMediaControl;
 
-            return idgb;
-        }
+      return idgb;
     }
+  }
+
+  [ComVisible(true)]
+  public class MyNullStream : UCOMIStream
+  {
+    MemoryStream memStream;
+    BinaryWriter writer;
+    int writeIndex = 0;
+    BinaryReader reader;
+    int readIndex = 0;
+
+    public MyNullStream(long size)
+    {
+      memStream = new MemoryStream((int)size);
+      writer = new BinaryWriter(memStream);
+      reader = new BinaryReader(memStream);
+    }
+
+    ~MyNullStream()
+    {
+      memStream.Flush();
+      memStream.Close();
+    }
+
+    #region Membres de UCOMIStream
+
+    public void Commit(int grfCommitFlags)
+    {
+      Debug.WriteLine("in Commit");
+      // TODO : ajoutez l'implémentation de Stream.Commit
+    }
+
+    public void Clone(out UCOMIStream ppstm)
+    {
+      Debug.WriteLine("in Clone");
+      // TODO : ajoutez l'implémentation de Stream.Clone
+      ppstm = null;
+    }
+
+    public void LockRegion(long libOffset, long cb, int dwLockType)
+    {
+      Debug.WriteLine("in LockRegion");
+      // TODO : ajoutez l'implémentation de Stream.LockRegion
+    }
+
+    public void Seek(long dlibMove, int dwOrigin, System.IntPtr plibNewPosition)
+    {
+      // Ok it's cheating
+      memStream.Seek(0, SeekOrigin.Begin);
+
+      plibNewPosition = IntPtr.Zero;
+      Marshal.ThrowExceptionForHR(0);
+    }
+
+    public void CopyTo(UCOMIStream pstm, long cb, System.IntPtr pcbRead, System.IntPtr pcbWritten)
+    {
+      Debug.WriteLine("in CopyTo");
+      // TODO : ajoutez l'implémentation de Stream.CopyTo
+    }
+
+    public void Revert()
+    {
+      Debug.WriteLine("in Revert");
+      // TODO : ajoutez l'implémentation de Stream.Revert
+    }
+
+    public void Write(byte[] pv, int cb, System.IntPtr pcbWritten)
+    {
+      try
+      {
+        writer.Write(pv, writeIndex, cb);
+        writeIndex += cb;
+      }
+      catch
+      {
+      }
+
+      if (pcbWritten != IntPtr.Zero)
+        Marshal.WriteInt32(pcbWritten, cb);
+
+      Marshal.ThrowExceptionForHR(0);
+    }
+
+    public void UnlockRegion(long libOffset, long cb, int dwLockType)
+    {
+      Debug.WriteLine("in UnlockRegion");
+      // TODO : ajoutez l'implémentation de Stream.UnlockRegion
+    }
+
+    public void SetSize(long libNewSize)
+    {
+      Debug.WriteLine("in SetSize");
+      // TODO : ajoutez l'implémentation de Stream.SetSize
+    }
+
+    public void Read(byte[] pv, int cb, System.IntPtr pcbRead)
+    {
+      try
+      {
+        reader.Read(pv, readIndex, cb);
+        readIndex += cb;
+      }
+      catch
+      {
+      }
+
+      if (pcbRead != IntPtr.Zero)
+        Marshal.WriteInt32(pcbRead, cb);
+
+      Marshal.ThrowExceptionForHR(0);
+    }
+
+    public void Stat(out STATSTG pstatstg, int grfStatFlag)
+    {
+      Debug.WriteLine("in Stat");
+      pstatstg = new STATSTG();
+      pstatstg.cbSize = writeIndex;
+      Marshal.ThrowExceptionForHR(0);
+    }
+
+    #endregion
+  }
 }
