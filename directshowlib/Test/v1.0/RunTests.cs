@@ -37,7 +37,7 @@ namespace DirectShowLib.Test
             //t6.DoTests();
 
             //IDvdGraphBuilderTest t7 = new IDvdGraphBuilderTest();
-            //t7.DoTests(); 
+            //t7.DoTests();
 
             //ISampleGrabberCBTest t8 = new ISampleGrabberCBTest();
             //t8.DoTests();
@@ -68,7 +68,7 @@ namespace DirectShowLib.Test
 
             //IGraphBuilderTest t17 = new IGraphBuilderTest();
             //t17.DoTests();
-  
+
             //IFilterGraph2Test t18 = new IFilterGraph2Test();
             //t18.DoTests();
 
@@ -112,10 +112,10 @@ namespace DirectShowLib.Test
             //en01.DoTests();
 
             //IBasicVideoTest dpw31 = new IBasicVideoTest();
-            //dpw31.DoTests();   
+            //dpw31.DoTests();
 
             //IBasicVideo2Test dpw32 = new IBasicVideo2Test();
-            //dpw32.DoTests();   
+            //dpw32.DoTests();
 
             //IKsPropertySetTest dpw33 = new IKsPropertySetTest();
             //dpw33.DoTests();
@@ -141,14 +141,17 @@ namespace DirectShowLib.Test
             //IMediaPositionTest dpw39 = new IMediaPositionTest();
             //dpw39.DoTests();
 
-            ISampleGrabberTest dpw40 = new ISampleGrabberTest();
-            dpw40.DoTests();
+            //ISampleGrabberTest dpw40 = new ISampleGrabberTest();
+            //dpw40.DoTests();
 
             //IMediaPositionTest dpw39 = new IMediaPositionTest();
             //dpw39.DoTests();
 
             //IAMVideoProcAmpTest en02 = new IAMVideoProcAmpTest();
             //en02.DoTests();
+
+            ICaptureGraphBuilder2Test dpw41 = new ICaptureGraphBuilder2Test();
+            dpw41.DoTests();
         }
     }
 }

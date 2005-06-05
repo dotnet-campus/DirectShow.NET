@@ -1261,7 +1261,8 @@ namespace DirectShowLib
 	}
 
 	[Guid("bf87b6e0-8c27-11d0-b3f0-00aa003761c5"),
-		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+		InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
+    Obsolete("The ICaptureGraphBuilder interface is deprecated. Use ICaptureGraphBuilder2 instead.", false)]
 	public interface ICaptureGraphBuilder
 	{
 		[PreserveSig]
@@ -1347,8 +1348,8 @@ namespace DirectShowLib
 
 		[PreserveSig]
 		int FindInterface(
-			[In, MarshalAs(UnmanagedType.LPStruct)] Guid pCategory,
-			[In, MarshalAs(UnmanagedType.LPStruct)] Guid pType,
+			[In, MarshalAs(UnmanagedType.LPStruct)] DsGuid pCategory,
+			[In, MarshalAs(UnmanagedType.LPStruct)] DsGuid pType,
 			[In] IBaseFilter pbf,
 			[In, MarshalAs(UnmanagedType.LPStruct)] Guid riid,
 			[Out, MarshalAs(UnmanagedType.IUnknown)] out object ppint
@@ -1356,8 +1357,8 @@ namespace DirectShowLib
 
 		[PreserveSig]
 		int RenderStream(
-            [In, MarshalAs(UnmanagedType.LPStruct)] Guid pCategory,
-            [In, MarshalAs(UnmanagedType.LPStruct)] Guid pType,
+            [In, MarshalAs(UnmanagedType.LPStruct)] DsGuid PinCategory,
+            [In, MarshalAs(UnmanagedType.LPStruct)] DsGuid MediaType,
 			[In, MarshalAs(UnmanagedType.IUnknown)] object pSource,
 			[In] IBaseFilter pfCompressor,
 			[In] IBaseFilter pfRenderer
@@ -1365,11 +1366,11 @@ namespace DirectShowLib
 
 		[PreserveSig]
 		int ControlStream(
-			[In, MarshalAs(UnmanagedType.LPStruct)] Guid pCategory,
-			[In, MarshalAs(UnmanagedType.LPStruct)] Guid pType,
-			[In] IBaseFilter pFilter,
-			[In] long pstart,
-			[In] long pstop,
+			[In, MarshalAs(UnmanagedType.LPStruct)] Guid PinCategory,
+			[In, MarshalAs(UnmanagedType.LPStruct)] DsGuid MediaType,
+			[In, MarshalAs(UnmanagedType.Interface)] IBaseFilter pFilter,
+			[In] DsLong pstart,
+			[In] DsLong pstop,
 			[In] short wStartCookie,
 			[In] short wStopCookie
 			);
@@ -1384,23 +1385,23 @@ namespace DirectShowLib
 		int CopyCaptureFile(
 			[In, MarshalAs(UnmanagedType.LPWStr)] string lpwstrOld,
 			[In, MarshalAs(UnmanagedType.LPWStr)] string lpwstrNew,
-			[In] int fAllowEscAbort,
+			[In, MarshalAs(UnmanagedType.Bool)] bool fAllowEscAbort,
 			[In] IAMCopyCaptureFileProgress pFilter
 			);
 
 		[PreserveSig]
 		int FindPin(
-			[In] object pSource,
+			[In, MarshalAs(UnmanagedType.IUnknown)] object pSource,
 			[In] PinDirection pindir,
-			[In, MarshalAs(UnmanagedType.LPStruct)] Guid pCategory,
-			[In, MarshalAs(UnmanagedType.LPStruct)] Guid pType,
+			[In, MarshalAs(UnmanagedType.LPStruct)] DsGuid PinCategory,
+			[In, MarshalAs(UnmanagedType.LPStruct)] DsGuid MediaType,
 			[In, MarshalAs(UnmanagedType.Bool)] bool fUnconnected,
-			[In] int num,
-			[Out] out IPin ppPin
+			[In] int ZeroBasedIndex,
+			[Out, MarshalAs(UnmanagedType.Interface)] out IPin ppPin
 			);
 	}
 
-	[Guid("56a868bf-0ad4-11ce-b03a-0020af0ba770"),
+    [Guid("56a868bf-0ad4-11ce-b03a-0020af0ba770"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IStreamBuilder
 	{
@@ -2340,7 +2341,7 @@ namespace DirectShowLib
 		[PreserveSig]
 		int Load(
 			[In] IMediaPropertyBag pPropBag,
-			[In] IntPtr pErrorLog //IErrorLog *
+			[In] IErrorLog pErrorLog
 			);
 
 		[PreserveSig]
