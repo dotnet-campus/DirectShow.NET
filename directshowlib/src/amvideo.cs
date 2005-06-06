@@ -225,6 +225,7 @@ namespace DirectShowLib
 
 
     [Guid("dd1d7110-7836-11cf-bf47-00aa0055595a"),
+    Obsolete("This interface has been deprecated.", false),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IFullScreenVideo
     {
@@ -283,6 +284,7 @@ namespace DirectShowLib
 
 
     [Guid("53479470-f1dd-11cf-bc42-00aa00ac74f6"),
+    Obsolete("This interface has been deprecated.", false),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IFullScreenVideoEx : IFullScreenVideo
     {

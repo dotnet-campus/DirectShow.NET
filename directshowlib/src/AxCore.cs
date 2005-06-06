@@ -66,70 +66,70 @@ using System.Runtime.InteropServices;
 namespace DirectShowLib
 {
 
-	#region Declarations
+    #region Declarations
 
 #if ALLOW_UNTESTED_STRUCTS
 
-	/// <summary>
-	/// From AM_SAMPLE_PROPERTY_FLAGS
-	/// </summary>
-	[Flags] // May not be flags?
-		public enum AMSamplePropertyFlags
-	{
-		SplicePoint = 0x01,
-		PreRoll = 0x02,
-		DataDiscontinuity = 0x04,
-		TypeChanged = 0x08,
-		TimeValid = 0x10,
-		TimeDiscontinuity = 0x40,
-		FlushOnPause = 0x80,
-		StopValid = 0x100,
-		EndOfStream = 0x200,
-		Media = 0,
-		Control = 1
-	}
+    /// <summary>
+    /// From AM_SAMPLE_PROPERTY_FLAGS
+    /// </summary>
+    [Flags] // May not be flags?
+    public enum AMSamplePropertyFlags
+    {
+        SplicePoint = 0x01,
+        PreRoll = 0x02,
+        DataDiscontinuity = 0x04,
+        TypeChanged = 0x08,
+        TimeValid = 0x10,
+        TimeDiscontinuity = 0x40,
+        FlushOnPause = 0x80,
+        StopValid = 0x100,
+        EndOfStream = 0x200,
+        Media = 0,
+        Control = 1
+    }
 
-	/// <summary>
-	/// From AM_GBF_* defines
-	/// </summary>
-	[Flags]
-	public enum AMGBF
-	{
-		PrevFrameSkipped = 1,
-		NotAsyncPoint = 2,
-		NoWait = 4,
-		NoDDSurfaceLock = 8
-	}
+    /// <summary>
+    /// From AM_GBF_* defines
+    /// </summary>
+    [Flags]
+    public enum AMGBF
+    {
+        PrevFrameSkipped = 1,
+        NotAsyncPoint = 2,
+        NoWait = 4,
+        NoDDSurfaceLock = 8
+    }
 
-	/// <summary>
-	/// From ALLOCATOR_PROPERTIES
-	/// </summary>
-	[StructLayout(LayoutKind.Sequential)]
-	public struct AllocatorProperties
-	{
-		public int cBuffers;
-		public int cbBuffer;
-		public int cbAlign;
-		public int cbPrefix;
-	}
+    /// <summary>
+    /// From ALLOCATOR_PROPERTIES
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential)]
+    public struct AllocatorProperties
+    {
+        public int cBuffers;
+        public int cbBuffer;
+        public int cbAlign;
+        public int cbPrefix;
+    }
 
-	/// <summary>
-	/// From AM_SAMPLE2_PROPERTIES
-	/// </summary>
-	[StructLayout(LayoutKind.Sequential)]
-	public struct AMSample2Properties
-	{
-		public int cbData;
-		public int dwTypeSpecificFlags;
-		public int dwSampleFlags;
-		public int lActual;
-		public long tStart;
-		public long tStop;
-		public int dwStreamId;
-		[MarshalAs(UnmanagedType.LPStruct)] public AMMediaType pMediaType;
-		public IntPtr pbBuffer; // BYTE *
-		public int cbBuffer;
-	}
+    /// <summary>
+    /// From AM_SAMPLE2_PROPERTIES
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential)]
+    public struct AMSample2Properties
+    {
+        public int cbData;
+        public int dwTypeSpecificFlags;
+        public int dwSampleFlags;
+        public int lActual;
+        public long tStart;
+        public long tStop;
+        public int dwStreamId;
+        [MarshalAs(UnmanagedType.LPStruct)] public AMMediaType pMediaType;
+        public IntPtr pbBuffer; // BYTE *
+        public int cbBuffer;
+    }
 
 
 #endif
@@ -228,81 +228,81 @@ namespace DirectShowLib
 
     #endregion
 
-	#region Interfaces
+    #region Interfaces
 
 #if ALLOW_UNTESTED_INTERFACES
 
-	[Guid("89c31040-846b-11ce-97d3-00aa0055595a"),
-		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	public interface IEnumMediaTypes
-	{
-		[PreserveSig]
-		int Next(
-			[In] int cMediaTypes,
-			[Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] AMMediaType[] ppMediaTypes,
-			[Out] out int pcFetched
-			);
+    [Guid("89c31040-846b-11ce-97d3-00aa0055595a"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IEnumMediaTypes
+    {
+        [PreserveSig]
+        int Next(
+            [In] int cMediaTypes,
+            [Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] AMMediaType[] ppMediaTypes,
+            [Out] out int pcFetched
+            );
 
-		[PreserveSig]
-		int Skip([In] int cMediaTypes);
+        [PreserveSig]
+        int Skip([In] int cMediaTypes);
 
-		[PreserveSig]
-		int Reset();
+        [PreserveSig]
+        int Reset();
 
-		[PreserveSig]
-		int Clone([Out] out IEnumMediaTypes ppEnum);
-	}
-
-
-	[Guid("36b73885-c2c8-11cf-8b46-00805f6cef60"),
-		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	public interface IReferenceClock2 : IReferenceClock
-	{
-		#region IReferenceClock Methods
-
-		[PreserveSig]
-		new int GetTime([Out] out long pTime);
-
-		[PreserveSig]
-		new int AdviseTime(
-			[In] long baseTime,
-			[In] long streamTime,
-			[In] IntPtr hEvent, // System.Threading.WaitHandle?
-			[Out] out int pdwAdviseCookie
-			);
-
-		[PreserveSig]
-		new int AdvisePeriodic(
-			[In] long startTime,
-			[In] long periodTime,
-			[In] IntPtr hSemaphore, // System.Threading.WaitHandle?
-			[Out] out int pdwAdviseCookie
-			);
-
-		[PreserveSig]
-		new int Unadvise([In] int dwAdviseCookie);
-
-		#endregion
-	}
+        [PreserveSig]
+        int Clone([Out] out IEnumMediaTypes ppEnum);
+    }
 
 
-	[Guid("36b73884-c2c8-11cf-8b46-00805f6cef60"),
-		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	public interface IMediaSample2 : IMediaSample
-	{
-		#region IMediaSample Methods
+    [Guid("36b73885-c2c8-11cf-8b46-00805f6cef60"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IReferenceClock2 : IReferenceClock
+    {
+        #region IReferenceClock Methods
 
-		[PreserveSig]
-		new int GetPointer([Out] out IntPtr ppBuffer); // BYTE **
+        [PreserveSig]
+        new int GetTime([Out] out long pTime);
 
-		[PreserveSig]
-		new int GetSize();
+        [PreserveSig]
+        new int AdviseTime(
+            [In] long baseTime,
+            [In] long streamTime,
+            [In] IntPtr hEvent, // System.Threading.WaitHandle?
+            [Out] out int pdwAdviseCookie
+            );
 
-		[PreserveSig]
-		new int GetTime(
-			[Out] out long pTimeStart,
-			[Out] out long pTimeEnd
-			);
+        [PreserveSig]
+        new int AdvisePeriodic(
+            [In] long startTime,
+            [In] long periodTime,
+            [In] IntPtr hSemaphore, // System.Threading.WaitHandle?
+            [Out] out int pdwAdviseCookie
+            );
+
+        [PreserveSig]
+        new int Unadvise([In] int dwAdviseCookie);
+
+        #endregion
+    }
+
+
+    [Guid("36b73884-c2c8-11cf-8b46-00805f6cef60"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IMediaSample2 : IMediaSample
+    {
+        #region IMediaSample Methods
+
+        [PreserveSig]
+        new int GetPointer([Out] out IntPtr ppBuffer); // BYTE **
+
+        [PreserveSig]
+        new int GetSize();
+
+        [PreserveSig]
+        new int GetTime(
+            [Out] out long pTimeStart,
+            [Out] out long pTimeEnd
+            );
 
         [PreserveSig]
         new int SetTime(
@@ -310,41 +310,41 @@ namespace DirectShowLib
             [In, MarshalAs(UnmanagedType.LPStruct)] DsLong pTimeEnd
             );
 
-		[PreserveSig]
-		new int IsSyncPoint();
+        [PreserveSig]
+        new int IsSyncPoint();
 
-		[PreserveSig]
-		new int SetSyncPoint([In, MarshalAs(UnmanagedType.Bool)] bool bIsSyncPoint);
+        [PreserveSig]
+        new int SetSyncPoint([In, MarshalAs(UnmanagedType.Bool)] bool bIsSyncPoint);
 
-		[PreserveSig]
-		new int IsPreroll();
+        [PreserveSig]
+        new int IsPreroll();
 
-		[PreserveSig]
-		new int SetPreroll([In, MarshalAs(UnmanagedType.Bool)] bool bIsPreroll);
+        [PreserveSig]
+        new int SetPreroll([In, MarshalAs(UnmanagedType.Bool)] bool bIsPreroll);
 
-		[PreserveSig]
-		new int GetActualDataLength();
+        [PreserveSig]
+        new int GetActualDataLength();
 
-		[PreserveSig]
-		new int SetActualDataLength([In] int len);
+        [PreserveSig]
+        new int SetActualDataLength([In] int len);
 
-		[PreserveSig]
-		new int GetMediaType([Out] out AMMediaType ppMediaType);
+        [PreserveSig]
+        new int GetMediaType([Out] out AMMediaType ppMediaType);
 
-		[PreserveSig]
-		new int SetMediaType([In] AMMediaType pMediaType);
+        [PreserveSig]
+        new int SetMediaType([In] AMMediaType pMediaType);
 
-		[PreserveSig]
-		new int IsDiscontinuity();
+        [PreserveSig]
+        new int IsDiscontinuity();
 
-		[PreserveSig]
-		new int SetDiscontinuity([In, MarshalAs(UnmanagedType.Bool)] bool bDiscontinuity);
+        [PreserveSig]
+        new int SetDiscontinuity([In, MarshalAs(UnmanagedType.Bool)] bool bDiscontinuity);
 
-		[PreserveSig]
-		new int GetMediaTime(
-			[Out] out long pTimeStart,
-			[Out] out long pTimeEnd
-			);
+        [PreserveSig]
+        new int GetMediaTime(
+            [Out] out long pTimeStart,
+            [Out] out long pTimeEnd
+            );
 
         [PreserveSig]
         new int SetMediaTime(
@@ -352,146 +352,147 @@ namespace DirectShowLib
             [In, MarshalAs(UnmanagedType.LPStruct)] DsLong pTimeEnd
             );
 
-		#endregion
+        #endregion
 
-		[PreserveSig]
-		int GetProperties(
-			[In] int cbProperties,
-			[Out] IntPtr pbProperties // BYTE *
-			);
+        [PreserveSig]
+        int GetProperties(
+            [In] int cbProperties,
+            [Out] IntPtr pbProperties // BYTE *
+            );
 
-		[PreserveSig]
-		int SetProperties(
-			[In] int cbProperties,
-			[In] IntPtr pbProperties // BYTE *
-			);
-	}
-
-
-	[Guid("56a8689c-0ad4-11ce-b03a-0020af0ba770"),
-		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	public interface IMemAllocator
-	{
-		[PreserveSig]
-		int SetProperties(
-			[In] AllocatorProperties pRequest,
-			[Out] out AllocatorProperties pActual
-			);
-
-		[PreserveSig]
-		int GetProperties([Out] AllocatorProperties pProps);
-
-		[PreserveSig]
-		int Commit();
-
-		[PreserveSig]
-		int Decommit();
-
-		[PreserveSig]
-		int GetBuffer(
-			[Out] out IMediaSample ppBuffer,
-			[In] long pStartTime,
-			[In] long pEndTime,
-			[In] AMGBF dwFlags
-			);
-
-		[PreserveSig]
-		int ReleaseBuffer([In] IMediaSample pBuffer);
-	}
+        [PreserveSig]
+        int SetProperties(
+            [In] int cbProperties,
+            [In] IntPtr pbProperties // BYTE *
+            );
+    }
 
 
-	[Guid("379a0cf0-c1de-11d2-abf5-00a0c905f375"),
-		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	public interface IMemAllocatorCallbackTemp : IMemAllocator
-	{
-		#region IMemAllocator Methods
+    [Guid("56a8689c-0ad4-11ce-b03a-0020af0ba770"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IMemAllocator
+    {
+        [PreserveSig]
+        int SetProperties(
+            [In] AllocatorProperties pRequest,
+            [Out] out AllocatorProperties pActual
+            );
 
-		[PreserveSig]
-		new int SetProperties(
-			[In] AllocatorProperties pRequest,
-			[Out] out AllocatorProperties pActual
-			);
+        [PreserveSig]
+        int GetProperties([Out] AllocatorProperties pProps);
 
-		[PreserveSig]
-		new int GetProperties([Out] AllocatorProperties pProps);
+        [PreserveSig]
+        int Commit();
 
-		[PreserveSig]
-		new int Commit();
+        [PreserveSig]
+        int Decommit();
 
-		[PreserveSig]
-		new int Decommit();
+        [PreserveSig]
+        int GetBuffer(
+            [Out] out IMediaSample ppBuffer,
+            [In] long pStartTime,
+            [In] long pEndTime,
+            [In] AMGBF dwFlags
+            );
 
-		[PreserveSig]
-		new int GetBuffer(
-			[Out] out IMediaSample ppBuffer,
-			[In] long pStartTime,
-			[In] long pEndTime,
-			[In] AMGBF dwFlags
-			);
-
-		[PreserveSig]
-		new int ReleaseBuffer([In] IMediaSample pBuffer);
-
-		#endregion
-
-		[PreserveSig]
-		int SetNotify([In] IMemAllocatorNotifyCallbackTemp pNotify);
-
-		[PreserveSig]
-		int GetFreeCount([Out] out int plBuffersFree);
-	}
+        [PreserveSig]
+        int ReleaseBuffer([In] IMediaSample pBuffer);
+    }
 
 
-	[Guid("92980b30-c1de-11d2-abf5-00a0c905f375"),
-		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	public interface IMemAllocatorNotifyCallbackTemp
-	{
-		[PreserveSig]
-		int NotifyRelease();
-	}
+    [Guid("379a0cf0-c1de-11d2-abf5-00a0c905f375"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IMemAllocatorCallbackTemp : IMemAllocator
+    {
+        #region IMemAllocator Methods
+
+        [PreserveSig]
+        new int SetProperties(
+            [In] AllocatorProperties pRequest,
+            [Out] out AllocatorProperties pActual
+            );
+
+        [PreserveSig]
+        new int GetProperties([Out] AllocatorProperties pProps);
+
+        [PreserveSig]
+        new int Commit();
+
+        [PreserveSig]
+        new int Decommit();
+
+        [PreserveSig]
+        new int GetBuffer(
+            [Out] out IMediaSample ppBuffer,
+            [In] long pStartTime,
+            [In] long pEndTime,
+            [In] AMGBF dwFlags
+            );
+
+        [PreserveSig]
+        new int ReleaseBuffer([In] IMediaSample pBuffer);
+
+        #endregion
+
+        [PreserveSig]
+        int SetNotify([In] IMemAllocatorNotifyCallbackTemp pNotify);
+
+        [PreserveSig]
+        int GetFreeCount([Out] out int plBuffersFree);
+    }
 
 
-	[Guid("56a8689d-0ad4-11ce-b03a-0020af0ba770"),
-		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	public interface IMemInputPin
-	{
-		[PreserveSig]
-		int GetAllocator([Out] out IMemAllocator ppAllocator);
-
-		[PreserveSig]
-		int NotifyAllocator(
-			[In] IMemAllocator pAllocator,
-			[In, MarshalAs(UnmanagedType.Bool)] bool bReadOnly
-			);
-
-		[PreserveSig]
-		int GetAllocatorRequirements([Out] out AllocatorProperties pProps);
-
-		[PreserveSig]
-		int Receive([In] IMediaSample pSample);
-
-		[PreserveSig]
-		int ReceiveMultiple(
-			[In] IntPtr pSamples, // IMediaSample[]
-			[In] int nSamples,
-			[Out] out int nSamplesProcessed
-			);
-
-		[PreserveSig]
-		int ReceiveCanBlock();
-	}
+    [Guid("92980b30-c1de-11d2-abf5-00a0c905f375"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IMemAllocatorNotifyCallbackTemp
+    {
+        [PreserveSig]
+        int NotifyRelease();
+    }
 
 
-	[Guid("a3d8cec0-7e5a-11cf-bbc5-00805f6cef20"),
-		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	public interface IAMovieSetup
-	{
-		[PreserveSig]
-		int Register();
+    [Guid("56a8689d-0ad4-11ce-b03a-0020af0ba770"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IMemInputPin
+    {
+        [PreserveSig]
+        int GetAllocator([Out] out IMemAllocator ppAllocator);
 
-		[PreserveSig]
-		int Unregister();
-	}
+        [PreserveSig]
+        int NotifyAllocator(
+            [In] IMemAllocator pAllocator,
+            [In, MarshalAs(UnmanagedType.Bool)] bool bReadOnly
+            );
+
+        [PreserveSig]
+        int GetAllocatorRequirements([Out] out AllocatorProperties pProps);
+
+        [PreserveSig]
+        int Receive([In] IMediaSample pSample);
+
+        [PreserveSig]
+        int ReceiveMultiple(
+            [In] IntPtr pSamples, // IMediaSample[]
+            [In] int nSamples,
+            [Out] out int nSamplesProcessed
+            );
+
+        [PreserveSig]
+        int ReceiveCanBlock();
+    }
+
+
+    [Guid("a3d8cec0-7e5a-11cf-bbc5-00805f6cef20"),
+    Obsolete("This interface has been deprecated.", false),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IAMovieSetup
+    {
+        [PreserveSig]
+        int Register();
+
+        [PreserveSig]
+        int Unregister();
+    }
 
 #endif
 
