@@ -1539,75 +1539,6 @@ namespace DirectShowLib.Dvd
 
     #endregion
 
-    // This abstract class contains definitions for use in implementing a custom marshaler.
-    //
-    // MarshalManagedToNative() gets called before the COM method, and MarshalNativeToManaged() gets
-    // called after.  This allows for allocating a correctly sized memory block for the COM call,
-    // then to break up the memory block and build an object that c# can digest.
-
-    abstract internal class DVDMarshaler : ICustomMarshaler
-    {
-        #region Data Members
-        // The cookie isn't currently being used.
-        protected string m_cookie;
-
-        // The managed object passed in to MarshalManagedToNative, and modified in MarshalNativeToManaged
-        protected object m_obj;
-        #endregion
-
-        // The constructor.  This is called from GetInstance (below)
-        public DVDMarshaler(string cookie)
-        {
-            // If we get a cookie, save it.
-            m_cookie = cookie;
-        }
-
-        // Called just before invoking the COM method.  The returned IntPtr is what goes on the stack
-        // for the COM call.  The input arg is the DvdTitleAttributes that was passed to the method.
-        virtual public IntPtr MarshalManagedToNative(object managedObj)
-        {
-            // Save off the passed-in value.  Safe since we just checked the type.
-            m_obj = managedObj;
-
-            // Create an appropriately sized buffer, and send it to the marshaler to
-            // make the COM call with.
-            IntPtr p = Marshal.AllocCoTaskMem(GetNativeDataSize());
-
-            return p;
-        }
-
-        // Called just after invoking the COM method.  The IntPtr is the same one that just got returned
-        // from MarshalManagedToNative.  The return value is unused.
-        virtual public object MarshalNativeToManaged(IntPtr pNativeData)
-        {
-            return m_obj;
-        }
-
-        // Release the (now unused) buffer
-        virtual public void CleanUpNativeData(IntPtr pNativeData)
-        {
-            if (pNativeData != IntPtr.Zero)
-            {
-                Marshal.Release(pNativeData);
-            }
-        }
-
-        // Release the (now unused) managed object
-        virtual public void CleanUpManagedData(object managedObj)
-        {
-            m_obj = null;
-        }
-
-        // This routine is (apparently) never called by the marshaler.  However it can be useful.
-        abstract public int GetNativeDataSize();
-
-        // GetInstance is called by the marshaler in preparation to doing custom marshaling.  The (optional)
-        // cookie is the value specified in MarshalCookie="asdf", or "" is none is specified.
-
-        // It is commented out in this abstract class, but MUST be implemented in derived classes
-        //public static ICustomMarshaler GetInstance(string cookie)
-    }
-
     // c# does not correctly create structures that contain ByValArrays of structures (or enums!).  Instead
     // of allocating enough room for the ByValArray of structures, it only reserves room for a ref,
     // even when decorated with ByValArray and SizeConst.  Needless to say, if DirectShow tries to
@@ -1619,9 +1550,9 @@ namespace DirectShowLib.Dvd
     //    [In, Out, MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(DTAMarshaler))]
     //    DvdTitleAttributes pTitle
     //
-    // See DVDMarshaler for more info on custom marshalers
+    // See DsMarshaler for more info on custom marshalers
 
-    internal class DTAMarshaler : DVDMarshaler
+    internal class DTAMarshaler : DsMarshaler
     {
         public DTAMarshaler(string cookie) : base(cookie)
         {
@@ -1717,7 +1648,7 @@ namespace DirectShowLib.Dvd
 
     // See DTAMarshaler for an explanation of the problem.  This class is for marshaling
     // a DvdKaraokeAttributes structure.
-    internal class DKAMarshaler : DVDMarshaler
+    internal class DKAMarshaler : DsMarshaler
     {
         // The constructor.  This is called from GetInstance (below)
         public DKAMarshaler(string cookie) : base(cookie)
