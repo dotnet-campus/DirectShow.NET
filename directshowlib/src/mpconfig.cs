@@ -182,12 +182,12 @@ namespace DirectShowLib
 
         [PreserveSig]
         int SetStreamTransparent(
-            bool bStreamTransparent
+            [In, MarshalAs(UnmanagedType.Bool)] bool bStreamTransparent
             );
 
         [PreserveSig]
         int GetStreamTransparent(
-            out bool pbStreamTransparent
+            [Out, MarshalAs(UnmanagedType.Bool)] out bool pbStreamTransparent
             );
     }
 
@@ -256,12 +256,12 @@ namespace DirectShowLib
 
         [PreserveSig]
         new int SetStreamTransparent(
-            bool bStreamTransparent
+            [In, MarshalAs(UnmanagedType.Bool)] bool bStreamTransparent
             );
 
         [PreserveSig]
         new int GetStreamTransparent(
-            out bool pbStreamTransparent
+            [Out, MarshalAs(UnmanagedType.Bool)] out bool pbStreamTransparent
             );
 
         #endregion
