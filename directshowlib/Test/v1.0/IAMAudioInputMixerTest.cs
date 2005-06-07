@@ -69,31 +69,45 @@ namespace DirectShowLib.Test
             int hr;
             bool pfEnable1, pfEnable2;
 
-            // Read the current value
-            hr = m_iaim.get_Enable(out pfEnable1);
-            Marshal.ThrowExceptionForHR(hr);
+            try
+            {
+                // Read the current value
+                hr = m_iaim.get_Enable(out pfEnable1);
+                DsError.ThrowExceptionForHR(hr);
 
-            // Put the reverse
-            hr = m_iaim.put_Enable(!pfEnable1);
-            Marshal.ThrowExceptionForHR(hr);
+                // Put the reverse
+                hr = m_iaim.put_Enable(!pfEnable1);
+                DsError.ThrowExceptionForHR(hr);
 
-            // Re-read the value
-            hr = m_iaim.get_Enable(out pfEnable2);
-            Marshal.ThrowExceptionForHR(hr);
+                // Re-read the value
+                hr = m_iaim.get_Enable(out pfEnable2);
+                DsError.ThrowExceptionForHR(hr);
 
-            // See if it changed
-            Debug.Assert(pfEnable1 != pfEnable2, "Get/Set enable");
+                // See if it changed
+                Debug.Assert(pfEnable1 != pfEnable2, "Get/Set enable");
 
-            // Put the original back
-            hr = m_iaim.put_Enable(pfEnable1);
-            Marshal.ThrowExceptionForHR(hr);
+                // Put the original back
+                hr = m_iaim.put_Enable(pfEnable1);
+                DsError.ThrowExceptionForHR(hr);
 
-            // Re-read the value
-            hr = m_iaim.get_Enable(out pfEnable2);
-            Marshal.ThrowExceptionForHR(hr);
+                // Re-read the value
+                hr = m_iaim.get_Enable(out pfEnable2);
+                DsError.ThrowExceptionForHR(hr);
 
-            // See if it changed
-            Debug.Assert(pfEnable1 == pfEnable2, "Get/Set enable2");
+                // See if it changed
+                Debug.Assert(pfEnable1 == pfEnable2, "Get/Set enable2");
+            }
+            catch (COMException ex)
+            {
+                if (ex.ErrorCode == -2147467263)
+                {
+                    System.Windows.Forms.MessageBox.Show("This audio card doesn't support Enable");
+                }
+                else
+                {
+                    throw;
+                }
+            }
         }
 
         /// <summary>
@@ -104,31 +118,45 @@ namespace DirectShowLib.Test
             int hr;
             bool pfMono1, pfMono2;
 
-            // Read the current value
-            hr = m_iaim.get_Mono(out pfMono1);
-            Marshal.ThrowExceptionForHR(hr);
+            try
+            {
+                // Read the current value
+                hr = m_iaim.get_Mono(out pfMono1);
+                DsError.ThrowExceptionForHR(hr);
 
-            // Put the reverse
-            hr = m_iaim.put_Mono(!pfMono1);
-            Marshal.ThrowExceptionForHR(hr);
+                // Put the reverse
+                hr = m_iaim.put_Mono(!pfMono1);
+                DsError.ThrowExceptionForHR(hr);
 
-            // Re-read the value
-            hr = m_iaim.get_Mono(out pfMono2);
-            Marshal.ThrowExceptionForHR(hr);
+                // Re-read the value
+                hr = m_iaim.get_Mono(out pfMono2);
+                DsError.ThrowExceptionForHR(hr);
 
-            // See if it changed
-            Debug.Assert(pfMono1 != pfMono2, "Get/Set Mono");
+                // See if it changed
+                Debug.Assert(pfMono1 != pfMono2, "Get/Set Mono");
 
-            // Put the original back
-            hr = m_iaim.put_Mono(pfMono1);
-            Marshal.ThrowExceptionForHR(hr);
+                // Put the original back
+                hr = m_iaim.put_Mono(pfMono1);
+                DsError.ThrowExceptionForHR(hr);
 
-            // Re-read the value
-            hr = m_iaim.get_Mono(out pfMono2);
-            Marshal.ThrowExceptionForHR(hr);
+                // Re-read the value
+                hr = m_iaim.get_Mono(out pfMono2);
+                DsError.ThrowExceptionForHR(hr);
 
-            // See if it changed
-            Debug.Assert(pfMono1 == pfMono2, "Get/Set Mono2");
+                // See if it changed
+                Debug.Assert(pfMono1 == pfMono2, "Get/Set Mono2");
+            }
+            catch (COMException ex)
+            {
+                if (ex.ErrorCode == -2147467263)
+                {
+                    System.Windows.Forms.MessageBox.Show("This audio card doesn't support Mono");
+                }
+                else
+                {
+                    throw;
+                }
+            }
         }
 
         /// <summary>
@@ -139,31 +167,45 @@ namespace DirectShowLib.Test
             int hr;
             bool pfLoudness1, pfLoudness2;
 
-            // Read the current value
-            hr = m_iaim.get_Loudness(out pfLoudness1);
-            Marshal.ThrowExceptionForHR(hr);
+            try
+            {
+                // Read the current value
+                hr = m_iaim.get_Loudness(out pfLoudness1);
+                DsError.ThrowExceptionForHR(hr);
 
-            // Put the reverse
-            hr = m_iaim.put_Loudness(!pfLoudness1);
-            Marshal.ThrowExceptionForHR(hr);
+                // Put the reverse
+                hr = m_iaim.put_Loudness(!pfLoudness1);
+                DsError.ThrowExceptionForHR(hr);
 
-            // Re-read the value
-            hr = m_iaim.get_Loudness(out pfLoudness2);
-            Marshal.ThrowExceptionForHR(hr);
+                // Re-read the value
+                hr = m_iaim.get_Loudness(out pfLoudness2);
+                DsError.ThrowExceptionForHR(hr);
 
-            // See if it changed
-            Debug.Assert(pfLoudness1 != pfLoudness2, "Get/Set Loudness");
+                // See if it changed
+                Debug.Assert(pfLoudness1 != pfLoudness2, "Get/Set Loudness");
 
-            // Put the original back
-            hr = m_iaim.put_Loudness(pfLoudness1);
-            Marshal.ThrowExceptionForHR(hr);
+                // Put the original back
+                hr = m_iaim.put_Loudness(pfLoudness1);
+                DsError.ThrowExceptionForHR(hr);
 
-            // Re-read the value
-            hr = m_iaim.get_Loudness(out pfLoudness2);
-            Marshal.ThrowExceptionForHR(hr);
+                // Re-read the value
+                hr = m_iaim.get_Loudness(out pfLoudness2);
+                DsError.ThrowExceptionForHR(hr);
 
-            // See if it changed
-            Debug.Assert(pfLoudness1 == pfLoudness2, "Get/Set Loudness2");
+                // See if it changed
+                Debug.Assert(pfLoudness1 == pfLoudness2, "Get/Set Loudness2");
+            }
+            catch (COMException ex)
+            {
+                if (ex.ErrorCode == -2147467263)
+                {
+                    System.Windows.Forms.MessageBox.Show("This audio card doesn't support Loudness");
+                }
+                else
+                {
+                    throw;
+                }
+            }
         }
 
         /// <summary>
@@ -175,28 +217,42 @@ namespace DirectShowLib.Test
             double BassValue1, BassValue2;
             double pRange;
 
-            // Get max value
-            hr = m_iaim.get_BassRange(out pRange);
-            Marshal.ThrowExceptionForHR(hr);
+            try
+            {
+                // Get max value
+                hr = m_iaim.get_BassRange(out pRange);
+                DsError.ThrowExceptionForHR(hr);
 
-            // Read the current value
-            hr = m_iaim.get_Bass(out BassValue1);
-            Marshal.ThrowExceptionForHR(hr);
+                // Read the current value
+                hr = m_iaim.get_Bass(out BassValue1);
+                DsError.ThrowExceptionForHR(hr);
 
-            // write it
-            hr = m_iaim.put_Bass(pRange);
-            Marshal.ThrowExceptionForHR(hr);
+                // write it
+                hr = m_iaim.put_Bass(pRange);
+                DsError.ThrowExceptionForHR(hr);
 
-            // Read the value
-            hr = m_iaim.get_Bass(out BassValue2);
-            Marshal.ThrowExceptionForHR(hr);
+                // Read the value
+                hr = m_iaim.get_Bass(out BassValue2);
+                DsError.ThrowExceptionForHR(hr);
 
-            // Make sure the value we set is what we just read
-            Debug.Assert(pRange == BassValue2, "Put/Get Bass");
+                // Make sure the value we set is what we just read
+                Debug.Assert(pRange == BassValue2, "Put/Get Bass");
 
-            // Put the original back
-            hr = m_iaim.put_Bass(BassValue1);
-            Marshal.ThrowExceptionForHR(hr);
+                // Put the original back
+                hr = m_iaim.put_Bass(BassValue1);
+                DsError.ThrowExceptionForHR(hr);
+            }
+            catch (COMException ex)
+            {
+                if (ex.ErrorCode == -2147467263)
+                {
+                    System.Windows.Forms.MessageBox.Show("This audio card doesn't support Bass");
+                }
+                else
+                {
+                    throw;
+                }
+            }
         }
 
         /// <summary>
@@ -208,28 +264,42 @@ namespace DirectShowLib.Test
             double TrebleValue1, TrebleValue2;
             double pRange;
 
-            // Get max value
-            hr = m_iaim.get_TrebleRange(out pRange);
-            Marshal.ThrowExceptionForHR(hr);
+            try
+            {
+                // Get max value
+                hr = m_iaim.get_TrebleRange(out pRange);
+                DsError.ThrowExceptionForHR(hr);
 
-            // Read the current value
-            hr = m_iaim.get_Treble(out TrebleValue1);
-            Marshal.ThrowExceptionForHR(hr);
+                // Read the current value
+                hr = m_iaim.get_Treble(out TrebleValue1);
+                DsError.ThrowExceptionForHR(hr);
 
-            // write it
-            hr = m_iaim.put_Treble(pRange);
-            Marshal.ThrowExceptionForHR(hr);
+                // write it
+                hr = m_iaim.put_Treble(pRange);
+                DsError.ThrowExceptionForHR(hr);
 
-            // Read the value
-            hr = m_iaim.get_Treble(out TrebleValue2);
-            Marshal.ThrowExceptionForHR(hr);
+                // Read the value
+                hr = m_iaim.get_Treble(out TrebleValue2);
+                DsError.ThrowExceptionForHR(hr);
 
-            // Make sure the value we set is what we just read
-            Debug.Assert(pRange == TrebleValue2, "Put/Get Treble");
+                // Make sure the value we set is what we just read
+                Debug.Assert(pRange == TrebleValue2, "Put/Get Treble");
 
-            // Put the original back
-            hr = m_iaim.put_Treble(TrebleValue1);
-            Marshal.ThrowExceptionForHR(hr);
+                // Put the original back
+                hr = m_iaim.put_Treble(TrebleValue1);
+                DsError.ThrowExceptionForHR(hr);
+            }
+            catch (COMException ex)
+            {
+                if (ex.ErrorCode == -2147467263)
+                {
+                    System.Windows.Forms.MessageBox.Show("This audio card doesn't support Treble");
+                }
+                else
+                {
+                    throw;
+                }
+            }
         }
 
         /// <summary>
@@ -241,24 +311,38 @@ namespace DirectShowLib.Test
             double PanValue1, PanValue2;
             const double pFixed = .77777;
 
-            // Read the current value
-            hr = m_iaim.get_Pan(out PanValue1);
-            Marshal.ThrowExceptionForHR(hr);
+            try
+            {
+                // Read the current value
+                hr = m_iaim.get_Pan(out PanValue1);
+                DsError.ThrowExceptionForHR(hr);
 
-            // Write a different value
-            hr = m_iaim.put_Pan(pFixed);
-            Marshal.ThrowExceptionForHR(hr);
+                // Write a different value
+                hr = m_iaim.put_Pan(pFixed);
+                DsError.ThrowExceptionForHR(hr);
 
-            // Re-read the value
-            hr = m_iaim.get_Pan(out PanValue2);
-            Marshal.ThrowExceptionForHR(hr);
+                // Re-read the value
+                hr = m_iaim.get_Pan(out PanValue2);
+                DsError.ThrowExceptionForHR(hr);
 
-            // See if the value changed.  Allow for imperfections from using double.
-            Debug.Assert((int)(PanValue2 * 10000) == (int)(pFixed * 10000), "Get/Set Pan");
+                // See if the value changed.  Allow for imperfections from using double.
+                Debug.Assert((int)(PanValue2 * 10000) == (int)(pFixed * 10000), "Get/Set Pan");
 
-            // Put the original back
-            hr = m_iaim.put_Pan(PanValue1);
-            Marshal.ThrowExceptionForHR(hr);
+                // Put the original back
+                hr = m_iaim.put_Pan(PanValue1);
+                DsError.ThrowExceptionForHR(hr);
+            }
+            catch (COMException ex)
+            {
+                if (ex.ErrorCode == -2147467263)
+                {
+                    System.Windows.Forms.MessageBox.Show("This audio card doesn't support Pan");
+                }
+                else
+                {
+                    throw;
+                }
+            }
         }
 
         void TestMixLevel()
@@ -267,24 +351,38 @@ namespace DirectShowLib.Test
             double MixLevelValue1, MixLevelValue2;
             const double pFixed = .77777;
 
-            // Read the current value
-            hr = m_iaim.get_MixLevel(out MixLevelValue1);
-            Marshal.ThrowExceptionForHR(hr);
+            try
+            {
+                // Read the current value
+                hr = m_iaim.get_MixLevel(out MixLevelValue1);
+                DsError.ThrowExceptionForHR(hr);
 
-            // Write a different value
-            hr = m_iaim.put_MixLevel(pFixed);
-            Marshal.ThrowExceptionForHR(hr);
+                // Write a different value
+                hr = m_iaim.put_MixLevel(pFixed);
+                DsError.ThrowExceptionForHR(hr);
 
-            // Re-read the value
-            hr = m_iaim.get_MixLevel(out MixLevelValue2);
-            Marshal.ThrowExceptionForHR(hr);
+                // Re-read the value
+                hr = m_iaim.get_MixLevel(out MixLevelValue2);
+                DsError.ThrowExceptionForHR(hr);
 
-            // See if the value changed.  Allow for imperfections from using double.
-            Debug.Assert((int)(MixLevelValue2 * 10000) == (int)(pFixed * 10000), "Get/Set MixLevel");
+                // See if the value changed.  Allow for imperfections from using double.
+                Debug.Assert((int)(MixLevelValue2 * 10000) == (int)(pFixed * 10000), "Get/Set MixLevel");
 
-            // Put the original back
-            hr = m_iaim.put_MixLevel(MixLevelValue1);
-            Marshal.ThrowExceptionForHR(hr);
+                // Put the original back
+                hr = m_iaim.put_MixLevel(MixLevelValue1);
+                DsError.ThrowExceptionForHR(hr);
+            }
+            catch (COMException ex)
+            {
+                if (ex.ErrorCode == -2147467263)
+                {
+                    System.Windows.Forms.MessageBox.Show("This audio card doesn't support MixLevel");
+                }
+                else
+                {
+                    throw;
+                }
+            }
         }
 
         // Find an audio filter
