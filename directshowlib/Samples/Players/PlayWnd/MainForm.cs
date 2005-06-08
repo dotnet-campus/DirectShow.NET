@@ -629,23 +629,25 @@ namespace DirectShowLib.Sample
 #endif
           // Release and zero DirectShow interfaces
           if (this.mediaEventEx != null)
-            Marshal.ReleaseComObject(this.mediaEventEx); this.mediaEventEx = null;
+            this.mediaEventEx = null;
           if (this.mediaSeeking != null) 
-            Marshal.ReleaseComObject(this.mediaSeeking); this.mediaSeeking = null;
+            this.mediaSeeking = null;
           if (this.mediaPosition != null) 
-            Marshal.ReleaseComObject(this.mediaPosition); this.mediaPosition = null;
+            this.mediaPosition = null;
           if (this.mediaControl != null) 
-            Marshal.ReleaseComObject(this.mediaControl); this.mediaControl = null;
+            this.mediaControl = null;
           if (this.basicAudio != null) 
-            Marshal.ReleaseComObject(this.basicAudio); this.basicAudio = null;
+            this.basicAudio = null;
           if (this.basicVideo != null) 
-            Marshal.ReleaseComObject(this.basicVideo); this.basicVideo = null;
+            this.basicVideo = null;
           if (this.videoWindow != null) 
-            Marshal.ReleaseComObject(this.videoWindow); this.videoWindow = null;
+            this.videoWindow = null;
           if (this.frameStep != null) 
-            Marshal.ReleaseComObject(this.frameStep); this.frameStep = null;
+            this.frameStep = null;
           if (this.graphBuilder != null) 
             Marshal.ReleaseComObject(this.graphBuilder); this.graphBuilder = null;
+
+          GC.Collect();
         }
       }
       catch
