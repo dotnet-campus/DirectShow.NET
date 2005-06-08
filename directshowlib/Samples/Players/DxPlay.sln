@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DxPlay", "DxPlay.csproj", "{0B44B3D7-52D7-4C0E-9B1C-F48CEEDA36FE}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{0B44B3D7-52D7-4C0E-9B1C-F48CEEDA36FE}.Debug.ActiveCfg = Debug|.NET
+		{0B44B3D7-52D7-4C0E-9B1C-F48CEEDA36FE}.Debug.Build.0 = Debug|.NET
+		{0B44B3D7-52D7-4C0E-9B1C-F48CEEDA36FE}.Release.ActiveCfg = Release|.NET
+		{0B44B3D7-52D7-4C0E-9B1C-F48CEEDA36FE}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
