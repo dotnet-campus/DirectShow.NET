@@ -63,6 +63,7 @@
 using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
+using System.Text;
 
 namespace DirectShowLib
 {
@@ -98,6 +99,7 @@ namespace DirectShowLib
     [Flags]
     public enum CompressionCaps
     {
+        None = 0x0,
         CanQuality = 0x01,
         CanCrunch = 0x02,
         CanKeyFrame = 0x04,
@@ -334,15 +336,6 @@ namespace DirectShowLib
     public enum AMTVAudioEventType
     {
         Changed = 0x0001
-    }
-
-    /// <summary>
-    /// AMPROPERTY_PIN
-    /// </summary>
-    public enum AMPropertyPin
-    {
-        Category,
-        Medium
     }
 
     /// <summary>
@@ -926,6 +919,15 @@ namespace DirectShowLib
     {
         Get = 1,
         Set = 2
+    }
+
+    /// <summary>
+    /// AMPROPERTY_PIN
+    /// </summary>
+    public enum AMPropertyPin
+    {
+        Category,
+        Medium
     }
 
     #endregion
@@ -1641,12 +1643,12 @@ namespace DirectShowLib
 
         [PreserveSig]
         int GetInfo(
-            [Out] out IntPtr pszVersion, // WCHAR *
+            [MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszVersion, // WCHAR *
             [Out] out int pcbVersion,
-            [Out] out IntPtr pszDescription, // LPWSTR
+            [MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszDescription, // LPWSTR
             [Out] out int pcbDescription,
-            [Out] out long pDefaultKeyFrameRate,
-            [Out] out long pDefaultPFramesPerKey,
+            [Out] out int pDefaultKeyFrameRate,
+            [Out] out int pDefaultPFramesPerKey,
             [Out] out double pDefaultQuality,
             [Out] out CompressionCaps pCapabilities
             );
@@ -1695,8 +1697,8 @@ namespace DirectShowLib
 
         [PreserveSig]
         int GetState(
-            [Out] out IntPtr pState, // LPVOID
-            [In] ref int pcbState
+            [In] IntPtr pState, // LPVOID
+            [In, Out] ref int pcbState
             );
 
         [PreserveSig]
