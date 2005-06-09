@@ -150,8 +150,14 @@ namespace DirectShowLib.Test
             //IAMVideoProcAmpTest en02 = new IAMVideoProcAmpTest();
             //en02.DoTests();
 
-            ICaptureGraphBuilder2Test dpw41 = new ICaptureGraphBuilder2Test();
-            dpw41.DoTests();
+            //ICaptureGraphBuilder2Test dpw41 = new ICaptureGraphBuilder2Test();
+            //dpw41.DoTests();
+
+            //IAMVfwCompressDialogsTest dpw42 = new IAMVfwCompressDialogsTest();
+            //dpw42.DoTests();
+
+            IAMVideoCompressionTest dpw43 = new IAMVideoCompressionTest();
+            dpw43.DoTests();
         }
     }
 }

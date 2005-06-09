@@ -59,6 +59,7 @@ namespace DirectShowLib.Test
 
             hr = m_ivc.put_PFramesPerKeyFrame(10);
 
+            // None of the default windows compressors use this
             if (hr != E_NOTIMPLEMENTED)
             {
                 DsError.ThrowExceptionForHR(hr);
@@ -77,6 +78,7 @@ namespace DirectShowLib.Test
 
             hr = m_ivc.put_Quality(.50);
 
+            // None of the default windows compressors use this
             if (hr != E_NOTIMPLEMENTED)
             {
                 DsError.ThrowExceptionForHR(hr);
@@ -138,6 +140,7 @@ namespace DirectShowLib.Test
             StringBuilder Description = null;
 
             hr = m_ivc.GetInfo(null, out vSize, null, out dSize, out kfr, out ppk, out dq, out pcap);
+            DsError.ThrowExceptionForHR(hr);
 
             if (vSize > 0)
             {
@@ -150,6 +153,7 @@ namespace DirectShowLib.Test
             }
 
             hr = m_ivc.GetInfo(Version, out vSize, Description, out dSize, out kfr, out ppk, out dq, out pcap);
+            DsError.ThrowExceptionForHR(hr);
         }
             
        // Find an video compression filter
