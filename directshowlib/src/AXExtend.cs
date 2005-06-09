@@ -270,6 +270,7 @@ namespace DirectShowLib
     [Flags]
     public enum VideoControlFlags
     {
+        None = 0x0,
         FlipHorizontal = 0x0001,
         FlipVertical = 0x0002,
         ExternalTriggerEnable = 0x0004,
@@ -1915,7 +1916,7 @@ namespace DirectShowLib
         [PreserveSig]
         int GetCurrentActualFrameRate(
             [In] IPin pPin,
-            [Out] long ActualFrameRate
+            [Out] out long ActualFrameRate
             );
 
         [PreserveSig]
@@ -1932,7 +1933,7 @@ namespace DirectShowLib
             [In] int iIndex,
             [In] Size Dimensions,
             [Out] out int ListSize,
-            [In, Out] ref IntPtr FrameRates // LONGLONG **
+            [Out] out IntPtr FrameRates
             );
     }
 
