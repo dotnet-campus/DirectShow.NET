@@ -9,6 +9,8 @@ namespace DirectShowLib.Test
     [TestFixture]
     public class IAMDroppedFramesTest
     {
+        const int E_PROP_ID_UNSUPPORTED = unchecked((int)0x80070490);
+
         DsROTEntry m_ROT = null;
         IMediaControl m_imc = null;
         IAMDroppedFrames m_idf = null;
@@ -61,7 +63,12 @@ namespace DirectShowLib.Test
             int[] di = new int[16];
 
             hr = m_idf.GetDroppedInfo(di.Length, out di, out cop);
-            DsError.ThrowExceptionForHR(hr);
+
+            // Not supported by this device
+            if (hr != E_PROP_ID_UNSUPPORTED)
+            {
+                DsError.ThrowExceptionForHR(hr);
+            }
         }
 
         void TestNumDropped()
