@@ -156,8 +156,11 @@ namespace DirectShowLib.Test
             //IAMVfwCompressDialogsTest dpw42 = new IAMVfwCompressDialogsTest();
             //dpw42.DoTests();
 
-            IAMVideoCompressionTest dpw43 = new IAMVideoCompressionTest();
-            dpw43.DoTests();
+            //IAMVideoCompressionTest dpw43 = new IAMVideoCompressionTest();
+            //dpw43.DoTests();
+
+            IAMDroppedFramesTest dpw44 = new IAMDroppedFramesTest();
+            dpw44.DoTests();
         }
     }
 }

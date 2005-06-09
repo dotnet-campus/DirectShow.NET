@@ -1728,7 +1728,7 @@ namespace DirectShowLib
         [PreserveSig]
         int GetDroppedInfo(
             [In] int lSize,
-            [In, Out] ref IntPtr plArray, // int *
+            [Out, MarshalAs(UnmanagedType.LPArray)] out int[] plArray,
             [Out] out int plNumCopied
             );
 
