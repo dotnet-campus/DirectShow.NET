@@ -1,6 +1,6 @@
-// $Id: IMediaControlTest.cs,v 1.2 2005-06-01 18:53:14 kawaic Exp $
+// $Id: IMediaControlTest.cs,v 1.3 2005-06-09 13:55:03 kawaic Exp $
 // $Author: kawaic $
-// $Revision: 1.2 $
+// $Revision: 1.3 $
 using System.Runtime.InteropServices;
 using DirectShowLib;
 using NUnit.Framework;
@@ -91,16 +91,5 @@ namespace DirectShowLib.Test
 
 		}
 
-		public void TestGetFilterCollectionAndAddSourceFilter()
-		{
-			IFilterGraph2 filterGraph = BuildAviGraph(testfile);
-			Assert.IsNotNull(filterGraph);
-
-			IMediaControl mediaCtrl = filterGraph as IMediaControl;
-			int hr;
-
-			
-			//hr = mediaCtrl.get_FilterCollection()
-		}
 	}
 }

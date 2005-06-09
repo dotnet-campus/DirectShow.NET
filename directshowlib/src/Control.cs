@@ -201,6 +201,9 @@ namespace DirectShowLib
 		int Stop();
 
 		[PreserveSig]
+		int StopWhenReady();
+
+		[PreserveSig]
 		int GetState([In] int msTimeout, [Out] out FilterState pfs);
 
 		[PreserveSig]
@@ -218,8 +221,6 @@ namespace DirectShowLib
 		[PreserveSig]
 		int get_RegFilterCollection([Out, MarshalAs(UnmanagedType.IDispatch)] out object ppUnk);
 
-		[PreserveSig]
-		int StopWhenReady();
 	}
 
 	[Guid("56a868b8-0ad4-11ce-b03a-0020af0ba770"),
