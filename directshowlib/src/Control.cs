@@ -209,16 +209,16 @@ namespace DirectShowLib
 		[PreserveSig]
 		int RenderFile([In, MarshalAs(UnmanagedType.BStr)] string strFilename);
 
-		[PreserveSig]
+		[PreserveSig][Obsolete("old vb interfaces used by quartz dll", true)]
 		int AddSourceFilter(
 			[In, MarshalAs(UnmanagedType.BStr)] string strFilename,
 			[Out, MarshalAs(UnmanagedType.IDispatch)] out object ppUnk
 			);
 
-		[PreserveSig]
+		[PreserveSig][Obsolete("old vb interfaces used by quartz dll", true)]
 		int get_FilterCollection([Out, MarshalAs(UnmanagedType.IDispatch)] out object ppUnk);
 
-		[PreserveSig]
+		[PreserveSig][Obsolete("old vb interfaces used by quartz dll", true)]
 		int get_RegFilterCollection([Out, MarshalAs(UnmanagedType.IDispatch)] out object ppUnk);
 
 	}
