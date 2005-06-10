@@ -1698,13 +1698,15 @@ namespace DirectShowLib
 
         [PreserveSig]
         int GetState(
-            [In] IntPtr pState, // LPVOID
+            //[In] IntPtr pState, // LPVOID
+            [Out, MarshalAs(UnmanagedType.LPArray)] byte[] pState, // LPVOID
             [In, Out] ref int pcbState
             );
 
         [PreserveSig]
         int SetState(
-            [In] IntPtr pState, // LPVOID
+            //[In] IntPtr pState, // LPVOID
+            [In, MarshalAs(UnmanagedType.LPArray)] byte[] pState, // LPVOID
             [In] int pcbState
             );
 
@@ -1815,22 +1817,22 @@ namespace DirectShowLib
         int get_TVFormat([Out] out AnalogVideoStandard plAnalogVideoStandard);
 
         [PreserveSig]
-        int get_HorizontalLocked([Out] out int plLocked);
+        int get_HorizontalLocked([Out, MarshalAs(UnmanagedType.Bool)] out bool plLocked);
 
         [PreserveSig]
-        int put_VCRHorizontalLocking([In] int lVCRHorizontalLocking);
+        int put_VCRHorizontalLocking([In, MarshalAs(UnmanagedType.Bool)] bool lVCRHorizontalLocking);
 
         [PreserveSig]
-        int get_VCRHorizontalLocking([Out] out int plVCRHorizontalLocking);
+        int get_VCRHorizontalLocking([Out, MarshalAs(UnmanagedType.Bool)] out bool plVCRHorizontalLocking);
 
         [PreserveSig]
         int get_NumberOfLines([Out] out int plNumberOfLines);
 
         [PreserveSig]
-        int put_OutputEnable([In] int lOutputEnable);
+        int put_OutputEnable([In, MarshalAs(UnmanagedType.Bool)] bool lOutputEnable);
 
         [PreserveSig]
-        int get_OutputEnable([Out] out int plOutputEnable);
+        int get_OutputEnable([Out, MarshalAs(UnmanagedType.Bool)] out bool plOutputEnable);
     }
 
     [Guid("C6E13360-30AC-11d0-A18C-00A0C9118956"),

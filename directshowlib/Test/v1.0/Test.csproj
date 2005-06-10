@@ -114,6 +114,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IAMAnalogVideoDecoderTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IAMAudioInputMixerTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

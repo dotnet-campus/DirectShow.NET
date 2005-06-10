@@ -162,8 +162,14 @@ namespace DirectShowLib.Test
             //IAMDroppedFramesTest dpw44 = new IAMDroppedFramesTest();
             //dpw44.DoTests();
 
-            IAMVideoControlTest dpw45 = new IAMVideoControlTest();
-            dpw45.DoTests();
+            //IAMVideoControlTest dpw45 = new IAMVideoControlTest();
+            //dpw45.DoTests();
+
+            //IMediaControlTest k01 = new IMediaControlTest();
+            //k01.TestStopWhenReady();
+
+            IAMAnalogVideoDecoderTest dpw46 = new IAMAnalogVideoDecoderTest();
+            dpw46.DoTests();
         }
     }
 }
