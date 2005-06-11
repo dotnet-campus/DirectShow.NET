@@ -73,6 +73,6 @@ using System.Runtime.InteropServices;
 [assembly : AssemblyCulture("")]
 [assembly : AssemblyVersion("1.0.*")]
 [assembly : AssemblyDelaySign(false)]
-[assembly : AssemblyKeyFile("")]
+[assembly : AssemblyKeyFile("..\\..\\DShowNET.snk")]
 [assembly : AssemblyKeyName("")]
 [assembly : ComVisible(false)]
