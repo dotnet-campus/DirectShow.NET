@@ -23,9 +23,9 @@ namespace DirectShowLib.Test
 
             try
             {
-                //TestState();
-                //TestSendMessage();
                 TestDialog();
+                TestState();
+                TestSendMessage();
             }
             finally
             {
@@ -37,27 +37,46 @@ namespace DirectShowLib.Test
         {
             int hr;
             int iSize = 0;
-            IntPtr ip = IntPtr.Zero;
+            byte b;
+            IntPtr buf = IntPtr.Zero;
 
-            hr = m_ivcd.GetState(ip, ref iSize);
+            hr = m_ivcd.GetState(buf, ref iSize);
             DsError.ThrowExceptionForHR(hr);
 
-            ip = Marshal.AllocCoTaskMem(iSize);
-            hr = m_ivcd.GetState(ip, ref iSize);
+            buf = Marshal.AllocCoTaskMem(iSize);
+
+            hr = m_ivcd.GetState(buf, ref iSize);
             DsError.ThrowExceptionForHR(hr);
 
-            hr = m_ivcd.SetState(ip, iSize);
+            b = Marshal.ReadByte(buf, 32);
+            b ^=1;
+            Marshal.WriteByte(buf, 32, b);
+
+            hr = m_ivcd.SetState(buf, iSize);
+            DsError.ThrowExceptionForHR(hr);
+
+            Marshal.WriteByte(buf, 32, 0xff);
+
+            hr = m_ivcd.GetState(buf, ref iSize);
+            DsError.ThrowExceptionForHR(hr);
+
+            byte b2 = Marshal.ReadByte(buf, 32);
+            Debug.Assert(b == b2, "Get/Set state");
         }
 
         void TestSendMessage()
         {
             int hr;
             IntPtr ip = IntPtr.Zero;
-            int iSize = 56;
+            int iSize = 0;
 
-            ip = Marshal.AllocCoTaskMem(iSize);
-            hr = m_ivcd.SendDriverMessage(0x5000, ip.ToInt32(), iSize);
+            //ip = Marshal.AllocCoTaskMem(iSize);
+            hr = m_ivcd.SendDriverMessage(0x5000, 0, iSize);
             DsError.ThrowExceptionForHR(hr);
+
+            // With driver messages, the return value is the output
+            // 56 == size of buffer needed
+            Debug.Assert(hr == 56, "SendDriverMessage");
         }
 
         void TestDialog()

@@ -1693,20 +1693,18 @@ namespace DirectShowLib
         [PreserveSig]
         int ShowDialog(
             [In] VfwCompressDialogs iDialog,
-            [In] IntPtr hwnd // HWND *
+            [In] IntPtr hwnd 
             );
 
         [PreserveSig]
         int GetState(
-            //[In] IntPtr pState, // LPVOID
-            [Out, MarshalAs(UnmanagedType.LPArray)] byte[] pState, // LPVOID
+            [In] IntPtr pState,
             [In, Out] ref int pcbState
             );
 
         [PreserveSig]
         int SetState(
-            //[In] IntPtr pState, // LPVOID
-            [In, MarshalAs(UnmanagedType.LPArray)] byte[] pState, // LPVOID
+            [In] IntPtr pState,
             [In] int pcbState
             );
 
