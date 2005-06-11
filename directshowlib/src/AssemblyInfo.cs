@@ -73,6 +73,7 @@ using System.Runtime.InteropServices;
 [assembly : AssemblyCulture("")]
 [assembly : AssemblyVersion("1.0.*")]
 [assembly : AssemblyDelaySign(false)]
+// Path is relative to the resulting executable (\Bin\Debug)
 [assembly : AssemblyKeyFile("..\\..\\DShowNET.snk")]
 [assembly : AssemblyKeyName("")]
 [assembly : ComVisible(false)]
