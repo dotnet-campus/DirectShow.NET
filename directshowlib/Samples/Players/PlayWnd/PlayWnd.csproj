@@ -7,7 +7,7 @@
     >
         <Build>
             <Settings
-                ApplicationIcon = "playwnd.ico"
+                ApplicationIcon = ""
                 AssemblyKeyContainerName = ""
                 AssemblyName = "PlayWnd"
                 AssemblyOriginatorKeyFile = ""
@@ -89,10 +89,25 @@
                     AssemblyName = "DirectShowLib"
                     HintPath = "..\..\..\bin\Debug\DirectShowLib.dll"
                 />
+                <Reference
+                    Name = "System.Data"
+                    AssemblyName = "System.Data"
+                    HintPath = "..\..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Data.dll"
+                />
             </References>
         </Build>
         <Files>
             <Include>
+                <File
+                    RelPath = "AboutBox.cs"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "AboutBox.resx"
+                    DependentUpon = "AboutBox.cs"
+                    BuildAction = "EmbeddedResource"
+                />
                 <File
                     RelPath = "AssemblyInfo.cs"
                     SubType = "Code"
@@ -106,10 +121,6 @@
                 <File
                     RelPath = "MainForm.resx"
                     DependentUpon = "MainForm.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "playwnd.ico"
                     BuildAction = "EmbeddedResource"
                 />
             </Include>

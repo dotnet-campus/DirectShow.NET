@@ -338,6 +338,7 @@ namespace DirectShowLib.Sample
       // 
       this.menuHelpAbout.Index = 0;
       this.menuHelpAbout.Text = "About";
+      this.menuHelpAbout.Click += new System.EventHandler(this.menuHelpAbout_Click);
       // 
       // openFileDialog1
       // 
@@ -652,7 +653,6 @@ namespace DirectShowLib.Sample
       }
       catch
       {
-        MessageBox.Show("catch dans CloseInterfaces()");
       }
     }
 
@@ -1044,7 +1044,8 @@ namespace DirectShowLib.Sample
           ToggleMute();
           break;
         }
-        case Keys.Return | Keys.F:
+        case Keys.F:
+        case Keys.Return:
         {
           ToggleFullScreen();
           break;
@@ -1172,12 +1173,24 @@ namespace DirectShowLib.Sample
       CloseInterfaces();
     }
 
+    private void menuHelpAbout_Click(object sender, System.EventArgs e)
+    {
+      string title = "About PlayWnd Media Player";
+      string text = "DirectShow.Net PlayWindow Sample";
+
+      AboutBox.Show(title, text);
+    }
+
     /// <summary>
     /// Main entry point
     /// </summary>
     [STAThread]
     static void Main(string[] args) 
     {
+      // Enable XP style controls
+      Application.EnableVisualStyles();
+      Application.DoEvents();
+
       using(MainForm form = new MainForm())
       {
         if (args.Length > 0)
