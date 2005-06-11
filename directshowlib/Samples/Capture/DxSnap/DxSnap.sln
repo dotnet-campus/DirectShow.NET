@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DxSnap", "DxSnap.csproj", "{E6052609-A070-41D5-85B9-ACABA91170C5}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{E6052609-A070-41D5-85B9-ACABA91170C5}.Debug.ActiveCfg = Debug|.NET
+		{E6052609-A070-41D5-85B9-ACABA91170C5}.Debug.Build.0 = Debug|.NET
+		{E6052609-A070-41D5-85B9-ACABA91170C5}.Release.ActiveCfg = Release|.NET
+		{E6052609-A070-41D5-85B9-ACABA91170C5}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
