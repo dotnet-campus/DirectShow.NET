@@ -93,7 +93,6 @@ namespace DxScan
             // 
             // timer1
             // 
-            this.timer1.Enabled = true;
             this.timer1.Interval = 500;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
@@ -166,22 +165,22 @@ namespace DxScan
         private void StartStop_Click(object sender, System.EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
-            if (cam == null)
-            {
-                cam = new Capture(tbFileName.Text);
 
-                timer1.Enabled = true;
-                cam.Start();
-                cam.WaitUntilDone();
-                timer1.Enabled = false;
+            cam = new Capture(tbFileName.Text);
 
-                // Final update
-                tbFrameNum.Text = cam.m_Count.ToString();
-                tbBlacks.Text = cam.m_Blacks.ToString();
+            // Start displaying statistics
+            timer1.Enabled = true;
+            cam.Start();
+            cam.WaitUntilDone();
+            timer1.Enabled = false;
 
-                cam.Dispose();
-                cam = null;
-            }
+            // Final update
+            tbFrameNum.Text = cam.m_Count.ToString();
+            tbBlacks.Text = cam.m_Blacks.ToString();
+
+            cam.Dispose();
+            cam = null;
+
             Cursor.Current = Cursors.Default;
         }
 
