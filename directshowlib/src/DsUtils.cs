@@ -1135,9 +1135,6 @@ namespace DirectShowLib
         [DllImport("ole32.dll", CharSet=CharSet.Unicode, ExactSpelling=true)]
         private static extern int CreateItemMoniker(string delim,
             string item, out UCOMIMoniker ppmk);
-
-        [DllImport("kernel32.dll", ExactSpelling=true)]
-        private static extern int GetCurrentProcessId();
         #endregion
 
         public DsROTEntry(IFilterGraph graph)
@@ -1152,7 +1149,7 @@ namespace DirectShowLib
                 DsError.ThrowExceptionForHR(hr);
 
                 // Build up the object to add to the table
-                int id = GetCurrentProcessId();
+                int id = System.Diagnostics.Process.GetCurrentProcess().Id;
                 IntPtr iuPtr = Marshal.GetIUnknownForObject(graph);
                 int iuInt = (int) iuPtr;
                 Marshal.Release(iuPtr);
