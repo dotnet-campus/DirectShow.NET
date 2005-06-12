@@ -64,14 +64,14 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 
 [assembly : AssemblyTitle("Direct Show Net Library")]
-[assembly : AssemblyDescription("")]
+[assembly : AssemblyDescription(".NET Interfaces for calling DirectShow.  See http://directshownet.sourceforge.net/")]
 [assembly : AssemblyConfiguration("")]
 [assembly : AssemblyCompany("")]
-[assembly : AssemblyProduct("")]
-[assembly : AssemblyCopyright("")]
+[assembly : AssemblyProduct("BETA VERSION")]
+[assembly : AssemblyCopyright("The Apache Software License, Version 1.1")]
 [assembly : AssemblyTrademark("")]
 [assembly : AssemblyCulture("")]
-[assembly : AssemblyVersion("1.0.*")]
+[assembly : AssemblyVersion("0.9.0.0")]
 [assembly : AssemblyDelaySign(false)]
 // Path is relative to the resulting executable (\Bin\Debug)
 [assembly : AssemblyKeyFile("..\\..\\DShowNET.snk")]
