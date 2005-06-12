@@ -228,8 +228,7 @@ namespace WebCamService
 
                 // Clients have all disconnected.  Pause, then sleep and wait for more
                 cam.Pause();
-                sw.WriteLine(cam.m_Dropped);
-                bShutDown = true;
+                sw.WriteLine("Dropped frames: " + cam.m_Dropped.ToString());
 
             } while ( !bShutDown );
         }
