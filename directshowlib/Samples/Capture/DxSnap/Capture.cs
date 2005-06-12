@@ -61,12 +61,10 @@ namespace SnapShot
                 throw new Exception("No video capture devices found at that index!");
             }
 
-            DsDevice dev = capDevices[iDeviceNum] as DsDevice;
-
             try
             {
                 // Set up the capture graph
-                SetupGraph( dev, iWidth, iHeight, iBPP, hControl);
+                SetupGraph( capDevices[iDeviceNum], iWidth, iHeight, iBPP, hControl);
 
                 // tell the callback to ignore new images
                 m_PictureReady = new ManualResetEvent(false);

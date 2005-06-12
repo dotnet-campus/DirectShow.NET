@@ -58,12 +58,10 @@ namespace DxLogo
                 throw new Exception("No video capture devices found at that index!");
             }
 
-            DsDevice dev = capDevices[iDeviceNum] as DsDevice;
-
             try
             {
                 // Set up the capture graph
-                SetupGraph( dev, iFrameRate, iWidth, iHeight, FileName);
+                SetupGraph( capDevices[iDeviceNum], iFrameRate, iWidth, iHeight, FileName);
             }
             catch
             {
