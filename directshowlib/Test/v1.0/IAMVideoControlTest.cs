@@ -138,6 +138,12 @@ namespace DirectShowLib.Test
                 long l = Marshal.ReadInt64(ip, x * 8);
                 Debug.WriteLine(l);
             }
+
+            if (ip != IntPtr.Zero)
+            {
+                Marshal.FreeCoTaskMem(ip);
+                ip = IntPtr.Zero;
+            }
         }
 
         void TestGetMaxFrameRate()
