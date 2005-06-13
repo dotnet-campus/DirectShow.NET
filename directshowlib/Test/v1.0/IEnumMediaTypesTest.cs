@@ -1,8 +1,9 @@
-// $Id: IEnumMediaTypesTest.cs,v 1.3 2005-05-24 21:57:09 kawaic Exp $
-// $Author: kawaic $
-// $Revision: 1.3 $
+// $Id: IEnumMediaTypesTest.cs,v 1.4 2005-06-13 23:33:16 snarfle Exp $
+// $Author: snarfle $
+// $Revision: 1.4 $
 using System.Runtime.InteropServices;
 using NUnit.Framework;
+using System;
 
 namespace DirectShowLib.Test
 {
@@ -12,16 +13,28 @@ namespace DirectShowLib.Test
 	[TestFixture]
 	public class IEnumMediaTypesTest
 	{
+        public void DoTests()
+        {
+            TestNext();
+            TestReset();
+            TestSkip();
+            TestClone();
+        }
+
 		[Test]
 		public void TestNext()
 		{
 			int hr;
 			int lFetched;
-			AMMediaType[] ppMediaTypes = new AMMediaType[1];
+			AMMediaType[] ppMediaTypes = new AMMediaType[24];
 
 			IEnumMediaTypes enumMediaTypes = GetEnumMediaTypes();
-			hr = enumMediaTypes.Next(1, ppMediaTypes, out lFetched);
-			DsError.ThrowExceptionForHR(hr);
+
+            for (int x=0; x < 3; x++)
+            {
+                hr = enumMediaTypes.Next(ppMediaTypes.Length, null, out lFetched);
+                DsError.ThrowExceptionForHR(hr);
+            }
 		}
 
 		[Test]
@@ -32,7 +45,7 @@ namespace DirectShowLib.Test
 			AMMediaType[] ppMediaTypes = new AMMediaType[1];
 
 			IEnumMediaTypes enumMediaTypes = GetEnumMediaTypes();
-			hr = enumMediaTypes.Next(1, ppMediaTypes, out lFetched);
+			hr = enumMediaTypes.Next(ppMediaTypes.Length, ppMediaTypes, out lFetched);
 			DsError.ThrowExceptionForHR(hr);
 
 			hr = enumMediaTypes.Reset();
@@ -80,22 +93,26 @@ namespace DirectShowLib.Test
 
 		private static IEnumMediaTypes GetEnumMediaTypes()
 		{
-			IBaseFilter filter = new SmartTee() as IBaseFilter;
+			IBaseFilter filter;
 			int hr;
-			int lFetched;
-			IEnumPins ppEnum;
 			IPin pRet = null;
-			IPin[] pPins = new IPin[1];
 
-			hr = filter.EnumPins(out ppEnum);
-			DsError.ThrowExceptionForHR(hr);
+            DsDevice [] capDevices;
 
-			while ((ppEnum.Next(1, pPins, out lFetched) >= 0) && (lFetched == 1))
-			{
-				pRet = pPins[0];
-				break;
-			}
-			Marshal.ReleaseComObject(ppEnum);
+            // Get the collection of video devices
+            capDevices = DsDevice.GetDevicesOfCat( FilterCategory.VideoInputDevice );
+            if( capDevices.Length == 0 )
+            {
+                throw new Exception("No video capture devices found!");
+            }
+
+            DsDevice dev = capDevices[0];
+            string s;
+
+            dev.Mon.GetDisplayName(null, null, out s);
+            filter = Marshal.BindToMoniker( s ) as IBaseFilter;
+
+			pRet = DsFindPin.ByDirection(filter, PinDirection.Output, 0);
 
 			IEnumMediaTypes enumMediaTypes;
 			hr = pRet.EnumMediaTypes(out enumMediaTypes);

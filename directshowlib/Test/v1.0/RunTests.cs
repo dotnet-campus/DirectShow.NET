@@ -170,6 +170,12 @@ namespace DirectShowLib.Test
 
             //IAMAnalogVideoDecoderTest dpw46 = new IAMAnalogVideoDecoderTest();
             //dpw46.DoTests();
+
+            //IEnumMediaTypesTest k02 = new IEnumMediaTypesTest();
+            //k02.DoTests();
+
+            //IAMAnalogVideoDecoderTest dpw46 = new IAMAnalogVideoDecoderTest();
+            //dpw46.DoTests();
             
             IAMTVTunerTest en03 = new IAMTVTunerTest();
             en03.DoTests();  
