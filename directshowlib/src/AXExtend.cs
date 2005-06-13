@@ -409,10 +409,10 @@ namespace DirectShowLib
     /// </summary>
     public enum DVDecoderResolution
     {
-        _720x480 = 1000,
-        _360x240 = 1001,
-        _180x120 = 1002,
-        _88x60 = 1003
+        r720x480 = 1000,
+        r360x240 = 1001,
+        r180x120 = 1002,
+        r88x60 = 1003
     }
 
     /// <summary>
@@ -545,10 +545,10 @@ namespace DirectShowLib
     /// </summary>
     public enum DVEncoderResolution
     {
-        _720x480 = 2012,
-        _360x240 = 2013,
-        _180x120 = 2014,
-        _88x60 = 2015
+        r720x480 = 2012,
+        r360x240 = 2013,
+        r180x120 = 2014,
+        r88x60 = 2015
     }
 
     /// <summary>
@@ -1933,7 +1933,7 @@ namespace DirectShowLib
             [In] int iIndex,
             [In] Size Dimensions,
             [Out] out int ListSize,
-            [Out] out IntPtr FrameRates
+            [In, Out] IntPtr FrameRates
             );
     }
 

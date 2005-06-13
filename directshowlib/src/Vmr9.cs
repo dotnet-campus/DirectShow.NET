@@ -90,7 +90,7 @@ namespace DirectShowLib
 	[Flags]
 	public enum VMR9SurfaceAllocationFlags
 	{
-		_3DRenderTarget = 0x0001,
+		ThreeDRenderTarget = 0x0001,
 		DXVATarget = 0x0002,
 		TextureSurface = 0x0004,
 		OffscreenSurface = 0x0008,

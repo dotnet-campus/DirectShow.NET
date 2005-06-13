@@ -90,12 +90,12 @@ namespace DirectShowLib
 	[Flags]
 	public enum VMRSurfaceAllocationFlags
 	{
-		PIXELFORMAT_VALID = 0x01,
-		_3D_TARGET = 0x02,
-		ALLOW_SYSMEM = 0x04,
-		FORCE_SYSMEM = 0x08,
-		DIRECTED_FLIP = 0x10,
-		DXVA_TARGET = 0x20
+		PixelFormatValid = 0x01,
+		ThreeDTarget = 0x02,
+		AllowSysMem = 0x04,
+		ForceSysMem = 0x08,
+		DirectedFlip = 0x10,
+		DXVATarget = 0x20
 	}
 
 	/// <summary>
