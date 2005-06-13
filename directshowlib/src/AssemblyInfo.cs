@@ -60,8 +60,10 @@
 
 #endregion
 
+using System;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Security.Permissions;
 
 [assembly : AssemblyTitle("Direct Show Net Library")]
 [assembly : AssemblyDescription(".NET Interfaces for calling DirectShow.  See http://directshownet.sourceforge.net/")]
@@ -77,3 +79,5 @@ using System.Runtime.InteropServices;
 [assembly : AssemblyKeyFile("..\\..\\DShowNET.snk")]
 [assembly : AssemblyKeyName("")]
 [assembly : ComVisible(false)]
+[assembly : CLSCompliant(true)]
+//[assembly : SecurityPermission(SecurityAction.RequestMinimum, UnmanagedCode=true)]
