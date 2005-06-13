@@ -46,6 +46,13 @@ namespace DxScan
 				}
 			}
 			base.Dispose( disposing );
+            lock (this)
+            {
+                if (cam != null)
+                {
+                    cam.Quit();
+                }
+            }
 		}
 
 		#region Windows Form Designer generated code
@@ -93,12 +100,12 @@ namespace DxScan
             // 
             // timer1
             // 
-            this.timer1.Interval = 500;
+            this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // tbFrameNum
             // 
-            this.tbFrameNum.Location = new System.Drawing.Point(160, 192);
+            this.tbFrameNum.Location = new System.Drawing.Point(160, 160);
             this.tbFrameNum.Name = "tbFrameNum";
             this.tbFrameNum.ReadOnly = true;
             this.tbFrameNum.Size = new System.Drawing.Size(48, 20);
@@ -107,14 +114,14 @@ namespace DxScan
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(56, 192);
+            this.label2.Location = new System.Drawing.Point(56, 160);
             this.label2.Name = "label2";
             this.label2.TabIndex = 7;
             this.label2.Text = "Scanning Frame #";
             // 
             // tbBlacks
             // 
-            this.tbBlacks.Location = new System.Drawing.Point(160, 224);
+            this.tbBlacks.Location = new System.Drawing.Point(160, 192);
             this.tbBlacks.Name = "tbBlacks";
             this.tbBlacks.ReadOnly = true;
             this.tbBlacks.Size = new System.Drawing.Size(48, 20);
@@ -123,7 +130,7 @@ namespace DxScan
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(56, 224);
+            this.label3.Location = new System.Drawing.Point(56, 192);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(96, 23);
             this.label3.TabIndex = 9;
@@ -178,8 +185,11 @@ namespace DxScan
             tbFrameNum.Text = cam.m_Count.ToString();
             tbBlacks.Text = cam.m_Blacks.ToString();
 
-            cam.Dispose();
-            cam = null;
+            lock (this)
+            {
+                cam.Dispose();
+                cam = null;
+            }
 
             Cursor.Current = Cursors.Default;
         }

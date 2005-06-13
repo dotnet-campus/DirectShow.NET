@@ -25,6 +25,7 @@ namespace DxScan
         private int m_videoWidth;
         private int m_videoHeight;
         private int m_stride;
+        private bool m_Quit = false;
         public int m_Count = 0;
         public int m_Blacks = 0;
 
@@ -92,9 +93,13 @@ namespace DxScan
 
                 Thread.Sleep(200);
                 System.Windows.Forms.Application.DoEvents();
-            } while (tim < endtim);
+            } while ((tim < endtim) && (!m_Quit));
         }
 
+        public void Quit()
+        {
+            m_Quit = true;
+        }
         /// <summary> build the capture graph for grabber. </summary>
         private void SetupGraph(string FileName)
         {
@@ -275,6 +280,7 @@ namespace DxScan
         /// <summary> buffer callback, COULD BE FROM FOREIGN THREAD. </summary>
         unsafe int ISampleGrabberCB.BufferCB( double SampleTime, IntPtr pBuffer, int BufferLen )
         {
+
             // Performance is essential here.  Use unsafe for fastest possible scanning.
 
             // If every pixel were absolutely black, *b would always be zero.  However, few frames, 
