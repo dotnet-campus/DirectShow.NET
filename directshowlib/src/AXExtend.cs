@@ -306,7 +306,8 @@ namespace DirectShowLib
         TV = 0x0001,
         FMRadio = 0x0002,
         AMRadio = 0x0004,
-        Dss = 0x0008
+        Dss = 0x0008,
+        DTV = 0x0010
     }
 
     /// <summary>
