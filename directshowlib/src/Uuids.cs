@@ -65,7 +65,620 @@ using System.Runtime.InteropServices;
 
 namespace DirectShowLib
 {
-    public class FilterCategory // uuids.h  :  CLSID_*
+    #region COM Class Objects
+
+    /// <summary>
+    /// CLSID_SystemDeviceEnum
+    /// </summary>
+    [ComImport, Guid("62BE5D10-60EB-11d0-BD3B-00A0C911CE86")]
+    public class CreateDevEnum
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_FilterGraph
+    /// </summary>
+    [ComImport, Guid("e436ebb3-524f-11ce-9f53-0020af0ba770")]
+    public class FilterGraph
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_FilterGraphNoThread
+    /// </summary>
+    [ComImport, Guid("e436ebb8-524f-11ce-9f53-0020af0ba770")]
+    public class FilterGraphNoThread
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_CaptureGraphBuilder2
+    /// </summary>
+    [ComImport, Guid("BF87B6E1-8C27-11d0-B3F0-00AA003761C5")]
+    public class CaptureGraphBuilder2
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_DvdGraphBuilder
+    /// </summary>
+    [ComImport, Guid("FCC152B7-F372-11d0-8E00-00C04FD7C08B")]
+    public class DvdGraphBuilder
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_CaptureGraphBuilder
+    /// </summary>
+    [ComImport, Guid("BF87B6E0-8C27-11d0-B3F0-00AA003761C5")]
+    public class CaptureGraphBuilder
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_StreamBufferConfig
+    /// </summary>
+    [ComImport, Guid("FA8A68B2-C864-4ba2-AD53-D3876A87494B")]
+    public class StreamBufferConfig
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_StreamBufferComposeRecording
+    /// </summary>
+    [ComImport, Guid("D682C4BA-A90A-42fe-B9E1-03109849C423")]
+    public class StreamBufferComposeRecording
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_SeekingPassThru
+    /// </summary>
+    [ComImport, Guid("060AF76C-68DD-11d0-8FC1-00C04FD9189D")]
+    public class SeekingPassThru
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_FilterMapper2
+    /// </summary>
+    [ComImport, Guid("CDA42200-BD88-11d0-BD4E-00A0C911CE86")]
+    public class FilterMapper2
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_MemoryAllocator
+    /// </summary>
+    [ComImport, Guid("1e651cc0-b199-11d0-8212-00c04fc32c45")]
+    public class MemoryAllocator
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_MediaPropertyBag
+    /// </summary>
+    [ComImport, Guid("CDBD8D00-C193-11d0-BD4E-00A0C911CE86")]
+    public class MediaPropertyBag
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_DVDState
+    /// </summary>
+    [ComImport, Guid("f963c5cf-a659-4a93-9638-caf3cd277d13")]
+    public class DVDState
+    {
+    }
+
+
+    #endregion
+
+    #region Filter Classes
+    /// <summary>
+    /// CLSID_DMOWrapperFilter
+    /// </summary>
+    [ComImport, Guid("94297043-bd82-4dfd-b0de-8177739c6d20")]
+    public class DMOWrapperFilter
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_StreamBufferSink
+    /// </summary>
+    [ComImport, Guid("2DB47AE5-CF39-43c2-B4D6-0CD8D90946F4")]
+    public class StreamBufferSink
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_SampleGrabber
+    /// </summary>
+    [ComImport, Guid("C1F400A0-3F08-11d3-9F0B-006008039E37")]
+    public class SampleGrabber
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_StreamBufferSource
+    /// </summary>
+    [ComImport, Guid("C9F5FE02-F851-4eb5-99EE-AD602AF1E619")]
+    public class StreamBufferSource
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_VideoMixingRenderer
+    /// </summary>
+    [ComImport, Guid("B87BEB7B-8D29-423f-AE4D-6582C10175AC")]
+    public class VideoMixingRenderer
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_VideoMixingRenderer9
+    /// </summary>
+    [ComImport, Guid("51b4abf3-748f-4e3b-a276-c828330e926a")]
+    public class VideoMixingRenderer9
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_VideoRendererDefault
+    /// </summary>
+    [ComImport, Guid("6BC1CFFA-8FC1-4261-AC22-CFB4CC38DB50")]
+    public class VideoRendererDefault
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_AviSplitter
+    /// </summary>
+    [ComImport, Guid("1b544c20-fd0b-11ce-8c63-00aa0044b51e")]
+    public class AviSplitter
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_SmartTee
+    /// </summary>
+    [ComImport, Guid("CC58E280-8AA1-11d1-B3F1-00AA003761C5")]
+    public class SmartTee
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_NullRenderer
+    /// </summary>
+    [ComImport, Guid("C1F400A4-3F08-11d3-9F0B-006008039E37")]
+    public class NullRenderer
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_ACMWrapper
+    /// </summary>
+    [ComImport, Guid("6a08cf80-0e18-11cf-a24d-0020afd79767")]
+    public class ACMWrapper
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_AudioRender
+    /// </summary>
+    [ComImport, Guid("e30629d1-27e5-11ce-875d-00608cb78066")]
+    public class AudioRender
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_AVIDec
+    /// </summary>
+    [ComImport, Guid("CF49D4E0-1115-11ce-B03A-0020AF0BA770")]
+    public class AVIDec
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_AVIDraw
+    /// </summary>
+    [ComImport, Guid("A888DF60-1E90-11cf-AC98-00AA004C0FA9")]
+    public class AVIDraw
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_AviDest
+    /// </summary>
+    [ComImport, Guid("E2510970-F137-11CE-8B67-00AA00A3F1A6")]
+    public class AviDest
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_ATSCNetworkProvider
+    /// </summary>
+    [ComImport, Guid("0DAD2FDD-5FD7-11D3-8F50-00C04F7971E2")]
+    public class ATSCNetworkProvider
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_DVBCNetworkProvider
+    /// </summary>
+    [ComImport, Guid("DC0C0FE7-0485-4266-B93F-68FBF80ED834")]
+    public class DVBCNetworkProvider
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_DVBSNetworkProvider
+    /// </summary>
+    [ComImport, Guid("FA4B375A-45B4-4d45-8440-263957B11623")]
+    public class DVBSNetworkProvider
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_DVBTNetworkProvider
+    /// </summary>
+    [ComImport, Guid("216C62DF-6D7F-4e9a-8571-05F14EDB766A")]
+
+    public class DVBTNetworkProvider
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_Colour
+    /// </summary>
+    [ComImport, Guid("1643e180-90f5-11ce-97d5-00aa0055595a")]
+    public class Colour
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_DSoundRender
+    /// </summary>
+    [ComImport, Guid("79376820-07D0-11cf-A24D-0020AFD79767")]
+    public class DSoundRender
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_DVMux
+    /// </summary>
+    [ComImport, Guid("129D7E40-C10D-11d0-AFB9-00AA00B67A42")]
+    public class DVMux
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_DVSplitter
+    /// </summary>
+    [ComImport, Guid("4EB31670-9FC6-11cf-AF6E-00AA00B67A42")]
+    public class DVSplitter
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_DVVideoCodec
+    /// </summary>
+    [ComImport, Guid("B1B77C00-C3E4-11cf-AF79-00AA00B67A42")]
+    public class DVVideoCodec
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_DVVideoEnc
+    /// </summary>
+    [ComImport, Guid("13AA3650-BB6F-11d0-AFB9-00AA00B67A42")]
+    public class DVVideoEnc
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_DVDNavigator
+    /// </summary>
+    [ComImport, Guid("9B8C4620-2C1A-11d0-8493-00A02438AD48")]
+    public class DVDNavigator
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_AsyncReader
+    /// </summary>
+    [ComImport, Guid("e436ebb5-524f-11ce-9f53-0020af0ba770")]
+    public class AsyncReader
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_URLReader
+    /// </summary>
+    [ComImport, Guid("e436ebb6-524f-11ce-9f53-0020af0ba770")]
+    public class URLReader
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_FileWriter
+    /// </summary>
+    [ComImport, Guid("8596E5F0-0DA5-11d0-BD21-00A0C911CE86")]
+    public class FileWriter
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_ModexRenderer
+    /// </summary>
+    [ComImport, Guid("07167665-5011-11cf-BF33-00AA0055595A")]
+    public class ModexRenderer
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_InfTee
+    /// </summary>
+    [ComImport, Guid("F8388A40-D5BB-11d0-BE5A-0080C706568E")]
+    public class InfTee
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_Line21Decoder
+    /// </summary>
+    [ComImport, Guid("6E8D4A20-310C-11d0-B79A-00AA003767A7")]
+    public class Line21Decoder
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_Line21Decoder2
+    /// </summary>
+    [ComImport, Guid("E4206432-01A1-4BEE-B3E1-3702C8EDC574")]
+    public class Line21Decoder2
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_AVIMIDIRender
+    /// </summary>
+    [ComImport, Guid("07b65360-c445-11ce-afde-00aa006c14f4")]
+    public class AVIMIDIRender
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_MJPGEnc
+    /// </summary>
+    [ComImport, Guid("B80AB0A0-7416-11d2-9EEB-006008039E37")]
+    public class MJPGEnc
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_MjpegDec
+    /// </summary>
+    [ComImport, Guid("301056D0-6DFF-11d2-9EEB-006008039E37")]
+    public class MjpegDec
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_CMpegAudioCodec
+    /// </summary>
+    [ComImport, Guid("4a2286e0-7bef-11ce-9bd9-0000e202599c")]
+    public class CMpegAudioCodec
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_MPEG1Splitter
+    /// </summary>
+    [ComImport, Guid("336475d0-942a-11ce-a870-00aa002feab5")]
+    public class MPEG1Splitter
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_CMpegVideoCodec
+    /// </summary>
+    [ComImport, Guid("feb50740-7bef-11ce-9bd9-0000e202599c")]
+    public class CMpegVideoCodec
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_MPEG2Demultiplexer
+    /// </summary>
+    [ComImport, Guid("afb6c280-2c41-11d3-8a60-0000f81e0e4a")]
+    public class MPEG2Demultiplexer
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_MMSPLITTER
+    /// </summary>
+    [ComImport, Guid("3ae86b20-7be8-11d1-abe6-00a0c905f375")]
+    public class MMSPLITTER
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_OverlayMixer
+    /// </summary>
+    [ComImport, Guid("CD8743A1-3736-11d0-9E69-00C04FD7C15B")]
+    public class OverlayMixer
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_QTDec
+    /// </summary>
+    [ComImport, Guid("FDFE9681-74A3-11d0-AFA7-00AA00B67A42")]
+    public class QTDec
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_QuickTimeParser
+    /// </summary>
+    [ComImport, Guid("D51BD5A0-7548-11cf-A520-0080C77EF58A")]
+    public class QuickTimeParser
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_VBISurfaces
+    /// </summary>
+    [ComImport, Guid("814B9800-1C88-11d1-BAD9-00609744111A")]
+    public class VBISurfaces
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_VfwCapture
+    /// </summary>
+    [ComImport, Guid("1b544c22-fd0b-11ce-8c63-00aa0044b51e")]
+    public class VfwCapture
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_Dither
+    /// </summary>
+    [ComImport, Guid("1da08500-9edc-11cf-bc10-00aa00ac74f6")]
+    public class Dither
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_VideoPortManager
+    /// </summary>
+    [ComImport, Guid("6f26a6cd-967b-47fd-874a-7aed2c9d25a2")]
+    public class VideoPortManager
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_VideoRenderer
+    /// </summary>
+    [ComImport, Guid("70e102b0-5556-11ce-97c0-00aa0055595a")]
+    public class VideoRenderer
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_WMAsfReader
+    /// </summary>
+    [ComImport, Guid("187463A0-5BB7-11d3-ACBE-0080C75E246E")]
+    public class WMAsfReader
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_SystemClock
+    /// </summary>
+    [ComImport, Guid("e436ebb1-524f-11ce-9f53-0020af0ba770")]
+    public class SystemClock
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_WMAsfWriter
+    /// </summary>
+    [ComImport, Guid("7c23220e-55bb-11d3-8b16-00c04fb6bd3d")]
+    public class WMAsfWriter
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_WSTDecoder
+    /// </summary>
+    [ComImport, Guid("70BC06E0-5666-11d3-A184-00105AEF9F33")]
+    public class WSTDecoder
+    {
+    }
+
+
+    /// <summary>
+    /// CLSID_Mpeg2VideoStreamAnalyzer
+    /// </summary>
+    [ComImport, Guid("6CFAD761-735D-4aa5-8AFC-AF91A7D61EBA")]
+    public class Mpeg2VideoStreamAnalyzer
+    {
+    }
+
+
+    #endregion
+
+    #region GUIDS
+
+    public class FilterCategory
     {
         /// <summary> CLSID_AudioInputDeviceCategory, audio capture category </summary>
         public static readonly Guid AudioInputDevice = new Guid(0x33d9a762, 0x90c8, 0x11d0, 0xbd, 0x43, 0x00, 0xa0, 0xc9, 0x11, 0xce, 0x86);
@@ -167,7 +780,7 @@ namespace DirectShowLib
         public static readonly Guid AMKSSplitter = new Guid(0x0A4252A0, 0x7E70, 0x11D0, 0xA5, 0xD6, 0x28, 0xDB, 0x04, 0xC1, 0x00, 0x00);
     }
 
-	public class VMRClsId // uuids.h  :  CLSID_*
+	public class VMRClsId
 	{
 		// -------------------------------------------------------------------------
 		// VMR GUIDS
@@ -180,7 +793,7 @@ namespace DirectShowLib
         public static readonly Guid AllocPresenterDDXclMode = new Guid(0x4444ac9e, 0x242e, 0x471b, 0xa3, 0xc7, 0x45, 0xdc, 0xd4, 0x63, 0x52, 0xbc);
 	}
 
-	public class TVEClsId // uuids.h  :  CLSID_*
+	public class TVEClsId
 	{
 		// -------------------------------------------------------------------------
 		// TVE Receiver filter guids
@@ -198,7 +811,7 @@ namespace DirectShowLib
         public static readonly Guid TVEFilterStatsProperties = new Guid(0x05500283, 0xFAA5, 0x4DF9, 0x82, 0x46, 0xBF, 0xC2, 0x3A, 0xC5, 0xCE, 0xA8);
 	}
 
-	public class ENCAPIClsId // uuids.h  :  CLSID_*
+	public class ENCAPIClsId
 	{
 		// -------------------------------------------------------------------------
 		// Defined ENCAPI parameter GUIDs
@@ -213,7 +826,7 @@ namespace DirectShowLib
         public static readonly Guid IVideoEncoderCodecAPIProxy = new Guid(0xb05dabd9, 0x56e5, 0x4fdc, 0xaf, 0xa4, 0x8a, 0x47, 0xe9, 0x1f, 0x1c, 0x9c);
 	}
 
-    public class MediaType // MEDIATYPE_*
+    public class MediaType
     {
         public static readonly Guid Null = Guid.Empty;
 
@@ -263,7 +876,7 @@ namespace DirectShowLib
         public static readonly Guid AnalogAudio = new Guid(0x482dee1, 0x7817, 0x11cf, 0x8a, 0x3, 0x0, 0xaa, 0x0, 0x6e, 0xcb, 0x65);
     }
 
-	public class MediaSubType // MEDIASUBTYPE_*
+	public class MediaSubType
 	{
         public static readonly Guid Null = Guid.Empty;
 
@@ -608,7 +1221,7 @@ namespace DirectShowLib
 
     }
 
-	public class FormatType // FORMAT_*
+	public class FormatType
 	{
         public static readonly Guid Null = Guid.Empty;
 
@@ -678,7 +1291,7 @@ namespace DirectShowLib
 
     }
 
-	public class PinCategory // PIN_CATEGORY_*
+	public class PinCategory
 	{
 		/// <summary> PIN_CATEGORY_CAPTURE </summary>
 		public static readonly Guid Capture = new Guid(0xfb6c4281, 0x0353, 0x11d1, 0x90, 0x5f, 0x00, 0x00, 0xc0, 0xcc, 0x16, 0xba);
@@ -807,5 +1420,8 @@ namespace DirectShowLib
         /// <summary> CLSID_TVAudioFilterPropertyPage </summary>
         public static readonly Guid TVAudioFilterPropertyPage = new Guid(0x71f96463, 0x78f3, 0x11d0, 0xa1, 0x8c, 0x0, 0xa0, 0xc9, 0x11, 0x89, 0x56);
     }
+
+
+    #endregion
 
 } // namespace DShowNET
