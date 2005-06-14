@@ -69,7 +69,6 @@ namespace DirectShowLib
 
 	#region Declarations
 
-#if ALLOW_UNTESTED_STRUCTS
 	/// <summary>
 	/// From VIDEOINFOHEADER
 	/// </summary>
@@ -118,8 +117,6 @@ namespace DirectShowLib
 		public short wBitsPerSample;
 		public short cbSize;
 	}
-
-#endif
 
 	#endregion
 

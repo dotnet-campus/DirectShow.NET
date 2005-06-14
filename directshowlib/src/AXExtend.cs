@@ -509,53 +509,6 @@ namespace DirectShowLib
     }
 
     /// <summary>
-    /// From VIDEO_STREAM_CONFIG_CAPS
-    /// </summary>
-    [StructLayout(LayoutKind.Sequential)]
-    public class VideoStreamConfigCaps
-    {
-        public Guid guid;
-        public AnalogVideoStandard VideoStandard;
-        public Size InputSize;
-        public Size MinCroppingSize;
-        public Size MaxCroppingSize;
-        public int CropGranularityX;
-        public int CropGranularityY;
-        public int CropAlignX;
-        public int CropAlignY;
-        public Size MinOutputSize;
-        public Size MaxOutputSize;
-        public int OutputGranularityX;
-        public int OutputGranularityY;
-        public int StretchTapsX;
-        public int StretchTapsY;
-        public int ShrinkTapsX;
-        public int ShrinkTapsY;
-        public long MinFrameInterval;
-        public long MaxFrameInterval;
-        public int MinBitsPerSecond;
-        public int MaxBitsPerSecond;
-    }
-
-    /// <summary>
-    /// From AUDIO_STREAM_CONFIG_CAPS
-    /// </summary>
-    [StructLayout(LayoutKind.Sequential)]
-    public class AudioStreamConfigCaps
-    {
-        public Guid guid;
-        public int MinimumChannels;
-        public int MaximumChannels;
-        public int ChannelsGranularity;
-        public int MinimumBitsPerSample;
-        public int MaximumBitsPerSample;
-        public int BitsPerSampleGranularity;
-        public int MinimumSampleFrequency;
-        public int MaximumSampleFrequency;
-        public int SampleFrequencyGranularity;
-    }
-
-    /// <summary>
     /// From TIMECODE
     /// </summary>
     [StructLayout(LayoutKind.Sequential, Pack=1)]
@@ -930,6 +883,53 @@ namespace DirectShowLib
         Source = 0x01,
         Format = 0x02,
         Display = 0x04
+    }
+
+    /// <summary>
+    /// From VIDEO_STREAM_CONFIG_CAPS
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential)]
+    public class VideoStreamConfigCaps
+    {
+        public Guid guid;
+        public AnalogVideoStandard VideoStandard;
+        public Size InputSize;
+        public Size MinCroppingSize;
+        public Size MaxCroppingSize;
+        public int CropGranularityX;
+        public int CropGranularityY;
+        public int CropAlignX;
+        public int CropAlignY;
+        public Size MinOutputSize;
+        public Size MaxOutputSize;
+        public int OutputGranularityX;
+        public int OutputGranularityY;
+        public int StretchTapsX;
+        public int StretchTapsY;
+        public int ShrinkTapsX;
+        public int ShrinkTapsY;
+        public long MinFrameInterval;
+        public long MaxFrameInterval;
+        public int MinBitsPerSecond;
+        public int MaxBitsPerSecond;
+    }
+
+    /// <summary>
+    /// From AUDIO_STREAM_CONFIG_CAPS
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential)]
+    public class AudioStreamConfigCaps
+    {
+        public Guid guid;
+        public int MinimumChannels;
+        public int MaximumChannels;
+        public int ChannelsGranularity;
+        public int MinimumBitsPerSample;
+        public int MaximumBitsPerSample;
+        public int BitsPerSampleGranularity;
+        public int MinimumSampleFrequency;
+        public int MaximumSampleFrequency;
+        public int SampleFrequencyGranularity;
     }
 
     #endregion
@@ -1510,27 +1510,6 @@ namespace DirectShowLib
         int Init(
             [In, MarshalAs(UnmanagedType.Bool)] bool bSupportRendering,
             [In] IPin pPin
-            );
-    }
-
-    [Guid("C6E13340-30AC-11d0-A18C-00A0C9118956"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IAMStreamConfig
-    {
-        [PreserveSig]
-        int SetFormat([In, MarshalAs(UnmanagedType.LPStruct)] AMMediaType pmt);
-
-        [PreserveSig]
-        int GetFormat([Out] out AMMediaType pmt);
-
-        [PreserveSig]
-        int GetNumberOfCapabilities(out int piCount, out int piSize);
-
-        [PreserveSig]
-        int GetStreamCaps(
-            [In] int iIndex,
-            [Out] out AMMediaType ppmt,
-            IntPtr pSCC // BYTE *
             );
     }
 
@@ -3566,6 +3545,27 @@ namespace DirectShowLib
             [In, MarshalAs(UnmanagedType.Bool)] bool fUnconnected,
             [In] int ZeroBasedIndex,
             [Out, MarshalAs(UnmanagedType.Interface)] out IPin ppPin
+            );
+    }
+
+    [Guid("C6E13340-30AC-11d0-A18C-00A0C9118956"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IAMStreamConfig
+    {
+        [PreserveSig]
+        int SetFormat([In, MarshalAs(UnmanagedType.LPStruct)] AMMediaType pmt);
+
+        [PreserveSig]
+        int GetFormat([Out] out AMMediaType pmt);
+
+        [PreserveSig]
+        int GetNumberOfCapabilities(out int piCount, out int piSize);
+
+        [PreserveSig]
+        int GetStreamCaps(
+            [In] int iIndex,
+            [Out] out AMMediaType ppmt,
+            [In] IntPtr pSCC
             );
     }
 
