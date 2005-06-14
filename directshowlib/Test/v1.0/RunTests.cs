@@ -177,14 +177,17 @@ namespace DirectShowLib.Test
             //IAMAnalogVideoDecoderTest dpw47 = new IAMAnalogVideoDecoderTest();
             //dpw46.DoTests();
             
-            IAMTVTunerTest en03 = new IAMTVTunerTest();
-            en03.DoTests();  
+            //IAMTVTunerTest en03 = new IAMTVTunerTest();
+            //en03.DoTests();  
 
             //IAMTVAudioTest dpw48 = new IAMTVAudioTest();
             //dpw48.DoTests();
 
             //IAMCrossbarTest dpw49 = new IAMCrossbarTest();
             //dpw49.DoTests();
+
+            IAMStreamConfigTest dpw50 = new IAMStreamConfigTest();
+            dpw50.DoTests();
         }
     }
 }

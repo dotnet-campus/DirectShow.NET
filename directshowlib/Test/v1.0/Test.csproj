@@ -134,6 +134,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IAMStreamConfigTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IAMTVAudioTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
