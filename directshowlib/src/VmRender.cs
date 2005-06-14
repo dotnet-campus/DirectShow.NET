@@ -287,21 +287,6 @@ namespace DirectShowLib
 		public int clrSrcKey;
 	}
 
-	/// <summary>
-	/// From VMRVIDEOSTREAMINFO
-	/// </summary>
-	[StructLayout(LayoutKind.Sequential)]
-	public struct VMRVideoStreamInfo
-	{
-		[MarshalAs(UnmanagedType.Interface)] public object pddsVideoSurface;
-		public int dwWidth;
-		public int dwHeight;
-		public int dwStrmID;
-		public float fAlpha;
-		public int ddClrKey;
-		public Rectangle rNormal;
-	}
-
 
 #endif
 
@@ -341,6 +326,21 @@ namespace DirectShowLib
     {
         None,
         LetterBox
+    }
+
+    /// <summary>
+    /// From VMRVIDEOSTREAMINFO
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential)]
+    public struct VMRVideoStreamInfo
+    {
+        [MarshalAs(UnmanagedType.Interface)] public object pddsVideoSurface;
+        public int dwWidth;
+        public int dwHeight;
+        public int dwStrmID;
+        public float fAlpha;
+        public int ddClrKey;
+        public Rectangle rNormal;
     }
 
     #endregion
@@ -697,8 +697,13 @@ namespace DirectShowLib
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IVMRFilterConfig
     {
+#if ALLOW_UNTESTED_INTERFACES
         [PreserveSig]
         int SetImageCompositor([In] IVMRImageCompositor lpVMRImgCompositor);
+#else
+        [PreserveSig]
+        int SetImageCompositor([In, MarshalAs(UnmanagedType.IUnknown)] object lpVMRImgCompositor);
+#endif
 
         [PreserveSig]
         int SetNumberOfStreams([In] int dwMaxStreams);

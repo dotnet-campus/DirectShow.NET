@@ -85,7 +85,6 @@ namespace DirectShowLib
 
 	#region Interfaces
 
-#if ALLOW_UNTESTED_INTERFACES
 	[Guid("00000109-0000-0000-C000-000000000046"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IPersistStream : IPersist
@@ -111,7 +110,6 @@ namespace DirectShowLib
         int GetSizeMax([Out] out long pcbSize);
     }
 
-#endif
 
     [Guid("0000010c-0000-0000-C000-000000000046"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]

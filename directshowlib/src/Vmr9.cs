@@ -185,19 +185,6 @@ namespace DirectShowLib
 		MotionVectorSteered = 0x0080
 	}
 
-	/// <summary>
-	/// From VMR9_SampleFormat
-	/// </summary>
-	public enum VMR9_SampleFormat
-	{
-		Reserved = 1,
-		ProgressiveFrame = 2,
-		FieldInterleavedEvenFirst = 3,
-		FieldInterleavedOddFirst = 4,
-		FieldSingleEven = 5,
-		FieldSingleOdd = 6
-	}
-
 
 	/// <summary>
 	/// From VMR9PresentationInfo
@@ -231,20 +218,6 @@ namespace DirectShowLib
 		public int MinBuffers;
 		public Size szAspectRatio;
 		public Size szNativeSize;
-	}
-
-
-	/// <summary>
-	/// From VMR9NormalizedRect
-	/// </summary>
-	// TODO : Try to substitate with System.Drawing.RectangleF
-	[StructLayout(LayoutKind.Sequential)]
-	public struct VMR9NormalizedRect
-	{
-		public float left;
-		public float top;
-		public float right;
-		public float bottom;
 	}
 
 	/// <summary>
@@ -347,22 +320,6 @@ namespace DirectShowLib
 		public VMR9DeinterlaceTech DeinterlaceTechnology;
 	}
 
-	/// <summary>
-	/// From VMR9VideoStreamInfo
-	/// </summary>
-	[StructLayout(LayoutKind.Sequential)]
-	public struct VMR9VideoStreamInfo
-	{
-		[MarshalAs(UnmanagedType.IUnknown)] public object pddsVideoSurface; // IDirect3DSurface9
-		public int dwWidth;
-		public int dwHeight;
-		public int dwStrmID;
-		public float fAlpha;
-		public VMR9NormalizedRect rNormal;
-		public long rtStart;
-		public long rtEnd;
-		public VMR9_SampleFormat SampleFormat;
-	}
 #endif
 
     /// <summary>
@@ -394,6 +351,49 @@ namespace DirectShowLib
     {
         None,
         LetterBox,
+    }
+
+    /// <summary>
+    /// From VMR9VideoStreamInfo
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential)]
+    public struct VMR9VideoStreamInfo
+    {
+        [MarshalAs(UnmanagedType.IUnknown)] public object pddsVideoSurface; // IDirect3DSurface9
+        public int dwWidth;
+        public int dwHeight;
+        public int dwStrmID;
+        public float fAlpha;
+        public VMR9NormalizedRect rNormal;
+        public long rtStart;
+        public long rtEnd;
+        public VMR9_SampleFormat SampleFormat;
+    }
+
+    /// <summary>
+    /// From VMR9_SampleFormat
+    /// </summary>
+    public enum VMR9_SampleFormat
+    {
+        Reserved = 1,
+        ProgressiveFrame = 2,
+        FieldInterleavedEvenFirst = 3,
+        FieldInterleavedOddFirst = 4,
+        FieldSingleEven = 5,
+        FieldSingleOdd = 6
+    }
+
+    /// <summary>
+    /// From VMR9NormalizedRect
+    /// </summary>
+    // TODO : Try to substitate with System.Drawing.RectangleF
+    [StructLayout(LayoutKind.Sequential)]
+    public struct VMR9NormalizedRect
+    {
+        public float left;
+        public float top;
+        public float right;
+        public float bottom;
     }
 
     #endregion
@@ -690,8 +690,13 @@ namespace DirectShowLib
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IVMRFilterConfig9
     {
+#if ALLOW_UNTESTED_INTERFACES
         [PreserveSig]
         int SetImageCompositor([In] IVMRImageCompositor9 lpVMRImgCompositor);
+#else
+        [PreserveSig]
+        int SetImageCompositor([In, MarshalAs(UnmanagedType.IUnknown)] object lpVMRImgCompositor);
+#endif
 
         [PreserveSig]
         int SetNumberOfStreams([In] int dwMaxStreams);

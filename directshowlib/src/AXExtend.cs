@@ -94,151 +94,12 @@ namespace DirectShowLib
     }
 
     /// <summary>
-    /// CompressionCaps
-    /// </summary>
-    [Flags]
-    public enum CompressionCaps
-    {
-        None = 0x0,
-        CanQuality = 0x01,
-        CanCrunch = 0x02,
-        CanKeyFrame = 0x04,
-        CanBFrame = 0x08,
-        CanWindow = 0x10
-    }
-
-    /// <summary>
-    /// From VfwCaptureDialogs
-    /// </summary>
-    [Flags]
-    public enum VfwCaptureDialogs
-    {
-        Source = 0x01,
-        Format = 0x02,
-        Display = 0x04
-    }
-
-    /// <summary>
-    /// From VfwCompressDialogs
-    /// </summary>
-    [Flags]
-    public enum VfwCompressDialogs
-    {
-        Config = 0x01,
-        About = 0x02,
-        QueryConfig = 0x04,
-        QueryAbout = 0x08
-    }
-
-    /// <summary>
-    /// From AnalogVideoStandard
-    /// </summary>
-    [Flags]
-    public enum AnalogVideoStandard
-    {
-        None = 0x00000000,
-        NTSC_M = 0x00000001,
-        NTSC_M_J = 0x00000002,
-        NTSC_433 = 0x00000004,
-        PAL_B = 0x00000010,
-        PAL_D = 0x00000020,
-        PAL_G = 0x00000040,
-        PAL_H = 0x00000080,
-        PAL_I = 0x00000100,
-        PAL_M = 0x00000200,
-        PAL_N = 0x00000400,
-        PAL_60 = 0x00000800,
-        SECAM_B = 0x00001000,
-        SECAM_D = 0x00002000,
-        SECAM_G = 0x00004000,
-        SECAM_H = 0x00008000,
-        SECAM_K = 0x00010000,
-        SECAM_K1 = 0x00020000,
-        SECAM_L = 0x00040000,
-        SECAM_L1 = 0x00080000,
-        PAL_N_COMBO = 0x00100000,
-
-        NTSCMask = 0x00000007,
-        PALMask = 0x00100FF0,
-        SECAMMask = 0x000FF000
-    }
-
-    /// <summary>
-    /// From TunerInputType
-    /// </summary>
-    public enum TunerInputType
-    {
-        Cable,
-        Antenna
-    }
-
-    /// <summary>
     /// From VideoCopyProtectionType
     /// </summary>
     public enum VideoCopyProtectionType
     {
         MacrovisionBasic,
         MacrovisionCBI
-    }
-
-    /// <summary>
-    /// From PhysicalConnectorType
-    /// </summary>
-    public enum PhysicalConnectorType
-    {
-        Video_Tuner = 1,
-        Video_Composite,
-        Video_SVideo,
-        Video_RGB,
-        Video_YRYBY,
-        Video_SerialDigital,
-        Video_ParallelDigital,
-        Video_SCSI,
-        Video_AUX,
-        Video_1394,
-        Video_USB,
-        Video_VideoDecoder,
-        Video_VideoEncoder,
-        Video_SCART,
-        Video_Black,
-
-        Audio_Tuner = 0x1000,
-        Audio_Line,
-        Audio_Mic,
-        Audio_AESDigital,
-        Audio_SPDIFDigital,
-        Audio_SCSI,
-        Audio_AUX,
-        Audio_1394,
-        Audio_USB,
-        Audio_AudioDecoder,
-    }
-
-    /// <summary>
-    /// VideoProcAmpProperty
-    /// </summary>
-    public enum VideoProcAmpProperty
-    {
-        Brightness,
-        Contrast,
-        Hue,
-        Saturation,
-        Sharpness,
-        Gamma,
-        ColorEnable,
-        WhiteBalance,
-        BacklightCompensation,
-        Gain
-    }
-
-    /// <summary>
-    /// VideoProcAmpFlags
-    /// </summary>
-    [Flags]
-    public enum VideoProcAmpFlags
-    {
-        Auto = 0x0001,
-        Manual = 0x0002
     }
 
     /// <summary>
@@ -262,82 +123,6 @@ namespace DirectShowLib
     {
         Auto = 0x0001,
         Manual = 0x0002
-    }
-
-    /// <summary>
-    /// VideoControlFlags
-    /// </summary>
-    [Flags]
-    public enum VideoControlFlags
-    {
-        None = 0x0,
-        FlipHorizontal = 0x0001,
-        FlipVertical = 0x0002,
-        ExternalTriggerEnable = 0x0004,
-        Trigger = 0x0008
-    }
-
-    /// <summary>
-    /// AMTunerSubChannel
-    /// </summary>
-    public enum AMTunerSubChannel
-    {
-        NoTune = -2,
-        Default = -1
-    }
-
-    /// <summary>
-    /// AMTunerSignalStrength
-    /// </summary>
-    public enum AMTunerSignalStrength
-    {
-        HasNoSignalStrength = -1,
-        NoSignal = 0,
-        SignalPresent = 1
-    }
-
-    /// <summary>
-    /// AMTunerModeType
-    /// </summary>
-    [Flags]
-    public enum AMTunerModeType
-    {
-        Default = 0x0000,
-        TV = 0x0001,
-        FMRadio = 0x0002,
-        AMRadio = 0x0004,
-        Dss = 0x0008,
-        DTV = 0x0010
-    }
-
-    /// <summary>
-    /// AMTunerEventType
-    /// </summary>
-    public enum AMTunerEventType
-    {
-        Changed = 0x0001
-    }
-
-    /// <summary>
-    /// TVAudioMode
-    /// </summary>
-    [Flags]
-    public enum TVAudioMode
-    {
-        Mono = 0x0001,
-        Stereo = 0x0002,
-        LangA = 0x0010,
-        LangB = 0x0020,
-        LangC = 0x0040,
-    }
-
-    /// <summary>
-    /// AMTVAudioEventType
-    /// </summary>
-    [Flags]
-    public enum AMTVAudioEventType
-    {
-        Changed = 0x0001
     }
 
     /// <summary>
@@ -932,6 +717,221 @@ namespace DirectShowLib
         Medium
     }
 
+    /// <summary>
+    /// AMTunerSubChannel
+    /// </summary>
+    public enum AMTunerSubChannel
+    {
+        NoTune = -2,
+        Default = -1
+    }
+
+    /// <summary>
+    /// AMTunerSignalStrength
+    /// </summary>
+    public enum AMTunerSignalStrength
+    {
+        HasNoSignalStrength = -1,
+        NoSignal = 0,
+        SignalPresent = 1
+    }
+
+    /// <summary>
+    /// AMTunerModeType
+    /// </summary>
+    [Flags]
+    public enum AMTunerModeType
+    {
+        Default = 0x0000,
+        TV = 0x0001,
+        FMRadio = 0x0002,
+        AMRadio = 0x0004,
+        Dss = 0x0008,
+        DTV = 0x0010
+    }
+
+    /// <summary>
+    /// AMTunerEventType
+    /// </summary>
+    public enum AMTunerEventType
+    {
+        Changed = 0x0001
+    }
+
+    /// <summary>
+    /// From AnalogVideoStandard
+    /// </summary>
+    [Flags]
+    public enum AnalogVideoStandard
+    {
+        None = 0x00000000,
+        NTSC_M = 0x00000001,
+        NTSC_M_J = 0x00000002,
+        NTSC_433 = 0x00000004,
+        PAL_B = 0x00000010,
+        PAL_D = 0x00000020,
+        PAL_G = 0x00000040,
+        PAL_H = 0x00000080,
+        PAL_I = 0x00000100,
+        PAL_M = 0x00000200,
+        PAL_N = 0x00000400,
+        PAL_60 = 0x00000800,
+        SECAM_B = 0x00001000,
+        SECAM_D = 0x00002000,
+        SECAM_G = 0x00004000,
+        SECAM_H = 0x00008000,
+        SECAM_K = 0x00010000,
+        SECAM_K1 = 0x00020000,
+        SECAM_L = 0x00040000,
+        SECAM_L1 = 0x00080000,
+        PAL_N_COMBO = 0x00100000,
+
+        NTSCMask = 0x00000007,
+        PALMask = 0x00100FF0,
+        SECAMMask = 0x000FF000
+    }
+
+    /// <summary>
+    /// From TunerInputType
+    /// </summary>
+    public enum TunerInputType
+    {
+        Cable,
+        Antenna
+    }
+
+    /// <summary>
+    /// VideoControlFlags
+    /// </summary>
+    [Flags]
+    public enum VideoControlFlags
+    {
+        None = 0x0,
+        FlipHorizontal = 0x0001,
+        FlipVertical = 0x0002,
+        ExternalTriggerEnable = 0x0004,
+        Trigger = 0x0008
+    }
+
+    /// <summary>
+    /// TVAudioMode
+    /// </summary>
+    [Flags]
+    public enum TVAudioMode
+    {
+        Mono = 0x0001,
+        Stereo = 0x0002,
+        LangA = 0x0010,
+        LangB = 0x0020,
+        LangC = 0x0040,
+    }
+
+    /// <summary>
+    /// VideoProcAmpProperty
+    /// </summary>
+    public enum VideoProcAmpProperty
+    {
+        Brightness,
+        Contrast,
+        Hue,
+        Saturation,
+        Sharpness,
+        Gamma,
+        ColorEnable,
+        WhiteBalance,
+        BacklightCompensation,
+        Gain
+    }
+
+    /// <summary>
+    /// VideoProcAmpFlags
+    /// </summary>
+    [Flags]
+    public enum VideoProcAmpFlags
+    {
+        Auto = 0x0001,
+        Manual = 0x0002
+    }
+
+    /// <summary>
+    /// From PhysicalConnectorType
+    /// </summary>
+    public enum PhysicalConnectorType
+    {
+        Video_Tuner = 1,
+        Video_Composite,
+        Video_SVideo,
+        Video_RGB,
+        Video_YRYBY,
+        Video_SerialDigital,
+        Video_ParallelDigital,
+        Video_SCSI,
+        Video_AUX,
+        Video_1394,
+        Video_USB,
+        Video_VideoDecoder,
+        Video_VideoEncoder,
+        Video_SCART,
+        Video_Black,
+
+        Audio_Tuner = 0x1000,
+        Audio_Line,
+        Audio_Mic,
+        Audio_AESDigital,
+        Audio_SPDIFDigital,
+        Audio_SCSI,
+        Audio_AUX,
+        Audio_1394,
+        Audio_USB,
+        Audio_AudioDecoder,
+    }
+
+    /// <summary>
+    /// AMTVAudioEventType
+    /// </summary>
+    [Flags]
+    public enum AMTVAudioEventType
+    {
+        Changed = 0x0001
+    }
+
+    /// <summary>
+    /// CompressionCaps
+    /// </summary>
+    [Flags]
+    public enum CompressionCaps
+    {
+        None = 0x0,
+        CanQuality = 0x01,
+        CanCrunch = 0x02,
+        CanKeyFrame = 0x04,
+        CanBFrame = 0x08,
+        CanWindow = 0x10
+    }
+
+    /// <summary>
+    /// From VfwCompressDialogs
+    /// </summary>
+    [Flags]
+    public enum VfwCompressDialogs
+    {
+        Config = 0x01,
+        About = 0x02,
+        QueryConfig = 0x04,
+        QueryAbout = 0x08
+    }
+
+    /// <summary>
+    /// From VfwCaptureDialogs
+    /// </summary>
+    [Flags]
+    public enum VfwCaptureDialogs
+    {
+        Source = 0x01,
+        Format = 0x02,
+        Display = 0x04
+    }
+
     #endregion
 
     #region Interfaces
@@ -1326,87 +1326,6 @@ namespace DirectShowLib
             );
     }
 
-    [Guid("670d1d20-a068-11d0-b3f0-00aa003761c5"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IAMCopyCaptureFileProgress
-    {
-        [PreserveSig]
-        int Progress(int iProgress);
-    }
-
-    [Guid("93E5A4E0-2D50-11d2-ABFA-00A0C9C6E38D"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface ICaptureGraphBuilder2
-    {
-        [PreserveSig]
-        int SetFiltergraph([In] IGraphBuilder pfg);
-
-        [PreserveSig]
-        int GetFiltergraph([Out] out IGraphBuilder ppfg);
-
-        [PreserveSig]
-        int SetOutputFileName(
-            [In, MarshalAs(UnmanagedType.LPStruct)] Guid pType,
-            [In, MarshalAs(UnmanagedType.LPWStr)] string lpstrFile,
-            [Out] out IBaseFilter ppbf,
-            [Out] out IFileSinkFilter ppSink
-            );
-
-        [PreserveSig]
-        int FindInterface(
-            [In, MarshalAs(UnmanagedType.LPStruct)] DsGuid pCategory,
-            [In, MarshalAs(UnmanagedType.LPStruct)] DsGuid pType,
-            [In] IBaseFilter pbf,
-            [In, MarshalAs(UnmanagedType.LPStruct)] Guid riid,
-            [Out, MarshalAs(UnmanagedType.IUnknown)] out object ppint
-            );
-
-        [PreserveSig]
-        int RenderStream(
-            [In, MarshalAs(UnmanagedType.LPStruct)] DsGuid PinCategory,
-            [In, MarshalAs(UnmanagedType.LPStruct)] DsGuid MediaType,
-            [In, MarshalAs(UnmanagedType.IUnknown)] object pSource,
-            [In] IBaseFilter pfCompressor,
-            [In] IBaseFilter pfRenderer
-            );
-
-        [PreserveSig]
-        int ControlStream(
-            [In, MarshalAs(UnmanagedType.LPStruct)] Guid PinCategory,
-            [In, MarshalAs(UnmanagedType.LPStruct)] DsGuid MediaType,
-            [In, MarshalAs(UnmanagedType.Interface)] IBaseFilter pFilter,
-            [In] DsLong pstart,
-            [In] DsLong pstop,
-            [In] short wStartCookie,
-            [In] short wStopCookie
-            );
-
-        [PreserveSig]
-        int AllocCapFile(
-            [In, MarshalAs(UnmanagedType.LPWStr)] string lpstrFile,
-            [In] long dwlSize
-            );
-
-        [PreserveSig]
-        int CopyCaptureFile(
-            [In, MarshalAs(UnmanagedType.LPWStr)] string lpwstrOld,
-            [In, MarshalAs(UnmanagedType.LPWStr)] string lpwstrNew,
-            [In, MarshalAs(UnmanagedType.Bool)] bool fAllowEscAbort,
-            [In] IAMCopyCaptureFileProgress pFilter
-            );
-
-        [PreserveSig]
-        int FindPin(
-            [In, MarshalAs(UnmanagedType.IUnknown)] object pSource,
-            [In] PinDirection pindir,
-            [In, MarshalAs(UnmanagedType.LPStruct)] DsGuid PinCategory,
-            [In, MarshalAs(UnmanagedType.LPStruct)] DsGuid MediaType,
-            [In, MarshalAs(UnmanagedType.Bool)] bool fUnconnected,
-            [In] int ZeroBasedIndex,
-            [Out, MarshalAs(UnmanagedType.Interface)] out IPin ppPin
-            );
-    }
-
     [Guid("56a868bf-0ad4-11ce-b03a-0020af0ba770"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IStreamBuilder
@@ -1615,182 +1534,6 @@ namespace DirectShowLib
             );
     }
 
-    [Guid("C6E13343-30AC-11d0-A18C-00A0C9118956"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IAMVideoCompression
-    {
-        [PreserveSig]
-        int put_KeyFrameRate([In] int KeyFrameRate);
-
-        [PreserveSig]
-        int get_KeyFrameRate([Out] out int pKeyFrameRate);
-
-        [PreserveSig]
-        int put_PFramesPerKeyFrame([In] int PFramesPerKeyFrame);
-
-        [PreserveSig]
-        int get_PFramesPerKeyFrame([Out] out int pPFramesPerKeyFrame);
-
-        [PreserveSig]
-        int put_Quality([In] double Quality);
-
-        [PreserveSig]
-        int get_Quality([Out] out double pQuality);
-
-        [PreserveSig]
-        int put_WindowSize([In] long WindowSize);
-
-        [PreserveSig]
-        int get_WindowSize([Out] out long pWindowSize);
-
-        [PreserveSig]
-        int GetInfo(
-            [MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszVersion, // WCHAR *
-            [Out] out int pcbVersion,
-            [MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszDescription, // LPWSTR
-            [Out] out int pcbDescription,
-            [Out] out int pDefaultKeyFrameRate,
-            [Out] out int pDefaultPFramesPerKey,
-            [Out] out double pDefaultQuality,
-            [Out] out CompressionCaps pCapabilities
-            );
-
-        [PreserveSig]
-        int OverrideKeyFrame([In] int FrameNumber);
-
-        [PreserveSig]
-        int OverrideFrameSize(
-            [In] int FrameNumber,
-            [In] int Size
-            );
-    }
-
-    [Guid("D8D715A0-6E5E-11D0-B3F0-00AA003761C5"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IAMVfwCaptureDialogs
-    {
-        [PreserveSig]
-        int HasDialog([In] VfwCaptureDialogs iDialog);
-
-        [PreserveSig]
-        int ShowDialog(
-            [In] VfwCaptureDialogs iDialog,
-            [In] IntPtr hwnd // HWND *
-            );
-
-        [PreserveSig]
-        int SendDriverMessage(
-            [In] VfwCaptureDialogs iDialog,
-            [In] int uMsg,
-            [In] int dw1,
-            [In] int dw2
-            );
-    }
-
-    [Guid("D8D715A3-6E5E-11D0-B3F0-00AA003761C5"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IAMVfwCompressDialogs
-    {
-        [PreserveSig]
-        int ShowDialog(
-            [In] VfwCompressDialogs iDialog,
-            [In] IntPtr hwnd 
-            );
-
-        [PreserveSig]
-        int GetState(
-            [In] IntPtr pState,
-            [In, Out] ref int pcbState
-            );
-
-        [PreserveSig]
-        int SetState(
-            [In] IntPtr pState,
-            [In] int pcbState
-            );
-
-        [PreserveSig]
-        int SendDriverMessage(
-            [In] int uMsg,
-            [In] int dw1,
-            [In] int dw2
-            );
-    }
-
-    [Guid("C6E13344-30AC-11d0-A18C-00A0C9118956"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IAMDroppedFrames
-    {
-        [PreserveSig]
-        int GetNumDropped([Out] out int plDropped);
-
-        [PreserveSig]
-        int GetNumNotDropped([Out] out int plNotDropped);
-
-        [PreserveSig]
-        int GetDroppedInfo(
-            [In] int lSize,
-            [Out, MarshalAs(UnmanagedType.LPArray)] out int[] plArray,
-            [Out] out int plNumCopied
-            );
-
-        [PreserveSig]
-        int GetAverageFrameSize([Out] out int plAverageSize);
-    }
-
-    [Guid("54C39221-8380-11d0-B3F0-00AA003761C5"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IAMAudioInputMixer
-    {
-        [PreserveSig]
-        int put_Enable([In, MarshalAs(UnmanagedType.Bool)] bool fEnable);
-
-        [PreserveSig]
-        int get_Enable([Out, MarshalAs(UnmanagedType.Bool)] out bool pfEnable);
-
-        [PreserveSig]
-        int put_Mono([In, MarshalAs(UnmanagedType.Bool)] bool fMono);
-
-        [PreserveSig]
-        int get_Mono([Out, MarshalAs(UnmanagedType.Bool)] out bool pfMono);
-
-        [PreserveSig]
-        int put_MixLevel([In] double Level);
-
-        [PreserveSig]
-        int get_MixLevel([Out] out double pLevel);
-
-        [PreserveSig]
-        int put_Pan([In] double Pan);
-
-        [PreserveSig]
-        int get_Pan([Out] out double pPan);
-
-        [PreserveSig]
-        int put_Loudness([In, MarshalAs(UnmanagedType.Bool)] bool fLoudness);
-
-        [PreserveSig]
-        int get_Loudness([Out, MarshalAs(UnmanagedType.Bool)] out bool pfLoudness);
-
-        [PreserveSig]
-        int put_Treble([In] double Treble);
-
-        [PreserveSig]
-        int get_Treble([Out] out double pTreble);
-
-        [PreserveSig]
-        int get_TrebleRange([Out] out double pRange);
-
-        [PreserveSig]
-        int put_Bass([In] double Bass);
-
-        [PreserveSig]
-        int get_Bass([Out] out double pBass);
-
-        [PreserveSig]
-        int get_BassRange([Out] out double pRange);
-    }
-
     [Guid("56ED71A0-AF5F-11D0-B3F0-00AA003761C5"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IAMBufferNegotiation
@@ -1800,67 +1543,6 @@ namespace DirectShowLib
 
         [PreserveSig]
         int GetAllocatorProperties([Out] out AllocatorProperties pprop);
-    }
-
-    [Guid("C6E13350-30AC-11d0-A18C-00A0C9118956"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IAMAnalogVideoDecoder
-    {
-        [PreserveSig]
-        int get_AvailableTVFormats([Out] out AnalogVideoStandard lAnalogVideoStandard);
-
-        [PreserveSig]
-        int put_TVFormat([In] AnalogVideoStandard lAnalogVideoStandard);
-
-        [PreserveSig]
-        int get_TVFormat([Out] out AnalogVideoStandard plAnalogVideoStandard);
-
-        [PreserveSig]
-        int get_HorizontalLocked([Out, MarshalAs(UnmanagedType.Bool)] out bool plLocked);
-
-        [PreserveSig]
-        int put_VCRHorizontalLocking([In, MarshalAs(UnmanagedType.Bool)] bool lVCRHorizontalLocking);
-
-        [PreserveSig]
-        int get_VCRHorizontalLocking([Out, MarshalAs(UnmanagedType.Bool)] out bool plVCRHorizontalLocking);
-
-        [PreserveSig]
-        int get_NumberOfLines([Out] out int plNumberOfLines);
-
-        [PreserveSig]
-        int put_OutputEnable([In, MarshalAs(UnmanagedType.Bool)] bool lOutputEnable);
-
-        [PreserveSig]
-        int get_OutputEnable([Out, MarshalAs(UnmanagedType.Bool)] out bool plOutputEnable);
-    }
-
-    [Guid("C6E13360-30AC-11d0-A18C-00A0C9118956"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IAMVideoProcAmp
-    {
-        [PreserveSig]
-        int GetRange(
-            [In] VideoProcAmpProperty Property,
-            [Out] out int pMin,
-            [Out] out int pMax,
-            [Out] out int pSteppingDelta,
-            [Out] out int pDefault,
-            [Out] out VideoProcAmpFlags pCapsFlags
-            );
-
-        [PreserveSig]
-        int Set(
-            [In] VideoProcAmpProperty Property,
-            [In] int lValue,
-            [In] VideoProcAmpFlags Flags
-            );
-
-        [PreserveSig]
-        int Get(
-            [In] VideoProcAmpProperty Property,
-            [Out] out int lValue,
-            [Out] out VideoProcAmpFlags Flags
-            );
     }
 
     [Guid("C6E13370-30AC-11d0-A18C-00A0C9118956"),
@@ -1890,271 +1572,6 @@ namespace DirectShowLib
             [Out] out int lValue,
             [Out] out CameraControlFlags Flags
             );
-    }
-
-    [Guid("6a2e0670-28e4-11d0-a18c-00a0c9118956"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IAMVideoControl
-    {
-        [PreserveSig]
-        int GetCaps(
-            [In] IPin pPin,
-            [Out] out VideoControlFlags pCapsFlags
-            );
-
-        [PreserveSig]
-        int SetMode(
-            [In] IPin pPin,
-            [In] VideoControlFlags Mode
-            );
-
-        [PreserveSig]
-        int GetMode(
-            [In] IPin pPin,
-            [Out] out VideoControlFlags Mode
-            );
-
-        [PreserveSig]
-        int GetCurrentActualFrameRate(
-            [In] IPin pPin,
-            [Out] out long ActualFrameRate
-            );
-
-        [PreserveSig]
-        int GetMaxAvailableFrameRate(
-            [In] IPin pPin,
-            [In] int iIndex,
-            [In] Size Dimensions,
-            [Out] out long MaxAvailableFrameRate
-            );
-
-        [PreserveSig]
-        int GetFrameRateList(
-            [In] IPin pPin,
-            [In] int iIndex,
-            [In] Size Dimensions,
-            [Out] out int ListSize,
-            [Out] out IntPtr FrameRates
-            );
-    }
-
-    [Guid("C6E13380-30AC-11d0-A18C-00A0C9118956"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IAMCrossbar
-    {
-        [PreserveSig]
-        int get_PinCounts(
-            [Out] out int OutputPinCount,
-            [Out] out int InputPinCount
-            );
-
-        [PreserveSig]
-        int CanRoute(
-            [In] int OutputPinIndex,
-            [In] int InputPinIndex
-            );
-
-        [PreserveSig]
-        int Route(
-            [In] int OutputPinIndex,
-            [In] int InputPinIndex
-            );
-
-        [PreserveSig]
-        int get_IsRoutedTo(
-            [In] int OutputPinIndex,
-            [Out] out int InputPinIndex
-            );
-
-        [PreserveSig]
-        int get_CrossbarPinInfo(
-            [In, MarshalAs(UnmanagedType.Bool)] bool IsInputPin,
-            [In] int PinIndex,
-            [Out] out int PinIndexRelated,
-            [Out] out PhysicalConnectorType PhysicalType
-            );
-    }
-
-    [Guid("211A8761-03AC-11d1-8D13-00AA00BD8339"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IAMTuner
-    {
-        [PreserveSig]
-        int put_Channel(
-            [In] int lChannel,
-            [In] AMTunerSubChannel lVideoSubChannel,
-            [In] AMTunerSubChannel lAudioSubChannel
-            );
-
-        [PreserveSig]
-        int get_Channel(
-            [Out] out int plChannel,
-            [Out] out AMTunerSubChannel plVideoSubChannel,
-            [Out] out AMTunerSubChannel plAudioSubChannel
-            );
-
-        [PreserveSig]
-        int ChannelMinMax(
-            [Out] out int lChannelMin,
-            [Out] out int lChannelMax
-            );
-
-        [PreserveSig]
-        int put_CountryCode([In] int lCountryCode);
-
-        [PreserveSig]
-        int get_CountryCode([Out] out int plCountryCode);
-
-        [PreserveSig]
-        int put_TuningSpace([In] int lTuningSpace);
-
-        [PreserveSig]
-        int get_TuningSpace([Out] out int plTuningSpace);
-
-        [PreserveSig]
-        int Logon([In] IntPtr hCurrentUser); // HANDLE
-
-        [PreserveSig]
-        int Logout();
-
-        [PreserveSig]
-        int SignalPresent([Out] out AMTunerSignalStrength plSignalStrength);
-
-        [PreserveSig]
-        int put_Mode([In] AMTunerModeType lMode);
-
-        [PreserveSig]
-        int get_Mode([Out] out AMTunerModeType plMode);
-
-        [PreserveSig]
-        int GetAvailableModes([Out] out AMTunerModeType plModes);
-
-        [PreserveSig]
-        int RegisterNotificationCallBack(
-            [In] IAMTunerNotification pNotify,
-            [In] AMTunerEventType lEvents
-            );
-
-        [PreserveSig]
-        int UnRegisterNotificationCallBack([In] IAMTunerNotification pNotify);
-    }
-
-    [Guid("211A8760-03AC-11d1-8D13-00AA00BD8339"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IAMTunerNotification
-    {
-        [PreserveSig]
-        int OnEvent([In] AMTunerEventType Event);
-    }
-
-    [Guid("211A8766-03AC-11d1-8D13-00AA00BD8339"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IAMTVTuner : IAMTuner
-    {
-        #region IAMTuner
-
-        [PreserveSig]
-        new int put_Channel(
-            [In] int lChannel,
-            [In] AMTunerSubChannel lVideoSubChannel,
-            [In] AMTunerSubChannel lAudioSubChannel
-            );
-
-        [PreserveSig]
-        new int get_Channel(
-            [Out] out int plChannel,
-            [Out] out AMTunerSubChannel plVideoSubChannel,
-            [Out] out AMTunerSubChannel plAudioSubChannel
-            );
-
-        [PreserveSig]
-        new int ChannelMinMax(
-            [Out] out int lChannelMin,
-            [Out] out int lChannelMax
-            );
-
-        [PreserveSig]
-        new int put_CountryCode([In] int lCountryCode);
-
-        [PreserveSig]
-        new int get_CountryCode([Out] out int plCountryCode);
-
-        [PreserveSig]
-        new int put_TuningSpace([In] int lTuningSpace);
-
-        [PreserveSig]
-        new int get_TuningSpace([Out] out int plTuningSpace);
-
-        [PreserveSig]
-        new int Logon([In] IntPtr hCurrentUser); // HANDLE
-
-        [PreserveSig]
-        new int Logout();
-
-        [PreserveSig]
-        new int SignalPresent([Out] out AMTunerSignalStrength plSignalStrength);
-
-        [PreserveSig]
-        new int put_Mode([In] AMTunerModeType lMode);
-
-        [PreserveSig]
-        new int get_Mode([Out] out AMTunerModeType plMode);
-
-        [PreserveSig]
-        new int GetAvailableModes([Out] out AMTunerModeType plModes);
-
-        [PreserveSig]
-        new int RegisterNotificationCallBack(
-            [In] IAMTunerNotification pNotify,
-            [In] AMTunerEventType lEvents
-            );
-
-        [PreserveSig]
-        new int UnRegisterNotificationCallBack([In] IAMTunerNotification pNotify);
-
-        #endregion
-
-        [PreserveSig]
-        int get_AvailableTVFormats([Out] out AnalogVideoStandard lAnalogVideoStandard);
-
-        [PreserveSig]
-        int get_TVFormat([Out] out AnalogVideoStandard lAnalogVideoStandard);
-
-        [PreserveSig]
-        int AutoTune(
-            [In] int lChannel,
-            [Out] out int plFoundSignal
-            );
-
-        [PreserveSig]
-        int StoreAutoTune();
-
-        [PreserveSig]
-        int get_NumInputConnections([Out] out int plNumInputConnections);
-
-        [PreserveSig]
-        int put_InputType(
-            [In] int lIndex,
-            [In] TunerInputType inputType
-            );
-
-        [PreserveSig]
-        int get_InputType(
-            [In] int lIndex,
-            [Out] out TunerInputType inputType
-            );
-
-        [PreserveSig]
-        int put_ConnectInput([In] int lIndex);
-
-        [PreserveSig]
-        int get_ConnectInput([Out] out int lIndex);
-
-        [PreserveSig]
-        int get_VideoFrequency([Out] out int lFreq);
-
-        [PreserveSig]
-        int get_AudioFrequency([Out] out int lFreq);
     }
 
     [Guid("211A8765-03AC-11d1-8D13-00AA00BD8339"),
@@ -2238,32 +1655,6 @@ namespace DirectShowLib
 
         [PreserveSig]
         int IsTapingPermitted();
-    }
-
-    [Guid("83EC1C30-23D1-11d1-99E6-00A0C9560266"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IAMTVAudio
-    {
-        [PreserveSig]
-        int GetHardwareSupportedTVAudioModes([Out] out TVAudioMode plModes);
-
-        [PreserveSig]
-        int GetAvailableTVAudioModes([Out] out TVAudioMode plModes);
-
-        [PreserveSig]
-        int get_TVAudioMode([Out] out TVAudioMode plMode);
-
-        [PreserveSig]
-        int put_TVAudioMode([In] TVAudioMode lMode);
-
-        [PreserveSig]
-        int RegisterNotificationCallBack(
-            [In] IAMTunerNotification pNotify,
-            [In] AMTVAudioEventType lEvents
-            );
-
-        [PreserveSig]
-        int UnRegisterNotificationCallBack([In] IAMTunerNotification pNotify);
     }
 
     [Guid("83EC1C33-23D1-11d1-99E6-00A0C9560266"),
@@ -3566,6 +2957,615 @@ namespace DirectShowLib
             [In, MarshalAs(UnmanagedType.LPStruct)] Guid guidPropSet,
             [In] int dwPropID,
             [Out] out KSPropertySupport pTypeSupport
+            );
+    }
+
+    [Guid("211A8761-03AC-11d1-8D13-00AA00BD8339"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IAMTuner
+    {
+        [PreserveSig]
+        int put_Channel(
+            [In] int lChannel,
+            [In] AMTunerSubChannel lVideoSubChannel,
+            [In] AMTunerSubChannel lAudioSubChannel
+            );
+
+        [PreserveSig]
+        int get_Channel(
+            [Out] out int plChannel,
+            [Out] out AMTunerSubChannel plVideoSubChannel,
+            [Out] out AMTunerSubChannel plAudioSubChannel
+            );
+
+        [PreserveSig]
+        int ChannelMinMax(
+            [Out] out int lChannelMin,
+            [Out] out int lChannelMax
+            );
+
+        [PreserveSig]
+        int put_CountryCode([In] int lCountryCode);
+
+        [PreserveSig]
+        int get_CountryCode([Out] out int plCountryCode);
+
+        [PreserveSig]
+        int put_TuningSpace([In] int lTuningSpace);
+
+        [PreserveSig]
+        int get_TuningSpace([Out] out int plTuningSpace);
+
+        [PreserveSig]
+        int Logon([In] IntPtr hCurrentUser); // HANDLE
+
+        [PreserveSig]
+        int Logout();
+
+        [PreserveSig]
+        int SignalPresent([Out] out AMTunerSignalStrength plSignalStrength);
+
+        [PreserveSig]
+        int put_Mode([In] AMTunerModeType lMode);
+
+        [PreserveSig]
+        int get_Mode([Out] out AMTunerModeType plMode);
+
+        [PreserveSig]
+        int GetAvailableModes([Out] out AMTunerModeType plModes);
+
+        [PreserveSig]
+        int RegisterNotificationCallBack(
+            [In] IAMTunerNotification pNotify,
+            [In] AMTunerEventType lEvents
+            );
+
+        [PreserveSig]
+        int UnRegisterNotificationCallBack([In] IAMTunerNotification pNotify);
+    }
+
+    [Guid("211A8760-03AC-11d1-8D13-00AA00BD8339"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IAMTunerNotification
+    {
+        [PreserveSig]
+        int OnEvent([In] AMTunerEventType Event);
+    }
+
+    [Guid("211A8766-03AC-11d1-8D13-00AA00BD8339"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IAMTVTuner : IAMTuner
+    {
+        #region IAMTuner
+
+        [PreserveSig]
+        new int put_Channel(
+            [In] int lChannel,
+            [In] AMTunerSubChannel lVideoSubChannel,
+            [In] AMTunerSubChannel lAudioSubChannel
+            );
+
+        [PreserveSig]
+        new int get_Channel(
+            [Out] out int plChannel,
+            [Out] out AMTunerSubChannel plVideoSubChannel,
+            [Out] out AMTunerSubChannel plAudioSubChannel
+            );
+
+        [PreserveSig]
+        new int ChannelMinMax(
+            [Out] out int lChannelMin,
+            [Out] out int lChannelMax
+            );
+
+        [PreserveSig]
+        new int put_CountryCode([In] int lCountryCode);
+
+        [PreserveSig]
+        new int get_CountryCode([Out] out int plCountryCode);
+
+        [PreserveSig]
+        new int put_TuningSpace([In] int lTuningSpace);
+
+        [PreserveSig]
+        new int get_TuningSpace([Out] out int plTuningSpace);
+
+        [PreserveSig]
+        new int Logon([In] IntPtr hCurrentUser); // HANDLE
+
+        [PreserveSig]
+        new int Logout();
+
+        [PreserveSig]
+        new int SignalPresent([Out] out AMTunerSignalStrength plSignalStrength);
+
+        [PreserveSig]
+        new int put_Mode([In] AMTunerModeType lMode);
+
+        [PreserveSig]
+        new int get_Mode([Out] out AMTunerModeType plMode);
+
+        [PreserveSig]
+        new int GetAvailableModes([Out] out AMTunerModeType plModes);
+
+        [PreserveSig]
+        new int RegisterNotificationCallBack(
+            [In] IAMTunerNotification pNotify,
+            [In] AMTunerEventType lEvents
+            );
+
+        [PreserveSig]
+        new int UnRegisterNotificationCallBack([In] IAMTunerNotification pNotify);
+
+        #endregion
+
+        [PreserveSig]
+        int get_AvailableTVFormats([Out] out AnalogVideoStandard lAnalogVideoStandard);
+
+        [PreserveSig]
+        int get_TVFormat([Out] out AnalogVideoStandard lAnalogVideoStandard);
+
+        [PreserveSig]
+        int AutoTune(
+            [In] int lChannel,
+            [Out] out int plFoundSignal
+            );
+
+        [PreserveSig]
+        int StoreAutoTune();
+
+        [PreserveSig]
+        int get_NumInputConnections([Out] out int plNumInputConnections);
+
+        [PreserveSig]
+        int put_InputType(
+            [In] int lIndex,
+            [In] TunerInputType inputType
+            );
+
+        [PreserveSig]
+        int get_InputType(
+            [In] int lIndex,
+            [Out] out TunerInputType inputType
+            );
+
+        [PreserveSig]
+        int put_ConnectInput([In] int lIndex);
+
+        [PreserveSig]
+        int get_ConnectInput([Out] out int lIndex);
+
+        [PreserveSig]
+        int get_VideoFrequency([Out] out int lFreq);
+
+        [PreserveSig]
+        int get_AudioFrequency([Out] out int lFreq);
+    }
+
+    [Guid("6a2e0670-28e4-11d0-a18c-00a0c9118956"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IAMVideoControl
+    {
+        [PreserveSig]
+        int GetCaps(
+            [In] IPin pPin,
+            [Out] out VideoControlFlags pCapsFlags
+            );
+
+        [PreserveSig]
+        int SetMode(
+            [In] IPin pPin,
+            [In] VideoControlFlags Mode
+            );
+
+        [PreserveSig]
+        int GetMode(
+            [In] IPin pPin,
+            [Out] out VideoControlFlags Mode
+            );
+
+        [PreserveSig]
+        int GetCurrentActualFrameRate(
+            [In] IPin pPin,
+            [Out] out long ActualFrameRate
+            );
+
+        [PreserveSig]
+        int GetMaxAvailableFrameRate(
+            [In] IPin pPin,
+            [In] int iIndex,
+            [In] Size Dimensions,
+            [Out] out long MaxAvailableFrameRate
+            );
+
+        [PreserveSig]
+        int GetFrameRateList(
+            [In] IPin pPin,
+            [In] int iIndex,
+            [In] Size Dimensions,
+            [Out] out int ListSize,
+            [Out] out IntPtr FrameRates
+            );
+    }
+
+    [Guid("C6E13350-30AC-11d0-A18C-00A0C9118956"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IAMAnalogVideoDecoder
+    {
+        [PreserveSig]
+        int get_AvailableTVFormats([Out] out AnalogVideoStandard lAnalogVideoStandard);
+
+        [PreserveSig]
+        int put_TVFormat([In] AnalogVideoStandard lAnalogVideoStandard);
+
+        [PreserveSig]
+        int get_TVFormat([Out] out AnalogVideoStandard plAnalogVideoStandard);
+
+        [PreserveSig]
+        int get_HorizontalLocked([Out, MarshalAs(UnmanagedType.Bool)] out bool plLocked);
+
+        [PreserveSig]
+        int put_VCRHorizontalLocking([In, MarshalAs(UnmanagedType.Bool)] bool lVCRHorizontalLocking);
+
+        [PreserveSig]
+        int get_VCRHorizontalLocking([Out, MarshalAs(UnmanagedType.Bool)] out bool plVCRHorizontalLocking);
+
+        [PreserveSig]
+        int get_NumberOfLines([Out] out int plNumberOfLines);
+
+        [PreserveSig]
+        int put_OutputEnable([In, MarshalAs(UnmanagedType.Bool)] bool lOutputEnable);
+
+        [PreserveSig]
+        int get_OutputEnable([Out, MarshalAs(UnmanagedType.Bool)] out bool plOutputEnable);
+    }
+
+    [Guid("C6E13360-30AC-11d0-A18C-00A0C9118956"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IAMVideoProcAmp
+    {
+        [PreserveSig]
+        int GetRange(
+            [In] VideoProcAmpProperty Property,
+            [Out] out int pMin,
+            [Out] out int pMax,
+            [Out] out int pSteppingDelta,
+            [Out] out int pDefault,
+            [Out] out VideoProcAmpFlags pCapsFlags
+            );
+
+        [PreserveSig]
+        int Set(
+            [In] VideoProcAmpProperty Property,
+            [In] int lValue,
+            [In] VideoProcAmpFlags Flags
+            );
+
+        [PreserveSig]
+        int Get(
+            [In] VideoProcAmpProperty Property,
+            [Out] out int lValue,
+            [Out] out VideoProcAmpFlags Flags
+            );
+    }
+
+    [Guid("54C39221-8380-11d0-B3F0-00AA003761C5"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IAMAudioInputMixer
+    {
+        [PreserveSig]
+        int put_Enable([In, MarshalAs(UnmanagedType.Bool)] bool fEnable);
+
+        [PreserveSig]
+        int get_Enable([Out, MarshalAs(UnmanagedType.Bool)] out bool pfEnable);
+
+        [PreserveSig]
+        int put_Mono([In, MarshalAs(UnmanagedType.Bool)] bool fMono);
+
+        [PreserveSig]
+        int get_Mono([Out, MarshalAs(UnmanagedType.Bool)] out bool pfMono);
+
+        [PreserveSig]
+        int put_MixLevel([In] double Level);
+
+        [PreserveSig]
+        int get_MixLevel([Out] out double pLevel);
+
+        [PreserveSig]
+        int put_Pan([In] double Pan);
+
+        [PreserveSig]
+        int get_Pan([Out] out double pPan);
+
+        [PreserveSig]
+        int put_Loudness([In, MarshalAs(UnmanagedType.Bool)] bool fLoudness);
+
+        [PreserveSig]
+        int get_Loudness([Out, MarshalAs(UnmanagedType.Bool)] out bool pfLoudness);
+
+        [PreserveSig]
+        int put_Treble([In] double Treble);
+
+        [PreserveSig]
+        int get_Treble([Out] out double pTreble);
+
+        [PreserveSig]
+        int get_TrebleRange([Out] out double pRange);
+
+        [PreserveSig]
+        int put_Bass([In] double Bass);
+
+        [PreserveSig]
+        int get_Bass([Out] out double pBass);
+
+        [PreserveSig]
+        int get_BassRange([Out] out double pRange);
+    }
+
+    [Guid("670d1d20-a068-11d0-b3f0-00aa003761c5"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IAMCopyCaptureFileProgress
+    {
+        [PreserveSig]
+        int Progress(int iProgress);
+    }
+
+    [Guid("C6E13380-30AC-11d0-A18C-00A0C9118956"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IAMCrossbar
+    {
+        [PreserveSig]
+        int get_PinCounts(
+            [Out] out int OutputPinCount,
+            [Out] out int InputPinCount
+            );
+
+        [PreserveSig]
+        int CanRoute(
+            [In] int OutputPinIndex,
+            [In] int InputPinIndex
+            );
+
+        [PreserveSig]
+        int Route(
+            [In] int OutputPinIndex,
+            [In] int InputPinIndex
+            );
+
+        [PreserveSig]
+        int get_IsRoutedTo(
+            [In] int OutputPinIndex,
+            [Out] out int InputPinIndex
+            );
+
+        [PreserveSig]
+        int get_CrossbarPinInfo(
+            [In, MarshalAs(UnmanagedType.Bool)] bool IsInputPin,
+            [In] int PinIndex,
+            [Out] out int PinIndexRelated,
+            [Out] out PhysicalConnectorType PhysicalType
+            );
+    }
+
+    [Guid("C6E13344-30AC-11d0-A18C-00A0C9118956"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IAMDroppedFrames
+    {
+        [PreserveSig]
+        int GetNumDropped([Out] out int plDropped);
+
+        [PreserveSig]
+        int GetNumNotDropped([Out] out int plNotDropped);
+
+        [PreserveSig]
+        int GetDroppedInfo(
+            [In] int lSize,
+            [Out, MarshalAs(UnmanagedType.LPArray)] out int[] plArray,
+            [Out] out int plNumCopied
+            );
+
+        [PreserveSig]
+        int GetAverageFrameSize([Out] out int plAverageSize);
+    }
+
+    [Guid("83EC1C30-23D1-11d1-99E6-00A0C9560266"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IAMTVAudio
+    {
+        [PreserveSig]
+        int GetHardwareSupportedTVAudioModes([Out] out TVAudioMode plModes);
+
+        [PreserveSig]
+        int GetAvailableTVAudioModes([Out] out TVAudioMode plModes);
+
+        [PreserveSig]
+        int get_TVAudioMode([Out] out TVAudioMode plMode);
+
+        [PreserveSig]
+        int put_TVAudioMode([In] TVAudioMode lMode);
+
+        [PreserveSig]
+        int RegisterNotificationCallBack(
+            [In] IAMTunerNotification pNotify,
+            [In] AMTVAudioEventType lEvents
+            );
+
+        [PreserveSig]
+        int UnRegisterNotificationCallBack([In] IAMTunerNotification pNotify);
+    }
+
+    [Guid("D8D715A3-6E5E-11D0-B3F0-00AA003761C5"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IAMVfwCompressDialogs
+    {
+        [PreserveSig]
+        int ShowDialog(
+            [In] VfwCompressDialogs iDialog,
+            [In] IntPtr hwnd 
+            );
+
+        [PreserveSig]
+        int GetState(
+            [In] IntPtr pState,
+            [In, Out] ref int pcbState
+            );
+
+        [PreserveSig]
+        int SetState(
+            [In] IntPtr pState,
+            [In] int pcbState
+            );
+
+        [PreserveSig]
+        int SendDriverMessage(
+            [In] int uMsg,
+            [In] int dw1,
+            [In] int dw2
+            );
+    }
+
+    [Guid("C6E13343-30AC-11d0-A18C-00A0C9118956"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IAMVideoCompression
+    {
+        [PreserveSig]
+        int put_KeyFrameRate([In] int KeyFrameRate);
+
+        [PreserveSig]
+        int get_KeyFrameRate([Out] out int pKeyFrameRate);
+
+        [PreserveSig]
+        int put_PFramesPerKeyFrame([In] int PFramesPerKeyFrame);
+
+        [PreserveSig]
+        int get_PFramesPerKeyFrame([Out] out int pPFramesPerKeyFrame);
+
+        [PreserveSig]
+        int put_Quality([In] double Quality);
+
+        [PreserveSig]
+        int get_Quality([Out] out double pQuality);
+
+        [PreserveSig]
+        int put_WindowSize([In] long WindowSize);
+
+        [PreserveSig]
+        int get_WindowSize([Out] out long pWindowSize);
+
+        [PreserveSig]
+        int GetInfo(
+            [MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszVersion, // WCHAR *
+            [Out] out int pcbVersion,
+            [MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszDescription, // LPWSTR
+            [Out] out int pcbDescription,
+            [Out] out int pDefaultKeyFrameRate,
+            [Out] out int pDefaultPFramesPerKey,
+            [Out] out double pDefaultQuality,
+            [Out] out CompressionCaps pCapabilities
+            );
+
+        [PreserveSig]
+        int OverrideKeyFrame([In] int FrameNumber);
+
+        [PreserveSig]
+        int OverrideFrameSize(
+            [In] int FrameNumber,
+            [In] int Size
+            );
+    }
+
+    [Guid("D8D715A0-6E5E-11D0-B3F0-00AA003761C5"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IAMVfwCaptureDialogs
+    {
+        [PreserveSig]
+        int HasDialog([In] VfwCaptureDialogs iDialog);
+
+        [PreserveSig]
+        int ShowDialog(
+            [In] VfwCaptureDialogs iDialog,
+            [In] IntPtr hwnd // HWND *
+            );
+
+        [PreserveSig]
+        int SendDriverMessage(
+            [In] VfwCaptureDialogs iDialog,
+            [In] int uMsg,
+            [In] int dw1,
+            [In] int dw2
+            );
+    }
+
+    [Guid("93E5A4E0-2D50-11d2-ABFA-00A0C9C6E38D"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface ICaptureGraphBuilder2
+    {
+        [PreserveSig]
+        int SetFiltergraph([In] IGraphBuilder pfg);
+
+        [PreserveSig]
+        int GetFiltergraph([Out] out IGraphBuilder ppfg);
+
+        [PreserveSig]
+        int SetOutputFileName(
+            [In, MarshalAs(UnmanagedType.LPStruct)] Guid pType,
+            [In, MarshalAs(UnmanagedType.LPWStr)] string lpstrFile,
+            [Out] out IBaseFilter ppbf,
+            [Out] out IFileSinkFilter ppSink
+            );
+
+        [PreserveSig]
+        int FindInterface(
+            [In, MarshalAs(UnmanagedType.LPStruct)] DsGuid pCategory,
+            [In, MarshalAs(UnmanagedType.LPStruct)] DsGuid pType,
+            [In] IBaseFilter pbf,
+            [In, MarshalAs(UnmanagedType.LPStruct)] Guid riid,
+            [Out, MarshalAs(UnmanagedType.IUnknown)] out object ppint
+            );
+
+        [PreserveSig]
+        int RenderStream(
+            [In, MarshalAs(UnmanagedType.LPStruct)] DsGuid PinCategory,
+            [In, MarshalAs(UnmanagedType.LPStruct)] DsGuid MediaType,
+            [In, MarshalAs(UnmanagedType.IUnknown)] object pSource,
+            [In] IBaseFilter pfCompressor,
+            [In] IBaseFilter pfRenderer
+            );
+
+        [PreserveSig]
+        int ControlStream(
+            [In, MarshalAs(UnmanagedType.LPStruct)] Guid PinCategory,
+            [In, MarshalAs(UnmanagedType.LPStruct)] DsGuid MediaType,
+            [In, MarshalAs(UnmanagedType.Interface)] IBaseFilter pFilter,
+            [In] DsLong pstart,
+            [In] DsLong pstop,
+            [In] short wStartCookie,
+            [In] short wStopCookie
+            );
+
+        [PreserveSig]
+        int AllocCapFile(
+            [In, MarshalAs(UnmanagedType.LPWStr)] string lpstrFile,
+            [In] long dwlSize
+            );
+
+        [PreserveSig]
+        int CopyCaptureFile(
+            [In, MarshalAs(UnmanagedType.LPWStr)] string lpwstrOld,
+            [In, MarshalAs(UnmanagedType.LPWStr)] string lpwstrNew,
+            [In, MarshalAs(UnmanagedType.Bool)] bool fAllowEscAbort,
+            [In] IAMCopyCaptureFileProgress pFilter
+            );
+
+        [PreserveSig]
+        int FindPin(
+            [In, MarshalAs(UnmanagedType.IUnknown)] object pSource,
+            [In] PinDirection pindir,
+            [In, MarshalAs(UnmanagedType.LPStruct)] DsGuid PinCategory,
+            [In, MarshalAs(UnmanagedType.LPStruct)] DsGuid MediaType,
+            [In, MarshalAs(UnmanagedType.Bool)] bool fUnconnected,
+            [In] int ZeroBasedIndex,
+            [Out, MarshalAs(UnmanagedType.Interface)] out IPin ppPin
             );
     }
 
