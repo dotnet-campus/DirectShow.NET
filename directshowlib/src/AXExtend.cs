@@ -1934,7 +1934,7 @@ namespace DirectShowLib
             [In] int iIndex,
             [In] Size Dimensions,
             [Out] out int ListSize,
-            [In, Out] IntPtr FrameRates
+            [Out] out IntPtr FrameRates
             );
     }
 

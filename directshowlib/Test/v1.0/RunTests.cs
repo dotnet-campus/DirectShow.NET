@@ -162,11 +162,11 @@ namespace DirectShowLib.Test
             //IAMDroppedFramesTest dpw44 = new IAMDroppedFramesTest();
             //dpw44.DoTests();
 
-            //IAMVideoControlTest dpw45 = new IAMVideoControlTest();
-            //dpw45.DoTests();
+            IAMVideoControlTest dpw45 = new IAMVideoControlTest();
+            dpw45.DoTests();
 
-            IMediaControlTest k01 = new IMediaControlTest();
-            k01.DoTests();
+            //IMediaControlTest k01 = new IMediaControlTest();
+            //k01.DoTests();
 
             //IAMAnalogVideoDecoderTest dpw46 = new IAMAnalogVideoDecoderTest();
             //dpw46.DoTests();
@@ -174,11 +174,14 @@ namespace DirectShowLib.Test
             //IEnumMediaTypesTest k02 = new IEnumMediaTypesTest();
             //k02.DoTests();
 
-            //IAMAnalogVideoDecoderTest dpw46 = new IAMAnalogVideoDecoderTest();
+            //IAMAnalogVideoDecoderTest dpw47 = new IAMAnalogVideoDecoderTest();
             //dpw46.DoTests();
             
             //IAMTVTunerTest en03 = new IAMTVTunerTest();
             //en03.DoTests();  
+
+            IAMTVAudioTest dpw48 = new IAMTVAudioTest();
+            dpw48.DoTests();
         }
     }
 }
