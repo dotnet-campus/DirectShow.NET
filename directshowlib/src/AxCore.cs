@@ -232,28 +232,6 @@ namespace DirectShowLib
 
 #if ALLOW_UNTESTED_INTERFACES
 
-    [Guid("89c31040-846b-11ce-97d3-00aa0055595a"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IEnumMediaTypes
-    {
-        [PreserveSig]
-        int Next(
-            [In] int cMediaTypes,
-            [In, Out, MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(EMTMarshaler))] AMMediaType[] ppMediaTypes,
-            [Out] out int pcFetched
-            );
-
-        [PreserveSig]
-        int Skip([In] int cMediaTypes);
-
-        [PreserveSig]
-        int Reset();
-
-        [PreserveSig]
-        int Clone([Out] out IEnumMediaTypes ppEnum);
-    }
-
-
     [Guid("36b73885-c2c8-11cf-8b46-00805f6cef60"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IReferenceClock2 : IReferenceClock
@@ -914,6 +892,26 @@ namespace DirectShowLib
         int Unadvise([In] int dwAdviseCookie);
     }
 
+    [Guid("89c31040-846b-11ce-97d3-00aa0055595a"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IEnumMediaTypes
+    {
+        [PreserveSig]
+        int Next(
+            [In] int cMediaTypes,
+            [In, Out, MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(EMTMarshaler))] AMMediaType[] ppMediaTypes,
+            [Out] out int pcFetched
+            );
+
+        [PreserveSig]
+        int Skip([In] int cMediaTypes);
+
+        [PreserveSig]
+        int Reset();
+
+        [PreserveSig]
+        int Clone([Out] out IEnumMediaTypes ppEnum);
+    }
 
     #endregion
 }
