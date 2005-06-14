@@ -1,6 +1,9 @@
-// $Id: IMediaControlTest.cs,v 1.3 2005-06-09 13:55:03 kawaic Exp $
-// $Author: kawaic $
-// $Revision: 1.3 $
+// $Id: IMediaControlTest.cs,v 1.4 2005-06-14 00:32:28 snarfle Exp $
+// $Author: snarfle $
+// $Revision: 1.4 $
+
+// AddSourceFilter, get_FilterCollection, get_RegFilterCollection are Automation interfaces
+// and are not tested.
 using System.Runtime.InteropServices;
 using DirectShowLib;
 using NUnit.Framework;
@@ -14,6 +17,15 @@ namespace DirectShowLib.Test
 	public class IMediaControlTest : BaseTest
 	{
 		private const string testfile = @"foo.avi";
+
+        public void DoTests()
+        {
+            TestRunStop();
+            TestPause();
+            TestStopWhenReady();
+            TestRenderFile();
+            TestGetState();
+        }
 
 		[Test]
 		public void TestRunStop()

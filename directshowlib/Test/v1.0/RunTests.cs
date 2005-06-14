@@ -165,8 +165,8 @@ namespace DirectShowLib.Test
             //IAMVideoControlTest dpw45 = new IAMVideoControlTest();
             //dpw45.DoTests();
 
-            //IMediaControlTest k01 = new IMediaControlTest();
-            //k01.TestStopWhenReady();
+            IMediaControlTest k01 = new IMediaControlTest();
+            k01.DoTests();
 
             //IAMAnalogVideoDecoderTest dpw46 = new IAMAnalogVideoDecoderTest();
             //dpw46.DoTests();
@@ -177,8 +177,8 @@ namespace DirectShowLib.Test
             //IAMAnalogVideoDecoderTest dpw46 = new IAMAnalogVideoDecoderTest();
             //dpw46.DoTests();
             
-            IAMTVTunerTest en03 = new IAMTVTunerTest();
-            en03.DoTests();  
+            //IAMTVTunerTest en03 = new IAMTVTunerTest();
+            //en03.DoTests();  
         }
     }
 }
