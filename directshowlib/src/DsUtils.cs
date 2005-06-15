@@ -173,62 +173,119 @@ namespace DirectShowLib
 	[StructLayout(LayoutKind.Sequential)]
 	public class DsLong
 	{
-		public DsLong(long Value)
+    private long Value;
+    
+    public DsLong(long Value)
 		{
 			this.Value = Value;
 		}
 
-		public long Value;
+    public override string ToString()
+    {
+      return this.Value.ToString();
+    }
+
+    public override int GetHashCode()
+    {
+      return this.Value.GetHashCode();
+    }
+
+    public static implicit operator long(DsLong l)
+    {
+      return l.Value;
+    }
+
+    public static implicit operator DsLong(long l)
+    {
+      return new DsLong(l);
+    }
+
+    public long ToInt64()
+    {
+      return this.Value;
+    }
+
+    public static DsLong FromInt64(long l)
+    {
+      return new DsLong(l);
+    }
 	}
 
-    [StructLayout(LayoutKind.Explicit)]
-    public class DsGuid
+  /// <summary>
+  /// DsGuid is a wrapper class around a System.Guid value type.
+  /// </summary>
+  /// <remarks>
+  /// This class is necessary to enable null paramters passing.
+  /// </remarks>
+  [StructLayout(LayoutKind.Explicit)]
+  public class DsGuid
+  {
+    [FieldOffset(0)]
+    private Guid guid;
+
+    public static readonly DsGuid Empty = Guid.Empty;
+
+    /// <summary>
+    /// Empty constructor. Initialize it with Guid.Empty
+    /// </summary>
+    public DsGuid()
     {
-        [FieldOffset(0)]
-        private Guid guid;
-
-        public static readonly DsGuid Empty = Guid.Empty;
-
-        public DsGuid()
-        {
-            this.guid = Guid.Empty;
-        }
-
-        public DsGuid(string g)
-        {
-            this.guid = new Guid(g);
-        }
-
-        public DsGuid(Guid g)
-        {
-            this.guid = g;
-        }
-
-        public override string ToString()
-        {
-            return this.guid.ToString();
-        }
-
-        public string ToString(string format)
-        {
-            return this.guid.ToString(format);
-        }
-
-        public override int GetHashCode()
-        {
-            return this.guid.GetHashCode();
-        }
-
-        public static implicit operator Guid(DsGuid g)
-        {
-            return g.guid;
-        }
-
-        public static implicit operator DsGuid(Guid g)
-        {
-            return new DsGuid(g);
-        }
+      this.guid = Guid.Empty;
     }
+
+    /// <summary>
+    /// Constructor
+    /// </summary>
+    /// <param name="g">A valid Guid as string</param>
+    public DsGuid(string g)
+    {
+      this.guid = new Guid(g);
+    }
+
+    /// <summary>
+    /// Constructor
+    /// </summary>
+    /// <param name="g">A Guid value type</param>
+    public DsGuid(Guid g)
+    {
+      this.guid = g;
+    }
+
+    public override string ToString()
+    {
+      return this.guid.ToString();
+    }
+
+    public string ToString(string format)
+    {
+      return this.guid.ToString(format);
+    }
+
+    public override int GetHashCode()
+    {
+      return this.guid.GetHashCode();
+    }
+
+    public static implicit operator Guid(DsGuid g)
+    {
+      return g.guid;
+    }
+
+    public static implicit operator DsGuid(Guid g)
+    {
+      return new DsGuid(g);
+    }
+
+    public Guid ToGuid()
+    {
+      return this.guid;
+    }
+
+    public static DsGuid FromGuid(Guid g)
+    {
+      return new DsGuid(g);
+    }
+  }
 
     #endregion
 
