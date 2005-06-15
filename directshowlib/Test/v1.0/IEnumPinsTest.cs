@@ -1,6 +1,6 @@
-// $Id: IEnumPinsTest.cs,v 1.2 2005-05-24 17:27:22 kawaic Exp $
-// $Author: kawaic $
-// $Revision: 1.2 $
+// $Id: IEnumPinsTest.cs,v 1.3 2005-06-15 06:08:41 snarfle Exp $
+// $Author: snarfle $
+// $Revision: 1.3 $
 using System.Runtime.InteropServices;
 using NUnit.Framework;
 
@@ -12,7 +12,15 @@ namespace DirectShowLib.Test
 	[TestFixture]
 	public class IEnumPinsTest
 	{
-		[Test]
+        public void DoTests()
+        {
+            TestNext();
+            TestReset();
+            TestSkip();
+            TestClone();
+        }
+
+        [Test]
 		public void TestNext()
 		{
 			IEnumPins ppEnum = GetTestEnum();

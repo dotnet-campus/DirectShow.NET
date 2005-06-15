@@ -1,6 +1,6 @@
-// $Id: IPinTest.cs,v 1.9 2005-05-13 06:37:13 snarfle Exp $
+// $Id: IPinTest.cs,v 1.10 2005-06-15 06:08:42 snarfle Exp $
 // $Author: snarfle $
-// $Revision: 1.9 $
+// $Revision: 1.10 $
 using System;
 using System.Runtime.InteropServices;
 using NUnit.Framework;
@@ -16,6 +16,16 @@ namespace DirectShowLib.Test
 	[TestFixture]
 	public class IPinTest
 	{
+        public void DoTests()
+        {
+            TestQueryDirection();
+            TestQueryPinInfo();
+            TestQueryId();
+            TestEnumMediaTypes();
+            TestQueryInternalConnections();
+            TestConnectDisconnectConnectedToConnectionMediaType();
+        }
+
 		/// <summary>
 		/// 
 		/// </summary>
