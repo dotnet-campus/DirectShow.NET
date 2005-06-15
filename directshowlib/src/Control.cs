@@ -93,7 +93,7 @@ namespace DirectShowLib
     public enum WindowStyle
     {
         Overlapped     =  0x00000000,
-        Popup       =     -2147483648, // Done this way for vb
+        Popup       =     unchecked((int)0x80000000), // enum can't be uint for VB
         Child       =     0x40000000,
         Minimize    =     0x20000000,
         Visible     =     0x10000000,
