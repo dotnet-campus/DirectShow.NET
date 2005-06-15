@@ -69,7 +69,7 @@ namespace DirectShowLib.Dvd
 
     #region Declarations
 
-#if ALLOW_UNTESTED_STRUCTS
+#if ALLOW_UNTESTED_INTERFACES
     /// <summary>
     /// From DVD_ATR
     /// </summary>

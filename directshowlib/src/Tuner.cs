@@ -68,7 +68,7 @@ namespace DirectShowLib.BDA
 
 	#region Declarations
 
-#if ALLOW_UNTESTED_STRUCTS
+#if ALLOW_UNTESTED_INTERFACES
 	/// <summary>
 	/// From unnamed enum DISPID_TUNER_TS_*
 	/// </summary>

@@ -68,7 +68,7 @@ namespace DirectShowLib
 
 	#region Declarations
 
-#if ALLOW_UNTESTED_STRUCTS
+#if ALLOW_UNTESTED_INTERFACES
 	/// <summary>
 	/// From KSMULTIPLE_ITEM - Note that data is returned in the memory IMMEDIATELY following this struct.
 	/// The Size parm indicates ths size of the KSMultipleItem plus the extra bytes.

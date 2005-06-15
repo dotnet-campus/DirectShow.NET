@@ -68,7 +68,7 @@ namespace DirectShowLib
 
 	#region Declarations
 
-#if ALLOW_UNTESTED_STRUCTS
+#if ALLOW_UNTESTED_INTERFACES
 	/// <summary>
 	/// From _AM_PIN_FLOW_CONTROL_BLOCK_FLAGS
 	/// </summary>

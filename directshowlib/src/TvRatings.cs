@@ -68,7 +68,7 @@ namespace DirectShowLib.BDA
 
 	#region Declarations
 
-#if ALLOW_UNTESTED_STRUCTS
+#if ALLOW_UNTESTED_INTERFACES
 
 	/// <summary>
 	/// From EnTvRat_System

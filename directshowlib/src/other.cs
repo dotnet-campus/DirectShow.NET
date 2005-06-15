@@ -69,7 +69,7 @@ namespace DirectShowLib
 
     #region Declarations
 
-#if ALLOW_UNTESTED_STRUCTS
+#if ALLOW_UNTESTED_INTERFACES
 
     /// <summary>
     /// From AM_MPEG_AUDIO_DUAL_* defines

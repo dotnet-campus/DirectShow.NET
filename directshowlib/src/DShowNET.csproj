@@ -17,7 +17,7 @@
                 DelaySign = "false"
                 OutputType = "Library"
                 PreBuildEvent = ""
-                PostBuildEvent = "copy $(SolutionDir)Resources\foo.avi ."
+                PostBuildEvent = ""
                 RootNamespace = "DirectShowLib"
                 RunPostBuildEvent = "OnBuildSuccess"
                 StartupObject = ""
@@ -28,7 +28,7 @@
                     BaseAddress = "285212672"
                     CheckForOverflowUnderflow = "false"
                     ConfigurationOverrideFile = ""
-                    DefineConstants = "DEBUG;TRACE;ALLOW_UNTESTED_STRUCTS;ALLOW_UNTESTED_INTERFACES;ALLOW_UNTESTED_STRUCTS;ALLOW_UNTESTED_CODE"
+                    DefineConstants = "DEBUG;TRACE;ALLOW_UNTESTED_STRUCTS;ALLOW_UNTESTED_INTERFACES"
                     DocumentationFile = ""
                     DebugSymbols = "true"
                     FileAlignment = "4096"
@@ -83,11 +83,6 @@
                     Name = "System.Drawing"
                     AssemblyName = "System.Drawing"
                     HintPath = "D:\WINDOWS\Microsoft.NET\Framework\v1.0.3705\System.Drawing.dll"
-                />
-                <Reference
-                    Name = "nunit.framework"
-                    AssemblyName = "nunit.framework"
-                    HintPath = "Lib\NUnit\nunit.framework.dll"
                 />
             </References>
         </Build>
