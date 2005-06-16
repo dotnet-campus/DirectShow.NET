@@ -130,7 +130,7 @@ namespace DirectShowLib.Samples
       }
       catch
       {
-        MessageBox.Show("An unrecoverable error has occure.");
+        MessageBox.Show("An unrecoverable error has occurred.");
       }
     }
 

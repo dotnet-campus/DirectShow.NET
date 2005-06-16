@@ -112,6 +112,10 @@
                     DependentUpon = "Form1.cs"
                     BuildAction = "EmbeddedResource"
                 />
+                <File
+                    RelPath = "readme.txt"
+                    BuildAction = "None"
+                />
             </Include>
         </Files>
     </CSHARP>

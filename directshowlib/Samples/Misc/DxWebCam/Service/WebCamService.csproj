@@ -104,6 +104,10 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "readme.txt"
+                    BuildAction = "Content"
+                />
+                <File
                     RelPath = "TcpServer.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

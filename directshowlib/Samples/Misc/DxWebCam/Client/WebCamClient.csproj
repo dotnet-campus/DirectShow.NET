@@ -93,6 +93,10 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "readme.txt"
+                    BuildAction = "None"
+                />
+                <File
                     RelPath = "WebClient.cs"
                     SubType = "Form"
                     BuildAction = "Compile"

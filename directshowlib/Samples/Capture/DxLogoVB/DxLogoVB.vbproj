@@ -115,6 +115,10 @@
                     DependentUpon = "Form1.vb"
                     BuildAction = "EmbeddedResource"
                 />
+                <File
+                    RelPath = "readme.txt"
+                    BuildAction = "None"
+                />
             </Include>
         </Files>
     </VisualBasic>
