@@ -134,16 +134,31 @@ namespace DirectShowLib
     }
 	}
 
-	[StructLayout(LayoutKind.Sequential)]
+  /// <summary>
+  /// DirectShowLib.DsLong is a wrapper class around a <see cref="System.Int64"/> value type.
+  /// </summary>
+  /// <remarks>
+  /// This class is necessary to enable null paramters passing.
+  /// </remarks>
+  [StructLayout(LayoutKind.Sequential)]
 	public class DsLong
 	{
     private long Value;
     
+    /// <summary>
+    /// Constructor
+    /// Initialize a new instance of DirectShowLib.DsLong with the Value parameter
+    /// </summary>
+    /// <param name="Value">Value to assign to this new instance</param>
     public DsLong(long Value)
 		{
 			this.Value = Value;
 		}
 
+    /// <summary>
+    /// Get a string representation of this DirectShowLib.DsLong Instance.
+    /// </summary>
+    /// <returns>A string representing this instance</returns>
     public override string ToString()
     {
       return this.Value.ToString();
@@ -154,21 +169,58 @@ namespace DirectShowLib
       return this.Value.GetHashCode();
     }
 
+    /// <summary>
+    /// Define implicit cast between DirectShowLib.DsLong and System.Int64 for languages supporting this feature.
+    /// VB.Net doesn't support implicit cast. <see cref="DirectShowLib.DsLong.ToInt64"/> for similar fonctionality.
+    /// <code>
+    ///   // Define a new DsLong instance
+    ///   DsLong dsL = new DsLong(9876543210);
+    ///   // Do implicit cast between DsLong and Int64
+    ///   long l = dsL;
+    ///
+    ///   Console.WriteLine(l.ToString());
+    /// </code>
+    /// </summary>
+    /// <param name="g">DirectShowLib.DsLong to be cast</param>
+    /// <returns>A casted System.Int64</returns>
     public static implicit operator long(DsLong l)
     {
       return l.Value;
     }
 
+    /// <summary>
+    /// Define implicit cast between System.Int64 and DirectShowLib.DsLong for languages supporting this feature.
+    /// VB.Net doesn't support implicit cast. <see cref="DirectShowLib.DsGuid.FromInt64"/> for similar fonctionality.
+    /// <code>
+    ///   // Define a new Int64 instance
+    ///   long l = 9876543210;
+    ///   // Do implicit cast between Int64 and DsLong
+    ///   DsLong dsl = l;
+    ///
+    ///   Console.WriteLine(dsl.ToString());
+    /// </code>
+    /// </summary>
+    /// <param name="g">System.Int64 to be cast</param>
+    /// <returns>A casted DirectShowLib.DsLong</returns>
     public static implicit operator DsLong(long l)
     {
       return new DsLong(l);
     }
 
+    /// <summary>
+    /// Get the System.Int64 equivalent to this DirectShowLib.DsLong instance.
+    /// </summary>
+    /// <returns>A System.Int64</returns>
     public long ToInt64()
     {
       return this.Value;
     }
 
+    /// <summary>
+    /// Get a new DirectShowLib.DsLong instance for a given System.Int64
+    /// </summary>
+    /// <param name="g">The System.Int64 to wrap into a DirectShowLib.DsLong</param>
+    /// <returns>A new instance of DirectShowLib.DsLong</returns>
     public static DsLong FromInt64(long l)
     {
       return new DsLong(l);
@@ -176,7 +228,7 @@ namespace DirectShowLib
 	}
 
   /// <summary>
-  /// DsGuid is a wrapper class around a System.Guid value type.
+  /// DirectShowLib.DsGuid is a wrapper class around a System.Guid value type.
   /// </summary>
   /// <remarks>
   /// This class is necessary to enable null paramters passing.
@@ -190,7 +242,8 @@ namespace DirectShowLib
     public static readonly DsGuid Empty = Guid.Empty;
 
     /// <summary>
-    /// Empty constructor. Initialize it with Guid.Empty
+    /// Empty constructor. 
+    /// Initialize it with System.Guid.Empty
     /// </summary>
     public DsGuid()
     {
@@ -198,28 +251,39 @@ namespace DirectShowLib
     }
 
     /// <summary>
-    /// Constructor
+    /// Constructor.
+    /// Initialize this instance with a given System.Guid string representation.
     /// </summary>
-    /// <param name="g">A valid Guid as string</param>
+    /// <param name="g">A valid System.Guid as string</param>
     public DsGuid(string g)
     {
       this.guid = new Guid(g);
     }
 
     /// <summary>
-    /// Constructor
+    /// Constructor.
+    /// Initialize this instance with a given System.Guid.
     /// </summary>
-    /// <param name="g">A Guid value type</param>
+    /// <param name="g">A System.Guid value type</param>
     public DsGuid(Guid g)
     {
       this.guid = g;
     }
 
-    public override string ToString()
+    /// <summary>
+    /// Get a string representation of this DirectShowLib.DsGuid Instance.
+    /// </summary>
+    /// <returns>A string representing this instance</returns>
+     public override string ToString()
     {
       return this.guid.ToString();
     }
 
+    /// <summary>
+    /// Get a string representation of this DirectShowLib.DsGuid Instance with a specific format.
+    /// </summary>
+    /// <param name="format"><see cref="System.Guid.ToString"/> for a description of the format parameter.</param>
+    /// <returns>A string representing this instance according to the format parameter</returns>
     public string ToString(string format)
     {
       return this.guid.ToString(format);
@@ -230,21 +294,58 @@ namespace DirectShowLib
       return this.guid.GetHashCode();
     }
 
+    /// <summary>
+    /// Define implicit cast between DirectShowLib.DsGuid and System.Guid for languages supporting this feature.
+    /// VB.Net doesn't support implicit cast. <see cref="DirectShowLib.DsGuid.ToGuid"/> for similar fonctionality.
+    /// <code>
+    ///   // Define a new DsGuid instance
+    ///   DsGuid dsG = new DsGuid("{33D57EBF-7C9D-435e-A15E-D300B52FBD91}");
+    ///   // Do implicit cast between DsGuid and Guid
+    ///   Guid g = dsG;
+    ///
+    ///   Console.WriteLine(g.ToString());
+    /// </code>
+    /// </summary>
+    /// <param name="g">DirectShowLib.DsGuid to be cast</param>
+    /// <returns>A casted System.Guid</returns>
     public static implicit operator Guid(DsGuid g)
     {
       return g.guid;
     }
 
+    /// <summary>
+    /// Define implicit cast between System.Guid and DirectShowLib.DsGuid for languages supporting this feature.
+    /// VB.Net doesn't support implicit cast. <see cref="DirectShowLib.DsGuid.FromGuid"/> for similar fonctionality.
+    /// <code>
+    ///   // Define a new Guid instance
+    ///   Guid g = new Guid("{B9364217-366E-45f8-AA2D-B0ED9E7D932D}");
+    ///   // Do implicit cast between Guid and DsGuid
+    ///   DsGuid dsG = g;
+    ///
+    ///   Console.WriteLine(dsG.ToString());
+    /// </code>
+    /// </summary>
+    /// <param name="g">System.Guid to be cast</param>
+    /// <returns>A casted DirectShowLib.DsGuid</returns>
     public static implicit operator DsGuid(Guid g)
     {
       return new DsGuid(g);
     }
 
+    /// <summary>
+    /// Get the System.Guid equivalent to this DirectShowLib.DsGuid instance.
+    /// </summary>
+    /// <returns>A System.Guid</returns>
     public Guid ToGuid()
     {
       return this.guid;
     }
 
+    /// <summary>
+    /// Get a new DirectShowLib.DsGuid instance for a given System.Guid
+    /// </summary>
+    /// <param name="g">The System.Guid to wrap into a DirectShowLib.DsGuid</param>
+    /// <returns>A new instance of DirectShowLib.DsGuid</returns>
     public static DsGuid FromGuid(Guid g)
     {
       return new DsGuid(g);
