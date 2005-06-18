@@ -59,302 +59,302 @@ namespace DirectShowLib
     /// From BITMAPINFOHEADER
     /// </summary>
     [StructLayout(LayoutKind.Sequential, Pack=2)]
-	public struct BitmapInfoHeader
-	{
-		public int Size;
-		public int Width;
-		public int Height;
-		public short Planes;
-		public short BitCount;
-		public int Compression;
-		public int ImageSize;
-		public int XPelsPerMeter;
-		public int YPelsPerMeter;
-		public int ClrUsed;
-		public int ClrImportant;
-	}
+    public struct BitmapInfoHeader
+    {
+        public int Size;
+        public int Width;
+        public int Height;
+        public short Planes;
+        public short BitCount;
+        public int Compression;
+        public int ImageSize;
+        public int XPelsPerMeter;
+        public int YPelsPerMeter;
+        public int ClrUsed;
+        public int ClrImportant;
+    }
 
     /// <summary>
     /// From DDPIXELFORMAT
     /// </summary>
-	[StructLayout(LayoutKind.Explicit)]
-	public struct DDPixelFormat
-	{
-		[FieldOffset(0)] public int dwSize;
-		[FieldOffset(4)] public int dwFlags;
-		[FieldOffset(8)] public int dwFourCC;
+    [StructLayout(LayoutKind.Explicit)]
+    public struct DDPixelFormat
+    {
+        [FieldOffset(0)] public int dwSize;
+        [FieldOffset(4)] public int dwFlags;
+        [FieldOffset(8)] public int dwFourCC;
 
-		[FieldOffset(12)] public int dwRGBBitCount;
-		[FieldOffset(12)] public int dwYUVBitCount;
-		[FieldOffset(12)] public int dwZBufferBitDepth;
-		[FieldOffset(12)] public int dwAlphaBitDepth;
+        [FieldOffset(12)] public int dwRGBBitCount;
+        [FieldOffset(12)] public int dwYUVBitCount;
+        [FieldOffset(12)] public int dwZBufferBitDepth;
+        [FieldOffset(12)] public int dwAlphaBitDepth;
 
-		[FieldOffset(16)] public int dwRBitMask;
-		[FieldOffset(16)] public int dwYBitMask;
+        [FieldOffset(16)] public int dwRBitMask;
+        [FieldOffset(16)] public int dwYBitMask;
 
-		[FieldOffset(20)] public int dwGBitMask;
-		[FieldOffset(20)] public int dwUBitMask;
+        [FieldOffset(20)] public int dwGBitMask;
+        [FieldOffset(20)] public int dwUBitMask;
 
-		[FieldOffset(24)] public int dwBBitMask;
-		[FieldOffset(24)] public int dwVBitMask;
+        [FieldOffset(24)] public int dwBBitMask;
+        [FieldOffset(24)] public int dwVBitMask;
 
-		[FieldOffset(28)] public int dwRGBAlphaBitMask;
-		[FieldOffset(28)] public int dwYUVAlphaBitMask;
-		[FieldOffset(28)] public int dwRGBZBitMask;
-		[FieldOffset(28)] public int dwYUVZBitMask;
-	}
+        [FieldOffset(28)] public int dwRGBAlphaBitMask;
+        [FieldOffset(28)] public int dwYUVAlphaBitMask;
+        [FieldOffset(28)] public int dwRGBZBitMask;
+        [FieldOffset(28)] public int dwYUVZBitMask;
+    }
 
     /// <summary>
     /// From CAUUID
     /// </summary>
-	[StructLayout(LayoutKind.Sequential)]
-	public struct DsCAUUID
-	{
-		public int cElems;
-		public IntPtr pElems;
+    [StructLayout(LayoutKind.Sequential)]
+    public struct DsCAUUID
+    {
+        public int cElems;
+        public IntPtr pElems;
+
+        /// <summary>
+        /// Perform a manual marshaling of pElems to retrieve an array of System.Guid.
+        /// Assume this structure has been already filled by the ISpecifyPropertyPages.GetPages() method.
+        /// </summary>
+        /// <returns>A managed representation of pElems (cElems items)</returns>
+        public Guid[] ToGuidArray()
+        {
+            Guid[] retval = new Guid[this.cElems];
+
+            for (int i=0; i<this.cElems; i++)
+            {
+                // In 32Bits OSs IntPtr constructor cast Int64 as Int32. 
+                // It should work on 32Bits and 64 Bits OSs...
+                IntPtr ptr = new IntPtr(this.pElems.ToInt64() + (IntPtr.Size * i));
+                retval[i] = (Guid) Marshal.PtrToStructure(ptr, typeof(Guid));
+            }
+
+            return retval;
+        }
+    }
 
     /// <summary>
-    /// Perform a manual marshaling of pElems to retrieve an array of System.Guid.
-    /// Assume this structure has been already filled by the ISpecifyPropertyPages.GetPages() method.
+    /// DirectShowLib.DsLong is a wrapper class around a <see cref="System.Int64"/> value type.
     /// </summary>
-    /// <returns>A managed representation of pElems (cElems items)</returns>
-    public Guid[] ToGuidArray()
+    /// <remarks>
+    /// This class is necessary to enable null paramters passing.
+    /// </remarks>
+    [StructLayout(LayoutKind.Sequential)]
+    public class DsLong
     {
-      Guid[] retval = new Guid[this.cElems];
-
-      for (int i=0; i<this.cElems; i++)
-      {
-        // In 32Bits OSs IntPtr constructor cast Int64 as Int32. 
-        // It should work on 32Bits and 64 Bits OSs...
-        IntPtr ptr = new IntPtr(this.pElems.ToInt64() + (IntPtr.Size * i));
-        retval[i] = (Guid) Marshal.PtrToStructure(ptr, typeof(Guid));
-      }
-
-      return retval;
-    }
-	}
-
-  /// <summary>
-  /// DirectShowLib.DsLong is a wrapper class around a <see cref="System.Int64"/> value type.
-  /// </summary>
-  /// <remarks>
-  /// This class is necessary to enable null paramters passing.
-  /// </remarks>
-  [StructLayout(LayoutKind.Sequential)]
-	public class DsLong
-	{
-    private long Value;
+        private long Value;
     
-    /// <summary>
-    /// Constructor
-    /// Initialize a new instance of DirectShowLib.DsLong with the Value parameter
-    /// </summary>
-    /// <param name="Value">Value to assign to this new instance</param>
-    public DsLong(long Value)
-		{
-			this.Value = Value;
-		}
+        /// <summary>
+        /// Constructor
+        /// Initialize a new instance of DirectShowLib.DsLong with the Value parameter
+        /// </summary>
+        /// <param name="Value">Value to assign to this new instance</param>
+        public DsLong(long Value)
+        {
+            this.Value = Value;
+        }
 
-    /// <summary>
-    /// Get a string representation of this DirectShowLib.DsLong Instance.
-    /// </summary>
-    /// <returns>A string representing this instance</returns>
-    public override string ToString()
-    {
-      return this.Value.ToString();
-    }
+        /// <summary>
+        /// Get a string representation of this DirectShowLib.DsLong Instance.
+        /// </summary>
+        /// <returns>A string representing this instance</returns>
+        public override string ToString()
+        {
+            return this.Value.ToString();
+        }
 
-    public override int GetHashCode()
-    {
-      return this.Value.GetHashCode();
-    }
+        public override int GetHashCode()
+        {
+            return this.Value.GetHashCode();
+        }
 
-    /// <summary>
-    /// Define implicit cast between DirectShowLib.DsLong and System.Int64 for languages supporting this feature.
-    /// VB.Net doesn't support implicit cast. <see cref="DirectShowLib.DsLong.ToInt64"/> for similar fonctionality.
-    /// <code>
-    ///   // Define a new DsLong instance
-    ///   DsLong dsL = new DsLong(9876543210);
-    ///   // Do implicit cast between DsLong and Int64
-    ///   long l = dsL;
-    ///
-    ///   Console.WriteLine(l.ToString());
-    /// </code>
-    /// </summary>
-    /// <param name="g">DirectShowLib.DsLong to be cast</param>
-    /// <returns>A casted System.Int64</returns>
-    public static implicit operator long(DsLong l)
-    {
-      return l.Value;
-    }
+        /// <summary>
+        /// Define implicit cast between DirectShowLib.DsLong and System.Int64 for languages supporting this feature.
+        /// VB.Net doesn't support implicit cast. <see cref="DirectShowLib.DsLong.ToInt64"/> for similar functionality.
+        /// <code>
+        ///   // Define a new DsLong instance
+        ///   DsLong dsL = new DsLong(9876543210);
+        ///   // Do implicit cast between DsLong and Int64
+        ///   long l = dsL;
+        ///
+        ///   Console.WriteLine(l.ToString());
+        /// </code>
+        /// </summary>
+        /// <param name="g">DirectShowLib.DsLong to be cast</param>
+        /// <returns>A casted System.Int64</returns>
+        public static implicit operator long(DsLong l)
+        {
+            return l.Value;
+        }
 
-    /// <summary>
-    /// Define implicit cast between System.Int64 and DirectShowLib.DsLong for languages supporting this feature.
-    /// VB.Net doesn't support implicit cast. <see cref="DirectShowLib.DsGuid.FromInt64"/> for similar fonctionality.
-    /// <code>
-    ///   // Define a new Int64 instance
-    ///   long l = 9876543210;
-    ///   // Do implicit cast between Int64 and DsLong
-    ///   DsLong dsl = l;
-    ///
-    ///   Console.WriteLine(dsl.ToString());
-    /// </code>
-    /// </summary>
-    /// <param name="g">System.Int64 to be cast</param>
-    /// <returns>A casted DirectShowLib.DsLong</returns>
-    public static implicit operator DsLong(long l)
-    {
-      return new DsLong(l);
-    }
+        /// <summary>
+        /// Define implicit cast between System.Int64 and DirectShowLib.DsLong for languages supporting this feature.
+        /// VB.Net doesn't support implicit cast. <see cref="DirectShowLib.DsGuid.FromInt64"/> for similar functionality.
+        /// <code>
+        ///   // Define a new Int64 instance
+        ///   long l = 9876543210;
+        ///   // Do implicit cast between Int64 and DsLong
+        ///   DsLong dsl = l;
+        ///
+        ///   Console.WriteLine(dsl.ToString());
+        /// </code>
+        /// </summary>
+        /// <param name="g">System.Int64 to be cast</param>
+        /// <returns>A casted DirectShowLib.DsLong</returns>
+        public static implicit operator DsLong(long l)
+        {
+            return new DsLong(l);
+        }
 
-    /// <summary>
-    /// Get the System.Int64 equivalent to this DirectShowLib.DsLong instance.
-    /// </summary>
-    /// <returns>A System.Int64</returns>
-    public long ToInt64()
-    {
-      return this.Value;
-    }
+        /// <summary>
+        /// Get the System.Int64 equivalent to this DirectShowLib.DsLong instance.
+        /// </summary>
+        /// <returns>A System.Int64</returns>
+        public long ToInt64()
+        {
+            return this.Value;
+        }
 
-    /// <summary>
-    /// Get a new DirectShowLib.DsLong instance for a given System.Int64
-    /// </summary>
-    /// <param name="g">The System.Int64 to wrap into a DirectShowLib.DsLong</param>
-    /// <returns>A new instance of DirectShowLib.DsLong</returns>
-    public static DsLong FromInt64(long l)
-    {
-      return new DsLong(l);
-    }
-	}
-
-  /// <summary>
-  /// DirectShowLib.DsGuid is a wrapper class around a System.Guid value type.
-  /// </summary>
-  /// <remarks>
-  /// This class is necessary to enable null paramters passing.
-  /// </remarks>
-  [StructLayout(LayoutKind.Explicit)]
-  public class DsGuid
-  {
-    [FieldOffset(0)]
-    private Guid guid;
-
-    public static readonly DsGuid Empty = Guid.Empty;
-
-    /// <summary>
-    /// Empty constructor. 
-    /// Initialize it with System.Guid.Empty
-    /// </summary>
-    public DsGuid()
-    {
-      this.guid = Guid.Empty;
+        /// <summary>
+        /// Get a new DirectShowLib.DsLong instance for a given System.Int64
+        /// </summary>
+        /// <param name="g">The System.Int64 to wrap into a DirectShowLib.DsLong</param>
+        /// <returns>A new instance of DirectShowLib.DsLong</returns>
+        public static DsLong FromInt64(long l)
+        {
+            return new DsLong(l);
+        }
     }
 
     /// <summary>
-    /// Constructor.
-    /// Initialize this instance with a given System.Guid string representation.
+    /// DirectShowLib.DsGuid is a wrapper class around a System.Guid value type.
     /// </summary>
-    /// <param name="g">A valid System.Guid as string</param>
-    public DsGuid(string g)
+    /// <remarks>
+    /// This class is necessary to enable null paramters passing.
+    /// </remarks>
+    [StructLayout(LayoutKind.Explicit)]
+    public class DsGuid
     {
-      this.guid = new Guid(g);
-    }
+        [FieldOffset(0)]
+        private Guid guid;
 
-    /// <summary>
-    /// Constructor.
-    /// Initialize this instance with a given System.Guid.
-    /// </summary>
-    /// <param name="g">A System.Guid value type</param>
-    public DsGuid(Guid g)
-    {
-      this.guid = g;
-    }
+        public static readonly DsGuid Empty = Guid.Empty;
 
-    /// <summary>
-    /// Get a string representation of this DirectShowLib.DsGuid Instance.
-    /// </summary>
-    /// <returns>A string representing this instance</returns>
-     public override string ToString()
-    {
-      return this.guid.ToString();
-    }
+        /// <summary>
+        /// Empty constructor. 
+        /// Initialize it with System.Guid.Empty
+        /// </summary>
+        public DsGuid()
+        {
+            this.guid = Guid.Empty;
+        }
 
-    /// <summary>
-    /// Get a string representation of this DirectShowLib.DsGuid Instance with a specific format.
-    /// </summary>
-    /// <param name="format"><see cref="System.Guid.ToString"/> for a description of the format parameter.</param>
-    /// <returns>A string representing this instance according to the format parameter</returns>
-    public string ToString(string format)
-    {
-      return this.guid.ToString(format);
-    }
+        /// <summary>
+        /// Constructor.
+        /// Initialize this instance with a given System.Guid string representation.
+        /// </summary>
+        /// <param name="g">A valid System.Guid as string</param>
+        public DsGuid(string g)
+        {
+            this.guid = new Guid(g);
+        }
 
-    public override int GetHashCode()
-    {
-      return this.guid.GetHashCode();
-    }
+        /// <summary>
+        /// Constructor.
+        /// Initialize this instance with a given System.Guid.
+        /// </summary>
+        /// <param name="g">A System.Guid value type</param>
+        public DsGuid(Guid g)
+        {
+            this.guid = g;
+        }
 
-    /// <summary>
-    /// Define implicit cast between DirectShowLib.DsGuid and System.Guid for languages supporting this feature.
-    /// VB.Net doesn't support implicit cast. <see cref="DirectShowLib.DsGuid.ToGuid"/> for similar fonctionality.
-    /// <code>
-    ///   // Define a new DsGuid instance
-    ///   DsGuid dsG = new DsGuid("{33D57EBF-7C9D-435e-A15E-D300B52FBD91}");
-    ///   // Do implicit cast between DsGuid and Guid
-    ///   Guid g = dsG;
-    ///
-    ///   Console.WriteLine(g.ToString());
-    /// </code>
-    /// </summary>
-    /// <param name="g">DirectShowLib.DsGuid to be cast</param>
-    /// <returns>A casted System.Guid</returns>
-    public static implicit operator Guid(DsGuid g)
-    {
-      return g.guid;
-    }
+        /// <summary>
+        /// Get a string representation of this DirectShowLib.DsGuid Instance.
+        /// </summary>
+        /// <returns>A string representing this instance</returns>
+        public override string ToString()
+        {
+            return this.guid.ToString();
+        }
 
-    /// <summary>
-    /// Define implicit cast between System.Guid and DirectShowLib.DsGuid for languages supporting this feature.
-    /// VB.Net doesn't support implicit cast. <see cref="DirectShowLib.DsGuid.FromGuid"/> for similar fonctionality.
-    /// <code>
-    ///   // Define a new Guid instance
-    ///   Guid g = new Guid("{B9364217-366E-45f8-AA2D-B0ED9E7D932D}");
-    ///   // Do implicit cast between Guid and DsGuid
-    ///   DsGuid dsG = g;
-    ///
-    ///   Console.WriteLine(dsG.ToString());
-    /// </code>
-    /// </summary>
-    /// <param name="g">System.Guid to be cast</param>
-    /// <returns>A casted DirectShowLib.DsGuid</returns>
-    public static implicit operator DsGuid(Guid g)
-    {
-      return new DsGuid(g);
-    }
+        /// <summary>
+        /// Get a string representation of this DirectShowLib.DsGuid Instance with a specific format.
+        /// </summary>
+        /// <param name="format"><see cref="System.Guid.ToString"/> for a description of the format parameter.</param>
+        /// <returns>A string representing this instance according to the format parameter</returns>
+        public string ToString(string format)
+        {
+            return this.guid.ToString(format);
+        }
 
-    /// <summary>
-    /// Get the System.Guid equivalent to this DirectShowLib.DsGuid instance.
-    /// </summary>
-    /// <returns>A System.Guid</returns>
-    public Guid ToGuid()
-    {
-      return this.guid;
-    }
+        public override int GetHashCode()
+        {
+            return this.guid.GetHashCode();
+        }
 
-    /// <summary>
-    /// Get a new DirectShowLib.DsGuid instance for a given System.Guid
-    /// </summary>
-    /// <param name="g">The System.Guid to wrap into a DirectShowLib.DsGuid</param>
-    /// <returns>A new instance of DirectShowLib.DsGuid</returns>
-    public static DsGuid FromGuid(Guid g)
-    {
-      return new DsGuid(g);
+        /// <summary>
+        /// Define implicit cast between DirectShowLib.DsGuid and System.Guid for languages supporting this feature.
+        /// VB.Net doesn't support implicit cast. <see cref="DirectShowLib.DsGuid.ToGuid"/> for similar functionality.
+        /// <code>
+        ///   // Define a new DsGuid instance
+        ///   DsGuid dsG = new DsGuid("{33D57EBF-7C9D-435e-A15E-D300B52FBD91}");
+        ///   // Do implicit cast between DsGuid and Guid
+        ///   Guid g = dsG;
+        ///
+        ///   Console.WriteLine(g.ToString());
+        /// </code>
+        /// </summary>
+        /// <param name="g">DirectShowLib.DsGuid to be cast</param>
+        /// <returns>A casted System.Guid</returns>
+        public static implicit operator Guid(DsGuid g)
+        {
+            return g.guid;
+        }
+
+        /// <summary>
+        /// Define implicit cast between System.Guid and DirectShowLib.DsGuid for languages supporting this feature.
+        /// VB.Net doesn't support implicit cast. <see cref="DirectShowLib.DsGuid.FromGuid"/> for similar functionality.
+        /// <code>
+        ///   // Define a new Guid instance
+        ///   Guid g = new Guid("{B9364217-366E-45f8-AA2D-B0ED9E7D932D}");
+        ///   // Do implicit cast between Guid and DsGuid
+        ///   DsGuid dsG = g;
+        ///
+        ///   Console.WriteLine(dsG.ToString());
+        /// </code>
+        /// </summary>
+        /// <param name="g">System.Guid to be cast</param>
+        /// <returns>A casted DirectShowLib.DsGuid</returns>
+        public static implicit operator DsGuid(Guid g)
+        {
+            return new DsGuid(g);
+        }
+
+        /// <summary>
+        /// Get the System.Guid equivalent to this DirectShowLib.DsGuid instance.
+        /// </summary>
+        /// <returns>A System.Guid</returns>
+        public Guid ToGuid()
+        {
+            return this.guid;
+        }
+
+        /// <summary>
+        /// Get a new DirectShowLib.DsGuid instance for a given System.Guid
+        /// </summary>
+        /// <param name="g">The System.Guid to wrap into a DirectShowLib.DsGuid</param>
+        /// <returns>A new instance of DirectShowLib.DsGuid</returns>
+        public static DsGuid FromGuid(Guid g)
+        {
+            return new DsGuid(g);
+        }
     }
-  }
 
     #endregion
 
-	#region Utility Classes
+    #region Utility Classes
 
     public class DsResults
     {
@@ -547,8 +547,8 @@ namespace DirectShowLib
     }
 
 
-	sealed public class DsUtils
-	{
+    sealed public class DsUtils
+    {
         private DsUtils()
         {
             // Prevent people from trying to instantiate this class
@@ -559,22 +559,22 @@ namespace DirectShowLib
         /// </summary>
         /// <param name="pPin"></param>
         /// <returns>Guid indicating pin category or Guid.Empty on no category.  Usually a member of PinCategory</returns>
-		public static Guid GetPinCategory(IPin pPin)
-		{
-			Guid guidRet = Guid.Empty;
+        public static Guid GetPinCategory(IPin pPin)
+        {
+            Guid guidRet = Guid.Empty;
 
             // Memory to hold the returned guid
-			int iSize = Marshal.SizeOf(typeof (Guid));
-			IntPtr ipOut = Marshal.AllocCoTaskMem(iSize);
+            int iSize = Marshal.SizeOf(typeof (Guid));
+            IntPtr ipOut = Marshal.AllocCoTaskMem(iSize);
 
-			try
-			{
-				int hr;
-				int cbBytes;
-				Guid g = PropSetID.Pin;
+            try
+            {
+                int hr;
+                int cbBytes;
+                Guid g = PropSetID.Pin;
 
                 // Get an IKsPropertySet from the pin
-				IKsPropertySet pKs = pPin as IKsPropertySet;
+                IKsPropertySet pKs = pPin as IKsPropertySet;
 
                 if (pKs != null)
                 {
@@ -585,57 +585,57 @@ namespace DirectShowLib
                     // Marshal it to the return variable
                     guidRet = (Guid) Marshal.PtrToStructure(ipOut, typeof (Guid));
                 }
-			}
-			finally
-			{
-				Marshal.FreeCoTaskMem(ipOut);
+            }
+            finally
+            {
+                Marshal.FreeCoTaskMem(ipOut);
                 ipOut = IntPtr.Zero;
-			}
+            }
 
-			return guidRet;
-		}
+            return guidRet;
+        }
 
-		/// <summary>
-		///  Free the nested structures and release any
-		///  COM objects within an AMMediaType struct.
-		/// </summary>
-		public static void FreeAMMediaType(AMMediaType mediaType)
-		{
-			if (mediaType != null)
-			{
-				if (mediaType.formatSize != 0)
-				{
-					Marshal.FreeCoTaskMem(mediaType.formatPtr);
-					mediaType.formatSize = 0;
-					mediaType.formatPtr = IntPtr.Zero;
-				}
-				if (mediaType.unkPtr != IntPtr.Zero)
-				{
-					Marshal.Release(mediaType.unkPtr);
-					mediaType.unkPtr = IntPtr.Zero;
-				}
-			}
-		}
+        /// <summary>
+        ///  Free the nested structures and release any
+        ///  COM objects within an AMMediaType struct.
+        /// </summary>
+        public static void FreeAMMediaType(AMMediaType mediaType)
+        {
+            if (mediaType != null)
+            {
+                if (mediaType.formatSize != 0)
+                {
+                    Marshal.FreeCoTaskMem(mediaType.formatPtr);
+                    mediaType.formatSize = 0;
+                    mediaType.formatPtr = IntPtr.Zero;
+                }
+                if (mediaType.unkPtr != IntPtr.Zero)
+                {
+                    Marshal.Release(mediaType.unkPtr);
+                    mediaType.unkPtr = IntPtr.Zero;
+                }
+            }
+        }
 
-		/// <summary>
-		///  Free the nested interfaces within a PinInfo struct.
-		/// </summary>
-		public static void FreePinInfo(PinInfo pinInfo)
-		{
+        /// <summary>
+        ///  Free the nested interfaces within a PinInfo struct.
+        /// </summary>
+        public static void FreePinInfo(PinInfo pinInfo)
+        {
             if (pinInfo.filter != null)
             {
                 Marshal.ReleaseComObject(pinInfo.filter);
                 pinInfo.filter = null;
             }
-		}
+        }
 
-	}
+    }
 
 
     public class DsROTEntry : IDisposable
     {
         [Flags]
-        private enum ROTFlags
+            private enum ROTFlags
         {
             RegistrationKeepsAlive = 0x1,
             AllowAnyClient = 0x2
@@ -725,9 +725,9 @@ namespace DirectShowLib
     }
 
 
-	public class DsDevice : IDisposable
-	{
-		private UCOMIMoniker m_Mon;
+    public class DsDevice : IDisposable
+    {
+        private UCOMIMoniker m_Mon;
         private string m_Name;
 
         public DsDevice(UCOMIMoniker Mon)
@@ -858,20 +858,20 @@ namespace DirectShowLib
         }
 
         public void Dispose()
-		{
-			if (Mon != null)
-			{
-				Marshal.ReleaseComObject(Mon);
-				m_Mon = null;
+        {
+            if (Mon != null)
+            {
+                Marshal.ReleaseComObject(Mon);
+                m_Mon = null;
                 GC.SuppressFinalize(this);
-			}
+            }
             m_Name = null;
-		}
-	}
+        }
+    }
 
 
     sealed public class DsFindPin
-	{
+    {
         private DsFindPin()
         {
             // Prevent people from trying to instantiate this class
@@ -884,14 +884,14 @@ namespace DirectShowLib
         /// <param name="vDir">The direction to find</param>
         /// <param name="iIndex">Zero based index (ie 2 will return the third pin in the specified direction)</param>
         /// <returns>The matching pin, or null if not found</returns>
-		public static IPin ByDirection(IBaseFilter vSource, PinDirection vDir, int iIndex)
-		{
-			int hr;
-			int lFetched;
-			IEnumPins ppEnum;
-			PinDirection ppindir;
-			IPin pRet = null;
-			IPin[] pPins = new IPin[1];
+        public static IPin ByDirection(IBaseFilter vSource, PinDirection vDir, int iIndex)
+        {
+            int hr;
+            int lFetched;
+            IEnumPins ppEnum;
+            PinDirection ppindir;
+            IPin pRet = null;
+            IPin[] pPins = new IPin[1];
 
             if (vSource == null)
             {
@@ -899,8 +899,8 @@ namespace DirectShowLib
             }
 
             // Get the pin enumerator
-			hr = vSource.EnumPins(out ppEnum);
-			DsError.ThrowExceptionForHR(hr);
+            hr = vSource.EnumPins(out ppEnum);
+            DsError.ThrowExceptionForHR(hr);
 
             try
             {
@@ -930,8 +930,8 @@ namespace DirectShowLib
                 Marshal.ReleaseComObject(ppEnum);
             }
 
-			return pRet;
-		}
+            return pRet;
+        }
 
         /// <summary>
         /// Scans a filter's pins looking for a pin with the specified name
@@ -940,13 +940,13 @@ namespace DirectShowLib
         /// <param name="vPinName">The pin name to find</param>
         /// <returns>The matching pin, or null if not found</returns>
         public static IPin ByName(IBaseFilter vSource, string vPinName)
-		{
-			int hr;
-			int lFetched;
-			IEnumPins ppEnum;
-			PinInfo ppinfo;
-			IPin pRet = null;
-			IPin[] pPins = new IPin[1];
+        {
+            int hr;
+            int lFetched;
+            IEnumPins ppEnum;
+            PinInfo ppinfo;
+            IPin pRet = null;
+            IPin[] pPins = new IPin[1];
 
             if (vSource == null)
             {
@@ -955,7 +955,7 @@ namespace DirectShowLib
 
             // Get the pin enumerator
             hr = vSource.EnumPins(out ppEnum);
-			DsError.ThrowExceptionForHR(hr);
+            DsError.ThrowExceptionForHR(hr);
 
             try
             {
@@ -982,8 +982,8 @@ namespace DirectShowLib
                 Marshal.ReleaseComObject(ppEnum);
             }
 
-			return pRet;
-		}
+            return pRet;
+        }
 
         /// <summary>
         /// Scan's a filter's pins looking for a pin with the specified category
@@ -993,12 +993,12 @@ namespace DirectShowLib
         /// <param name="iIndex">Zero based index (ie 2 will return the third pin of the specified category)</param>
         /// <returns>The matching pin, or null if not found</returns>
         public static IPin ByCategory(IBaseFilter vSource, Guid guidPinCat, int iIndex)
-		{
-			int hr;
-			int lFetched;
-			IEnumPins ppEnum;
-			IPin pRet = null;
-			IPin[] pPins = new IPin[1];
+        {
+            int hr;
+            int lFetched;
+            IEnumPins ppEnum;
+            IPin pRet = null;
+            IPin[] pPins = new IPin[1];
 
             if (vSource == null)
             {
@@ -1007,7 +1007,7 @@ namespace DirectShowLib
 
             // Get the pin enumerator
             hr = vSource.EnumPins(out ppEnum);
-			DsError.ThrowExceptionForHR(hr);
+            DsError.ThrowExceptionForHR(hr);
 
             try
             {
@@ -1033,8 +1033,8 @@ namespace DirectShowLib
                 Marshal.ReleaseComObject(ppEnum);
             }
 
-			return pRet;
-		}
+            return pRet;
+        }
         /// <summary>
         /// Scans a filter's pins looking for a pin with the specified connection status
         /// </summary>
