@@ -1,6 +1,6 @@
-// $Id: IEnumMediaTypesTest.cs,v 1.4 2005-06-13 23:33:16 snarfle Exp $
+// $Id: IEnumMediaTypesTest.cs,v 1.5 2005-06-23 23:44:51 snarfle Exp $
 // $Author: snarfle $
-// $Revision: 1.4 $
+// $Revision: 1.5 $
 using System.Runtime.InteropServices;
 using NUnit.Framework;
 using System;
@@ -32,7 +32,7 @@ namespace DirectShowLib.Test
 
             for (int x=0; x < 3; x++)
             {
-                hr = enumMediaTypes.Next(ppMediaTypes.Length, null, out lFetched);
+                hr = enumMediaTypes.Next(ppMediaTypes.Length, ppMediaTypes, out lFetched);
                 DsError.ThrowExceptionForHR(hr);
             }
 		}
