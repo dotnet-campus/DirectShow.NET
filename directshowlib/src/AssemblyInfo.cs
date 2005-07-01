@@ -27,15 +27,19 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Security.Permissions;
 
-[assembly : AssemblyTitle("Direct Show Net Library")]
+[assembly : AssemblyTitle("DirectShow Net Library")]
 [assembly : AssemblyDescription(".NET Interfaces for calling DirectShow.  See http://directshownet.sourceforge.net/")]
 [assembly : AssemblyConfiguration("")]
 [assembly : AssemblyCompany("")]
-[assembly : AssemblyProduct("BETA VERSION")]
-[assembly : AssemblyCopyright("The Apache Software License, Version 1.1")]
+#if DEBUG
+[assembly : AssemblyProduct("Debug Version")]
+#else
+[assembly : AssemblyProduct("Release Version")]
+#endif
+[assembly : AssemblyCopyright("GNU Lesser General Public License v2.1")]
 [assembly : AssemblyTrademark("")]
 [assembly : AssemblyCulture("")]
-[assembly : AssemblyVersion("0.9.0.0")]
+[assembly : AssemblyVersion("1.0.0.0")]
 [assembly : AssemblyDelaySign(false)]
 // Path is relative to the resulting executable (\Bin\Debug)
 [assembly : AssemblyKeyFile("..\\..\\DShowNET.snk")]
