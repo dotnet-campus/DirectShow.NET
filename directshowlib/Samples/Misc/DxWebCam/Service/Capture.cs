@@ -210,7 +210,7 @@ namespace WebCamService
                 sampGrabber = (ISampleGrabber) new SampleGrabber();
 
                 // Start building the graph
-                hr = capGraph.SetFiltergraph( (IGraphBuilder)m_graphBuilder );
+                hr = capGraph.SetFiltergraph( m_graphBuilder );
                 DsError.ThrowExceptionForHR( hr );
 
                 // Add the video device
