@@ -20,6 +20,7 @@ namespace DxScan
         /// <summary> graph builder interface. </summary>
         private IFilterGraph2 m_graphBuilder = null;
         IMediaControl m_mediaCtrl = null;
+        IMediaEvent m_MediaEvent = null;
 
         /// <summary> Dimensions of the image, calculated once in constructor. </summary>
         private int m_videoWidth;
@@ -80,20 +81,15 @@ namespace DxScan
         public void WaitUntilDone()
         {
             int hr;
-            IMediaPosition imp = m_graphBuilder as IMediaPosition;
-            double tim, endtim;
-            
-            hr = imp.get_Duration(out endtim);
-            DsError.ThrowExceptionForHR(hr);
+            EventCode evCode;
+            const int E_Abort = unchecked((int)0x80004004);
 
             do
             {
-                hr = imp.get_CurrentPosition(out tim);
-                DsError.ThrowExceptionForHR(hr);
-
-                Thread.Sleep(200);
                 System.Windows.Forms.Application.DoEvents();
-            } while ((tim < endtim) && (!m_Quit));
+                hr = this.m_MediaEvent.WaitForCompletion( 100, out evCode );
+            } while (hr == E_Abort);
+            DsError.ThrowExceptionForHR(hr);
         }
 
         public void Quit()
@@ -113,6 +109,8 @@ namespace DxScan
             // Get the graphbuilder object
             m_graphBuilder = new FilterGraph() as IFilterGraph2;
             m_mediaCtrl = m_graphBuilder as IMediaControl;
+            m_MediaEvent = m_graphBuilder as IMediaEvent;
+
             IMediaFilter mediaFilt = m_graphBuilder as IMediaFilter;
 
             try
