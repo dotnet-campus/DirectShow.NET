@@ -63,7 +63,7 @@ namespace DirectShowLib
 		public int ControlFlags;
 		public int Reserved2;
 		public BitmapInfoHeader BmiHeader;
-	} ;
+	}
 
 	/// <summary>
 	/// From WAVEFORMATEX

@@ -237,7 +237,7 @@ namespace DirectShowLib
         int GetOverlaySurfaceColorControls(
             out DDColorControl pColorControl
             );
-    };
+    }
 #endif
 
     #endregion

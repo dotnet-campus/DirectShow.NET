@@ -471,7 +471,7 @@ namespace DirectShowLib
         int GetCurrentProfileId([Out] out int pdwProfileId);
 
         [PreserveSig]
-        int ConfigureFilterUsingProfileGuid([In] ref Guid guidProfile);
+        int ConfigureFilterUsingProfileGuid([In] Guid guidProfile);
 
         [PreserveSig]
         int GetCurrentProfileGuid([Out] out Guid pProfileGuid);
