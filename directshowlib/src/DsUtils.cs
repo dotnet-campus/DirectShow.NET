@@ -51,8 +51,8 @@ namespace DirectShowLib
     [StructLayout(LayoutKind.Sequential)]
     public struct BitmapInfo 
     { 
-        BitmapInfoHeader bmiHeader; 
-        int []         bmiColors;
+        public BitmapInfoHeader bmiHeader; 
+        public int []         bmiColors;
     }
 
     /// <summary>
@@ -1243,7 +1243,7 @@ namespace DirectShowLib
         {
             if (pNativeData != IntPtr.Zero)
             {
-                Marshal.Release(pNativeData);
+                Marshal.FreeCoTaskMem(pNativeData);
             }
         }
 
