@@ -454,12 +454,12 @@ namespace DirectShowLib.Dvd
     public enum AMDvdGraphFlags
     {
         None = 0,
-        HWDecPrefer = 0x01, // AM_DVD_HWDEC_PREFER
-        HWDecOnly = 0x02, // AM_DVD_HWDEC_ONLY
-        SWDecPrefer = 0x04, // AM_DVD_SWDEC_PREFER
-        SWDecOnly = 0x08, // AM_DVD_SWDEC_ONLY
-        NoVPE = 0x100, // AM_DVD_NOVPE
-        VMR9Only = 0x800 // AM_DVD_VMR9_ONLY
+        HWDecPrefer = 0x01,
+        HWDecOnly = 0x02,
+        SWDecPrefer = 0x04,
+        SWDecOnly = 0x08,
+        NoVPE = 0x100,
+        VMR9Only = 0x800
     }
 
     /// <summary>
@@ -469,9 +469,9 @@ namespace DirectShowLib.Dvd
     public enum AMDvdStreamFlags
     {
         None = 0x00,
-        Video = 0x01, // AM_DVD_STREAM_VIDEO
-        Audio = 0x02, // AM_DVD_STREAM_AUDIO
-        SubPic = 0x04 // AM_DVD_STREAM_SUBPIC
+        Video = 0x01,
+        Audio = 0x02,
+        SubPic = 0x04
     }
 
     [Flags]
@@ -1370,7 +1370,7 @@ namespace DirectShowLib.Dvd
         int GetDVDTextStringAsNative(
             [In] int ulLangIndex,
             [In] int ulStringIndex,
-            [MarshalAs(UnmanagedType.LPStr)]System.Text.StringBuilder pbBuffer, // BYTE *
+            [MarshalAs(UnmanagedType.LPStr)]System.Text.StringBuilder pbBuffer,
             [In] int ulMaxBufferSize,
             [Out] out int pulActualSize,
             [Out] out DvdTextStringType pType
@@ -1380,7 +1380,7 @@ namespace DirectShowLib.Dvd
         int GetDVDTextStringAsUnicode(
             [In] int ulLangIndex,
             [In] int ulStringIndex,
-            System.Text.StringBuilder pchwBuffer, // WCHAR *
+            System.Text.StringBuilder pchwBuffer,
             [In] int ulMaxBufferSize,
             [Out] out int pulActualSize,
             [Out] out DvdTextStringType pType
@@ -1390,7 +1390,6 @@ namespace DirectShowLib.Dvd
         int GetPlayerParentalLevel(
             [Out] out int pulParentalLevel,
             [Out, MarshalAs(UnmanagedType.LPArray, SizeConst=2)] byte[] pbCountryCode
-            //[In, Out, MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(ByteMarshaler))] byte[] pbCountryCode
                 );
 
         [PreserveSig]
@@ -1407,7 +1406,7 @@ namespace DirectShowLib.Dvd
 
         [PreserveSig]
         int GetDVDDirectory(
-            System.Text.StringBuilder pszwPath, // LPWSTR
+            System.Text.StringBuilder pszwPath,
             [In] int ulMaxSize,
             [Out] out int pulActualSize
             );
@@ -1429,7 +1428,7 @@ namespace DirectShowLib.Dvd
 
         [PreserveSig]
         int GetMenuLanguages(
-            [MarshalAs(UnmanagedType.LPArray)] int [] pLanguages, // LCID *
+            [MarshalAs(UnmanagedType.LPArray)] int [] pLanguages,
             [In] int ulMaxLanguages,
             [Out] out int pulActualLanguages
             );
