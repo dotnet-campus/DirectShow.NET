@@ -460,36 +460,7 @@ namespace DirectShowLib
         int UnableToRender(IPin pPin);
      }
 
-    [Guid("45086030-F7E4-486a-B504-826BB5792A3B"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IConfigAsfWriter
-    {
-        [PreserveSig]
-        int ConfigureFilterUsingProfileId([In] int dwProfileId);
-
-        [PreserveSig]
-        int GetCurrentProfileId([Out] out int pdwProfileId);
-
-        [PreserveSig]
-        int ConfigureFilterUsingProfileGuid([In] Guid guidProfile);
-
-        [PreserveSig]
-        int GetCurrentProfileGuid([Out] out Guid pProfileGuid);
-
-        ///TODO: Modifier cette entrée quand IWMProfile sera défini...
-        [PreserveSig]
-        int ConfigureFilterUsingProfile([In, MarshalAs(UnmanagedType.IUnknown)] object pProfile); //IWMProfile
-
-        ///TODO: Modifier cette entrée quand IWMProfile sera défini...
-        [PreserveSig]
-        int GetCurrentProfileGuid([Out, MarshalAs(UnmanagedType.IUnknown)] out object ppProfile); //IWMProfile
-
-        [PreserveSig]
-        int SetIndexMode([In, MarshalAs(UnmanagedType.Bool)] bool bIndexFile);
-
-        [PreserveSig]
-        int GetIndexMode([Out, MarshalAs(UnmanagedType.Bool)] out bool pbIndexFile);
-    }
+    // interface IConfigAsfWriter moved to WindowsMediaLib
 
     [Guid("546F4260-D53E-11cf-B3F0-00AA003761C5"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
