@@ -59,7 +59,7 @@ namespace DirectShowLib
     /// From BITMAPINFOHEADER
     /// </summary>
     [StructLayout(LayoutKind.Sequential, Pack=2)]
-    public struct BitmapInfoHeader
+    public class BitmapInfoHeader
     {
         public int Size;
         public int Width;
