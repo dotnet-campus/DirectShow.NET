@@ -1383,6 +1383,30 @@ namespace DirectShowLib
         public static readonly Guid TVAudioFilterPropertyPage = new Guid(0x71f96463, 0x78f3, 0x11d0, 0xa1, 0x8c, 0x0, 0xa0, 0xc9, 0x11, 0x89, 0x56);
     }
 
+    public class DMOCatergory
+    {
+      /// <summary> DMOCATEGORY_AUDIO_DECODER </summary>
+      public static readonly Guid AudioDecoder = new Guid("57f2db8b-e6bb-4513-9d43-dcd2a6593125");
+
+      /// <summary> DMOCATEGORY_AUDIO_ENCODER </summary>
+      public static readonly Guid AudioEncoder = new Guid("33D9A761-90C8-11d0-BD43-00A0C911CE86");
+
+      /// <summary> DMOCATEGORY_VIDEO_DECODER </summary>
+      public static readonly Guid VideoDecoder = new Guid("4a69b442-28be-4991-969c-b500adf5d8a8");
+
+      /// <summary> DMOCATEGORY_VIDEO_ENCODER </summary>
+      public static readonly Guid VideoEncoder = new Guid("33D9A760-90C8-11d0-BD43-00A0C911CE86");
+
+      /// <summary> DMOCATEGORY_AUDIO_EFFECT </summary>
+      public static readonly Guid AudioEffect = new Guid("f3602b3f-0592-48df-a4cd-674721e7ebeb");
+
+      /// <summary> DMOCATEGORY_VIDEO_EFFECT </summary>
+      public static readonly Guid VideoEffect = new Guid("d990ee14-776c-4723-be46-3da2f56f10b9");
+
+      /// <summary> DMOCATEGORY_AUDIO_CAPTURE_EFFECT </summary>
+      public static readonly Guid AudioCaptureEffect = new Guid("f665aaba-3e09-4920-aa5f-219811148f09");
+    }
+
 
     #endregion
 
