@@ -188,6 +188,7 @@ namespace WebCamService
                         // capture image
                         ip = cam.GetBitMap();
                         image = new Bitmap(cam.Width, cam.Height, cam.Stride, PixelFormat.Format24bppRgb, ip);
+                        image.RotateFlip(RotateFlipType.RotateNoneFlipY);
 
                         // save it to jpeg using quality options
                         m.Position = 10;

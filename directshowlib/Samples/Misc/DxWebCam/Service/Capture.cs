@@ -433,7 +433,6 @@ namespace WebCamService
             else
             {
                 m_Dropped++;
-                Debug.WriteLine(m_Dropped);
             }
             return 0;
         }
