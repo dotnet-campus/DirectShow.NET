@@ -17,9 +17,14 @@ namespace DirectShowLib.Test
             //IDMOWrapperFilterTest en01 = new IDMOWrapperFilterTest();
             //en01.DoTests();
 
-            IDVEncTest en02 = new IDVEncTest();
-            en02.DoTests();
+            //IDVEncTest en02 = new IDVEncTest();
+            //en02.DoTests();
 
+            IVMRAspectRatioControlTest en03 = new IVMRAspectRatioControlTest();
+            en03.DoTests();
+
+            IVMRAspectRatioControl9Test en04 = new IVMRAspectRatioControl9Test();
+            en04.DoTests();
         }
     }
 }
