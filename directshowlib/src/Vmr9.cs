@@ -544,10 +544,10 @@ namespace DirectShowLib
 	public interface IVMRAspectRatioControl9
 	{
 		[PreserveSig]
-		int GetAspectRatioMode([Out] out VMR9AspectRatioMode lpdwARMode);
+		int GetAspectRatioMode([Out] out VMRAspectRatioMode lpdwARMode);
 
 		[PreserveSig]
-		int SetAspectRatioMode([In] VMR9AspectRatioMode lpdwARMode);
+		int SetAspectRatioMode([In] VMRAspectRatioMode lpdwARMode);
 	}
 
 	[Guid("46c2e457-8ba0-4eef-b80b-0680f0978749"),
