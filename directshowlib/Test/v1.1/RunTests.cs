@@ -14,8 +14,12 @@ namespace DirectShowLib.Test
         [STAThread]
         static void Main(string[] args)
         {
-            IDMOWrapperFilterTest en01 = new IDMOWrapperFilterTest();
-            en01.DoTests();
+            //IDMOWrapperFilterTest en01 = new IDMOWrapperFilterTest();
+            //en01.DoTests();
+
+            IDVEncTest en02 = new IDVEncTest();
+            en02.DoTests();
+
         }
     }
 }
