@@ -701,13 +701,13 @@ namespace DirectShowLib
             );
 
         int SetVideoPosition(
-            [In, MarshalAs(UnmanagedType.Struct)] ref Rectangle lpSRCRect,
-            [In, MarshalAs(UnmanagedType.Struct)] ref Rectangle lpDSTRect
+            [In] DsRect lpSRCRect,
+            [In] DsRect lpDSTRect
             );
 
         int GetVideoPosition(
-            [Out, MarshalAs(UnmanagedType.Struct)] out Rectangle lpSRCRect,
-            [Out, MarshalAs(UnmanagedType.Struct)] out Rectangle lpDSTRect
+            [Out] DsRect lpSRCRect,
+            [Out] DsRect lpDSTRect
             );
 
         int GetAspectRatioMode([Out] out VMR9AspectRatioMode lpAspectRatioMode);
