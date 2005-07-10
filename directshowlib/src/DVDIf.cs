@@ -1466,7 +1466,7 @@ namespace DirectShowLib.Dvd
         [PreserveSig]
         int GetButtonRect(
             [In] int ulButton,
-            [Out] out Rectangle pRect
+            [Out] DsRect pRect
             );
 
         [PreserveSig]
