@@ -29,9 +29,9 @@ namespace DirectShowLib.Test
             //IVMRFilterConfig9Test t4 = new IVMRFilterConfig9Test();
             //t4.DoTests();
 
-            //IVMRWindowlessControl9Test t5 = new IVMRWindowlessControl9Test();
-            //t5.Show();
-            //t5.DoTests();
+            IVMRWindowlessControl9Test t5 = new IVMRWindowlessControl9Test();
+            t5.Show();
+            t5.DoTests();
 
             //IMediaSampleTest t6 = new IMediaSampleTest();
             //t6.DoTests();
@@ -48,8 +48,8 @@ namespace DirectShowLib.Test
             //      IVMRFilterConfigTest t10 = new IVMRFilterConfigTest();
             //      t10.DoTests();
 
-            //      IVMRWindowlessControlTest t11 = new IVMRWindowlessControlTest();
-            //      t11.DoTests();
+                  //IVMRWindowlessControlTest t11 = new IVMRWindowlessControlTest();
+                  //t11.DoTests();
 
             //IPersistTest t12 = new IPersistTest();
             //t12.DoTests();
@@ -186,8 +186,8 @@ namespace DirectShowLib.Test
             //IAMCrossbarTest dpw49 = new IAMCrossbarTest();
             //dpw49.DoTests();
 
-            IAMStreamConfigTest dpw50 = new IAMStreamConfigTest();
-            dpw50.DoTests();
+            //IAMStreamConfigTest dpw50 = new IAMStreamConfigTest();
+            //dpw50.DoTests();
         }
     }
 }
