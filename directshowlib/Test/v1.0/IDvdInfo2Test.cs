@@ -414,8 +414,8 @@ namespace DirectShowLib.Test
             hr = m_idc2.ShowMenu(DvdMenuId.Title, DvdCmdFlags.Flush, out ppCmd);
             DsError.ThrowExceptionForHR(hr);
 
-            Rectangle pRect;
-            hr = m_idi2.GetButtonRect(1, out pRect);
+            DsRect pRect = new DsRect();
+            hr = m_idi2.GetButtonRect(1, pRect);
             //ThrowExceptionForHR(hr);
 
             hr = m_idi2.GetButtonAtPosition(new Point(130, 130), out pulButtonIndex);
