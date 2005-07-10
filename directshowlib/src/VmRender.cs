@@ -712,14 +712,14 @@ namespace DirectShowLib
 
         [PreserveSig]
         int SetVideoPosition(
-            [In] ref Rectangle lpSRCRect,
-            [In] ref Rectangle lpDSTRect
+            [In] DsRect lpSRCRect,
+            [In] DsRect lpDSTRect
             );
 
         [PreserveSig]
         int GetVideoPosition(
-            [Out] out Rectangle lpSRCRect,
-            [Out] out Rectangle lpDSTRect
+            [Out] DsRect lpSRCRect,
+            [Out] DsRect lpDSTRect
             );
 
         [PreserveSig]
