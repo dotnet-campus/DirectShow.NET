@@ -9,7 +9,7 @@ namespace DirectShowLib.Test
 {
   public class IVMRWindowlessControlTest : Form
 	{
-    private const string testFile = @"foo.avi";
+    private const string testFile = @"..\..\..\Resources\foo.avi";
     
     private IFilterGraph2 graphBuilder = null;
     private IBaseFilter sourceFilter = null;
@@ -312,19 +312,20 @@ namespace DirectShowLib.Test
     private void IVMRWindowlessControlTest_Resize(object sender, System.EventArgs e)
     {
       int hr = 0;
-      Rectangle src, dst;
+      DsRect src = new DsRect();
+      DsRect dst = new DsRect();
 
       if (isPlaying)
       {
         if (this.vmrWndConfig != null)
         {
-          hr = this.vmrWndConfig.GetVideoPosition(out src, out dst);
+          hr = this.vmrWndConfig.GetVideoPosition(src, dst);
           Debug.Assert(hr == 0, "GetVideoPosition");
 
-          dst.Width = this.ClientSize.Width;
-          dst.Height = this.ClientSize.Height;
+          dst.right = this.ClientSize.Width;
+          dst.bottom = this.ClientSize.Height;
 
-          hr = this.vmrWndConfig.SetVideoPosition(ref src, ref dst);
+          hr = this.vmrWndConfig.SetVideoPosition(null, dst);
           Debug.Assert(hr == 0, "SetVideoPosition");
         }
       }
