@@ -496,10 +496,10 @@ namespace WindowsMediaLib
         int GetCurrentProfileGuid([Out] out Guid pProfileGuid);
 
         [PreserveSig]
-        int ConfigureFilterUsingProfile([In, MarshalAs(UnmanagedType.IUnknown)] object pProfile); //IWMProfile
+        int ConfigureFilterUsingProfile([In] IWMProfile pProfile);
 
         [PreserveSig]
-        int GetCurrentProfileGuid([Out, MarshalAs(UnmanagedType.IUnknown)] out object ppProfile); //IWMProfile
+        int GetCurrentProfileGuid([Out] out IWMProfile ppProfile);
 
         [PreserveSig]
         int SetIndexMode([In, MarshalAs(UnmanagedType.Bool)] bool bIndexFile);
