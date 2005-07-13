@@ -479,6 +479,85 @@ namespace DirectShowLib
         return new DsRect(r);
       }
     }
+
+  [StructLayout(LayoutKind.Sequential)]
+  public struct NormalizedRect
+  {
+    public float left;
+    public float top;
+    public float right;
+    public float bottom;
+
+    public NormalizedRect(float l, float t, float r, float b)
+    {
+      this.left = l;
+      this.top = t;
+      this.right = r;
+      this.bottom = b;
+    }
+
+    public NormalizedRect(RectangleF r)
+    {
+      this.left = r.Left;
+      this.top = r.Top;
+      this.right = r.Right;
+      this.bottom = r.Bottom;
+    }
+
+    public override string ToString()
+    {
+      return string.Format("[{0}, {1} - {2}, {3}]", this.left, this.top, this.right, this.bottom);
+    }
+
+    public override int GetHashCode()
+    {
+      return this.left.GetHashCode() |
+        this.top.GetHashCode() |
+        this.right.GetHashCode() |
+        this.bottom.GetHashCode();
+    }
+
+    public static implicit operator RectangleF(NormalizedRect r)
+    {
+      return r.ToRectangleF();
+    }
+
+    public static implicit operator NormalizedRect(Rectangle r)
+    {
+      return new NormalizedRect(r);
+    }
+
+    public static bool operator ==(NormalizedRect r1, NormalizedRect r2)
+    {
+      return ((r1.left == r2.left) && (r1.top == r2.top) && (r1.right == r2.right) && (r1.bottom == r2.bottom));
+    }
+
+    public static bool operator !=(NormalizedRect r1, NormalizedRect r2)
+    {
+      return ((r1.left != r2.left) || (r1.top != r2.top) || (r1.right != r2.right) || (r1.bottom != r2.bottom));
+    }
+
+    public override bool Equals(object obj)
+    {
+      if (!(obj is NormalizedRect))
+        return false;
+
+      NormalizedRect other = (NormalizedRect) obj;
+      return (this == other);
+    }
+
+
+    public RectangleF ToRectangleF()
+    {
+      return new RectangleF(this.left, this.top, (this.right - this.left), (this.bottom - this.top));
+    }
+
+    public static NormalizedRect FromRectangle(RectangleF r)
+    {
+      return new NormalizedRect(r);
+    }
+  }
+
     #endregion
 
     #region Utility Classes
