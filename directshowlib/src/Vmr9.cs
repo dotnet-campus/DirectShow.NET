@@ -66,6 +66,7 @@ namespace DirectShowLib
 	[Flags]
 	public enum VMR9MixerPrefs
 	{
+    None = 0,
 		NoDecimation = 0x00000001, // No decimation - full size
 		DecimateOutput = 0x00000002, // decimate output by 2 in x & y
 		ARAdjustXorY = 0x00000004, // adjust the aspect ratio in x or y
@@ -203,7 +204,7 @@ namespace DirectShowLib
 	public struct VMR9ProcAmpControlRange
 	{
 		public int dwSize; // should be 24
-		public VMR9ProcAmpControlFlags dwFlags;
+		public VMR9ProcAmpControlFlags dwProperty;
 		public float MinValue;
 		public float MaxValue;
 		public float DefaultValue;
@@ -220,7 +221,7 @@ namespace DirectShowLib
 		public IntPtr hdc; // HDC
 		[MarshalAs(UnmanagedType.IUnknown)] public object pDDS; // IDirect3DSurface9
 		public Rectangle rSrc;
-		public VMR9NormalizedRect rDest;
+		public NormalizedRect rDest;
 		public float fAlpha;
 		public int clrSrcKey;
 		public int dwFilterMode;
@@ -326,7 +327,7 @@ namespace DirectShowLib
         public int dwHeight;
         public int dwStrmID;
         public float fAlpha;
-        public VMR9NormalizedRect rNormal;
+        public NormalizedRect rNormal;
         public long rtStart;
         public long rtEnd;
         public VMR9_SampleFormat SampleFormat;
@@ -343,19 +344,6 @@ namespace DirectShowLib
         FieldInterleavedOddFirst = 4,
         FieldSingleEven = 5,
         FieldSingleOdd = 6
-    }
-
-    /// <summary>
-    /// From VMR9NormalizedRect
-    /// </summary>
-    // TODO : Try to substitate with System.Drawing.RectangleF
-    [StructLayout(LayoutKind.Sequential)]
-    public struct VMR9NormalizedRect
-    {
-        public float left;
-        public float top;
-        public float right;
-        public float bottom;
     }
 
     #endregion
@@ -447,22 +435,40 @@ namespace DirectShowLib
 	public interface IVMRMixerControl9
 	{
 		[PreserveSig]
-		int SetAlpha([In] int dwStreamID, [In] float Alpha);
+		int SetAlpha(
+      [In] int dwStreamID, 
+      [In] float Alpha
+      );
 
 		[PreserveSig]
-		int GetAlpha([In] int dwStreamID, [Out] out float Alpha);
+		int GetAlpha(
+      [In] int dwStreamID, 
+      [Out] out float Alpha
+      );
 
 		[PreserveSig]
-		int SetZOrder([In] int dwStreamID, [In] int dwZ);
+		int SetZOrder(
+      [In] int dwStreamID, 
+      [In] int dwZ
+      );
 
 		[PreserveSig]
-		int GetZOrder([In] int dwStreamID, [Out] int dwZ);
+		int GetZOrder(
+      [In] int dwStreamID, 
+      [Out] out int dwZ
+      );
 
 		[PreserveSig]
-		int SetOutputRect([In] int dwStreamID, [In] ref Rectangle pRect);
+		int SetOutputRect(
+      [In] int dwStreamID, 
+      [In] ref NormalizedRect pRect
+      );
 
 		[PreserveSig]
-		int GetOutputRect([In] int dwStreamID, [Out] out Rectangle pRect);
+		int GetOutputRect(
+      [In] int dwStreamID, 
+      [Out] out NormalizedRect pRect
+      );
 
 		[PreserveSig]
 		int SetBackgroundClr([In] int ClrBkg);
@@ -477,13 +483,22 @@ namespace DirectShowLib
 		int GetMixingPrefs([Out] out VMR9MixerPrefs dwMixerPrefs);
 
 		[PreserveSig]
-		int SetProcAmpControl([In] int dwStreamID, [In] ref VMR9ProcAmpControl lpClrControl);
+		int SetProcAmpControl(
+      [In] int dwStreamID, 
+      [In] ref VMR9ProcAmpControl lpClrControl
+      );
 
 		[PreserveSig]
-		int GetProcAmpControl([In] int dwStreamID, [In, Out] ref VMR9ProcAmpControl lpClrControl);
+		int GetProcAmpControl(
+      [In] int dwStreamID, 
+      [In, Out] ref VMR9ProcAmpControl lpClrControl
+      );
 
 		[PreserveSig]
-		int GetProcAmpControlRange([In] int dwStreamID, [In, Out] ref VMR9ProcAmpControlRange lpClrControl);
+		int GetProcAmpControlRange(
+      [In] int dwStreamID, 
+      [In, Out] ref VMR9ProcAmpControlRange lpClrControl
+      );
 	}
 
 	[Guid("ced175e5-1935-4820-81bd-ff6ad00c9108"),
