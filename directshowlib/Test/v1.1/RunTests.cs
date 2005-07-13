@@ -20,11 +20,17 @@ namespace DirectShowLib.Test
             //IDVEncTest en02 = new IDVEncTest();
             //en02.DoTests();
 
-            IVMRAspectRatioControlTest en03 = new IVMRAspectRatioControlTest();
-            en03.DoTests();
+            //IVMRAspectRatioControlTest en03 = new IVMRAspectRatioControlTest();
+            //en03.DoTests();
 
-            IVMRAspectRatioControl9Test en04 = new IVMRAspectRatioControl9Test();
-            en04.DoTests();
+            //IVMRAspectRatioControl9Test en04 = new IVMRAspectRatioControl9Test();
+            //en04.DoTests();
+
+            //IVMRMixerControl9Test en05 = new IVMRMixerControl9Test();
+            //en05.DoTests();
+
+            IVMRMixerControlTest en06 = new IVMRMixerControlTest();
+            en06.DoTests();
         }
     }
 }
