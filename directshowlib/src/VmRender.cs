@@ -66,6 +66,7 @@ namespace DirectShowLib
 	[Flags]
 	public enum VMRMixerPrefs
 	{
+    None = 0,
 		NoDecimation = 0x00000001,
 		DecimateOutput = 0x00000002,
 		ARAdjustXorY = 0x00000004,
@@ -421,13 +422,13 @@ namespace DirectShowLib
 		[PreserveSig]
 		int SetOutputRect(
 			[In] int dwStreamID,
-			[In] Rectangle pRect
+			[In] ref NormalizedRect pRect
 			);
 
 		[PreserveSig]
 		int GetOutputRect(
 			[In] int dwStreamID,
-			[Out] out Rectangle pRect
+			[Out] out NormalizedRect pRect
 			);
 
 		[PreserveSig]
