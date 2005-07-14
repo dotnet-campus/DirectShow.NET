@@ -304,7 +304,7 @@ namespace DirectShowLib.SBE
 	public interface IStreamBufferSource
 	{
 		[PreserveSig]
-		int SetStreamSink([In] ref IStreamBufferSink pIStreamBufferSink);
+		int SetStreamSink([In] IStreamBufferSink pIStreamBufferSink);
 	}
 
 	[Guid("ba9b6c99-f3c7-4ff2-92db-cfdd4851bf31"),
