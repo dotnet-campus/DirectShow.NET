@@ -181,15 +181,15 @@ namespace DirectShowLib
 	/// <summary>
 	/// From VMRMONITORINFO
 	/// </summary>
-	[StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential, CharSet=CharSet.Unicode)]
 	public struct VMRMonitorInfo
 	{
 		public VMRGuid guid;
-		public Rectangle rcMonitor;
+		public DsRect rcMonitor;
 		public IntPtr hMon; // HMONITOR
 		public int dwFlags;
 		[MarshalAs(UnmanagedType.ByValTStr, SizeConst=32)] public string szDevice;
-		[MarshalAs(UnmanagedType.ByValTStr, SizeConst=512)] public string szDescription;
+		[MarshalAs(UnmanagedType.ByValTStr, SizeConst=256)] public string szDescription;
 		public long liDriverVersion;
 		public int dwVendorId;
 		public int dwDeviceId;
@@ -449,23 +449,23 @@ namespace DirectShowLib
 	public interface IVMRMonitorConfig
 	{
 		[PreserveSig]
-		int SetMonitor([In] VMRGuid pGUID);
+		int SetMonitor([In] ref VMRGuid pGUID);
 
 		[PreserveSig]
 		int GetMonitor([Out] out VMRGuid pGUID);
 
 		[PreserveSig]
-		int SetDefaultMonitor([In] VMRGuid pGUID);
+		int SetDefaultMonitor([In] ref VMRGuid pGUID);
 
 		[PreserveSig]
 		int GetDefaultMonitor([Out] out VMRGuid pGUID);
 
-		[PreserveSig]
-		int GetAvailableMonitors(
-			[Out] out IntPtr pInfo, // VMRMONITORINFO *
-			[In] int dwMaxInfoArraySize,
-			[Out] out int pdwNumDevices
-			);
+    [PreserveSig]
+    int GetAvailableMonitors(
+      [Out, MarshalAs(UnmanagedType.LPArray, ArraySubType=UnmanagedType.Struct)] VMRMonitorInfo[] pInfo,
+      [In] int dwMaxInfoArraySize,
+      [Out] out int pdwNumDevices
+      );
 	}
 
 	[Guid("ede80b5c-bad6-4623-b537-65586c9f8dfd"),
