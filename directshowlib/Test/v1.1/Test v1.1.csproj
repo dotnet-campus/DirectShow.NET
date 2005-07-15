@@ -134,6 +134,16 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IVMRMonitorConfig9Test.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IVMRMonitorConfigTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "RunTests.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
