@@ -234,11 +234,12 @@ namespace DirectShowLib
 	public struct VMR9MonitorInfo
 	{
 		public int uDevID;
-		public Rectangle rcMonitor;
+		public DsRect rcMonitor;
 		public int hMon;
 		public int dwFlags;
 		[MarshalAs(UnmanagedType.ByValTStr, SizeConst=32)] public string szDevice;
 		[MarshalAs(UnmanagedType.ByValTStr, SizeConst=512)] public string szDescription;
+    public long liDriverVersion;
 		public int dwVendorId;
 		public int dwDeviceId;
 		public int dwSubSysId;
@@ -583,10 +584,10 @@ namespace DirectShowLib
 
 		[PreserveSig]
 		int GetAvailableMonitors(
-			[In, Out] ref VMR9MonitorInfo[] pInfo,
-			[In] int dwMaxInfoArraySize,
+			[Out, MarshalAs(UnmanagedType.LPArray, ArraySubType=UnmanagedType.Struct)] VMR9MonitorInfo[] pInfo,
+      [In] int dwMaxInfoArraySize,
 			[Out] out int pdwNumDevices
-			);
+      );
 	}
 
 	[Guid("a215fb8d-13c2-4f7f-993c-003d6271a459"),
