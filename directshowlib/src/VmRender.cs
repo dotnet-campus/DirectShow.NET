@@ -306,6 +306,16 @@ namespace DirectShowLib
         public Rectangle rNormal;
     }
 
+    /// <summary>
+    /// From DDCOLORKEY
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential)]
+    public struct DDColorKey
+    {
+      public int dw1;
+      public int dw2;
+    }
+
     #endregion
 
 	#region Interfaces
@@ -577,10 +587,10 @@ namespace DirectShowLib
 	public interface IVMRVideoStreamControl
 	{
 		[PreserveSig]
-		int SetColorKey([In] int lpClrKey);
+		int SetColorKey([In] ref DDColorKey lpClrKey);
 
 		[PreserveSig]
-		int GetColorKey([Out] out int lpClrKey);
+		int GetColorKey([Out] out DDColorKey lpClrKey);
 
 		[PreserveSig]
 		int SetStreamActiveState([In, MarshalAs(UnmanagedType.Bool)] bool fActive);
