@@ -219,12 +219,12 @@ namespace DirectShowLib
 	{
 		public VMR9AlphaBitmapFlags dwFlags;
 		public IntPtr hdc; // HDC
-		[MarshalAs(UnmanagedType.IUnknown)] public object pDDS; // IDirect3DSurface9
-		public Rectangle rSrc;
+		public IntPtr pDDS; // IDirect3DSurface9
+		public DsRect rSrc;
 		public NormalizedRect rDest;
 		public float fAlpha;
 		public int clrSrcKey;
-		public int dwFilterMode;
+		public VMRMixerPrefs dwFilterMode;
 	}
 
 	/// <summary>
