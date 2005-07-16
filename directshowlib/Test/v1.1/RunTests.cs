@@ -35,8 +35,14 @@ namespace DirectShowLib.Test
             //IVMRMonitorConfigTest en07 = new IVMRMonitorConfigTest();
             //en07.DoTests();
 
-            IVMRMonitorConfig9Test en08 = new IVMRMonitorConfig9Test();
-            en08.DoTests();
+            //IVMRMonitorConfig9Test en08 = new IVMRMonitorConfig9Test();
+            //en08.DoTests();
+
+            IVMRVideoStreamControlTest en09 = new IVMRVideoStreamControlTest();
+            en09.DoTests();
+
+            IVMRVideoStreamControl9Test en10 = new IVMRVideoStreamControl9Test();
+            en10.DoTests();
         }
     }
 }
