@@ -241,11 +241,11 @@ namespace DirectShowLib
 	[StructLayout(LayoutKind.Sequential)]
 	public struct VMRAlphaBitmap
 	{
-		public int dwFlags;
+		public VMRBitmap dwFlags;
 		public IntPtr hdc; // HDC
-		[MarshalAs(UnmanagedType.Interface)] public object pDDS; //LPDIRECTDRAWSURFACE7
-		public Rectangle rSrc;
-		public Rectangle rDest;
+		public IntPtr pDDS; //LPDIRECTDRAWSURFACE7
+		public DsRect rSrc;
+		public NormalizedRect rDest;
 		public float fAlpha;
 		public int clrSrcKey;
 	}
@@ -537,10 +537,10 @@ namespace DirectShowLib
 	public interface IVMRMixerBitmap
 	{
 		[PreserveSig]
-		int SetAlphaBitmap([In] VMRAlphaBitmap pBmpParms);
+		int SetAlphaBitmap([In] ref VMRAlphaBitmap pBmpParms);
 
 		[PreserveSig]
-		int UpdateAlphaBitmapParameters([In] VMRAlphaBitmap pBmpParms);
+		int UpdateAlphaBitmapParameters([In] ref VMRAlphaBitmap pBmpParms);
 
 		[PreserveSig]
 		int GetAlphaBitmapParameters([Out] out VMRAlphaBitmap pBmpParms);
