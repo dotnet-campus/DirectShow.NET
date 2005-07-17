@@ -210,7 +210,7 @@ namespace DirectShowLib
 	/// <summary>
 	/// From VMRVideoDesc
 	/// </summary>
-	[StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential, Pack=1)]
 	public struct VMRVideoDesc
 	{
 		public int dwSize;
@@ -495,16 +495,16 @@ namespace DirectShowLib
 	{
 		[PreserveSig]
 		int GetNumberOfDeinterlaceModes(
-			[In] VMRVideoDesc lpVideoDescription,
-			[Out] out int lpdwNumDeinterlaceModes,
-			[Out] out Guid lpDeinterlaceModes
+			[In] ref VMRVideoDesc lpVideoDescription,
+			[In, Out] ref int lpdwNumDeinterlaceModes,
+			[Out, MarshalAs(UnmanagedType.LPArray, ArraySubType=UnmanagedType.Struct)] Guid[] lpDeinterlaceModes
 			);
 
 		[PreserveSig]
 		int GetDeinterlaceModeCaps(
-			[In] Guid lpDeinterlaceMode,
-			[In] VMRVideoDesc lpVideoDescription,
-			[Out] out VMRDeinterlaceCaps lpDeinterlaceCaps
+			[In, MarshalAs(UnmanagedType.LPStruct)] Guid lpDeinterlaceMode,
+			[In] ref VMRVideoDesc lpVideoDescription,
+			[In, Out] ref VMRDeinterlaceCaps lpDeinterlaceCaps
 			);
 
 		[PreserveSig]
@@ -516,14 +516,14 @@ namespace DirectShowLib
 		[PreserveSig]
 		int SetDeinterlaceMode(
 			[In] int dwStreamID,
-			[In] Guid lpDeinterlaceMode
+			[In, MarshalAs(UnmanagedType.LPStruct)] Guid lpDeinterlaceMode
 			);
 
 		[PreserveSig]
-		int GetDeinterlacePrefs([Out] out int lpdwDeinterlacePrefs);
+		int GetDeinterlacePrefs([Out] out VMRDeinterlacePrefs lpdwDeinterlacePrefs);
 
 		[PreserveSig]
-		int SetDeinterlacePrefs([In] int lpdwDeinterlacePrefs);
+		int SetDeinterlacePrefs([In] VMRDeinterlacePrefs lpdwDeinterlacePrefs);
 
 		[PreserveSig]
 		int GetActualDeinterlaceMode(
