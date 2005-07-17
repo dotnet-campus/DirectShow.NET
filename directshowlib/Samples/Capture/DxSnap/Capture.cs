@@ -29,6 +29,8 @@ namespace SnapShot
         /// <summary> so we can wait for the async job to finish </summary>
         private ManualResetEvent m_PictureReady = null;
 
+        private bool m_WantOne = false;
+
         /// <summary> Dimensions of the image, calculated once in constructor for perf. </summary>
         private int m_videoWidth;
         private int m_videoHeight;
@@ -114,9 +116,15 @@ namespace SnapShot
 
             try
             {
-                // Tell the camera to send an image
-                hr = m_VidControl.SetMode(m_pinStill, VideoControlFlags.Trigger);
-                DsError.ThrowExceptionForHR( hr );
+                m_WantOne = true;
+
+                // If we are using a still pin, ask for a picture
+                if (m_VidControl != null)
+                {
+                    // Tell the camera to send an image
+                    hr = m_VidControl.SetMode(m_pinStill, VideoControlFlags.Trigger);
+                    DsError.ThrowExceptionForHR( hr );
+                }
 
                 // Start waiting
                 if ( ! m_PictureReady.WaitOne(9000, false) )
@@ -180,12 +188,82 @@ namespace SnapShot
                 hr = m_graphBuilder.AddSourceFilterForMoniker(dev.Mon, null, dev.Name, out capFilter);
                 DsError.ThrowExceptionForHR( hr );
 
-                // Find the capture and still pins.
+                // Find the still pin
                 m_pinStill = DsFindPin.ByCategory(capFilter, PinCategory.Still, 0);
-                pCaptureOut = DsFindPin.ByCategory(capFilter, PinCategory.Capture, 0);
 
-                // Get a control pointer (used in Click())
-                m_VidControl = capFilter as IAMVideoControl;
+                // Didn't find one.  Is there a preview pin?
+                if (m_pinStill == null)
+                {
+                    m_pinStill = DsFindPin.ByCategory(capFilter, PinCategory.Preview, 0);
+                }
+
+                // Still haven't found one.  Need to put a splitter in so we have
+                // one stream to capture the bitmap from, and one to display.  Ok, we
+                // don't *have* to do it that way, but we are going to anyway.
+                if (m_pinStill == null)
+                {
+                    IPin pRaw = null;
+                    IPin pSmart = null;
+
+                    // There is no still pin
+                    m_VidControl = null;
+
+                    // Add a splitter
+                    IBaseFilter iSmartTee = (IBaseFilter)new SmartTee();
+
+                    try
+                    {
+                        hr = m_graphBuilder.AddFilter(iSmartTee, "SmartTee");
+                        DsError.ThrowExceptionForHR( hr );
+
+                        // Find the find the capture pin from the video device and the
+                        // input pin for the splitter, and connnect them
+                        pRaw = DsFindPin.ByCategory(capFilter, PinCategory.Capture, 0);
+                        pSmart = DsFindPin.ByDirection(iSmartTee, PinDirection.Input, 0);
+
+                        hr = m_graphBuilder.Connect(pRaw, pSmart);
+                        DsError.ThrowExceptionForHR( hr );
+
+                        // Now set the capture and still pins (from the splitter)
+                        m_pinStill = DsFindPin.ByName(iSmartTee, "Preview");
+                        pCaptureOut = DsFindPin.ByName(iSmartTee, "Capture");
+
+                        // If any of the default config items are set, perform the config
+                        // on the actual video device (rather than the splitter)
+                        if (iHeight + iWidth + iBPP > 0)
+                        {
+                            SetConfigParms(pRaw, iWidth, iHeight, iBPP);
+                        }
+                    }
+                    finally
+                    {
+                        if (pRaw != null)
+                        {
+                            Marshal.ReleaseComObject(pRaw);
+                        }
+                        if (pRaw != pSmart)
+                        {
+                            Marshal.ReleaseComObject(pSmart);
+                        }
+                        if (pRaw != iSmartTee)
+                        {
+                            Marshal.ReleaseComObject(iSmartTee);
+                        }
+                    }
+                }
+                else
+                {
+                    // Get a control pointer (used in Click())
+                    m_VidControl = capFilter as IAMVideoControl;
+
+                    pCaptureOut = DsFindPin.ByCategory(capFilter, PinCategory.Capture, 0);
+
+                    // If any of the default config items are set
+                    if (iHeight + iWidth + iBPP > 0)
+                    {
+                        SetConfigParms(m_pinStill, iWidth, iHeight, iBPP);
+                    }
+                }
 
                 // Get the SampleGrabber interface
                 sampGrabber = new SampleGrabber() as ISampleGrabber;
@@ -202,23 +280,30 @@ namespace SnapShot
 
                 pRenderIn = DsFindPin.ByDirection(pRenderer, PinDirection.Input, 0);
 
-                // Add the frame grabber to the graph
+                // Add the sample grabber to the graph
                 hr = m_graphBuilder.AddFilter( baseGrabFlt, "Ds.NET Grabber" );
                 DsError.ThrowExceptionForHR( hr );
 
-                // If any of the default config items are set
-                if (iHeight + iWidth + iBPP > 0)
+                if (m_VidControl == null)
                 {
-                    SetConfigParms(iWidth, iHeight, iBPP);
+                    // Connect the Still pin to the sample grabber
+                    hr = m_graphBuilder.Connect(m_pinStill, pSampleIn);
+                    DsError.ThrowExceptionForHR( hr );
+
+                    // Connect the capture pin to the renderer
+                    hr = m_graphBuilder.Connect(pCaptureOut, pRenderIn);
+                    DsError.ThrowExceptionForHR( hr );
                 }
+                else
+                {
+                    // Connect the capture pin to the renderer
+                    hr = m_graphBuilder.Connect(pCaptureOut, pRenderIn);
+                    DsError.ThrowExceptionForHR( hr );
 
-                // Connect the capture pin to the renderer
-                hr = m_graphBuilder.Connect(pCaptureOut, pRenderIn);
-                DsError.ThrowExceptionForHR( hr );
-
-                // Connect the Still pin to the sample grabber
-                hr = m_graphBuilder.Connect(m_pinStill, pSampleIn);
-                DsError.ThrowExceptionForHR( hr );
+                    // Connect the Still pin to the sample grabber
+                    hr = m_graphBuilder.Connect(m_pinStill, pSampleIn);
+                    DsError.ThrowExceptionForHR( hr );
+                }
 
                 // Learn the video properties
                 SaveSizeInfo(sampGrabber);
@@ -307,6 +392,17 @@ namespace SnapShot
         private void ConfigureSampleGrabber(ISampleGrabber sampGrabber)
         {
             int hr;
+            AMMediaType media = new AMMediaType();
+
+            // Set the media type to Video/RBG24
+            media.majorType = MediaType.Video;
+            media.subType = MediaSubType.RGB24;
+            media.formatType = FormatType.VideoInfo;
+            hr = sampGrabber.SetMediaType( media );
+            DsError.ThrowExceptionForHR( hr );
+
+            DsUtils.FreeAMMediaType(media);
+            media = null;
 
             // Configure the samplegrabber
             hr = sampGrabber.SetCallback( this, 1 );
@@ -314,13 +410,13 @@ namespace SnapShot
         }
 
         // Set the Framerate, and video size
-        private void SetConfigParms(int iWidth, int iHeight, short iBPP)
+        private void SetConfigParms(IPin pStill, int iWidth, int iHeight, short iBPP)
         {
             int hr;
             AMMediaType media;
             VideoInfoHeader v;
 
-            IAMStreamConfig videoStreamConfig = m_pinStill as IAMStreamConfig;
+            IAMStreamConfig videoStreamConfig = pStill as IAMStreamConfig;
 
             // Get the existing format block
             hr = videoStreamConfig.GetFormat(out media);
@@ -416,13 +512,18 @@ namespace SnapShot
             // Note that we depend on only being called once per call to Click.  Otherwise
             // a second call can overwrite the previous image.
             Debug.Assert(BufferLen == Math.Abs(m_stride) * m_videoHeight, "Incorrect buffer length");
-            Debug.Assert(m_ipBuffer != IntPtr.Zero, "Unitialized buffer");
 
-            // Save the buffer
-            CopyMemory(m_ipBuffer, pBuffer, BufferLen);
+            if (m_WantOne)
+            {
+                m_WantOne = false;
+                Debug.Assert(m_ipBuffer != IntPtr.Zero, "Unitialized buffer");
 
-            // Picture is ready.
-            m_PictureReady.Set();
+                // Save the buffer
+                CopyMemory(m_ipBuffer, pBuffer, BufferLen);
+
+                // Picture is ready.
+                m_PictureReady.Set();
+            }
 
             return 0;
         }
