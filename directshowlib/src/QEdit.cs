@@ -29,16 +29,57 @@ using System.Runtime.InteropServices;
 namespace DirectShowLib
 {
 
-	#region Declarations
+  #region Declarations
 
-	/// <summary>
+  /// <summary>
+  /// For AMINTERLACE_*
+  /// </summary>
+  public enum AMInterlace
+  {
+    None = 0,
+    IsInterlaced          = 0x00000001,
+    OneFieldPerSample     = 0x00000002, 
+    Field1First           = 0x00000004, 
+    Unused                = 0x00000008, 
+    FieldPatternMask      = 0x00000030, 
+    FieldPatField1Only    = 0x00000000, 
+    FieldPatField2Only    = 0x00000010, 
+    FieldPatBothRegular   = 0x00000020, 
+    FieldPatBothIrregular = 0x00000030, 
+    DisplayModeMask       = 0x000000c0,
+    DisplayModeBobOnly    = 0x00000000,
+    DisplayModeWeaveOnly  = 0x00000040,
+    DisplayModeBobOrWeave = 0x00000080,
+  }
+
+  /// <summary>
+  /// For AMCOPYPROTECT_*
+  /// </summary>
+  public enum AMCopyProtect
+  {
+    None = 0,
+    RestrictDuplication = 0x00000001
+  }
+
+  /// <summary>
+  /// For AMCONTROL_*
+  /// </summary>
+  public enum AMControl
+  {
+    None = 0,
+    Used      = 0x00000001,
+    PadTo4x3  = 0x00000002, 
+    PadTo16x9 = 0x00000004, 
+  }
+
+  /// <summary>
 	/// From VIDEOINFOHEADER
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public class VideoInfoHeader
 	{
-		public Rectangle SrcRect;
-		public Rectangle TargetRect;
+		public DsRect SrcRect;
+		public DsRect TargetRect;
 		public int BitRate;
 		public int BitErrorRate;
 		public long AvgTimePerFrame;
@@ -51,16 +92,16 @@ namespace DirectShowLib
 	[StructLayout(LayoutKind.Sequential)]
 	public class VideoInfoHeader2
 	{
-		public Rectangle SrcRect;
-		public Rectangle TargetRect;
+		public DsRect SrcRect;
+		public DsRect TargetRect;
 		public int BitRate;
 		public int BitErrorRate;
 		public long AvgTimePerFrame;
-		public int InterlaceFlags;
-		public int CopyProtectFlags;
+		public AMInterlace InterlaceFlags;
+		public AMCopyProtect CopyProtectFlags;
 		public int PictAspectRatioX;
 		public int PictAspectRatioY;
-		public int ControlFlags;
+		public AMControl ControlFlags;
 		public int Reserved2;
 		public BitmapInfoHeader BmiHeader;
 	}
