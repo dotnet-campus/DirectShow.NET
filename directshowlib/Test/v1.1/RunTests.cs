@@ -44,11 +44,17 @@ namespace DirectShowLib.Test
             //IVMRVideoStreamControl9Test en10 = new IVMRVideoStreamControl9Test();
             //en10.DoTests();
 
-            IVMRMixerBitmapTest en11 = new IVMRMixerBitmapTest();
-            en11.DoTests();
+            //IVMRMixerBitmapTest en11 = new IVMRMixerBitmapTest();
+            //en11.DoTests();
 
-            IVMRMixerBitmap9Test en12 = new IVMRMixerBitmap9Test();
-            en12.DoTests();
+            //IVMRMixerBitmap9Test en12 = new IVMRMixerBitmap9Test();
+            //en12.DoTests();
+
+            //IVMRDeinterlaceControlTest en13 = new IVMRDeinterlaceControlTest();
+            //en13.DoTests();
+
+            IVMRDeinterlaceControl9Test en14 = new IVMRDeinterlaceControl9Test();
+            en14.DoTests();
         }
     }
 }
