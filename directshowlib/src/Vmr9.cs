@@ -265,7 +265,7 @@ namespace DirectShowLib
 		public int dwSize;
 		public int dwSampleWidth;
 		public int dwSampleHeight;
-		public VMR9_SampleFormat SampleFormat;
+		public VMR9SampleFormat SampleFormat;
 		public int dwFourCC;
 		public VMR9Frequency InputSampleFreq;
 		public VMR9Frequency OutputFrameFreq;
@@ -331,13 +331,13 @@ namespace DirectShowLib
         public NormalizedRect rNormal;
         public long rtStart;
         public long rtEnd;
-        public VMR9_SampleFormat SampleFormat;
+        public VMR9SampleFormat SampleFormat;
     }
 
     /// <summary>
     /// From VMR9_SampleFormat
     /// </summary>
-    public enum VMR9_SampleFormat
+    public enum VMR9SampleFormat
     {
         Reserved = 1,
         ProgressiveFrame = 2,
@@ -598,14 +598,14 @@ namespace DirectShowLib
 		int GetNumberOfDeinterlaceModes(
 			[In] ref VMR9VideoDesc lpVideoDescription,
 			[In, Out] ref int lpdwNumDeinterlaceModes,
-			[Out] IntPtr lpDeinterlaceModes // LPGUID
+			[Out, MarshalAs(UnmanagedType.LPArray, ArraySubType=UnmanagedType.Struct)] Guid[] lpDeinterlaceModes
 			);
 
 		[PreserveSig]
 		int GetDeinterlaceModeCaps(
 			[In, MarshalAs(UnmanagedType.LPStruct)] Guid lpDeinterlaceMode,
 			[In] ref VMR9VideoDesc lpVideoDescription,
-			[Out] out VMR9DeinterlaceCaps lpDeinterlaceCaps
+			[In, Out] ref VMR9DeinterlaceCaps lpDeinterlaceCaps
 			);
 
 		[PreserveSig]
