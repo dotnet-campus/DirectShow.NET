@@ -114,6 +114,21 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IStreamBufferConfigure2Test.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IStreamBufferConfigureTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IStreamBufferInitializeTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IVMRAspectRatioControl9Test.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

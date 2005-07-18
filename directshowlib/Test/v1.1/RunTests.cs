@@ -53,8 +53,17 @@ namespace DirectShowLib.Test
             //IVMRDeinterlaceControlTest en13 = new IVMRDeinterlaceControlTest();
             //en13.DoTests();
 
-            IVMRDeinterlaceControl9Test en14 = new IVMRDeinterlaceControl9Test();
-            en14.DoTests();
+            //IVMRDeinterlaceControl9Test en14 = new IVMRDeinterlaceControl9Test();
+            //en14.DoTests();
+
+            //IStreamBufferInitializeTest dw01 = new IStreamBufferInitializeTest();
+            //dw01.DoTests();
+
+            //IStreamBufferConfigTest dw02 = new IStreamBufferConfigTest();
+            //dw02.DoTests();
+
+            IStreamBufferConfigTest2 dw03 = new IStreamBufferConfigTest2();
+            dw03.DoTests();
         }
     }
 }
