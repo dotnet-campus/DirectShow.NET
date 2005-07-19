@@ -220,7 +220,7 @@ namespace DirectShowLib.SBE
 		[PreserveSig]
 		int SetSIDs(
 			[In] int cSIDs,
-			[In] IntPtr ppSID // PSID *
+			[In, MarshalAs(UnmanagedType.LPArray)] IntPtr [] ppSID // PSID *
 			);
 	}
 
