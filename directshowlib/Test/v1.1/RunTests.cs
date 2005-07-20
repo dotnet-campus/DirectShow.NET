@@ -62,8 +62,11 @@ namespace DirectShowLib.Test
             //IStreamBufferConfigTest dw02 = new IStreamBufferConfigTest();
             //dw02.DoTests();
 
-            IStreamBufferConfigTest2 dw03 = new IStreamBufferConfigTest2();
-            dw03.DoTests();
+            //IStreamBufferConfigTest2 dw03 = new IStreamBufferConfigTest2();
+            //dw03.DoTests();
+
+            IStreamBufferDataCountersTest dw04 = new IStreamBufferDataCountersTest();
+            dw04.DoTests();
         }
     }
 }
