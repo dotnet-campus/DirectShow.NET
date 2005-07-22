@@ -156,12 +156,12 @@ namespace DirectShowLib
 	public struct VMR9PresentationInfo
 	{
 		public VMR9PresentationFlags dwFlags;
-		[MarshalAs(UnmanagedType.Interface)] public object lpSurf; //IDirect3DSurface9
+		public IntPtr lpSurf; //IDirect3DSurface9
 		public long rtStart;
 		public long rtEnd;
 		public Size szAspectRatio;
-		public Rectangle rcSrc;
-		public Rectangle rcDst;
+		public DsRect rcSrc;
+		public DsRect rcDst;
 		public int dwReserved1;
 		public int dwReserved2;
 	}
@@ -353,41 +353,43 @@ namespace DirectShowLib
 
 #if ALLOW_UNTESTED_INTERFACES
 
-	[Guid("69188c61-12a3-40f0-8ffc-342e7b433fd7"),
+	[ComVisible(true),
+    Guid("69188c61-12a3-40f0-8ffc-342e7b433fd7"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IVMRImagePresenter9
 	{
 		[PreserveSig]
-		int StartPresenting([In] ref int dwUserID);
+		int StartPresenting([In] IntPtr dwUserID);
 
 		[PreserveSig]
-		int StopPresenting([In] ref int dwUserID);
+		int StopPresenting([In] IntPtr dwUserID);
 
 		[PreserveSig]
-		int PresentImage([In] ref int dwUserID, [In] ref VMR9PresentationInfo lpPresInfo);
+		int PresentImage([In] IntPtr dwUserID, [In] ref VMR9PresentationInfo lpPresInfo);
 
 	}
 
-	[Guid("8d5148ea-3f5d-46cf-9df1-d1b896eedb1f"),
+	[ComVisible(true),
+    Guid("8d5148ea-3f5d-46cf-9df1-d1b896eedb1f"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IVMRSurfaceAllocator9
 	{
 		[PreserveSig]
 		int InitializeDevice(
-			[In] ref int dwUserID,
+			[In] IntPtr dwUserID,
 			[In] ref VMR9AllocationInfo lpAllocInfo,
 			[In, Out] ref int lpNumBuffers
 			);
 
 		[PreserveSig]
-		int TerminateDevice([In] ref int dwID);
+		int TerminateDevice([In] IntPtr dwID);
 
 		[PreserveSig]
 		int GetSurface(
-			[In] ref int dwUserID,
+			[In] IntPtr dwUserID,
 			[In] int SurfaceIndex,
 			[In] int SurfaceFlags,
-			[Out, MarshalAs(UnmanagedType.IUnknown)] object lplpSurface
+			[Out] out IntPtr lplpSurface
 			);
 
 		[PreserveSig]
@@ -400,27 +402,27 @@ namespace DirectShowLib
 	{
 		[PreserveSig]
 		int AdviseSurfaceAllocator(
-			[In] ref int dwUserID,
+			[In] IntPtr dwUserID,
 			[In] IVMRSurfaceAllocator9 lpIVRMSurfaceAllocator
 			);
 
 		[PreserveSig]
 		int SetD3DDevice(
-			[In, MarshalAs(UnmanagedType.IUnknown)] object lpD3DDevice,
-			[In] int hMonitor
+			[In] IntPtr lpD3DDevice,
+			[In] IntPtr hMonitor
 			);
 
 		[PreserveSig]
 		int ChangeD3DDevice(
-			[In, MarshalAs(UnmanagedType.IUnknown)] object lpD3DDevice,
-			[In] int hMonitor
+			[In] IntPtr lpD3DDevice,
+			[In] IntPtr hMonitor
 			);
 
 		[PreserveSig]
 		int AllocateSurfaceHelper(
-			[In] VMR9AllocationInfo lpAllocInfo,
+			[In] ref VMR9AllocationInfo lpAllocInfo,
 			[In, Out] ref int lpNumBuffers,
-			[Out, MarshalAs(UnmanagedType.IUnknown)] out object lplpSurface
+			[Out, MarshalAs(UnmanagedType.LPArray, ArraySubType=UnmanagedType.SysInt)] IntPtr[] lplpSurface
 			);
 
 		[PreserveSig]
