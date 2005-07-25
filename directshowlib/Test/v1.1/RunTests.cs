@@ -77,8 +77,15 @@ namespace DirectShowLib.Test
             //IStreamBufferSink3Test dw07 = new IStreamBufferSink3Test();
             //dw07.DoTests();
 
-            IStreamBufferRecordingAttributeTest dw08 = new IStreamBufferRecordingAttributeTest();
-            dw08.DoTests();
+            //IStreamBufferRecordingAttributeTest dw08 = new IStreamBufferRecordingAttributeTest();
+            //dw08.DoTests();
+
+            IVMRImagePresenterConfigTest en15 = new IVMRImagePresenterConfigTest();
+            en15.DoTests();
+
+            IVMRImagePresenterConfig9Test en16 = new IVMRImagePresenterConfig9Test();
+            en16.DoTests();
+
         }
     }
 }

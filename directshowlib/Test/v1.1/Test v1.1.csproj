@@ -24,7 +24,7 @@
             >
                 <Config
                     Name = "Debug"
-                    AllowUnsafeBlocks = "false"
+                    AllowUnsafeBlocks = "true"
                     BaseAddress = "285212672"
                     CheckForOverflowUnderflow = "false"
                     ConfigurationOverrideFile = ""
@@ -170,6 +170,16 @@
                 />
                 <File
                     RelPath = "IVMRDeinterlaceControlTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IVMRImagePresenterConfig9Test.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IVMRImagePresenterConfigTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
