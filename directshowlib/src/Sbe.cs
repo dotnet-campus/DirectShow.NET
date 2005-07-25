@@ -24,6 +24,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 using System;
 using System.Runtime.InteropServices;
+using System.Text;
 
 namespace DirectShowLib.SBE
 {
@@ -377,7 +378,7 @@ namespace DirectShowLib.SBE
 		[PreserveSig]
 		int GetAttributeByName(
 			[In, MarshalAs(UnmanagedType.LPWStr)] string pszAttributeName,
-			[In] ref int pulReserved,
+			[In] int pulReserved,
 			[Out] out StreamBufferAttrDataType pStreamBufferAttributeType,
 			[In, Out] IntPtr pbAttribute, // BYTE *
 			[In, Out] ref short pcbLength
@@ -386,18 +387,18 @@ namespace DirectShowLib.SBE
 		[PreserveSig]
 		int GetAttributeByIndex(
 			[In] short wIndex,
-			[In] ref int pulReserved,
-			[Out, MarshalAs(UnmanagedType.LPWStr)] out string pszAttributeName,
+			[In] int pulReserved,
+			[Out, MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszAttributeName,
 			[In, Out] ref short pcchNameLength,
 			[Out] out StreamBufferAttrDataType pStreamBufferAttributeType,
-			[Out] out IntPtr pbAttribute, // BYTE *
+			IntPtr pbAttribute, // BYTE *
 			[In, Out] ref short pcbLength
 			);
 
 		int EnumAttributes([Out] out IEnumStreamBufferRecordingAttrib ppIEnumStreamBufferAttrib);
 	}
 
-	[Guid("16CA4E03-FE69-4705-BD41-5B7DFC0C95F3"),
+	[Guid("C18A9162-1E82-4142-8C73-5690FA62FE33"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IEnumStreamBufferRecordingAttrib
 	{
