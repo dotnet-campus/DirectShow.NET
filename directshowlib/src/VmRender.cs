@@ -616,8 +616,9 @@ namespace DirectShowLib
 		int GetSurface([Out, MarshalAs(UnmanagedType.Interface)] out object lplpSurface);
 	}
 
-	[Guid("9f3a1c85-8555-49ba-935f-be5b5b29d178"),
-		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[ComVisible(true),
+   Guid("9f3a1c85-8555-49ba-935f-be5b5b29d178"),
+	 InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IVMRImagePresenterConfig
 	{
 		[PreserveSig]
@@ -643,14 +644,14 @@ namespace DirectShowLib
 
 		[PreserveSig]
 		int SetXlcModeDDObjAndPrimarySurface(
-			[In, MarshalAs(UnmanagedType.Interface)] object lpDDObj,
-			[In, MarshalAs(UnmanagedType.Interface)] object lpPrimarySurf
+			[In] IntPtr lpDDObj,
+			[In] IntPtr lpPrimarySurf
 			);
 
 		[PreserveSig]
 		int GetXlcModeDDObjAndPrimarySurface(
-			[Out, MarshalAs(UnmanagedType.Interface)] out object lpDDObj,
-			[Out, MarshalAs(UnmanagedType.Interface)] out object lpPrimarySurf
+			[Out] out IntPtr lpDDObj,
+			[Out] out IntPtr lpPrimarySurf
 			);
 	}
 
