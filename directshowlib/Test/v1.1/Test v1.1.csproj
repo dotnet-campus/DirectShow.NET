@@ -114,6 +114,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IEnumStreamBufferRecordingAttribTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IStreamBufferConfigure2Test.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

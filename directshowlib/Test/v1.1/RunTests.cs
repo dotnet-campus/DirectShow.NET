@@ -3,9 +3,9 @@ using System.Windows.Forms;
 
 namespace DirectShowLib.Test
 {
-	/// <summary>
-	/// Summary description for Class1.
-	/// </summary>
+    /// <summary>
+    /// Summary description for Class1.
+    /// </summary>
     class Class1
     {
         /// <summary>
@@ -86,6 +86,8 @@ namespace DirectShowLib.Test
             IVMRImagePresenterConfig9Test en16 = new IVMRImagePresenterConfig9Test();
             en16.DoTests();
 
+            IEnumStreamBufferRecordingAttribTest dw09 = new IEnumStreamBufferRecordingAttribTest();
+            dw09.DoTests();
         }
     }
 }
