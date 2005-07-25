@@ -370,8 +370,8 @@ namespace DirectShowLib
 	}
 
 	[ComVisible(true),
-    Guid("8d5148ea-3f5d-46cf-9df1-d1b896eedb1f"),
-		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+   Guid("8d5148ea-3f5d-46cf-9df1-d1b896eedb1f"),
+	 InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IVMRSurfaceAllocator9
 	{
 		[PreserveSig]
@@ -535,8 +535,9 @@ namespace DirectShowLib
 		int GetSurface([Out, MarshalAs(UnmanagedType.IUnknown)] out object lplpSurface);
 	}
 
-	[Guid("45c15cab-6e22-420a-8043-ae1f0ac02c7d"),
-		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[ComVisible(true),
+  Guid("45c15cab-6e22-420a-8043-ae1f0ac02c7d"),
+	InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IVMRImagePresenterConfig9
 	{
 		[PreserveSig]
