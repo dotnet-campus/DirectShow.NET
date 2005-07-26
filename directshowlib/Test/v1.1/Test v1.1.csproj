@@ -139,6 +139,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IStreamBufferRecordControlTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IStreamBufferRecordingAttributeTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

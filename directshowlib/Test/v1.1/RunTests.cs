@@ -14,6 +14,36 @@ namespace DirectShowLib.Test
         [STAThread]
         static void Main(string[] args)
         {
+            //IStreamBufferInitializeTest dw01 = new IStreamBufferInitializeTest();
+            //dw01.DoTests();
+
+            //IStreamBufferConfigTest dw02 = new IStreamBufferConfigTest();
+            //dw02.DoTests();
+
+            //IStreamBufferConfigTest2 dw03 = new IStreamBufferConfigTest2();
+            //dw03.DoTests();
+
+            //IStreamBufferDataCountersTest dw04 = new IStreamBufferDataCountersTest();
+            //dw04.DoTests();
+
+            //IStreamBufferSinkTest dw05 = new IStreamBufferSinkTest();
+            //dw05.DoTests();
+
+            //IStreamBufferSink2Test dw06 = new IStreamBufferSink2Test();
+            //dw06.DoTests();
+
+            //IStreamBufferSink3Test dw07 = new IStreamBufferSink3Test();
+            //dw07.DoTests();
+
+            //IStreamBufferRecordingAttributeTest dw08 = new IStreamBufferRecordingAttributeTest();
+            //dw08.DoTests();
+
+            //IEnumStreamBufferRecordingAttribTest dw09 = new IEnumStreamBufferRecordingAttribTest();
+            //dw09.DoTests();
+
+            IStreamBufferRecordControlTest dw10 = new IStreamBufferRecordControlTest();
+            dw10.DoTests();
+
             //IDMOWrapperFilterTest en01 = new IDMOWrapperFilterTest();
             //en01.DoTests();
 
@@ -56,38 +86,11 @@ namespace DirectShowLib.Test
             //IVMRDeinterlaceControl9Test en14 = new IVMRDeinterlaceControl9Test();
             //en14.DoTests();
 
-            //IStreamBufferInitializeTest dw01 = new IStreamBufferInitializeTest();
-            //dw01.DoTests();
-
-            //IStreamBufferConfigTest dw02 = new IStreamBufferConfigTest();
-            //dw02.DoTests();
-
-            //IStreamBufferConfigTest2 dw03 = new IStreamBufferConfigTest2();
-            //dw03.DoTests();
-
-            //IStreamBufferDataCountersTest dw04 = new IStreamBufferDataCountersTest();
-            //dw04.DoTests();
-
-            //IStreamBufferSinkTest dw05 = new IStreamBufferSinkTest();
-            //dw05.DoTests();
-
-            //IStreamBufferSink2Test dw06 = new IStreamBufferSink2Test();
-            //dw06.DoTests();
-
-            //IStreamBufferSink3Test dw07 = new IStreamBufferSink3Test();
-            //dw07.DoTests();
-
-            //IStreamBufferRecordingAttributeTest dw08 = new IStreamBufferRecordingAttributeTest();
-            //dw08.DoTests();
-
             IVMRImagePresenterConfigTest en15 = new IVMRImagePresenterConfigTest();
             en15.DoTests();
 
             IVMRImagePresenterConfig9Test en16 = new IVMRImagePresenterConfig9Test();
             en16.DoTests();
-
-            IEnumStreamBufferRecordingAttribTest dw09 = new IEnumStreamBufferRecordingAttribTest();
-            dw09.DoTests();
         }
     }
 }
