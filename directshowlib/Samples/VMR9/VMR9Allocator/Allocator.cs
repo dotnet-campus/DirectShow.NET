@@ -1,0 +1,382 @@
+using System;
+using System.Drawing;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
+using System.Windows.Forms;
+
+using DirectShowLib;
+
+using Microsoft.DirectX;
+using Microsoft.DirectX.Direct3D;
+
+namespace DirectShowLib.Sample
+{
+  [ComVisible(true)]
+  [ClassInterface(ClassInterfaceType.None)]
+  public class Allocator : IVMRSurfaceAllocator9, IVMRImagePresenter9, IDisposable
+	{
+    private const int E_FAIL = unchecked((int) 0x80004005);
+    private const int DxMagicNumber = -759872593;
+
+    private Control parentControl;
+
+    private PresentParameters presentParam;
+    private Device device = null;
+    private Surface renderTarget = null;
+
+    private Texture[] textures = null;
+    private Surface[] surfaces = null;
+    private IntPtr[] unmanagedSurfaces = null;
+    private Texture privateTexture = null;
+    private Surface privateSurface = null;
+
+    private IVMRSurfaceAllocatorNotify9 vmrSurfaceAllocatorNotify = null;
+    
+    private PlaneScene scene = null;
+
+		public Allocator(Control control)
+		{
+      parentControl = control;
+      scene = new PlaneScene();
+
+      Device.IsUsingEventHandlers = false;
+
+      CreateDevice();
+    }
+
+    ~Allocator()
+    {
+      Dispose();
+    }
+
+    private void CreateDevice()
+    {
+      presentParam = new PresentParameters();
+      presentParam.Windowed = true;
+      presentParam.PresentFlag = PresentFlag.Video;
+      presentParam.SwapEffect = SwapEffect.Copy;
+      presentParam.BackBufferFormat = Manager.Adapters.Default.CurrentDisplayMode.Format;
+
+      device = new Device(
+        0, 
+        DeviceType.Hardware, 
+        parentControl, 
+        CreateFlags.SoftwareVertexProcessing | CreateFlags.MultiThreaded,
+        presentParam
+        );
+
+      renderTarget = device.GetRenderTarget(0);
+    }
+
+    private void DeleteSurfaces()
+    {
+      lock(this)
+      {
+        if (privateTexture != null)
+        {
+          privateTexture.Dispose();
+          privateTexture = null;
+        }
+
+        if (privateSurface != null)
+        {
+          privateSurface.Dispose();
+          privateSurface = null;
+        }
+
+        if (textures != null)
+        {
+          for(int i = 0; i < textures.Length; i++)
+          {
+            if (textures[i] != null) textures[i].Dispose();
+            textures[i] = null;
+          }
+          textures = null;
+        }
+
+        if (surfaces != null)
+        {
+          for(int i = 0; i < surfaces.Length; i++)
+          {
+            if (surfaces[i] != null) surfaces[i].Dispose();
+            surfaces[i] = null;
+          }
+          surfaces = null;
+        }
+      }
+    }
+
+    #region Membres de IVMRSurfaceAllocator9
+
+    public int InitializeDevice(IntPtr dwUserID, ref VMR9AllocationInfo lpAllocInfo, ref int lpNumBuffers)
+    {
+      int width = 1;
+      int height = 1;
+      float fTU = 1.0f;
+      float fTV = 1.0f;
+
+      if (vmrSurfaceAllocatorNotify == null)
+      {
+        return E_FAIL;
+      }
+
+      int hr = 0;
+
+      try
+      {
+        IntPtr unmanagedDevice = device.GetObjectByValue(DxMagicNumber);
+        IntPtr hMonitor = Manager.GetAdapterMonitor(Manager.Adapters.Default.Adapter);
+
+        hr = vmrSurfaceAllocatorNotify.SetD3DDevice(unmanagedDevice, hMonitor);
+        DsError.ThrowExceptionForHR(hr);
+
+        if (device.DeviceCaps.TextureCaps.SupportsPower2)
+        {
+          while (width < lpAllocInfo.dwWidth)
+            width = width << 1;
+          while (height < lpAllocInfo.dwHeight)
+            height = height << 1;
+
+          fTU = (float)(lpAllocInfo.dwWidth) / (float)(width);
+          fTV = (float)(lpAllocInfo.dwHeight) / (float)(height);
+          scene.SetSrcRect(fTU, fTV);
+
+          lpAllocInfo.dwWidth = width;
+          lpAllocInfo.dwHeight = height;
+        }
+
+        // NOTE:
+        // we need to make sure that we create textures because
+        // surfaces can not be textured onto a primitive.
+        lpAllocInfo.dwFlags |= VMR9SurfaceAllocationFlags.TextureSurface;
+
+        DeleteSurfaces();
+
+        textures = new Texture[lpNumBuffers];
+        surfaces = new Surface[lpNumBuffers];
+        unmanagedSurfaces = new IntPtr[lpNumBuffers];
+
+        hr = vmrSurfaceAllocatorNotify.AllocateSurfaceHelper(ref lpAllocInfo, ref lpNumBuffers, unmanagedSurfaces);
+
+        // If we couldn't create a texture surface and 
+        // the format is not an alpha format,
+        // then we probably cannot create a texture.
+        // So what we need to do is create a private texture
+        // and copy the decoded images onto it.
+        if (hr < 0)
+        {
+          DeleteSurfaces();
+
+          FourCC fcc = new FourCC("0000");
+
+          // is surface YUV ?
+          if (lpAllocInfo.Format > fcc.ToInt32())
+          {
+            // create the private texture
+            privateTexture = new Texture(
+              device,
+              lpAllocInfo.dwWidth,
+              lpAllocInfo.dwHeight,
+              1,
+              Usage.RenderTarget,
+              Manager.Adapters.Default.CurrentDisplayMode.Format,
+              Pool.Default
+              );
+
+            privateSurface = privateTexture.GetSurfaceLevel(0);
+          }
+
+          lpAllocInfo.dwFlags &= ~VMR9SurfaceAllocationFlags.TextureSurface;
+          lpAllocInfo.dwFlags |= VMR9SurfaceAllocationFlags.OffscreenSurface;
+
+          unmanagedSurfaces = new IntPtr[lpNumBuffers];
+
+          hr = vmrSurfaceAllocatorNotify.AllocateSurfaceHelper(ref lpAllocInfo, ref lpNumBuffers, unmanagedSurfaces);
+          if (hr < 0)
+            return hr;
+        }
+        else
+        {
+          for (int i = 0; i < lpNumBuffers; i++)
+          {
+            surfaces[i] = new Surface(unmanagedSurfaces[i]);
+            textures[i] = (Texture) surfaces[i].GetContainer(new Guid("85C31227-3DE5-4f00-9B3A-F11AC38C18B5"));
+          }
+        }
+
+        return scene.Init(device);
+      }
+      catch(DirectXException e)
+      {
+        return e.ErrorCode;
+      }
+      catch
+      {
+        return E_FAIL;
+      }
+    }
+
+    public int TerminateDevice(IntPtr dwID)
+    {
+      DeleteSurfaces();
+      return 0;
+    }
+
+    public int GetSurface(IntPtr dwUserID, int SurfaceIndex, int SurfaceFlags, out IntPtr lplpSurface)
+    {
+      lplpSurface = IntPtr.Zero;
+
+      if (SurfaceIndex > unmanagedSurfaces.Length)
+        return E_FAIL;
+
+      lock(this)
+      {
+        lplpSurface = unmanagedSurfaces[SurfaceIndex];
+        Marshal.AddRef(lplpSurface);
+        return 0;
+      }
+    }
+
+    public int AdviseNotify(IVMRSurfaceAllocatorNotify9 lpIVMRSurfAllocNotify)
+    {
+      lock(this)
+      {
+        vmrSurfaceAllocatorNotify = lpIVMRSurfAllocNotify;
+
+        IntPtr unmanagedDevice = device.GetObjectByValue(DxMagicNumber);
+        IntPtr hMonitor = Manager.GetAdapterMonitor(Manager.Adapters.Default.Adapter);
+
+        return vmrSurfaceAllocatorNotify.SetD3DDevice(unmanagedDevice, hMonitor);
+      }
+    }
+
+    #endregion
+
+    #region Membres de IVMRImagePresenter9
+
+    public int StartPresenting(IntPtr dwUserID)
+    {
+      lock(this)
+      {
+        if (device == null)
+          return E_FAIL;
+
+        return 0;
+      }
+    }
+
+    public int StopPresenting(IntPtr dwUserID)
+    {
+      return 0;
+    }
+
+    public int PresentImage(IntPtr dwUserID, ref VMR9PresentationInfo lpPresInfo)
+    {
+      int hr = 0;
+
+      lock(this)
+      {
+        try
+        {
+          // if we are in the middle of the display change
+          if(NeedToHandleDisplayChange())
+          {
+            // NOTE: this piece of code is left as a user exercise.  
+            // The D3DDevice here needs to be switched
+            // to the device that is using another adapter
+          }
+
+          hr = PresentHelper(lpPresInfo);
+
+          return hr;
+        }
+        catch (DirectXException e)
+        {
+          return e.ErrorCode;
+        }
+        catch
+        {
+          return E_FAIL;
+        }
+      }
+    }
+
+    private int PresentHelper(VMR9PresentationInfo lpPresInfo)
+    {
+      int hr = 0;
+      int i = 0;
+
+      try 
+      {
+        device.SetRenderTarget(0, renderTarget);
+
+        if (privateTexture != null)
+        {
+          Marshal.AddRef(lpPresInfo.lpSurf);
+          using(Surface surface = new Surface(lpPresInfo.lpSurf))
+          {
+            device.StretchRectangle(
+              surface,
+              new Rectangle(0, 0, surface.Description.Width, surface.Description.Height),
+              privateSurface,
+              new Rectangle(0, 0, privateSurface.Description.Width, privateSurface.Description.Height),
+              TextureFilter.None
+              );
+          }
+
+          hr = scene.DrawScene(device, privateTexture);
+          if (hr < 0)
+            return hr;
+        }
+        else
+        {
+          for (i = 0; i < unmanagedSurfaces.Length; i++)
+          {
+            if (lpPresInfo.lpSurf == unmanagedSurfaces[i])
+              break;
+          }
+
+          hr = scene.DrawScene(device, textures[i]);
+          if (hr < 0)
+            return hr;
+        }
+
+        device.Present();
+        return 0;
+      }
+      catch (DirectXException e)
+      {
+        return e.ErrorCode;
+      }
+      catch
+      {
+        return E_FAIL;
+      }
+    }
+
+    private bool NeedToHandleDisplayChange()
+    {
+      if (vmrSurfaceAllocatorNotify == null)
+        return false;
+
+      IntPtr currentMonitor = Manager.GetAdapterMonitor(device.CreationParameters.AdapterOrdinal);
+      IntPtr defaultMonitor = Manager.GetAdapterMonitor(Manager.Adapters.Default.Adapter);
+
+      return currentMonitor != defaultMonitor;
+    }
+
+    #endregion
+
+    #region Membres de IDisposable
+
+    public void Dispose()
+    {
+      DeleteSurfaces();
+      scene.Dispose();
+      device.Dispose();
+    }
+
+    #endregion
+
+  }
+}
