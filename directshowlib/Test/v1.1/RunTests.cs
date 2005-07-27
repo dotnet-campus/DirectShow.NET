@@ -44,8 +44,11 @@ namespace DirectShowLib.Test
             //IStreamBufferRecordControlTest dw10 = new IStreamBufferRecordControlTest();
             //dw10.DoTests();
 
-            IStreamBufferRecCompTest dw11 = new IStreamBufferRecCompTest();
-            dw11.DoTests();
+            //IStreamBufferRecCompTest dw11 = new IStreamBufferRecCompTest();
+            //dw11.DoTests();
+
+            IStreamBufferSourceTest dw12 = new IStreamBufferSourceTest();
+            dw12.DoTests();
 
             //IDMOWrapperFilterTest en01 = new IDMOWrapperFilterTest();
             //en01.DoTests();
