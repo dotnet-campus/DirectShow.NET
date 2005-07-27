@@ -91,8 +91,8 @@
                 />
                 <Reference
                     Name = "DirectShowLib"
-                    AssemblyName = "DirectShowLib"
-                    HintPath = "..\..\src\bin\Debug\DirectShowLib.dll"
+                    Project = "{CE009BFA-5EF6-4153-B2A1-2FA79698A9AE}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
             </References>
         </Build>
@@ -135,6 +135,16 @@
                 />
                 <File
                     RelPath = "IStreamBufferInitializeTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IStreamBufferMediaSeeking2Test.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IStreamBufferMediaSeekingTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
