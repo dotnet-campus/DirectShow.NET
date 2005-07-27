@@ -77,10 +77,13 @@ namespace DirectShowLib.Test
             hr = isbc.LockProfile(null);
             DsError.ThrowExceptionForHR(hr);
 
+            IPin i = DsFindPin.ByDirection((IBaseFilter)sbk, PinDirection.Input, 0);
+
             ((IMediaControl)m_FilterGraph).Run();
             // --------------------------
             IBaseFilter streamBuffer = null;
             m_FilterGraph2 = (IFilterGraph2)new FilterGraph();
+            DsROTEntry  ds2 = new DsROTEntry(m_FilterGraph2);
 
             streamBuffer = (IBaseFilter) new StreamBufferSource();
 
@@ -92,6 +95,8 @@ namespace DirectShowLib.Test
             hr = sbsrc.SetStreamSink(isbc);
             DsError.ThrowExceptionForHR(hr);
 
+            IPin i2 = DsFindPin.ByDirection((IBaseFilter)streamBuffer, PinDirection.Output, 0);
+
             ((IMediaControl)m_FilterGraph2).Run();
 
             m_sbms = (IStreamBufferMediaSeeking2)sbsrc;
@@ -99,6 +104,7 @@ namespace DirectShowLib.Test
 
             Marshal.ReleaseComObject(pFilter);
             Marshal.ReleaseComObject(icgb);
+
         }
     }
 }
