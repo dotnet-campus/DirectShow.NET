@@ -41,8 +41,11 @@ namespace DirectShowLib.Test
             //IEnumStreamBufferRecordingAttribTest dw09 = new IEnumStreamBufferRecordingAttribTest();
             //dw09.DoTests();
 
-            IStreamBufferRecordControlTest dw10 = new IStreamBufferRecordControlTest();
-            dw10.DoTests();
+            //IStreamBufferRecordControlTest dw10 = new IStreamBufferRecordControlTest();
+            //dw10.DoTests();
+
+            IStreamBufferRecCompTest dw11 = new IStreamBufferRecCompTest();
+            dw11.DoTests();
 
             //IDMOWrapperFilterTest en01 = new IDMOWrapperFilterTest();
             //en01.DoTests();
@@ -86,11 +89,11 @@ namespace DirectShowLib.Test
             //IVMRDeinterlaceControl9Test en14 = new IVMRDeinterlaceControl9Test();
             //en14.DoTests();
 
-            IVMRImagePresenterConfigTest en15 = new IVMRImagePresenterConfigTest();
-            en15.DoTests();
+            //IVMRImagePresenterConfigTest en15 = new IVMRImagePresenterConfigTest();
+            //en15.DoTests();
 
-            IVMRImagePresenterConfig9Test en16 = new IVMRImagePresenterConfig9Test();
-            en16.DoTests();
+            //IVMRImagePresenterConfig9Test en16 = new IVMRImagePresenterConfig9Test();
+            //en16.DoTests();
         }
     }
 }
