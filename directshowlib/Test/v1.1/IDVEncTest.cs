@@ -34,10 +34,10 @@ namespace DirectShowLib.Test
       DVEncoderResolution resol;
       DVInfo dvInfo = new DVInfo();
 
-      hr = dvEnc.put_IFormatResolution(DVEncoderVideoFormat.PAL, DVEncoderFormat.DVHD, DVEncoderResolution.r720x480, false, dvInfo);
+      hr = dvEnc.put_IFormatResolution(DVEncoderVideoFormat.PAL, DVEncoderFormat.DVHD, DVEncoderResolution.r720x480, OABool.False, dvInfo);
       DsError.ThrowExceptionForHR(hr);
 
-      hr = dvEnc.get_IFormatResolution(out vidFmt, out fmt, out resol, false, out dvInfo);
+      hr = dvEnc.get_IFormatResolution(out vidFmt, out fmt, out resol, OABool.False, out dvInfo);
       DsError.ThrowExceptionForHR(hr);
 
       Debug.Assert(vidFmt == DVEncoderVideoFormat.PAL, "IDVEnc.get_ / put_IFormatResolution");
@@ -48,18 +48,18 @@ namespace DirectShowLib.Test
       dvInfo.dwDVAAuxSrc = 20;
       dvInfo.dwDVVAuxSrc = 10;
 
-      hr = dvEnc.put_IFormatResolution(DVEncoderVideoFormat.NTSC, DVEncoderFormat.DVSD, DVEncoderResolution.r360x240, true, dvInfo);
+      hr = dvEnc.put_IFormatResolution(DVEncoderVideoFormat.NTSC, DVEncoderFormat.DVSD, DVEncoderResolution.r360x240, OABool.True, dvInfo);
       DsError.ThrowExceptionForHR(hr);
 
-      hr = dvEnc.get_IFormatResolution(out vidFmt, out fmt, out resol, true, out dvInfo);
+      hr = dvEnc.get_IFormatResolution(out vidFmt, out fmt, out resol, OABool.True, out dvInfo);
       DsError.ThrowExceptionForHR(hr);
     
       Debug.Assert(vidFmt == DVEncoderVideoFormat.NTSC, "IDVEnc.get_ / put_IFormatResolution");
       Debug.Assert(fmt == DVEncoderFormat.DVSD, "IDVEnc.get_ / put_IFormatResolution");
       Debug.Assert(resol == DVEncoderResolution.r360x240, "IDVEnc.get_ / put_IFormatResolution");
 
-      //Debug.Assert(dvInfo.dwDVAAuxSrc == 20, "IDVEnc.get_ / put_IFormatResolution");
-      //Debug.Assert(dvInfo.dwDVVAuxSrc == 10, "IDVEnc.get_ / put_IFormatResolution");
+      Debug.Assert(dvInfo.dwDVAAuxSrc == 20, "IDVEnc.get_ / put_IFormatResolution");
+      Debug.Assert(dvInfo.dwDVVAuxSrc == 10, "IDVEnc.get_ / put_IFormatResolution");
       // The get method always return a struct filled with -1.
       // I don't know if it's a normal behaviour or something is wrong with marshaling...
     }
