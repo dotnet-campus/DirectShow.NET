@@ -2157,7 +2157,7 @@ namespace DirectShowLib
             [Out] out DVEncoderVideoFormat VideoFormat,
             [Out] out DVEncoderFormat DVFormat,
             [Out] out DVEncoderResolution Resolution,
-            [In, MarshalAs(UnmanagedType.I1)] bool fDVInfo,
+            [In, MarshalAs(UnmanagedType.I4)] OABool fDVInfo,
             [Out] out DVInfo sDVInfo
             );
 
@@ -2166,7 +2166,7 @@ namespace DirectShowLib
             [In] DVEncoderVideoFormat VideoFormat,
             [In] DVEncoderFormat DVFormat,
             [In] DVEncoderResolution Resolution,
-            [In, MarshalAs(UnmanagedType.I1)] bool fDVInfo,
+            [In, MarshalAs(UnmanagedType.I4)] OABool fDVInfo,
             [In] DVInfo sDVInfo
             );
     }
