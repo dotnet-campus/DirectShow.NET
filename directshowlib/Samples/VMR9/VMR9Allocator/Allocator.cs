@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Drawing;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
@@ -23,9 +24,10 @@ namespace DirectShowLib.Sample
     private PresentParameters presentParam;
     private Device device = null;
     private Surface renderTarget = null;
+    private AdapterInformation adapterInfo = null;
 
-    private Texture[] textures = null;
-    private Surface[] surfaces = null;
+    private Hashtable textures = null;
+    private Hashtable surfaces = null;
     private IntPtr[] unmanagedSurfaces = null;
     private Texture privateTexture = null;
     private Surface privateSurface = null;
@@ -51,11 +53,13 @@ namespace DirectShowLib.Sample
 
     private void CreateDevice()
     {
+      adapterInfo = Manager.Adapters.Default;
+      
       presentParam = new PresentParameters();
       presentParam.Windowed = true;
       presentParam.PresentFlag = PresentFlag.Video;
       presentParam.SwapEffect = SwapEffect.Copy;
-      presentParam.BackBufferFormat = Manager.Adapters.Default.CurrentDisplayMode.Format;
+      presentParam.BackBufferFormat = adapterInfo.CurrentDisplayMode.Format;
 
       device = new Device(
         0, 
@@ -86,20 +90,18 @@ namespace DirectShowLib.Sample
 
         if (textures != null)
         {
-          for(int i = 0; i < textures.Length; i++)
+          foreach (Texture tex in textures.Values)
           {
-            if (textures[i] != null) textures[i].Dispose();
-            textures[i] = null;
+            tex.Dispose();
           }
           textures = null;
         }
 
         if (surfaces != null)
         {
-          for(int i = 0; i < surfaces.Length; i++)
+          foreach (Surface surf in surfaces.Values)
           {
-            if (surfaces[i] != null) surfaces[i].Dispose();
-            surfaces[i] = null;
+            surf.Dispose();
           }
           surfaces = null;
         }
@@ -125,7 +127,7 @@ namespace DirectShowLib.Sample
       try
       {
         IntPtr unmanagedDevice = device.GetObjectByValue(DxMagicNumber);
-        IntPtr hMonitor = Manager.GetAdapterMonitor(Manager.Adapters.Default.Adapter);
+        IntPtr hMonitor = Manager.GetAdapterMonitor(adapterInfo.Adapter);
 
         hr = vmrSurfaceAllocatorNotify.SetD3DDevice(unmanagedDevice, hMonitor);
         DsError.ThrowExceptionForHR(hr);
@@ -152,8 +154,6 @@ namespace DirectShowLib.Sample
 
         DeleteSurfaces();
 
-        textures = new Texture[lpNumBuffers];
-        surfaces = new Surface[lpNumBuffers];
         unmanagedSurfaces = new IntPtr[lpNumBuffers];
 
         hr = vmrSurfaceAllocatorNotify.AllocateSurfaceHelper(ref lpAllocInfo, ref lpNumBuffers, unmanagedSurfaces);
@@ -179,7 +179,7 @@ namespace DirectShowLib.Sample
               lpAllocInfo.dwHeight,
               1,
               Usage.RenderTarget,
-              Manager.Adapters.Default.CurrentDisplayMode.Format,
+              adapterInfo.CurrentDisplayMode.Format,
               Pool.Default
               );
 
@@ -197,10 +197,15 @@ namespace DirectShowLib.Sample
         }
         else
         {
+          surfaces = new Hashtable(unmanagedSurfaces.Length);
+          textures = new Hashtable(unmanagedSurfaces.Length);
+
           for (int i = 0; i < lpNumBuffers; i++)
           {
-            surfaces[i] = new Surface(unmanagedSurfaces[i]);
-            textures[i] = (Texture) surfaces[i].GetContainer(new Guid("85C31227-3DE5-4f00-9B3A-F11AC38C18B5"));
+            Surface surf = new Surface(unmanagedSurfaces[i]);
+            Texture text = (Texture) surf.GetContainer(new Guid("85C31227-3DE5-4f00-9B3A-F11AC38C18B5"));
+            surfaces.Add(unmanagedSurfaces[i], surf);
+            textures.Add(unmanagedSurfaces[i], text);
           }
         }
 
@@ -304,7 +309,6 @@ namespace DirectShowLib.Sample
     private int PresentHelper(VMR9PresentationInfo lpPresInfo)
     {
       int hr = 0;
-      int i = 0;
 
       try 
       {
@@ -330,15 +334,14 @@ namespace DirectShowLib.Sample
         }
         else
         {
-          for (i = 0; i < unmanagedSurfaces.Length; i++)
+          if (textures.ContainsKey(lpPresInfo.lpSurf))
           {
-            if (lpPresInfo.lpSurf == unmanagedSurfaces[i])
-              break;
+            hr = scene.DrawScene(device, textures[lpPresInfo.lpSurf] as Texture);
+            if (hr < 0)
+              return hr;
           }
-
-          hr = scene.DrawScene(device, textures[i]);
-          if (hr < 0)
-            return hr;
+          else
+            hr = E_FAIL;
         }
 
         device.Present();
@@ -360,7 +363,7 @@ namespace DirectShowLib.Sample
         return false;
 
       IntPtr currentMonitor = Manager.GetAdapterMonitor(device.CreationParameters.AdapterOrdinal);
-      IntPtr defaultMonitor = Manager.GetAdapterMonitor(Manager.Adapters.Default.Adapter);
+      IntPtr defaultMonitor = Manager.GetAdapterMonitor(adapterInfo.Adapter);
 
       return currentMonitor != defaultMonitor;
     }
