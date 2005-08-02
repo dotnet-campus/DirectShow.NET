@@ -323,7 +323,7 @@ namespace DirectShowLib
     [StructLayout(LayoutKind.Sequential)]
     public struct VMR9VideoStreamInfo
     {
-        [MarshalAs(UnmanagedType.IUnknown)] public object pddsVideoSurface; // IDirect3DSurface9
+        public IntPtr pddsVideoSurface; // IDirect3DSurface9
         public int dwWidth;
         public int dwHeight;
         public int dwStrmID;
@@ -641,27 +641,27 @@ namespace DirectShowLib
 	public interface IVMRImageCompositor9
 	{
 		[PreserveSig]
-		int InitCompositionDevice([In, MarshalAs(UnmanagedType.IUnknown)] object pD3DDevice);
+		int InitCompositionDevice([In] IntPtr pD3DDevice);
 
 		[PreserveSig]
-		int TermCompositionDevice([In, MarshalAs(UnmanagedType.IUnknown)] object pD3DDevice);
+		int TermCompositionDevice([In] IntPtr pD3DDevice);
 
 		[PreserveSig]
 		int SetStreamMediaType(
 			[In] int dwStrmID,
-			[In] AMMediaType pmt,
-			[In, MarshalAs(UnmanagedType.Bool)] bool fTexture
+      [In] AMMediaType pmt,
+      [In, MarshalAs(UnmanagedType.Bool)] bool fTexture
 			);
 
 		[PreserveSig]
 		int CompositeImage(
-			[In, MarshalAs(UnmanagedType.IUnknown)] object pD3DDevice,
-			[In, MarshalAs(UnmanagedType.IUnknown)] object pddsRenderTarget, // IDirect3DSurface9
-			[In] ref AMMediaType pmtRenderTarget,
+			[In] IntPtr pD3DDevice,
+			[In] IntPtr pddsRenderTarget, // IDirect3DSurface9
+			[In] AMMediaType pmtRenderTarget,
 			[In] long rtStart,
 			[In] long rtEnd,
 			[In] int dwClrBkGnd,
-			[In] ref VMR9VideoStreamInfo pVideoStreamInfo,
+			[In, MarshalAs(UnmanagedType.LPArray, ArraySubType=UnmanagedType.Struct, SizeParamIndex=7)] VMR9VideoStreamInfo[] pVideoStreamInfo,
 			[In] int cStreams
 			);
 	}
