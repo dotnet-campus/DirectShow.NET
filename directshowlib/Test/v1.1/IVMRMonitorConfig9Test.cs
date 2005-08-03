@@ -75,7 +75,7 @@ namespace DirectShowLib.Test
       if (monitorInfo.Length > 1)
       {
         // Get monitor id for the last monitor
-        monitor = monitorInfo[monitorInfo.Length - 1].dwDeviceId;
+        monitor = monitorInfo[monitorInfo.Length - 1].uDevID;
       }
       else
       {
@@ -103,7 +103,7 @@ namespace DirectShowLib.Test
       if (monitorInfo.Length > 1)
       {
         // Get monitor id for the last monitor
-        monitor = monitorInfo[monitorInfo.Length - 1].dwDeviceId;
+        monitor = monitorInfo[monitorInfo.Length - 1].uDevID;
       }
       else
       {
