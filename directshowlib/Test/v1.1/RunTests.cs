@@ -53,8 +53,8 @@ namespace DirectShowLib.Test
             //IStreamBufferMediaSeekingTest dw13 = new IStreamBufferMediaSeekingTest();
             //dw13.DoTests();
 
-            IStreamBufferMediaSeeking2Test dw14 = new IStreamBufferMediaSeeking2Test();
-            dw14.DoTests();
+            //IStreamBufferMediaSeeking2Test dw14 = new IStreamBufferMediaSeeking2Test();
+            //dw14.DoTests();
 
             //IDMOWrapperFilterTest en01 = new IDMOWrapperFilterTest();
             //en01.DoTests();
@@ -103,6 +103,13 @@ namespace DirectShowLib.Test
 
             //IVMRImagePresenterConfig9Test en16 = new IVMRImagePresenterConfig9Test();
             //en16.DoTests();
+
+            //IVMRSurfaceAllocatorNotify9Test en17 = new IVMRSurfaceAllocatorNotify9Test();
+            //en17.DoTests();
+
+            IVMRImageCompositor9Test en18 = new IVMRImageCompositor9Test();
+            en18.DoTests();
+
         }
     }
 }
