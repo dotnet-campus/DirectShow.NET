@@ -297,13 +297,13 @@ namespace DirectShowLib
     [StructLayout(LayoutKind.Sequential)]
     public struct VMRVideoStreamInfo
     {
-        [MarshalAs(UnmanagedType.Interface)] public object pddsVideoSurface;
-        public int dwWidth;
-        public int dwHeight;
-        public int dwStrmID;
-        public float fAlpha;
-        public int ddClrKey;
-        public Rectangle rNormal;
+      public IntPtr pddsVideoSurface;
+      public int dwWidth;
+      public int dwHeight;
+      public int dwStrmID;
+      public float fAlpha;
+      public DDColorKey ddClrKey;
+      public NormalizedRect rNormal;
     }
 
     /// <summary>
@@ -552,14 +552,14 @@ namespace DirectShowLib
 	{
 		[PreserveSig]
 		int InitCompositionTarget(
-			[In, MarshalAs(UnmanagedType.Interface)] object pD3DDevice,
-			[In, MarshalAs(UnmanagedType.Interface)] object pddsRenderTarget
+			[In] IntPtr pD3DDevice,
+			[In] IntPtr pddsRenderTarget
 			);
 
 		[PreserveSig]
 		int TermCompositionTarget(
-			[In, MarshalAs(UnmanagedType.Interface)] object pD3DDevice,
-			[In, MarshalAs(UnmanagedType.Interface)] object pddsRenderTarget
+			[In] IntPtr pD3DDevice,
+			[In] IntPtr pddsRenderTarget
 			);
 
 		[PreserveSig]
@@ -571,13 +571,13 @@ namespace DirectShowLib
 
 		[PreserveSig]
 		int CompositeImage(
-			[In, MarshalAs(UnmanagedType.Interface)] object pD3DDevice,
-			[In, MarshalAs(UnmanagedType.Interface)] object pddsRenderTarget,
+			[In] IntPtr pD3DDevice,
+			[In] IntPtr pddsRenderTarget,
 			[In] AMMediaType pmtRenderTarget,
 			[In] long rtStart,
 			[In] long rtEnd,
 			[In] int dwClrBkGnd,
-			[In] VMRVideoStreamInfo pVideoStreamInfo,
+			[In, MarshalAs(UnmanagedType.LPArray, ArraySubType=UnmanagedType.Struct, SizeParamIndex=7)] VMRVideoStreamInfo[] pVideoStreamInfo,
 			[In] int cStreams
 			);
 	}
