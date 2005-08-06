@@ -130,19 +130,19 @@ namespace DirectShowLib.Test
     {
       #region Membres de IVMRImageCompositor
 
-      public int CompositeImage(object pD3DDevice, object pddsRenderTarget, AMMediaType pmtRenderTarget, long rtStart, long rtEnd, int dwClrBkGnd, VMRVideoStreamInfo pVideoStreamInfo, int cStreams)
+      public int CompositeImage(IntPtr pD3DDevice, IntPtr pddsRenderTarget, AMMediaType pmtRenderTarget, long rtStart, long rtEnd, int dwClrBkGnd, VMRVideoStreamInfo[] pVideoStreamInfo, int cStreams)
       {
         // TODO : ajoutez l'implémentation de NullSampleCompositor7.CompositeImage
         return 0;
       }
 
-      public int TermCompositionTarget(object pD3DDevice, object pddsRenderTarget)
+      public int TermCompositionTarget(IntPtr pD3DDevice, IntPtr pddsRenderTarget)
       {
         // TODO : ajoutez l'implémentation de NullSampleCompositor7.TermCompositionTarget
         return 0;
       }
 
-      public int InitCompositionTarget(object pD3DDevice, object pddsRenderTarget)
+      public int InitCompositionTarget(IntPtr pD3DDevice, IntPtr pddsRenderTarget)
       {
         // TODO : ajoutez l'implémentation de NullSampleCompositor7.InitCompositionTarget
         return 0;
