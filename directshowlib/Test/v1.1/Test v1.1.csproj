@@ -209,6 +209,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IVMRImageCompositorTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IVMRImagePresenterConfig9Test.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

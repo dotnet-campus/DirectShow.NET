@@ -107,9 +107,11 @@ namespace DirectShowLib.Test
             //IVMRSurfaceAllocatorNotify9Test en17 = new IVMRSurfaceAllocatorNotify9Test();
             //en17.DoTests();
 
-            IVMRImageCompositor9Test en18 = new IVMRImageCompositor9Test();
-            en18.DoTests();
+            //IVMRImageCompositor9Test en18 = new IVMRImageCompositor9Test();
+            //en18.DoTests();
 
+            IVMRImageCompositorTest en19 = new IVMRImageCompositorTest();
+            en19.DoTests();
         }
     }
 }
