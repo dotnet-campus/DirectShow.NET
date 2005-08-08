@@ -38,10 +38,10 @@ namespace DirectShowLib
     /// </summary>
     public enum Merit
     {
-        Preferred = 0x800000,
-        Normal = 0x600000,
-        Unlikely = 0x400000,
-        DoNotUse = 0x200000,
+        Preferred    = 0x800000,
+        Normal       = 0x600000,
+        Unlikely     = 0x400000,
+        DoNotUse     = 0x200000,
         SWCompressor = 0x100000,
         HWCompressor = 0x100050
     }
@@ -199,6 +199,7 @@ namespace DirectShowLib
     [Flags]
     public enum AMIntfSearchFlags
     {
+        None = 0x00000000,
         InputPin = 0x00000001,
         OutputPin = 0x00000002,
         Filter = 0x00000004
@@ -1023,13 +1024,13 @@ namespace DirectShowLib
             [In] Merit dwMerit,
             [In, MarshalAs(UnmanagedType.Bool)] bool bInputNeeded,
             [In] int cInputTypes,
-            [In] IntPtr pInputTypes, // GUID *
+            [In] Guid [] pInputTypes, // GUID *
             [In] RegPinMedium pMedIn,
             [In] Guid pPinCategoryIn,
             [In, MarshalAs(UnmanagedType.Bool)] bool bRender,
             [In, MarshalAs(UnmanagedType.Bool)] bool bOutputNeeded,
             [In] int cOutputTypes,
-            [In] IntPtr pOutputTypes, // GUID *
+            [In] Guid [] pOutputTypes, // GUID *
             [In] RegPinMedium pMedOut,
             [In] Guid pPinCategoryOut
             );
@@ -2225,8 +2226,8 @@ namespace DirectShowLib
         [PreserveSig]
         int FindUpstreamInterface(
             [In] IPin pPin,
-            [In] Guid riid,
-            [Out] out IntPtr ppvInterface, // void **
+            [In, MarshalAs(UnmanagedType.LPStruct)] Guid riid,
+            [Out, MarshalAs(UnmanagedType.IUnknown)] out object ppvInterface,
             [In] AMIntfSearchFlags dwFlags
             );
 
