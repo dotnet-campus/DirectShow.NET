@@ -104,6 +104,16 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IAMGraphStreamsTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IAMMediaContentTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IDMOWrapperFilterTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -115,6 +125,11 @@
                 />
                 <File
                     RelPath = "IEnumStreamBufferRecordingAttribTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IQualPropTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -251,11 +266,6 @@
                 <File
                     RelPath = "IVMRMonitorConfigTest.cs"
                     SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IVMRSurfaceAllocatorNotify9Test.cs"
-                    SubType = "Form"
                     BuildAction = "Compile"
                 />
                 <File

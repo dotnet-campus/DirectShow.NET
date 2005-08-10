@@ -1024,15 +1024,15 @@ namespace DirectShowLib
             [In] Merit dwMerit,
             [In, MarshalAs(UnmanagedType.Bool)] bool bInputNeeded,
             [In] int cInputTypes,
-            [In] Guid [] pInputTypes, // GUID *
+            [In, MarshalAs(UnmanagedType.LPArray, ArraySubType=UnmanagedType.Struct)] Guid[] pInputTypes, // GUID *
             [In] RegPinMedium pMedIn,
-            [In] Guid pPinCategoryIn,
+            [In] DsGuid pPinCategoryIn,
             [In, MarshalAs(UnmanagedType.Bool)] bool bRender,
             [In, MarshalAs(UnmanagedType.Bool)] bool bOutputNeeded,
             [In] int cOutputTypes,
-            [In] Guid [] pOutputTypes, // GUID *
+            [In, MarshalAs(UnmanagedType.LPArray, ArraySubType=UnmanagedType.Struct)] Guid[] pOutputTypes, // GUID *
             [In] RegPinMedium pMedOut,
-            [In] Guid pPinCategoryOut
+            [In] DsGuid pPinCategoryOut
             );
     }
 
@@ -1074,15 +1074,15 @@ namespace DirectShowLib
             [In] Merit dwMerit,
             [In, MarshalAs(UnmanagedType.Bool)] bool bInputNeeded,
             [In] int cInputTypes,
-            [In] IntPtr pInputTypes, // GUID *
+            [In, MarshalAs(UnmanagedType.LPArray, ArraySubType=UnmanagedType.Struct)] Guid[] pInputTypes, // GUID *
             [In] RegPinMedium pMedIn,
-            [In] Guid pPinCategoryIn,
+            [In] DsGuid pPinCategoryIn,
             [In, MarshalAs(UnmanagedType.Bool)] bool bRender,
             [In, MarshalAs(UnmanagedType.Bool)] bool bOutputNeeded,
             [In] int cOutputTypes,
-            [In] IntPtr pOutputTypes, // GUID *
+            [In, MarshalAs(UnmanagedType.LPArray, ArraySubType=UnmanagedType.Struct)] Guid[] pOutputTypes, // GUID *
             [In] RegPinMedium pMedOut,
-            [In] Guid pPinCategoryOut
+            [In] DsGuid pPinCategoryOut
             );
 
         #endregion

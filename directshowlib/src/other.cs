@@ -386,7 +386,7 @@ namespace DirectShowLib
             [Out] IntPtr ppMiscData); // LPVOID
     }
 
-    [Guid("256A6A21-FBAD-11d1-82BF-00A0C9696C8F"),
+    [Guid("256A6A22-FBAD-11d1-82BF-00A0C9696C8F"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IAMVideoAccelerator
     {
