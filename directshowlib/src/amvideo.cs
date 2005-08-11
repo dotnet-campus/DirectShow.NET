@@ -78,10 +78,10 @@ namespace DirectShowLib
     /// From MPEG1VIDEOINFO
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct MPEG1VideoInfo 
+    public struct MPEG1VideoInfo
     {
         public VideoInfoHeader hdr;
-        public int dwStartTimeCode;        
+        public int dwStartTimeCode;
         public int           cbSequenceHeader;
         public byte            bSequenceHeader;
     }
@@ -90,7 +90,7 @@ namespace DirectShowLib
     /// From ANALOGVIDEOINFO
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct AnalogVideoInfo 
+    public struct AnalogVideoInfo
     {
         public Rectangle            rcSource;
         public Rectangle            rcTarget;

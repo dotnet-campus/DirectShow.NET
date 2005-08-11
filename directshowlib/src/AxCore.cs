@@ -689,7 +689,7 @@ namespace DirectShowLib
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IBaseFilter : IMediaFilter
     {
-        #region "IPersist Methods"
+        #region IPersist Methods
 
         [PreserveSig]
         new int GetClassID(
@@ -697,7 +697,7 @@ namespace DirectShowLib
 
         #endregion
 
-        #region "IMediaFilter Methods"
+        #region IMediaFilter Methods
 
         [PreserveSig]
         new int Stop();

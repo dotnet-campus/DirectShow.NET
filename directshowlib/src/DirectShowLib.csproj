@@ -89,12 +89,22 @@
         <Files>
             <Include>
                 <File
+                    RelPath = "amstream.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "amvideo.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
                     RelPath = "AssemblyInfo.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "austream.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -169,12 +179,27 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "MediaObj.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "MediaParam.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Misc.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
                     RelPath = "Mixerocx.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "mmstream.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
