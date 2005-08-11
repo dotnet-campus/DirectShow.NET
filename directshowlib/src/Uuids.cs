@@ -1386,25 +1386,25 @@ namespace DirectShowLib
     public class DMOCatergory
     {
       /// <summary> DMOCATEGORY_AUDIO_DECODER </summary>
-      public static readonly Guid AudioDecoder = new Guid("57f2db8b-e6bb-4513-9d43-dcd2a6593125");
+      public static readonly Guid AudioDecoder = new Guid(0x57f2db8b,0xe6bb,0x4513,0x9d,0x43,0xdc,0xd2,0xa6,0x59,0x31,0x25);
 
       /// <summary> DMOCATEGORY_AUDIO_ENCODER </summary>
-      public static readonly Guid AudioEncoder = new Guid("33D9A761-90C8-11d0-BD43-00A0C911CE86");
+      public static readonly Guid AudioEncoder = new Guid(0x33D9A761,0x90C8,0x11d0,0xBD,0x43,0x00,0xA0,0xC9,0x11,0xCE,0x86);
 
       /// <summary> DMOCATEGORY_VIDEO_DECODER </summary>
-      public static readonly Guid VideoDecoder = new Guid("4a69b442-28be-4991-969c-b500adf5d8a8");
+      public static readonly Guid VideoDecoder = new Guid(0x4a69b442,0x28be,0x4991,0x96,0x9c,0xb5,0x00,0xad,0xf5,0xd8,0xa8);
 
       /// <summary> DMOCATEGORY_VIDEO_ENCODER </summary>
-      public static readonly Guid VideoEncoder = new Guid("33D9A760-90C8-11d0-BD43-00A0C911CE86");
+      public static readonly Guid VideoEncoder = new Guid(0x33D9A760,0x90C8,0x11d0,0xBD,0x43,0x00,0xA0,0xC9,0x11,0xCE,0x86);
 
       /// <summary> DMOCATEGORY_AUDIO_EFFECT </summary>
-      public static readonly Guid AudioEffect = new Guid("f3602b3f-0592-48df-a4cd-674721e7ebeb");
+      public static readonly Guid AudioEffect = new Guid(0xf3602b3f,0x0592,0x48df,0xa4,0xcd,0x67,0x47,0x21,0xe7,0xeb,0xeb);
 
       /// <summary> DMOCATEGORY_VIDEO_EFFECT </summary>
-      public static readonly Guid VideoEffect = new Guid("d990ee14-776c-4723-be46-3da2f56f10b9");
+      public static readonly Guid VideoEffect = new Guid(0xd990ee14,0x776c,0x4723,0xbe,0x46,0x3d,0xa2,0xf5,0x6f,0x10,0xb9);
 
       /// <summary> DMOCATEGORY_AUDIO_CAPTURE_EFFECT </summary>
-      public static readonly Guid AudioCaptureEffect = new Guid("f665aaba-3e09-4920-aa5f-219811148f09");
+      public static readonly Guid AudioCaptureEffect = new Guid(0xf665aaba,0x3e09,0x4920,0xaa,0x5f,0x21,0x98,0x11,0x14,0x8f,0x09);
     }
 
 
