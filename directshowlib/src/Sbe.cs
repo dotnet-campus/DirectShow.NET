@@ -31,8 +31,6 @@ namespace DirectShowLib.SBE
 
 	#region Declarations
 
-#if ALLOW_UNTESTED_INTERFACES
-
 	/// <summary>
 	/// From unnamed structure
 	/// </summary>
@@ -74,8 +72,12 @@ namespace DirectShowLib.SBE
 	/// <summary>
 	/// From g_wszStreamBufferRecording* static const WCHAR 
 	/// </summary>
-	public class StreamBufferRecording
+	sealed public class StreamBufferRecording
 	{
+        private StreamBufferRecording()
+        {
+        }
+
 		////////////////////////////////////////////////////////////////
 		//
 		// List of pre-defined attributes 
@@ -203,13 +205,9 @@ namespace DirectShowLib.SBE
 		public long cTimestamps; //  number of timestamps
 	}
 
-#endif
-
 	#endregion
 
 	#region Interfaces
-
-#if ALLOW_UNTESTED_INTERFACES
 
 	[Guid("9ce50f2d-6ba7-40fb-a034-50b1a674ec78"),
 		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -667,8 +665,6 @@ namespace DirectShowLib.SBE
 		[PreserveSig]
 		int ResetData();
 	}
-
-#endif
 
 	#endregion
 }

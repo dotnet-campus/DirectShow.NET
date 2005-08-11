@@ -135,7 +135,7 @@ namespace DirectShowLib.Test
             Marshal.ReleaseComObject(icgb);
         }
 
-        void Load(IMediaPropertyBag impb, string s1, string s2)
+        void Load(IPropertyBag impb, string s1, string s2)
         {
             int hr;
             object o = s2;

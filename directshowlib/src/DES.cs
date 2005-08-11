@@ -47,28 +47,6 @@ namespace DirectShowLib.DES
 
     sealed public class DESError
     {
-        /// <summary>
-        /// From FORMAT_MESSAGE_* defines in WinBase.h
-        /// </summary>
-        [Flags]
-            private enum FormatMessageFlags
-        {
-            AllocateBuffer  = 0x00000100,
-            IgnoreInserts   = 0x00000200,
-            FromString      = 0x00000400,
-            FromHmodule     = 0x00000800,
-            FromSystem      = 0x00001000,
-            ArgumentArray   = 0x00002000,
-            MaxWidthMask    = 0x000000FF
-        }
-
-        [DllImport("kernel32.dll", SetLastError=true)]
-        static extern IntPtr LocalFree(IntPtr hMem);
-
-        [DllImport("kernel32.dll", CharSet=System.Runtime.InteropServices.CharSet.Unicode)]
-        private static extern int FormatMessage(FormatMessageFlags dwFlags, IntPtr lpSource,
-            int dwMessageId, int dwLanguageId, ref IntPtr lpBuffer, int nSize, IntPtr Arguments);
-
         private DESError()
         {
             // Prevent people from trying to instantiate this class

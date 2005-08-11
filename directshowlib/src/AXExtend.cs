@@ -290,36 +290,6 @@ namespace DirectShowLib
     }
 
     /// <summary>
-    /// From _DVENCODERRESOLUTION
-    /// </summary>
-    public enum DVEncoderResolution
-    {
-        r720x480 = 2012,
-        r360x240 = 2013,
-        r180x120 = 2014,
-        r88x60 = 2015
-    }
-
-    /// <summary>
-    /// From _DVENCODERVIDEOFORMAT
-    /// </summary>
-    public enum DVEncoderVideoFormat
-    {
-        NTSC = 2000,
-        PAL = 2001
-    }
-
-    /// <summary>
-    /// From _DVENCODERFORMAT
-    /// </summary>
-    public enum DVEncoderFormat
-    {
-        DVSD = 2007,
-        DVHD = 2008,
-        DVSL = 2009
-    }
-
-    /// <summary>
     /// From MPEG2_PROGRAM_* defines
     /// </summary>
     public enum MPEG2Program
@@ -381,17 +351,6 @@ namespace DirectShowLib
         [MarshalAs(UnmanagedType.LPWStr)] public string strConnectsToPin;
         public int nMediaTypes;
         [MarshalAs(UnmanagedType.LPStruct)] public RegPinTypes lpMediaType;
-    }
-
-    /// <summary>
-    /// From REGPINMEDIUM
-    /// </summary>
-    [StructLayout(LayoutKind.Sequential)]
-    public class RegPinMedium
-    {
-        public Guid clsMedium;
-        public int dw1;
-        public int dw2;
     }
 
     /// <summary>
@@ -495,22 +454,6 @@ namespace DirectShowLib
     }
 
     /// <summary>
-    /// From DVINFO
-    /// </summary>
-    [StructLayout(LayoutKind.Sequential)]
-    public struct DVInfo
-    {
-        public int dwDVAAuxSrc;
-        public int dwDVAAuxCtl;
-        public int dwDVAAuxSrc1;
-        public int dwDVAAuxCtl1;
-        public int dwDVVAuxSrc;
-        public int dwDVVAuxCtl;
-        public int dwDVReserved1;
-        public int dwDVReserved2;
-    }
-
-    /// <summary>
     /// From STREAM_ID_MAP
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -582,6 +525,63 @@ namespace DirectShowLib
     }
 
 #endif
+
+    /// <summary>
+    /// From REGPINMEDIUM
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential)]
+    public class RegPinMedium
+    {
+        public Guid clsMedium;
+        public int dw1;
+        public int dw2;
+    }
+
+    /// <summary>
+    /// From DVINFO
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential)]
+    public struct DVInfo
+    {
+        public int dwDVAAuxSrc;
+        public int dwDVAAuxCtl;
+        public int dwDVAAuxSrc1;
+        public int dwDVAAuxCtl1;
+        public int dwDVVAuxSrc;
+        public int dwDVVAuxCtl;
+        public int dwDVReserved1;
+        public int dwDVReserved2;
+    }
+
+    /// <summary>
+    /// From _DVENCODERRESOLUTION
+    /// </summary>
+    public enum DVEncoderResolution
+    {
+        r720x480 = 2012,
+        r360x240 = 2013,
+        r180x120 = 2014,
+        r88x60 = 2015
+    }
+
+    /// <summary>
+    /// From _DVENCODERFORMAT
+    /// </summary>
+    public enum DVEncoderFormat
+    {
+        DVSD = 2007,
+        DVHD = 2008,
+        DVSL = 2009
+    }
+
+    /// <summary>
+    /// From _DVENCODERVIDEOFORMAT
+    /// </summary>
+    public enum DVEncoderVideoFormat
+    {
+        NTSC = 2000,
+        PAL = 2001
+    }
 
     /// <summary>
     /// From _AM_RENSDEREXFLAGS
@@ -2149,29 +2149,6 @@ namespace DirectShowLib
         int Disassociate();
     }
 
-    [Guid("d18e17a0-aacb-11d0-afb0-00aa00b67a42"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IDVEnc
-    {
-        [PreserveSig]
-        int get_IFormatResolution(
-            [Out] out DVEncoderVideoFormat VideoFormat,
-            [Out] out DVEncoderFormat DVFormat,
-            [Out] out DVEncoderResolution Resolution,
-            [In, MarshalAs(UnmanagedType.I4)] OABool fDVInfo,
-            [Out] out DVInfo sDVInfo
-            );
-
-        [PreserveSig]
-        int put_IFormatResolution(
-            [In] DVEncoderVideoFormat VideoFormat,
-            [In] DVEncoderFormat DVFormat,
-            [In] DVEncoderResolution Resolution,
-            [In, MarshalAs(UnmanagedType.I4)] OABool fDVInfo,
-            [In] DVInfo sDVInfo
-            );
-    }
-
     [Guid("b8e8bd60-0bfe-11d0-af91-00aa00b67a42"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IIPDVDec
@@ -3529,6 +3506,29 @@ namespace DirectShowLib
             [In] int iIndex,
             [Out] out AMMediaType ppmt,
             [In] IntPtr pSCC
+            );
+    }
+
+    [Guid("d18e17a0-aacb-11d0-afb0-00aa00b67a42"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IDVEnc
+    {
+        [PreserveSig]
+        int get_IFormatResolution(
+            [Out] out DVEncoderVideoFormat VideoFormat,
+            [Out] out DVEncoderFormat DVFormat,
+            [Out] out DVEncoderResolution Resolution,
+            [In, MarshalAs(UnmanagedType.I4)] OABool fDVInfo,
+            [Out] out DVInfo sDVInfo
+            );
+
+        [PreserveSig]
+        int put_IFormatResolution(
+            [In] DVEncoderVideoFormat VideoFormat,
+            [In] DVEncoderFormat DVFormat,
+            [In] DVEncoderResolution Resolution,
+            [In, MarshalAs(UnmanagedType.I4)] OABool fDVInfo,
+            [In] DVInfo sDVInfo
             );
     }
 
