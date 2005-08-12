@@ -36,7 +36,10 @@ namespace DirectShowLib.DES
     sealed public class DESResults
     {
         private DESResults()
-        {}
+        {
+            // Prevent people from trying to instantiate this class
+        }
+
         public const int E_NotInTree	= unchecked((int)0x80040400);
         public const int E_RenderEngineIsBroken	= unchecked((int)0x80040401);
         public const int E_MustInitRenderer	= unchecked((int)0x80040402);
@@ -51,7 +54,8 @@ namespace DirectShowLib.DES
         {
             // Prevent people from trying to instantiate this class
         }
-        public static string DESGetErrorText(int hr)
+
+        public static string GetErrorText(int hr)
         {
             string sRet = null;
 
@@ -76,12 +80,7 @@ namespace DirectShowLib.DES
                     sRet = "The rendering portion of the graph was deleted. The application must rebuild it.";
                     break;
                 default:
-                    StringBuilder buf = new StringBuilder(255);
-                    int x = DsError.AMGetErrorText(hr, buf, buf.Capacity);
-                    if (x > 0)
-                    {
-                        sRet = buf.ToString();
-                    }
+                    sRet = DsError.GetErrorText(hr);
                     break;
             }
 
@@ -101,7 +100,8 @@ namespace DirectShowLib.DES
             if (hr < 0)
             {
                 // If a string is returned, build a com error from it
-                string buf = DESGetErrorText(hr);
+                string buf = GetErrorText(hr);
+
                 if (buf != null)
                 {
                     throw new COMException(buf, hr);
