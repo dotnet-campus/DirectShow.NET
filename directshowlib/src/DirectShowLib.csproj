@@ -209,7 +209,17 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Mpeg2Data.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "other.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "PlayList.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
