@@ -66,15 +66,15 @@ namespace DirectShowLib
     [StructLayout(LayoutKind.Sequential)]
     public struct VMRPresentationInfo
     {
-        public int dwFlags;
-        [MarshalAs(UnmanagedType.Interface)] public object lpSurf; //LPDIRECTDRAWSURFACE7
-        public long rtStart;
-        public long rtEnd;
-        public Size szAspectRatio;
-        public Rectangle rcSrc;
-        public Rectangle rcDst;
-        public int dwTypeSpecificFlags;
-        public int dwInterlaceFlags;
+      public int dwFlags;
+      public IntPtr lpSurf; //LPDIRECTDRAWSURFACE7
+      public long rtStart;
+      public long rtEnd;
+      public Size szAspectRatio;
+      public DsRect rcSrc;
+      public DsRect rcDst;
+      public int dwTypeSpecificFlags;
+      public int dwInterlaceFlags;
     }
 
     /// <summary>
@@ -83,14 +83,16 @@ namespace DirectShowLib
     [StructLayout(LayoutKind.Sequential)]
     public struct VMRAllocationInfo
     {
-        public int dwFlags;
-        public BitmapInfoHeader lpHdr;
-        public IntPtr lpPixFmt; //DDPixelFormat
-        public Size szAspectRatio;
-        public int dwMinBuffers;
-        public int dwMaxBuffers;
-        public int dwInterlaceFlags;
-        public Size szNativeSize;
+      public int dwFlags;
+      //		public BitmapInfoHeader lpHdr;
+      //    public DDPixelFormat lpPixFmt;
+      public IntPtr lpHdr;
+      public IntPtr lpPixFmt;
+      public Size szAspectRatio;
+      public int dwMinBuffers;
+      public int dwMaxBuffers;
+      public int dwInterlaceFlags;
+      public Size szNativeSize;
     }
 
 #endif
@@ -322,83 +324,85 @@ namespace DirectShowLib
 
 #if ALLOW_UNTESTED_INTERFACES
 
-    [Guid("CE704FE7-E71E-41fb-BAA2-C4403E1182F5"),
+    [ComVisible(true),
+    Guid("CE704FE7-E71E-41fb-BAA2-C4403E1182F5"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IVMRImagePresenter
     {
-        [PreserveSig]
-        int StartPresenting([In] int dwUserID);
+      [PreserveSig]
+      int StartPresenting([In] IntPtr dwUserID);
 
-        [PreserveSig]
-        int StopPresenting([In] int dwUserID);
+      [PreserveSig]
+      int StopPresenting([In] IntPtr dwUserID);
 
-        [PreserveSig]
-        int PresentImage(
-            [In] int dwUserID,
-            [In] ref VMRPresentationInfo lpPresInfo
-            );
+      [PreserveSig]
+      int PresentImage(
+        [In] IntPtr dwUserID,
+        [In] ref VMRPresentationInfo lpPresInfo
+        );
     }
 
-    [Guid("31ce832e-4484-458b-8cca-f4d7e3db0b52"),
+    [ComVisible(true),
+    Guid("31ce832e-4484-458b-8cca-f4d7e3db0b52"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IVMRSurfaceAllocator
     {
-        [PreserveSig]
-        int AllocateSurface(
-            [In] int dwUserID,
-            [In] VMRAllocationInfo lpAllocInfo,
-            [Out] out int lpdwActualBuffers,
-            [Out, MarshalAs(UnmanagedType.Interface)] out object lplpSurface // LPDIRECTDRAWSURFACE7
-            );
+      [PreserveSig]
+      int AllocateSurface(
+        [In] IntPtr dwUserID,
+        [In] ref VMRAllocationInfo lpAllocInfo,
+        [Out] out int lpdwActualBuffers,
+        [In, Out] ref IntPtr lplpSurface // LPDIRECTDRAWSURFACE7
+        );
 
-        [PreserveSig]
-        int FreeSurface([In] int dwID);
+      [PreserveSig]
+      int FreeSurface([In] IntPtr dwID);
 
-        [PreserveSig]
-        int PrepareSurface(
-            [In] int dwUserID,
-            [In, MarshalAs(UnmanagedType.Interface)] object lplpSurface, // LPDIRECTDRAWSURFACE7
-            [In] int dwSurfaceFlags
-            );
+      [PreserveSig]
+      int PrepareSurface(
+        [In] IntPtr dwUserID,
+        [In] IntPtr lplpSurface, // LPDIRECTDRAWSURFACE7
+        [In] int dwSurfaceFlags
+        );
 
-        [PreserveSig]
-        int AdviseNotify([In] IVMRSurfaceAllocatorNotify lpIVMRSurfAllocNotify);
+      [PreserveSig]
+      int AdviseNotify([In] IVMRSurfaceAllocatorNotify lpIVMRSurfAllocNotify);
     }
 
     [Guid("aada05a8-5a4e-4729-af0b-cea27aed51e2"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IVMRSurfaceAllocatorNotify
     {
-        [PreserveSig]
-        int AdviseSurfaceAllocator(
-            [In] int dwUserID,
-            [In] IVMRSurfaceAllocator lpIVRMSurfaceAllocator
-            );
+      [PreserveSig]
+      int AdviseSurfaceAllocator(
+        [In] IntPtr dwUserID,
+        [In] IVMRSurfaceAllocator lpIVRMSurfaceAllocator
+        );
 
-        [PreserveSig]
-        int SetDDrawDevice(
-            [In, MarshalAs(UnmanagedType.Interface)] object lpDDrawDevice,
-            [In] IntPtr hMonitor // HMONITOR
-            );
+      [PreserveSig]
+      int SetDDrawDevice(
+        [In] IntPtr lpDDrawDevice, // LPDIRECTDRAW7
+        [In] IntPtr hMonitor // HMONITOR
+        );
 
-        [PreserveSig]
-        int ChangeDDrawDevice(
-            [In, MarshalAs(UnmanagedType.Interface)] object lpDDrawDevice,
-            [In] IntPtr hMonitor // HMONITOR
-            );
+      [PreserveSig]
+      int ChangeDDrawDevice(
+        [In] IntPtr lpDDrawDevice, // LPDIRECTDRAW7
+        [In] IntPtr hMonitor // HMONITOR
+        );
 
-        [PreserveSig]
-        int RestoreDDrawSurfaces();
+      [PreserveSig]
+      int RestoreDDrawSurfaces();
 
-        [PreserveSig]
-        int NotifyEvent(
-            [In] int EventCode,
-            [In] int Param1,
-            [In] int Param2
-            );
+      [PreserveSig]
+      int NotifyEvent(
+        [In] int EventCode,
+        [In] IntPtr Param1,
+        [In] IntPtr Param2
+        );
 
-        [PreserveSig]
-        int SetBorderColor([In] int clrBorder);
+      [PreserveSig]
+      int SetBorderColor([In] int clrBorder);
     }
 
     [Guid("1c1a17b0-bed0-415d-974b-dc6696131599"),
