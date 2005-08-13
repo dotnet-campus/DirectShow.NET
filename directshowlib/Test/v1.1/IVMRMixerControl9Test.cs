@@ -141,6 +141,17 @@ namespace DirectShowLib.Test
       DsError.ThrowExceptionForHR(hr);
 
       Debug.Assert(rect1 == rect2, "IVMRMixerControl9.GetOutputRect / SetOutputRect");
+
+      rect1 = new NormalizedRect(0.0f, 0.0f, 0.0f, 0.0f);
+
+      // Try to turn off stream 0
+      hr = vmr9MixerControl.SetOutputRect(0, ref rect1);
+      DsError.ThrowExceptionForHR(hr);
+
+      hr = vmr9MixerControl.GetOutputRect(0, out rect2);
+      DsError.ThrowExceptionForHR(hr);
+
+      Debug.Assert(rect1 == rect2, "IVMRMixerControl9.GetOutputRect / SetOutputRect");
     }
 
     public void TestGetProcAmpControlRange()
