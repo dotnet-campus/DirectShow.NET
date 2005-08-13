@@ -71,8 +71,8 @@ namespace DirectShowLib.Test
             //IAMMediaContent2Test dw19 = new IAMMediaContent2Test();
             //dw19.DoTests();
 
-            IConfigAsfWriterTest dw20 = new IConfigAsfWriterTest();
-            dw20.DoTests();
+            //IConfigAsfWriterTest dw20 = new IConfigAsfWriterTest();
+            //dw20.DoTests();
 
             //IDMOWrapperFilterTest en01 = new IDMOWrapperFilterTest();
             //en01.DoTests();
@@ -131,8 +131,11 @@ namespace DirectShowLib.Test
             //IVMRImageCompositorTest en19 = new IVMRImageCompositorTest();
             //en19.DoTests();
 
-            IVMRSurfaceAllocator9Test en20 = new IVMRSurfaceAllocator9Test();
-            en20.DoTests();
+            //IVMRSurfaceAllocator9Test en20 = new IVMRSurfaceAllocator9Test();
+            //en20.DoTests();
+
+            IVMRSurfaceAllocatorEx9Test en21 = new IVMRSurfaceAllocatorEx9Test();
+            en21.DoTests();
         }
     }
 }
