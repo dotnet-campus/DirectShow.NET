@@ -126,6 +126,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IConfigAsfWriterTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IDMOWrapperFilterTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

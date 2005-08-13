@@ -65,8 +65,14 @@ namespace DirectShowLib.Test
             //IAMVfwCaptureDialogsTest dw17 = new IAMVfwCaptureDialogsTest();
             //dw17.DoTests();
 
-            IAMMediaContentTest dw18 = new IAMMediaContentTest();
-            dw18.DoTests();
+            //IAMMediaContentTest dw18 = new IAMMediaContentTest();
+            //dw18.DoTests();
+
+            //IAMMediaContent2Test dw19 = new IAMMediaContent2Test();
+            //dw19.DoTests();
+
+            IConfigAsfWriterTest dw20 = new IConfigAsfWriterTest();
+            dw20.DoTests();
 
             //IDMOWrapperFilterTest en01 = new IDMOWrapperFilterTest();
             //en01.DoTests();

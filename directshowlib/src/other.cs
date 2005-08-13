@@ -515,5 +515,41 @@ namespace DirectShowLib
     }
 
 #endif
+
+    [Guid("45086030-F7E4-486a-B504-826BB5792A3B"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IConfigAsfWriter
+    {
+        [PreserveSig,
+        Obsolete("This method is now obsolete because it assumes version 4.0 Windows Media Format SDK profiles. Use GetCurrentProfile or GetCurrentProfileGuid instead to correctly identify a profile.", false)]
+        int ConfigureFilterUsingProfileId([In] int dwProfileId);
+
+        [PreserveSig, 
+        Obsolete("This method is now obsolete because it assumes version 4.0 Windows Media Format SDK profiles. Use GetCurrentProfile or GetCurrentProfileGuid instead to correctly identify a profile.", false)]
+        int GetCurrentProfileId([Out] out int pdwProfileId);
+
+        [PreserveSig,
+        Obsolete("Using Guids is considered obsolete by MS.  The preferred approach is using an IWMProfile.  See ConfigureFilterUsingProfile", false)]
+        int ConfigureFilterUsingProfileGuid([In, MarshalAs(UnmanagedType.LPStruct)] Guid guidProfile);
+
+        [PreserveSig,
+        Obsolete("Using Guids is considered obsolete by MS.  The preferred approach is using an IWMProfile.  See GetCurrentProfile", false)]
+        int GetCurrentProfileGuid([Out] out Guid pProfileGuid);
+
+        [PreserveSig,
+        Obsolete("This method requires IWMProfile, which in turn requires several other interfaces.  Rather than duplicate all those interfaces here, it is recommended that you use the WindowsMediaLib from http://DirectShowNet.SourceForge.net", false)]
+        int ConfigureFilterUsingProfile([In] IntPtr pProfile);
+
+        [PreserveSig,
+        Obsolete("This method requires IWMProfile, which in turn requires several other interfaces.  Rather than duplicate all those interfaces here, it is recommended that you use the WindowsMediaLib from http://DirectShowNet.SourceForge.net", false)]
+        int GetCurrentProfile([Out] out IntPtr ppProfile);
+
+        [PreserveSig]
+        int SetIndexMode([In, MarshalAs(UnmanagedType.Bool)] bool bIndexFile);
+
+        [PreserveSig]
+        int GetIndexMode([Out, MarshalAs(UnmanagedType.Bool)] out bool pbIndexFile);
+    }
+
     #endregion
 }
