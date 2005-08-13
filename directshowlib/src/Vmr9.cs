@@ -396,6 +396,43 @@ namespace DirectShowLib
         int AdviseNotify([In] IVMRSurfaceAllocatorNotify9 lpIVMRSurfAllocNotify);
     }
 
+  [ComVisible(true),
+  Guid("6de9a68a-a928-4522-bf57-655ae3866456"),
+  InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+  public interface IVMRSurfaceAllocatorEx9 : IVMRSurfaceAllocator9
+  {
+    [PreserveSig]
+    new int InitializeDevice(
+      [In] IntPtr dwUserID,
+      [In] ref VMR9AllocationInfo lpAllocInfo,
+      [In, Out] ref int lpNumBuffers
+      );
+
+    [PreserveSig]
+    new int TerminateDevice([In] IntPtr dwID);
+
+    [PreserveSig]
+    new int GetSurface(
+      [In] IntPtr dwUserID,
+      [In] int SurfaceIndex,
+      [In] int SurfaceFlags,
+      [Out] out IntPtr lplpSurface
+      );
+
+    [PreserveSig]
+    new int AdviseNotify([In] IVMRSurfaceAllocatorNotify9 lpIVMRSurfAllocNotify);
+
+    [PreserveSig]
+    int GetSurfaceEx(
+      [In] IntPtr dwUserID,
+      [In] int SurfaceIndex,
+      [In] int SurfaceFlags,
+      [Out] out IntPtr lplpSurface,
+      [Out] out DsRect lprcDst
+      );
+  }
+
+
     [Guid("dca3f5df-bb3a-4d03-bd81-84614bfbfa0c"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IVMRSurfaceAllocatorNotify9
