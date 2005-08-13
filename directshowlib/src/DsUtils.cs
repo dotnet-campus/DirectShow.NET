@@ -562,8 +562,13 @@ namespace DirectShowLib
 
     #region Utility Classes
 
-    public class DsResults
+    sealed public class DsResults
     {
+        private DsResults()
+        {
+            // Prevent people from trying to instantiate this class
+        }
+
         public const int E_InvalidMediaType = unchecked((int)0x80040200);
         public const int E_InvalidSubType = unchecked((int)0x80040201);
         public const int E_NeedOwner = unchecked((int)0x80040202);
@@ -1367,7 +1372,23 @@ namespace DirectShowLib
         public static string MediaSubTypeToString(Guid guid)
         {
             // Walk the MediaSubType class looking for a match
-            return WalkClass(typeof(MediaSubType), guid);
+            string s = WalkClass(typeof(MediaSubType), guid);
+
+            // There is a special set of Guids that contain the FourCC code
+            // as part of the Guid.  Check to see if it is one of those.
+            if (s.Substring(8).ToUpper() == "-0000-0010-8000-00AA00389B71")
+            {
+                // Parse out the FourCC code
+                byte[] asc = {
+                                  Convert.ToByte(s.Substring(6, 2), 16),
+                                  Convert.ToByte(s.Substring(4, 2), 16),
+                                  Convert.ToByte(s.Substring(2, 2), 16),
+                                  Convert.ToByte(s.Substring(0, 2), 16)
+                              };
+                s = Encoding.ASCII.GetString(asc);
+            }
+
+            return s;
         }
 
         /// <summary>
