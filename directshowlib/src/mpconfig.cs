@@ -113,12 +113,12 @@ namespace DirectShowLib
 
         [PreserveSig]
         int SetColorKey(
-            ColorKey pColorKey
+            [MarshalAs(UnmanagedType.LPStruct)] ColorKey pColorKey
             );
 
         [PreserveSig]
         int GetColorKey(
-            out ColorKey pColorKey,
+            [Out, MarshalAs(UnmanagedType.LPStruct)] ColorKey pColorKey,
             out int pColor
             );
 
@@ -187,12 +187,12 @@ namespace DirectShowLib
 
         [PreserveSig]
         new int SetColorKey(
-            ColorKey pColorKey
+            [MarshalAs(UnmanagedType.LPStruct)]ColorKey pColorKey
             );
 
         [PreserveSig]
         new int GetColorKey(
-            out ColorKey pColorKey,
+            [Out, MarshalAs(UnmanagedType.LPStruct)] ColorKey pColorKey,
             out int pColor
             );
 

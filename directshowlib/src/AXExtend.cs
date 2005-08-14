@@ -386,7 +386,7 @@ namespace DirectShowLib
     /// From COLORKEY
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct ColorKey
+    public class ColorKey
     {
         public int KeyType;
         public int PaletteIndex;

@@ -74,6 +74,9 @@ namespace DirectShowLib.Test
             //IConfigAsfWriterTest dw20 = new IConfigAsfWriterTest();
             //dw20.DoTests();
 
+            IMixerPinConfigTest dw21 = new IMixerPinConfigTest();
+            dw21.DoTests();
+
             //IDMOWrapperFilterTest en01 = new IDMOWrapperFilterTest();
             //en01.DoTests();
 
