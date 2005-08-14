@@ -60,18 +60,18 @@ namespace DirectShowLib
     /// From DDCOLORCONTROL
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct DDColorControl
+    public class DDColorControl
     {
-        int  dwSize;
-        DDColor  dwFlags;
-        int  lBrightness;
-        int  lContrast;
-        int  lHue;
-        int  lSaturation;
-        int  lSharpness;
-        int  lGamma;
-        int  lColorEnable;
-        int  dwReserved1;
+        public int  dwSize;
+        public DDColor  dwFlags;
+        public int  lBrightness;
+        public int  lContrast;
+        public int  lHue;
+        public int  lSaturation;
+        public int  lSharpness;
+        public int  lGamma;
+        public int  lColorEnable;
+        public int  dwReserved1;
     }
     
     #endif
@@ -235,7 +235,7 @@ namespace DirectShowLib
 
         [PreserveSig]
         int GetOverlaySurfaceColorControls(
-            out DDColorControl pColorControl
+            DDColorControl pColorControl
             );
     }
 #endif
