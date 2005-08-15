@@ -146,6 +146,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IMediaEventSinkTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IMixerPinConfig2Test.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

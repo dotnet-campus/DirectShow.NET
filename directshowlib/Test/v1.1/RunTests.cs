@@ -77,8 +77,11 @@ namespace DirectShowLib.Test
             //IMixerPinConfigTest dw21 = new IMixerPinConfigTest();
             //dw21.DoTests();
 
-            IMixerPinConfig2Test dw22 = new IMixerPinConfig2Test();
-            dw22.DoTests();
+            //IMixerPinConfig2Test dw22 = new IMixerPinConfig2Test();
+            //dw22.DoTests();
+
+            IMediaEventSinkTest dw23 = new IMediaEventSinkTest();
+            dw23.DoTests();
 
             //IDMOWrapperFilterTest en01 = new IDMOWrapperFilterTest();
             //en01.DoTests();
@@ -140,8 +143,8 @@ namespace DirectShowLib.Test
             //IVMRSurfaceAllocator9Test en20 = new IVMRSurfaceAllocator9Test();
             //en20.DoTests();
 
-            IVMRSurfaceAllocatorEx9Test en21 = new IVMRSurfaceAllocatorEx9Test();
-            en21.DoTests();
+            //IVMRSurfaceAllocatorEx9Test en21 = new IVMRSurfaceAllocatorEx9Test();
+            //en21.DoTests();
         }
     }
 }
