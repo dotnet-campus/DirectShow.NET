@@ -80,8 +80,14 @@ namespace DirectShowLib.Test
             //IMixerPinConfig2Test dw22 = new IMixerPinConfig2Test();
             //dw22.DoTests();
 
-            IMediaEventSinkTest dw23 = new IMediaEventSinkTest();
-            dw23.DoTests();
+            //IMediaEventSinkTest dw23 = new IMediaEventSinkTest();
+            //dw23.DoTests();
+
+            //IMediaPropertyBagTest dw24 = new IMediaPropertyBagTest();
+            //dw24.DoTests();
+
+            IPersistMediaPropertyBagTest dw25 = new IPersistMediaPropertyBagTest();
+            dw25.DoTests();
 
             //IDMOWrapperFilterTest en01 = new IDMOWrapperFilterTest();
             //en01.DoTests();

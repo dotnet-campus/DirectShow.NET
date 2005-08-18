@@ -1624,63 +1624,6 @@ namespace DirectShowLib
         int get_CCEnable([Out] out int lCCEnable);
     }
 
-    [Guid("6025A880-C0D5-11d0-BD4E-00A0C911CE86"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IMediaPropertyBag : IPropertyBag
-    {
-        #region IPropertyBag Methods
-
-        [PreserveSig]
-        new int Read(
-            [In, MarshalAs(UnmanagedType.LPWStr)] string pszPropName,
-            [Out, MarshalAs(UnmanagedType.Struct)] out object pVar,
-            [In] IErrorLog pErrorLog
-            );
-
-        [PreserveSig]
-        new int Write(
-            [In, MarshalAs(UnmanagedType.LPWStr)] string pszPropName,
-            [In] ref object pVar
-            );
-
-        #endregion
-
-        [PreserveSig]
-        int EnumProperty(
-            [In] int iProperty,
-            [In, Out] ref object pvarPropertyName,
-            [In, Out] ref object pvarPropertyValue
-            );
-    }
-
-    [Guid("5738E040-B67F-11d0-BD4D-00A0C911CE86"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IPersistMediaPropertyBag : IPersist
-    {
-        #region IPersist
-
-        [PreserveSig]
-        new int GetClassID([Out] out Guid pClassID);
-
-        #endregion
-
-        [PreserveSig]
-        int InitNew();
-
-        [PreserveSig]
-        int Load(
-            [In] IMediaPropertyBag pPropBag,
-            [In] IErrorLog pErrorLog
-            );
-
-        [PreserveSig]
-        int Save(
-            [In] IMediaPropertyBag pPropBag,
-            [In, MarshalAs(UnmanagedType.Bool)] bool fClearDirty,
-            [In, MarshalAs(UnmanagedType.Bool)] bool fSaveAllProperties
-            );
-    }
-
     [Guid("F938C991-3029-11cf-8C44-00AA006B6814"),
     Obsolete("This interface has been deprecated.", false),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -2519,6 +2462,63 @@ namespace DirectShowLib
             );
     }
 #endif
+
+    [Guid("5738E040-B67F-11d0-BD4D-00A0C911CE86"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IPersistMediaPropertyBag : IPersist
+    {
+        #region IPersist
+
+        [PreserveSig]
+        new int GetClassID([Out] out Guid pClassID);
+
+        #endregion
+
+        [PreserveSig]
+        int InitNew();
+
+        [PreserveSig]
+        int Load(
+            [In] IMediaPropertyBag pPropBag,
+            [In] IErrorLog pErrorLog
+            );
+
+        [PreserveSig]
+        int Save(
+            IMediaPropertyBag pPropBag,
+            [In, MarshalAs(UnmanagedType.Bool)] bool fClearDirty,
+            [In, MarshalAs(UnmanagedType.Bool)] bool fSaveAllProperties
+            );
+    }
+
+    [Guid("6025A880-C0D5-11d0-BD4E-00A0C911CE86"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IMediaPropertyBag : IPropertyBag
+    {
+        #region IPropertyBag Methods
+
+        [PreserveSig]
+        new int Read(
+            [In, MarshalAs(UnmanagedType.LPWStr)] string pszPropName,
+            [Out, MarshalAs(UnmanagedType.Struct)] out object pVar,
+            [In] IErrorLog pErrorLog
+            );
+
+        [PreserveSig]
+        new int Write(
+            [In, MarshalAs(UnmanagedType.LPWStr)] string pszPropName,
+            [In] ref object pVar
+            );
+
+        #endregion
+
+        [PreserveSig]
+        int EnumProperty(
+            [In] int iProperty,
+            [Out] out object pvarPropertyName,
+            [Out] out object pvarPropertyValue
+            );
+    }
 
     [Guid("632105FA-072E-11d3-8AF9-00C04FB6BD3D"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]

@@ -151,7 +151,17 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IMediaPropertyBagTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IMixerPinConfigTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IPersistMediaPropertyBagTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
