@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DVDPlay", "DVDPlay.csproj", "{00DC331B-E105-44F0-829E-80C2E1120D2F}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{00DC331B-E105-44F0-829E-80C2E1120D2F}.Debug.ActiveCfg = Debug|.NET
+		{00DC331B-E105-44F0-829E-80C2E1120D2F}.Debug.Build.0 = Debug|.NET
+		{00DC331B-E105-44F0-829E-80C2E1120D2F}.Release.ActiveCfg = Release|.NET
+		{00DC331B-E105-44F0-829E-80C2E1120D2F}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
