@@ -33,14 +33,6 @@ namespace DirectShowLib
 
 #if ALLOW_UNTESTED_INTERFACES
 
-    public enum AspectRatioMode
-    {
-        Stretched,
-        LetterBox,
-        Crop,
-        StretchedAsPrimary
-    }
-
     /// <summary>
     /// From DDCOLOR_* defines
     /// </summary>
@@ -74,85 +66,21 @@ namespace DirectShowLib
         public int  dwReserved1;
     }
     
-    #endif
+#endif
+
+    public enum AspectRatioMode
+    {
+        Stretched,
+        LetterBox,
+        Crop,
+        StretchedAsPrimary
+    }
 
     #endregion
 
     #region Interfaces
 
 #if ALLOW_UNTESTED_INTERFACES
-
-    [Guid("593CDDE1-0759-11d1-9E69-00C04FD7C15B"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IMixerPinConfig
-    {
-        [PreserveSig]
-        int SetRelativePosition(
-            int dwLeft,
-            int dwTop,
-            int dwRight,
-            int dwBottom);    
-
-        [PreserveSig]
-        int GetRelativePosition(
-            out int pdwLeft,
-            out int pdwTop,
-            out int pdwRight,
-            out int pdwBottom
-            );
-
-        [PreserveSig]
-        int SetZOrder(
-            int dwZOrder
-            );
-
-        [PreserveSig]
-        int GetZOrder(
-            out int pdwZOrder
-            );
-
-        [PreserveSig]
-        int SetColorKey(
-            [MarshalAs(UnmanagedType.LPStruct)] ColorKey pColorKey
-            );
-
-        [PreserveSig]
-        int GetColorKey(
-            [Out, MarshalAs(UnmanagedType.LPStruct)] ColorKey pColorKey,
-            out int pColor
-            );
-
-        [PreserveSig]
-        int SetBlendingParameter(
-            int dwBlendingParameter
-            );
-
-        [PreserveSig]
-        int GetBlendingParameter(
-            out int pdwBlendingParameter
-            );
-
-        [PreserveSig]
-        int SetAspectRatioMode(
-            AspectRatioMode amAspectRatioMode
-            );
-
-        [PreserveSig]
-        int GetAspectRatioMode(
-            out AspectRatioMode pamAspectRatioMode
-            );
-
-        [PreserveSig]
-        int SetStreamTransparent(
-            [In, MarshalAs(UnmanagedType.Bool)] bool bStreamTransparent
-            );
-
-        [PreserveSig]
-        int GetStreamTransparent(
-            [Out, MarshalAs(UnmanagedType.Bool)] out bool pbStreamTransparent
-            );
-    }
-
 
     [Guid("EBF47182-8764-11d1-9E69-00C04FD7C15B"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -239,6 +167,78 @@ namespace DirectShowLib
             );
     }
 #endif
+
+    [Guid("593CDDE1-0759-11d1-9E69-00C04FD7C15B"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IMixerPinConfig
+    {
+        [PreserveSig]
+        int SetRelativePosition(
+            int dwLeft,
+            int dwTop,
+            int dwRight,
+            int dwBottom);    
+
+        [PreserveSig]
+        int GetRelativePosition(
+            out int pdwLeft,
+            out int pdwTop,
+            out int pdwRight,
+            out int pdwBottom
+            );
+
+        [PreserveSig]
+        int SetZOrder(
+            int dwZOrder
+            );
+
+        [PreserveSig]
+        int GetZOrder(
+            out int pdwZOrder
+            );
+
+        [PreserveSig]
+        int SetColorKey(
+            [MarshalAs(UnmanagedType.LPStruct)] ColorKey pColorKey
+            );
+
+        [PreserveSig]
+        int GetColorKey(
+            [Out, MarshalAs(UnmanagedType.LPStruct)] ColorKey pColorKey,
+            out int pColor
+            );
+
+        [PreserveSig]
+        int SetBlendingParameter(
+            int dwBlendingParameter
+            );
+
+        [PreserveSig]
+        int GetBlendingParameter(
+            out int pdwBlendingParameter
+            );
+
+        [PreserveSig]
+        int SetAspectRatioMode(
+            AspectRatioMode amAspectRatioMode
+            );
+
+        [PreserveSig]
+        int GetAspectRatioMode(
+            out AspectRatioMode pamAspectRatioMode
+            );
+
+        [PreserveSig]
+        int SetStreamTransparent(
+            [In, MarshalAs(UnmanagedType.Bool)] bool bStreamTransparent
+            );
+
+        [PreserveSig]
+        int GetStreamTransparent(
+            [Out, MarshalAs(UnmanagedType.Bool)] out bool pbStreamTransparent
+            );
+    }
+
 
     #endregion
 }

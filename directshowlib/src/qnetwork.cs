@@ -252,6 +252,46 @@ namespace DirectShowLib
 
     }
 
+    [Guid("CE8F78C1-74D9-11D2-B09D-00A0C9A81117"),
+    InterfaceType(ComInterfaceType.InterfaceIsDual)]
+    public interface IAMMediaContent2
+    {
+        [PreserveSig]
+        int get_MediaParameter(int EntryNum, [MarshalAs(UnmanagedType.BStr)] string bstrName, [MarshalAs(UnmanagedType.BStr)] out string pbstrValue);
+
+        [PreserveSig]
+        int get_MediaParameterName(int EntryNum, int Index, [MarshalAs(UnmanagedType.BStr)] out string pbstrName);
+
+        [PreserveSig]
+        int get_PlaylistCount(out int pNumberEntries);
+
+    }
+
+    [Guid("AAE7E4E2-6388-11D1-8D93-006097C9A2B2"),
+    InterfaceType(ComInterfaceType.InterfaceIsDual)]
+    public interface IAMNetShowPreroll
+    {
+        [PreserveSig]
+        int put_Preroll([MarshalAs(UnmanagedType.VariantBool)] bool fPreroll);
+
+        [PreserveSig]
+        int get_Preroll([MarshalAs(UnmanagedType.VariantBool)] out bool pfPreroll);
+
+    }
+
+    [Guid("4746B7C8-700E-11D1-BECC-00C04FB6E937"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IDShowPlugin
+    {
+        [PreserveSig]
+        int get_URL([MarshalAs(UnmanagedType.BStr)] out string pURL);
+
+        [PreserveSig]
+        int get_UserAgent([MarshalAs(UnmanagedType.BStr)] out string pUserAgent);
+
+    }
+#endif
+
     [Guid("FA2AA8F4-8B62-11D0-A520-000000000000"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface IAMMediaContent
@@ -296,46 +336,6 @@ namespace DirectShowLib
         int get_MoreInfoText([MarshalAs(UnmanagedType.BStr)] out string pbstrMoreInfoText);
 
     }
-
-    [Guid("CE8F78C1-74D9-11D2-B09D-00A0C9A81117"),
-    InterfaceType(ComInterfaceType.InterfaceIsDual)]
-    public interface IAMMediaContent2
-    {
-        [PreserveSig]
-        int get_MediaParameter(int EntryNum, [MarshalAs(UnmanagedType.BStr)] string bstrName, [MarshalAs(UnmanagedType.BStr)] out string pbstrValue);
-
-        [PreserveSig]
-        int get_MediaParameterName(int EntryNum, int Index, [MarshalAs(UnmanagedType.BStr)] out string pbstrName);
-
-        [PreserveSig]
-        int get_PlaylistCount(out int pNumberEntries);
-
-    }
-
-    [Guid("AAE7E4E2-6388-11D1-8D93-006097C9A2B2"),
-    InterfaceType(ComInterfaceType.InterfaceIsDual)]
-    public interface IAMNetShowPreroll
-    {
-        [PreserveSig]
-        int put_Preroll([MarshalAs(UnmanagedType.VariantBool)] bool fPreroll);
-
-        [PreserveSig]
-        int get_Preroll([MarshalAs(UnmanagedType.VariantBool)] out bool pfPreroll);
-
-    }
-
-    [Guid("4746B7C8-700E-11D1-BECC-00C04FB6E937"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IDShowPlugin
-    {
-        [PreserveSig]
-        int get_URL([MarshalAs(UnmanagedType.BStr)] out string pURL);
-
-        [PreserveSig]
-        int get_UserAgent([MarshalAs(UnmanagedType.BStr)] out string pUserAgent);
-
-    }
-#endif
 
     #endregion
 

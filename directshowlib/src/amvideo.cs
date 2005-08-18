@@ -161,31 +161,6 @@ namespace DirectShowLib
     }
 
 
-    [Guid("1bd0ecb0-f8e2-11ce-aac6-0020af0b99a3"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IQualProp
-    {
-        [PreserveSig]
-        int get_FramesDroppedInRenderer(out int pcFrames);
-
-        [PreserveSig]
-        int get_FramesDrawn(out int pcFramesDrawn);
-
-        [PreserveSig]
-        int get_AvgFrameRate(out int piAvgFrameRate);
-
-        [PreserveSig]
-        int get_Jitter(out int iJitter);
-
-        [PreserveSig]
-        int get_AvgSyncOffset(out int piAvg);
-
-        [PreserveSig]
-        int get_DevSyncOffset(out int piDev);
-
-    }
-
-
     [Guid("dd1d7110-7836-11cf-bf47-00aa0055595a"),
     Obsolete("This interface has been deprecated.", false),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -250,7 +225,7 @@ namespace DirectShowLib
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IFullScreenVideoEx : IFullScreenVideo
     {
-#region IFullScreenVideo methods
+        #region IFullScreenVideo methods
 
         [PreserveSig]
         new int CountModes(out int pModes);
@@ -346,5 +321,31 @@ namespace DirectShowLib
     }
 
 #endif
+
+    [Guid("1bd0ecb0-f8e2-11ce-aac6-0020af0b99a3"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IQualProp
+    {
+        [PreserveSig]
+        int get_FramesDroppedInRenderer(out int pcFrames);
+
+        [PreserveSig]
+        int get_FramesDrawn(out int pcFramesDrawn);
+
+        [PreserveSig]
+        int get_AvgFrameRate(out int piAvgFrameRate);
+
+        [PreserveSig]
+        int get_Jitter(out int iJitter);
+
+        [PreserveSig]
+        int get_AvgSyncOffset(out int piAvg);
+
+        [PreserveSig]
+        int get_DevSyncOffset(out int piDev);
+
+    }
+
+
     #endregion
 }

@@ -66,15 +66,15 @@ namespace DirectShowLib
     [StructLayout(LayoutKind.Sequential)]
     public struct VMRPresentationInfo
     {
-      public int dwFlags;
-      public IntPtr lpSurf; //LPDIRECTDRAWSURFACE7
-      public long rtStart;
-      public long rtEnd;
-      public Size szAspectRatio;
-      public DsRect rcSrc;
-      public DsRect rcDst;
-      public int dwTypeSpecificFlags;
-      public int dwInterlaceFlags;
+        public int dwFlags;
+        public IntPtr lpSurf; //LPDIRECTDRAWSURFACE7
+        public long rtStart;
+        public long rtEnd;
+        public Size szAspectRatio;
+        public DsRect rcSrc;
+        public DsRect rcDst;
+        public int dwTypeSpecificFlags;
+        public int dwInterlaceFlags;
     }
 
     /// <summary>
@@ -83,16 +83,16 @@ namespace DirectShowLib
     [StructLayout(LayoutKind.Sequential)]
     public struct VMRAllocationInfo
     {
-      public int dwFlags;
-      //		public BitmapInfoHeader lpHdr;
-      //    public DDPixelFormat lpPixFmt;
-      public IntPtr lpHdr;
-      public IntPtr lpPixFmt;
-      public Size szAspectRatio;
-      public int dwMinBuffers;
-      public int dwMaxBuffers;
-      public int dwInterlaceFlags;
-      public Size szNativeSize;
+        public int dwFlags;
+        //		public BitmapInfoHeader lpHdr;
+        //    public DDPixelFormat lpPixFmt;
+        public IntPtr lpHdr;
+        public IntPtr lpPixFmt;
+        public Size szAspectRatio;
+        public int dwMinBuffers;
+        public int dwMaxBuffers;
+        public int dwInterlaceFlags;
+        public Size szNativeSize;
     }
 
 #endif
@@ -329,17 +329,17 @@ namespace DirectShowLib
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IVMRImagePresenter
     {
-      [PreserveSig]
-      int StartPresenting([In] IntPtr dwUserID);
+        [PreserveSig]
+        int StartPresenting([In] IntPtr dwUserID);
 
-      [PreserveSig]
-      int StopPresenting([In] IntPtr dwUserID);
+        [PreserveSig]
+        int StopPresenting([In] IntPtr dwUserID);
 
-      [PreserveSig]
-      int PresentImage(
-        [In] IntPtr dwUserID,
-        [In] ref VMRPresentationInfo lpPresInfo
-        );
+        [PreserveSig]
+        int PresentImage(
+            [In] IntPtr dwUserID,
+            [In] ref VMRPresentationInfo lpPresInfo
+            );
     }
 
     [ComVisible(true),
@@ -347,115 +347,62 @@ namespace DirectShowLib
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IVMRSurfaceAllocator
     {
-      [PreserveSig]
-      int AllocateSurface(
-        [In] IntPtr dwUserID,
-        [In] ref VMRAllocationInfo lpAllocInfo,
-        [Out] out int lpdwActualBuffers,
-        [In, Out] ref IntPtr lplpSurface // LPDIRECTDRAWSURFACE7
-        );
+        [PreserveSig]
+        int AllocateSurface(
+            [In] IntPtr dwUserID,
+            [In] ref VMRAllocationInfo lpAllocInfo,
+            [Out] out int lpdwActualBuffers,
+            [In, Out] ref IntPtr lplpSurface // LPDIRECTDRAWSURFACE7
+            );
 
-      [PreserveSig]
-      int FreeSurface([In] IntPtr dwID);
+        [PreserveSig]
+        int FreeSurface([In] IntPtr dwID);
 
-      [PreserveSig]
-      int PrepareSurface(
-        [In] IntPtr dwUserID,
-        [In] IntPtr lplpSurface, // LPDIRECTDRAWSURFACE7
-        [In] int dwSurfaceFlags
-        );
+        [PreserveSig]
+        int PrepareSurface(
+            [In] IntPtr dwUserID,
+            [In] IntPtr lplpSurface, // LPDIRECTDRAWSURFACE7
+            [In] int dwSurfaceFlags
+            );
 
-      [PreserveSig]
-      int AdviseNotify([In] IVMRSurfaceAllocatorNotify lpIVMRSurfAllocNotify);
+        [PreserveSig]
+        int AdviseNotify([In] IVMRSurfaceAllocatorNotify lpIVMRSurfAllocNotify);
     }
 
     [Guid("aada05a8-5a4e-4729-af0b-cea27aed51e2"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IVMRSurfaceAllocatorNotify
     {
-      [PreserveSig]
-      int AdviseSurfaceAllocator(
-        [In] IntPtr dwUserID,
-        [In] IVMRSurfaceAllocator lpIVRMSurfaceAllocator
-        );
-
-      [PreserveSig]
-      int SetDDrawDevice(
-        [In] IntPtr lpDDrawDevice, // LPDIRECTDRAW7
-        [In] IntPtr hMonitor // HMONITOR
-        );
-
-      [PreserveSig]
-      int ChangeDDrawDevice(
-        [In] IntPtr lpDDrawDevice, // LPDIRECTDRAW7
-        [In] IntPtr hMonitor // HMONITOR
-        );
-
-      [PreserveSig]
-      int RestoreDDrawSurfaces();
-
-      [PreserveSig]
-      int NotifyEvent(
-        [In] int EventCode,
-        [In] IntPtr Param1,
-        [In] IntPtr Param2
-        );
-
-      [PreserveSig]
-      int SetBorderColor([In] int clrBorder);
-    }
-
-    [Guid("1c1a17b0-bed0-415d-974b-dc6696131599"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IVMRMixerControl
-    {
         [PreserveSig]
-        int SetAlpha(
-            [In] int dwStreamID,
-            [In] float Alpha
+        int AdviseSurfaceAllocator(
+            [In] IntPtr dwUserID,
+            [In] IVMRSurfaceAllocator lpIVRMSurfaceAllocator
             );
 
         [PreserveSig]
-        int GetAlpha(
-            [In] int dwStreamID,
-            [Out] out float Alpha
+        int SetDDrawDevice(
+            [In] IntPtr lpDDrawDevice, // LPDIRECTDRAW7
+            [In] IntPtr hMonitor // HMONITOR
             );
 
         [PreserveSig]
-        int SetZOrder(
-            [In] int dwStreamID,
-            [In] int dwZ
+        int ChangeDDrawDevice(
+            [In] IntPtr lpDDrawDevice, // LPDIRECTDRAW7
+            [In] IntPtr hMonitor // HMONITOR
             );
 
         [PreserveSig]
-        int GetZOrder(
-            [In] int dwStreamID,
-            [Out] out int dwZ
+        int RestoreDDrawSurfaces();
+
+        [PreserveSig]
+        int NotifyEvent(
+            [In] int EventCode,
+            [In] IntPtr Param1,
+            [In] IntPtr Param2
             );
 
         [PreserveSig]
-        int SetOutputRect(
-            [In] int dwStreamID,
-            [In] ref NormalizedRect pRect
-            );
-
-        [PreserveSig]
-        int GetOutputRect(
-            [In] int dwStreamID,
-            [Out] out NormalizedRect pRect
-            );
-
-        [PreserveSig]
-        int SetBackgroundClr([In] int ClrBkg);
-
-        [PreserveSig]
-        int GetBackgroundClr([Out] out int ClrBkg);
-
-        [PreserveSig]
-        int SetMixingPrefs([In] VMRMixerPrefs dwMixerPrefs);
-
-        [PreserveSig]
-        int GetMixingPrefs([Out] out VMRMixerPrefs dwMixerPrefs);
+        int SetBorderColor([In] int clrBorder);
     }
 
     [Guid("a9849bbe-9ec8-4263-b764-62730f0d15d0"),
@@ -773,6 +720,59 @@ namespace DirectShowLib
 
         [PreserveSig]
         int GetStreamActiveState([Out, MarshalAs(UnmanagedType.Bool)] out bool fActive);
+    }
+
+    [Guid("1c1a17b0-bed0-415d-974b-dc6696131599"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IVMRMixerControl
+    {
+        [PreserveSig]
+        int SetAlpha(
+            [In] int dwStreamID,
+            [In] float Alpha
+            );
+
+        [PreserveSig]
+        int GetAlpha(
+            [In] int dwStreamID,
+            [Out] out float Alpha
+            );
+
+        [PreserveSig]
+        int SetZOrder(
+            [In] int dwStreamID,
+            [In] int dwZ
+            );
+
+        [PreserveSig]
+        int GetZOrder(
+            [In] int dwStreamID,
+            [Out] out int dwZ
+            );
+
+        [PreserveSig]
+        int SetOutputRect(
+            [In] int dwStreamID,
+            [In] ref NormalizedRect pRect
+            );
+
+        [PreserveSig]
+        int GetOutputRect(
+            [In] int dwStreamID,
+            [Out] out NormalizedRect pRect
+            );
+
+        [PreserveSig]
+        int SetBackgroundClr([In] int ClrBkg);
+
+        [PreserveSig]
+        int GetBackgroundClr([Out] out int ClrBkg);
+
+        [PreserveSig]
+        int SetMixingPrefs([In] VMRMixerPrefs dwMixerPrefs);
+
+        [PreserveSig]
+        int GetMixingPrefs([Out] out VMRMixerPrefs dwMixerPrefs);
     }
 
     #endregion

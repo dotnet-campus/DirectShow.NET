@@ -31,8 +31,6 @@ namespace DirectShowLib
 
     #region Declarations
 
-#if ALLOW_UNTESTED_INTERFACES
-
     /// <summary>
     /// From VMR9PresentationFlags
     /// </summary>
@@ -59,42 +57,6 @@ namespace DirectShowLib
         UsageReserved = 0x00F0,
         UsageMask = 0x00FF
     }
-
-    /// <summary>
-    /// From VMR9PresentationInfo
-    /// </summary>
-    [StructLayout(LayoutKind.Sequential)]
-    public struct VMR9PresentationInfo
-    {
-        public VMR9PresentationFlags dwFlags;
-        public IntPtr lpSurf; //IDirect3DSurface9
-        public long rtStart;
-        public long rtEnd;
-        public Size szAspectRatio;
-        public DsRect rcSrc;
-        public DsRect rcDst;
-        public int dwReserved1;
-        public int dwReserved2;
-    }
-
-
-    /// <summary>
-    /// From VMR9AllocationInfo
-    /// </summary>
-    [StructLayout(LayoutKind.Sequential)]
-    public struct VMR9AllocationInfo
-    {
-        public VMR9SurfaceAllocationFlags dwFlags;
-        public int dwWidth;
-        public int dwHeight;
-        public int Format; // D3DFORMAT
-        public int Pool; // D3DPOOL
-        public int MinBuffers;
-        public Size szAspectRatio;
-        public Size szNativeSize;
-    }
-
-#endif
 
     /// <summary>
     /// From VMR9ProcAmpControlFlags
@@ -230,6 +192,39 @@ namespace DirectShowLib
     }
 
     /// <summary>
+    /// From VMR9PresentationInfo
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential)]
+    public struct VMR9PresentationInfo
+    {
+        public VMR9PresentationFlags dwFlags;
+        public IntPtr lpSurf; //IDirect3DSurface9
+        public long rtStart;
+        public long rtEnd;
+        public Size szAspectRatio;
+        public DsRect rcSrc;
+        public DsRect rcDst;
+        public int dwReserved1;
+        public int dwReserved2;
+    }
+
+    /// <summary>
+    /// From VMR9AllocationInfo
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential)]
+    public struct VMR9AllocationInfo
+    {
+        public VMR9SurfaceAllocationFlags dwFlags;
+        public int dwWidth;
+        public int dwHeight;
+        public int Format; // D3DFORMAT
+        public int Pool; // D3DPOOL
+        public int MinBuffers;
+        public Size szAspectRatio;
+        public Size szNativeSize;
+    }
+
+    /// <summary>
     /// From VMR9ProcAmpControl
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -353,6 +348,25 @@ namespace DirectShowLib
 
 #if ALLOW_UNTESTED_INTERFACES
 
+    [Guid("dfc581a1-6e1f-4c3a-8d0a-5e9792ea2afc"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IVMRSurface9
+    {
+        [PreserveSig]
+        int IsSurfaceLocked();
+
+        [PreserveSig]
+        int LockSurface([Out] out IntPtr lpSurface); // BYTE**
+
+        [PreserveSig]
+        int UnlockSurface();
+
+        [PreserveSig]
+        int GetSurface([Out, MarshalAs(UnmanagedType.IUnknown)] out object lplpSurface);
+    }
+
+#endif
+
     [ComVisible(true),
     Guid("69188c61-12a3-40f0-8ffc-342e7b433fd7"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -370,22 +384,25 @@ namespace DirectShowLib
     }
 
     [ComVisible(true),
-    Guid("8d5148ea-3f5d-46cf-9df1-d1b896eedb1f"),
+    Guid("6de9a68a-a928-4522-bf57-655ae3866456"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IVMRSurfaceAllocator9
+    public interface IVMRSurfaceAllocatorEx9 : IVMRSurfaceAllocator9
     {
+
+        #region IVMRSurfaceAllocator9 Methods
+
         [PreserveSig]
-        int InitializeDevice(
+        new int InitializeDevice(
             [In] IntPtr dwUserID,
             [In] ref VMR9AllocationInfo lpAllocInfo,
             [In, Out] ref int lpNumBuffers
             );
 
         [PreserveSig]
-        int TerminateDevice([In] IntPtr dwID);
+        new int TerminateDevice([In] IntPtr dwID);
 
         [PreserveSig]
-        int GetSurface(
+        new int GetSurface(
             [In] IntPtr dwUserID,
             [In] int SurfaceIndex,
             [In] int SurfaceFlags,
@@ -393,44 +410,19 @@ namespace DirectShowLib
             );
 
         [PreserveSig]
-        int AdviseNotify([In] IVMRSurfaceAllocatorNotify9 lpIVMRSurfAllocNotify);
+        new int AdviseNotify([In] IVMRSurfaceAllocatorNotify9 lpIVMRSurfAllocNotify);
+
+        #endregion
+
+        [PreserveSig]
+        int GetSurfaceEx(
+            [In] IntPtr dwUserID,
+            [In] int SurfaceIndex,
+            [In] int SurfaceFlags,
+            [Out] out IntPtr lplpSurface,
+            [Out] out DsRect lprcDst
+            );
     }
-
-  [ComVisible(true),
-  Guid("6de9a68a-a928-4522-bf57-655ae3866456"),
-  InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-  public interface IVMRSurfaceAllocatorEx9 : IVMRSurfaceAllocator9
-  {
-    [PreserveSig]
-    new int InitializeDevice(
-      [In] IntPtr dwUserID,
-      [In] ref VMR9AllocationInfo lpAllocInfo,
-      [In, Out] ref int lpNumBuffers
-      );
-
-    [PreserveSig]
-    new int TerminateDevice([In] IntPtr dwID);
-
-    [PreserveSig]
-    new int GetSurface(
-      [In] IntPtr dwUserID,
-      [In] int SurfaceIndex,
-      [In] int SurfaceFlags,
-      [Out] out IntPtr lplpSurface
-      );
-
-    [PreserveSig]
-    new int AdviseNotify([In] IVMRSurfaceAllocatorNotify9 lpIVMRSurfAllocNotify);
-
-    [PreserveSig]
-    int GetSurfaceEx(
-      [In] IntPtr dwUserID,
-      [In] int SurfaceIndex,
-      [In] int SurfaceFlags,
-      [Out] out IntPtr lplpSurface,
-      [Out] out DsRect lprcDst
-      );
-  }
 
 
     [Guid("dca3f5df-bb3a-4d03-bd81-84614bfbfa0c"),
@@ -470,36 +462,39 @@ namespace DirectShowLib
             );
     }
 
-    [Guid("dfc581a1-6e1f-4c3a-8d0a-5e9792ea2afc"),
+    [ComVisible(true),
+    Guid("8d5148ea-3f5d-46cf-9df1-d1b896eedb1f"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IVMRSurface9
+    public interface IVMRSurfaceAllocator9
     {
         [PreserveSig]
-        int IsSurfaceLocked();
+        int InitializeDevice(
+            [In] IntPtr dwUserID,
+            [In] ref VMR9AllocationInfo lpAllocInfo,
+            [In, Out] ref int lpNumBuffers
+            );
 
         [PreserveSig]
-        int LockSurface([Out] out IntPtr lpSurface); // BYTE**
+        int TerminateDevice([In] IntPtr dwID);
 
         [PreserveSig]
-        int UnlockSurface();
+        int GetSurface(
+            [In] IntPtr dwUserID,
+            [In] int SurfaceIndex,
+            [In] int SurfaceFlags,
+            [Out] out IntPtr lplpSurface
+            );
 
         [PreserveSig]
-        int GetSurface([Out, MarshalAs(UnmanagedType.IUnknown)] out object lplpSurface);
+        int AdviseNotify([In] IVMRSurfaceAllocatorNotify9 lpIVMRSurfAllocNotify);
     }
-
-#endif
 
     [Guid("5a804648-4f66-4867-9c43-4f5c822cf1b8"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IVMRFilterConfig9
     {
-#if ALLOW_UNTESTED_INTERFACES
         [PreserveSig]
         int SetImageCompositor([In] IVMRImageCompositor9 lpVMRImgCompositor);
-#else
-        [PreserveSig]
-        int SetImageCompositor([In, MarshalAs(UnmanagedType.IUnknown)] object lpVMRImgCompositor);
-#endif
 
         [PreserveSig]
         int SetNumberOfStreams([In] int dwMaxStreams);

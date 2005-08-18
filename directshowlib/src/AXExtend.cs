@@ -194,18 +194,6 @@ namespace DirectShowLib
     }
 
     /// <summary>
-    /// From _AM_INTF_SEARCH_FLAGS
-    /// </summary>
-    [Flags]
-    public enum AMIntfSearchFlags
-    {
-        None = 0x00000000,
-        InputPin = 0x00000001,
-        OutputPin = 0x00000002,
-        Filter = 0x00000004
-    }
-
-    /// <summary>
     /// From AMOVERLAYFX
     /// </summary>
     [Flags]
@@ -383,18 +371,6 @@ namespace DirectShowLib
     }
 
     /// <summary>
-    /// From COLORKEY
-    /// </summary>
-    [StructLayout(LayoutKind.Sequential)]
-    public class ColorKey
-    {
-        public int KeyType;
-        public int PaletteIndex;
-        public int LowColorValue;
-        public int HighColorValue;
-    }
-
-    /// <summary>
     /// From RGNDATAHEADER
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -525,6 +501,30 @@ namespace DirectShowLib
     }
 
 #endif
+
+    /// <summary>
+    /// From _AM_INTF_SEARCH_FLAGS
+    /// </summary>
+    [Flags]
+    public enum AMIntfSearchFlags
+    {
+        None = 0x00000000,
+        InputPin = 0x00000001,
+        OutputPin = 0x00000002,
+        Filter = 0x00000004
+    }
+
+    /// <summary>
+    /// From COLORKEY
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential)]
+    public class ColorKey
+    {
+        public int KeyType;
+        public int PaletteIndex;
+        public int LowColorValue;
+        public int HighColorValue;
+    }
 
     /// <summary>
     /// From REGPINMEDIUM
@@ -1215,18 +1215,6 @@ namespace DirectShowLib
 
         [PreserveSig]
         int Unadvise();
-    }
-
-    [Guid("56a868a2-0ad4-11ce-b03a-0020af0ba770"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IMediaEventSink
-    {
-        [PreserveSig]
-        int Notify(
-            [In] EventCode evCode,
-            [In] int EventParam1,
-            [In] int EventParam2
-            );
     }
 
     [Guid("bf87b6e0-8c27-11d0-b3f0-00aa003761c5"),
@@ -2196,25 +2184,6 @@ namespace DirectShowLib
         int GetLatency([In] long prtLatency);
     }
 
-    [Guid("632105FA-072E-11d3-8AF9-00C04FB6BD3D"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IAMGraphStreams
-    {
-        [PreserveSig]
-        int FindUpstreamInterface(
-            [In] IPin pPin,
-            [In, MarshalAs(UnmanagedType.LPStruct)] Guid riid,
-            [Out, MarshalAs(UnmanagedType.IUnknown)] out object ppvInterface,
-            [In] AMIntfSearchFlags dwFlags
-            );
-
-        [PreserveSig]
-        int SyncUsingStreamOffset([In, MarshalAs(UnmanagedType.Bool)] bool bUseStreamOffset);
-
-        [PreserveSig]
-        int SetMaxGraphLatency([In] long rtMaxGraphLatency);
-    }
-
     [Guid("62fae250-7e65-4460-bfc9-6398b322073c"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IAMOverlayFX
@@ -2550,6 +2519,25 @@ namespace DirectShowLib
             );
     }
 #endif
+
+    [Guid("632105FA-072E-11d3-8AF9-00C04FB6BD3D"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IAMGraphStreams
+    {
+        [PreserveSig]
+        int FindUpstreamInterface(
+            [In] IPin pPin,
+            [In, MarshalAs(UnmanagedType.LPStruct)] Guid riid,
+            [Out, MarshalAs(UnmanagedType.IUnknown)] out object ppvInterface,
+            [In] AMIntfSearchFlags dwFlags
+            );
+
+        [PreserveSig]
+        int SyncUsingStreamOffset([In, MarshalAs(UnmanagedType.Bool)] bool bUseStreamOffset);
+
+        [PreserveSig]
+        int SetMaxGraphLatency([In] long rtMaxGraphLatency);
+    }
 
     [Guid("56a868a9-0ad4-11ce-b03a-0020af0ba770"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -3529,6 +3517,18 @@ namespace DirectShowLib
             [In] DVEncoderResolution Resolution,
             [In, MarshalAs(UnmanagedType.I4)] OABool fDVInfo,
             [In] DVInfo sDVInfo
+            );
+    }
+
+    [Guid("56a868a2-0ad4-11ce-b03a-0020af0ba770"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IMediaEventSink
+    {
+        [PreserveSig]
+        int Notify(
+            [In] EventCode evCode,
+            [In] int EventParam1,
+            [In] int EventParam2
             );
     }
 
