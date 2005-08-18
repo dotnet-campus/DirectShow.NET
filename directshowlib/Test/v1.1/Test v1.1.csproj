@@ -151,11 +151,6 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "IMixerPinConfig2Test.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "IMixerPinConfigTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -307,11 +302,6 @@
                 />
                 <File
                     RelPath = "IVMRSurfaceAllocatorEx9Test.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IVMRSurfaceAllocatorTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
