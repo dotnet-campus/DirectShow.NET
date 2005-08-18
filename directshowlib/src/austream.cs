@@ -34,26 +34,6 @@ namespace DirectShowLib
 #if ALLOW_UNTESTED_INTERFACES
 
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown), 
-    Guid("0DED49D5-A8B7-4D5D-97A1-12B0C195874D")]
-    public interface IBDA_PinControl
-    {
-        [PreserveSig]
-        int GetPinID(
-            [In, Out] ref int pulPinID
-            );
-
-        [PreserveSig]
-        int GetPinType(
-            [In, Out] ref int pulPinType
-            );
-
-        [PreserveSig]
-        int RegistrationContext (
-            [In, Out] ref int pulRegistrationCtx
-            );
-    }
-
-    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown), 
     Guid("327FC560-AF60-11D0-8212-00C04FC32C45")]
     public interface IMemoryData
     {
