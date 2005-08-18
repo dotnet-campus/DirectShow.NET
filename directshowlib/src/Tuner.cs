@@ -1836,6 +1836,41 @@ namespace DirectShowLib.BDA
     //////////////////////////////////////////////////////////////////////////////////////
     [Guid("FCD01846-0E19-11d3-9D8E-00C04F72D980"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
+    public interface IComponentsOld
+    {
+        [PreserveSig]
+        int get_Count([Out] out int Count);
+
+        [PreserveSig, DispId((int) DispIDTuner.NEWENUM)]
+        int get__NewEnum([Out] out UCOMIEnumVARIANT ppNewEnum);
+
+        [PreserveSig]
+        int EnumComponents([Out] out IEnumComponents ppNewEnum);
+
+        [PreserveSig, DispId((int) DispIDTuner.VALUE)]
+        int get_Item(
+            [In] object varIndex,
+            [Out] out IComponent TuningSpace
+            );
+
+        [PreserveSig, DispId((int) DispIDTuner.ADDITEM)]
+        int Add(
+            [In] IComponent Component,
+            [Out] out object NewIndex
+            );
+
+        [PreserveSig, DispId((int) DispIDTuner.REMOVEITEM)]
+        int Remove([In] object Index);
+
+        [PreserveSig]
+        int Clone([Out] out IComponents NewList);
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////
+    // Component Container
+    //////////////////////////////////////////////////////////////////////////////////////
+    [Guid("39A48091-FFFE-4182-A161-3FF802640E26"),
+    InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface IComponents
     {
         [PreserveSig]
@@ -1850,7 +1885,7 @@ namespace DirectShowLib.BDA
         [PreserveSig, DispId((int) DispIDTuner.VALUE)]
         int get_Item(
             [In] object varIndex,
-            [Out] out IEnumComponentTypes TuningSpace
+            [Out] out IComponent TuningSpace
             );
 
         [PreserveSig, DispId((int) DispIDTuner.ADDITEM)]
@@ -1864,6 +1899,12 @@ namespace DirectShowLib.BDA
 
         [PreserveSig]
         int Clone([Out] out IComponents NewList);
+
+        [PreserveSig]
+        int put_Item( 
+            object Index,
+            IComponent ppComponent
+            );        
     }
 
     [Guid("286D7F89-760C-4F89-80C4-66841D2507AA"),
