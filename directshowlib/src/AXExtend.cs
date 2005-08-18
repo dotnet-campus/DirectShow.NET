@@ -1223,7 +1223,7 @@ namespace DirectShowLib
     {
         [PreserveSig]
         int Notify(
-            [In] int EventCode,
+            [In] EventCode evCode,
             [In] int EventParam1,
             [In] int EventParam2
             );
