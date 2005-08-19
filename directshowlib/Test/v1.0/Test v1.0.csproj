@@ -408,6 +408,10 @@
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
+                <File
+                    RelPath = "ToDo v10.htm"
+                    BuildAction = "None"
+                />
             </Include>
         </Files>
     </CSHARP>
