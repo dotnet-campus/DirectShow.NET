@@ -343,10 +343,94 @@ namespace DirectShowLib.BDA
         int Unregister();
     }
     
+
     [Guid("39DD45DA-2DA8-46BA-8A8A-87E2B73D983A"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface IAnalogRadioTuningSpace2 : IAnalogRadioTuningSpace
     {
+        #region ITuningSpace Methods
+
+        [PreserveSig, DispId((int) DispIDTuner.TS_UNIQUENAME)]
+        new int get_UniqueName([Out, MarshalAs(UnmanagedType.BStr)] out string Name);
+
+        [PreserveSig, DispId((int) DispIDTuner.TS_UNIQUENAME)]
+        new int put_UniqueName([In, MarshalAs(UnmanagedType.BStr)] string Name);
+
+        [PreserveSig, DispId((int) DispIDTuner.TS_FRIENDLYNAME)]
+        new int get_FriendlyName([Out, MarshalAs(UnmanagedType.BStr)] out string Name);
+
+        [PreserveSig, DispId((int) DispIDTuner.TS_FRIENDLYNAME)]
+        new int put_FriendlyName([In, MarshalAs(UnmanagedType.BStr)] string Name);
+
+        [PreserveSig, DispId((int) DispIDTuner.TS_CLSID)]
+        new int get_CLSID([Out, MarshalAs(UnmanagedType.BStr)] out string SpaceCLSID);
+
+        [PreserveSig, DispId((int) DispIDTuner.TS_NETWORKTYPE)]
+        new int get_NetworkType([Out, MarshalAs(UnmanagedType.BStr)] out string NetworkTypeGuid);
+
+        [PreserveSig, DispId((int) DispIDTuner.TS_NETWORKTYPE)]
+        new int put_NetworkType([In, MarshalAs(UnmanagedType.BStr)] string NetworkTypeGuid);
+
+        [PreserveSig, DispId((int) DispIDTuner.TS__NETWORKTYPE)]
+        new int get__NetworkType([Out] out Guid NetworkTypeGuid);
+
+        [PreserveSig, DispId((int) DispIDTuner.TS__NETWORKTYPE)]
+        new int put__NetworkType([In, MarshalAs(UnmanagedType.LPStruct)] Guid NetworkTypeGuid);
+
+        [PreserveSig, DispId((int) DispIDTuner.TS_CREATETUNEREQUEST)]
+        new int CreateTuneRequest([Out] out ITuneRequest TuneRequest);
+
+        [PreserveSig, DispId((int) DispIDTuner.TS_ENUMCATEGORYGUIDS)]
+        new int EnumCategoryGUIDs([Out] IntPtr ppEnum); // IEnumGUID** 
+
+        [PreserveSig, DispId((int) DispIDTuner.TS_ENUMDEVICEMONIKERS)]
+        new int EnumDeviceMonikers([Out] UCOMIEnumMoniker ppEnum);
+
+        [PreserveSig, DispId((int) DispIDTuner.TS_DEFAULTPREFERREDCOMPONENTTYPES)]
+        new int get_DefaultPreferredComponentTypes([Out] out IComponentTypes ComponentTypes);
+
+        [PreserveSig, DispId((int) DispIDTuner.TS_DEFAULTPREFERREDCOMPONENTTYPES)]
+        new int put_DefaultPreferredComponentTypes([In] IComponentTypes NewComponentTypes);
+
+        [PreserveSig, DispId((int) DispIDTuner.TS_FREQMAP)]
+        new int get_FrequencyMapping([Out, MarshalAs(UnmanagedType.BStr)] out string pMapping);
+
+        [PreserveSig, DispId((int) DispIDTuner.TS_FREQMAP)]
+        new int put_FrequencyMapping([In, MarshalAs(UnmanagedType.BStr)] string Mapping);
+
+        [PreserveSig, DispId((int) DispIDTuner.TS_DEFLOCATOR)]
+        new int get_DefaultLocator([Out] out ILocator LocatorVal);
+
+        [PreserveSig, DispId((int) DispIDTuner.TS_DEFLOCATOR)]
+        new int put_DefaultLocator([In] ILocator LocatorVal);
+
+        [PreserveSig]
+        new int Clone([Out] out ITuningSpace NewTS);
+
+        #endregion
+
+        #region IAnalogRadioTuningSpace Methods
+
+        [PreserveSig, DispId((int) DispIDTuner.TS_AR_MINFREQUENCY)]
+        new int get_MinFrequency([Out] out int MinFrequencyVal);
+
+        [PreserveSig, DispId((int) DispIDTuner.TS_AR_MINFREQUENCY)]
+        new int put_MinFrequency([In] int NewMinFrequencyVal);
+
+        [PreserveSig, DispId((int) DispIDTuner.TS_AR_MAXFREQUENCY)]
+        new int get_MaxFrequency([Out] out int MaxFrequencyVal);
+
+        [PreserveSig, DispId((int) DispIDTuner.TS_AR_MAXFREQUENCY)]
+        new int put_MaxFrequency([In] int NewMaxFrequencyVal);
+
+        [PreserveSig, DispId((int) DispIDTuner.TS_AR_STEP)]
+        new int get_Step([Out] out int StepVal);
+
+        [PreserveSig, DispId((int) DispIDTuner.TS_AR_STEP)]
+        new int put_Step([In] int StepVal);
+
+        #endregion
+
         int get_CountryCode( 
             out int CountryCodeVal
             );
@@ -356,10 +440,72 @@ namespace DirectShowLib.BDA
             );
     }
 
+
     [Guid("B10931ED-8BFE-4AB0-9DCE-E469C29A9729"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface IAuxInTuningSpace2 : IAuxInTuningSpace
     {
+        #region ITuningSpace Methods
+
+        [PreserveSig, DispId((int) DispIDTuner.TS_UNIQUENAME)]
+        new int get_UniqueName([Out, MarshalAs(UnmanagedType.BStr)] out string Name);
+
+        [PreserveSig, DispId((int) DispIDTuner.TS_UNIQUENAME)]
+        new int put_UniqueName([In, MarshalAs(UnmanagedType.BStr)] string Name);
+
+        [PreserveSig, DispId((int) DispIDTuner.TS_FRIENDLYNAME)]
+        new int get_FriendlyName([Out, MarshalAs(UnmanagedType.BStr)] out string Name);
+
+        [PreserveSig, DispId((int) DispIDTuner.TS_FRIENDLYNAME)]
+        new int put_FriendlyName([In, MarshalAs(UnmanagedType.BStr)] string Name);
+
+        [PreserveSig, DispId((int) DispIDTuner.TS_CLSID)]
+        new int get_CLSID([Out, MarshalAs(UnmanagedType.BStr)] out string SpaceCLSID);
+
+        [PreserveSig, DispId((int) DispIDTuner.TS_NETWORKTYPE)]
+        new int get_NetworkType([Out, MarshalAs(UnmanagedType.BStr)] out string NetworkTypeGuid);
+
+        [PreserveSig, DispId((int) DispIDTuner.TS_NETWORKTYPE)]
+        new int put_NetworkType([In, MarshalAs(UnmanagedType.BStr)] string NetworkTypeGuid);
+
+        [PreserveSig, DispId((int) DispIDTuner.TS__NETWORKTYPE)]
+        new int get__NetworkType([Out] out Guid NetworkTypeGuid);
+
+        [PreserveSig, DispId((int) DispIDTuner.TS__NETWORKTYPE)]
+        new int put__NetworkType([In, MarshalAs(UnmanagedType.LPStruct)] Guid NetworkTypeGuid);
+
+        [PreserveSig, DispId((int) DispIDTuner.TS_CREATETUNEREQUEST)]
+        new int CreateTuneRequest([Out] out ITuneRequest TuneRequest);
+
+        [PreserveSig, DispId((int) DispIDTuner.TS_ENUMCATEGORYGUIDS)]
+        new int EnumCategoryGUIDs([Out] IntPtr ppEnum); // IEnumGUID** 
+
+        [PreserveSig, DispId((int) DispIDTuner.TS_ENUMDEVICEMONIKERS)]
+        new int EnumDeviceMonikers([Out] UCOMIEnumMoniker ppEnum);
+
+        [PreserveSig, DispId((int) DispIDTuner.TS_DEFAULTPREFERREDCOMPONENTTYPES)]
+        new int get_DefaultPreferredComponentTypes([Out] out IComponentTypes ComponentTypes);
+
+        [PreserveSig, DispId((int) DispIDTuner.TS_DEFAULTPREFERREDCOMPONENTTYPES)]
+        new int put_DefaultPreferredComponentTypes([In] IComponentTypes NewComponentTypes);
+
+        [PreserveSig, DispId((int) DispIDTuner.TS_FREQMAP)]
+        new int get_FrequencyMapping([Out, MarshalAs(UnmanagedType.BStr)] out string pMapping);
+
+        [PreserveSig, DispId((int) DispIDTuner.TS_FREQMAP)]
+        new int put_FrequencyMapping([In, MarshalAs(UnmanagedType.BStr)] string Mapping);
+
+        [PreserveSig, DispId((int) DispIDTuner.TS_DEFLOCATOR)]
+        new int get_DefaultLocator([Out] out ILocator LocatorVal);
+
+        [PreserveSig, DispId((int) DispIDTuner.TS_DEFLOCATOR)]
+        new int put_DefaultLocator([In] ILocator LocatorVal);
+
+        [PreserveSig]
+        new int Clone([Out] out ITuningSpace NewTS);
+
+        #endregion
+
         int get_CountryCode( 
             out int CountryCodeVal);
         
@@ -367,6 +513,7 @@ namespace DirectShowLib.BDA
             int NewCountryCodeVal
             );
     }
+
 
     [Guid("B34505E0-2F0E-497b-80BC-D43F3B24ED7F"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -404,6 +551,7 @@ namespace DirectShowLib.BDA
             );        
     }
     
+
     [Guid("901284E4-33FE-4b69-8D63-634A596F3756"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface ITuningSpaces
@@ -423,6 +571,7 @@ namespace DirectShowLib.BDA
         [PreserveSig]
         int get_EnumTuningSpaces([Out] out IEnumTuningSpaces NewEnum);
     }
+
 
     //////////////////////////////////////////////////////////////////////////////////////
     // Tuning Space Container
@@ -492,6 +641,7 @@ namespace DirectShowLib.BDA
         int put_MaxCount([In] int MaxCount);
     }
 
+
     //////////////////////////////////////////////////////////////////////////////////////
     // Tuning Space Interfaces
     //////////////////////////////////////////////////////////////////////////////////////
@@ -557,6 +707,7 @@ namespace DirectShowLib.BDA
         int Clone([Out] out ITuningSpace NewTS);
     }
 
+
     [Guid("8B8EB248-FC2B-11d2-9D8C-00C04F72D980"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IEnumTuningSpaces
@@ -574,10 +725,13 @@ namespace DirectShowLib.BDA
         int Clone([Out] out IEnumTuningSpaces ppEnum);
     }
 
+
     [Guid("ADA0B268-3B19-4e5b-ACC4-49F852BE13BA"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface IDVBTuningSpace : ITuningSpace
     {
+        #region ITuningSpace Methods
+
         [PreserveSig, DispId((int) DispIDTuner.TS_UNIQUENAME)]
         new int get_UniqueName([Out, MarshalAs(UnmanagedType.BStr)] out string Name);
 
@@ -635,6 +789,8 @@ namespace DirectShowLib.BDA
         [PreserveSig]
         new int Clone([Out] out ITuningSpace NewTS);
 
+        #endregion
+
         [PreserveSig, DispId((int) DispIDTuner.TS_DVB_SYSTEMTYPE)]
         int get_SystemType([Out] out DVBSystemType SysType);
 
@@ -642,10 +798,13 @@ namespace DirectShowLib.BDA
         int put_SystemType([In] DVBSystemType SysType);
     }
 
+
     [Guid("843188B4-CE62-43db-966B-8145A094E040"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface IDVBTuningSpace2 : IDVBTuningSpace
     {
+        #region ITuningSpace Methods
+
         [PreserveSig, DispId((int) DispIDTuner.TS_UNIQUENAME)]
         new int get_UniqueName([Out, MarshalAs(UnmanagedType.BStr)] out string Name);
 
@@ -703,11 +862,17 @@ namespace DirectShowLib.BDA
         [PreserveSig]
         new int Clone([Out] out ITuningSpace NewTS);
 
+        #endregion
+
+        #region IDVBTuningSpace Methods
+
         [PreserveSig, DispId((int) DispIDTuner.TS_DVB_SYSTEMTYPE)]
         new int get_SystemType([Out] out DVBSystemType SysType);
 
         [PreserveSig, DispId((int) DispIDTuner.TS_DVB_SYSTEMTYPE)]
         new int put_SystemType([In] DVBSystemType SysType);
+
+        #endregion
 
         [PreserveSig, DispId((int) DispIDTuner.TS_DVB2_NETWORK_ID)]
         int get_NetworkID([Out] out int NetworkID);
@@ -716,10 +881,13 @@ namespace DirectShowLib.BDA
         int put_NetworkID([In] int NetworkID);
     }
 
+
     [Guid("CDF7BE60-D954-42fd-A972-78971958E470"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface IDVBSTuningSpace : IDVBTuningSpace2
     {
+        #region ITuningSpace Methods
+
         [PreserveSig, DispId((int) DispIDTuner.TS_UNIQUENAME)]
         new int get_UniqueName([Out, MarshalAs(UnmanagedType.BStr)] out string Name);
 
@@ -777,17 +945,27 @@ namespace DirectShowLib.BDA
         [PreserveSig]
         new int Clone([Out] out ITuningSpace NewTS);
 
+        #endregion
+
+        #region IDVBTuningSpace Methods
+
         [PreserveSig, DispId((int) DispIDTuner.TS_DVB_SYSTEMTYPE)]
         new int get_SystemType([Out] out DVBSystemType SysType);
 
         [PreserveSig, DispId((int) DispIDTuner.TS_DVB_SYSTEMTYPE)]
         new int put_SystemType([In] DVBSystemType SysType);
 
+        #endregion
+
+        #region IDVBTuningSpace2 Methods
+
         [PreserveSig, DispId((int) DispIDTuner.TS_DVB2_NETWORK_ID)]
         new int get_NetworkID([Out] out int NetworkID);
 
         [PreserveSig, DispId((int) DispIDTuner.TS_DVB2_NETWORK_ID)]
         new int put_NetworkID([In] int NetworkID);
+
+        #endregion
 
         [PreserveSig, DispId((int) DispIDTuner.TS_DVBS_LOW_OSC_FREQ)]
         int get_LowOscillator([Out] out int LowOscillator);
@@ -823,10 +1001,13 @@ namespace DirectShowLib.BDA
         int put_SpectralInversion([In] SpectralInversion SpectralInversionVal);
     }
 
+
     [Guid("E48244B8-7E17-4f76-A763-5090FF1E2F30"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface IAuxInTuningSpace : ITuningSpace
     {
+        #region ITuningSpace Methods
+
         [PreserveSig, DispId((int) DispIDTuner.TS_UNIQUENAME)]
         new int get_UniqueName([Out, MarshalAs(UnmanagedType.BStr)] out string Name);
 
@@ -883,12 +1064,17 @@ namespace DirectShowLib.BDA
 
         [PreserveSig]
         new int Clone([Out] out ITuningSpace NewTS);
+
+        #endregion
     }
+
 
     [Guid("2A6E293C-2595-11d3-B64C-00C04F79498E"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface IAnalogTVTuningSpace : ITuningSpace
     {
+        #region ITuningSpace Methods
+
         [PreserveSig, DispId((int) DispIDTuner.TS_UNIQUENAME)]
         new int get_UniqueName([Out, MarshalAs(UnmanagedType.BStr)] out string Name);
 
@@ -945,6 +1131,8 @@ namespace DirectShowLib.BDA
 
         [PreserveSig]
         new int Clone([Out] out ITuningSpace NewTS);
+
+        #endregion
 
         [PreserveSig, DispId((int) DispIDTuner.TS_ATV_MINCHANNEL)]
         int get_MinChannel([Out] out int MinChannelVal);
@@ -971,10 +1159,13 @@ namespace DirectShowLib.BDA
         int put_CountryCode([In] int NewCountryCodeVal);
     }
 
+
     [Guid("0369B4E2-45B6-11d3-B650-00C04F79498E"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface IATSCTuningSpace : IAnalogTVTuningSpace
     {
+        #region ITuningSpace Methods
+
         [PreserveSig, DispId((int) DispIDTuner.TS_UNIQUENAME)]
         new int get_UniqueName([Out, MarshalAs(UnmanagedType.BStr)] out string Name);
 
@@ -1032,6 +1223,10 @@ namespace DirectShowLib.BDA
         [PreserveSig]
         new int Clone([Out] out ITuningSpace NewTS);
 
+        #endregion
+
+        #region IAnalogTVTuningSpace Methods
+
         [PreserveSig, DispId((int) DispIDTuner.TS_ATV_MINCHANNEL)]
         new int get_MinChannel([Out] out int MinChannelVal);
 
@@ -1055,6 +1250,8 @@ namespace DirectShowLib.BDA
 
         [PreserveSig, DispId((int) DispIDTuner.TS_ATV_INPUTTYPE)]
         new int put_CountryCode([In] int NewCountryCodeVal);
+
+        #endregion
 
         [PreserveSig, DispId((int) DispIDTuner.TS_ATSC_MINMINORCHANNEL)]
         int get_MinMinorChannel([Out] out int MinMinorChannelVal);
@@ -1081,10 +1278,13 @@ namespace DirectShowLib.BDA
         int put_MaxPhysicalChannel([In] int NewMaxPhysicalChannelVal);
     }
 
+
     [Guid("2A6E293B-2595-11d3-B64C-00C04F79498E"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface IAnalogRadioTuningSpace : ITuningSpace
     {
+        #region ITuningSpace Methods
+
         [PreserveSig, DispId((int) DispIDTuner.TS_UNIQUENAME)]
         new int get_UniqueName([Out, MarshalAs(UnmanagedType.BStr)] out string Name);
 
@@ -1142,6 +1342,8 @@ namespace DirectShowLib.BDA
         [PreserveSig]
         new int Clone([Out] out ITuningSpace NewTS);
 
+        #endregion
+
         [PreserveSig, DispId((int) DispIDTuner.TS_AR_MINFREQUENCY)]
         int get_MinFrequency([Out] out int MinFrequencyVal);
 
@@ -1160,6 +1362,7 @@ namespace DirectShowLib.BDA
         [PreserveSig, DispId((int) DispIDTuner.TS_AR_STEP)]
         int put_Step([In] int StepVal);
     }
+
 
     [Guid("07DDC146-FC3D-11d2-9D8C-00C04F72D980"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
@@ -1181,10 +1384,13 @@ namespace DirectShowLib.BDA
         int put_Locator([In] ILocator Locator);
     }
 
+
     [Guid("0369B4E0-45B6-11d3-B650-00C04F79498E"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface IChannelTuneRequest : ITuneRequest
     {
+        #region ITuneRequest Methods
+
         [PreserveSig, DispId((int) DispIDTuner.TR_TUNINGSPACE)]
         new int get_TuningSpace([Out] out ITuningSpace TuningSpace);
 
@@ -1199,6 +1405,8 @@ namespace DirectShowLib.BDA
 
         [PreserveSig, DispId((int) DispIDTuner.TR_LOCATOR)]
         new int put_Locator([In] ILocator Locator);
+
+        #endregion
 
         [PreserveSig, DispId((int) DispIDTuner.CTR_CHANNEL)]
         int get_Channel([Out] out int Channel);
@@ -1207,10 +1415,13 @@ namespace DirectShowLib.BDA
         int put_Channel([In] int Channel);
     }
 
+
     [Guid("0369B4E1-45B6-11d3-B650-00C04F79498E"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface IATSCChannelTuneRequest : IChannelTuneRequest
     {
+        #region ITuneRequest Methods
+
         [PreserveSig, DispId((int) DispIDTuner.TR_TUNINGSPACE)]
         new int get_TuningSpace([Out] out ITuningSpace TuningSpace);
 
@@ -1226,11 +1437,17 @@ namespace DirectShowLib.BDA
         [PreserveSig, DispId((int) DispIDTuner.TR_LOCATOR)]
         new int put_Locator([In] ILocator Locator);
 
+        #endregion
+
+        #region IChannelTuneRequest Methods
+
         [PreserveSig, DispId((int) DispIDTuner.CTR_CHANNEL)]
         new int get_Channel([Out] out int Channel);
 
         [PreserveSig, DispId((int) DispIDTuner.CTR_CHANNEL)]
         new int put_Channel([In] int Channel);
+
+        #endregion
 
         [PreserveSig, DispId((int) DispIDTuner.ACTR_MINOR_CHANNEL)]
         int get_MinorChannel([Out] out int MinorChannel);
@@ -1239,10 +1456,13 @@ namespace DirectShowLib.BDA
         int put_MinorChannel([In] int MinorChannel);
     }
 
+
     [Guid("0D6F567E-A636-42bb-83BA-CE4C1704AFA2"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface IDVBTuneRequest : ITuneRequest
     {
+        #region ITuneRequest Methods
+
         [PreserveSig, DispId((int) DispIDTuner.TR_TUNINGSPACE)]
         new int get_TuningSpace([Out] out ITuningSpace TuningSpace);
 
@@ -1257,6 +1477,8 @@ namespace DirectShowLib.BDA
 
         [PreserveSig, DispId((int) DispIDTuner.TR_LOCATOR)]
         new int put_Locator([In] ILocator Locator);
+
+        #endregion
 
         [PreserveSig, DispId((int) DispIDTuner.DVBTUNER_ONID)]
         int get_ONID([Out] out int ONID);
@@ -1277,10 +1499,13 @@ namespace DirectShowLib.BDA
         int put_SID([In] int SID);
     }
 
+
     [Guid("EB7D987F-8A01-42ad-B8AE-574DEEE44D1A"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface IMPEG2TuneRequest : ITuneRequest
     {
+        #region ITuneRequest Methods
+
         [PreserveSig, DispId((int) DispIDTuner.TR_TUNINGSPACE)]
         new int get_TuningSpace([Out] out ITuningSpace TuningSpace);
 
@@ -1296,6 +1521,8 @@ namespace DirectShowLib.BDA
         [PreserveSig, DispId((int) DispIDTuner.TR_LOCATOR)]
         new int put_Locator([In] ILocator Locator);
 
+        #endregion
+
         [PreserveSig, DispId((int) DispIDTuner.MP2TUNER_TSID)]
         int get_TSID([Out] out int TSID);
 
@@ -1309,6 +1536,7 @@ namespace DirectShowLib.BDA
         int put_ProgNo([In] int ProgNo);
     }
 
+
     [Guid("14E11ABD-EE37-4893-9EA1-6964DE933E39"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface IMPEG2TuneRequestFactory
@@ -1320,11 +1548,13 @@ namespace DirectShowLib.BDA
             );
     }
 
+
     [Guid("1B9D5FC3-5BBC-4b6c-BB18-B9D10E3EEEBF"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IMPEG2TuneRequestSupport
     {
     }
+
 
     //////////////////////////////////////////////////////////////////////////////////////
     // Tuner Interfaces
@@ -1364,10 +1594,13 @@ namespace DirectShowLib.BDA
         int TriggerSignalEvents([In] int Interval);
     }
 
+
     [Guid("1DFD0A5C-0284-11d3-9D8E-00C04F72D980"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IScanningTuner : ITuner
     {
+        #region ITuner Methods
+
         [PreserveSig]
         new int get_TuningSpace([Out] out ITuningSpace TuningSpace);
 
@@ -1398,6 +1631,8 @@ namespace DirectShowLib.BDA
         [PreserveSig]
         new int TriggerSignalEvents([In] int Interval);
 
+        #endregion
+
         [PreserveSig]
         int SeekUp();
 
@@ -1413,6 +1648,7 @@ namespace DirectShowLib.BDA
         [PreserveSig]
         int AutoProgram();
     }
+
 
     //////////////////////////////////////////////////////////////////////////////////////
     // Component Type Interfaces
@@ -1473,10 +1709,13 @@ namespace DirectShowLib.BDA
         int Clone([Out] out IComponentType NewCT);
     }
 
+
     [Guid("B874C8BA-0FA2-11d3-9D8E-00C04F72D980"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface ILanguageComponentType : IComponentType
     {
+        #region IComponentType Methods
+
         [PreserveSig, DispId((int) DispIDTuner.CT_CATEGORY)]
         new int get_Category([Out] out ComponentCategory Category);
 
@@ -1527,6 +1766,8 @@ namespace DirectShowLib.BDA
 
         [PreserveSig, DispId((int) DispIDTuner.CT_CLONE)]
         new int Clone([Out] out IComponentType NewCT);
+
+        #endregion
 
         [PreserveSig, DispId((int) DispIDTuner.LCT_LANGID)]
         int get_LangID([Out] out int LangID);
@@ -1535,10 +1776,13 @@ namespace DirectShowLib.BDA
         int put_LangID([In] int LangID);
     }
 
+
     [Guid("2C073D84-B51C-48c9-AA9F-68971E1F6E38"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface IMPEG2ComponentType : ILanguageComponentType
     {
+        #region IComponentType Methods
+
         [PreserveSig, DispId((int) DispIDTuner.CT_CATEGORY)]
         new int get_Category([Out] out ComponentCategory Category);
 
@@ -1590,11 +1834,17 @@ namespace DirectShowLib.BDA
         [PreserveSig, DispId((int) DispIDTuner.CT_CLONE)]
         new int Clone([Out] out IComponentType NewCT);
 
+        #endregion
+
+        #region ILanguageComponentType Methods
+
         [PreserveSig, DispId((int) DispIDTuner.LCT_LANGID)]
         new int get_LangID([Out] out int LangID);
 
         [PreserveSig, DispId((int) DispIDTuner.LCT_LANGID)]
         new int put_LangID([In] int LangID);
+
+        #endregion
 
         [PreserveSig, DispId((int) DispIDTuner.MP2CT_TYPE)]
         int get_StreamType([Out] out MPEG2StreamType MP2StreamType);
@@ -1603,10 +1853,13 @@ namespace DirectShowLib.BDA
         int put_StreamType([In] MPEG2StreamType MP2StreamType);
     }
 
+
     [Guid("FC189E4D-7BD4-4125-B3B3-3A76A332CC96"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface IATSCComponentType : IMPEG2ComponentType
     {
+        #region IComponentType Methods
+
         [PreserveSig, DispId((int) DispIDTuner.CT_CATEGORY)]
         new int get_Category([Out] out ComponentCategory Category);
 
@@ -1658,11 +1911,19 @@ namespace DirectShowLib.BDA
         [PreserveSig, DispId((int) DispIDTuner.CT_CLONE)]
         new int Clone([Out] out IComponentType NewCT);
 
+        #endregion
+
+        #region ILanguageComponentType Methods
+
         [PreserveSig, DispId((int) DispIDTuner.LCT_LANGID)]
         new int get_LangID([Out] out int LangID);
 
         [PreserveSig, DispId((int) DispIDTuner.LCT_LANGID)]
         new int put_LangID([In] int LangID);
+
+        #endregion
+
+        #region IMPEG2ComponentType Methods
 
         [PreserveSig, DispId((int) DispIDTuner.MP2CT_TYPE)]
         new int get_StreamType([Out] out MPEG2StreamType MP2StreamType);
@@ -1670,12 +1931,15 @@ namespace DirectShowLib.BDA
         [PreserveSig, DispId((int) DispIDTuner.MP2CT_TYPE)]
         new int put_StreamType([In] MPEG2StreamType MP2StreamType);
 
+        #endregion
+
         [PreserveSig, DispId((int) DispIDTuner.ATSCCT_FLAGS)]
         int get_Flags([Out] out int Flags);
 
         [PreserveSig, DispId((int) DispIDTuner.ATSCCT_FLAGS)]
         int put_Flags([In] int Flags);
     }
+
 
     [Guid("8A674B4A-1F63-11d3-B64C-00C04F79498E"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -1693,6 +1957,7 @@ namespace DirectShowLib.BDA
 
         int Clone([Out] out IEnumComponentTypes ppEnum);
     }
+
 
     //////////////////////////////////////////////////////////////////////////////////////
     // Component Type Container
@@ -1729,6 +1994,7 @@ namespace DirectShowLib.BDA
         int Clone([Out] out IComponentTypes NewList);
     }
 
+
     //////////////////////////////////////////////////////////////////////////////////////
     // Component Interfaces
     //////////////////////////////////////////////////////////////////////////////////////
@@ -1764,10 +2030,13 @@ namespace DirectShowLib.BDA
         int Clone([Out] out IComponent NewComponent);
     }
 
+
     [Guid("1493E353-1EB6-473c-802D-8E6B8EC9D2A9"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface IMPEG2Component : IComponent
     {
+        #region IComponent Methods
+
         [PreserveSig, DispId((int) DispIDTuner.C_TYPE)]
         new int get_Type([Out] out IComponentType CT);
 
@@ -1795,6 +2064,8 @@ namespace DirectShowLib.BDA
         [PreserveSig, DispId((int) DispIDTuner.C_CLONE)]
         new int Clone([Out] out IComponent NewComponent);
 
+        #endregion
+
         [PreserveSig, DispId((int) DispIDTuner.C_MP2_PID)]
         int get_PID([Out] out int PID);
 
@@ -1814,6 +2085,7 @@ namespace DirectShowLib.BDA
         int put_ProgramNumber([In] int ProgramNumber);
     }
 
+
     [Guid("2A6E2939-2595-11d3-B64C-00C04F79498E"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IEnumComponents
@@ -1830,6 +2102,7 @@ namespace DirectShowLib.BDA
 
         int Clone([Out] out IEnumComponents ppEnum);
     }
+
 
     //////////////////////////////////////////////////////////////////////////////////////
     // Component Container
@@ -1865,6 +2138,7 @@ namespace DirectShowLib.BDA
         [PreserveSig]
         int Clone([Out] out IComponents NewList);
     }
+
 
     //////////////////////////////////////////////////////////////////////////////////////
     // Component Container
@@ -1906,6 +2180,7 @@ namespace DirectShowLib.BDA
             IComponent ppComponent
             );        
     }
+
 
     [Guid("286D7F89-760C-4F89-80C4-66841D2507AA"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
@@ -1957,10 +2232,12 @@ namespace DirectShowLib.BDA
         int Clone([Out] out ILocator NewLocator);
     }
 
+
     [Guid("BF8D986F-8C2B-4131-94D7-4D3D9FCC21EF"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface IATSCLocator : ILocator
     {
+        #region ILocator Methods
         [PreserveSig, DispId((int) DispIDTuner.L_CARRFREQ)]
         new int get_CarrierFrequency([Out] out int Frequency);
 
@@ -2005,6 +2282,8 @@ namespace DirectShowLib.BDA
 
         [PreserveSig, DispId((int) DispIDTuner.L_CLONE)]
         new int Clone([Out] out ILocator NewLocator);
+
+        #endregion
 
         [PreserveSig, DispId((int) DispIDTuner.L_ATSC_PHYS_CHANNEL)]
         int get_PhysicalChannel([Out] out int PhysicalChannel);
@@ -2019,10 +2298,13 @@ namespace DirectShowLib.BDA
         int put_TSID([In] int TSID);
     }
 
+
     [Guid("8664DA16-DDA2-42ac-926A-C18F9127C302"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface IDVBTLocator : ILocator
     {
+        #region ILocator Methods
+
         [PreserveSig, DispId((int) DispIDTuner.L_CARRFREQ)]
         new int get_CarrierFrequency([Out] out int Frequency);
 
@@ -2067,6 +2349,8 @@ namespace DirectShowLib.BDA
 
         [PreserveSig, DispId((int) DispIDTuner.L_CLONE)]
         new int Clone([Out] out ILocator NewLocator);
+
+        #endregion
 
         [PreserveSig, DispId((int) DispIDTuner.L_DVBT_BANDWIDTH)]
         int get_Bandwidth([Out] out int BandwidthVal);
@@ -2111,10 +2395,13 @@ namespace DirectShowLib.BDA
         int put_OtherFrequencyInUse([In, MarshalAs(UnmanagedType.VariantBool)] bool OtherFrequencyInUseVal);
     }
 
+
     [Guid("3D7C353C-0D04-45f1-A742-F97CC1188DC8"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface IDVBSLocator : ILocator
     {
+        #region ILocator Methods
+
         [PreserveSig, DispId((int) DispIDTuner.L_CARRFREQ)]
         new int get_CarrierFrequency([Out] out int Frequency);
 
@@ -2159,6 +2446,8 @@ namespace DirectShowLib.BDA
 
         [PreserveSig, DispId((int) DispIDTuner.L_CLONE)]
         new int Clone([Out] out ILocator NewLocator);
+
+        #endregion
 
         [PreserveSig, DispId((int) DispIDTuner.L_DVBS_POLARISATION)]
         int get_SignalPolarisation([Out] out Polarisation PolarisationVal);
@@ -2195,6 +2484,8 @@ namespace DirectShowLib.BDA
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface IDVBCLocator : ILocator
     {
+        #region ILocator Methods
+
         [PreserveSig, DispId((int) DispIDTuner.L_CARRFREQ)]
         new int get_CarrierFrequency([Out] out int Frequency);
 
@@ -2239,6 +2530,8 @@ namespace DirectShowLib.BDA
 
         [PreserveSig, DispId((int) DispIDTuner.L_CLONE)]
         new int Clone([Out] out ILocator NewLocator);
+
+        #endregion
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////
