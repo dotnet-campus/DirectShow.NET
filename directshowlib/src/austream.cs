@@ -57,10 +57,13 @@ namespace DirectShowLib
             );
     }
 
+
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown), 
     Guid("54C719C0-AF60-11D0-8212-00C04FC32C45")]
     public interface IAudioData : IMemoryData
     {
+        #region IMemoryData Methods
+
         [PreserveSig]
         new int SetBuffer(
             [In] int cbSize, 
@@ -80,6 +83,8 @@ namespace DirectShowLib
             [In] int cbDataValid
             );
 
+        #endregion
+
         [PreserveSig]
         int GetFormat(
             out WaveFormatEx pWaveFormatCurrent
@@ -91,10 +96,13 @@ namespace DirectShowLib
             );
     }
 
+
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown), 
     Guid("F7537560-A3BE-11D0-8212-00C04FC32C45")]
     public interface IAudioMediaStream : IMediaStream
     {
+        #region IMediaStream Methods
+
         [PreserveSig]
         new int GetMultiMediaStream(
             [MarshalAs(UnmanagedType.Interface)] out IMultiMediaStream ppMultiMediaStream
@@ -128,6 +136,8 @@ namespace DirectShowLib
             int dwFlags
             );
 
+        #endregion
+
         [PreserveSig]
         int GetFormat(
             out WaveFormatEx pWaveFormatCurrent
@@ -146,10 +156,13 @@ namespace DirectShowLib
             );
     }
 
+
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown), 
     Guid("345FEE00-ABA5-11D0-8212-00C04FC32C45")]
     public interface IAudioStreamSample : IStreamSample
     {
+        #region IStreamSample Methods
+
         [PreserveSig]
         new int GetMediaStream(
             [MarshalAs(UnmanagedType.Interface)] out IMediaStream ppMediaStream
@@ -182,12 +195,16 @@ namespace DirectShowLib
             [In] int dwMilliseconds
             );
 
+        #endregion
+
         [PreserveSig]
         int GetAudioData(
             [MarshalAs(UnmanagedType.Interface)] out IAudioData ppAudio
             );
     }
 
+
 #endif
+
     #endregion
 }
