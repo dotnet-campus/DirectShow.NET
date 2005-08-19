@@ -210,7 +210,7 @@ namespace DirectShowLib.BDA
         int GetChangeState([Out] out int pState);
     }
 
-    [Guid("FD0A5AF3-B41D-11d2-9C95-00C04F7971E0"),
+    [Guid("0DED49D5-A8B7-4d5d-97A1-12B0C195874D"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IBDA_PinControl
     {
