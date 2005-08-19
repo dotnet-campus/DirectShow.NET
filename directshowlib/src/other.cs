@@ -458,9 +458,7 @@ namespace DirectShowLib
     {
         [PreserveSig]
         int UnableToRender(IPin pPin);
-     }
-
-    // interface IConfigAsfWriter moved to WindowsMediaLib
+    }
 
     [Guid("546F4260-D53E-11cf-B3F0-00AA003761C5"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
