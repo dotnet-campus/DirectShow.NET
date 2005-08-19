@@ -39,7 +39,7 @@ using System.Security.Permissions;
 [assembly : AssemblyCopyright("GNU Lesser General Public License v2.1")]
 [assembly : AssemblyTrademark("")]
 [assembly : AssemblyCulture("")]
-[assembly : AssemblyVersion("1.0.0.0")]
+[assembly : AssemblyVersion("1.0.91.0")]
 [assembly : AssemblyDelaySign(false)]
 // Path is relative to the resulting executable (\Bin\Debug)
 [assembly : AssemblyKeyFile("..\\..\\DShowNET.snk")]
