@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DxTuner", "DxTuner.csproj", "{4AC57653-233F-4862-AF88-139A1D02A007}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{4AC57653-233F-4862-AF88-139A1D02A007}.Debug.ActiveCfg = Debug|.NET
+		{4AC57653-233F-4862-AF88-139A1D02A007}.Debug.Build.0 = Debug|.NET
+		{4AC57653-233F-4862-AF88-139A1D02A007}.Release.ActiveCfg = Release|.NET
+		{4AC57653-233F-4862-AF88-139A1D02A007}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
