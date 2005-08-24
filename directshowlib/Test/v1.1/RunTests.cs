@@ -86,8 +86,8 @@ namespace DirectShowLib.Test
             //IMediaPropertyBagTest dw24 = new IMediaPropertyBagTest();
             //dw24.DoTests();
 
-            IPersistMediaPropertyBagTest dw25 = new IPersistMediaPropertyBagTest();
-            dw25.DoTests();
+            //IPersistMediaPropertyBagTest dw25 = new IPersistMediaPropertyBagTest();
+            //dw25.DoTests();
 
             //IDMOWrapperFilterTest en01 = new IDMOWrapperFilterTest();
             //en01.DoTests();
@@ -137,8 +137,8 @@ namespace DirectShowLib.Test
             //IVMRImagePresenterConfig9Test en16 = new IVMRImagePresenterConfig9Test();
             //en16.DoTests();
 
-            //IVMRSurfaceAllocatorNotify9Test en17 = new IVMRSurfaceAllocatorNotify9Test();
-            //en17.DoTests();
+            IVMRSurfaceAllocatorNotify9Test en17 = new IVMRSurfaceAllocatorNotify9Test();
+            en17.DoTests();
 
             //IVMRImageCompositor9Test en18 = new IVMRImageCompositor9Test();
             //en18.DoTests();

@@ -316,6 +316,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IVMRSurfaceAllocatorNotify9Test.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IVMRVideoStreamControl9Test.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
