@@ -2085,10 +2085,10 @@ namespace DirectShowLib
     public interface IIPDVDec
     {
         [PreserveSig]
-        int get_IPDisplay([Out] out int displayPix);
+        int get_IPDisplay([Out] out DVDecoderResolution displayPix);
 
         [PreserveSig]
-        int put_IPDisplay([In] int displayPix);
+        int put_IPDisplay([In] DVDecoderResolution displayPix);
     }
 
     [Guid("58473A19-2BC8-4663-8012-25F81BABDDD1"),
@@ -2104,7 +2104,7 @@ namespace DirectShowLib
     public interface IDVSplitter
     {
         [PreserveSig]
-        int DiscardAlternateVideoFrames([In] int nDiscard);
+        int DiscardAlternateVideoFrames([In, MarshalAs(UnmanagedType.Bool)] bool nDiscard);
     }
 
     [Guid("22320CB2-D41A-11d2-BF7C-D7CB9DF0BF93"),
@@ -2124,7 +2124,7 @@ namespace DirectShowLib
     public interface IAMLatency
     {
         [PreserveSig]
-        int GetLatency([In] long prtLatency);
+        int GetLatency(out long prtLatency);
     }
 
     [Guid("62fae250-7e65-4460-bfc9-6398b322073c"),
