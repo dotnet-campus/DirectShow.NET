@@ -89,6 +89,45 @@ namespace DirectShowLib.Test
             //IPersistMediaPropertyBagTest dw25 = new IPersistMediaPropertyBagTest();
             //dw25.DoTests();
 
+            //IAMFilterMiscFlagsTest dw26 = new IAMFilterMiscFlagsTest();
+            //dw26.DoTests();
+
+            //IAMLatencyTest dw27 = new IAMLatencyTest();
+            //dw27.DoTests();
+
+            //IDVRGB219Test dw28 = new IDVRGB219Test();
+            //dw28.DoTests();
+
+            //IDVSplitterTest dw29 = new IDVSplitterTest();
+            //dw29.DoTests();
+
+            //IEnumDMOTest dw30 = new IEnumDMOTest();
+            //dw30.DoTests();
+
+            //IIPDVDecTest dw31 = new IIPDVDecTest();
+            //dw31.DoTests();
+
+            //IGraphVersionTest dw32 = new IGraphVersionTest();
+            //dw32.DoTests();
+
+            //IPinFlowControlTest dw33 = new IPinFlowControlTest();
+            //dw33.DoTests();
+
+            //IAMStatsTest dw34 = new IAMStatsTest();
+            //dw34.DoTests();
+
+            //IAMGraphBuilderCallbackTest dw35 = new IAMGraphBuilderCallbackTest();
+            //dw35.DoTests();
+
+            //IFilterChainTest dw36 = new IFilterChainTest();
+            //dw36.DoTests();
+
+            //IAMOpenProgressTest dw37 = new IAMOpenProgressTest();
+            //dw37.DoTests();
+
+            //IAMStreamControlTest dw38 = new IAMStreamControlTest();
+            //dw38.DoTests();
+
             //IDMOWrapperFilterTest en01 = new IDMOWrapperFilterTest();
             //en01.DoTests();
 

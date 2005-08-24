@@ -116,12 +116,32 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IAMFilterMiscFlagsTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IAMGraphStreamsTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
                     RelPath = "IAMMediaContentTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IAMOpenProgressTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IAMStatsTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IAMStreamControlTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -141,7 +161,32 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IDVRGB219Test.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IDVSplitterTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IEnumStreamBufferRecordingAttribTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IFilterChainTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IGraphVersionTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IIPDVDecTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
