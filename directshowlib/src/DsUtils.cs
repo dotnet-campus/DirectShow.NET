@@ -1728,6 +1728,7 @@ namespace DirectShowLib
         }
     }
 
+
     public class FourCC
     {
       private int fourCC = 0;

@@ -271,6 +271,7 @@ namespace DirectShowLib
     [Flags]
     public enum AMStreamInfoFlags
     {
+        None = 0x00000000,
         StartDefined = 0x00000001,
         StopDefined = 0x00000002,
         Discarding = 0x00000004,
@@ -403,7 +404,7 @@ namespace DirectShowLib
         public long tStop;
         public int dwStartCookie;
         public int dwStopCookie;
-        public int dwFlags;
+        public AMStreamInfoFlags dwFlags;
     }
 
     /// <summary>
@@ -1439,13 +1440,13 @@ namespace DirectShowLib
     {
         [PreserveSig]
         int StartAt(
-            [In] long ptStart,
+            [In] DsLong ptStart,
             [In] int dwCookie
             );
 
         [PreserveSig]
         int StopAt(
-            [In] long ptStop,
+            [In] DsLong ptStop,
             [In, MarshalAs(UnmanagedType.Bool)] bool bSendExtra,
             [In] int dwCookie
             );
