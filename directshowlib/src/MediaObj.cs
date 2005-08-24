@@ -174,17 +174,17 @@ namespace DirectShowLib.MultimediaStreaming
     public interface IDMOQualityControl
     {
         [PreserveSig]
-        void SetNow(
+        int SetNow(
             [In] long rtNow
             );
 
         [PreserveSig]
-        void SetStatus(
+        int SetStatus(
             [In] DMOQualityStatus dwFlags
             );
 
         [PreserveSig]
-        void GetStatus(
+        int GetStatus(
             out DMOQualityStatus pdwFlags
             );
     }
@@ -195,25 +195,25 @@ namespace DirectShowLib.MultimediaStreaming
     public interface IDMOVideoOutputOptimizations
     {
         [PreserveSig]
-        void QueryOperationModePreferences(
+        int QueryOperationModePreferences(
             int ulOutputStreamIndex, 
             out DMOVideoOutputStream pdwRequestedCapabilities
             );
 
         [PreserveSig]
-        void SetOperationMode(
+        int SetOperationMode(
             int ulOutputStreamIndex, 
             DMOVideoOutputStream dwEnabledFeatures
             );
 
         [PreserveSig]
-        void GetCurrentOperationMode(
+        int GetCurrentOperationMode(
             int ulOutputStreamIndex, 
             out DMOVideoOutputStream pdwEnabledFeatures
             );
 
         [PreserveSig]
-        void GetCurrentSampleRequirements(
+        int GetCurrentSampleRequirements(
             int ulOutputStreamIndex, 
             out DMOVideoOutputStream pdwRequestedFeatures
             );
@@ -225,22 +225,24 @@ namespace DirectShowLib.MultimediaStreaming
     public interface IEnumDMO
     {
         [PreserveSig]
-        void Next(int cItemsToFetch, 
-            out Guid pCLSID, 
-            [MarshalAs(UnmanagedType.LPWStr)] out string Names, 
+        int Next(int cItemsToFetch, 
+            [Out, MarshalAs(UnmanagedType.LPArray, ArraySubType=UnmanagedType.Struct)]
+            Guid[] pCLSID, 
+            [Out, MarshalAs(UnmanagedType.LPArray)] 
+            string[] Names, 
             out int pcItemsFetched
             );
 
         [PreserveSig]
-        void Skip(
+        int Skip(
             int cItemsToSkip
             );
 
         [PreserveSig]
-        void Reset();
+        int Reset();
 
         [PreserveSig]
-        void Clone(
+        int Clone(
             [MarshalAs(UnmanagedType.Interface)] out IEnumDMO ppEnum
             );
     }
@@ -251,7 +253,7 @@ namespace DirectShowLib.MultimediaStreaming
     public interface IMediaObjectInPlace
     {
         [PreserveSig]
-        void Process(
+        int Process(
             [In] int ulSize, 
             [In, Out] ref byte pData, 
             [In] long refTimeStart, 
@@ -259,12 +261,12 @@ namespace DirectShowLib.MultimediaStreaming
             );
 
         [PreserveSig]
-        void Clone(
+        int Clone(
             [MarshalAs(UnmanagedType.Interface)] out IMediaObjectInPlace ppMediaObject
             );
 
         [PreserveSig]
-        void GetLatency(
+        int GetLatency(
             out long pLatencyTime
             );
     }
@@ -275,17 +277,17 @@ namespace DirectShowLib.MultimediaStreaming
     public interface IMediaBuffer
     {
         [PreserveSig]
-        void SetLength(
+        int SetLength(
             int cbLength
             );
 
         [PreserveSig]
-        void GetMaxLength(
+        int GetMaxLength(
             out int pcbMaxLength
             );
 
         [PreserveSig]
-        void GetBufferAndLength(
+        int GetBufferAndLength(
             [Out] IntPtr ppBuffer, 
             out int pcbLength
             );
@@ -297,65 +299,65 @@ namespace DirectShowLib.MultimediaStreaming
     public interface IMediaObject
     {
         [PreserveSig]
-        void GetStreamCount(
+        int GetStreamCount(
             out int pcInputStreams, 
             out int pcOutputStreams
             );
 
         [PreserveSig]
-        void GetInputStreamInfo(
+        int GetInputStreamInfo(
             int dwInputStreamIndex, 
             out DMOInputStreamInfo pdwFlags
             );
 
         [PreserveSig]
-        void GetOutputStreamInfo(
+        int GetOutputStreamInfo(
             int dwOutputStreamIndex, 
             out DMOOutputStreamInfo pdwFlags
             );
 
         [PreserveSig]
-        void GetInputType(
+        int GetInputType(
             int dwInputStreamIndex, 
             int dwTypeIndex, 
             out DMOMediaType pmt
             );
 
         [PreserveSig]
-        void GetOutputType(
+        int GetOutputType(
             int dwOutputStreamIndex, 
             int dwTypeIndex, 
             out DMOMediaType pmt
             );
 
         [PreserveSig]
-        void SetInputType(
+        int SetInputType(
             int dwInputStreamIndex, 
             [In, MarshalAs(UnmanagedType.LPStruct)] DMOMediaType pmt, 
             DMOSetType dwFlags
             );
 
         [PreserveSig]
-        void SetOutputType(
+        int SetOutputType(
             int dwOutputStreamIndex, 
             [In, MarshalAs(UnmanagedType.LPStruct)] DMOMediaType pmt, 
             DMOSetType dwFlags
             );
 
         [PreserveSig]
-        void GetInputCurrentType(
+        int GetInputCurrentType(
             int dwInputStreamIndex, 
             out DMOMediaType pmt
             );
 
         [PreserveSig]
-        void GetOutputCurrentType(
+        int GetOutputCurrentType(
             int dwOutputStreamIndex, 
             out DMOMediaType pmt
             );
 
         [PreserveSig]
-        void GetInputSizeInfo(
+        int GetInputSizeInfo(
             int dwInputStreamIndex, 
             out int pcbSize, 
             out int pcbMaxLookahead, 
@@ -363,46 +365,46 @@ namespace DirectShowLib.MultimediaStreaming
             );
 
         [PreserveSig]
-        void GetOutputSizeInfo(
+        int GetOutputSizeInfo(
             int dwOutputStreamIndex, 
             out int pcbSize, 
             out int pcbAlignment
             );
 
         [PreserveSig]
-        void GetInputMaxLatency(
+        int GetInputMaxLatency(
             int dwInputStreamIndex, 
             out long prtMaxLatency
             );
 
         [PreserveSig]
-        void SetInputMaxLatency(
+        int SetInputMaxLatency(
             int dwInputStreamIndex, 
             long rtMaxLatency
             );
 
         [PreserveSig]
-        void Flush();
+        int Flush();
 
         [PreserveSig]
-        void Discontinuity(
+        int Discontinuity(
             int dwInputStreamIndex
             );
 
         [PreserveSig]
-        void AllocateStreamingResources();
+        int AllocateStreamingResources();
 
         [PreserveSig]
-        void FreeStreamingResources();
+        int FreeStreamingResources();
 
         [PreserveSig]
-        void GetInputStatus(
+        int GetInputStatus(
             int dwInputStreamIndex, 
             out DMOInputStatusFlags dwFlags
             );
 
         [PreserveSig]
-        void ProcessInput(
+        int ProcessInput(
             int dwInputStreamIndex, 
             [MarshalAs(UnmanagedType.Interface)] IMediaBuffer pBuffer, 
             DMOInputDataBuffer dwFlags, 
@@ -411,14 +413,14 @@ namespace DirectShowLib.MultimediaStreaming
             );
 
         [PreserveSig]
-        void ProcessOutput(
+        int ProcessOutput(
             DMOProcessOutput dwFlags, 
             int cOutputBufferCount, 
             [In, Out] ref DMOOutputDataBuffer pOutputBuffers, 
             out int pdwStatus);
 
         [PreserveSig]
-        void Lock(
+        int Lock(
             [MarshalAs(UnmanagedType.Bool)] bool bLock
             );
     }

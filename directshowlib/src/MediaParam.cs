@@ -112,33 +112,33 @@ namespace DirectShowLib.MultimediaStreaming
     public interface IMediaParamInfo
     {
         [PreserveSig]
-        void GetParamCount(out int pdwParams);
+        int GetParamCount(out int pdwParams);
 
         [PreserveSig]
-        void GetParamInfo(
+        int GetParamInfo(
             [In] int dwParamIndex, 
             out MP_PARAMINFO pInfo
             );
 
         [PreserveSig]
-        void GetParamText(
+        int GetParamText(
             [In] int dwParamIndex, 
             [Out] IntPtr ppwchText
             );
 
         [PreserveSig]
-        void GetNumTimeFormats(
+        int GetNumTimeFormats(
             out int pdwNumTimeFormats
             );
 
         [PreserveSig]
-        void GetSupportedTimeFormat(
+        int GetSupportedTimeFormat(
             [In] int dwFormatIndex, 
             out Guid pguidTimeFormat
             );
 
         [PreserveSig]
-        void GetCurrentTimeFormat(
+        int GetCurrentTimeFormat(
             out Guid pguidTimeFormat, 
             out int pTimeData
             );
@@ -149,32 +149,32 @@ namespace DirectShowLib.MultimediaStreaming
     public interface IMediaParams
     {
         [PreserveSig]
-        void GetParam(
+        int GetParam(
             [In] int dwParamIndex, 
             out float pValue
             );
 
         [PreserveSig]
-        void SetParam(
+        int SetParam(
             [In] int dwParamIndex, 
             [In] float value
             );
 
         [PreserveSig]
-        void AddEnvelope(
+        int AddEnvelope(
             [In] int dwParamIndex, 
             [In] int cSegments, 
             [In, MarshalAs(UnmanagedType.LPStruct)] MPEnvelopeSegment pEnvelopeSegments);
 
         [PreserveSig]
-        void FlushEnvelope(
+        int FlushEnvelope(
             [In] int dwParamIndex, 
             [In] long refTimeStart, 
             [In] long refTimeEnd
             );
 
         [PreserveSig]
-        void SetTimeFormat(
+        int SetTimeFormat(
             [In, MarshalAs(UnmanagedType.LPStruct)] Guid guidTimeFormat, 
             [In] int mpTimeData
             );
