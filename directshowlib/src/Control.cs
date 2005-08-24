@@ -333,13 +333,13 @@ namespace DirectShowLib
 		[PreserveSig]
 		int GetIndex(
 			[In, MarshalAs(UnmanagedType.BStr)] string szName,
-			[In] int lCreate,
+			[In, MarshalAs(UnmanagedType.Bool)] bool lCreate,
 			[Out] out int plIndex
 			);
 
 		[PreserveSig]
 		int AddValue(
-			[In] long lIndex,
+			[In] int lIndex,
 			[In] double dValue
 			);
 	}
