@@ -203,7 +203,7 @@ namespace AsfNet
 
             try
             {
-                IConfigAsfWriter lConfig = asfWriter as IConfigAsfWriter;
+                WindowsMediaLib.IConfigAsfWriter lConfig = asfWriter as WindowsMediaLib.IConfigAsfWriter;
 
                 // Use one of the pre-defined system profiles.  I picked one with mucho
                 // compression and no audio streams

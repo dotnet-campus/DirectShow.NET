@@ -278,7 +278,7 @@ namespace AsfCreate
         private void Initialize(Bitmap hBitmap)
         {
             int hr;
-            WMMediaType mt = new WMMediaType();
+            AMMediaType mt = new AMMediaType();
             VideoInfoHeader videoInfo = new VideoInfoHeader();
 
             // Create the VideoInfoHeader using info from the bitmap

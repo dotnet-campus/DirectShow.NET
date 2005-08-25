@@ -1152,15 +1152,15 @@ namespace WindowsMediaLib
             int dwMessageId, int dwLanguageId, ref IntPtr lpBuffer, int nSize, IntPtr Arguments);
 
         [DllImport("kernel32.dll")]
-        static extern IntPtr LoadLibraryEx(string lpFileName, IntPtr hFile, LoadLibraryExFlags dwFlags);
+        private static extern IntPtr LoadLibraryEx(string lpFileName, IntPtr hFile, LoadLibraryExFlags dwFlags);
 
         [DllImport("kernel32.dll")][return: MarshalAs(UnmanagedType.Bool)] 
-        static extern bool FreeLibrary(IntPtr hFile);
+        private static extern bool FreeLibrary(IntPtr hFile);
 
         [DllImport("kernel32.dll", SetLastError=true)]
-        static extern IntPtr LocalFree(IntPtr hMem);
+        private static extern IntPtr LocalFree(IntPtr hMem);
 
-        public static string WMGetErrorText(int hr)
+        public static string GetErrorText(int hr)
         {
             string sRet = null;
             IntPtr hModule;
@@ -1219,7 +1219,7 @@ namespace WindowsMediaLib
             if (hr < 0)
             {
                 // If a string is returned, build a com error from it
-                string buf = WMGetErrorText(hr);
+                string buf = GetErrorText(hr);
                 if (buf != null)
                 {
                     throw new COMException(buf, hr);
