@@ -986,6 +986,27 @@ namespace DirectShowLib
         }
 
         /// <summary>
+        /// Returns a unique identifier for a device
+        /// </summary>
+        public string DevicePath
+        {
+            get
+            {
+                string s = null;
+
+                try
+                {
+                    m_Mon.GetDisplayName(null, null, out s);
+                }
+                catch
+                {
+                }
+
+                return s;
+            }
+        }
+
+        /// <summary>
         /// Returns an array of DsDevices of type devcat.
         /// </summary>
         /// <param name="cat">Any one of FilterCategory</param>

@@ -118,16 +118,6 @@ namespace DirectShowLib
     }
 
     /// <summary>
-    /// From _AM_FILTER_MISC_FLAGS
-    /// </summary>
-    [Flags]
-    public enum AMFilterMiscFlags
-    {
-        IsRenderer = 0x00000001,
-        IsSource = 0x00000002
-    }
-
-    /// <summary>
     /// From DECIMATION_USAGE
     /// </summary>
     public enum DecimationUsage
@@ -150,17 +140,6 @@ namespace DirectShowLib
         PivateClock = 0x00000004,
         UseStreamClock = 0x00010000,
         UseClockChain = 0x00020000,
-    }
-
-    /// <summary>
-    /// From _DVDECODERRESOLUTION
-    /// </summary>
-    public enum DVDecoderResolution
-    {
-        r720x480 = 1000,
-        r360x240 = 1001,
-        r180x120 = 1002,
-        r88x60 = 1003
     }
 
     /// <summary>
@@ -263,19 +242,6 @@ namespace DirectShowLib
         DisplayChange = 0x10,
         All = Advise.Clipping | Advise.Palette | Advise.ColorKey | Advise.Position,
         All2 = Advise.All | Advise.DisplayChange
-    }
-
-    /// <summary>
-    /// From AM_STREAM_INFO_FLAGS
-    /// </summary>
-    [Flags]
-    public enum AMStreamInfoFlags
-    {
-        None = 0x00000000,
-        StartDefined = 0x00000001,
-        StopDefined = 0x00000002,
-        Discarding = 0x00000004,
-        StopSendExtra = 0x00000010
     }
 
     /// <summary>
@@ -395,19 +361,6 @@ namespace DirectShowLib
     }
 
     /// <summary>
-    /// From AM_STREAM_INFO
-    /// </summary>
-    [StructLayout(LayoutKind.Sequential)]
-    public struct AMStreamInfo
-    {
-        public long tStart;
-        public long tStop;
-        public int dwStartCookie;
-        public int dwStopCookie;
-        public AMStreamInfoFlags dwFlags;
-    }
-
-    /// <summary>
     /// From TIMECODE
     /// </summary>
     [StructLayout(LayoutKind.Sequential, Pack=1)]
@@ -502,6 +455,53 @@ namespace DirectShowLib
     }
 
 #endif
+
+    /// <summary>
+    /// From _AM_FILTER_MISC_FLAGS
+    /// </summary>
+    [Flags]
+    public enum AMFilterMiscFlags
+    {
+        IsRenderer = 0x00000001,
+        IsSource = 0x00000002
+    }
+
+    /// <summary>
+    /// From AM_STREAM_INFO_FLAGS
+    /// </summary>
+    [Flags]
+    public enum AMStreamInfoFlags
+    {
+        None = 0x00000000,
+        StartDefined = 0x00000001,
+        StopDefined = 0x00000002,
+        Discarding = 0x00000004,
+        StopSendExtra = 0x00000010
+    }
+
+    /// <summary>
+    /// From AM_STREAM_INFO
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential)]
+    public struct AMStreamInfo
+    {
+        public long tStart;
+        public long tStop;
+        public int dwStartCookie;
+        public int dwStopCookie;
+        public AMStreamInfoFlags dwFlags;
+    }
+
+    /// <summary>
+    /// From _DVDECODERRESOLUTION
+    /// </summary>
+    public enum DVDecoderResolution
+    {
+        r720x480 = 1000,
+        r360x240 = 1001,
+        r180x120 = 1002,
+        r88x60 = 1003
+    }
 
     /// <summary>
     /// From _AM_INTF_SEARCH_FLAGS
@@ -1342,14 +1342,6 @@ namespace DirectShowLib
         int EndFlush();
     }
 
-    [Guid("56a868ab-0ad4-11ce-b03a-0020af0ba770"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IGraphVersion
-    {
-        [PreserveSig]
-        int QueryVersion([Out] out int pVersion);
-    }
-
     [Guid("56a868ad-0ad4-11ce-b03a-0020af0ba770"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IResourceConsumer
@@ -1432,27 +1424,6 @@ namespace DirectShowLib
 
         [PreserveSig]
         int NotifyGraphChange();
-    }
-
-    [Guid("36b73881-c2c8-11cf-8b46-00805f6cef60"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IAMStreamControl
-    {
-        [PreserveSig]
-        int StartAt(
-            [In] DsLong ptStart,
-            [In] int dwCookie
-            );
-
-        [PreserveSig]
-        int StopAt(
-            [In] DsLong ptStop,
-            [In, MarshalAs(UnmanagedType.Bool)] bool bSendExtra,
-            [In] int dwCookie
-            );
-
-        [PreserveSig]
-        int GetInfo([Out] out AMStreamInfo pInfo);
     }
 
     [Guid("36b73883-c2c8-11cf-8b46-00805f6cef60"),
@@ -1989,14 +1960,6 @@ namespace DirectShowLib
         int SetClockDelta([In] long rtDelta);
     }
 
-    [Guid("2dd74950-a890-11d1-abe8-00a0c905f375"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IAMFilterMiscFlags
-    {
-        [PreserveSig]
-        int GetMiscFlags();
-    }
-
     [Guid("48efb120-ab49-11d2-aed2-00a0c995e8d5"),
     Obsolete("This interface has been deprecated.", false),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -2081,33 +2044,6 @@ namespace DirectShowLib
         int Disassociate();
     }
 
-    [Guid("b8e8bd60-0bfe-11d0-af91-00aa00b67a42"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IIPDVDec
-    {
-        [PreserveSig]
-        int get_IPDisplay([Out] out DVDecoderResolution displayPix);
-
-        [PreserveSig]
-        int put_IPDisplay([In] DVDecoderResolution displayPix);
-    }
-
-    [Guid("58473A19-2BC8-4663-8012-25F81BABDDD1"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IDVRGB219
-    {
-        [PreserveSig]
-        int SetRGB219([In, MarshalAs(UnmanagedType.Bool)] bool bState);
-    }
-
-    [Guid("92a3a302-da7c-4a1f-ba7e-1802bb5d2d02"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IDVSplitter
-    {
-        [PreserveSig]
-        int DiscardAlternateVideoFrames([In, MarshalAs(UnmanagedType.Bool)] bool nDiscard);
-    }
-
     [Guid("22320CB2-D41A-11d2-BF7C-D7CB9DF0BF93"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IAMAudioRendererStats
@@ -2140,20 +2076,6 @@ namespace DirectShowLib
 
         [PreserveSig]
         int GetOverlayFX([Out] out AMOverlayFX lpdwOverlayFX);
-    }
-
-    [Guid("8E1C39A1-DE53-11cf-AA63-0080C744528D"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IAMOpenProgress
-    {
-        [PreserveSig]
-        int QueryProgress(
-            [Out] out long pllTotal,
-            [Out] out long pllCurrent
-            );
-
-        [PreserveSig]
-        int AbortOperation();
     }
 
     [Guid("436eee9c-264f-4242-90e1-4e330c107512"),
@@ -2463,6 +2385,84 @@ namespace DirectShowLib
             );
     }
 #endif
+
+    [Guid("56a868ab-0ad4-11ce-b03a-0020af0ba770"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IGraphVersion
+    {
+        [PreserveSig]
+        int QueryVersion([Out] out int pVersion);
+    }
+
+    [Guid("b8e8bd60-0bfe-11d0-af91-00aa00b67a42"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IIPDVDec
+    {
+        [PreserveSig]
+        int get_IPDisplay([Out] out DVDecoderResolution displayPix);
+
+        [PreserveSig]
+        int put_IPDisplay([In] DVDecoderResolution displayPix);
+    }
+
+    [Guid("92a3a302-da7c-4a1f-ba7e-1802bb5d2d02"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IDVSplitter
+    {
+        [PreserveSig]
+        int DiscardAlternateVideoFrames([In, MarshalAs(UnmanagedType.Bool)] bool nDiscard);
+    }
+
+    [Guid("58473A19-2BC8-4663-8012-25F81BABDDD1"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IDVRGB219
+    {
+        [PreserveSig]
+        int SetRGB219([In, MarshalAs(UnmanagedType.Bool)] bool bState);
+    }
+
+    [Guid("36b73881-c2c8-11cf-8b46-00805f6cef60"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IAMStreamControl
+    {
+        [PreserveSig]
+        int StartAt(
+            [In] DsLong ptStart,
+            [In] int dwCookie
+            );
+
+        [PreserveSig]
+        int StopAt(
+            [In] DsLong ptStop,
+            [In, MarshalAs(UnmanagedType.Bool)] bool bSendExtra,
+            [In] int dwCookie
+            );
+
+        [PreserveSig]
+        int GetInfo([Out] out AMStreamInfo pInfo);
+    }
+
+    [Guid("8E1C39A1-DE53-11cf-AA63-0080C744528D"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IAMOpenProgress
+    {
+        [PreserveSig]
+        int QueryProgress(
+            [Out] out long pllTotal,
+            [Out] out long pllCurrent
+            );
+
+        [PreserveSig]
+        int AbortOperation();
+    }
+
+    [Guid("2dd74950-a890-11d1-abe8-00a0c905f375"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IAMFilterMiscFlags
+    {
+        [PreserveSig]
+        int GetMiscFlags();
+    }
 
     [Guid("5738E040-B67F-11d0-BD4D-00A0C911CE86"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]

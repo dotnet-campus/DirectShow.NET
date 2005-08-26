@@ -200,36 +200,36 @@ namespace DirectShowLib
 
 	}
 
-	[Guid("DCFBDCF6-0DC2-45f5-9AB2-7C330EA09C29"),
-		InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	public interface IFilterChain
-	{
-		[PreserveSig]
-		int StartChain(
-			[In] IBaseFilter pStartFilter,
-			[In] IBaseFilter pEndFilter
-			);
-
-		[PreserveSig]
-		int PauseChain(
-			[In] IBaseFilter pStartFilter,
-			[In] IBaseFilter pEndFilter
-			);
-
-		[PreserveSig]
-		int StopChain(
-			[In] IBaseFilter pStartFilter,
-			[In] IBaseFilter pEndFilter
-			);
-
-		[PreserveSig]
-		int RemoveChain(
-			[In] IBaseFilter pStartFilter,
-			[In] IBaseFilter pEndFilter
-			);
-	}
-
 #endif
 
-	#endregion
+    [Guid("DCFBDCF6-0DC2-45f5-9AB2-7C330EA09C29"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IFilterChain
+    {
+        [PreserveSig]
+        int StartChain(
+            [In] IBaseFilter pStartFilter,
+            [In] IBaseFilter pEndFilter
+            );
+
+        [PreserveSig]
+        int PauseChain(
+            [In] IBaseFilter pStartFilter,
+            [In] IBaseFilter pEndFilter
+            );
+
+        [PreserveSig]
+        int StopChain(
+            [In] IBaseFilter pStartFilter,
+            [In] IBaseFilter pEndFilter
+            );
+
+        [PreserveSig]
+        int RemoveChain(
+            [In] IBaseFilter pStartFilter,
+            [In] IBaseFilter pEndFilter
+            );
+    }
+
+    #endregion
 }
