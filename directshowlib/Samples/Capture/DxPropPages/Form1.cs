@@ -411,6 +411,7 @@ namespace DirectShowLib.Samples
 			// Release COM objects
 			Marshal.FreeCoTaskMem(caGUID.pElems);
 			Marshal.ReleaseComObject(pProp);
+			Marshal.ReleaseComObject(filterInfo.pGraph);
 		}
 
 		private void button1_Click(object sender, System.EventArgs e)
