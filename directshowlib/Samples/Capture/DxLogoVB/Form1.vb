@@ -1,3 +1,10 @@
+'****************************************************************************
+'While the underlying libraries are covered by LGPL, this sample is released 
+'as public domain.  It is distributed in the hope that it will be useful, but 
+'WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY 
+'or FITNESS FOR A PARTICULAR PURPOSE.  
+'*****************************************************************************/
+
 Public Class Form1
     Inherits System.Windows.Forms.Form
 
@@ -36,12 +43,12 @@ Public Class Form1
     Friend WithEvents StartStop As System.Windows.Forms.Button
     Friend WithEvents Label2 As System.Windows.Forms.Label
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.StartStop = New System.Windows.Forms.Button()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
-        Me.label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
+        Me.TextBox1 = New System.Windows.Forms.TextBox
+        Me.TextBox2 = New System.Windows.Forms.TextBox
+        Me.StartStop = New System.Windows.Forms.Button
+        Me.TextBox3 = New System.Windows.Forms.TextBox
+        Me.label1 = New System.Windows.Forms.Label
+        Me.Label2 = New System.Windows.Forms.Label
         Me.SuspendLayout()
         '
         'TextBox1

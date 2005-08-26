@@ -1,4 +1,12 @@
-// Copyright 2005 - oohansen@gmail.com
+/****************************************************************************
+While the underlying libraries are covered by LGPL, this sample is released 
+as public domain.  It is distributed in the hope that it will be useful, but 
+WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY 
+or FITNESS FOR A PARTICULAR PURPOSE.  
+
+Written by oohansen@gmail.com
+Adapted by snarfle@sourceforge.net
+*****************************************************************************/
 
 using System;
 using System.Windows.Forms;

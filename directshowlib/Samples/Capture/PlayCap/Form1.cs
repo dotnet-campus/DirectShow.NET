@@ -1,3 +1,9 @@
+/****************************************************************************
+While the underlying libraries are covered by LGPL, this sample is released 
+as public domain.  It is distributed in the hope that it will be useful, but 
+WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY 
+or FITNESS FOR A PARTICULAR PURPOSE.  
+*****************************************************************************/
 //------------------------------------------------------------------------------
 // Desc: DirectShow sample code - a very basic application using video capture
 //       devices.  It creates a window and uses the first available capture
