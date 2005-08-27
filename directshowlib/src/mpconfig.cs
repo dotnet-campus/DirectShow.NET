@@ -31,17 +31,16 @@ namespace DirectShowLib
 
     #region Declarations
 
-#if ALLOW_UNTESTED_INTERFACES
-
     /// <summary>
     /// From DDCOLOR_* defines
     /// </summary>
     [Flags]
     public enum DDColor
     {
-        Brightness =              0x00000001,
-        Contrast =               0x00000002,
-        Hue =                    0x00000004,
+        None =                  0x00000000,
+        Brightness =            0x00000001,
+        Contrast =              0x00000002,
+        Hue =                   0x00000004,
         Saturation =            0x00000008,
         Sharpness =             0x00000010,
         Gamma =                 0x00000020,
@@ -66,8 +65,6 @@ namespace DirectShowLib
         public int  dwReserved1;
     }
     
-#endif
-
     public enum AspectRatioMode
     {
         Stretched,
@@ -79,8 +76,6 @@ namespace DirectShowLib
     #endregion
 
     #region Interfaces
-
-#if ALLOW_UNTESTED_INTERFACES
 
     [Guid("EBF47182-8764-11d1-9E69-00C04FD7C15B"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -166,7 +161,6 @@ namespace DirectShowLib
             DDColorControl pColorControl
             );
     }
-#endif
 
     [Guid("593CDDE1-0759-11d1-9E69-00C04FD7C15B"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
