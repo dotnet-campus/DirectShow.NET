@@ -902,6 +902,28 @@ namespace DirectShowLib
 
 #if ALLOW_UNTESTED_INTERFACES
 
+    [Guid("D8D715A0-6E5E-11D0-B3F0-00AA003761C5"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IAMVfwCaptureDialogs
+    {
+        [PreserveSig]
+        int HasDialog([In] VfwCaptureDialogs iDialog);
+
+        [PreserveSig]
+        int ShowDialog(
+            [In] VfwCaptureDialogs iDialog,
+            [In] IntPtr hwnd // HWND *
+            );
+
+        [PreserveSig]
+        int SendDriverMessage(
+            [In] VfwCaptureDialogs iDialog,
+            [In] int uMsg,
+            [In] int dw1,
+            [In] int dw2
+            );
+    }
+
     [Guid("56a868a4-0ad4-11ce-b03a-0020af0ba770"),
     Obsolete("This interface has been deprecated.  Use IFilterMapper2::EnumMatchingFilters", false),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -3379,28 +3401,6 @@ namespace DirectShowLib
         int OverrideFrameSize(
             [In] int FrameNumber,
             [In] int Size
-            );
-    }
-
-    [Guid("D8D715A0-6E5E-11D0-B3F0-00AA003761C5"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IAMVfwCaptureDialogs
-    {
-        [PreserveSig]
-        int HasDialog([In] VfwCaptureDialogs iDialog);
-
-        [PreserveSig]
-        int ShowDialog(
-            [In] VfwCaptureDialogs iDialog,
-            [In] IntPtr hwnd // HWND *
-            );
-
-        [PreserveSig]
-        int SendDriverMessage(
-            [In] VfwCaptureDialogs iDialog,
-            [In] int uMsg,
-            [In] int dw1,
-            [In] int dw2
             );
     }
 
