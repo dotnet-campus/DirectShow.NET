@@ -77,7 +77,7 @@
                 <Reference
                     Name = "DirectShowLib"
                     AssemblyName = "DirectShowLib"
-                    HintPath = "..\..\..\src\bin\Debug\DirectShowLib.dll"
+                    HintPath = "..\..\..\lib\DirectShowLib.dll"
                 />
                 <Reference
                     Name = "System.Drawing"
