@@ -33,13 +33,14 @@ using System.Security.Permissions;
 [assembly : AssemblyCompany("")]
 #if DEBUG
 [assembly : AssemblyProduct("Debug Version")]
+[assembly : AssemblyVersion("1.1.0.*")]
 #else
 [assembly : AssemblyProduct("Release Version")]
+[assembly : AssemblyVersion("1.1.0.0")]
 #endif
 [assembly : AssemblyCopyright("GNU Lesser General Public License v2.1")]
 [assembly : AssemblyTrademark("")]
 [assembly : AssemblyCulture("")]
-[assembly : AssemblyVersion("1.0.91.0")]
 [assembly : AssemblyDelaySign(false)]
 // Path is relative to the resulting executable (\Bin\Debug)
 [assembly : AssemblyKeyFile("..\\..\\DShowNET.snk")]
