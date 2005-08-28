@@ -13,9 +13,9 @@ appear in c#.
 
 VMR9Allocator is an example of a custom VMR9's Allocator / Presenter. 
 It takes a video file provided by the user and displays it in a rotating quad. 
-This sample is also an illustration of how to mix unmanaged Direct3D with managed one.
+This sample is also an illustration of how to mix unmanaged Direct3D with managed.
 
-This sample use the following DirectShow Interfaces :
+This sample uses the following DirectShow Interfaces:
 
 	IGraphBuilder
 	IBaseFilter
