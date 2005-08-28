@@ -1,5 +1,5 @@
-Although there are ~360 interfaces defined in the source code, 
-only ~100 of them have been tested to ensure that they are working 
+Of the ~360 interfaces defined in the source code, ~100 of them have 
+been tested to ensure that they are correctly defined.
 
 These interfaces have been tested
 
@@ -8,7 +8,13 @@ IAMAudioInputMixer
 IAMCopyCaptureFileProgress
 IAMCrossbar
 IAMDroppedFrames
+IAMFilterMiscFlags
+IAMGraphStreams
+IAMMediaContent
+IAMOpenProgress
+IAMStats
 IAMStreamConfig
+IAMStreamControl
 IAMTuner
 IAMTunerNotification
 IAMTVAudio
@@ -33,6 +39,8 @@ IDvdGraphBuilder
 IDvdInfo2
 IDvdState
 IDVEnc
+IDVRGB219
+IDVSplitter
 IEnumFilters
 IEnumMediaTypes
 IEnumPins
@@ -41,21 +49,27 @@ IErrorLog
 IFileSinkFilter
 IFileSinkFilter2
 IFileSourceFilter
+IFilterChain
 IFilterGraph
 IFilterGraph2
 IGraphBuilder
+IGraphVersion
+IIPDVDec
 IKsPin
 IKsPropertySet
 IMediaControl
 IMediaEvent
 IMediaEventEx
+IMediaEventSink
 IMediaFilter
 IMediaPosition
+IMediaPropertyBag
 IMediaSample
 IMediaSeeking
 IMixerPinConfig
 IMixerPinConfig2
 IPersist
+IPersistMediaPropertyBag
 IPersistStream
 IPin
 IPropertyBag
@@ -90,7 +104,6 @@ IVMRImageCompositor9
 IVMRImagePresenter9
 IVMRImagePresenterConfig
 IVMRImagePresenterConfig9
-IVMRImagePresenterExclModeConfig
 IVMRMixerBitmap
 IVMRMixerBitmap9
 IVMRMixerControl
@@ -109,7 +122,6 @@ IVMRWindowlessControl9
 
 These functions are defined in the source code, but have not yet been tested:
 
-IAMAudioRendererStats
 IAMCameraControl
 IAMCertifiedOutputProtection
 IAMChannelInfo
@@ -122,9 +134,6 @@ IAMExtendedErrorInfo
 IAMExtendedSeeking
 IAMExtTransport
 IAMFilterGraphCallback
-IAMFilterMiscFlags
-IAMGraphBuilderCallback
-IAMLatency
 IAMLine21Decoder
 IAMMediaStream
 IAMMediaTypeSample
@@ -134,7 +143,6 @@ IAMNetShowConfig
 IAMNetShowExProps
 IAMNetShowPreroll
 IAMNetworkStatus
-IAMOpenProgress
 IAMOverlayFX
 IAMParse
 IAMPlayList
@@ -142,11 +150,7 @@ IAMPlayListItem
 IAMRebuild
 IAMResourceControl
 IAMSetErrorLog
-IAMStats
-IAMStreamControl
 IAMStreamSelect
-IAMTimecodeDisplay
-IAMTimecodeGenerator
 IAMTimecodeReader
 IAMTimeline
 IAMTimelineComp
@@ -163,7 +167,6 @@ IAMTimelineVirtualTrack
 IAMVideoAcceleratorNotify
 IAMVideoDecimationProperties
 IAMWstDecoder
-IAnalogRadioTuningSpace2
 IAnalogTVTuningSpace
 IATSCChannelTuneRequest
 IATSCComponentType
@@ -173,7 +176,6 @@ IAudioData
 IAudioMediaStream
 IAudioStreamSample
 IAuxInTuningSpace
-IAuxInTuningSpace2
 IBDA_AutoDemodulate
 IBDA_DeviceControl
 IBDA_DigitalDemodulator
@@ -193,6 +195,7 @@ IChannelTuneRequest
 ICodecAPI
 IComponent
 IComponents
+IComponentsOld
 IComponentType
 IComponentTypes
 ICreatePropBagOnRegKey
@@ -212,8 +215,6 @@ IDVBTLocator
 IDVBTuneRequest
 IDVBTuningSpace
 IDVBTuningSpace2
-IDVRGB219
-IDVSplitter
 IDXEffect
 IDxtAlphaSetter
 IDxtCompositor
@@ -227,31 +228,21 @@ IEnumPIDMap
 IEnumStreamIdMap
 IEnumTuneRequests
 IEnumTuningSpaces
-IFilterChain
-IFindCompressorCB
 IFrequencyMap
 IGetCapabilitiesKey
-IGraphConfig
-IGraphConfigCallback
-IGraphVersion
-IGrfCache
 IGuideData
 IGuideDataEvent
 IGuideDataLoader
 IGuideDataProperty
-IIPDVDec
-IKsTopologyInfo
 ILanguageComponentType
 ILocator
 IMediaBuffer
 IMediaDet
-IMediaEventSink
 IMediaLocator
 IMediaObject
 IMediaObjectInPlace
 IMediaParamInfo
 IMediaParams
-IMediaPropertyBag
 IMediaSample2
 IMediaStream
 IMediaStreamFilter
@@ -267,22 +258,18 @@ IMpeg2Stream
 IMPEG2StreamIdMap
 IMPEG2TuneRequest
 IMPEG2TuneRequestFactory
+IMPEG2TuneRequestSupport
 IMpegAudioDecoder
 IMultiMediaStream
-IPersistMediaPropertyBag
-IPinConnection
-IPinFlowControl
 IPropertySetter
 IQualityControl
 IQueueCommand
 IRegisterTuner
 IRenderEngine
 IRenderEngine2
-IResize
 ISectionList
 ISelector
 ISmartRenderEngine
-ISpecifyParticularPages
 IStreamSample
 ITuneRequest
 ITuneRequestInfo
@@ -295,84 +282,64 @@ IXml2Dex
 
 ------------------------------------------------------------------------------
 
-These interfaces are in the source code, but are deprecated, undocumented, or 
-intended for Ole Automation which means they are not, and will not be tested:
+These interfaces are in the source code, but are deprecated, undocumented, 
+intended for Ole Automation or otherwise untestable which means they are not, 
+and will not be tested:
 
 IAMAnalogVideoEncoder
-IAMBufferNegotiation
-IAMClockAdjust
 IAMCollection
 IAMDeviceRemoval
 IAMDevMemoryAllocator
 IAMDevMemoryControl
-IAMGraphStreams
-IAMMediaContent
+IAMGraphBuilderCallback
 IAMMediaContent2
 IAMovieSetup
 IAMPhysicalPinInfo
-IAMPushSource
+IAMTimecodeDisplay
+IAMTimecodeGenerator
 IAMTVAudioNotification
 IAMVfwCaptureDialogs
-IAMVideoAccelerator
 IAnalogRadioTuningSpace
-IAsyncReader
+IAnalogRadioTuningSpace2
+IAuxInTuningSpace2
 IBaseVideoMixer
 IBDA_IPSinkControl
 IBDA_SignalProperties
-IBDA_TIF_REGISTRATION
 IBDAComparable
 IBPCSatelliteTuner
-IBroadcastEvent
 ICaptureGraphBuilder
-IDistributorNotify
 IDrawVideoImage
 IDShowPlugin
 IDvdControl
 IDvdInfo
 IEncoderAPI
 IEnumRegFilters
-IEvalRat
 IFilterInfo
 IFilterMapper
 IFilterMapper2
 IFilterMapper3
+IFindCompressorCB
 IFullScreenVideo
 IFullScreenVideoEx
+IGraphConfig
+IGraphConfigCallback
+IGrfCache
 IKsNodeControl
+IKsTopologyInfo
 IMediaTypeInfo
-IMemAllocator
-IMemAllocatorCallbackTemp
-IMemAllocatorNotifyCallbackTemp
-IMemInputPin
 IMPEG2_TIF_CONTROL
-IMPEG2TuneRequestSupport
-IOverlay
-IOverlayNotify
-IOverlayNotify2
+IPinConnection
+IPinFlowControl
 IPinInfo
 IReferenceClock2
 IRegFilterInfo
-IRegisterServiceProvider
-IResourceConsumer
-IResourceManager
 IScanningTuner
-ISeekingPassThru
-IStreamBuilder
+ISpecifyParticularPages
 ITuner
 IVideoEncoder
 IVMRImagePresenter
-IVMRSurface
-IVMRSurface9
+IVMRImagePresenterExclModeConfig
 IVMRSurfaceAllocator
 IVMRSurfaceAllocatorNotify
-IVPBaseConfig
-IVPBaseNotify
-IVPConfig
-IVPNotify
-IVPNotify2
 IVPVBIConfig
 IVPVBINotify
-IXDSToRat
-
-----------------------------------------------------------------------------
-

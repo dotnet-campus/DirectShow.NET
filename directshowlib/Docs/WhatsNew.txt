@@ -1,0 +1,38 @@
+-----------------------------------------------------------------
+V 1.1 - Minor upgrade
+
+54 more interfaces tested, 61 new (untested) interfaces defined including DES & Streaming
+
+359 Defined
+114 Tested
+ 37 Deprecated & undocumented
+ 52 Others not scheduled to be tested
+---
+156 left to be tested
+
+See Interfaces.txt for the current list of tested interfaces.
+
+6 new samples have been added.
+
+Samples: 
+
+   Capture\CapWMV
+   Capture\DxPropPages
+   Capture\DxTuner
+   Players\DVDPlay
+   VMR9\VMR9Allocator
+   VMR9\BitmapMixer
+
+See readme.rtf and the readme.txt in each project for details of what these samples show.
+
+Capture\DxSnap was improved to work with more hardware types.
+
+
+-----------------------------------------------------------------
+V 1.0 Original release
+
+
+297 Interfaces defined
+60 Interfaces tested 
+
+9 Samples
