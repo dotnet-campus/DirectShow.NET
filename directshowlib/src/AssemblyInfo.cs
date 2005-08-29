@@ -36,7 +36,7 @@ using System.Security.Permissions;
 [assembly : AssemblyVersion("1.1.0.*")]
 #else
 [assembly : AssemblyProduct("Release Version")]
-[assembly : AssemblyVersion("1.1.0.0")]
+[assembly : AssemblyVersion("1.1.0.*")]
 #endif
 [assembly : AssemblyCopyright("GNU Lesser General Public License v2.1")]
 [assembly : AssemblyTrademark("")]

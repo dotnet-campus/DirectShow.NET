@@ -26,7 +26,7 @@ using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
 
-namespace DirectShowLib.MultimediaStreaming
+namespace DirectShowLib.DMO
 {
     #region Declarations
 
