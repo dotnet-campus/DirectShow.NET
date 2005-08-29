@@ -26,3 +26,5 @@ This sample uses the following DirectShow Interfaces :
 	IVMRFilterConfig9
 
 This sample is not the translation of the DirectShow's BitmapMix sample.
+
+Managed DirectX must be installed to run this sample.
