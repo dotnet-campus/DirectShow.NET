@@ -12,7 +12,7 @@ namespace DirectShowLib.Sample
 {
 	internal sealed class NativeMethodes
 	{
-    // Graphics.GetHdc() have sereral "bugs" detailled here : 
+    // Graphics.GetHdc() have several "bugs" detailed here : 
     // http://support.microsoft.com/default.aspx?scid=kb;en-us;311221
     // (see case 2) So we have to play with old school GDI...
     [DllImport("gdi32.dll")]
