@@ -25,4 +25,5 @@ This sample uses the following DirectShow Interfaces:
 	IVMRSurfaceAllocator9
 	IVMRImagePresenter9
 
+Managed DirectX must be installed to run this sample.
 
