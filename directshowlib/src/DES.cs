@@ -1888,12 +1888,12 @@ namespace DirectShowLib.DES
     {
         [PreserveSig]
         int get_Filter(
-            out object pVal
+            [MarshalAs(UnmanagedType.IUnknown)] out object pVal
             );
 
         [PreserveSig]
         int put_Filter(
-            object newVal
+            [MarshalAs(UnmanagedType.IUnknown)] object newVal
             );
 
         [PreserveSig]
@@ -1940,7 +1940,7 @@ namespace DirectShowLib.DES
         int GetBitmapBits(
             double StreamTime,
             out int pBufferSize,
-            byte [] pBuffer,
+            [In] IntPtr pBuffer,
             int Width,
             int Height
             );
@@ -1950,11 +1950,11 @@ namespace DirectShowLib.DES
             double StreamTime,
             int Width,
             int Height,
-            [MarshalAs(UnmanagedType.BStr)] string Filename);
+            [In, MarshalAs(UnmanagedType.BStr)] string Filename);
 
         [PreserveSig]
         int get_StreamMediaType(
-            [MarshalAs(UnmanagedType.LPStruct)] out AMMediaType pVal);
+            [Out, MarshalAs(UnmanagedType.LPStruct)] AMMediaType pVal);
 
         [PreserveSig]
         int GetSampleGrabber(
