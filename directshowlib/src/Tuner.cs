@@ -1640,10 +1640,10 @@ namespace DirectShowLib.BDA
         int SeekDown();
 
         [PreserveSig]
-        int SeekUp([In] int MillisecondsPause);
+        int ScanUp([In] int MillisecondsPause);
 
         [PreserveSig]
-        int SeekDown([Out] out int MillisecondsPause);
+        int ScanDown([Out] out int MillisecondsPause);
 
         [PreserveSig]
         int AutoProgram();
