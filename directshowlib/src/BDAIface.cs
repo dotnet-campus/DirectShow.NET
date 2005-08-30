@@ -69,8 +69,8 @@ namespace DirectShowLib.BDA
     public struct BDANodeDescriptor
     {
         public int ulBdaNodeType;
-        public Guid                guidFunction;
-        public Guid                guidName;
+        public Guid guidFunction;
+        public Guid guidName;
     }
 
 #endif
@@ -288,65 +288,74 @@ namespace DirectShowLib.BDA
     {
         [PreserveSig]
         int GetNodeTypes( 
-            out int pulcNodeTypes,
-            int ulcNodeTypesMax,
-            int [] rgulNodeTypes);
+            [Out] out int pulcNodeTypes,
+            [In] int ulcNodeTypesMax,
+            [Out, MarshalAs(UnmanagedType.LPArray, ArraySubType=UnmanagedType.I4, SizeParamIndex=1)] int[] rgulNodeTypes
+          );
         
         [PreserveSig]
         int GetNodeDescriptors( 
-            out int ulcNodeDescriptors,
-            int ulcNodeDescriptorsMax,
-            BDANodeDescriptor [  ] rgNodeDescriptors);
+            [Out] out int ulcNodeDescriptors,
+            [In] int ulcNodeDescriptorsMax,
+            [Out, MarshalAs(UnmanagedType.LPArray, ArraySubType=UnmanagedType.LPStruct, SizeParamIndex=1)] BDANodeDescriptor[] rgNodeDescriptors
+          );
         
         [PreserveSig]
         int GetNodeInterfaces( 
-            int ulNodeType,
-            out int pulcInterfaces,
-            int ulcInterfacesMax,
-            Guid [] rgguidInterfaces);
+            [In] int ulNodeType,
+            [Out] out int pulcInterfaces,
+            [In] int ulcInterfacesMax,
+            [Out, MarshalAs(UnmanagedType.LPArray, ArraySubType=UnmanagedType.LPStruct, SizeParamIndex=2)] Guid[] rgguidInterfaces
+          );
         
         [PreserveSig]
         int GetPinTypes( 
-            out int pulcPinTypes,
-            int ulcPinTypesMax,
-            int [] rgulPinTypes);
+            [Out] out int pulcPinTypes,
+            [In] int ulcPinTypesMax,
+            [Out, MarshalAs(UnmanagedType.LPArray, ArraySubType=UnmanagedType.I4, SizeParamIndex=1)] int[] rgulPinTypes
+          );
         
         [PreserveSig]
         int GetTemplateConnections( 
-            out int pulcConnections,
-            int ulcConnectionsMax,
-            BDATemplateConnection [] rgConnections);
+            [Out] out int pulcConnections,
+            [In] int ulcConnectionsMax,
+            [Out, MarshalAs(UnmanagedType.LPArray, ArraySubType=UnmanagedType.LPStruct, SizeParamIndex=1)] BDATemplateConnection [] rgConnections
+          );
         
         [PreserveSig]
         int CreatePin( 
-            int ulPinType,
-            out int pulPinId);
+            [In] int ulPinType,
+            [Out] out int pulPinId
+          );
         
         [PreserveSig]
-        int DeletePin( 
-            int ulPinId);
+        int DeletePin([In] int ulPinId);
         
         [PreserveSig]
         int SetMediaType( 
-            int ulPinId,
-            AMMediaType pMediaType);
+            [In] int ulPinId,
+            [In] AMMediaType pMediaType
+          );
         
         [PreserveSig]
         int SetMedium( 
-            int ulPinId,
-            RegPinMedium pMedium);
+            [In] int ulPinId,
+            [In] RegPinMedium pMedium
+          );
         
         [PreserveSig]
         int CreateTopology( 
-            int ulInputPinId,
-            int ulOutputPinId);
+            [In] int ulInputPinId,
+            [In] int ulOutputPinId
+          );
         
         [PreserveSig]
         int GetControlNode( 
-            int ulInputPinId,
-            int ulOutputPinId,
-            int ulNodeType,
-            out object ppControlNode); // IUnknown 
+            [In] int ulInputPinId,
+            [In] int ulOutputPinId,
+            [In] int ulNodeType,
+            [Out, MarshalAs(UnmanagedType.IUnknown)] out object ppControlNode // IUnknown 
+          ); 
         
     }
 
