@@ -198,7 +198,7 @@ namespace DirectShowLib.BDA
 		[PreserveSig]
 		int Next(
 			[In] int celt,
-			[Out] out ITuneRequest ppprop,
+			[Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ITuneRequest[] ppprop,
 			[Out] out int pcelt
 			);
 
