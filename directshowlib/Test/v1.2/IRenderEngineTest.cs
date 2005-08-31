@@ -37,8 +37,8 @@ namespace DirectShowLib.Test
 
                 Config();
                 TestTimeLine();
-                TestValidate();
                 InitVideo();
+                TestValidate();
                 TestFilterGraph();
                 AddVideo("foo.avi");
                 TestConnect();
@@ -92,10 +92,10 @@ namespace DirectShowLib.Test
             m_pTimeline = (IAMTimeline)new AMTimeline();
 
             hr = m_ire.SetTimelineObject(m_pTimeline);
-            DsError.ThrowExceptionForHR(hr);
+            DESError.ThrowExceptionForHR(hr);
 
             hr = m_ire.GetTimelineObject(out tl2);
-            DsError.ThrowExceptionForHR(hr);
+            DESError.ThrowExceptionForHR(hr);
 
             Debug.Assert(m_pTimeline == tl2, "TimeLine");
         }
@@ -108,17 +108,17 @@ namespace DirectShowLib.Test
             IGraphBuilder ifg2;
 
             hr = m_ire.SetFilterGraph((IGraphBuilder)m_ifg);
-            DsError.ThrowExceptionForHR(hr);
+            DESError.ThrowExceptionForHR(hr);
 
             m_rot = new DsROTEntry(m_ifg);
 
             hr = m_ire.GetFilterGraph(out ifg2);
-            DsError.ThrowExceptionForHR(hr);
+            DESError.ThrowExceptionForHR(hr);
 
             Debug.Assert(m_ifg == ifg2, "FilterGraph");
 
             hr = m_ire.GetFilterGraph(out ifg2);
-            DsError.ThrowExceptionForHR(hr);
+            DESError.ThrowExceptionForHR(hr);
         }
 
         private void TestScrap()
@@ -126,7 +126,7 @@ namespace DirectShowLib.Test
             int hr;
 
             hr = m_ire.ScrapIt();
-            DsError.ThrowExceptionForHR(hr);
+            DESError.ThrowExceptionForHR(hr);
         }
 
         private void TestRange()
@@ -134,10 +134,10 @@ namespace DirectShowLib.Test
             int hr;
 
             hr = m_ire.SetRenderRange(1, 2);
-            DsError.ThrowExceptionForHR(hr);
+            DESError.ThrowExceptionForHR(hr);
 
             hr = m_ire.SetRenderRange2(1.1, 2.2);
-            DsError.ThrowExceptionForHR(hr);
+            DESError.ThrowExceptionForHR(hr);
         }
 
         private void TestVendor()
@@ -146,7 +146,7 @@ namespace DirectShowLib.Test
             string sVendor;
 
             hr = m_ire.GetVendorString(out sVendor);
-            DsError.ThrowExceptionForHR(hr);
+            DESError.ThrowExceptionForHR(hr);
 
             Debug.Assert(sVendor == "Microsoft Corporation", "Vendor");
         }
@@ -156,7 +156,7 @@ namespace DirectShowLib.Test
             int hr;
 
             hr = m_ire.SetDynamicReconnectLevel(ConnectFDynamic.Sources);
-            DsError.ThrowExceptionForHR(hr);
+            DESError.ThrowExceptionForHR(hr);
         }
 
         private void TestConnect()
@@ -172,7 +172,7 @@ namespace DirectShowLib.Test
             int hr;
 
             hr = m_ire.RenderOutputPins();
-            DsError.ThrowExceptionForHR(hr);
+            DESError.ThrowExceptionForHR(hr);
         }
 
         private void TestGetGroup()
@@ -181,7 +181,7 @@ namespace DirectShowLib.Test
             IPin pPin;
 
             hr = m_ire.GetGroupOutputPin(0, out pPin);
-            DsError.ThrowExceptionForHR(hr);
+            DESError.ThrowExceptionForHR(hr);
             Debug.Assert(pPin != null, "GetGroupOutputPin");
             Marshal.ReleaseComObject(pPin);
         }
@@ -191,13 +191,10 @@ namespace DirectShowLib.Test
             int hr;
             char c = (char)0;
 
-            string sParam = "asdf" + c + "*.asd" + c + c;
+            string sParam = "asdf" + c + "*.asd" + c + c + c + c;
 
-            hr = m_ire.SetSourceNameValidation(sParam, this, SFNValidateFlags.Check | SFNValidateFlags.Popup );
-            DsError.ThrowExceptionForHR(hr);
-
-            //((IMediaControl)m_ifg).Run();
-            //System.Threading.Thread.Sleep(10000);
+            hr = m_ire.SetSourceNameValidation(sParam, this, SFNValidateFlags.NoFind | SFNValidateFlags.Check | SFNValidateFlags.Popup );
+            DESError.ThrowExceptionForHR(hr);
         }
 
         private void Config()
