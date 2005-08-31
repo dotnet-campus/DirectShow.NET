@@ -616,7 +616,7 @@ namespace DirectShowLib.DES
         int ValidateSourceNames(
             SFNValidateFlags ValidateFlags,
             IMediaLocator pOverride,
-            [ComAliasName("w3.LONG_PTR")] int NotifyEventHandle
+            IntPtr NotifyEventHandle
             );
 
         [PreserveSig]
@@ -644,18 +644,20 @@ namespace DirectShowLib.DES
             [MarshalAs(UnmanagedType.BStr)] string pGuid
             );
 
-        [return: MarshalAs(UnmanagedType.BStr)]
         [PreserveSig]
-        string GetDefaultTransitionB();
+        string GetDefaultTransitionB(
+            [Out, MarshalAs(UnmanagedType.BStr)] out string sGuid
+            );
 
         [PreserveSig]
         int SetDefaultEffectB(
             [MarshalAs(UnmanagedType.BStr)] string pGuid
             );
 
-        [return: MarshalAs(UnmanagedType.BStr)]
         [PreserveSig]
-        string GetDefaultEffectB();
+        string GetDefaultEffectB(
+            [Out, MarshalAs(UnmanagedType.BStr)] out string sGuid
+            );
     }
 
 
@@ -795,9 +797,10 @@ namespace DirectShowLib.DES
             [MarshalAs(UnmanagedType.BStr)] string pGroupName
             );
 
-        [return: MarshalAs(UnmanagedType.BStr)]
         [PreserveSig]
-        string GetGroupName();
+        string GetGroupName(
+            [MarshalAs(UnmanagedType.BStr)] out string pGroupName
+            );
 
         [PreserveSig]
         int SetPreviewMode(
@@ -894,22 +897,24 @@ namespace DirectShowLib.DES
             double Stop
             );
 
-        [return: MarshalAs(UnmanagedType.Interface)]
         [PreserveSig]
-        IPropertySetter GetPropertySetter();
+        int GetPropertySetter(
+            out IPropertySetter pVal
+            );
 
         [PreserveSig]
         int SetPropertySetter(
             IPropertySetter newVal
             );
 
-        [return: MarshalAs(UnmanagedType.IUnknown)]
         [PreserveSig]
-        object GetSubObject();
+        int GetSubObject(
+            [MarshalAs(UnmanagedType.IUnknown)] out object pVal
+            );
 
         [PreserveSig]
         int SetSubObject(
-            [MarshalAs(UnmanagedType.IUnknown)] object newVal
+            [In, MarshalAs(UnmanagedType.IUnknown)] object newVal
             );
 
         [PreserveSig]
@@ -927,9 +932,10 @@ namespace DirectShowLib.DES
             out Guid pVal
             );
 
-        [return: MarshalAs(UnmanagedType.BStr)]
         [PreserveSig]
-        string GetSubObjectGUIDB();
+        int GetSubObjectGUIDB(
+            [MarshalAs(UnmanagedType.BStr)] out string pVal
+            );
 
         [PreserveSig]
         int GetSubObjectLoaded(
@@ -961,9 +967,10 @@ namespace DirectShowLib.DES
             out int pVal
             );
 
-        [return: MarshalAs(UnmanagedType.BStr)]
         [PreserveSig]
-        string GetUserName();
+        int GetUserName(
+            [MarshalAs(UnmanagedType.BStr)] out string pVal
+            );
 
         [PreserveSig]
         int SetUserName(
@@ -1138,9 +1145,10 @@ namespace DirectShowLib.DES
             out double pLength
             );
 
-        [return: MarshalAs(UnmanagedType.BStr)]
         [PreserveSig]
-        string GetMediaName();
+        int GetMediaName(
+            [MarshalAs(UnmanagedType.BStr)] out string pVal
+            );
 
         [PreserveSig]
         int SetMediaName(
