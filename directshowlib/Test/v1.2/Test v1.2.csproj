@@ -104,6 +104,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IAMTimelineObjTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IMediaDetTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
