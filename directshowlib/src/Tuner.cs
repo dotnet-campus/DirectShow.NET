@@ -714,7 +714,7 @@ namespace DirectShowLib.BDA
     {
         int Next(
             [In] int celt,
-            [Out] out ITuningSpace rgelt,
+            [Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ITuningSpace[] rgelt,
             [Out] out int pceltFetched
             );
 
