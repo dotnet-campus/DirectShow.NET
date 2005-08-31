@@ -402,6 +402,7 @@ namespace DirectShowLib.DES
     [Flags]
     public enum SFNValidateFlags
     {
+        None         = 0x00000000,
         Check        = 0x00000001,
         Popup        = 0x00000002,
         TellMe       = 0x00000004,
@@ -2116,9 +2117,10 @@ namespace DirectShowLib.DES
         [PreserveSig]
         int RenderOutputPins();
 
-        [return: MarshalAs(UnmanagedType.BStr)]
         [PreserveSig]
-        string GetVendorString();
+        int GetVendorString(
+            [MarshalAs(UnmanagedType.BStr)] out string sVendor
+            );
 
         [PreserveSig]
         int ConnectFrontEnd();
