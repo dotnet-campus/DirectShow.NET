@@ -595,7 +595,7 @@ namespace DirectShowLib.DES
 
         [PreserveSig]
         int IsDirty(
-            [MarshalAs(UnmanagedType.Bool)] bool pDirty
+            [MarshalAs(UnmanagedType.Bool)] out bool pDirty
             );
 
         [PreserveSig]
@@ -621,7 +621,7 @@ namespace DirectShowLib.DES
 
         [PreserveSig]
         int SetDefaultTransition(
-            Guid pGuid
+            [MarshalAs(UnmanagedType.LPStruct)] Guid pGuid
             );
 
         [PreserveSig]
@@ -631,7 +631,7 @@ namespace DirectShowLib.DES
 
         [PreserveSig]
         int SetDefaultEffect(
-            Guid pGuid
+            [MarshalAs(UnmanagedType.LPStruct)] Guid pGuid
             );
 
         [PreserveSig]
@@ -645,7 +645,7 @@ namespace DirectShowLib.DES
             );
 
         [PreserveSig]
-        string GetDefaultTransitionB(
+        int GetDefaultTransitionB(
             [Out, MarshalAs(UnmanagedType.BStr)] out string sGuid
             );
 
@@ -655,7 +655,7 @@ namespace DirectShowLib.DES
             );
 
         [PreserveSig]
-        string GetDefaultEffectB(
+        int GetDefaultEffectB(
             [Out, MarshalAs(UnmanagedType.BStr)] out string sGuid
             );
     }
@@ -798,7 +798,7 @@ namespace DirectShowLib.DES
             );
 
         [PreserveSig]
-        string GetGroupName(
+        int GetGroupName(
             [MarshalAs(UnmanagedType.BStr)] out string pGroupName
             );
 
