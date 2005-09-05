@@ -9,7 +9,7 @@ namespace DirectShowLib.Test
         static void Main(string[] args)
         {
             // IAMTimelineTest t1 = new IAMTimelineTest();            // t1.DoTests();
-            // IAMTimelineCompTest t2 = new IAMTimelineCompTest();            // t2.DoTests();
+            //IAMTimelineCompTest t2 = new IAMTimelineCompTest();            //t2.DoTests();
             // IAMTimelineEffectTest t3 = new IAMTimelineEffectTest();            // t3.DoTests();
             // IAMTimelineEffectableTest t4 = new IAMTimelineEffectableTest();            // t4.DoTests();
             // IAMTimelineGroupTest t5 = new IAMTimelineGroupTest();            // t5.DoTests();
