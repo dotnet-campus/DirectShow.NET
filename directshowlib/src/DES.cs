@@ -89,7 +89,7 @@ namespace DirectShowLib.DES
 
         /// <summary>
         /// If hr has a "failed" status code (E_*), throw an exception.  Note that status
-        /// messages (S_*) are not considered failure codes.  If Windows Media error text
+        /// messages (S_*) are not considered failure codes.  If DES or DShow error text
         /// is available, it is used to build the exception, otherwise a generic com error
         /// is thrown.
         /// </summary>
