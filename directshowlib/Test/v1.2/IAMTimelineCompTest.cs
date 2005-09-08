@@ -37,6 +37,24 @@ namespace DirectShowLib.Test
 			TestGetVTrack();
 			TestVTrackSwapPriorities();
 			TestGetRecursiveLayerOfType();
+			TestGetRecursiveLayerOfTypeI();
+		}
+		public void TestGetRecursiveLayerOfTypeI()
+		{
+			IAMTimelineObj vtrack;
+			int layer = 1;
+			int hr = m_timelinecomp.GetRecursiveLayerOfTypeI(out vtrack, ref layer, TimelineMajorType.Track);
+			DESError.ThrowExceptionForHR(hr);
+
+			Debug.Assert(vtrack == m_timelinetrackobj2, "TestGetRecursiveLayerOfType");
+			Marshal.ReleaseComObject(vtrack);
+
+			layer = 0;
+			hr = m_timelinecomp.GetRecursiveLayerOfTypeI(out vtrack, ref layer, TimelineMajorType.Track);
+			DESError.ThrowExceptionForHR(hr);
+
+			Debug.Assert(vtrack == m_timelinetrackobj, "TestGetRecursiveLayerOfType");
+			Marshal.ReleaseComObject(vtrack);
 		}
 
 		public void TestGetRecursiveLayerOfType()
