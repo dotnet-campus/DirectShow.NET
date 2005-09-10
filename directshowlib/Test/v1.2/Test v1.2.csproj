@@ -124,6 +124,21 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IDVBSLocatorTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IDVBTLocatorTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ILocatorTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IMediaDetTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
