@@ -21,9 +21,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 #endregion
-
 using System;
-using System.Drawing;
 using System.Runtime.InteropServices;
 
 namespace DirectShowLib.DMO
@@ -48,10 +46,24 @@ namespace DirectShowLib.DMO
     [Flags]
     public enum DMOInputDataBuffer
     {
+        None = 0,
         SyncPoint = 0x1,
         Time = 0x2,
         TimeLength = 0x4
     }
+
+    /// <summary>
+    /// From _DMO_OUTPUT_DATA_BUFFER_FLAGS
+    /// </summary>
+    [Flags]
+    public enum DMOOutputDataBufferFlags
+    {
+        None = 0,
+        SyncPoint = 0x1,
+        Time = 0x2,
+        TimeLength = 0x4,
+        InComplete	= 0x1000000
+    } ;
 
     /// <summary>
     /// From DMO_INPUT_STATUS_FLAGS
@@ -132,24 +144,6 @@ namespace DirectShowLib.DMO
 
 
     /// <summary>
-    /// From DMO_MEDIA_TYPE
-    /// </summary>
-    [StructLayout(LayoutKind.Sequential, Pack=4), ComConversionLoss]
-    public struct DMOMediaType
-    {
-        public Guid majortype;
-        public Guid subtype;
-        public int bFixedSizeSamples;
-        public int bTemporalCompression;
-        public int lSampleSize;
-        public Guid formattype;
-        [MarshalAs(UnmanagedType.IUnknown)]
-        public object pUnk;
-        public int cbFormat;
-        public IntPtr pbFormat;
-    }
-
-    /// <summary>
     /// From DMO_OUTPUT_DATA_BUFFER
     /// </summary>
     [StructLayout(LayoutKind.Sequential, Pack=8)]
@@ -157,7 +151,7 @@ namespace DirectShowLib.DMO
     {
         [MarshalAs(UnmanagedType.Interface)]
         public IMediaBuffer pBuffer;
-        public int dwStatus;
+        public DMOOutputDataBufferFlags dwStatus;
         public long rtTimestamp;
         public long rtTimelength;
     }
@@ -288,13 +282,13 @@ namespace DirectShowLib.DMO
 
         [PreserveSig]
         int GetBufferAndLength(
-            [Out] IntPtr ppBuffer, 
+            out IntPtr ppBuffer, 
             out int pcbLength
             );
     }
 
 
-    [Guid("D8AD0F58-5494-4102-97C5-EC798E59BCF4"), 
+    [ComVisible(true), Guid("D8AD0F58-5494-4102-97C5-EC798E59BCF4"), 
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IMediaObject
     {
@@ -320,40 +314,40 @@ namespace DirectShowLib.DMO
         int GetInputType(
             int dwInputStreamIndex, 
             int dwTypeIndex, 
-            out DMOMediaType pmt
+            out AMMediaType pmt
             );
 
         [PreserveSig]
         int GetOutputType(
             int dwOutputStreamIndex, 
             int dwTypeIndex, 
-            out DMOMediaType pmt
+            out AMMediaType pmt
             );
 
         [PreserveSig]
         int SetInputType(
             int dwInputStreamIndex, 
-            [In, MarshalAs(UnmanagedType.LPStruct)] DMOMediaType pmt, 
+            [In, MarshalAs(UnmanagedType.LPStruct)] AMMediaType pmt, 
             DMOSetType dwFlags
             );
 
         [PreserveSig]
         int SetOutputType(
             int dwOutputStreamIndex, 
-            [In, MarshalAs(UnmanagedType.LPStruct)] DMOMediaType pmt, 
+            [In, MarshalAs(UnmanagedType.LPStruct)] AMMediaType pmt, 
             DMOSetType dwFlags
             );
 
         [PreserveSig]
         int GetInputCurrentType(
             int dwInputStreamIndex, 
-            out DMOMediaType pmt
+            out AMMediaType pmt
             );
 
         [PreserveSig]
         int GetOutputCurrentType(
             int dwOutputStreamIndex, 
-            out DMOMediaType pmt
+            out AMMediaType pmt
             );
 
         [PreserveSig]
@@ -416,7 +410,7 @@ namespace DirectShowLib.DMO
         int ProcessOutput(
             DMOProcessOutput dwFlags, 
             int cOutputBufferCount, 
-            [In, Out] ref DMOOutputDataBuffer pOutputBuffers, 
+            [In, Out] ref DMOOutputDataBuffer [] pOutputBuffers, 
             out int pdwStatus);
 
         [PreserveSig]
