@@ -604,8 +604,8 @@ namespace DirectShowLib.BDA
             [Out] out ITuningSpaces NewColl
             );
 
-        [PreserveSig]
-        int TuningSpacesForCLSID(
+        [PreserveSig] 
+        int TuningSpacesForCLSID( //_TuningSpacesForCLSID
             [In, MarshalAs(UnmanagedType.LPStruct)] Guid SpaceCLSID,
             [Out] out ITuningSpaces NewColl
             );
