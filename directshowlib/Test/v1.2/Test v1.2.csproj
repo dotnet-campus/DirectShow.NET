@@ -109,6 +109,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IAMTimelineGroupTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IAMTimelineObjTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

@@ -776,11 +776,13 @@ namespace DirectShowLib.DES
 
         [PreserveSig]
         int GetMediaType(
-            [MarshalAs(UnmanagedType.LPStruct)] AMMediaType pmt);
+            [Out, MarshalAs(UnmanagedType.LPStruct)] AMMediaType pmt
+            );
 
         [PreserveSig]
         int SetMediaType(
-            [In, MarshalAs(UnmanagedType.LPStruct)] AMMediaType pmt);
+            [In, MarshalAs(UnmanagedType.LPStruct)] AMMediaType pmt
+            );
 
         [PreserveSig]
         int SetOutputFPS(
