@@ -42,9 +42,9 @@ namespace DirectShowLib
 			[In, MarshalAs(UnmanagedType.LPWStr)] string subkey,
 			[In] int ulOptions,
 			[In] int samDesired,
-			[In] Guid iid,
-			[Out] IntPtr ppBag
-			);
+			[In, MarshalAs(UnmanagedType.LPStruct)] Guid iid,
+			[Out, MarshalAs(UnmanagedType.IUnknown)] out object ppBag
+      );
 	}
 #endif
 
