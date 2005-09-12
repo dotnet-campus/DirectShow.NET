@@ -93,8 +93,7 @@ namespace DirectShowLib.Test
       ITuningSpaces tsColl;
       int count1, count2;
 
-      // Overload work well this Com Interop : The real name of this method is _TuningSpacesForCLSID
-      hr = tsContainer.TuningSpacesForCLSID(searchClsid, out tsColl);
+      hr = tsContainer._TuningSpacesForCLSID(searchClsid, out tsColl);
       DsError.ThrowExceptionForHR(hr);
 
       hr = tsColl.get_Count(out count1);
