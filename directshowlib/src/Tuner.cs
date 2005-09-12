@@ -576,7 +576,8 @@ namespace DirectShowLib.BDA
     //////////////////////////////////////////////////////////////////////////////////////
     // Tuning Space Container
     //////////////////////////////////////////////////////////////////////////////////////
-    [Guid("5B692E84-E2F1-11d2-9493-00C04F72D980"),
+    [CLSCompliant(false), // because of _TuningSpacesForCLSID
+    Guid("5B692E84-E2F1-11d2-9493-00C04F72D980"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface ITuningSpaceContainer
     {
@@ -605,7 +606,7 @@ namespace DirectShowLib.BDA
             );
 
         [PreserveSig] 
-        int TuningSpacesForCLSID( //_TuningSpacesForCLSID
+        int _TuningSpacesForCLSID(
             [In, MarshalAs(UnmanagedType.LPStruct)] Guid SpaceCLSID,
             [Out] out ITuningSpaces NewColl
             );
