@@ -323,6 +323,11 @@ namespace DirectShowLib.BDA
     {
     }
 
+    [ComImport, Guid("8A674B49-1F63-11d3-B64C-00C04F79498E")]
+    public class CreatePropBagOnRegKey
+    {
+    }
+
 #endif
 
     #endregion
