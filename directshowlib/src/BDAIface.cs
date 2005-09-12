@@ -582,13 +582,13 @@ namespace DirectShowLib.BDA
         [PreserveSig]
         int get_FrequencyMapping(
             [Out] out int ulCount,
-            [Out, MarshalAs(UnmanagedType.LPArray)] out int[] ppulList
+            [Out, MarshalAs(UnmanagedType.LPArray, ArraySubType=UnmanagedType.I4)] int[] ppulList
             );
 
         [PreserveSig]
         int put_FrequencyMapping(
             [In] int ulCount,
-            [In, MarshalAs(UnmanagedType.LPArray)] int[] pList
+            [In, MarshalAs(UnmanagedType.LPArray, ArraySubType=UnmanagedType.I4)] int[] pList
             );
 
         [PreserveSig]
@@ -601,12 +601,12 @@ namespace DirectShowLib.BDA
         int get_DefaultFrequencyMapping(
             [In] int ulCountryCode,
             [Out] out int pulCount,
-            [Out, MarshalAs(UnmanagedType.LPArray)] out int[] ppulList);
+            [Out, MarshalAs(UnmanagedType.LPArray)] int[] ppulList);
 
         [PreserveSig]
         int get_CountryCodeList(
             [Out] out int pulCount,
-            [Out, MarshalAs(UnmanagedType.LPArray)] out int[] ppulList);
+            [Out, MarshalAs(UnmanagedType.LPArray)] int[] ppulList);
 
     }
 #endif
