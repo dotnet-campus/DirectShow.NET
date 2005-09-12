@@ -164,6 +164,16 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "ITuningSpacesTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ITuningSpaceTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "RunTests.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
