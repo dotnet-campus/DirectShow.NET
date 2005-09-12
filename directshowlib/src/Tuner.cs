@@ -381,10 +381,10 @@ namespace DirectShowLib.BDA
         new int CreateTuneRequest([Out] out ITuneRequest TuneRequest);
 
         [PreserveSig, DispId((int) DispIDTuner.TS_ENUMCATEGORYGUIDS)]
-        new int EnumCategoryGUIDs([Out] IntPtr ppEnum); // IEnumGUID** 
+        new int EnumCategoryGUIDs([Out, MarshalAs(UnmanagedType.IUnknown)] out object ppEnum); // IEnumGUID** 
 
         [PreserveSig, DispId((int) DispIDTuner.TS_ENUMDEVICEMONIKERS)]
-        new int EnumDeviceMonikers([Out] UCOMIEnumMoniker ppEnum);
+        new int EnumDeviceMonikers([Out] out UCOMIEnumMoniker ppEnum);
 
         [PreserveSig, DispId((int) DispIDTuner.TS_DEFAULTPREFERREDCOMPONENTTYPES)]
         new int get_DefaultPreferredComponentTypes([Out] out IComponentTypes ComponentTypes);
@@ -478,10 +478,10 @@ namespace DirectShowLib.BDA
         new int CreateTuneRequest([Out] out ITuneRequest TuneRequest);
 
         [PreserveSig, DispId((int) DispIDTuner.TS_ENUMCATEGORYGUIDS)]
-        new int EnumCategoryGUIDs([Out] IntPtr ppEnum); // IEnumGUID** 
+        new int EnumCategoryGUIDs([Out, MarshalAs(UnmanagedType.IUnknown)] out object ppEnum); // IEnumGUID** 
 
         [PreserveSig, DispId((int) DispIDTuner.TS_ENUMDEVICEMONIKERS)]
-        new int EnumDeviceMonikers([Out] UCOMIEnumMoniker ppEnum);
+        new int EnumDeviceMonikers([Out] out UCOMIEnumMoniker ppEnum);
 
         [PreserveSig, DispId((int) DispIDTuner.TS_DEFAULTPREFERREDCOMPONENTTYPES)]
         new int get_DefaultPreferredComponentTypes([Out] out IComponentTypes ComponentTypes);
@@ -681,10 +681,10 @@ namespace DirectShowLib.BDA
         int CreateTuneRequest([Out] out ITuneRequest TuneRequest);
 
         [PreserveSig, DispId((int) DispIDTuner.TS_ENUMCATEGORYGUIDS)]
-        int EnumCategoryGUIDs([Out] IntPtr ppEnum); // IEnumGUID** 
+        int EnumCategoryGUIDs([Out, MarshalAs(UnmanagedType.IUnknown)] out object ppEnum); // IEnumGUID** 
 
         [PreserveSig, DispId((int) DispIDTuner.TS_ENUMDEVICEMONIKERS)]
-        int EnumDeviceMonikers([Out] UCOMIEnumMoniker ppEnum);
+        int EnumDeviceMonikers([Out] out UCOMIEnumMoniker ppEnum);
 
         [PreserveSig, DispId((int) DispIDTuner.TS_DEFAULTPREFERREDCOMPONENTTYPES)]
         int get_DefaultPreferredComponentTypes([Out] out IComponentTypes ComponentTypes);
@@ -764,10 +764,10 @@ namespace DirectShowLib.BDA
         new int CreateTuneRequest([Out] out ITuneRequest TuneRequest);
 
         [PreserveSig, DispId((int) DispIDTuner.TS_ENUMCATEGORYGUIDS)]
-        new int EnumCategoryGUIDs([Out] IntPtr ppEnum); // IEnumGUID**
+        new int EnumCategoryGUIDs([Out, MarshalAs(UnmanagedType.IUnknown)] out object ppEnum); // IEnumGUID** 
 
         [PreserveSig, DispId((int) DispIDTuner.TS_ENUMDEVICEMONIKERS)]
-        new int EnumDeviceMonikers([Out] UCOMIEnumMoniker ppEnum);
+        new int EnumDeviceMonikers([Out] out UCOMIEnumMoniker ppEnum);
 
         [PreserveSig, DispId((int) DispIDTuner.TS_DEFAULTPREFERREDCOMPONENTTYPES)]
         new int get_DefaultPreferredComponentTypes([Out] out IComponentTypes ComponentTypes);
@@ -837,10 +837,10 @@ namespace DirectShowLib.BDA
         new int CreateTuneRequest([Out] out ITuneRequest TuneRequest);
 
         [PreserveSig, DispId((int) DispIDTuner.TS_ENUMCATEGORYGUIDS)]
-        new int EnumCategoryGUIDs([Out] IntPtr ppEnum); // IEnumGUID** 
+        new int EnumCategoryGUIDs([Out, MarshalAs(UnmanagedType.IUnknown)] out object ppEnum); // IEnumGUID** 
 
         [PreserveSig, DispId((int) DispIDTuner.TS_ENUMDEVICEMONIKERS)]
-        new int EnumDeviceMonikers([Out] UCOMIEnumMoniker ppEnum);
+        new int EnumDeviceMonikers([Out] out UCOMIEnumMoniker ppEnum);
 
         [PreserveSig, DispId((int) DispIDTuner.TS_DEFAULTPREFERREDCOMPONENTTYPES)]
         new int get_DefaultPreferredComponentTypes([Out] out IComponentTypes ComponentTypes);
@@ -920,10 +920,10 @@ namespace DirectShowLib.BDA
         new int CreateTuneRequest([Out] out ITuneRequest TuneRequest);
 
         [PreserveSig, DispId((int) DispIDTuner.TS_ENUMCATEGORYGUIDS)]
-        new int EnumCategoryGUIDs([Out] IntPtr ppEnum); // IEnumGUID** 
+        new int EnumCategoryGUIDs([Out, MarshalAs(UnmanagedType.IUnknown)] out object ppEnum); // IEnumGUID** 
 
         [PreserveSig, DispId((int) DispIDTuner.TS_ENUMDEVICEMONIKERS)]
-        new int EnumDeviceMonikers([Out] UCOMIEnumMoniker ppEnum);
+        new int EnumDeviceMonikers([Out] out UCOMIEnumMoniker ppEnum);
 
         [PreserveSig, DispId((int) DispIDTuner.TS_DEFAULTPREFERREDCOMPONENTTYPES)]
         new int get_DefaultPreferredComponentTypes([Out] out IComponentTypes ComponentTypes);
@@ -1040,10 +1040,10 @@ namespace DirectShowLib.BDA
         new int CreateTuneRequest([Out] out ITuneRequest TuneRequest);
 
         [PreserveSig, DispId((int) DispIDTuner.TS_ENUMCATEGORYGUIDS)]
-        new int EnumCategoryGUIDs([Out] IntPtr ppEnum); // IEnumGUID** 
+        new int EnumCategoryGUIDs([Out, MarshalAs(UnmanagedType.IUnknown)] out object ppEnum); // IEnumGUID** 
 
         [PreserveSig, DispId((int) DispIDTuner.TS_ENUMDEVICEMONIKERS)]
-        new int EnumDeviceMonikers([Out] UCOMIEnumMoniker ppEnum);
+        new int EnumDeviceMonikers([Out] out UCOMIEnumMoniker ppEnum);
 
         [PreserveSig, DispId((int) DispIDTuner.TS_DEFAULTPREFERREDCOMPONENTTYPES)]
         new int get_DefaultPreferredComponentTypes([Out] out IComponentTypes ComponentTypes);
@@ -1107,10 +1107,10 @@ namespace DirectShowLib.BDA
         new int CreateTuneRequest([Out] out ITuneRequest TuneRequest);
 
         [PreserveSig, DispId((int) DispIDTuner.TS_ENUMCATEGORYGUIDS)]
-        new int EnumCategoryGUIDs([Out] IntPtr ppEnum); // IEnumGUID** 
+        new int EnumCategoryGUIDs([Out, MarshalAs(UnmanagedType.IUnknown)] out object ppEnum); // IEnumGUID** 
 
         [PreserveSig, DispId((int) DispIDTuner.TS_ENUMDEVICEMONIKERS)]
-        new int EnumDeviceMonikers([Out] UCOMIEnumMoniker ppEnum);
+        new int EnumDeviceMonikers([Out] out UCOMIEnumMoniker ppEnum);
 
         [PreserveSig, DispId((int) DispIDTuner.TS_DEFAULTPREFERREDCOMPONENTTYPES)]
         new int get_DefaultPreferredComponentTypes([Out] out IComponentTypes ComponentTypes);
@@ -1198,10 +1198,10 @@ namespace DirectShowLib.BDA
         new int CreateTuneRequest([Out] out ITuneRequest TuneRequest);
 
         [PreserveSig, DispId((int) DispIDTuner.TS_ENUMCATEGORYGUIDS)]
-        new int EnumCategoryGUIDs([Out] IntPtr ppEnum); // IEnumGUID** 
+        new int EnumCategoryGUIDs([Out, MarshalAs(UnmanagedType.IUnknown)] out object ppEnum); // IEnumGUID** 
 
         [PreserveSig, DispId((int) DispIDTuner.TS_ENUMDEVICEMONIKERS)]
-        new int EnumDeviceMonikers([Out] UCOMIEnumMoniker ppEnum);
+        new int EnumDeviceMonikers([Out] out UCOMIEnumMoniker ppEnum);
 
         [PreserveSig, DispId((int) DispIDTuner.TS_DEFAULTPREFERREDCOMPONENTTYPES)]
         new int get_DefaultPreferredComponentTypes([Out] out IComponentTypes ComponentTypes);
@@ -1317,10 +1317,10 @@ namespace DirectShowLib.BDA
         new int CreateTuneRequest([Out] out ITuneRequest TuneRequest);
 
         [PreserveSig, DispId((int) DispIDTuner.TS_ENUMCATEGORYGUIDS)]
-        new int EnumCategoryGUIDs([Out] IntPtr ppEnum); // IEnumGUID** 
+        new int EnumCategoryGUIDs([Out, MarshalAs(UnmanagedType.IUnknown)] out object ppEnum); // IEnumGUID** 
 
         [PreserveSig, DispId((int) DispIDTuner.TS_ENUMDEVICEMONIKERS)]
-        new int EnumDeviceMonikers([Out] UCOMIEnumMoniker ppEnum);
+        new int EnumDeviceMonikers([Out] out UCOMIEnumMoniker ppEnum);
 
         [PreserveSig, DispId((int) DispIDTuner.TS_DEFAULTPREFERREDCOMPONENTTYPES)]
         new int get_DefaultPreferredComponentTypes([Out] out IComponentTypes ComponentTypes);
