@@ -109,6 +109,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IAMTimelineEffectable.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IAMTimelineGroupTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -185,6 +190,11 @@
                 />
                 <File
                     RelPath = "ITuningSpaceTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IXml2DexTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
