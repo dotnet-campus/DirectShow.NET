@@ -144,6 +144,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IFrequencyMapTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "ILocatorTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
