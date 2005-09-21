@@ -28,7 +28,7 @@ namespace DmoFlip
 
         // Properties used to register the DMO in the registry
         private const string DMOName = "DmoFlip";
-        private static readonly Guid DMOCat = DMOCatergory.VideoEffect;
+        private static readonly Guid DMOCat = DMOCategory.VideoEffect;
         private const int InputPinCount = 1;
         private const int OutputPinCount = 1;
 

@@ -1391,7 +1391,7 @@ namespace DirectShowLib
         public static readonly Guid TVAudioFilterPropertyPage = new Guid(0x71f96463, 0x78f3, 0x11d0, 0xa1, 0x8c, 0x0, 0xa0, 0xc9, 0x11, 0x89, 0x56);
     }
 
-    public class DMOCatergory
+    public class DMOCategory
     {
         /// <summary> DMOCATEGORY_AUDIO_DECODER </summary>
         public static readonly Guid AudioDecoder = new Guid(0x57f2db8b, 0xe6bb, 0x4513, 0x9d, 0x43, 0xdc, 0xd2, 0xa6, 0x59, 0x31, 0x25);

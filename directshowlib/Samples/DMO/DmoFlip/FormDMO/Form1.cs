@@ -188,9 +188,9 @@ namespace FormDMO
             //DMOError.ThrowExceptionForHR(hr);
 
             // But it is more useful to show how to scan for the DMO
-            Guid g = FindGuid("DmoFlip", DMOCatergory.VideoEffect);
+            Guid g = FindGuid("DmoFlip", DMOCategory.VideoEffect);
 
-            hr = dmoWrapperFilter.Init(g, DMOCatergory.VideoEffect);
+            hr = dmoWrapperFilter.Init(g, DMOCategory.VideoEffect);
             DMOError.ThrowExceptionForHR(hr);
 
             SetDMOParams(dmoFilter);

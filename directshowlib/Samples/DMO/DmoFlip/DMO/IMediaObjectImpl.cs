@@ -895,7 +895,7 @@ namespace MediaObjectTemplate
         {
             pdwFlags = DMOInputStreamInfo.FixedSampleSize |
                 DMOInputStreamInfo.SingleSamplePerBuffer |
-                DMOInputStreamInfo.FixedSampleSize;
+                DMOInputStreamInfo.WholeSamples;
 
             return S_OK;
         }
