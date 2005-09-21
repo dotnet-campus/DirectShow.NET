@@ -166,7 +166,7 @@ namespace DirectShowLib.DMO
     /// From DMO_PARTIAL_MEDIATYPE
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public class DMOPartialMediatype 
+    public struct DMOPartialMediatype 
     {
         public Guid type;
         public Guid subtype;
@@ -197,9 +197,9 @@ namespace DirectShowLib.DMO
             [MarshalAs(UnmanagedType.LPStruct)] Guid guidCategory,
             DMOEnumerator dwFlags,
             int cInTypes,
-            DMOPartialMediatype [] pInTypes,
+            [In] DMOPartialMediatype [] pInTypes,
             int cOutTypes,
-            DMOPartialMediatype [] pOutTypes,
+            [In] DMOPartialMediatype [] pOutTypes,
             out IEnumDMO ppEnum
             );
 
@@ -222,9 +222,9 @@ namespace DirectShowLib.DMO
             [In, MarshalAs(UnmanagedType.LPStruct)] Guid guidCategory,
             DMORegisterFlags dwFlags,
             int cInTypes,
-            [In, MarshalAs(UnmanagedType.LPArray)] DMOPartialMediatype [] pInTypes,
+            [In] DMOPartialMediatype [] pInTypes,
             int cOutTypes,
-            [In, MarshalAs(UnmanagedType.LPArray)] DMOPartialMediatype [] pOutTypes
+            [In] DMOPartialMediatype [] pOutTypes
             );
 
         [DllImport("MSDmo.dll")]
