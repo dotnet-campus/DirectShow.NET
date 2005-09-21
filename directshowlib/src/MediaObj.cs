@@ -31,6 +31,26 @@ namespace DirectShowLib.DMO
 #if ALLOW_UNTESTED_INTERFACES
 
     /// <summary>
+    /// From DMO_ENUM_FLAGS
+    /// </summary>
+    [Flags]
+    public enum DMOEnumerator
+    {
+        None = 0,
+        IncludeKeyed = 0x00000001
+    }
+
+    /// <summary>
+    /// From DMO_REGISTER_FLAGS
+    /// </summary>
+    [Flags]
+    public enum DMORegisterFlags
+    {
+        None = 0,
+        IsKeyed = 0x00000001
+    };
+
+    /// <summary>
     /// From DMO_PROCESS_OUTPUT_FLAGS
     /// </summary>
     [Flags]
@@ -142,6 +162,15 @@ namespace DirectShowLib.DMO
         NeedsPreviousSample	= 0x1
     }
 
+    /// <summary>
+    /// From DMO_PARTIAL_MEDIATYPE
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential)]
+    public class DMOPartialMediatype 
+    {
+        public Guid type;
+        public Guid subtype;
+    }
 
     /// <summary>
     /// From DMO_OUTPUT_DATA_BUFFER
@@ -157,6 +186,145 @@ namespace DirectShowLib.DMO
     }
 
 #endif
+    #endregion
+
+    #region API Declares
+
+    sealed public class DMOUtils
+    {
+        [DllImport("msdmo.dll")]
+        public static extern int DMOEnum(
+            [MarshalAs(UnmanagedType.LPStruct)] Guid guidCategory,
+            DMOEnumerator dwFlags,
+            int cInTypes,
+            DMOPartialMediatype [] pInTypes,
+            int cOutTypes,
+            DMOPartialMediatype [] pOutTypes,
+            out IEnumDMO ppEnum
+            );
+
+        [DllImport("msdmo.dll")]
+        public static extern int MoInitMediaType(
+            [Out] DirectShowLib.AMMediaType pmt, 
+            int i
+            );
+
+        [DllImport("msdmo.dll")]
+        public static extern int MoCopyMediaType(
+            [Out, MarshalAs(UnmanagedType.LPStruct)] AMMediaType pmt1, 
+            [In, MarshalAs(UnmanagedType.LPStruct)] AMMediaType pmt2
+            );
+
+        [DllImport("MSDmo.dll")]
+        static extern public int DMORegister(
+            [MarshalAs(UnmanagedType.LPWStr)] string szName,
+            [In, MarshalAs(UnmanagedType.LPStruct)] Guid clsidDMO,
+            [In, MarshalAs(UnmanagedType.LPStruct)] Guid guidCategory,
+            DMORegisterFlags dwFlags,
+            int cInTypes,
+            [In, MarshalAs(UnmanagedType.LPArray)] DMOPartialMediatype [] pInTypes,
+            int cOutTypes,
+            [In, MarshalAs(UnmanagedType.LPArray)] DMOPartialMediatype [] pOutTypes
+            );
+
+        [DllImport("MSDmo.dll")]
+        static extern public int DMOUnregister(
+            [In, MarshalAs(UnmanagedType.LPStruct)] Guid clsidDMO,
+            [In, MarshalAs(UnmanagedType.LPStruct)] Guid guidCategory
+            );
+
+        private DMOUtils()
+        {
+        }
+    }
+
+    #endregion
+
+    #region Utility Classes
+
+    sealed public class DMOResults
+    {
+        private DMOResults()
+        {
+            // Prevent people from trying to instantiate this class
+        }
+
+        public const int E_InvalidStreamIndex = unchecked((int)0x80040201);
+        public const int E_InvalidType        = unchecked((int)0x80040202);
+        public const int E_TypeNotSet       = unchecked((int)0x80040203);
+        public const int E_NotAccepting       = unchecked((int)0x80040204);
+        public const int E_TypeNotAccepted  = unchecked((int)0x80040205);
+        public const int E_NoMoreItems      = unchecked((int)0x80040206);
+    }
+
+    sealed public class DMOError
+    {
+        private DMOError()
+        {
+            // Prevent people from trying to instantiate this class
+        }
+
+        public static string GetErrorText(int hr)
+        {
+            string sRet = null;
+
+            switch(hr)
+            {
+                case DMOResults.E_InvalidStreamIndex:
+                    sRet = "Invalid stream index.";
+                    break;
+                case DMOResults.E_InvalidType:
+                    sRet = "Invalid media type.";
+                    break;
+                case DMOResults.E_TypeNotSet:
+                    sRet = "Media type was not set. One or more streams require a media type before this operation can be performed.";
+                    break;
+                case DMOResults.E_NotAccepting:
+                    sRet = "Data cannot be accepted on this stream. You might need to process more output data; see IMediaObject::ProcessInput.";
+                    break;
+                case DMOResults.E_TypeNotAccepted:
+                    sRet = "Media type was not accepted.";
+                    break;
+                case DMOResults.E_NoMoreItems:
+                    sRet = "Media-type index is out of range.";
+                    break;
+                default:
+                    sRet = DsError.GetErrorText(hr);
+                    break;
+            }
+
+            return sRet;
+        }
+
+        /// <summary>
+        /// If hr has a "failed" status code (E_*), throw an exception.  Note that status
+        /// messages (S_*) are not considered failure codes.  If DMO or DShow error text
+        /// is available, it is used to build the exception, otherwise a generic COM error
+        /// is thrown.
+        /// </summary>
+        /// <param name="hr">The HRESULT to check</param>
+        public static void ThrowExceptionForHR(int hr)
+        {
+            // If an error has occurred
+            if (hr < 0)
+            {
+                // If a string is returned, build a com error from it
+                string buf = GetErrorText(hr);
+
+                if (buf != null)
+                {
+                    throw new COMException(buf, hr);
+                }
+                else
+                {
+                    // No string, just use standard com error
+                    Marshal.ThrowExceptionForHR(hr);
+                }
+            }
+        }
+    }
+
+
     #endregion
 
     #region Interfaces
@@ -219,11 +387,10 @@ namespace DirectShowLib.DMO
     public interface IEnumDMO
     {
         [PreserveSig]
-        int Next(int cItemsToFetch, 
-            [Out, MarshalAs(UnmanagedType.LPArray, ArraySubType=UnmanagedType.Struct)]
-            Guid[] pCLSID, 
-            [Out, MarshalAs(UnmanagedType.LPArray)] 
-            string[] Names, 
+        int Next(
+            int cItemsToFetch, 
+            [Out, MarshalAs(UnmanagedType.LPArray)] Guid[] pCLSID, 
+            [Out, MarshalAs(UnmanagedType.LPArray)] string[] Names, 
             out int pcItemsFetched
             );
 
@@ -314,14 +481,14 @@ namespace DirectShowLib.DMO
         int GetInputType(
             int dwInputStreamIndex, 
             int dwTypeIndex, 
-            out AMMediaType pmt
+            [Out] AMMediaType pmt
             );
 
         [PreserveSig]
         int GetOutputType(
             int dwOutputStreamIndex, 
             int dwTypeIndex, 
-            out AMMediaType pmt
+            [Out] AMMediaType pmt
             );
 
         [PreserveSig]
@@ -400,7 +567,7 @@ namespace DirectShowLib.DMO
         [PreserveSig]
         int ProcessInput(
             int dwInputStreamIndex, 
-            [MarshalAs(UnmanagedType.Interface)] IMediaBuffer pBuffer, 
+            IMediaBuffer pBuffer, 
             DMOInputDataBuffer dwFlags, 
             long rtTimestamp, 
             long rtTimelength
@@ -410,8 +577,9 @@ namespace DirectShowLib.DMO
         int ProcessOutput(
             DMOProcessOutput dwFlags, 
             int cOutputBufferCount, 
-            [In, Out] ref DMOOutputDataBuffer [] pOutputBuffers, 
-            out int pdwStatus);
+            [In, Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] DMOOutputDataBuffer [] pOutputBuffers,
+            out int pdwStatus
+            );
 
         [PreserveSig]
         int Lock(
