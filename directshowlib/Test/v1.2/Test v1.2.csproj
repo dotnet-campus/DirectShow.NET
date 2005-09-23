@@ -149,6 +149,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IEnumDMOTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IFrequencyMapTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -165,6 +170,11 @@
                 />
                 <File
                     RelPath = "IMediaLocatorTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IPropertySetterTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
