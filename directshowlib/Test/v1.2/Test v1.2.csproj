@@ -194,6 +194,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IRenderEngine2Test.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IRenderEngineTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

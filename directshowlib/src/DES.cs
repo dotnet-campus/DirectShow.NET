@@ -2282,7 +2282,7 @@ namespace DirectShowLib.DES
     {
         [PreserveSig]
         int SetResizerGUID(
-            Guid ResizerGuid
+            [In] Guid ResizerGuid
             );
     }
 
