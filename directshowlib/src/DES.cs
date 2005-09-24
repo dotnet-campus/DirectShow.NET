@@ -2011,7 +2011,7 @@ namespace DirectShowLib.DES
 
         [PreserveSig]
         int PrintXML(
-            out byte pszXML,
+            [Out, MarshalAs(UnmanagedType.LPStr)] StringBuilder pszXML,
             [In] int cbXML,
             out int pcbPrinted,
             [In] int indent
@@ -2027,21 +2027,21 @@ namespace DirectShowLib.DES
         [PreserveSig]
         int AddProp(
             [In] DexterParam Param,
-            [In, MarshalAs(UnmanagedType.LPArray, ArraySubType=UnmanagedType.Struct)] DexterValue [] paValue
+            [In, MarshalAs(UnmanagedType.LPArray)] DexterValue [] paValue
             );
 
         [PreserveSig]
         int GetProps(
             out int pcParams,
-            [Out] IntPtr paParam,
-            [Out] IntPtr paValue
+            out IntPtr paParam,
+            out IntPtr paValue
             );
 
         [PreserveSig]
         int FreeProps(
             [In] int cParams,
-            [In] DexterParam [] paParam,
-            [In] DexterValue [] paValue
+            [In] IntPtr paParam,
+            [In] IntPtr paValue
             );
 
         [PreserveSig]
@@ -2050,7 +2050,7 @@ namespace DirectShowLib.DES
         [PreserveSig]
         int SaveToBlob(
             out int pcSize,
-            [Out] IntPtr ppb
+            out IntPtr ppb
             );
 
         [PreserveSig]
