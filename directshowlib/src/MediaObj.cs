@@ -194,7 +194,7 @@ namespace DirectShowLib.DMO
     {
         [DllImport("msdmo.dll")]
         public static extern int DMOEnum(
-            [MarshalAs(UnmanagedType.LPStruct)] Guid guidCategory,
+            [MarshalAs(UnmanagedType.LPStruct)] Guid DMOCategory,
             DMOEnumerator dwFlags,
             int cInTypes,
             [In] DMOPartialMediatype [] pInTypes,
@@ -211,15 +211,15 @@ namespace DirectShowLib.DMO
 
         [DllImport("msdmo.dll")]
         public static extern int MoCopyMediaType(
-            [Out, MarshalAs(UnmanagedType.LPStruct)] AMMediaType pmt1, 
-            [In, MarshalAs(UnmanagedType.LPStruct)] AMMediaType pmt2
+            [Out, MarshalAs(UnmanagedType.LPStruct)] AMMediaType dst, 
+            [In, MarshalAs(UnmanagedType.LPStruct)] AMMediaType src
             );
 
         [DllImport("MSDmo.dll")]
         static extern public int DMORegister(
             [MarshalAs(UnmanagedType.LPWStr)] string szName,
             [In, MarshalAs(UnmanagedType.LPStruct)] Guid clsidDMO,
-            [In, MarshalAs(UnmanagedType.LPStruct)] Guid guidCategory,
+            [In, MarshalAs(UnmanagedType.LPStruct)] Guid DMOCategory,
             DMORegisterFlags dwFlags,
             int cInTypes,
             [In] DMOPartialMediatype [] pInTypes,
@@ -508,13 +508,13 @@ namespace DirectShowLib.DMO
         [PreserveSig]
         int GetInputCurrentType(
             int dwInputStreamIndex, 
-            out AMMediaType pmt
+            [Out] AMMediaType pmt
             );
 
         [PreserveSig]
         int GetOutputCurrentType(
             int dwOutputStreamIndex, 
-            out AMMediaType pmt
+            [Out] AMMediaType pmt
             );
 
         [PreserveSig]

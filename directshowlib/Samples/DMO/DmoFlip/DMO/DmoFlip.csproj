@@ -16,7 +16,7 @@
                 DefaultTargetSchema = "IE50"
                 DelaySign = "false"
                 OutputType = "Library"
-                PreBuildEvent = 'if exist $(TargetPath) "%windir%\Microsoft.NET\Framework\v1.1.4322\regasm" /nologo /unregister $(TargetPath)'
+                PreBuildEvent = ""
                 PostBuildEvent = '"%windir%\Microsoft.NET\Framework\v1.1.4322\regasm" /nologo /codebase $(TargetPath)'
                 RootNamespace = "DmoFlip"
                 RunPostBuildEvent = "OnBuildSuccess"

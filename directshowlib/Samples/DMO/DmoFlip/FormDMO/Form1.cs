@@ -274,7 +274,6 @@ namespace FormDMO
             int hr;
             Guid g;
             int i;
-            string s;
             int pc;
             ParamInfo pInfo;
             IMediaParamInfo paramInfo = dmoWrapperFilter as IMediaParamInfo;
@@ -291,24 +290,36 @@ namespace FormDMO
             // Walk all the parameters
             for (int pCur = 0; pCur< pc; pCur++)
             {
+                IntPtr ip;
+
                 hr = paramInfo.GetParamInfo(pCur, out pInfo);
                 DMOError.ThrowExceptionForHR(hr);
 
-                hr = paramInfo.GetParamText(0, out s);
+                hr = paramInfo.GetParamText(0, out ip);
                 DMOError.ThrowExceptionForHR(hr);
 
-                string [] splitted = s.Split('\0');
-                Debug.WriteLine(string.Format("Parameter name: {0}", splitted[0]));
-                Debug.WriteLine(string.Format("Parameter units: {0}", splitted[0]));
-
-                // Not all params will have enumerated strings.
-                if (pInfo.mpType == MPType.ENUM)
+                try
                 {
-                    // The final entry in "splitted" will be a blank (used to terminate the list).
-                    for (int x= 2; x < splitted.Length - 1; x++)
+                    string sName, sUnits;
+                    string [] sEnum;
+                    ParseParamText(ip, out sName, out sUnits, out sEnum);
+
+                    Debug.WriteLine(string.Format("Parameter name: {0}", sName));
+                    Debug.WriteLine(string.Format("Parameter units: {0}", sUnits));
+
+                    // Not all params will have enumerated strings.
+                    if (pInfo.mpType == MPType.ENUM)
                     {
-                        Debug.WriteLine(string.Format("Parameter Enum strings: {0} = {1}", x - 2, splitted[x]));
+                        // The final entry in "splitted" will be a blank (used to terminate the list).
+                        for (int x=0; x < sEnum.Length; x++)
+                        {
+                            Debug.WriteLine(string.Format("Parameter Enum strings: {0} = {1}", x, sEnum[x]));
+                        }
                     }
+                }
+                finally
+                {
+                    Marshal.FreeCoTaskMem(ip);
                 }
             }
 
@@ -354,5 +365,38 @@ namespace FormDMO
             hr = m_param.SetParam(0, o);
             DMOError.ThrowExceptionForHR(hr);
         }
-	}
+
+        // Break an the pointer to some ParamText into usable fields
+        private void ParseParamText(IntPtr ip, out string ParamName, out string ParamUnits, out string [] ParamEnum)
+        {
+            int iCount = 0;
+            string s;
+
+            // Up to the first null is the display name
+            ParamName = Marshal.PtrToStringUni(ip);
+            ip = (IntPtr)(ip.ToInt32() + ((ParamName.Length + 1) * 2));
+
+            // Next is the units
+            ParamUnits = Marshal.PtrToStringUni(ip);
+            ip = (IntPtr)(ip.ToInt32() + ((ParamUnits.Length + 1) * 2));
+
+            // Following, there may b zero or more enum strings.  First we count them.
+            IntPtr ip2 = ip;
+            while (Marshal.ReadInt16(ip2) != 0) // Terminate on a zero length string
+            {
+                s = Marshal.PtrToStringUni(ip2);
+                ip2 = (IntPtr)(ip2.ToInt32() + ((s.Length + 1) * 2));
+                iCount++;
+            }
+
+            // Now we allocate the array, and copy the values in.
+            ParamEnum = new string[iCount];
+            for(int x=0; x < iCount; x++)
+            {
+                ParamEnum[x] = Marshal.PtrToStringUni(ip);
+                ip = (IntPtr)(ip.ToInt32() + ((ParamEnum[x].Length + 1) * 2));
+            }
+        }
+
+    }
 }

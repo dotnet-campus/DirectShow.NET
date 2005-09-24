@@ -58,7 +58,7 @@ namespace DirectShowLib.Test
       //
       // Init this filter with WavesReverb DMO Object
       //
-      hr = dmoWrapperFilter.Init(wavesReverbDMO, DMOCatergory.AudioEffect);
+      hr = dmoWrapperFilter.Init(wavesReverbDMO, DMOCategory.AudioEffect);
       DsError.ThrowExceptionForHR(hr);
 
       // Add it to the Graph

@@ -110,16 +110,16 @@ namespace DirectShowLib.DMO
     /// From MP_PARAMINFO
     /// </summary>
     [StructLayout(LayoutKind.Sequential, Pack=4)]
-    public class ParamInfo
+    public struct ParamInfo
     {
         public MPType mpType;
         public MPCaps mopCaps;
         public MPData mpdMinValue;
         public MPData mpdMaxValue;
         public MPData mpdNeutralValue;
-        [MarshalAs(UnmanagedType.LPWStr, SizeConst=0x20)]
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst=0x20)]
         public string szUnitText;
-        [MarshalAs(UnmanagedType.LPWStr, SizeConst=0x20)]
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst=0x20)]
         public string szLabel;
     }
 
@@ -148,7 +148,7 @@ namespace DirectShowLib.DMO
         [PreserveSig]
         int GetParamText(
             [In] int dwParamIndex, 
-            out string ppwchText
+            out IntPtr ip
             );
 
         [PreserveSig]
@@ -190,7 +190,7 @@ namespace DirectShowLib.DMO
         int AddEnvelope(
             [In] int dwParamIndex, 
             [In] int cSegments, 
-            [In, MarshalAs(UnmanagedType.LPStruct, SizeParamIndex=1)] MPEnvelopeSegment [] pEnvelopeSegments
+            [In, MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] MPEnvelopeSegment [] pEnvelopeSegments
             );
 
         [PreserveSig]
@@ -202,7 +202,7 @@ namespace DirectShowLib.DMO
 
         [PreserveSig]
         int SetTimeFormat(
-            [In, MarshalAs(UnmanagedType.LPStruct)] Guid guidTimeFormat, 
+            [In] Guid MediaParamTimeFormat, 
             [In] int mpTimeData
             );
     }

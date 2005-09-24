@@ -1196,7 +1196,7 @@ namespace MediaObjectTemplate
             return hr;
         }
 
-        public int GetInputCurrentType(int ulStreamIndex, out AMMediaType pmt) 
+        public int GetInputCurrentType(int ulStreamIndex, AMMediaType pmt) 
         {
             int hr;
 
@@ -1241,7 +1241,7 @@ namespace MediaObjectTemplate
             return hr;
         }
 
-        public int GetOutputCurrentType(int ulStreamIndex, out AMMediaType pmt) 
+        public int GetOutputCurrentType(int ulStreamIndex, AMMediaType pmt) 
         {
             int hr;
 
@@ -2115,7 +2115,7 @@ namespace MediaObjectTemplate
                     }
                     else
                     {
-                        pInfo = null;
+                        pInfo = new ParamInfo();
                         hr = E_INVALIDARG;
                     }
                 }
@@ -2127,7 +2127,7 @@ namespace MediaObjectTemplate
                 hr = CatFail(e);
 
                 // Have to have this to make the compiler happy.
-                pInfo = null;
+                pInfo = new ParamInfo();
             }
 
             return hr;
@@ -2163,7 +2163,7 @@ namespace MediaObjectTemplate
             return hr;
         }
 
-        public int GetParamText(int dwParamIndex, out string ppwchText)
+        public int GetParamText(int dwParamIndex, out IntPtr ppwchText)
         {
             int hr;
 
@@ -2175,12 +2175,12 @@ namespace MediaObjectTemplate
                     // If the parameter is in range, return the text
                     if (dwParamIndex < m_Params.ParamText.Length)
                     {
-                        ppwchText = m_Params.ParamText[dwParamIndex];
+                        ppwchText = Marshal.StringToCoTaskMemUni(m_Params.ParamText[dwParamIndex]);
                         hr = S_OK;
                     }
                     else
                     {
-                        ppwchText = null;
+                        ppwchText = IntPtr.Zero;
                         hr = E_INVALIDARG;
                     }
                 }
@@ -2192,7 +2192,7 @@ namespace MediaObjectTemplate
                 hr = CatFail(e);
 
                 // Have to have this to make the compiler happy.
-                ppwchText = null;
+                ppwchText = IntPtr.Zero;
             }
 
             return hr;

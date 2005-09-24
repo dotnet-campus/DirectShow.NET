@@ -174,6 +174,21 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IMediaObjectTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IMediaParamInfoTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IMediaParamsTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IPropertySetterTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -205,6 +220,11 @@
                 />
                 <File
                     RelPath = "IXml2DexTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "MoTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
