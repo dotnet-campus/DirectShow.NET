@@ -416,7 +416,7 @@ namespace DirectShowLib.DMO
         [PreserveSig]
         int Process(
             [In] int ulSize, 
-            [In, Out] ref byte pData, 
+            [In] IntPtr pData, 
             [In] long refTimeStart, 
             [In] DMOInplaceProcess dwFlags
             );
