@@ -482,7 +482,7 @@ namespace DirectShowLib.DES
             [MarshalAs(UnmanagedType.BStr)] string pErrorString,
             int ErrorCode,
             int hresult,
-            [In] object pExtraInfo
+            [In] IntPtr pExtraInfo
             );
     }
 
