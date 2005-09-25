@@ -690,6 +690,12 @@ namespace DirectShowLib
         /// <summary> CLSID_VideoEffects2Category </summary>
         public static readonly Guid VideoEffects2Category = new Guid(0xcc7bfb43, 0xf175, 0x11d1, 0xa3, 0x92, 0x0, 0xe0, 0x29, 0x1f, 0x39, 0x59);
 
+        /// <summary> CLSID_AudioEffects1Category </summary>
+        public static readonly Guid AudioEffects1Category = new Guid(0xcc7bfb44, 0xf175, 0x11d1, 0xa3, 0x92, 0x0, 0xe0, 0x29, 0x1f, 0x39, 0x59);
+
+        /// <summary> CLSID_AudioEffects2Category </summary>
+        public static readonly Guid AudioEffects2Category = new Guid(0xcc7bfb45, 0xf175, 0x11d1, 0xa3, 0x92, 0x0, 0xe0, 0x29, 0x1f, 0x39, 0x59);
+
         /// <summary> KSCATEGORY_DATADECOMPRESSOR & CLSID_DVDHWDecodersCategory</summary>
         public static readonly Guid KSDataDecompressor = new Guid(0x2721AE20, 0x7E70, 0x11D0, 0xA5, 0xD6, 0x28, 0xDB, 0x04, 0xC1, 0x00, 0x00);
 
@@ -1389,30 +1395,6 @@ namespace DirectShowLib
 
         /// <summary> CLSID_TVAudioFilterPropertyPage </summary>
         public static readonly Guid TVAudioFilterPropertyPage = new Guid(0x71f96463, 0x78f3, 0x11d0, 0xa1, 0x8c, 0x0, 0xa0, 0xc9, 0x11, 0x89, 0x56);
-    }
-
-    public class DMOCategory
-    {
-        /// <summary> DMOCATEGORY_AUDIO_DECODER </summary>
-        public static readonly Guid AudioDecoder = new Guid(0x57f2db8b, 0xe6bb, 0x4513, 0x9d, 0x43, 0xdc, 0xd2, 0xa6, 0x59, 0x31, 0x25);
-
-        /// <summary> DMOCATEGORY_AUDIO_ENCODER </summary>
-        public static readonly Guid AudioEncoder = new Guid(0x33D9A761, 0x90C8, 0x11d0, 0xBD, 0x43, 0x00, 0xA0, 0xC9, 0x11, 0xCE, 0x86);
-
-        /// <summary> DMOCATEGORY_VIDEO_DECODER </summary>
-        public static readonly Guid VideoDecoder = new Guid(0x4a69b442, 0x28be, 0x4991, 0x96, 0x9c, 0xb5, 0x00, 0xad, 0xf5, 0xd8, 0xa8);
-
-        /// <summary> DMOCATEGORY_VIDEO_ENCODER </summary>
-        public static readonly Guid VideoEncoder = new Guid(0x33D9A760, 0x90C8, 0x11d0, 0xBD, 0x43, 0x00, 0xA0, 0xC9, 0x11, 0xCE, 0x86);
-
-        /// <summary> DMOCATEGORY_AUDIO_EFFECT </summary>
-        public static readonly Guid AudioEffect = new Guid(0xf3602b3f, 0x0592, 0x48df, 0xa4, 0xcd, 0x67, 0x47, 0x21, 0xe7, 0xeb, 0xeb);
-
-        /// <summary> DMOCATEGORY_VIDEO_EFFECT </summary>
-        public static readonly Guid VideoEffect = new Guid(0xd990ee14, 0x776c, 0x4723, 0xbe, 0x46, 0x3d, 0xa2, 0xf5, 0x6f, 0x10, 0xb9);
-
-        /// <summary> DMOCATEGORY_AUDIO_CAPTURE_EFFECT </summary>
-        public static readonly Guid AudioCaptureEffect = new Guid(0xf665aaba, 0x3e09, 0x4920, 0xaa, 0x5f, 0x21, 0x98, 0x11, 0x14, 0x8f, 0x09);
     }
 
     public class BDANodeCategory

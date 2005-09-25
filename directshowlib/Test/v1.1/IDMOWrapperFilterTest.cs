@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using DirectShowLib.DMO;
 
 namespace DirectShowLib.Test
 {
