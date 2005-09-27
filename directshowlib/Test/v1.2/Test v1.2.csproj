@@ -144,6 +144,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IAMTimelineVirtualTrackTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "ICreatePropBagOnRegKeyTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
