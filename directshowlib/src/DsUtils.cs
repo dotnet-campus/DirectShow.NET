@@ -1010,7 +1010,7 @@ namespace DirectShowLib
         /// Returns an array of DsDevices of type devcat.
         /// </summary>
         /// <param name="cat">Any one of FilterCategory</param>
-        public static DsDevice[] GetDevicesOfCat(Guid devcat)
+        public static DsDevice[] GetDevicesOfCat(Guid FilterCategory)
         {
             // Use arrayList to build the retun list since it is easily resizable
             ArrayList devs = new ArrayList();
@@ -1023,7 +1023,7 @@ namespace DirectShowLib
             try
             {
                 enumDev = (ICreateDevEnum) new CreateDevEnum();
-                hr = enumDev.CreateClassEnumerator(devcat, out enumMon, 0);
+                hr = enumDev.CreateClassEnumerator(FilterCategory, out enumMon, 0);
                 DsError.ThrowExceptionForHR(hr);
 
                 // CreateClassEnumerator returns null for enumMon if there are no entries
