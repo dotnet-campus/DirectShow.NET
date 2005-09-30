@@ -9,7 +9,7 @@ namespace DirectShowLib.Test
         static void Main(string[] args)
         {
             // IAMTimelineTest t1 = new IAMTimelineTest();            // t1.DoTests();
-            //IAMTimelineCompTest t2 = new IAMTimelineCompTest();            //t2.DoTests();
+            // IAMTimelineCompTest t2 = new IAMTimelineCompTest();            // t2.DoTests();
             // IAMTimelineEffectTest t3 = new IAMTimelineEffectTest();            // t3.DoTests();
             // IAMTimelineEffectableTest t4 = new IAMTimelineEffectableTest();            // t4.DoTests();
             // IAMTimelineGroupTest t5 = new IAMTimelineGroupTest();            // t5.DoTests();
@@ -20,6 +20,44 @@ namespace DirectShowLib.Test
             // IPropertySetterTest t10 = new IPropertySetterTest();            // t10.DoTests();
             // IRenderEngineTest t11 = new IRenderEngineTest();            // t11.DoTests();
             // IXml2DexTest t12 = new IXml2DexTest();            // t12.DoTests();            // IMediaLocatorTest t13 = new IMediaLocatorTest();            // t13.DoTests();
+            // MoTest t14 = new MoTest();
+            // t14.DoTests();
+
+            // IMediaParamInfoTest t15 = new IMediaParamInfoTest();
+            // t15.DoTests();
+
+            // IMediaParamsTest t16 = new IMediaParamsTest();
+            // t16.DoTests();
+
+            // IMediaObjectTest t17 = new IMediaObjectTest();
+            // t17.DoTests();
+
+            // IRenderEngine2Test t18 = new IRenderEngine2Test();
+            // t18.DoTests();
+
+            // IAMTimelineSplittableTest t19 = new IAMTimelineSplittableTest();
+            // t19.DoTests();
+
+            // IAMSetErrorLogTest t20 = new IAMSetErrorLogTest();
+            // t20.DoTests();
+
+            // IMediaObjectInPlaceTest t21 = new IMediaObjectInPlaceTest();
+            // t21.DoTests();
+
+            // ISmartRenderEngineTest t22 = new ISmartRenderEngineTest();
+            // t22.DoTests();
+
+            // IAMTimelineVirtualTrackTest t23 = new IAMTimelineVirtualTrackTest();
+            // t23.DoTests();
+
+            // IAMTimelineTransTest t24 = new IAMTimelineTransTest();
+            // t24.DoTests();
+
+            // IAMTimelineTransableTest t25 = new IAMTimelineTransableTest();
+            // t25.DoTests();
+
+            // IEnumDMOTest t26 = new IEnumDMOTest();
+            // t26.DoTests();
             // IBDA_AutoDemodulateTest t30 = new IBDA_AutoDemodulateTest();            // t30.DoTests();
             // IBDA_LNBInfoTest t31 = new IBDA_LNBInfoTest();            // t31.DoTests();
             // IBDA_PinControlTest t32 = new IBDA_PinControlTest();            // t32.DoTests();
