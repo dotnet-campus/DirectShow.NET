@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 #endregion
 using System;
+using System.Text;
 using System.Runtime.InteropServices;
 
 namespace DirectShowLib.DMO
@@ -166,7 +167,7 @@ namespace DirectShowLib.DMO
     /// From DMO_PARTIAL_MEDIATYPE
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct DMOPartialMediatype 
+    public struct DMOPartialMediatype
     {
         public Guid type;
         public Guid subtype;
@@ -233,13 +234,13 @@ namespace DirectShowLib.DMO
 
         [DllImport("msdmo.dll")]
         public static extern int MoInitMediaType(
-            [Out] DirectShowLib.AMMediaType pmt, 
+            [Out] DirectShowLib.AMMediaType pmt,
             int i
             );
 
         [DllImport("msdmo.dll")]
         public static extern int MoCopyMediaType(
-            [Out, MarshalAs(UnmanagedType.LPStruct)] AMMediaType dst, 
+            [Out, MarshalAs(UnmanagedType.LPStruct)] AMMediaType dst,
             [In, MarshalAs(UnmanagedType.LPStruct)] AMMediaType src
             );
 
@@ -259,6 +260,23 @@ namespace DirectShowLib.DMO
         static extern public int DMOUnregister(
             [In, MarshalAs(UnmanagedType.LPStruct)] Guid clsidDMO,
             [In, MarshalAs(UnmanagedType.LPStruct)] Guid guidCategory
+            );
+
+        [DllImport("MSDmo.dll")]
+        static extern public int DMOGetName(
+            [In, MarshalAs(UnmanagedType.LPStruct)] Guid clsidDMO,
+            [Out, MarshalAs(UnmanagedType.LPWStr, SizeConst=80)] StringBuilder szName
+            );
+
+        [DllImport("MSDmo.dll")]
+        static extern public int DMOGetTypes(
+            [In, MarshalAs(UnmanagedType.LPStruct)] Guid clsidDMO,
+            int ulInputTypesRequested,
+            out int pulInputTypesSupplied,
+            [Out] DMOPartialMediatype [] pInTypes,
+            int ulOutputTypesRequested,
+            out int pulOutputTypesSupplied,
+            [Out] DMOPartialMediatype [] pOutTypes
             );
 
         private DMOUtils()
@@ -359,7 +377,7 @@ namespace DirectShowLib.DMO
 
 #if ALLOW_UNTESTED_INTERFACES
 
-    [Guid("65ABEA96-CF36-453F-AF8A-705E98F16260"), 
+    [Guid("65ABEA96-CF36-453F-AF8A-705E98F16260"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IDMOQualityControl
     {
@@ -380,45 +398,45 @@ namespace DirectShowLib.DMO
     }
 
 
-    [Guid("BE8F4F4E-5B16-4D29-B350-7F6B5D9298AC"), 
+    [Guid("BE8F4F4E-5B16-4D29-B350-7F6B5D9298AC"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IDMOVideoOutputOptimizations
     {
         [PreserveSig]
         int QueryOperationModePreferences(
-            int ulOutputStreamIndex, 
+            int ulOutputStreamIndex,
             out DMOVideoOutputStream pdwRequestedCapabilities
             );
 
         [PreserveSig]
         int SetOperationMode(
-            int ulOutputStreamIndex, 
+            int ulOutputStreamIndex,
             DMOVideoOutputStream dwEnabledFeatures
             );
 
         [PreserveSig]
         int GetCurrentOperationMode(
-            int ulOutputStreamIndex, 
+            int ulOutputStreamIndex,
             out DMOVideoOutputStream pdwEnabledFeatures
             );
 
         [PreserveSig]
         int GetCurrentSampleRequirements(
-            int ulOutputStreamIndex, 
+            int ulOutputStreamIndex,
             out DMOVideoOutputStream pdwRequestedFeatures
             );
     }
 
 
-    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown), 
+    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
     Guid("2C3CD98A-2BFA-4A53-9C27-5249BA64BA0F")]
     public interface IEnumDMO
     {
         [PreserveSig]
         int Next(
-            int cItemsToFetch, 
-            [Out, MarshalAs(UnmanagedType.LPArray)] Guid[] pCLSID, 
-            [Out, MarshalAs(UnmanagedType.LPArray)] string[] Names, 
+            int cItemsToFetch,
+            [Out, MarshalAs(UnmanagedType.LPArray)] Guid[] pCLSID,
+            [Out, MarshalAs(UnmanagedType.LPArray)] string[] Names,
             out int pcItemsFetched
             );
 
@@ -437,15 +455,15 @@ namespace DirectShowLib.DMO
     }
 
 
-    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown), 
+    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
     Guid("651B9AD0-0FC7-4AA9-9538-D89931010741")]
     public interface IMediaObjectInPlace
     {
         [PreserveSig]
         int Process(
-            [In] int ulSize, 
-            [In] IntPtr pData, 
-            [In] long refTimeStart, 
+            [In] int ulSize,
+            [In] IntPtr pData,
+            [In] long refTimeStart,
             [In] DMOInplaceProcess dwFlags
             );
 
@@ -461,7 +479,7 @@ namespace DirectShowLib.DMO
     }
 
 
-    [Guid("59EFF8B9-938C-4A26-82F2-95CB84CDC837"), 
+    [Guid("59EFF8B9-938C-4A26-82F2-95CB84CDC837"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IMediaBuffer
     {
@@ -477,98 +495,98 @@ namespace DirectShowLib.DMO
 
         [PreserveSig]
         int GetBufferAndLength(
-            out IntPtr ppBuffer, 
+            out IntPtr ppBuffer,
             out int pcbLength
             );
     }
 
 
-    [ComVisible(true), Guid("D8AD0F58-5494-4102-97C5-EC798E59BCF4"), 
+    [ComVisible(true), Guid("D8AD0F58-5494-4102-97C5-EC798E59BCF4"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IMediaObject
     {
         [PreserveSig]
         int GetStreamCount(
-            out int pcInputStreams, 
+            out int pcInputStreams,
             out int pcOutputStreams
             );
 
         [PreserveSig]
         int GetInputStreamInfo(
-            int dwInputStreamIndex, 
+            int dwInputStreamIndex,
             out DMOInputStreamInfo pdwFlags
             );
 
         [PreserveSig]
         int GetOutputStreamInfo(
-            int dwOutputStreamIndex, 
+            int dwOutputStreamIndex,
             out DMOOutputStreamInfo pdwFlags
             );
 
         [PreserveSig]
         int GetInputType(
-            int dwInputStreamIndex, 
-            int dwTypeIndex, 
+            int dwInputStreamIndex,
+            int dwTypeIndex,
             [Out] AMMediaType pmt
             );
 
         [PreserveSig]
         int GetOutputType(
-            int dwOutputStreamIndex, 
-            int dwTypeIndex, 
+            int dwOutputStreamIndex,
+            int dwTypeIndex,
             [Out] AMMediaType pmt
             );
 
         [PreserveSig]
         int SetInputType(
-            int dwInputStreamIndex, 
-            [In, MarshalAs(UnmanagedType.LPStruct)] AMMediaType pmt, 
+            int dwInputStreamIndex,
+            [In, MarshalAs(UnmanagedType.LPStruct)] AMMediaType pmt,
             DMOSetType dwFlags
             );
 
         [PreserveSig]
         int SetOutputType(
-            int dwOutputStreamIndex, 
-            [In, MarshalAs(UnmanagedType.LPStruct)] AMMediaType pmt, 
+            int dwOutputStreamIndex,
+            [In, MarshalAs(UnmanagedType.LPStruct)] AMMediaType pmt,
             DMOSetType dwFlags
             );
 
         [PreserveSig]
         int GetInputCurrentType(
-            int dwInputStreamIndex, 
+            int dwInputStreamIndex,
             [Out] AMMediaType pmt
             );
 
         [PreserveSig]
         int GetOutputCurrentType(
-            int dwOutputStreamIndex, 
+            int dwOutputStreamIndex,
             [Out] AMMediaType pmt
             );
 
         [PreserveSig]
         int GetInputSizeInfo(
-            int dwInputStreamIndex, 
-            out int pcbSize, 
-            out int pcbMaxLookahead, 
+            int dwInputStreamIndex,
+            out int pcbSize,
+            out int pcbMaxLookahead,
             out int pcbAlignment
             );
 
         [PreserveSig]
         int GetOutputSizeInfo(
-            int dwOutputStreamIndex, 
-            out int pcbSize, 
+            int dwOutputStreamIndex,
+            out int pcbSize,
             out int pcbAlignment
             );
 
         [PreserveSig]
         int GetInputMaxLatency(
-            int dwInputStreamIndex, 
+            int dwInputStreamIndex,
             out long prtMaxLatency
             );
 
         [PreserveSig]
         int SetInputMaxLatency(
-            int dwInputStreamIndex, 
+            int dwInputStreamIndex,
             long rtMaxLatency
             );
 
@@ -588,23 +606,23 @@ namespace DirectShowLib.DMO
 
         [PreserveSig]
         int GetInputStatus(
-            int dwInputStreamIndex, 
+            int dwInputStreamIndex,
             out DMOInputStatusFlags dwFlags
             );
 
         [PreserveSig]
         int ProcessInput(
-            int dwInputStreamIndex, 
-            IMediaBuffer pBuffer, 
-            DMOInputDataBuffer dwFlags, 
-            long rtTimestamp, 
+            int dwInputStreamIndex,
+            IMediaBuffer pBuffer,
+            DMOInputDataBuffer dwFlags,
+            long rtTimestamp,
             long rtTimelength
             );
 
         [PreserveSig]
         int ProcessOutput(
-            DMOProcessOutput dwFlags, 
-            int cOutputBufferCount, 
+            DMOProcessOutput dwFlags,
+            int cOutputBufferCount,
             [In, Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] DMOOutputDataBuffer [] pOutputBuffers,
             out int pdwStatus
             );

@@ -20,6 +20,44 @@ namespace DirectShowLib.Test
             TestInit();
             TestCopy();
             TestRegister();
+            TestName();
+            TestTypes();
+        }
+
+        private void TestName()
+        {
+            int hr;
+            StringBuilder sb = new StringBuilder(80);
+
+            hr = DMOUtils.DMOGetName(new Guid("{efe6629c-81f7-4281-bd91-c9d604a95af6}"), sb);
+            DMOError.ThrowExceptionForHR(hr);
+
+            Debug.Assert(sb.ToString() == "Chorus", "DMOGetName");
+        }
+
+        private void TestTypes()
+        {
+            int hr;
+            int i, o;
+
+            DMOPartialMediatype [] pInTypes = new DMOPartialMediatype[2];
+            DMOPartialMediatype [] pOutTypes = new DMOPartialMediatype[2];
+
+            hr = DMOUtils.DMOGetTypes(
+                new Guid("{efe6629c-81f7-4281-bd91-c9d604a95af6}"),
+                2,
+                out i,
+                pInTypes,
+                2,
+                out o,
+                pOutTypes
+                );
+
+            DMOError.ThrowExceptionForHR(hr);
+
+            Debug.Assert(i == o && i == 1, "DMOGetTypes");
+            Debug.Assert(pInTypes[0].type == MediaType.Audio && pInTypes[0].subtype == MediaSubType.PCM, "DMOGetTypes2");
+            Debug.Assert(pOutTypes[0].type == MediaType.Audio && pOutTypes[0].subtype == MediaSubType.PCM, "DMOGetTypes3");
         }
 
         private void TestInit()
