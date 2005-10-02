@@ -334,7 +334,7 @@ namespace DirectShowLib.BDA
         [PreserveSig]
         int SetMediaType( 
             [In] int ulPinId,
-            [In] AMMediaType pMediaType
+            [In] AMMediaType[] pMediaType
           );
         
         [PreserveSig]
