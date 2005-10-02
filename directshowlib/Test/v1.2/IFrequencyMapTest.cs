@@ -39,8 +39,8 @@ namespace DirectShowLib.Test
 
         TestCountryCode();
         Testget_CountryCodeList();
-//        Testget_DefaultFrequencyMapping();
-//        TestFrequencyMapping();
+        Testget_DefaultFrequencyMapping();
+        TestFrequencyMapping();
 
 
       }
@@ -151,9 +151,12 @@ namespace DirectShowLib.Test
       IntPtr entriesPtr;
       int[] entries;
 
+      // We can't know the size of the returned array so it's really hard 
+      // to marshal it automatically.
       hr = freqMap.get_CountryCodeList(out entryCount, out entriesPtr);
       DsError.ThrowExceptionForHR(hr);
 
+      // Manual marshaling : Enable freeing the returned pointer
       entries = new int[entryCount];
       Marshal.Copy(entriesPtr, entries, 0, entryCount);
       Marshal.FreeCoTaskMem(entriesPtr);
@@ -165,15 +168,17 @@ namespace DirectShowLib.Test
     {
       int hr = 0;
       int entryCount;
+      IntPtr entriesPtr;
       int[] entries;
 
-      hr = freqMap.get_DefaultFrequencyMapping(33, out entryCount, null);
+      // See comments higher
+      hr = freqMap.get_DefaultFrequencyMapping(33, out entryCount, out entriesPtr);
 
       entries = new int[entryCount];
-      hr = freqMap.get_DefaultFrequencyMapping(33, out entryCount, entries);
+      Marshal.Copy(entriesPtr, entries, 0, entryCount);
+      Marshal.FreeCoTaskMem(entriesPtr);
 
-      // This method is not documented to not been implemented but this the case on my machine
-      Debug.Assert(hr == -2147467263, "IFrequencyMap.get_CountryCodeList");
+      Debug.Assert(entryCount > 0, "IFrequencyMap.get_CountryCodeList");
     }
 
     private void TestFrequencyMapping()
@@ -187,20 +192,20 @@ namespace DirectShowLib.Test
                          562000, //R6 (R5 not assigned)
                         };
       int entryCount;
+      IntPtr entriesPtr;
       int[] entries;
 
       hr = freqMap.put_FrequencyMapping(localFreq.Length, localFreq);
       DsError.ThrowExceptionForHR(hr);
 
-      hr = freqMap.get_FrequencyMapping(out entryCount, null);
+      // See comments higher
+      hr = freqMap.get_FrequencyMapping(out entryCount, out entriesPtr);
 
       entries = new int[entryCount];
-      hr = freqMap.get_FrequencyMapping(out entryCount, null);
+      Marshal.Copy(entriesPtr, entries, 0, entryCount);
+      Marshal.FreeCoTaskMem(entriesPtr);
 
-      // This method is not documented to not been implemented but this the case on my machine
-      Debug.Assert(hr == -2147467263, "IFrequencyMap.get_CountryCodeList");
+      Debug.Assert((entryCount == localFreq.Length) && (entries[0] == localFreq[0]), "IFrequencyMap.get_CountryCodeList");
     }
-
-
 	}
 }
