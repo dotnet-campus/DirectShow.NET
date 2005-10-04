@@ -18,6 +18,7 @@ using DirectShowLib.DMO;
 
 namespace DmoFlip
 {
+    /// <exclude></exclude>
     [ComVisible(true), Guid("7EF28FD7-E88F-45bb-9CDD-8A62956F2D75"),
     ClassInterface(ClassInterfaceType.None)]
     public class DmoFlip : IMediaObjectImpl
@@ -298,7 +299,7 @@ namespace DmoFlip
             // Parameter #0, using the struct, and a format string (described in MSDN
             // under IMediaParamInfo::GetParamText).  Note that when marshaling strings,
             // .NET will add another \0
-            DefineParam(0, p, "FlipMode\0\0None\0FlipY\0FlipX\0FlipY|FlipX\0");
+            ParamDefine(0, p, "FlipMode\0\0None\0FlipY\0FlipX\0FlipY|FlipX\0");
         }
 
 
@@ -345,10 +346,8 @@ namespace DmoFlip
             // We don't support anything until after our input pin is set
             if (pIn != null)
             {
-                if (pmt.majorType == MediaType.Video &&
-                    (pmt.subType == MediaSubType.RGB24 || pmt.subType == MediaSubType.RGB32) &&
-                    pmt.formatType == FormatType.VideoInfo &&
-                    pmt.formatPtr != IntPtr.Zero)
+                // Our output type must be the same as the input type
+                if (TypesMatch(pmt, pIn))
                 {
                     hr = S_OK;
                 }
@@ -572,7 +571,7 @@ namespace DmoFlip
                         if (cbOutData >= cbCurrent + OutputType(0).sampleSize)
                         {
                             // Get the mode for the current timecode
-                            MPData m = CalcValueForTime(0, m_TimeStamp);
+                            MPData m = ParamCalcValueForTime(0, m_TimeStamp);
 
                             // Process from input to output according to the mode
                             DoFlip((IntPtr)(pbOutData.ToInt32() + cbCurrent), m_cbInData, m_InBuffer, m_BPP, (FlipMode)m.vInt);
@@ -616,7 +615,7 @@ namespace DmoFlip
             return m_pBuffer == null ? S_OK : S_FALSE;
         }
 
-        protected override long GetCurrentTime()
+        override protected long InternalGetCurrentTime()
         {
             return m_TimeStamp;
         }

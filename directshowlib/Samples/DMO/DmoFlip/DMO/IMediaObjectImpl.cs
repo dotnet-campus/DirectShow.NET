@@ -19,6 +19,98 @@ using System.Collections;
 
 namespace MediaObjectTemplate
 {
+    /// <summary>
+    /// This abstract class can be used to implement a DMO in .NET.
+    /// </summary>
+    /// <remarks>
+    /// <para>Before attempting to use this class, read the MSDN docs on DMOs!  In 
+    /// particular read about IMediaObject, IMediaParamInfo, IMediaParams, 
+    /// and the DMO Wrapper Filter (if you are using DirectShow graphs).</para>
+    /// 
+    /// <para>When you read the MSDN docs about creating a DMO, they refer to a template that
+    /// you can use to make things easier.  That template served as the inspiration for this 
+    /// class.  To create a DMO, you can just create a class that implements this abstract class, 
+    /// write code for the abstract methods, and you should be good to go.</para>
+    /// 
+    /// <para>Here is a more detailed description of the steps you need to take.  Note that you can
+    /// look at the sample code for examples of these steps.</para>
+    /// 
+    /// <para>1) Other than ripping out the rather lame logging, you shouldn't need to change
+    /// any code in IMediaObjectImpl.cs.  It is the initial entry point for all the
+    /// IMediaObject interfaces.  It performs parameter checking, makes sure the call
+    /// is appropriate for the current state, etc.  As needed it will make calls to the
+    /// abstract and virtual methods of the class.</para>
+    /// 
+    /// <para>2) Create a class which implements the abstract IMediaObjectImpl class:</para>
+    /// <code>
+    ///     [ComVisible(true), Guid("7EF28FD7-E88F-45bb-9CDD-8A62956F2D75"),
+    ///     ClassInterface(ClassInterfaceType.None)]
+    ///     public class DmoFlip : IMediaObjectImpl
+    /// </code>
+    /// <para>3) Generate your own guid so the samples won't interfere with your code:
+    /// If you are running Dev Studio, go to Tools/Create Guid, choose "Registry 
+    /// Format", click "Copy", then paste into your code.</para>
+    /// 
+    /// <para>4) Create the constructor for your class.  It must not take any parameters:</para>
+    /// <code>
+    ///    public DmoFlip() : base(InputPinCount, OutputPinCount, ParamCount, TimeFormatFlags.Reference)
+    /// </code>
+    /// <para>If you are planning to use this DMO with the DirectShow DMO Wrapper Filter, note 
+    /// that (up to and including DX v9.0) InputPinCount must be 1, and OutputPinCount must 
+    /// be > 0.  The ParamCount is the number of parameters your DMO supports, and can be zero.  
+    /// In general, you should use TimeFormatFlags.Reference for the last paramter.</para>
+    /// 
+    /// <para>5) Register the parameters your DMO supports using <see cref="IMediaObjectImpl.ParamDefine"/>.  
+    /// This must be done in the constructor (unless you have no parameters).  Doing this allows you to support 
+    /// IMediaParamInfo and IMediaParams.  You will also need to use <see cref="IMediaObjectImpl.ParamCalcValueForTime"/> 
+    /// to find out what parameter value you should use at any given point during the stream.  
+    /// See the docs for these two methods for details.</para>
+    /// 
+    /// <para>6) Create the COM register/unregister methods:</para>
+    /// <code>
+    ///     [ComRegisterFunctionAttribute]
+    ///     static private void DoRegister(Type t)
+    /// 
+    ///     [ComUnregisterFunctionAttribute]
+    ///     static private void UnregisterFunction(Type t)
+    /// </code>
+    /// <para>These tell the OS about your DMO.  If you are distributing your code, you 
+    /// will need to make sure they get called during installation (read about RegAsm 
+    /// in the .NET docs).  At a minimum, you will need to call DMORegister to register
+    /// your DMO.  See the sample for how this is done.</para>
+    /// 
+    /// <para><b>WARNING:</b> If you use the "Register for COM Interop" compiler switch, the
+    /// compiler will attempt to register DirectShowLib.dll as well as your DMO.
+    /// Since DirectShowLib has no registration to perform, this generates an error.
+    /// That is why the sample uses pre/post build events to perform the registration.  You
+    /// may need to adjust this command for your particular installation.</para>
+    /// 
+    /// <para>7) Do everything else.  There are 7 abstract methods for which you must 
+    /// write code.  These methods are listed in the IMediaObjectImpl Methods page in 
+    /// the <b>Protected Instance Methods</b> section. These methods will contain the information 
+    /// specific to your DMO, and describe what type of data you are willing to process, and 
+    /// perform the actual processing.  Note that since the abstract class has verified the 
+    /// parameters, you do not need to re-check them in your implementation.  See the 
+    /// descriptions for each method and the sample for details about what each of these 
+    /// methods must do.</para>
+    /// 
+    /// <para>You may also need to override some of the 11 virtual methods if their default
+    /// implementation doesn't match your specific needs.  See the documentation for each of 
+    /// these specific methods for details.</para>
+    /// 
+    /// <hr></hr>
+    /// 
+    /// <para>If you aren't already knowledgeable about COM and writing multi-threaded apps, 
+    /// this is probably a good time to do a little research.  You may have multiple 
+    /// instances of your DMO running in the same process, in multiple processes, 
+    /// called on different threads, etc.</para>
+    /// 
+    /// <para>As a simple example of the things you should be thinking of, the logging in 
+    /// (debug builds of) IMediaObjectImpl.cs opens the file as non-sharable.
+    /// However, if two applications try to instantiate your DMO, the second will fail, 
+    /// solely due to not being able to open the log file.  Probably not the desired 
+    /// behavior (told you the logging was lame).</para>
+    /// </remarks>
     abstract public class IMediaObjectImpl : IMediaObject, IMediaParamInfo, IMediaParams
     {
         #region Declarations
@@ -27,15 +119,27 @@ namespace MediaObjectTemplate
         // be applied to all parameters.
         private const int ALLPARAMS = -1;
 
-        // COM return codes
+        /// <summary>COM return code indicating success</summary>
         protected const int S_OK = 0;
+
+        /// <summary>COM return code indicating partial success</summary>
         protected const int S_FALSE = 1;
+
+        /// <summary>COM return code indicating method not supported</summary>
         protected const int E_NOTIMPL    = unchecked((int)0x80004001);
+
+        /// <summary>COM return code indicating invalid pointer provided</summary>
         protected const int E_POINTER    = unchecked((int)0x80004003);
+
+        /// <summary>COM return code indicating invalid argument specified</summary>
         protected const int E_INVALIDARG = unchecked((int)0x80070057);
+
+        /// <summary>COM return code indicating a method called at an unexpected time</summary>
         protected const int E_UNEXPECTED = unchecked((int)0x8000FFFF);
 
-        // Info regarding a (input or output) pin
+        /// <summary>
+        /// Info regarding a (input or output) pin
+        /// </summary>
         private struct PinDef
         {
             public bool fTypeSet;
@@ -45,14 +149,26 @@ namespace MediaObjectTemplate
 
 
         /// <summary>
-        /// Used by ParamClass to specify which timeformats are supported
+        /// Used by the IMediaObjectImpl constructor to specify which timeformats are supported
         /// </summary>
         [Flags]
         protected enum TimeFormatFlags
         {
-            None = 0, // Unless you have zero parameters, you should never use this
+            /// <summary>
+            /// Used only when the DMO has no parameters
+            /// </summary>
+            None = 0,
+            /// <summary>
+            /// Reference time, in 100-nanosecond units.  All DMOs should support this format.
+            /// </summary>
             Reference = 1,
+            /// <summary>
+            /// Music time, in parts per quarter note.
+            /// </summary>
             Music = 2,
+            /// <summary>
+            /// Samples per second.
+            /// </summary>
             Samples = 4
         }
 
@@ -564,8 +680,15 @@ namespace MediaObjectTemplate
 
         #region API
 
+        /// <summary>
+        /// Compare two blocks of memory to see if they are identical
+        /// </summary>
+        /// <param name="Destination">Pointer to first block</param>
+        /// <param name="Source">Pointer to second block</param>
+        /// <param name="Length">Number of bytes to compare</param>
+        /// <returns>The number of bytes that compare as equal. If all bytes compare as equal, the input Length is returned.</returns>
         [DllImport("NTDll.dll", EntryPoint="RtlCompareMemory")]
-        public static extern int CompareMemory(IntPtr Destination, IntPtr Source, [MarshalAs(UnmanagedType.U4)] int Length);
+        private static extern int CompareMemory(IntPtr Destination, IntPtr Source, [MarshalAs(UnmanagedType.U4)] int Length);
 
         #endregion
 
@@ -607,7 +730,7 @@ namespace MediaObjectTemplate
         /// </summary>
         /// <param name="i">bitmap to check</param>
         /// <returns>Count of the number of bits set</returns>
-        public static int CountBits(int i)
+        internal static int CountBits(int i)
         {
             int iRet = 0;
 
@@ -624,34 +747,11 @@ namespace MediaObjectTemplate
         }
 
         /// <summary>
-        /// Check to see if two Media Types are exactly the same
-        /// </summary>
-        /// <param name="pmt1">Media type to compare</param>
-        /// <param name="pmt2">Media type to compare</param>
-        /// <returns>true if types are identical, else false</returns>
-        static public bool TypesMatch(AMMediaType pmt1, AMMediaType pmt2)
-        {
-            if (pmt1.majorType  == pmt2.majorType &&
-                pmt1.subType    == pmt2.subType &&
-                pmt1.sampleSize == pmt2.sampleSize &&
-                pmt1.formatType == pmt2.formatType &&
-                pmt1.formatSize == pmt2.formatSize &&
-                pmt1.formatSize == CompareMemory(pmt1.formatPtr, pmt2.formatPtr, pmt1.formatSize))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        /// <summary>
         /// Make a clone of a media type
         /// </summary>
         /// <param name="pmt1">The AMMediaType to clone</param>
-        /// <returns>The clone - must be freed with DsUtils.FreeMediaType when no longer needed or it will leak</returns>
-        static protected AMMediaType MoCloneMediaType(AMMediaType pmt1)
+        /// <returns>Returns the clone</returns>
+        static private AMMediaType MoCloneMediaType(AMMediaType pmt1)
         {
             AMMediaType pRet = new AMMediaType();
             DMOUtils.MoCopyMediaType(pRet, pmt1);
@@ -660,58 +760,10 @@ namespace MediaObjectTemplate
         }
 
         /// <summary>
-        /// Is the media type set for the specified input stream?
-        /// </summary>
-        /// <param name="ulInputStreamIndex">Zero based stream number to check</param>
-        /// <returns>true if the stream type is set</returns>
-        protected bool InputTypeSet(int ulInputStreamIndex)
-        {
-            Debug.Assert(ulInputStreamIndex < m_NumInputs);
-            return m_InputInfo[ulInputStreamIndex].fTypeSet;
-        }
-
-        /// <summary>
-        /// Is the media type set for the specified output stream?
-        /// </summary>
-        /// <param name="ulOutputStreamIndex">Zero based stream number to check</param>
-        /// <returns>true if the stream type is set</returns>
-        protected bool OutputTypeSet(int ulOutputStreamIndex)
-        {
-            Debug.Assert(ulOutputStreamIndex < m_NumOutputs);
-            return m_OutputInfo[ulOutputStreamIndex].fTypeSet;
-        }
-        /// <summary>
-        /// Get the AMMediaType for the specified Input stream
-        /// </summary>
-        /// <param name="ulInputStreamIndex">The stream to get the media type for</param>
-        /// <returns>The media type for the stream, or null if not set</returns>
-        protected AMMediaType InputType(int ulInputStreamIndex)
-        {
-            if (!InputTypeSet(ulInputStreamIndex)) 
-            {
-                return null;
-            }
-            return m_InputInfo[ulInputStreamIndex].CurrentMediaType;
-        }
-        /// <summary>
-        /// Get the AMMediaType for the specified Output stream
-        /// </summary>
-        /// <param name="ulOutputStreamIndex">The stream to get the media type for</param>
-        /// <returns>The media type for the stream, or null if not set</returns>
-        protected AMMediaType OutputType(int ulOutputStreamIndex)
-        {
-            if (!OutputTypeSet(ulOutputStreamIndex)) 
-            {
-                return null;
-            }
-            return m_OutputInfo[ulOutputStreamIndex].CurrentMediaType;
-        }
-
-        /// <summary>
         /// Set m_fTypesSet by making sure types are set for all input and non-optional output streams.
         /// </summary>
         /// <returns>true if all types are set</returns>
-        protected bool CheckAllTypesSet()
+        private bool CheckAllTypesSet()
         {
             DMOOutputStreamInfo dwFlags;
             int dw;
@@ -768,21 +820,128 @@ namespace MediaObjectTemplate
             return hr;
         }
 
+
         /// <summary>
         /// Create a definition for a parameter that is accessible thru IMediaParamInfo
-        /// & IMediaParams.
+        /// and IMediaParams.
         /// </summary>
-        /// <param name="iParamNum">zero based parameter number to set the definition for</param>
+        /// <param name="iParamNum">Zero based parameter number to set the definition for</param>
         /// <param name="p">Populated ParamInfo struct</param>
-        /// <param name="sText">format string (described in MSDN under IMediaParamInfo::GetParamText)</param>
-        protected void DefineParam(int iParamNum, ParamInfo p, string sText)
+        /// <param name="sText">Format string (described in MSDN under IMediaParamInfo::GetParamText)</param>
+        /// <remarks>
+        /// This method should be called from the constructor of the class that implements IMediaObjectImpl.  It
+        /// defines a single parameter that can be set on the DMO.  You must call it once for each of the
+        /// parameters defined in the call to the IMediaObjectImpl constructor.  This allows for automatic
+        /// support of the IMediaParamInfo and IMediaParams methods.  See the 
+        /// <see cref="IMediaObjectImpl.ParamCalcValueForTime"/> for additional details.
+        /// </remarks>
+        protected void ParamDefine(int iParamNum, ParamInfo p, string sText)
         {
             m_Params.DefineParam(iParamNum, p, sText);
         }
 
-        protected MPData CalcValueForTime(int dwParam, long rtTimeStamp)
+        /// <summary>
+        /// Given a parameter number and a time, return the parameter value at that time.
+        /// </summary>
+        /// <param name="dwParam">Zero based parameter number</param>
+        /// <param name="rtTimeStamp">Time</param>
+        /// <returns>Calculated value for the specified time</returns>
+        /// <remarks>
+        /// Parameters for DMO can be set in one of two ways.  IMediaParams.SetParam can
+        /// be used to set a parameter to a specific value.  It is useful for setting values
+        /// that aren't intended to change over time.  There is also IMediaParams.AddEnvelope.  This
+        /// method can be use for things that change over time.  For example, consider a parameter
+        /// for adjusting the audio volume.  You might want to be able to have the volume go from 0%
+        /// to 150% over the first x seconds.  
+        /// <para>You can easily support both by using this method.
+        /// As you prepare to process buffers, take the timestamp that applies to that buffer, and 
+        /// call this method to get the desired value for that parameter at that that time.
+        /// </para>
+        /// </remarks>
+        protected MPData ParamCalcValueForTime(int dwParam, long rtTimeStamp)
         {
             return m_Params.Envelopes[dwParam].CalcValueForTime(rtTimeStamp);
+        }
+
+        /// <summary>
+        /// Check to see if two Media Types are exactly the same
+        /// </summary>
+        /// <param name="pmt1">Media type to compare</param>
+        /// <param name="pmt2">Media type to compare</param>
+        /// <returns>true if types are identical, else false</returns>
+        static protected bool TypesMatch(AMMediaType pmt1, AMMediaType pmt2)
+        {
+            if (pmt1.majorType  == pmt2.majorType &&
+                pmt1.subType    == pmt2.subType &&
+                pmt1.sampleSize == pmt2.sampleSize &&
+                pmt1.formatType == pmt2.formatType &&
+                pmt1.formatSize == pmt2.formatSize &&
+                pmt1.formatSize == CompareMemory(pmt1.formatPtr, pmt2.formatPtr, pmt1.formatSize))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Check whether the media type is set for the specified input stream
+        /// </summary>
+        /// <param name="ulInputStreamIndex">Zero based stream number to check</param>
+        /// <returns>true if the stream type is set</returns>
+        protected bool InputTypeSet(int ulInputStreamIndex)
+        {
+            Debug.Assert(ulInputStreamIndex < m_NumInputs);
+            return m_InputInfo[ulInputStreamIndex].fTypeSet;
+        }
+
+        /// <summary>
+        /// Check whether the media type is set for the specified output stream
+        /// </summary>
+        /// <param name="ulOutputStreamIndex">Zero based stream number to check</param>
+        /// <returns>true if the stream type is set</returns>
+        protected bool OutputTypeSet(int ulOutputStreamIndex)
+        {
+            Debug.Assert(ulOutputStreamIndex < m_NumOutputs);
+            return m_OutputInfo[ulOutputStreamIndex].fTypeSet;
+        }
+        /// <summary>
+        /// Get the AMMediaType for the specified Input stream
+        /// </summary>
+        /// <param name="ulInputStreamIndex">The stream to get the media type for</param>
+        /// <returns>The media type for the stream, or null if not set</returns>
+        /// <remarks>
+        /// The abstract class will call <see cref="IMediaObjectImpl.InternalCheckInputType"/> to see
+        /// whether a given media type is supported.  To see what media type was actually set, the
+        /// derived class can call this method.
+        /// </remarks>
+        protected AMMediaType InputType(int ulInputStreamIndex)
+        {
+            if (!InputTypeSet(ulInputStreamIndex)) 
+            {
+                return null;
+            }
+            return m_InputInfo[ulInputStreamIndex].CurrentMediaType;
+        }
+        /// <summary>
+        /// Get the AMMediaType for the specified Output stream
+        /// </summary>
+        /// <param name="ulOutputStreamIndex">The stream to get the media type for</param>
+        /// <returns>The media type for the stream, or null if not set</returns>
+        /// <remarks>
+        /// The abstract class will call <see cref="IMediaObjectImpl.InternalCheckOutputType"/> to see
+        /// whether a given media type is supported.  To see what media type was actually set, the
+        /// derived class can call this method.
+        /// </remarks>
+        protected AMMediaType OutputType(int ulOutputStreamIndex)
+        {
+            if (!OutputTypeSet(ulOutputStreamIndex)) 
+            {
+                return null;
+            }
+            return m_OutputInfo[ulOutputStreamIndex].CurrentMediaType;
         }
 
 
@@ -793,6 +952,13 @@ namespace MediaObjectTemplate
         /// </summary>
         /// <param name="iInputs">Number of input streams</param>
         /// <param name="iOutputs">Number of output streams</param>
+        /// <param name="iParams">Number of parameters</param>
+        /// <param name="iTimeFormats">What time formats the parameters support</param>
+        /// <remarks>
+        /// This constructor will be called from the constructor of the class that implements 
+        /// IMediaObjectImpl. See <see cref="IMediaObjectImpl"/> for a step by step description 
+        /// of the process.
+        /// </remarks>
         protected IMediaObjectImpl(int iInputs, int iOutputs, int iParams, TimeFormatFlags iTimeFormats)
         {
             iInstanceCount++;
@@ -815,6 +981,7 @@ namespace MediaObjectTemplate
         /// <summary>
         /// Destructor
         /// </summary>
+        /// <exclude></exclude>
         ~IMediaObjectImpl() 
         {
             int dwCurrentType;
@@ -843,54 +1010,158 @@ namespace MediaObjectTemplate
 
         #region Abstract methods
 
-        // These methods MUST be implemented by any class that wants to inherit from IMediaObjectImpl
-
-        // Reports whether the DMO supports the specified AMMediaType for input
+        /// <summary>
+        /// (Abstract) Determine whether the input stream supports a specific media type
+        /// </summary>
+        /// <param name="dwInputStreamIndex">Input stream number</param>
+        /// <param name="pmt">The media type to check</param>
+        /// <returns>S_OK if the specified stream supports the specified media type, 
+        /// else DMOResults.E_InvalidType</returns>
+        /// <remarks>
+        /// This method is called by the abstract class.  The implementor should check the
+        /// properties of the AMMediaType to ensure that if a sample of the specified type
+        /// is sent, it will be able to process it.
+        /// </remarks>
         abstract protected int InternalCheckInputType(int dwInputStreamIndex, AMMediaType pmt);
 
-        // Reports whether the DMO supports the specified AMMediaType for output
+        /// <summary>
+        /// (Abstract) Determine whether the output stream supports a specific media type
+        /// </summary>
+        /// <param name="dwInputStreamIndex">Output stream number</param>
+        /// <param name="pmt">The media type to check</param>
+        /// <returns>S_OK if the specified stream supports the specified media type, 
+        /// else DMOResults.E_InvalidType</returns>
+        /// <remarks>
+        /// This method is called by the abstract class.  The implementor should check the
+        /// properties of the AMMediaType to ensure that if requested, it can produce an
+        /// output sample of the specified type.
+        /// </remarks>
         abstract protected int InternalCheckOutputType(int dwOutputStreamIndex, AMMediaType pmt);
 
-        // Reports the size and alignment needed for output buffers
+        /// <summary>
+        /// (Abstract) Determine the requirements for the output stream
+        /// </summary>
+        /// <param name="dwOutputStreamIndex">Output stream number</param>
+        /// <param name="pcbSize">The minimum size of an output buffer for this stream, in bytes</param>
+        /// <param name="pcbAlignment">The required buffer alignment, in bytes. If the output stream 
+        /// has no alignment requirement, the value is 1.</param>
+        /// <returns>S_OK to indicate successful operation.</returns>
+        /// <remarks>
+        /// This method is called by the abstract class.  You should never return zero for the alignment.
+        /// </remarks>
         abstract protected int InternalGetOutputSizeInfo(int dwOutputStreamIndex, out int pcbSize, out int pcbAlignment);
 
-        // Flushes all input/output buffers
+        /// <summary>
+        /// (Abstract) Called to flush all pending processing
+        /// </summary>
+        /// <returns>S_OK to indicate successful operation</returns>
+        /// <remarks>
+        /// This method is called by the abstract class.  In response, the implementor should discard
+        /// any pending input buffers.
+        /// </remarks>
         abstract protected int InternalFlush();
 
-        // Examine the input buffers to make sure they can be processed.  Possibly begin the processing.
+        /// <summary>
+        /// (Abstract) Accept input buffers to be processed
+        /// </summary>
+        /// <param name="dwInputStreamIndex">Input stream number</param>
+        /// <param name="pBuffer">Input buffer to process</param>
+        /// <param name="dwFlags">Processing flags</param>
+        /// <param name="rtTimestamp">Timestamp of sample(s)</param>
+        /// <param name="rtTimelength">Length of sample(s)</param>
+        /// <returns>S_OK if the operation completes successfully, S_FALSE if there
+        /// is no input to process.</returns>
+        /// <remarks>
+        /// This method is called by the abstract class.  It passes the actual data to be process to the 
+        /// implementor.  Commonly, the implementor stores these values, waiting for the call to 
+        /// InternalProcessOutput (which contains the buffers into which the results are to be stored), at
+        /// which point they are released.
+        /// </remarks>
         abstract protected int InternalProcessInput(int dwInputStreamIndex, IMediaBuffer pBuffer, DMOInputDataBuffer dwFlags, long rtTimestamp, long rtTimelength);
 
-        // Fill the output buffers with processed data from the input buffers
+        /// <summary>
+        /// (Abstract) Process the input buffers from a previous call to InternalProcessInput into the provided output buffers
+        /// </summary>
+        /// <param name="dwFlags">Flags controlling the operation</param>
+        /// <param name="cOutputBufferCount">The number of buffers provided (one per output stream)</param>
+        /// <param name="pOutputBuffers">The output buffer into which the data is processed</param>
+        /// <param name="pdwStatus">Zero</param>
+        /// <returns>S_FALSE if there is no output, S_OK for successful operation.</returns>
+        /// <remarks>
+        /// This method is called by the abstract class.  It passes the output buffers to the implementor.
+        /// Typically, this is when the actual work is done, processing the input buffers into the output
+        /// buffers.
+        /// </remarks>
         abstract protected int InternalProcessOutput(DMOProcessOutput dwFlags, int cOutputBufferCount,  DMOOutputDataBuffer [] pOutputBuffers,  out int pdwStatus);
 
-        // Report whether you are ready for more input buffers
+        /// <summary>
+        /// (Abstract) Report whether more input buffers can be accepted
+        /// </summary>
+        /// <param name="dwInputStreamIndex">Input stream number</param>
+        /// <returns>S_OK if the implementor is ready to accept an input buffer, else S_FALSE</returns>
+        /// <remarks>
+        /// This method is called by the abstract class.  If the implementor has room for another input buffer, it
+        /// should return S_OK.  It is perfectly acceptable for a DMO to only accept one input buffer at a time, and
+        /// to return S_FALSE until InternalProcessOutput has been called to process the buffer.
+        /// </remarks>
         abstract protected int InternalAcceptingInput(int dwInputStreamIndex);
 
         #endregion
 
         #region Virtual Methods
 
-        // Child classes MAY override these if they need additional/different processing
-
-        // Assumes the stream has no time stamps or that the stream is stopped
-        virtual protected long GetCurrentTime()
+        /// <summary>
+        /// (Virtual) Returns the current time in the media stream
+        /// </summary>
+        /// <returns>The current time in the media stream</returns>
+        /// <remarks>
+        /// Typically, this function should be overridden to return the most recent timestamp
+        /// from the last call to InternalProcessInput.  It is used to support IMediaParams.GetParam.
+        /// The default implementation assumes the stream has no time stamps or that the stream is 
+        /// stopped.
+        /// </remarks>
+        virtual protected long InternalGetCurrentTime()
         {
             return 0;
         }
 
-        // Assumes we don't need to allocate any addition resources to perform the processing
+        /// <summary>
+        /// (Virtual) Allows stream resources to be allocated
+        /// </summary>
+        /// <returns>S_OK for successful operation</returns>
+        /// <remarks>
+        /// Allows the implementor to allocate any resources necessary for performing the processing.  
+        /// The default implementation assumes we don't need to allocate any addition resources to 
+        /// perform the processing.
+        /// </remarks>
         virtual protected int InternalAllocateStreamingResources()
         {
             return S_OK;
         }
 
-        // Assumes we don't have any resources that need to be freed
+        /// <summary>
+        /// (Virtual) Allows stream resources to be released
+        /// </summary>
+        /// <returns>S_OK for successful operation</returns>
+        /// <remarks>
+        /// Allows the implementor to release any resources used for performing the processing.  
+        /// The default implementation assumes we don't need to release any addition resources.
+        /// </remarks>
         virtual protected int InternalFreeStreamingResources()
         {
             return S_OK;
         }
 
-        // Reports what we need to be able to process an input buffer
+        /// <summary>
+        /// (Virtual) Controls information about how input buffers are formatted
+        /// </summary>
+        /// <param name="dwInputStreamIndex">Input stream number</param>
+        /// <param name="pdwFlags">Flags specifying how input buffers need to be formatted</param>
+        /// <returns>S_OK for successful completion</returns>
+        /// <remarks>
+        /// Allows the implementor to specify flags controlling the format of input buffers.  The default
+        /// implementation return FixedSampleSize | SingleSamplePerBuffer | WholeSamples
+        /// </remarks>
         virtual protected int InternalGetInputStreamInfo(int dwInputStreamIndex, out DMOInputStreamInfo pdwFlags)
         {
             pdwFlags = DMOInputStreamInfo.FixedSampleSize |
@@ -900,7 +1171,16 @@ namespace MediaObjectTemplate
             return S_OK;
         }
 
-        // Reports what we will provide for output buffers
+        /// <summary>
+        /// (Virtual) Controls information about how output buffers are formatted
+        /// </summary>
+        /// <param name="dwInputStreamIndex">Output stream number</param>
+        /// <param name="pdwFlags">Flags specifying how output buffers need to be formatted</param>
+        /// <returns>S_OK for successful completion</returns>
+        /// <remarks>
+        /// Allows the implementor to specify flags controlling the format of output buffers.  The default
+        /// implementation returns WholeSamples | SingleSamplePerBuffer | FixedSampleSize
+        /// </remarks>
         virtual protected int InternalGetOutputStreamInfo(int dwOutputStreamIndex, out DMOOutputStreamInfo pdwFlags)
         {
             pdwFlags = DMOOutputStreamInfo.WholeSamples |
@@ -910,14 +1190,35 @@ namespace MediaObjectTemplate
             return S_OK;
         }
 
-        // We don't enumerate our supported type.  Just try setting something and see if it works.
+        /// <summary>
+        /// (Virtual) Retrieves a preferred media type for a specified input stream
+        /// </summary>
+        /// <param name="dwInputStreamIndex">Input stream number</param>
+        /// <param name="dwTypeIndex">Index into the array of supported media types</param>
+        /// <param name="pmt">The media type</param>
+        /// <returns>DMOResults.E_NoMoreItems if out of range or S_OK for successful completion</returns>
+        /// <remarks>
+        /// If the implementor supports returning a collection of supported media types, it should override
+        /// this method.  The default implementation assumes we don't enumerate our supported types.  The
+        /// app calling this DMO should just try setting something and see if it works.
+        /// </remarks>
         virtual protected int InternalGetInputType(int dwInputStreamIndex, int dwTypeIndex,  out AMMediaType pmt)
         {
             pmt = null;
             return DMOResults.E_NoMoreItems;
         }
 
-        // Assumes our output type is the same as our input type
+        /// <summary>
+        /// (Virtual) Retrieves a preferred media type for a specified output stream
+        /// </summary>
+        /// <param name="dwOutputStreamIndex">Output stream number</param>
+        /// <param name="dwTypeIndex">Index into the array of supported media types</param>
+        /// <param name="pmt">The media type</param>
+        /// <returns>DMOResults.E_NoMoreItems if out of range or S_OK for successful completion</returns>
+        /// <remarks>
+        /// If the implementor supports returning a collection of supported media types, it should override
+        /// this method.  The default implementation assumes our output type is the same as our input type.
+        /// </remarks>
         virtual protected int InternalGetOutputType(int dwOutputStreamIndex, int dwTypeIndex, out AMMediaType pmt)
         {
             int hr;
@@ -944,8 +1245,19 @@ namespace MediaObjectTemplate
             return hr;
         }
 
-        // Reports that we can accept any alignment, hold no lookahead buffers, and the
-        // input buffer must be at least 1 byte long
+        /// <summary>
+        /// (Virtual) Retrieves the buffer requirements for a specified input stream
+        /// </summary>
+        /// <param name="dwInputStreamIndex">Input stream number</param>
+        /// <param name="pcbSize">Minimum size of an input buffer for this stream, in bytes</param>
+        /// <param name="pcbMaxLookahead">Maximum amount of data that the DMO will hold for lookahead, in bytes</param>
+        /// <param name="pcbAlignment">the required buffer alignment, in bytes. If the input stream has no alignment requirement, the value is 1.</param>
+        /// <returns>S_OK for successful operation</returns>
+        /// <remarks>
+        /// The implementator could override this method to specify different values.  The default 
+        /// implementation reports that we can accept any alignment, hold no lookahead buffers, and the
+        /// input buffer must be at least 1 byte long.  
+        /// </remarks>
         virtual protected int InternalGetInputSizeInfo(int dwInputStreamIndex, out int pcbSize, out int pcbMaxLookahead, out int pcbAlignment)
         {
             pcbSize = 1;
@@ -955,7 +1267,17 @@ namespace MediaObjectTemplate
             return S_OK;
         }
 
-        // We don't support latency
+        /// <summary>
+        /// (Virtual) Retrieves the maximum latency on a specified input stream
+        /// </summary>
+        /// <param name="dwInputStreamIndex">Input stream number</param>
+        /// <param name="prtMaxLatency">Latency</param>
+        /// <returns>S_OK for successful completion</returns>
+        /// <remarks>
+        /// The latency is the difference between a time stamp on the input stream and the corresponding time 
+        /// stamp on the output stream. The maximum latency is the largest possible difference in the time stamps.
+        /// The default implementation returns E_NOTIMPL indicating the DMO doesn't support reporting latency.
+        /// </remarks>
         virtual protected int InternalGetInputMaxLatency(int dwInputStreamIndex, out long prtMaxLatency)
         {
             prtMaxLatency = 0;
@@ -963,13 +1285,28 @@ namespace MediaObjectTemplate
             return E_NOTIMPL;
         }
 
-        // We don't support latency
+        /// <summary>
+        /// (Virtual) Set the maximum latency on a specified input stream
+        /// </summary>
+        /// <param name="dwInputStreamIndex">Input stream number</param>
+        /// <param name="rtMaxLatency">Maximum latency</param>
+        /// <returns>S_OK for successful operation</returns>
+        /// <remarks>
+        /// The default implementation returns E_NOTIMPL indicating the DMO doesn't support reporting latency.
+        /// </remarks>
         virtual protected int InternalSetInputMaxLatency(int dwInputStreamIndex, long rtMaxLatency)
         {
             return E_NOTIMPL;
         }
 
-        // No special processing is needed to support Discontinuities
+        /// <summary>
+        /// (Virtual) Called to notify of a stream discontinuity
+        /// </summary>
+        /// <param name="dwInputStreamIndex">Input stream number</param>
+        /// <returns>S_OK for successful operation</returns>
+        /// <remarks>
+        /// The default implementation assumes no special processing is required for discontinuities.
+        /// </remarks>
         virtual protected int InternalDiscontinuity(int dwInputStreamIndex)
         {
             return S_OK;
@@ -980,6 +1317,13 @@ namespace MediaObjectTemplate
 
         #region IMediaObject methods
 
+        /// <summary>
+        /// COM entry point for IMediaObject.GetStreamCount
+        /// </summary>
+        /// <remarks>
+        /// There should be no need to modify or override this method.  It will call the
+        /// abstract and virtual methods to perform its work.
+        /// </remarks>
         public int GetStreamCount(out int pulNumberOfInputStreams, out int pulNumberOfOutputStreams)
         {
             int hr;
@@ -1015,6 +1359,13 @@ namespace MediaObjectTemplate
             return hr;
         }
 
+        /// <summary>
+        /// COM entry point for IMediaObject.GetInputStreamInfo
+        /// </summary>
+        /// <remarks>
+        /// There should be no need to modify or override this method.  It will call the
+        /// abstract and virtual methods to perform its work.
+        /// </remarks>
         public int GetInputStreamInfo(int ulStreamIndex, out DMOInputStreamInfo pdwFlags)
         {
             int hr;
@@ -1060,6 +1411,13 @@ namespace MediaObjectTemplate
             return hr;
         }
 
+        /// <summary>
+        /// COM entry point for IMediaObject.GetOutputStreamInfo
+        /// </summary>
+        /// <remarks>
+        /// There should be no need to modify or override this method.  It will call the
+        /// abstract and virtual methods to perform its work.
+        /// </remarks>
         public int GetOutputStreamInfo(int ulStreamIndex, out DMOOutputStreamInfo pdwFlags)
         {
             int hr;
@@ -1106,6 +1464,13 @@ namespace MediaObjectTemplate
             return hr;
         }
 
+        /// <summary>
+        /// COM entry point for IMediaObject.GetInputType
+        /// </summary>
+        /// <remarks>
+        /// There should be no need to modify or override this method.  It will call the
+        /// abstract and virtual methods to perform its work.
+        /// </remarks>
         public int GetInputType(int ulStreamIndex, int ulTypeIndex, AMMediaType pmt) 
         {
             int hr;
@@ -1149,6 +1514,13 @@ namespace MediaObjectTemplate
             return hr;
         }
 
+        /// <summary>
+        /// COM entry point for IMediaObject.GetOutputType
+        /// </summary>
+        /// <remarks>
+        /// There should be no need to modify or override this method.  It will call the
+        /// abstract and virtual methods to perform its work.
+        /// </remarks>
         public int GetOutputType(int ulStreamIndex, int ulTypeIndex, AMMediaType pmt) 
         {
             int hr;
@@ -1196,6 +1568,13 @@ namespace MediaObjectTemplate
             return hr;
         }
 
+        /// <summary>
+        /// COM entry point for IMediaObject.GetInputCurrentType
+        /// </summary>
+        /// <remarks>
+        /// There should be no need to modify or override this method.  It will call the
+        /// abstract and virtual methods to perform its work.
+        /// </remarks>
         public int GetInputCurrentType(int ulStreamIndex, AMMediaType pmt) 
         {
             int hr;
@@ -1241,6 +1620,13 @@ namespace MediaObjectTemplate
             return hr;
         }
 
+        /// <summary>
+        /// COM entry point for IMediaObject.GetOutputCurrentType
+        /// </summary>
+        /// <remarks>
+        /// There should be no need to modify or override this method.  It will call the
+        /// abstract and virtual methods to perform its work.
+        /// </remarks>
         public int GetOutputCurrentType(int ulStreamIndex, AMMediaType pmt) 
         {
             int hr;
@@ -1286,6 +1672,13 @@ namespace MediaObjectTemplate
             return hr;
         }
 
+        /// <summary>
+        /// COM entry point for IMediaObject.GetInputSizeInfo
+        /// </summary>
+        /// <remarks>
+        /// There should be no need to modify or override this method.  It will call the
+        /// abstract and virtual methods to perform its work.
+        /// </remarks>
         public int GetInputSizeInfo(int ulStreamIndex, out int pulSize, out int pcbMaxLookahead, out int pulAlignment) 
         {
             int hr;
@@ -1336,6 +1729,13 @@ namespace MediaObjectTemplate
             return hr;
         }
 
+        /// <summary>
+        /// COM entry point for IMediaObject.GetOutputSizeInfo
+        /// </summary>
+        /// <remarks>
+        /// There should be no need to modify or override this method.  It will call the
+        /// abstract and virtual methods to perform its work.
+        /// </remarks>
         public int GetOutputSizeInfo(int ulStreamIndex, out int pulSize, out int pulAlignment) 
         {
             int hr;
@@ -1382,6 +1782,13 @@ namespace MediaObjectTemplate
             return hr;
         }
 
+        /// <summary>
+        /// COM entry point for IMediaObject.SetInputType
+        /// </summary>
+        /// <remarks>
+        /// There should be no need to modify or override this method.  It will call the
+        /// abstract and virtual methods to perform its work.
+        /// </remarks>
         public int SetInputType(int ulStreamIndex, AMMediaType pmt, DMOSetType dwFlags) 
         {
             int hr;
@@ -1485,6 +1892,13 @@ namespace MediaObjectTemplate
             return hr;
         }
 
+        /// <summary>
+        /// COM entry point for IMediaObject.SetOutputType
+        /// </summary>
+        /// <remarks>
+        /// There should be no need to modify or override this method.  It will call the
+        /// abstract and virtual methods to perform its work.
+        /// </remarks>
         public int SetOutputType(int ulStreamIndex, AMMediaType pmt, DMOSetType dwFlags) 
         {
             int hr = S_OK;
@@ -1586,6 +2000,13 @@ namespace MediaObjectTemplate
             return hr;
         }
 
+        /// <summary>
+        /// COM entry point for IMediaObject.GetInputStatus
+        /// </summary>
+        /// <remarks>
+        /// There should be no need to modify or override this method.  It will call the
+        /// abstract and virtual methods to perform its work.
+        /// </remarks>
         public int GetInputStatus(int ulStreamIndex, out DMOInputStatusFlags pdwStatus) 
         {
             int hr;
@@ -1638,6 +2059,13 @@ namespace MediaObjectTemplate
             return hr;
         }
 
+        /// <summary>
+        /// COM entry point for IMediaObject.GetInputMaxLatency
+        /// </summary>
+        /// <remarks>
+        /// There should be no need to modify or override this method.  It will call the
+        /// abstract and virtual methods to perform its work.
+        /// </remarks>
         public int GetInputMaxLatency(int ulStreamIndex, out long prtLatency) 
         {
             int hr;
@@ -1674,6 +2102,13 @@ namespace MediaObjectTemplate
             return hr;
         }
 
+        /// <summary>
+        /// COM entry point for IMediaObject.SetInputMaxLatency
+        /// </summary>
+        /// <remarks>
+        /// There should be no need to modify or override this method.  It will call the
+        /// abstract and virtual methods to perform its work.
+        /// </remarks>
         public int SetInputMaxLatency(int ulStreamIndex, long rtLatency) 
         {
             int hr;
@@ -1706,6 +2141,13 @@ namespace MediaObjectTemplate
             return hr;
         }
 
+        /// <summary>
+        /// COM entry point for IMediaObject.Discontinuity
+        /// </summary>
+        /// <remarks>
+        /// There should be no need to modify or override this method.  It will call the
+        /// abstract and virtual methods to perform its work.
+        /// </remarks>
         public int Discontinuity(int ulStreamIndex) 
         {
             int hr;
@@ -1756,6 +2198,13 @@ namespace MediaObjectTemplate
             return hr;
         }
 
+        /// <summary>
+        /// COM entry point for IMediaObject.Flush
+        /// </summary>
+        /// <remarks>
+        /// There should be no need to modify or override this method.  It will call the
+        /// abstract and virtual methods to perform its work.
+        /// </remarks>
         public int Flush()
         {
             int hr;
@@ -1791,6 +2240,13 @@ namespace MediaObjectTemplate
             return hr;
         }
 
+        /// <summary>
+        /// COM entry point for IMediaObject.AllocateStreamingResources
+        /// </summary>
+        /// <remarks>
+        /// There should be no need to modify or override this method.  It will call the
+        /// abstract and virtual methods to perform its work.
+        /// </remarks>
         public int AllocateStreamingResources() 
         {
             int hr;
@@ -1837,6 +2293,13 @@ namespace MediaObjectTemplate
             return hr;
         }
 
+        /// <summary>
+        /// COM entry point for IMediaObject.FreeStreamingResources
+        /// </summary>
+        /// <remarks>
+        /// There should be no need to modify or override this method.  It will call the
+        /// abstract and virtual methods to perform its work.
+        /// </remarks>
         public int FreeStreamingResources()
         {
             int hr;
@@ -1871,6 +2334,13 @@ namespace MediaObjectTemplate
             return hr;
         }
 
+        /// <summary>
+        /// COM entry point for IMediaObject.ProcessInput
+        /// </summary>
+        /// <remarks>
+        /// There should be no need to modify or override this method.  It will call the
+        /// abstract and virtual methods to perform its work.
+        /// </remarks>
         public int ProcessInput(
             int ulStreamIndex,
             IMediaBuffer pBuffer,
@@ -1947,6 +2417,13 @@ namespace MediaObjectTemplate
         }
 
 
+        /// <summary>
+        /// COM entry point for IMediaObject.ProcessOutput
+        /// </summary>
+        /// <remarks>
+        /// There should be no need to modify or override this method.  It will call the
+        /// abstract and virtual methods to perform its work.
+        /// </remarks>
         public int ProcessOutput(
             DMOProcessOutput dwFlags,
             int ulOutputBufferCount,
@@ -2024,6 +2501,13 @@ namespace MediaObjectTemplate
             return hr;
         }
 
+        /// <summary>
+        /// COM entry point for IMediaObject.Lock
+        /// </summary>
+        /// <remarks>
+        /// There should be no need to modify or override this method.  It will call the
+        /// abstract and virtual methods to perform its work.
+        /// </remarks>
         public int Lock(bool lLock)
         {
             // Lock is doc'ed to limit access to multiple threads at the same time.  We
@@ -2036,6 +2520,14 @@ namespace MediaObjectTemplate
 
         #region IMediaParamInfo Members
 
+        /// <summary>
+        /// COM entry point for IMediaParamInfo.GetParamCount
+        /// </summary>
+        /// <remarks>
+        /// There should be no need to modify or override this method.  See 
+        /// <see cref="IMediaObjectImpl.ParamDefine"/> and <see cref="IMediaObjectImpl.ParamCalcValueForTime"/>
+        /// for details about how this works.
+        /// </remarks>
         public int GetParamCount(out int pdwParams)
         {
             int hr;
@@ -2063,6 +2555,14 @@ namespace MediaObjectTemplate
             return hr;
         }
 
+        /// <summary>
+        /// COM entry point for IMediaParamInfo.GetSupportedTimeFormat
+        /// </summary>
+        /// <remarks>
+        /// There should be no need to modify or override this method.  See 
+        /// <see cref="IMediaObjectImpl.ParamDefine"/> and <see cref="IMediaObjectImpl.ParamCalcValueForTime"/>
+        /// for details about how this works.
+        /// </remarks>
         public int GetSupportedTimeFormat(int dwFormatIndex, out Guid pguidTimeFormat)
         {
             int hr;
@@ -2098,6 +2598,14 @@ namespace MediaObjectTemplate
             return hr;
         }
 
+        /// <summary>
+        /// COM entry point for IMediaParamInfo.GetParamInfo
+        /// </summary>
+        /// <remarks>
+        /// There should be no need to modify or override this method.  See 
+        /// <see cref="IMediaObjectImpl.ParamDefine"/> and <see cref="IMediaObjectImpl.ParamCalcValueForTime"/>
+        /// for details about how this works.
+        /// </remarks>
         public int GetParamInfo(int dwParamIndex, out ParamInfo pInfo)
         {
             int hr;
@@ -2133,6 +2641,14 @@ namespace MediaObjectTemplate
             return hr;
         }
 
+        /// <summary>
+        /// COM entry point for IMediaParamInfo.GetCurrentTimeFormat
+        /// </summary>
+        /// <remarks>
+        /// There should be no need to modify or override this method.  See 
+        /// <see cref="IMediaObjectImpl.ParamDefine"/> and <see cref="IMediaObjectImpl.ParamCalcValueForTime"/>
+        /// for details about how this works.
+        /// </remarks>
         public int GetCurrentTimeFormat(out Guid pguidTimeFormat, out int pTimeData)
         {
             int hr;
@@ -2163,6 +2679,14 @@ namespace MediaObjectTemplate
             return hr;
         }
 
+        /// <summary>
+        /// COM entry point for IMediaParamInfo.GetParamText
+        /// </summary>
+        /// <remarks>
+        /// There should be no need to modify or override this method.  See 
+        /// <see cref="IMediaObjectImpl.ParamDefine"/> and <see cref="IMediaObjectImpl.ParamCalcValueForTime"/>
+        /// for details about how this works.
+        /// </remarks>
         public int GetParamText(int dwParamIndex, out IntPtr ppwchText)
         {
             int hr;
@@ -2198,6 +2722,14 @@ namespace MediaObjectTemplate
             return hr;
         }
 
+        /// <summary>
+        /// COM entry point for IMediaParamInfo.GetNumTimeFormats
+        /// </summary>
+        /// <remarks>
+        /// There should be no need to modify or override this method.  See 
+        /// <see cref="IMediaObjectImpl.ParamDefine"/> and <see cref="IMediaObjectImpl.ParamCalcValueForTime"/>
+        /// for details about how this works.
+        /// </remarks>
         public int GetNumTimeFormats(out int pdwNumTimeFormats)
         {
             int hr;
@@ -2228,6 +2760,14 @@ namespace MediaObjectTemplate
 
         #region IMediaParams Members
 
+        /// <summary>
+        /// COM entry point for IMediaParams.SetTimeFormat
+        /// </summary>
+        /// <remarks>
+        /// There should be no need to modify or override this method.  See 
+        /// <see cref="IMediaObjectImpl.ParamDefine"/> and <see cref="IMediaObjectImpl.ParamCalcValueForTime"/>
+        /// for details about how this works.
+        /// </remarks>
         public int SetTimeFormat(Guid guidTimeFormat, int mpTimeData)
         {
             int hr = E_INVALIDARG;
@@ -2262,6 +2802,14 @@ namespace MediaObjectTemplate
             return hr;
         }
 
+        /// <summary>
+        /// COM entry point for IMediaParams.SetParam
+        /// </summary>
+        /// <remarks>
+        /// There should be no need to modify or override this method.  See 
+        /// <see cref="IMediaObjectImpl.ParamDefine"/> and <see cref="IMediaObjectImpl.ParamCalcValueForTime"/>
+        /// for details about how this works.
+        /// </remarks>
         public int SetParam(int dwParamIndex, MPData value)
         {
             int hr;
@@ -2305,6 +2853,14 @@ namespace MediaObjectTemplate
             return hr;
         }
 
+        /// <summary>
+        /// COM entry point for IMediaParams.AddEnvelope
+        /// </summary>
+        /// <remarks>
+        /// There should be no need to modify or override this method.  See 
+        /// <see cref="IMediaObjectImpl.ParamDefine"/> and <see cref="IMediaObjectImpl.ParamCalcValueForTime"/>
+        /// for details about how this works.
+        /// </remarks>
         public int AddEnvelope(int dwParamIndex, int cSegments, MPEnvelopeSegment[] pEnvelopeSegments)
         {
             int hr;
@@ -2354,6 +2910,14 @@ namespace MediaObjectTemplate
             return hr;
         }
 
+        /// <summary>
+        /// COM entry point for IMediaParams.GetParam
+        /// </summary>
+        /// <remarks>
+        /// There should be no need to modify or override this method.  See 
+        /// <see cref="IMediaObjectImpl.ParamDefine"/> and <see cref="IMediaObjectImpl.ParamCalcValueForTime"/>
+        /// for details about how this works.
+        /// </remarks>
         public int GetParam(int dwParamIndex, out MPData pValue)
         {
             int hr;
@@ -2368,7 +2932,7 @@ namespace MediaObjectTemplate
                     if (dwParamIndex < m_Params.Parms.Length && dwParamIndex >= 0)
                     {
                         // Read the value
-                        pValue = m_Params.Envelopes[dwParamIndex].CalcValueForTime(GetCurrentTime());
+                        pValue = m_Params.Envelopes[dwParamIndex].CalcValueForTime(InternalGetCurrentTime());
                         hr = S_OK;
                     }
                     else
@@ -2391,6 +2955,14 @@ namespace MediaObjectTemplate
             return hr;
         }
 
+        /// <summary>
+        /// COM entry point for IMediaParams.FlushEnvelope
+        /// </summary>
+        /// <remarks>
+        /// There should be no need to modify or override this method.  See 
+        /// <see cref="IMediaObjectImpl.ParamDefine"/> and <see cref="IMediaObjectImpl.ParamCalcValueForTime"/>
+        /// for details about how this works.
+        /// </remarks>
         public int FlushEnvelope(int dwParamIndex, long refTimeStart, long refTimeEnd)
         {
             int hr;
