@@ -671,6 +671,34 @@ namespace DESCombineLib
         }
 
         /// <summary>
+        /// Returns the length of the video group in <see cref="DESCombine.UNITS"/>.
+        /// </summary>
+        /// <remarks>
+        /// This will return the length of the video group.
+        /// </remarks>
+        public long VideoLength
+        {
+            get
+            {
+                return m_Video.Length;
+            }
+        }
+
+        /// <summary>
+        /// Returns the length of the audio group in <see cref="DESCombine.UNITS"/>.
+        /// </summary>
+        /// <remarks>
+        /// This will return the length of the audio group.
+        /// </remarks>
+        public long AudioLength
+        {
+            get
+            {
+                return m_Audio.Length;
+            }
+        }
+
+        /// <summary>
         /// Used to signal that the graph should be cancelled.
         /// </summary>
         /// <remarks>
@@ -695,7 +723,8 @@ namespace DESCombineLib
         /// <remarks>
         /// This method can only be called after one
         /// of the render functions has been called.  Might be useful for debugging.  It is also possible (even easy) 
-        /// to build the DES part of a graph from an XML file, however that functionality has not been implemented.
+        /// to build the DES part of a graph from an XML file, however that functionality has not been implemented
+        /// in this version of the library.
         /// </remarks>
         /// <returns>String containing XML</returns>
         public string GetXML()
@@ -1307,8 +1336,16 @@ namespace DESCombineLib
             m_iCurFrame = 0;
             m_iCurFile = 0;
             MediaFile mf = m_Group.File(m_iCurFile);
-            m_CurFileName = mf.FileName;
-            m_iMaxFrame = mf.LengthInFrames;
+            if (mf != null)
+            {
+                m_CurFileName = mf.FileName;
+                m_iMaxFrame = mf.LengthInFrames;
+            }
+            else
+            {
+                m_CurFileName = null;
+                m_iMaxFrame = int.MaxValue;
+            }
         }
 
 
@@ -1445,7 +1482,12 @@ namespace DESCombineLib
         /// <returns>The specified MediaFile</returns>
         public MediaFile File(int x)
         {
-            return (MediaFile)m_Files[x];
+            if (m_Files.Count > 0)
+            {
+                return (MediaFile)m_Files[x];
+            }
+
+            return null;
         }
 
         /// <summary>
@@ -1460,6 +1502,16 @@ namespace DESCombineLib
             }
         }
 
+        /// <summary>
+        /// Returns the length of the group in <see cref="DESCombine.UNITS"/>.
+        /// </summary>
+        public long Length
+        {
+            get
+            {
+                return m_Length;
+            }
+        }
         /// <summary>
         /// Add a file to the group
         /// </summary>

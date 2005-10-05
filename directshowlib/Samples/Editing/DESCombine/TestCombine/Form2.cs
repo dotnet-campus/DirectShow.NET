@@ -182,7 +182,7 @@ namespace TestConverter
             this.tbEnd.Location = new System.Drawing.Point(112, 128);
             this.tbEnd.Name = "tbEnd";
             this.tbEnd.Size = new System.Drawing.Size(48, 20);
-            this.tbEnd.TabIndex = 1;
+            this.tbEnd.TabIndex = 9;
             this.tbEnd.Text = "-1";
             this.tbEnd.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -191,7 +191,7 @@ namespace TestConverter
             this.tbStart.Location = new System.Drawing.Point(112, 104);
             this.tbStart.Name = "tbStart";
             this.tbStart.Size = new System.Drawing.Size(48, 20);
-            this.tbStart.TabIndex = 0;
+            this.tbStart.TabIndex = 8;
             this.tbStart.Text = "0";
             this.tbStart.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -222,14 +222,14 @@ namespace TestConverter
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.tbVideoFile);
+            this.Controls.Add(this.tbAudioFile);
+            this.Controls.Add(this.tbStart);
+            this.Controls.Add(this.tbEnd);
             this.Controls.Add(this.btnVideo);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.tbAudioFile);
             this.Controls.Add(this.btnAudio);
             this.Controls.Add(this.label14);
-            this.Controls.Add(this.tbStart);
-            this.Controls.Add(this.tbEnd);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label13);

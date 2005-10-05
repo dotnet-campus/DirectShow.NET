@@ -105,7 +105,7 @@ namespace TestConverter
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(152, 288);
+            this.button1.Location = new System.Drawing.Point(148, 288);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 40);
             this.button1.TabIndex = 30;
@@ -152,7 +152,7 @@ namespace TestConverter
             this.rbToAVI.Location = new System.Drawing.Point(8, 40);
             this.rbToAVI.Name = "rbToAVI";
             this.rbToAVI.Size = new System.Drawing.Size(80, 24);
-            this.rbToAVI.TabIndex = 1;
+            this.rbToAVI.TabIndex = 12;
             this.rbToAVI.Text = "To AVI";
             this.rbToAVI.CheckedChanged += new System.EventHandler(this.CheckedChanged);
             // 
@@ -440,6 +440,10 @@ namespace TestConverter
 
             public Chunk(string v, string a, long s, long e)
             {
+                if (v != null && v.Length == 0)
+                {
+                    v = null;
+                }
                 if (a != null && a.Length == 0)
                 {
                     a = null;
@@ -452,6 +456,10 @@ namespace TestConverter
 
             public Chunk(string v, string a, string s, string e)
             {
+                if (v != null && v.Length == 0)
+                {
+                    v = null;
+                }
                 if (a != null && a.Length == 0)
                 {
                     a = null;
@@ -464,13 +472,20 @@ namespace TestConverter
 
             override public string ToString()
             {
-                FileInfo fV = new FileInfo(sVideoFile);
-
                 string sV;
-                string sA = null;
+                string sA;
                 string e;
 
-                sV = fV.Name;
+                if (sVideoFile != null && sVideoFile.Length > 0)
+                {
+                    FileInfo fV = new FileInfo(sVideoFile);
+                    sV = fV.Name;
+                }
+                else
+                {
+                    sV = "<null>";
+                }
+
                 if (sAudioFile != null && sAudioFile.Length > 0)
                 {
                     FileInfo fA = new FileInfo(sAudioFile);
@@ -526,8 +541,15 @@ namespace TestConverter
                         }
                         else
                         {
-                            ds.AddVideoFile(c.sVideoFile, c.lStart, c.lEnd);
-                            ds.AddAudioFile(c.sAudioFile, c.lStart, c.lEnd);
+                            if (c.sVideoFile != null)
+                            {
+                                ds.AddVideoFile(c.sVideoFile, c.lStart, c.lEnd);
+                            }
+
+                            if (c.sAudioFile != null)
+                            {
+                                ds.AddAudioFile(c.sAudioFile, c.lStart, c.lEnd);
+                            }
                         }
                     }
 
@@ -657,17 +679,24 @@ namespace TestConverter
             DialogResult r = f.ShowDialog();
             if (r == DialogResult.OK)
             {
-                if (File.Exists(f.tbVideoFile.Text))
+                if (f.tbVideoFile.Text.Length == 0 || File.Exists(f.tbVideoFile.Text))
                 {
                     if (f.tbAudioFile.Text.Length == 0 || File.Exists(f.tbAudioFile.Text))
                     {
-                        Chunk c = new Chunk(
-                            f.tbVideoFile.Text, 
-                            f.tbAudioFile.Text, 
-                            f.tbStart.Text, 
-                            f.tbEnd.Text);
-                        int i = listBox1.Items.Add(c);
-                        listBox1.SelectedIndex = i;
+                        if (f.tbVideoFile.Text.Length > 0 || f.tbAudioFile.Text.Length > 0)
+                        {
+                            Chunk c = new Chunk(
+                                f.tbVideoFile.Text, 
+                                f.tbAudioFile.Text, 
+                                f.tbStart.Text, 
+                                f.tbEnd.Text);
+                            int i = listBox1.Items.Add(c);
+                            listBox1.SelectedIndex = i;
+                        }
+                        else
+                        {
+                            MessageBox.Show("No file provided");
+                        }
                     }
                     else
                     {
