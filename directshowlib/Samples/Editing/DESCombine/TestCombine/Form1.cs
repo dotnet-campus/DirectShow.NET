@@ -401,7 +401,6 @@ namespace TestConverter
             this.Name = "Form1";
             this.Text = "Test Converter";
             this.Closing += new System.ComponentModel.CancelEventHandler(this.FormClose);
-            this.Load += new System.EventHandler(this.FormLoad);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -429,8 +428,6 @@ namespace TestConverter
             base.Dispose( disposing );
         }
 
-
-        const string sStartDir = @"C:\vss\Richard\Media\";
         private struct Chunk
         {
             public string sVideoFile;
@@ -729,24 +726,6 @@ namespace TestConverter
                     }
                 }
             }        
-        }
-
-        private void FormLoad(object sender, System.EventArgs e)
-        {
-#if DEBUG
-            Chunk c;
-
-            c = new Chunk(sStartDir+"foo.mpg", sStartDir+"foo.mpg", 9 * DESCombine.UNITS, 25 * DESCombine.UNITS);
-            listBox1.Items.Add(c);
-
-            c = new Chunk(sStartDir+"foo.avi", sStartDir+"track3.mp3", 0, Convert.ToInt64(4.27 * DESCombine.UNITS));
-            listBox1.Items.Add(c);
-
-            c = new Chunk(sStartDir+"test.avi", sStartDir+"track2.mp3", 0, -1);
-            listBox1.Items.Add(c);
-
-            listBox1.SelectedIndex = 0;
-#endif
         }
 
         private void FormClose(object sender, System.ComponentModel.CancelEventArgs e)

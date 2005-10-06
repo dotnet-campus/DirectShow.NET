@@ -1,7 +1,3 @@
-todo: 
-remove sStartDir, FormLoad
-readme
-
 The DESCombine can be used to combine multiple audio and video files, or specific sections
 of those files into a single output.  For example, you can take seconds 5-9 of videofile1.avi
 combine them with seconds 2-7 of videofile2.mpg, and output them to foo.avi.  Similarly with
