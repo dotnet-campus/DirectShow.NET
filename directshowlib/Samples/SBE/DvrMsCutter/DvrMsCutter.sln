@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DvrMsCutter", "DvrMsCutter.csproj", "{58BA266F-B6DF-4096-8816-6A97C0A343E7}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{58BA266F-B6DF-4096-8816-6A97C0A343E7}.Debug.ActiveCfg = Debug|.NET
+		{58BA266F-B6DF-4096-8816-6A97C0A343E7}.Debug.Build.0 = Debug|.NET
+		{58BA266F-B6DF-4096-8816-6A97C0A343E7}.Release.ActiveCfg = Release|.NET
+		{58BA266F-B6DF-4096-8816-6A97C0A343E7}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
