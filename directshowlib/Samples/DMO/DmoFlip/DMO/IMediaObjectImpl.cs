@@ -747,19 +747,6 @@ namespace MediaObjectTemplate
         }
 
         /// <summary>
-        /// Make a clone of a media type
-        /// </summary>
-        /// <param name="pmt1">The AMMediaType to clone</param>
-        /// <returns>Returns the clone</returns>
-        static protected AMMediaType MoCloneMediaType(AMMediaType pmt1)
-        {
-            AMMediaType pRet = new AMMediaType();
-            DMOUtils.MoCopyMediaType(pRet, pmt1);
-
-            return pRet;
-        }
-
-        /// <summary>
         /// Set m_fTypesSet by making sure types are set for all input and non-optional output streams.
         /// </summary>
         /// <returns>true if all types are set</returns>
@@ -820,6 +807,23 @@ namespace MediaObjectTemplate
             return hr;
         }
 
+
+        /// <summary>
+        /// Make a clone of a media type
+        /// </summary>
+        /// <param name="pmt1">The AMMediaType to clone</param>
+        /// <returns>Returns the clone</returns>
+        /// <remarks>
+        /// Note that like all AMMediaTypes, the clone must be released
+        /// with DsUtils.FreeAMMediaType when it is no longer needed.
+        /// </remarks>
+        static protected AMMediaType MoCloneMediaType(AMMediaType pmt1)
+        {
+            AMMediaType pRet = new AMMediaType();
+            DMOUtils.MoCopyMediaType(pRet, pmt1);
+
+            return pRet;
+        }
 
         /// <summary>
         /// Create a definition for a parameter that is accessible thru IMediaParamInfo

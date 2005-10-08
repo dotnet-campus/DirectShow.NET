@@ -553,48 +553,65 @@ namespace DmoFlip
             IntPtr pbOutData;
             int cbOutData;
             int cbCurrent;
-            int hr;
+            int hr = S_OK;
 
             pdwStatus = 0;
 
             // No input buffers to process
             if (m_pBuffer != null)
             {
-                // Get a pointer to the output buffer
-                hr = pOutputBuffers[0].pBuffer.GetBufferAndLength(out pbOutData, out cbCurrent);
-                if (hr >= 0)
+                if (pOutputBuffers[0].pBuffer != null)
                 {
-                    hr = pOutputBuffers[0].pBuffer.GetMaxLength(out cbOutData);
+                    // Get a pointer to the output buffer
+                    hr = pOutputBuffers[0].pBuffer.GetBufferAndLength(out pbOutData, out cbCurrent);
                     if (hr >= 0)
                     {
-                        // Make sure we have room
-                        if (cbOutData >= cbCurrent + OutputType(0).sampleSize)
+                        hr = pOutputBuffers[0].pBuffer.GetMaxLength(out cbOutData);
+                        if (hr >= 0)
                         {
-                            // Get the mode for the current timecode
-                            MPData m = ParamCalcValueForTime(0, m_TimeStamp);
+                            // Make sure we have room
+                            if (cbOutData >= cbCurrent + OutputType(0).sampleSize)
+                            {
+                                // Get the mode for the current timecode
+                                MPData m = ParamCalcValueForTime(0, m_TimeStamp);
 
-                            // Process from input to output according to the mode
-                            DoFlip((IntPtr)(pbOutData.ToInt32() + cbCurrent), m_cbInData, m_InBuffer, m_BPP, (FlipMode)m.vInt);
+                                // Process from input to output according to the mode
+                                DoFlip((IntPtr)(pbOutData.ToInt32() + cbCurrent), m_cbInData, m_InBuffer, m_BPP, (FlipMode)m.vInt);
 
-                            // Keep the flags & time info from the input
-                            pOutputBuffers[0].dwStatus = m_Flags;
-                            pOutputBuffers[0].rtTimelength = m_TimeLength;
-                            pOutputBuffers[0].rtTimestamp = m_TimeStamp;
+                                // Keep the flags & time info from the input
+                                pOutputBuffers[0].dwStatus = m_Flags;
+                                pOutputBuffers[0].rtTimelength = m_TimeLength;
+                                pOutputBuffers[0].rtTimestamp = m_TimeStamp;
 
-                            // Release the buffer.  Since we are always processing one buffer at
-                            // a time, we always release on completion.  If our input might be
-                            // more than one buffer, we would only release the input when it had
-                            // be complete processed.
-                            ReleaseInputBuffs();
+                                // Release the buffer.  Since we are always processing one buffer at
+                                // a time, we always release on completion.  If our input might be
+                                // more than one buffer, we would only release the input when it had
+                                // be complete processed.
+                                ReleaseInputBuffs();
 
-                            //  Say we've filled the buffer
-                            hr = pOutputBuffers[0].pBuffer.SetLength(cbOutData);
-                        }
-                        else
-                        {
-                            hr = E_INVALIDARG;
+                                //  Say we've filled the buffer
+                                hr = pOutputBuffers[0].pBuffer.SetLength(cbOutData);
+                            }
+                            else
+                            {
+                                hr = E_INVALIDARG;
+                            }
                         }
                     }
+                }
+                else
+                {
+                    // No output buffer provided.  Happens in the DMO Wrapper if one of
+                    // the output pins is not connected.
+                    pOutputBuffers[0].dwStatus = m_Flags;
+                    pOutputBuffers[0].rtTimelength = m_TimeLength;
+                    pOutputBuffers[0].rtTimestamp = m_TimeStamp;
+
+                    // Release the buffer.  Since we are always processing one buffer at
+                    // a time, we always release on completion.  If our input might be
+                    // more than one buffer, we would only release the input when it had
+                    // be complete processed.
+                    ReleaseInputBuffs();
                 }
             }
             else
