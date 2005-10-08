@@ -1,0 +1,33 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DmoSplit", "DMO\DmoSplit.csproj", "{369D647A-7F80-4F06-BEDB-D62AC1627862}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormDMO", "FormDMO\FormDMO.csproj", "{B72919DC-C5B9-441A-9AD9-6CF9A97AFE85}"
+	ProjectSection(ProjectDependencies) = postProject
+		{369D647A-7F80-4F06-BEDB-D62AC1627862} = {369D647A-7F80-4F06-BEDB-D62AC1627862}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{369D647A-7F80-4F06-BEDB-D62AC1627862}.Debug.ActiveCfg = Debug|.NET
+		{369D647A-7F80-4F06-BEDB-D62AC1627862}.Debug.Build.0 = Debug|.NET
+		{369D647A-7F80-4F06-BEDB-D62AC1627862}.Release.ActiveCfg = Release|.NET
+		{369D647A-7F80-4F06-BEDB-D62AC1627862}.Release.Build.0 = Release|.NET
+		{B72919DC-C5B9-441A-9AD9-6CF9A97AFE85}.Debug.ActiveCfg = Debug|.NET
+		{B72919DC-C5B9-441A-9AD9-6CF9A97AFE85}.Debug.Build.0 = Debug|.NET
+		{B72919DC-C5B9-441A-9AD9-6CF9A97AFE85}.Release.ActiveCfg = Release|.NET
+		{B72919DC-C5B9-441A-9AD9-6CF9A97AFE85}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(SolutionItems) = postSolution
+		readme.txt = readme.txt
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
