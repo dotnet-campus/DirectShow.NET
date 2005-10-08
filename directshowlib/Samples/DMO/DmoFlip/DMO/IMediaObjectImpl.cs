@@ -751,7 +751,7 @@ namespace MediaObjectTemplate
         /// </summary>
         /// <param name="pmt1">The AMMediaType to clone</param>
         /// <returns>Returns the clone</returns>
-        static private AMMediaType MoCloneMediaType(AMMediaType pmt1)
+        static protected AMMediaType MoCloneMediaType(AMMediaType pmt1)
         {
             AMMediaType pRet = new AMMediaType();
             DMOUtils.MoCopyMediaType(pRet, pmt1);
@@ -810,7 +810,7 @@ namespace MediaObjectTemplate
         /// <returns>HRESULT to return to COM</returns>
         private int CatFail(Exception e)
         {
-            m_Log.Write(string.Format("Catastrophic failure: {0}", e.Message));
+            m_Log.Write(string.Format("Catastrophic failure: {0}\r\n", e.Message));
 
             int hr = Marshal.GetHRForException(e);
             if (hr >= 0)
@@ -1227,7 +1227,7 @@ namespace MediaObjectTemplate
             {
                 if (dwTypeIndex == 0)
                 {
-                    pmt = InputType(0);
+                    pmt = InputType(dwOutputStreamIndex);
                     hr = S_OK;
                 }
                 else
@@ -1431,7 +1431,7 @@ namespace MediaObjectTemplate
                     m_Log.Write(string.Format("GetOutputStreamInfo({0})", ulStreamIndex));
 
                     // Validate the stream number
-                    if (ulStreamIndex < m_NumInputs && ulStreamIndex >= 0) 
+                    if (ulStreamIndex < m_NumOutputs && ulStreamIndex >= 0) 
                     {
                         // Call the internal function to get the value
                         hr = InternalGetOutputStreamInfo(ulStreamIndex, out pdwFlags);
