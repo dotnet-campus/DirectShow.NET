@@ -350,48 +350,6 @@ namespace DirectShowLib.DES
     /// <summary>
     /// From unnamed enum
     /// </summary>
-    public enum ConnectFDynamic
-    {
-        None = 0x00000000,
-        Sources = 0x00000001,
-        Effects = 0x00000002
-    }
-
-
-    /// <summary>
-    /// From DEXTERF
-    /// </summary>
-    public enum Dexterf
-    {
-        Jump,
-        Interpolate
-    }
-
-
-    /// <summary>
-    /// From unnamed enum
-    /// </summary>
-    public enum TimeLineInsertMode
-    {
-        Insert = 1,
-        Overlay = 2
-    }
-
-
-    /// <summary>
-    /// From DEXTERF_TRACK_SEARCH_FLAGS
-    /// </summary>
-    public enum DexterFTrackSearchFlags
-    {
-        Bounding = -1,
-        ExactlyAt = 0,
-        Forwards = 1
-    }
-
-
-    /// <summary>
-    /// From unnamed enum
-    /// </summary>
     public enum DXTKeys
     {
         RGB,
@@ -402,15 +360,30 @@ namespace DirectShowLib.DES
     }
 
 
+#endif
+
+    /// <summary>
+    /// From TIMELINE_MAJOR_TYPE
+    /// </summary>
+    [Flags]
+    public enum TimelineMajorType
+    {
+        Composite = 1,
+        Effect = 0x10,
+        Group = 0x80,
+        Source = 4,
+        Track= 2,
+        Transition = 8
+    }
+
+
     /// <summary>
     /// From unnamed enum
     /// </summary>
-    public enum ResizeFlags
+    public enum TimeLineInsertMode
     {
-        Stretch,
-        Crop,
-        PreserveAspectRatio,
-        PreserveAspectRatioNoLetterBox
+        Insert = 1,
+        Overlay = 2
     }
 
 
@@ -433,17 +406,36 @@ namespace DirectShowLib.DES
 
 
     /// <summary>
-    /// From TIMELINE_MAJOR_TYPE
+    /// From SCompFmt0
     /// </summary>
-    [Flags]
-    public enum TimelineMajorType
+    [StructLayout(LayoutKind.Sequential, Pack=4)]
+    public class SCompFmt0
     {
-        Composite = 1,
-        Effect = 0x10,
-        Group = 0x80,
-        Source = 4,
-        Track= 2,
-        Transition = 8
+        public long nFormatId;
+        public AMMediaType MediaType;
+    }
+
+
+    /// <summary>
+    /// From unnamed enum
+    /// </summary>
+    public enum ResizeFlags
+    {
+        Stretch,
+        Crop,
+        PreserveAspectRatio,
+        PreserveAspectRatioNoLetterBox
+    }
+
+
+    /// <summary>
+    /// From DEXTERF_TRACK_SEARCH_FLAGS
+    /// </summary>
+    public enum DexterFTrackSearchFlags
+    {
+        Bounding = -1,
+        ExactlyAt = 0,
+        Forwards = 1
     }
 
 
@@ -460,13 +452,13 @@ namespace DirectShowLib.DES
 
 
     /// <summary>
-    /// From SCompFmt0
+    /// From unnamed enum
     /// </summary>
-    [StructLayout(LayoutKind.Sequential, Pack=4)]
-    public class SCompFmt0
+    public enum ConnectFDynamic
     {
-        public long nFormatId;
-        public AMMediaType MediaType;
+        None = 0x00000000,
+        Sources = 0x00000001,
+        Effects = 0x00000002
     }
 
 
@@ -482,13 +474,562 @@ namespace DirectShowLib.DES
     }
 
 
-#endif
+    /// <summary>
+    /// From DEXTERF
+    /// </summary>
+    public enum Dexterf
+    {
+        Jump,
+        Interpolate
+    }
+
 
     #endregion
 
     #region Interfaces
 
 #if ALLOW_UNTESTED_INTERFACES
+
+    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
+    Guid("E31FB81B-1335-11D1-8189-0000F87557DB")]
+    public interface IDXEffect
+    {
+        [PreserveSig]
+        int get_Capabilities(
+            out int pVal
+            );
+
+        [PreserveSig]
+        int get_Progress(
+            out float pVal
+            );
+
+        [PreserveSig]
+        int put_Progress(
+            float newVal
+            );
+
+        [PreserveSig]
+        int get_StepResolution(
+            out float pVal
+            );
+
+        [PreserveSig]
+        int get_Duration(
+            out float pVal
+            );
+
+        [PreserveSig]
+        int put_Duration(
+            float newVal
+            );
+    }
+
+
+    [Guid("4EE9EAD9-DA4D-43D0-9383-06B90C08B12B"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IDxtAlphaSetter : IDXEffect
+    {
+    #region IDXEffect Methods
+
+        [PreserveSig]
+        new int get_Capabilities(
+            out int pVal
+            );
+
+        [PreserveSig]
+        new int get_Progress(
+            out float pVal
+            );
+
+        [PreserveSig]
+        new int put_Progress(
+            float newVal
+            );
+
+        [PreserveSig]
+        new int get_StepResolution(
+            out float pVal
+            );
+
+        [PreserveSig]
+        new int get_Duration(
+            out float pVal
+            );
+
+        [PreserveSig]
+        new int put_Duration(
+            float newVal
+            );
+
+    #endregion
+
+        [PreserveSig]
+        int get_Alpha(
+            out int pVal
+            );
+
+        [PreserveSig]
+        int put_Alpha(
+            int newVal
+            );
+
+        [PreserveSig]
+        int get_AlphaRamp(
+            out double pVal
+            );
+
+        [PreserveSig]
+        int put_AlphaRamp(
+            double newVal
+            );
+    }
+
+
+    [Guid("BB44391E-6ABD-422F-9E2E-385C9DFF51FC"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IDxtCompositor : IDXEffect
+    {
+    #region IDXEffect
+
+        [PreserveSig]
+        new int get_Capabilities(
+            out int pVal
+            );
+
+        [PreserveSig]
+        new int get_Progress(
+            out float pVal
+            );
+
+        [PreserveSig]
+        new int put_Progress(
+            float newVal
+            );
+
+        [PreserveSig]
+        new int get_StepResolution(
+            out float pVal
+            );
+
+        [PreserveSig]
+        new int get_Duration(
+            out float pVal
+            );
+
+        [PreserveSig]
+        new int put_Duration(
+            float newVal
+            );
+
+    #endregion
+
+        [PreserveSig]
+        int get_OffsetX(
+            out int pVal
+            );
+
+        [PreserveSig]
+        int put_OffsetX(
+            int newVal
+            );
+
+        [PreserveSig]
+        int get_OffsetY(
+            out int pVal
+            );
+
+        [PreserveSig]
+        int put_OffsetY(
+            int newVal
+            );
+
+        [PreserveSig]
+        int get_Width(
+            out int pVal
+            );
+
+        [PreserveSig]
+        int put_Width(
+            int newVal
+            );
+
+        [PreserveSig]
+        int get_Height(
+            out int pVal
+            );
+
+        [PreserveSig]
+        int put_Height(
+            int newVal
+            );
+
+        [PreserveSig]
+        int get_SrcOffsetX(
+            out int pVal
+            );
+
+        [PreserveSig]
+        int put_SrcOffsetX(
+            int newVal
+            );
+
+        [PreserveSig]
+        int get_SrcOffsetY(
+            out int pVal
+            );
+
+        [PreserveSig]
+        int put_SrcOffsetY(
+            int newVal
+            );
+
+        [PreserveSig]
+        int get_SrcWidth(
+            out int pVal
+            );
+
+        [PreserveSig]
+        int put_SrcWidth(
+            int newVal
+            );
+
+        [PreserveSig]
+        int get_SrcHeight(
+            out int pVal
+            );
+
+        [PreserveSig]
+        int put_SrcHeight(
+            int newVal
+            );
+    }
+
+
+    [Guid("DE75D011-7A65-11D2-8CEA-00A0C9441E20"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IDxtJpeg : IDXEffect
+    {
+    #region IDXEffect
+
+        [PreserveSig]
+        new int get_Capabilities(
+            out int pVal
+            );
+
+        [PreserveSig]
+        new int get_Progress(
+            out float pVal
+            );
+
+        [PreserveSig]
+        new int put_Progress(
+            float newVal
+            );
+
+        [PreserveSig]
+        new int get_StepResolution(
+            out float pVal
+            );
+
+        [PreserveSig]
+        new int get_Duration(
+            out float pVal
+            );
+
+        [PreserveSig]
+        new int put_Duration(
+            float newVal
+            );
+
+    #endregion
+
+        [PreserveSig]
+        int get_MaskNum(
+            out int MIDL_0018
+            );
+
+        [PreserveSig]
+        int put_MaskNum(
+            int MIDL_0019
+            );
+
+        [PreserveSig]
+        int get_MaskName(
+            [MarshalAs(UnmanagedType.BStr)] out string pVal
+            );
+
+        [PreserveSig]
+        int put_MaskName(
+            [MarshalAs(UnmanagedType.BStr)] string newVal
+            );
+
+        [PreserveSig]
+        int get_ScaleX(
+            out double MIDL_0020
+            );
+
+        [PreserveSig]
+        int put_ScaleX(
+            double MIDL_0021
+            );
+
+        [PreserveSig]
+        int get_ScaleY(
+            out double MIDL_0022
+            );
+
+        [PreserveSig]
+        int put_ScaleY(
+            double MIDL_0023
+            );
+
+        [PreserveSig]
+        int get_OffsetX(
+            out int MIDL_0024
+            );
+
+        [PreserveSig]
+        int put_OffsetX(
+            int MIDL_0025
+            );
+
+        [PreserveSig]
+        int get_OffsetY(
+            out int MIDL_0026
+            );
+
+        [PreserveSig]
+        int put_OffsetY(
+            int MIDL_0027
+            );
+
+        [PreserveSig]
+        int get_ReplicateX(
+            out int pVal
+            );
+
+        [PreserveSig]
+        int put_ReplicateX(
+            int newVal
+            );
+
+        [PreserveSig]
+        int get_ReplicateY(
+            out int pVal
+            );
+
+        [PreserveSig]
+        int put_ReplicateY(
+            int newVal
+            );
+
+        [PreserveSig]
+        int get_BorderColor(
+            out int pVal
+            );
+
+        [PreserveSig]
+        int put_BorderColor(
+            int newVal
+            );
+
+        [PreserveSig]
+        int get_BorderWidth(
+            out int pVal
+            );
+
+        [PreserveSig]
+        int put_BorderWidth(
+            int newVal
+            );
+
+        [PreserveSig]
+        int get_BorderSoftness(
+            out int pVal
+            );
+
+        [PreserveSig]
+        int put_BorderSoftness(
+            int newVal
+            );
+
+        [PreserveSig]
+        int ApplyChanges();
+
+        [PreserveSig]
+        int LoadDefSettings();
+    }
+
+
+    [Guid("3255DE56-38FB-4901-B980-94B438010D7B"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IDxtKey : IDXEffect
+    {
+    #region IDXEffect
+
+        [PreserveSig]
+        new int get_Capabilities(
+            out int pVal
+            );
+
+        [PreserveSig]
+        new int get_Progress(
+            out float pVal
+            );
+
+        [PreserveSig]
+        new int put_Progress(
+            float newVal
+            );
+
+        [PreserveSig]
+        new int get_StepResolution(
+            out float pVal
+            );
+
+        [PreserveSig]
+        new int get_Duration(
+            out float pVal
+            );
+
+        [PreserveSig]
+        new int put_Duration(
+            float newVal
+            );
+
+    #endregion
+
+        [PreserveSig]
+        int get_KeyType(
+            out int MIDL_0028
+            );
+
+        [PreserveSig]
+        int put_KeyType(
+            int MIDL_0029
+            );
+
+        [PreserveSig]
+        int get_Hue(
+            out int MIDL_0030
+            );
+
+        [PreserveSig]
+        int put_Hue(
+            int MIDL_0031
+            );
+
+        [PreserveSig]
+        int get_Luminance(
+            out int MIDL_0032
+            );
+
+        [PreserveSig]
+        int put_Luminance(
+            int MIDL_0033
+            );
+
+        [PreserveSig]
+        int get_RGB(
+            out int MIDL_0034
+            );
+
+        [PreserveSig]
+        int put_RGB(
+            int MIDL_0035
+            );
+
+        [PreserveSig]
+        int get_Similarity(
+            out int MIDL_0036
+            );
+
+        [PreserveSig]
+        int put_Similarity(
+            int MIDL_0037
+            );
+
+        [PreserveSig]
+        int get_Invert(
+            [MarshalAs(UnmanagedType.Bool)] out bool MIDL_0038
+            );
+
+        [PreserveSig]
+        int put_Invert(
+            [MarshalAs(UnmanagedType.Bool)] bool MIDL_0039
+            );
+    }
+
+
+    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
+    Guid("F03FA8DE-879A-4D59-9B2C-26BB1CF83461")]
+    public interface IFindCompressorCB
+    {
+        [PreserveSig]
+        int GetCompressor(
+            [MarshalAs(UnmanagedType.LPStruct)] AMMediaType pType,
+            [MarshalAs(UnmanagedType.LPStruct)] AMMediaType pCompType,
+            out IBaseFilter ppFilter
+            );
+    }
+
+
+    [InterfaceType(ComInterfaceType.InterfaceIsDual),
+    Guid("AE9472BE-B0C3-11D2-8D24-00A0C9441E20")]
+    public interface IGrfCache
+    {
+        [PreserveSig]
+        int AddFilter(IGrfCache ChainedCache, long Id, IBaseFilter pFilter, [MarshalAs(UnmanagedType.LPWStr)] string pName);
+
+        [PreserveSig]
+        int ConnectPins(IGrfCache ChainedCache, long PinID1, IPin pPin1, long PinID2, IPin pPin2);
+
+        [PreserveSig]
+        int SetGraph(IGraphBuilder pGraph);
+
+        [PreserveSig]
+        int DoConnectionsNow();
+    }
+
+
+    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
+    Guid("4ada63a0-72d5-11d2-952a-0060081840bc")]
+    public interface IResize
+    {
+        [PreserveSig]
+        int get_Size(
+            out int piHeight,
+            out int piWidth,
+            ResizeFlags pFlag
+            );
+
+        [PreserveSig]
+        int get_InputSize(
+            out int piHeight,
+            out int piWidth
+            );
+
+        [PreserveSig]
+        int put_Size(
+            int Height,
+            int Width,
+            ResizeFlags Flag
+            );
+
+        [PreserveSig]
+        int get_MediaType(
+            [MarshalAs(UnmanagedType.LPStruct)] out AMMediaType pmt
+            );
+
+        [PreserveSig]
+        int put_MediaType(
+            [MarshalAs(UnmanagedType.LPStruct)] AMMediaType pmt
+            );
+    }
+
+
+#endif
 
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
     Guid("E43E73A2-0EFA-11D3-9601-00A0C9441E20")]
@@ -1409,509 +1950,6 @@ namespace DirectShowLib.DES
 
 
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
-    Guid("E31FB81B-1335-11D1-8189-0000F87557DB")]
-    public interface IDXEffect
-    {
-        [PreserveSig]
-        int get_Capabilities(
-            out int pVal
-            );
-
-        [PreserveSig]
-        int get_Progress(
-            out float pVal
-            );
-
-        [PreserveSig]
-        int put_Progress(
-            float newVal
-            );
-
-        [PreserveSig]
-        int get_StepResolution(
-            out float pVal
-            );
-
-        [PreserveSig]
-        int get_Duration(
-            out float pVal
-            );
-
-        [PreserveSig]
-        int put_Duration(
-            float newVal
-            );
-    }
-
-
-    [Guid("4EE9EAD9-DA4D-43D0-9383-06B90C08B12B"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IDxtAlphaSetter : IDXEffect
-    {
-        #region IDXEffect Methods
-
-        [PreserveSig]
-        new int get_Capabilities(
-            out int pVal
-            );
-
-        [PreserveSig]
-        new int get_Progress(
-            out float pVal
-            );
-
-        [PreserveSig]
-        new int put_Progress(
-            float newVal
-            );
-
-        [PreserveSig]
-        new int get_StepResolution(
-            out float pVal
-            );
-
-        [PreserveSig]
-        new int get_Duration(
-            out float pVal
-            );
-
-        [PreserveSig]
-        new int put_Duration(
-            float newVal
-            );
-
-        #endregion
-
-        [PreserveSig]
-        int get_Alpha(
-            out int pVal
-            );
-
-        [PreserveSig]
-        int put_Alpha(
-            int newVal
-            );
-
-        [PreserveSig]
-        int get_AlphaRamp(
-            out double pVal
-            );
-
-        [PreserveSig]
-        int put_AlphaRamp(
-            double newVal
-            );
-    }
-
-
-    [Guid("BB44391E-6ABD-422F-9E2E-385C9DFF51FC"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IDxtCompositor : IDXEffect
-    {
-        #region IDXEffect
-
-        [PreserveSig]
-        new int get_Capabilities(
-            out int pVal
-            );
-
-        [PreserveSig]
-        new int get_Progress(
-            out float pVal
-            );
-
-        [PreserveSig]
-        new int put_Progress(
-            float newVal
-            );
-
-        [PreserveSig]
-        new int get_StepResolution(
-            out float pVal
-            );
-
-        [PreserveSig]
-        new int get_Duration(
-            out float pVal
-            );
-
-        [PreserveSig]
-        new int put_Duration(
-            float newVal
-            );
-
-        #endregion
-
-        [PreserveSig]
-        int get_OffsetX(
-            out int pVal
-            );
-
-        [PreserveSig]
-        int put_OffsetX(
-            int newVal
-            );
-
-        [PreserveSig]
-        int get_OffsetY(
-            out int pVal
-            );
-
-        [PreserveSig]
-        int put_OffsetY(
-            int newVal
-            );
-
-        [PreserveSig]
-        int get_Width(
-            out int pVal
-            );
-
-        [PreserveSig]
-        int put_Width(
-            int newVal
-            );
-
-        [PreserveSig]
-        int get_Height(
-            out int pVal
-            );
-
-        [PreserveSig]
-        int put_Height(
-            int newVal
-            );
-
-        [PreserveSig]
-        int get_SrcOffsetX(
-            out int pVal
-            );
-
-        [PreserveSig]
-        int put_SrcOffsetX(
-            int newVal
-            );
-
-        [PreserveSig]
-        int get_SrcOffsetY(
-            out int pVal
-            );
-
-        [PreserveSig]
-        int put_SrcOffsetY(
-            int newVal
-            );
-
-        [PreserveSig]
-        int get_SrcWidth(
-            out int pVal
-            );
-
-        [PreserveSig]
-        int put_SrcWidth(
-            int newVal
-            );
-
-        [PreserveSig]
-        int get_SrcHeight(
-            out int pVal
-            );
-
-        [PreserveSig]
-        int put_SrcHeight(
-            int newVal
-            );
-    }
-
-
-    [Guid("DE75D011-7A65-11D2-8CEA-00A0C9441E20"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IDxtJpeg : IDXEffect
-    {
-        #region IDXEffect
-
-        [PreserveSig]
-        new int get_Capabilities(
-            out int pVal
-            );
-
-        [PreserveSig]
-        new int get_Progress(
-            out float pVal
-            );
-
-        [PreserveSig]
-        new int put_Progress(
-            float newVal
-            );
-
-        [PreserveSig]
-        new int get_StepResolution(
-            out float pVal
-            );
-
-        [PreserveSig]
-        new int get_Duration(
-            out float pVal
-            );
-
-        [PreserveSig]
-        new int put_Duration(
-            float newVal
-            );
-
-        #endregion
-
-        [PreserveSig]
-        int get_MaskNum(
-            out int MIDL_0018
-            );
-
-        [PreserveSig]
-        int put_MaskNum(
-            int MIDL_0019
-            );
-
-        [PreserveSig]
-        int get_MaskName(
-            [MarshalAs(UnmanagedType.BStr)] out string pVal
-            );
-
-        [PreserveSig]
-        int put_MaskName(
-            [MarshalAs(UnmanagedType.BStr)] string newVal
-            );
-
-        [PreserveSig]
-        int get_ScaleX(
-            out double MIDL_0020
-            );
-
-        [PreserveSig]
-        int put_ScaleX(
-            double MIDL_0021
-            );
-
-        [PreserveSig]
-        int get_ScaleY(
-            out double MIDL_0022
-            );
-
-        [PreserveSig]
-        int put_ScaleY(
-            double MIDL_0023
-            );
-
-        [PreserveSig]
-        int get_OffsetX(
-            out int MIDL_0024
-            );
-
-        [PreserveSig]
-        int put_OffsetX(
-            int MIDL_0025
-            );
-
-        [PreserveSig]
-        int get_OffsetY(
-            out int MIDL_0026
-            );
-
-        [PreserveSig]
-        int put_OffsetY(
-            int MIDL_0027
-            );
-
-        [PreserveSig]
-        int get_ReplicateX(
-            out int pVal
-            );
-
-        [PreserveSig]
-        int put_ReplicateX(
-            int newVal
-            );
-
-        [PreserveSig]
-        int get_ReplicateY(
-            out int pVal
-            );
-
-        [PreserveSig]
-        int put_ReplicateY(
-            int newVal
-            );
-
-        [PreserveSig]
-        int get_BorderColor(
-            out int pVal
-            );
-
-        [PreserveSig]
-        int put_BorderColor(
-            int newVal
-            );
-
-        [PreserveSig]
-        int get_BorderWidth(
-            out int pVal
-            );
-
-        [PreserveSig]
-        int put_BorderWidth(
-            int newVal
-            );
-
-        [PreserveSig]
-        int get_BorderSoftness(
-            out int pVal
-            );
-
-        [PreserveSig]
-        int put_BorderSoftness(
-            int newVal
-            );
-
-        [PreserveSig]
-        int ApplyChanges();
-
-        [PreserveSig]
-        int LoadDefSettings();
-    }
-
-
-    [Guid("3255DE56-38FB-4901-B980-94B438010D7B"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IDxtKey : IDXEffect
-    {
-        #region IDXEffect
-
-        [PreserveSig]
-        new int get_Capabilities(
-            out int pVal
-            );
-
-        [PreserveSig]
-        new int get_Progress(
-            out float pVal
-            );
-
-        [PreserveSig]
-        new int put_Progress(
-            float newVal
-            );
-
-        [PreserveSig]
-        new int get_StepResolution(
-            out float pVal
-            );
-
-        [PreserveSig]
-        new int get_Duration(
-            out float pVal
-            );
-
-        [PreserveSig]
-        new int put_Duration(
-            float newVal
-            );
-
-        #endregion
-
-        [PreserveSig]
-        int get_KeyType(
-            out int MIDL_0028
-            );
-
-        [PreserveSig]
-        int put_KeyType(
-            int MIDL_0029
-            );
-
-        [PreserveSig]
-        int get_Hue(
-            out int MIDL_0030
-            );
-
-        [PreserveSig]
-        int put_Hue(
-            int MIDL_0031
-            );
-
-        [PreserveSig]
-        int get_Luminance(
-            out int MIDL_0032
-            );
-
-        [PreserveSig]
-        int put_Luminance(
-            int MIDL_0033
-            );
-
-        [PreserveSig]
-        int get_RGB(
-            out int MIDL_0034
-            );
-
-        [PreserveSig]
-        int put_RGB(
-            int MIDL_0035
-            );
-
-        [PreserveSig]
-        int get_Similarity(
-            out int MIDL_0036
-            );
-
-        [PreserveSig]
-        int put_Similarity(
-            int MIDL_0037
-            );
-
-        [PreserveSig]
-        int get_Invert(
-            [MarshalAs(UnmanagedType.Bool)] out bool MIDL_0038
-            );
-
-        [PreserveSig]
-        int put_Invert(
-            [MarshalAs(UnmanagedType.Bool)] bool MIDL_0039
-            );
-    }
-
-
-    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
-    Guid("F03FA8DE-879A-4D59-9B2C-26BB1CF83461")]
-    public interface IFindCompressorCB
-    {
-        [PreserveSig]
-        int GetCompressor(
-            [MarshalAs(UnmanagedType.LPStruct)] AMMediaType pType,
-            [MarshalAs(UnmanagedType.LPStruct)] AMMediaType pCompType,
-            out IBaseFilter ppFilter
-            );
-    }
-
-
-    [InterfaceType(ComInterfaceType.InterfaceIsDual),
-    Guid("AE9472BE-B0C3-11D2-8D24-00A0C9441E20")]
-    public interface IGrfCache
-    {
-        [PreserveSig]
-        int AddFilter(IGrfCache ChainedCache, long Id, IBaseFilter pFilter, [MarshalAs(UnmanagedType.LPWStr)] string pName);
-
-        [PreserveSig]
-        int ConnectPins(IGrfCache ChainedCache, long PinID1, IPin pPin1, long PinID2, IPin pPin2);
-
-        [PreserveSig]
-        int SetGraph(IGraphBuilder pGraph);
-
-        [PreserveSig]
-        int DoConnectionsNow();
-    }
-
-
-    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
     Guid("65BD0710-24D2-4ff7-9324-ED2E5D3ABAFA")]
     public interface IMediaDet
     {
@@ -2155,7 +2193,11 @@ namespace DirectShowLib.DES
 
         [PreserveSig]
         int SetSourceConnectCallback(
+#if ALLOW_UNTESTED_INTERFACES
             IGrfCache pCallback
+#else
+            object pCallback
+#endif
             );
 
         [PreserveSig]
@@ -2208,7 +2250,11 @@ namespace DirectShowLib.DES
 
         [PreserveSig]
         int SetFindCompressorCB(
+#if ALLOW_UNTESTED_INTERFACES
             IFindCompressorCB pCallback
+#else
+            object pCallback
+#endif
             );
     }
 
@@ -2304,43 +2350,6 @@ namespace DirectShowLib.DES
             );
     }
 
-
-    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
-    Guid("4ada63a0-72d5-11d2-952a-0060081840bc")]
-    public interface IResize
-    {
-        [PreserveSig]
-        int get_Size(
-            out int piHeight,
-            out int piWidth,
-            ResizeFlags pFlag
-            );
-
-        [PreserveSig]
-        int get_InputSize(
-            out int piHeight,
-            out int piWidth
-            );
-
-        [PreserveSig]
-        int put_Size(
-            int Height,
-            int Width,
-            ResizeFlags Flag
-            );
-
-        [PreserveSig]
-        int get_MediaType(
-            [MarshalAs(UnmanagedType.LPStruct)] out AMMediaType pmt
-            );
-
-        [PreserveSig]
-        int put_MediaType(
-            [MarshalAs(UnmanagedType.LPStruct)] AMMediaType pmt
-            );
-    }
-
-#endif
 
     #endregion
 

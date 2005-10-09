@@ -30,8 +30,6 @@ namespace DirectShowLib.DMO
 {
     #region Declarations
 
-#if ALLOW_UNTESTED_INTERFACES
-
     public class MediaParamTimeFormat
     {
         /// <summary> GUID_TIME_REFERENCE </summary>
@@ -123,12 +121,9 @@ namespace DirectShowLib.DMO
         public string szLabel;
     }
 
-#endif
     #endregion
 
     #region Interfaces
-
-#if ALLOW_UNTESTED_INTERFACES
 
     [ComVisible(true), InterfaceType(ComInterfaceType.InterfaceIsIUnknown), 
     Guid("6D6CBB60-A223-44AA-842F-A2F06750BE6D")]
@@ -207,8 +202,6 @@ namespace DirectShowLib.DMO
             );
     }
 
-
-#endif
 
     #endregion
 }

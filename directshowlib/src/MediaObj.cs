@@ -32,6 +32,40 @@ namespace DirectShowLib.DMO
 #if ALLOW_UNTESTED_INTERFACES
 
     /// <summary>
+    /// From DMO_QUALITY_STATUS_FLAGS
+    /// </summary>
+    [Flags]
+    public enum DMOQualityStatus
+    {
+        None = 0x0,
+        Enabled	= 0x1
+    }
+
+    /// <summary>
+    /// From DMO_VIDEO_OUTPUT_STREAM_FLAGS
+    /// </summary>
+    [Flags]
+    public enum DMOVideoOutputStream
+    {
+        None = 0x0,
+        NeedsPreviousSample	= 0x1
+    }
+
+#endif
+
+    /// <summary>
+    /// From _DMO_OUTPUT_DATA_BUFFER_FLAGS
+    /// </summary>
+    [Flags]
+    public enum DMOOutputDataBufferFlags
+    {
+        None = 0,
+        SyncPoint = 0x1,
+        Time = 0x2,
+        TimeLength = 0x4,
+        InComplete	= 0x1000000
+    } ;
+    /// <summary>
     /// From DMO_ENUM_FLAGS
     /// </summary>
     [Flags]
@@ -50,7 +84,6 @@ namespace DirectShowLib.DMO
         None = 0,
         IsKeyed = 0x00000001
     };
-
     /// <summary>
     /// From DMO_PROCESS_OUTPUT_FLAGS
     /// </summary>
@@ -74,37 +107,25 @@ namespace DirectShowLib.DMO
     }
 
     /// <summary>
-    /// From _DMO_OUTPUT_DATA_BUFFER_FLAGS
+    /// From DMO_INPLACE_PROCESS_FLAGS
     /// </summary>
     [Flags]
-    public enum DMOOutputDataBufferFlags
+    public enum DMOInplaceProcess
     {
-        None = 0,
-        SyncPoint = 0x1,
-        Time = 0x2,
-        TimeLength = 0x4,
-        InComplete	= 0x1000000
-    } ;
-
-    /// <summary>
-    /// From DMO_INPUT_STATUS_FLAGS
-    /// </summary>
-    [Flags]
-    public enum DMOInputStatusFlags
-    {
-        None = 0x0,
-        AcceptData = 0x1
+        Normal	= 0,
+        Zero	= 0x1
     }
 
     /// <summary>
-    /// From _DMO_SET_TYPE_FLAGS
+    /// From DMO_INPUT_STREAM_INFO_FLAGS
     /// </summary>
-    [Flags]
-    public enum DMOSetType
+    public enum DMOInputStreamInfo
     {
         None = 0x0,
-        TestOnly = 0x1,
-        Clear = 0x2
+        WholeSamples = 0x1,
+        SingleSamplePerBuffer = 0x2,
+        FixedSampleSize	= 0x4,
+        HoldsBuffers = 0x8
     }
 
     /// <summary>
@@ -122,46 +143,26 @@ namespace DirectShowLib.DMO
     }
 
     /// <summary>
-    /// From DMO_INPUT_STREAM_INFO_FLAGS
+    /// From _DMO_SET_TYPE_FLAGS
     /// </summary>
-    public enum DMOInputStreamInfo
+    [Flags]
+    public enum DMOSetType
     {
         None = 0x0,
-        WholeSamples = 0x1,
-        SingleSamplePerBuffer = 0x2,
-        FixedSampleSize	= 0x4,
-        HoldsBuffers = 0x8
+        TestOnly = 0x1,
+        Clear = 0x2
     }
 
     /// <summary>
-    /// From DMO_INPLACE_PROCESS_FLAGS
+    /// From DMO_INPUT_STATUS_FLAGS
     /// </summary>
     [Flags]
-    public enum DMOInplaceProcess
-    {
-        Normal	= 0,
-        Zero	= 0x1
-    }
-
-    /// <summary>
-    /// From DMO_QUALITY_STATUS_FLAGS
-    /// </summary>
-    [Flags]
-    public enum DMOQualityStatus
+    public enum DMOInputStatusFlags
     {
         None = 0x0,
-        Enabled	= 0x1
+        AcceptData = 0x1
     }
 
-    /// <summary>
-    /// From DMO_VIDEO_OUTPUT_STREAM_FLAGS
-    /// </summary>
-    [Flags]
-    public enum DMOVideoOutputStream
-    {
-        None = 0x0,
-        NeedsPreviousSample	= 0x1
-    }
 
     /// <summary>
     /// From DMO_PARTIAL_MEDIATYPE
@@ -186,7 +187,7 @@ namespace DirectShowLib.DMO
         public long rtTimelength;
     }
 
-#endif
+
     #endregion
 
     #region GUIDS
@@ -428,6 +429,8 @@ namespace DirectShowLib.DMO
     }
 
 
+#endif
+
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
     Guid("2C3CD98A-2BFA-4A53-9C27-5249BA64BA0F")]
     public interface IEnumDMO
@@ -632,8 +635,6 @@ namespace DirectShowLib.DMO
             [MarshalAs(UnmanagedType.Bool)] bool bLock
             );
     }
-
-#endif
 
     #endregion
 }
