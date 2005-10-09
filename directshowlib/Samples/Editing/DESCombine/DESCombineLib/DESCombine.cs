@@ -1358,7 +1358,16 @@ namespace DESCombineLib
         public int BufferCB(double SampleTime, System.IntPtr pBuffer, int BufferLen)
         {
             // Call the client
-            int iRet = m_pCallback.BufferCB(m_CurFileName, SampleTime, pBuffer, BufferLen);
+            int iRet;
+            
+            if (m_pCallback != null)
+            {
+                iRet = m_pCallback.BufferCB(m_CurFileName, SampleTime, pBuffer, BufferLen);
+            }
+            else
+            {
+                iRet = 0;
+            }
 
             m_iCurFrame++;
 
