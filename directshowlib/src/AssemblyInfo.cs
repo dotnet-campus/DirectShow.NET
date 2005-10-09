@@ -31,12 +31,11 @@ using System.Security.Permissions;
 [assembly : AssemblyDescription(".NET Interfaces for calling DirectShow.  See http://directshownet.sourceforge.net/")]
 [assembly : AssemblyConfiguration("")]
 [assembly : AssemblyCompany("")]
+[assembly : AssemblyVersion("1.2.0.*")]
 #if DEBUG
 [assembly : AssemblyProduct("Debug Version")]
-[assembly : AssemblyVersion("1.1.0.*")]
 #else
 [assembly : AssemblyProduct("Release Version")]
-[assembly : AssemblyVersion("1.1.0.*")]
 #endif
 [assembly : AssemblyCopyright("GNU Lesser General Public License v2.1")]
 [assembly : AssemblyTrademark("")]
