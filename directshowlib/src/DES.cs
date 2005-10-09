@@ -31,8 +31,6 @@ namespace DirectShowLib.DES
 {
     #region Utility Classes
 
-#if ALLOW_UNTESTED_INTERFACES
-
     sealed public class DESResults
     {
         private DESResults()
@@ -116,13 +114,9 @@ namespace DirectShowLib.DES
     }
 
 
-#endif
-
     #endregion
 
     #region Classes
-
-#if ALLOW_UNTESTED_INTERFACES
 
     /// <summary>
     /// From CLSID_AMTimeline
@@ -305,47 +299,11 @@ namespace DirectShowLib.DES
     }
 
 
-#endif
-
     #endregion
 
     #region Declarations
 
 #if ALLOW_UNTESTED_INTERFACES
-
-    /// <summary>
-    /// From DEX_IDS_* defines
-    /// </summary>
-    public enum DESErrorCode
-    {
-        BadSourceName = 1400,
-        BadSourceName2 = 1401,
-        MissingSourceName = 1402,
-        UnknownSource = 1403,
-        InstallProblem = 1404,
-        NoSourceNames = 1405,
-        BadMediaType = 1406,
-        StreamNumber = 1407,
-        OutOfMemory = 1408,
-        DIBSeqNotAllSame = 1409,
-        ClipTooShort = 1410,
-        InvalidDXT = 1411,
-        InvalidDefaultDXTT = 1412,
-        No3D = 1413,
-        BrokenDXT = 1414,
-        NoSuchProperty = 1415,
-        IllegalPropertyVal = 1416,
-        InvalidXML = 1417,
-        CantFindFilter = 1418,
-        DiskWriteError = 1419,
-        InvalidAudioFX = 1420,
-        CantFindCompressor = 1421,
-        TimelineParse = 1426,
-        GraphError = 1427,
-        GridError = 1428,
-        InterfaceError = 1429
-    }
-
 
     /// <summary>
     /// From unnamed enum
@@ -481,6 +439,40 @@ namespace DirectShowLib.DES
     {
         Jump,
         Interpolate
+    }
+
+
+    /// <summary>
+    /// From DEX_IDS_* defines
+    /// </summary>
+    public enum DESErrorCode
+    {
+        BadSourceName = 1400,
+        BadSourceName2 = 1401,
+        MissingSourceName = 1402,
+        UnknownSource = 1403,
+        InstallProblem = 1404,
+        NoSourceNames = 1405,
+        BadMediaType = 1406,
+        StreamNumber = 1407,
+        OutOfMemory = 1408,
+        DIBSeqNotAllSame = 1409,
+        ClipTooShort = 1410,
+        InvalidDXT = 1411,
+        InvalidDefaultDXTT = 1412,
+        No3D = 1413,
+        BrokenDXT = 1414,
+        NoSuchProperty = 1415,
+        IllegalPropertyVal = 1416,
+        InvalidXML = 1417,
+        CantFindFilter = 1418,
+        DiskWriteError = 1419,
+        InvalidAudioFX = 1420,
+        CantFindCompressor = 1421,
+        TimelineParse = 1426,
+        GraphError = 1427,
+        GridError = 1428,
+        InterfaceError = 1429
     }
 
 
