@@ -1993,6 +1993,12 @@ namespace DirectShowLib.BDA
             [Out] out object NewIndex
             );
 
+        [PreserveSig, DispId((int) DispIDTuner.ADDITEM)]
+        int Add(
+            [In] IComponentType ComponentType,
+            [Out] out object NewIndex
+            );
+
         [PreserveSig, DispId((int) DispIDTuner.REMOVEITEM)]
         int Remove([In] object Index);
 
