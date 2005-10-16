@@ -179,7 +179,27 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IDVBSTuningSpaceTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IDVBTLocatorTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IDVBTuneRequestTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IDVBTuningSpace2Test.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IDVBTuningSpaceTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -225,6 +245,11 @@
                 />
                 <File
                     RelPath = "IMediaParamsTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IMPEG2TuneRequestTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
