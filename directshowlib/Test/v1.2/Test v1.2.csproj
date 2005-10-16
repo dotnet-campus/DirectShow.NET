@@ -209,6 +209,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IEnumTuningSpacesTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IFrequencyMapTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
