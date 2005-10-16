@@ -997,9 +997,6 @@ namespace DirectShowLib.BDA
         [PreserveSig, DispId((int) DispIDTuner.TS_DVBS_INPUT_RANGE)]
         int put_InputRange([Out, MarshalAs(UnmanagedType.BStr)] string InputRange);
 
-        [PreserveSig, DispId((int) DispIDTuner.TS_DVBS_INPUT_RANGE)]
-        int put_LNBSwitch([In, MarshalAs(UnmanagedType.BStr)] string InputRange);
-
         [PreserveSig, DispId((int) DispIDTuner.TS_DVBS_SPECTRAL_INVERSION)]
         int get_SpectralInversion([Out] out SpectralInversion SpectralInversionVal);
 
