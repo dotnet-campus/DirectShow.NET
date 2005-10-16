@@ -1550,7 +1550,7 @@ namespace DirectShowLib.BDA
         [PreserveSig, DispId((int) DispIDTuner.MP2TUNERFACTORY_CREATETUNEREQUEST)]
         int CreateTuneRequest(
             [In] ITuningSpace TuningSpace,
-            [Out] IMPEG2TuneRequest TuneRequest
+            [Out] out IMPEG2TuneRequest TuneRequest
             );
     }
 
