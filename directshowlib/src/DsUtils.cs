@@ -1242,7 +1242,7 @@ namespace DirectShowLib
         /// <param name="guidPinCat">The guid from PinCategory to scan for</param>
         /// <param name="iIndex">Zero based index (ie 2 will return the third pin of the specified category)</param>
         /// <returns>The matching pin, or null if not found</returns>
-        public static IPin ByCategory(IBaseFilter vSource, Guid guidPinCat, int iIndex)
+        public static IPin ByCategory(IBaseFilter vSource, Guid PinCategory, int iIndex)
         {
             int hr;
             int lFetched;
@@ -1265,7 +1265,7 @@ namespace DirectShowLib
                 while ((ppEnum.Next(1, pPins, out lFetched) >= 0) && (lFetched == 1))
                 {
                     // Is it the right category?
-                    if (DsUtils.GetPinCategory(pPins[0]) == guidPinCat)
+                    if (DsUtils.GetPinCategory(pPins[0]) == PinCategory)
                     {
                         // Is is the right index?
                         if (iIndex == 0)
