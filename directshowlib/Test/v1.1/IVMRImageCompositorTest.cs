@@ -26,7 +26,7 @@ namespace DirectShowLib.Test
     private int TermCompositionDeviceCalledCount = 0;
 
     private int backgroundColorABGR = unchecked((int)0x00112233);
-    private int backgroundColorARGB = unchecked((int)0xff332211);
+    //private int backgroundColorARGB = unchecked((int)0xff332211);
 
 		public IVMRImageCompositorTest()
 		{
