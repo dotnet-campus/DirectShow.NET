@@ -83,7 +83,7 @@ namespace DirectShowLib
     {
         public int cbData;
         public int dwTypeSpecificFlags;
-        public int dwSampleFlags;
+        public AMSamplePropertyFlags dwSampleFlags;
         public int lActual;
         public long tStart;
         public long tStop;

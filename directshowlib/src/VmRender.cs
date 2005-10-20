@@ -66,7 +66,7 @@ namespace DirectShowLib
     [StructLayout(LayoutKind.Sequential)]
     public struct VMRPresentationInfo
     {
-        public int dwFlags;
+        public VMRPresentationFlags dwFlags;
         public IntPtr lpSurf; //LPDIRECTDRAWSURFACE7
         public long rtStart;
         public long rtEnd;
@@ -83,7 +83,7 @@ namespace DirectShowLib
     [StructLayout(LayoutKind.Sequential)]
     public struct VMRAllocationInfo
     {
-        public int dwFlags;
+        public VMRSurfaceAllocationFlags dwFlags;
         //		public BitmapInfoHeader lpHdr;
         //    public DDPixelFormat lpPixFmt;
         public IntPtr lpHdr;

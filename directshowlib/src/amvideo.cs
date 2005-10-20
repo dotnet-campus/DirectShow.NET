@@ -136,7 +136,7 @@ namespace DirectShowLib
         int GetDirectDraw(out IntPtr ppDirectDraw); // LPDIRECTDRAW
 
         [PreserveSig]
-        int GetSurfaceType(out int pSurfaceType);
+        int GetSurfaceType(out DirectDrawSwitches pSurfaceType);
 
         [PreserveSig]
         int SetDefault();

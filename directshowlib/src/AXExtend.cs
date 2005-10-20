@@ -932,7 +932,7 @@ namespace DirectShowLib
         [PreserveSig]
         int Next(
             [In] int cFilters,
-            [Out] out IntPtr apRegFilter, // REGFILTER **
+            [Out] out RegFilter [] apRegFilter,
             [Out] out int pcFetched
             );
 
@@ -1233,7 +1233,7 @@ namespace DirectShowLib
         [PreserveSig]
         int Advise(
             [In] IOverlayNotify pOverlayNotify,
-            [In] int dwInterests
+            [In] Advise dwInterests
             );
 
         [PreserveSig]
@@ -2128,7 +2128,7 @@ namespace DirectShowLib
         [PreserveSig]
         int Next(
             [In] int cRequest,
-            [In, Out] ref IntPtr pStreamIdMap, // STREAM_ID_MAP *
+            [Out] out StreamIdMap [] pStreamIdMap, // STREAM_ID_MAP *
             [Out] out int pcReceived
             );
 

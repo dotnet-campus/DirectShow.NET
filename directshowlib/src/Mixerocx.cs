@@ -72,10 +72,10 @@ namespace DirectShowLib
 		int OnInvalidateRect([In] Rectangle lpcRect);
 
 		[PreserveSig]
-		int OnStatusChange([In] int ulStatusFlags);
+		int OnStatusChange([In] MixerState ulStatusFlags);
 
 		[PreserveSig]
-		int OnDataChange([In] int ulDataFlags);
+		int OnDataChange([In] MixerData ulDataFlags);
 	}
 
 	[Guid("81A3BD32-DEE1-11d1-8508-00A0C91F9CA0"),

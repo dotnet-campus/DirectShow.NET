@@ -182,7 +182,7 @@ namespace DirectShowLib
     public interface IAMExtendedSeeking
     {
         [PreserveSig]
-        int get_ExSeekCapabilities(out int pExCapabilities);
+        int get_ExSeekCapabilities(out AMExtendedSeekingCapabilities pExCapabilities);
 
         [PreserveSig]
         int get_MarkerCount(out int pMarkerCount);

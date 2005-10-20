@@ -37,6 +37,7 @@ namespace DirectShowLib
 	[Flags]
 	public enum AMPinFlowControl
 	{
+        None = 0x00000000,
 		Block = 0x00000001
 	}
 
@@ -46,7 +47,8 @@ namespace DirectShowLib
 	[Flags]
 	public enum AMGraphConfigReconnect
 	{
-		DirectConnect = 0x00000001,
+        None = 0x00000000,
+        DirectConnect = 0x00000001,
 		CacheRemovedFilters = 0x00000002,
 		UseOnlyCachedFilters = 0x00000004
 	}
@@ -57,7 +59,8 @@ namespace DirectShowLib
 	[Flags]
 	public enum RemFilterFlags
 	{
-		LeaveConnected = 0x00000001
+        None = 0x00000000,
+        LeaveConnected = 0x00000001
 	}
 
 	/// <summary>
@@ -66,7 +69,8 @@ namespace DirectShowLib
 	[Flags]
 	public enum AMFilterFlags
 	{
-		Removable = 0x00000001
+        None = 0x00000000,
+        Removable = 0x00000001
 	}
 
 #endif
@@ -87,10 +91,14 @@ namespace DirectShowLib
 	public interface IPinConnection
 	{
 		[PreserveSig]
-		int DynamicQueryAccept([In] ref AMMediaType pmt);
+		int DynamicQueryAccept(
+            [In, MarshalAs(UnmanagedType.LPStruct)] AMMediaType pmt
+        );
 
 		[PreserveSig]
-		int NotifyEndOfStream([In] IntPtr hNotifyEvent); // HEVENT
+		int NotifyEndOfStream(
+            [In] IntPtr hNotifyEvent // HEVENT
+            );
 
 		[PreserveSig]
 		int IsEndPin();
@@ -111,7 +119,7 @@ namespace DirectShowLib
 	{
 		[PreserveSig]
 		int Block(
-			[In] int dwBlockFlags,
+			[In] AMPinFlowControl dwBlockFlags,
 			[In] IntPtr hEvent // HEVENT
 			);
 	}
@@ -130,7 +138,7 @@ namespace DirectShowLib
 		int Reconnect(
 			[In] IPin pOutputPin,
 			[In] IPin pInputPin,
-			[In] ref AMMediaType pmtFirstConnection,
+            [In, MarshalAs(UnmanagedType.LPStruct)] AMMediaType pmtFirstConnection,
 			[In] IBaseFilter pUsingFilter, // can be NULL
 			[In] IntPtr hAbortEvent, // HANDLE 
 			[In] AMGraphConfigReconnect dwFlags
@@ -145,16 +153,24 @@ namespace DirectShowLib
 			);
 
 		[PreserveSig]
-		int AddFilterToCache([In] IBaseFilter pFilter);
+		int AddFilterToCache(
+            [In] IBaseFilter pFilter
+            );
 
 		[PreserveSig]
-		int EnumCacheFilter([Out] out IEnumFilters pEnum);
+		int EnumCacheFilter(
+            [Out] out IEnumFilters pEnum
+            );
 
 		[PreserveSig]
-		int RemoveFilterFromCache([In] IBaseFilter pFilter);
+		int RemoveFilterFromCache(
+            [In] IBaseFilter pFilter
+            );
 
 		[PreserveSig]
-		int GetStartTime([Out] out long prtStart);
+		int GetStartTime(
+            [Out] out long prtStart
+            );
 
 		[PreserveSig]
 		int PushThroughData(
@@ -166,13 +182,13 @@ namespace DirectShowLib
 		[PreserveSig]
 		int SetFilterFlags(
 			[In] IBaseFilter pFilter,
-			[In] int dwFlags
+			[In] AMFilterFlags dwFlags
 			);
 
 		[PreserveSig]
 		int GetFilterFlags(
 			[In] IBaseFilter pFilter,
-			[Out] out int pdwFlags
+			[Out] out AMFilterFlags pdwFlags
 			);
 
 		[PreserveSig]
