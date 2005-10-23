@@ -169,6 +169,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IBDA_SignalStatisticsTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IBDA_TopologyTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
