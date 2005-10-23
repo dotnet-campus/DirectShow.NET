@@ -60,39 +60,6 @@ namespace DirectShowLib.BDA
 	}
 
 	/// <summary>
-	/// From DVBSystemType
-	/// </summary>
-	public enum DVBSystemType
-	{
-		Cable,
-		Terrestrial,
-		Satellite,
-	}
-
-	/// <summary>
-	/// From ComponentCategory
-	/// </summary>
-	public enum ComponentCategory
-	{
-		NotSet = -1,
-		Other = 0,
-		Video,
-		Audio,
-		Text,
-		Data
-	}
-
-	/// <summary>
-	/// From ComponentStatus
-	/// </summary>
-	public enum ComponentStatus
-	{
-		Active,
-		Inactive,
-		Unavailable
-	}
-
-	/// <summary>
 	/// From MPEG2StreamType
 	/// </summary>
 	public enum MPEG2StreamType
@@ -124,138 +91,6 @@ namespace DirectShowLib.BDA
 	public enum ATSCComponentTypeFlags
 	{
 		ATSCCT_AC3 = 0x00000001
-	}
-
-	/// <summary>
-	/// From BinaryConvolutionCodeRate
-	/// </summary>
-	public enum BinaryConvolutionCodeRate
-	{
-		RATE_NOT_SET = -1,
-		RATE_NOT_DEFINED = 0,
-		RATE_1_2 = 1, // 1/2
-		RATE_2_3, // 2/3
-		RATE_3_4, // 3/4
-		RATE_3_5,
-		RATE_4_5,
-		RATE_5_6, // 5/6
-		RATE_5_11,
-		RATE_7_8, // 7/8
-		RATE_MAX
-	}
-
-	/// <summary>
-	/// From FECMethod
-	/// </summary>
-	public enum FECMethod
-	{
-		METHOD_NOT_SET = -1,
-		METHOD_NOT_DEFINED = 0,
-		VITERBI = 1, // FEC is a Viterbi Binary Convolution.
-		RS_204_188, // The FEC is Reed-Solomon 204/188 (outer FEC)
-		MAX,
-	}
-
-	/// <summary>
-	/// From ModulationType
-	/// </summary>
-	public enum ModulationType
-	{
-		MOD_NOT_SET = -1,
-		MOD_NOT_DEFINED = 0,
-		MOD_16QAM = 1,
-		MOD_32QAM,
-		MOD_64QAM,
-		MOD_80QAM,
-		MOD_96QAM,
-		MOD_112QAM,
-		MOD_128QAM,
-		MOD_160QAM,
-		MOD_192QAM,
-		MOD_224QAM,
-		MOD_256QAM,
-		MOD_320QAM,
-		MOD_384QAM,
-		MOD_448QAM,
-		MOD_512QAM,
-		MOD_640QAM,
-		MOD_768QAM,
-		MOD_896QAM,
-		MOD_1024QAM,
-		MOD_QPSK,
-		MOD_BPSK,
-		MOD_OQPSK,
-		MOD_8VSB,
-		MOD_16VSB,
-		MOD_ANALOG_AMPLITUDE, // std am
-		MOD_ANALOG_FREQUENCY, // std fm
-		MOD_MAX
-	}
-
-	/// <summary>
-	/// From SpectralInversion
-	/// </summary>
-	public enum SpectralInversion
-	{
-		NOT_SET = -1,
-		NOT_DEFINED = 0,
-		AUTOMATIC = 1,
-		NORMAL,
-		INVERTED,
-		MAX
-	}
-
-	/// <summary>
-	/// From Polarisation
-	/// </summary>
-	public enum Polarisation
-	{
-		NOT_SET = -1,
-		NOT_DEFINED = 0,
-		LINEAR_H = 1, // Linear horizontal polarisation
-		LINEAR_V, // Linear vertical polarisation
-		CIRCULAR_L, // Circular left polarisation
-		CIRCULAR_R, // Circular right polarisation
-		MAX,
-	}
-
-	/// <summary>
-	/// From GuardInterval
-	/// </summary>
-	public enum GuardInterval
-	{
-		GUARD_NOT_SET = -1,
-		GUARD_NOT_DEFINED = 0,
-		GUARD_1_32 = 1, // Guard interval is 1/32
-		GUARD_1_16, // Guard interval is 1/16
-		GUARD_1_8, // Guard interval is 1/8
-		GUARD_1_4, // Guard interval is 1/4
-		GUARD_MAX,
-	}
-
-	/// <summary>
-	/// From HierarchyAlpha
-	/// </summary>
-	public enum HierarchyAlpha
-	{
-		HALPHA_NOT_SET = -1,
-		HALPHA_NOT_DEFINED = 0,
-		HALPHA_1 = 1, // Hierarchy alpha is 1.
-		HALPHA_2, // Hierarchy alpha is 2.
-		HALPHA_4, // Hierarchy alpha is 4.
-		HALPHA_MAX,
-	}
-
-	/// <summary>
-	/// From TransmissionMode
-	/// </summary>
-	public enum TransmissionMode
-	{
-		MODE_NOT_SET = -1,
-		MODE_NOT_DEFINED = 0,
-		MODE_2K = 1, // Transmission uses 1705 carriers (use a 2K FFT)
-		MODE_8K, // Transmission uses 6817 carriers (use an 8K FFT)
-		MODE_MAX,
 	}
 
 	/// <summary>
@@ -307,5 +142,170 @@ namespace DirectShowLib.BDA
 
 #endif
 
-	#endregion
+    /// <summary>
+    /// From FECMethod
+    /// </summary>
+    public enum FECMethod
+    {
+        METHOD_NOT_SET = -1,
+        METHOD_NOT_DEFINED = 0,
+        VITERBI = 1, // FEC is a Viterbi Binary Convolution.
+        RS_204_188, // The FEC is Reed-Solomon 204/188 (outer FEC)
+        MAX,
+    }
+
+    /// <summary>
+    /// From BinaryConvolutionCodeRate
+    /// </summary>
+    public enum BinaryConvolutionCodeRate
+    {
+        RATE_NOT_SET = -1,
+        RATE_NOT_DEFINED = 0,
+        RATE_1_2 = 1, // 1/2
+        RATE_2_3, // 2/3
+        RATE_3_4, // 3/4
+        RATE_3_5,
+        RATE_4_5,
+        RATE_5_6, // 5/6
+        RATE_5_11,
+        RATE_7_8, // 7/8
+        RATE_MAX
+    }
+
+    /// <summary>
+    /// From Polarisation
+    /// </summary>
+    public enum Polarisation
+    {
+        NOT_SET = -1,
+        NOT_DEFINED = 0,
+        LINEAR_H = 1, // Linear horizontal polarisation
+        LINEAR_V, // Linear vertical polarisation
+        CIRCULAR_L, // Circular left polarisation
+        CIRCULAR_R, // Circular right polarisation
+        MAX,
+    }
+
+    /// <summary>
+    /// From SpectralInversion
+    /// </summary>
+    public enum SpectralInversion
+    {
+        NOT_SET = -1,
+        NOT_DEFINED = 0,
+        AUTOMATIC = 1,
+        NORMAL,
+        INVERTED,
+        MAX
+    }
+
+    /// <summary>
+    /// From ModulationType
+    /// </summary>
+    public enum ModulationType
+    {
+        MOD_NOT_SET = -1,
+        MOD_NOT_DEFINED = 0,
+        MOD_16QAM = 1,
+        MOD_32QAM,
+        MOD_64QAM,
+        MOD_80QAM,
+        MOD_96QAM,
+        MOD_112QAM,
+        MOD_128QAM,
+        MOD_160QAM,
+        MOD_192QAM,
+        MOD_224QAM,
+        MOD_256QAM,
+        MOD_320QAM,
+        MOD_384QAM,
+        MOD_448QAM,
+        MOD_512QAM,
+        MOD_640QAM,
+        MOD_768QAM,
+        MOD_896QAM,
+        MOD_1024QAM,
+        MOD_QPSK,
+        MOD_BPSK,
+        MOD_OQPSK,
+        MOD_8VSB,
+        MOD_16VSB,
+        MOD_ANALOG_AMPLITUDE, // std am
+        MOD_ANALOG_FREQUENCY, // std fm
+        MOD_MAX
+    }
+
+    /// <summary>
+    /// From DVBSystemType
+    /// </summary>
+    public enum DVBSystemType
+    {
+        Cable,
+        Terrestrial,
+        Satellite,
+    }
+
+    /// <summary>
+    /// From HierarchyAlpha
+    /// </summary>
+    public enum HierarchyAlpha
+    {
+        HALPHA_NOT_SET = -1,
+        HALPHA_NOT_DEFINED = 0,
+        HALPHA_1 = 1, // Hierarchy alpha is 1.
+        HALPHA_2, // Hierarchy alpha is 2.
+        HALPHA_4, // Hierarchy alpha is 4.
+        HALPHA_MAX,
+    }
+
+    /// <summary>
+    /// From GuardInterval
+    /// </summary>
+    public enum GuardInterval
+    {
+        GUARD_NOT_SET = -1,
+        GUARD_NOT_DEFINED = 0,
+        GUARD_1_32 = 1, // Guard interval is 1/32
+        GUARD_1_16, // Guard interval is 1/16
+        GUARD_1_8, // Guard interval is 1/8
+        GUARD_1_4, // Guard interval is 1/4
+        GUARD_MAX,
+    }
+
+    /// <summary>
+    /// From TransmissionMode
+    /// </summary>
+    public enum TransmissionMode
+    {
+        MODE_NOT_SET = -1,
+        MODE_NOT_DEFINED = 0,
+        MODE_2K = 1, // Transmission uses 1705 carriers (use a 2K FFT)
+        MODE_8K, // Transmission uses 6817 carriers (use an 8K FFT)
+        MODE_MAX,
+    }
+
+    /// <summary>
+    /// From ComponentStatus
+    /// </summary>
+    public enum ComponentStatus
+    {
+        Active,
+        Inactive,
+        Unavailable
+    }
+
+    /// <summary>
+    /// From ComponentCategory
+    /// </summary>
+    public enum ComponentCategory
+    {
+        NotSet = -1,
+        Other = 0,
+        Video,
+        Audio,
+        Text,
+        Data
+    }
+
+    #endregion
 }
