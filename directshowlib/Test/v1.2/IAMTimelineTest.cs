@@ -222,6 +222,9 @@ namespace DirectShowLib.Test
             hr = m_pTimeline.RemGroupFromList((IAMTimelineObj)pGroup);
             DESError.ThrowExceptionForHR(hr);
 
+            hr = m_pTimeline.GetGroupCount(out c);
+            DESError.ThrowExceptionForHR(hr);
+
             Debug.Assert(c == 0, "RemGroupFromList");
         }
 
