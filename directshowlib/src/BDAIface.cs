@@ -62,6 +62,8 @@ namespace DirectShowLib.BDA
         public MediaSampleContent MediaSampleContent;
     }
 
+#endif
+
     /// <summary>
     /// From BDANODE_DESCRIPTOR
     /// </summary>
@@ -72,8 +74,6 @@ namespace DirectShowLib.BDA
         public Guid guidFunction;
         public Guid guidName;
     }
-
-#endif
 
     #endregion
 
@@ -245,118 +245,6 @@ namespace DirectShowLib.BDA
 
         [PreserveSig]
         int GetTuningSpace([Out] out Guid pguidTuingSpace);
-    }
-
-    [Guid("1347D106-CF3A-428a-A5CB-AC0D9A2A4338"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IBDA_SignalStatistics
-    {
-        [PreserveSig]
-        int put_SignalStrength([In] int lDbStrength);
-
-        [PreserveSig]
-        int get_SignalStrength([Out] out int plDbStrength);
-
-        [PreserveSig]
-        int put_SignalQuality([In] int lPercentQuality);
-
-        [PreserveSig]
-        int get_SignalQuality([Out] out int plPercentQuality);
-
-        [PreserveSig]
-        int put_SignalPresent([In, MarshalAs(UnmanagedType.U1)] bool fPresent);
-
-        [PreserveSig]
-        int get_SignalPresent([Out, MarshalAs(UnmanagedType.U1)] out bool pfPresent);
-
-        [PreserveSig]
-        int put_SignalLocked([In, MarshalAs(UnmanagedType.U1)] bool fLocked);
-
-        [PreserveSig]
-        int get_SignalLocked([Out, MarshalAs(UnmanagedType.U1)] out bool pfLocked);
-
-        [PreserveSig]
-        int put_SampleTime([In] int lmsSampleTime);
-
-        [PreserveSig]
-        int get_SampleTime([Out] out int plmsSampleTime);
-    }
-
-    [Guid("79B56888-7FEA-4690-B45D-38FD3C7849BE"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IBDA_Topology
-    {
-        [PreserveSig]
-        int GetNodeTypes( 
-            [Out] out int pulcNodeTypes,
-            [In] int ulcNodeTypesMax,
-            [Out, MarshalAs(UnmanagedType.LPArray, ArraySubType=UnmanagedType.I4, SizeParamIndex=1)] int[] rgulNodeTypes
-          );
-        
-        [PreserveSig]
-        int GetNodeDescriptors( 
-            [Out] out int ulcNodeDescriptors,
-            [In] int ulcNodeDescriptorsMax,
-            [Out, MarshalAs(UnmanagedType.LPArray, ArraySubType=UnmanagedType.LPStruct, SizeParamIndex=1)] BDANodeDescriptor[] rgNodeDescriptors
-          );
-        
-        [PreserveSig]
-        int GetNodeInterfaces( 
-            [In] int ulNodeType,
-            [Out] out int pulcInterfaces,
-            [In] int ulcInterfacesMax,
-            [Out, MarshalAs(UnmanagedType.LPArray, ArraySubType=UnmanagedType.LPStruct, SizeParamIndex=2)] Guid[] rgguidInterfaces
-          );
-        
-        [PreserveSig]
-        int GetPinTypes( 
-            [Out] out int pulcPinTypes,
-            [In] int ulcPinTypesMax,
-            [Out, MarshalAs(UnmanagedType.LPArray, ArraySubType=UnmanagedType.I4, SizeParamIndex=1)] int[] rgulPinTypes
-          );
-        
-        [PreserveSig]
-        int GetTemplateConnections( 
-            [Out] out int pulcConnections,
-            [In] int ulcConnectionsMax,
-            [Out, MarshalAs(UnmanagedType.LPArray, ArraySubType=UnmanagedType.LPStruct, SizeParamIndex=1)] BDATemplateConnection [] rgConnections
-          );
-        
-        [PreserveSig]
-        int CreatePin( 
-            [In] int ulPinType,
-            [Out] out int pulPinId
-          );
-        
-        [PreserveSig]
-        int DeletePin([In] int ulPinId);
-        
-        [PreserveSig]
-        int SetMediaType( 
-            [In] int ulPinId,
-            [In] AMMediaType[] pMediaType
-          );
-        
-        [PreserveSig]
-        int SetMedium( 
-            [In] int ulPinId,
-            [In] RegPinMedium pMedium
-          );
-        
-        [PreserveSig]
-        int CreateTopology( 
-            [In] int ulInputPinId,
-            [In] int ulOutputPinId
-          );
-        
-        [PreserveSig]
-        int GetControlNode( 
-            [In] int ulInputPinId,
-            [In] int ulOutputPinId,
-            [In] int ulNodeType,
-            [Out, MarshalAs(UnmanagedType.IUnknown)] out object ppControlNode // IUnknown 
-          ); 
-        
     }
 
     [Guid("71985F46-1CA1-11d3-9CC8-00C04F7971E0"),
@@ -575,6 +463,120 @@ namespace DirectShowLib.BDA
         int EnumPIDMap([Out] out IEnumPIDMap pIEnumPIDMap);
     }
 
+#endif
+
+    [Guid("1347D106-CF3A-428a-A5CB-AC0D9A2A4338"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IBDA_SignalStatistics
+    {
+        [PreserveSig]
+        int put_SignalStrength([In] int lDbStrength);
+
+        [PreserveSig]
+        int get_SignalStrength([Out] out int plDbStrength);
+
+        [PreserveSig]
+        int put_SignalQuality([In] int lPercentQuality);
+
+        [PreserveSig]
+        int get_SignalQuality([Out] out int plPercentQuality);
+
+        [PreserveSig]
+        int put_SignalPresent([In, MarshalAs(UnmanagedType.U1)] bool fPresent);
+
+        [PreserveSig]
+        int get_SignalPresent([Out, MarshalAs(UnmanagedType.U1)] out bool pfPresent);
+
+        [PreserveSig]
+        int put_SignalLocked([In, MarshalAs(UnmanagedType.U1)] bool fLocked);
+
+        [PreserveSig]
+        int get_SignalLocked([Out, MarshalAs(UnmanagedType.U1)] out bool pfLocked);
+
+        [PreserveSig]
+        int put_SampleTime([In] int lmsSampleTime);
+
+        [PreserveSig]
+        int get_SampleTime([Out] out int plmsSampleTime);
+    }
+
+    [Guid("79B56888-7FEA-4690-B45D-38FD3C7849BE"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IBDA_Topology
+    {
+        [PreserveSig]
+        int GetNodeTypes( 
+            [Out] out int pulcNodeTypes,
+            [In] int ulcNodeTypesMax,
+            [Out, MarshalAs(UnmanagedType.LPArray, ArraySubType=UnmanagedType.I4, SizeParamIndex=1)] int[] rgulNodeTypes
+            );
+        
+        [PreserveSig]
+        int GetNodeDescriptors( 
+            [Out] out int ulcNodeDescriptors,
+            [In] int ulcNodeDescriptorsMax,
+            [Out, MarshalAs(UnmanagedType.LPArray, ArraySubType=UnmanagedType.LPStruct, SizeParamIndex=1)] BDANodeDescriptor[] rgNodeDescriptors
+            );
+        
+        [PreserveSig]
+        int GetNodeInterfaces( 
+            [In] int ulNodeType,
+            [Out] out int pulcInterfaces,
+            [In] int ulcInterfacesMax,
+            [Out, MarshalAs(UnmanagedType.LPArray, ArraySubType=UnmanagedType.LPStruct, SizeParamIndex=2)] Guid[] rgguidInterfaces
+            );
+        
+        [PreserveSig]
+        int GetPinTypes( 
+            [Out] out int pulcPinTypes,
+            [In] int ulcPinTypesMax,
+            [Out, MarshalAs(UnmanagedType.LPArray, ArraySubType=UnmanagedType.I4, SizeParamIndex=1)] int[] rgulPinTypes
+            );
+        
+        [PreserveSig]
+        int GetTemplateConnections( 
+            [Out] out int pulcConnections,
+            [In] int ulcConnectionsMax,
+            [Out, MarshalAs(UnmanagedType.LPArray, ArraySubType=UnmanagedType.LPStruct, SizeParamIndex=1)] BDATemplateConnection [] rgConnections
+            );
+        
+        [PreserveSig]
+        int CreatePin( 
+            [In] int ulPinType,
+            [Out] out int pulPinId
+            );
+        
+        [PreserveSig]
+        int DeletePin([In] int ulPinId);
+        
+        [PreserveSig]
+        int SetMediaType( 
+            [In] int ulPinId,
+            [In] AMMediaType[] pMediaType
+            );
+        
+        [PreserveSig]
+        int SetMedium( 
+            [In] int ulPinId,
+            [In] RegPinMedium pMedium
+            );
+        
+        [PreserveSig]
+        int CreateTopology( 
+            [In] int ulInputPinId,
+            [In] int ulOutputPinId
+            );
+        
+        [PreserveSig]
+        int GetControlNode( 
+            [In] int ulInputPinId,
+            [In] int ulOutputPinId,
+            [In] int ulNodeType,
+            [Out, MarshalAs(UnmanagedType.IUnknown)] out object ppControlNode // IUnknown 
+            ); 
+        
+    }
+
     [Guid("06FB45C1-693C-4ea7-B79F-7A6A54D8DEF2"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IFrequencyMap
@@ -602,16 +604,15 @@ namespace DirectShowLib.BDA
             [In] int ulCountryCode,
             [Out] out int pulCount,
             [Out] out IntPtr ppulList
-          );
+            );
 
         [PreserveSig]
         int get_CountryCodeList(
             [Out] out int pulCount,
             [Out] out IntPtr ppulList
-          );
+            );
 
     }
-#endif
 
     #endregion
 }

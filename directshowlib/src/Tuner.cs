@@ -31,18 +31,9 @@ namespace DirectShowLib.BDA
     #region Declarations
 
 #if ALLOW_UNTESTED_INTERFACES
-    [ComImport, Guid("D02AAC50-027E-11d3-9D8E-00C04F72D980")]
-    public class SystemTuningSpaces
-    {
-    }
 
     [ComImport, Guid("5FFDC5E6-B83A-4b55-B6E8-C69E765FE9DB")]
     public class TuningSpace
-    {
-    }
-
-    [ComImport, Guid("A2E30750-6C3D-11d3-B653-00C04F79498E")]
-    public class ATSCTuningSpace
     {
     }
 
@@ -58,26 +49,6 @@ namespace DirectShowLib.BDA
 
     [ComImport, Guid("8A674B4D-1F63-11d3-B64C-00C04F79498E")]
     public class AnalogTVTuningSpace
-    {
-    }
-
-    [ComImport, Guid("C6B14B32-76AA-4a86-A7AC-5C79AAF58DA7")]
-    public class DVBTuningSpace
-    {
-    }
-
-    [ComImport, Guid("B64016F3-C9A2-4066-96F0-BD9563314726")]
-    public class DVBSTuningSpace
-    {
-    }
-
-    [ComImport, Guid("A1A2B1C4-0E3A-11d3-9D8E-00C04F72D980")]
-    public class ComponentTypes
-    {
-    }
-
-    [ComImport, Guid("823535A0-0318-11d3-9D8E-00C04F72D980")]
-    public class ComponentType
     {
     }
 
@@ -131,11 +102,6 @@ namespace DirectShowLib.BDA
     {
     }
 
-    [ComImport, Guid("2C63E4EB-4CEA-41b8-919C-E947EA19A77C")]
-    public class MPEG2TuneRequestFactory
-    {
-    }
-
     [ComImport, Guid("0888C883-AC4F-4943-B516-2C38D9B34562")]
     public class Locator
     {
@@ -143,16 +109,6 @@ namespace DirectShowLib.BDA
 
     [ComImport, Guid("8872FF1B-98FA-4d7a-8D93-C9F1055F85BB")]
     public class ATSCLocator
-    {
-    }
-
-    [ComImport, Guid("9CD64701-BDF3-4d14-8E03-F12983D86664")]
-    public class DVBTLocator
-    {
-    }
-
-    [ComImport, Guid("1DF7D126-4050-47f0-A7CF-4C4CA9241333")]
-    public class DVBSLocator
     {
     }
 
@@ -166,12 +122,57 @@ namespace DirectShowLib.BDA
     {
     }
 
+#endif
+
+    [ComImport, Guid("A1A2B1C4-0E3A-11d3-9D8E-00C04F72D980")]
+    public class ComponentTypes
+    {
+    }
+
+    [ComImport, Guid("823535A0-0318-11d3-9D8E-00C04F72D980")]
+    public class ComponentType
+    {
+    }
+
+    [ComImport, Guid("A2E30750-6C3D-11d3-B653-00C04F79498E")]
+    public class ATSCTuningSpace
+    {
+    }
+
+    [ComImport, Guid("C6B14B32-76AA-4a86-A7AC-5C79AAF58DA7")]
+    public class DVBTuningSpace
+    {
+    }
+
+    [ComImport, Guid("B64016F3-C9A2-4066-96F0-BD9563314726")]
+    public class DVBSTuningSpace
+    {
+    }
+
+    [ComImport, Guid("9CD64701-BDF3-4d14-8E03-F12983D86664")]
+    public class DVBTLocator
+    {
+    }
+
+    [ComImport, Guid("1DF7D126-4050-47f0-A7CF-4C4CA9241333")]
+    public class DVBSLocator
+    {
+    }
+
     [ComImport, Guid("8A674B49-1F63-11d3-B64C-00C04F79498E")]
     public class CreatePropBagOnRegKey
     {
     }
 
-#endif
+    [ComImport, Guid("D02AAC50-027E-11d3-9D8E-00C04F72D980")]
+    public class SystemTuningSpaces
+    {
+    }
+
+    [ComImport, Guid("2C63E4EB-4CEA-41b8-919C-E947EA19A77C")]
+    public class MPEG2TuneRequestFactory
+    {
+    }
 
     /// <summary>
     /// From unnamed enum DISPID_TUNER_TS_*
@@ -991,55 +992,6 @@ namespace DirectShowLib.BDA
     }
 
 
-    [Guid("EB7D987F-8A01-42ad-B8AE-574DEEE44D1A"),
-    InterfaceType(ComInterfaceType.InterfaceIsDual)]
-    public interface IMPEG2TuneRequest : ITuneRequest
-    {
-        #region ITuneRequest Methods
-
-        [PreserveSig, DispId((int) DispIDTuner.TR_TUNINGSPACE)]
-        new int get_TuningSpace([Out] out ITuningSpace TuningSpace);
-
-        [PreserveSig, DispId((int) DispIDTuner.TR_COMPONENTS)]
-        new int get_Components([Out] out IComponents Components);
-
-        [PreserveSig, DispId((int) DispIDTuner.TR_CLONE)]
-        new int Clone([Out] out ITuneRequest NewTuneRequest);
-
-        [PreserveSig, DispId((int) DispIDTuner.TR_LOCATOR)]
-        new int get_Locator([Out] out ILocator Locator);
-
-        [PreserveSig, DispId((int) DispIDTuner.TR_LOCATOR)]
-        new int put_Locator([In] ILocator Locator);
-
-        #endregion
-
-        [PreserveSig, DispId((int) DispIDTuner.MP2TUNER_TSID)]
-        int get_TSID([Out] out int TSID);
-
-        [PreserveSig, DispId((int) DispIDTuner.MP2TUNER_TSID)]
-        int put_TSID([In] int TSID);
-
-        [PreserveSig, DispId((int) DispIDTuner.MP2TUNER_PROGNO)]
-        int get_ProgNo([Out] out int ProgNo);
-
-        [PreserveSig, DispId((int) DispIDTuner.MP2TUNER_PROGNO)]
-        int put_ProgNo([In] int ProgNo);
-    }
-
-
-    [Guid("14E11ABD-EE37-4893-9EA1-6964DE933E39"),
-    InterfaceType(ComInterfaceType.InterfaceIsDual)]
-    public interface IMPEG2TuneRequestFactory
-    {
-        [PreserveSig, DispId((int) DispIDTuner.MP2TUNERFACTORY_CREATETUNEREQUEST)]
-        int CreateTuneRequest(
-            [In] ITuningSpace TuningSpace,
-            [Out] out IMPEG2TuneRequest TuneRequest
-            );
-    }
-
-
     [Guid("1B9D5FC3-5BBC-4b6c-BB18-B9D10E3EEEBF"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IMPEG2TuneRequestSupport
@@ -1548,96 +1500,6 @@ namespace DirectShowLib.BDA
     {
         [PreserveSig]
         int Fire(Guid EventID);
-    }
-
-
-    [Guid("39A48091-FFFE-4182-A161-3FF802640E26"),
-    InterfaceType(ComInterfaceType.InterfaceIsDual)]
-    public interface IComponents
-    {
-        [PreserveSig]
-        int get_Count([Out] out int Count);
-
-        [PreserveSig, DispId((int) DispIDTuner.NEWENUM)]
-        int get__NewEnum([Out] out UCOMIEnumVARIANT ppNewEnum);
-
-        [PreserveSig]
-        int EnumComponents([Out] out IEnumComponents ppNewEnum);
-
-        [PreserveSig, DispId((int) DispIDTuner.VALUE)]
-        int get_Item(
-            [In] object varIndex,
-            [Out] out IComponent TuningSpace
-            );
-
-        [PreserveSig, DispId((int) DispIDTuner.ADDITEM)]
-        int Add(
-            [In] IComponent Component,
-            [Out] out object NewIndex
-            );
-
-        [PreserveSig, DispId((int) DispIDTuner.REMOVEITEM)]
-        int Remove([In] object Index);
-
-        [PreserveSig]
-        int Clone([Out] out IComponents NewList);
-
-        [PreserveSig]
-        int put_Item( 
-            object Index,
-            IComponent ppComponent
-            );        
-    }
-
-
-    [Guid("2A6E2939-2595-11d3-B64C-00C04F79498E"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IEnumComponents
-    {
-        int Next(
-            [In] int celt,
-            [Out] out IComponent rgelt,
-            [Out] out int pceltFetched
-            );
-
-        int Skip([In] int celt);
-
-        int Reset();
-
-        int Clone([Out] out IEnumComponents ppEnum);
-    }
-
-
-    [Guid("1A5576FC-0E19-11d3-9D8E-00C04F72D980"),
-    InterfaceType(ComInterfaceType.InterfaceIsDual)]
-    public interface IComponent
-    {
-        [PreserveSig, DispId((int) DispIDTuner.C_TYPE)]
-        int get_Type([Out] out IComponentType CT);
-
-        [PreserveSig, DispId((int) DispIDTuner.C_TYPE)]
-        int put_Type([In] IComponentType CT);
-
-        [PreserveSig, DispId((int) DispIDTuner.C_LANGID)]
-        int get_DescLangID([Out] out int LangID);
-
-        [PreserveSig, DispId((int) DispIDTuner.C_LANGID)]
-        int put_DescLangID([In] int LangID);
-
-        [PreserveSig, DispId((int) DispIDTuner.C_STATUS)]
-        int get_Status([Out] out ComponentStatus Status);
-
-        [PreserveSig, DispId((int) DispIDTuner.C_STATUS)]
-        int put_Status([In] ComponentStatus Status);
-
-        [PreserveSig, DispId((int) DispIDTuner.C_DESCRIPTION)]
-        int get_Description([Out, MarshalAs(UnmanagedType.BStr)] out string Description);
-
-        [PreserveSig, DispId((int) DispIDTuner.C_DESCRIPTION)]
-        int put_Description([In, MarshalAs(UnmanagedType.BStr)] string Description);
-
-        [PreserveSig, DispId((int) DispIDTuner.C_CLONE)]
-        int Clone([Out] out IComponent NewComponent);
     }
 
 
@@ -2572,6 +2434,145 @@ namespace DirectShowLib.BDA
         [PreserveSig]
         int Clone(
             [Out] out IComponentTypes NewList
+            );
+    }
+
+
+    [Guid("39A48091-FFFE-4182-A161-3FF802640E26"),
+    InterfaceType(ComInterfaceType.InterfaceIsDual)]
+    public interface IComponents
+    {
+        [PreserveSig]
+        int get_Count([Out] out int Count);
+
+        [PreserveSig, DispId((int) DispIDTuner.NEWENUM)]
+        int get__NewEnum([Out] out UCOMIEnumVARIANT ppNewEnum);
+
+        [PreserveSig]
+        int EnumComponents([Out] out IEnumComponents ppNewEnum);
+
+        [PreserveSig, DispId((int) DispIDTuner.VALUE)]
+        int get_Item(
+            [In] object varIndex,
+            [Out] out IComponent TuningSpace
+            );
+
+        [PreserveSig, DispId((int) DispIDTuner.ADDITEM)]
+        int Add(
+            [In] IComponent Component,
+            [Out] out object NewIndex
+            );
+
+        [PreserveSig, DispId((int) DispIDTuner.REMOVEITEM)]
+        int Remove([In] object Index);
+
+        [PreserveSig]
+        int Clone([Out] out IComponents NewList);
+
+        [PreserveSig]
+        int put_Item( 
+            object Index,
+            IComponent ppComponent
+            );        
+    }
+
+
+    [Guid("2A6E2939-2595-11d3-B64C-00C04F79498E"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IEnumComponents
+    {
+        int Next(
+            [In] int celt,
+            [Out] out IComponent rgelt,
+            [Out] out int pceltFetched
+            );
+
+        int Skip([In] int celt);
+
+        int Reset();
+
+        int Clone([Out] out IEnumComponents ppEnum);
+    }
+
+
+    [Guid("1A5576FC-0E19-11d3-9D8E-00C04F72D980"),
+    InterfaceType(ComInterfaceType.InterfaceIsDual)]
+    public interface IComponent
+    {
+        [PreserveSig, DispId((int) DispIDTuner.C_TYPE)]
+        int get_Type([Out] out IComponentType CT);
+
+        [PreserveSig, DispId((int) DispIDTuner.C_TYPE)]
+        int put_Type([In] IComponentType CT);
+
+        [PreserveSig, DispId((int) DispIDTuner.C_LANGID)]
+        int get_DescLangID([Out] out int LangID);
+
+        [PreserveSig, DispId((int) DispIDTuner.C_LANGID)]
+        int put_DescLangID([In] int LangID);
+
+        [PreserveSig, DispId((int) DispIDTuner.C_STATUS)]
+        int get_Status([Out] out ComponentStatus Status);
+
+        [PreserveSig, DispId((int) DispIDTuner.C_STATUS)]
+        int put_Status([In] ComponentStatus Status);
+
+        [PreserveSig, DispId((int) DispIDTuner.C_DESCRIPTION)]
+        int get_Description([Out, MarshalAs(UnmanagedType.BStr)] out string Description);
+
+        [PreserveSig, DispId((int) DispIDTuner.C_DESCRIPTION)]
+        int put_Description([In, MarshalAs(UnmanagedType.BStr)] string Description);
+
+        [PreserveSig, DispId((int) DispIDTuner.C_CLONE)]
+        int Clone([Out] out IComponent NewComponent);
+    }
+
+
+    [Guid("EB7D987F-8A01-42ad-B8AE-574DEEE44D1A"),
+    InterfaceType(ComInterfaceType.InterfaceIsDual)]
+    public interface IMPEG2TuneRequest : ITuneRequest
+    {
+        #region ITuneRequest Methods
+
+        [PreserveSig, DispId((int) DispIDTuner.TR_TUNINGSPACE)]
+        new int get_TuningSpace([Out] out ITuningSpace TuningSpace);
+
+        [PreserveSig, DispId((int) DispIDTuner.TR_COMPONENTS)]
+        new int get_Components([Out] out IComponents Components);
+
+        [PreserveSig, DispId((int) DispIDTuner.TR_CLONE)]
+        new int Clone([Out] out ITuneRequest NewTuneRequest);
+
+        [PreserveSig, DispId((int) DispIDTuner.TR_LOCATOR)]
+        new int get_Locator([Out] out ILocator Locator);
+
+        [PreserveSig, DispId((int) DispIDTuner.TR_LOCATOR)]
+        new int put_Locator([In] ILocator Locator);
+
+        #endregion
+
+        [PreserveSig, DispId((int) DispIDTuner.MP2TUNER_TSID)]
+        int get_TSID([Out] out int TSID);
+
+        [PreserveSig, DispId((int) DispIDTuner.MP2TUNER_TSID)]
+        int put_TSID([In] int TSID);
+
+        [PreserveSig, DispId((int) DispIDTuner.MP2TUNER_PROGNO)]
+        int get_ProgNo([Out] out int ProgNo);
+
+        [PreserveSig, DispId((int) DispIDTuner.MP2TUNER_PROGNO)]
+        int put_ProgNo([In] int ProgNo);
+    }
+
+
+    [Guid("14E11ABD-EE37-4893-9EA1-6964DE933E39"),
+    InterfaceType(ComInterfaceType.InterfaceIsDual)]
+    public interface IMPEG2TuneRequestFactory
+    {
+        [PreserveSig, DispId((int) DispIDTuner.MP2TUNERFACTORY_CREATETUNEREQUEST)]
+        int CreateTuneRequest(
+            [In] ITuningSpace TuningSpace,
+            [Out] out IMPEG2TuneRequest TuneRequest
             );
     }
 

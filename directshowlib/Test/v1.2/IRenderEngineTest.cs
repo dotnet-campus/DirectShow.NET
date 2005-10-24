@@ -9,7 +9,10 @@ using DirectShowLib.DES;
 
 namespace DirectShowLib.Test
 {
-    public class IRenderEngineTest : IGrfCache, IMediaLocator
+    public class IRenderEngineTest : IMediaLocator
+#if ALLOW_UNTESTED_INTERFACES
+        , IGrfCache
+#endif
     {
         const int E_NOTIMPL = unchecked((int)0x80004001);
         const int E_INVALIDARG = unchecked((int)0x80070057);
@@ -280,7 +283,7 @@ namespace DirectShowLib.Test
             return 0;
         }
 
-
+#if ALLOW_UNTESTED_INTERFACES
         #region IGrfCache Members
 
         public int AddFilter(IGrfCache ChainedCache, long Id, IBaseFilter pFilter, string pName)
@@ -308,6 +311,7 @@ namespace DirectShowLib.Test
         }
 
         #endregion
+#endif
 
         #region IMediaLocator Members
 

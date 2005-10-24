@@ -86,12 +86,14 @@ namespace DirectShowLib.Test
 
       if (networkType == typeof(ATSCNetworkProvider).GUID)
       {
+#if ALLOW_UNTESTED_INTERFACES
         // I know nothing about ATSC so thoses lines are pure speculation
         hr = (tr as IATSCChannelTuneRequest).put_Channel(-1);
 
         IATSCLocator locator = (IATSCLocator) new ATSCLocator();
         hr = locator.put_CarrierFrequency(-1);
         hr = tr.put_Locator(locator as ILocator);
+#endif
       }
       else if (networkType == typeof(DVBTNetworkProvider).GUID)
       {

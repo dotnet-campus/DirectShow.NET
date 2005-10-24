@@ -7,7 +7,10 @@ using DirectShowLib.DES;
 
 namespace DirectShowLib.Test
 {
-    public class ISmartRenderEngineTest : IFindCompressorCB
+    public class ISmartRenderEngineTest 
+#if ALLOW_UNTESTED_INTERFACES
+        : IFindCompressorCB
+#endif
     {
         const int E_NOTIMPL = unchecked((int)0x80004001);
 

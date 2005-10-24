@@ -94,18 +94,6 @@ namespace DirectShowLib.BDA
 	}
 
 	/// <summary>
-	/// From BDA_TEMPLATE_CONNECTION
-	/// </summary>
-	[StructLayout(LayoutKind.Sequential)]
-	public struct BDATemplateConnection
-	{
-		public int FromNodeType;
-		public int FromNodePinType;
-		public int ToNodeType;
-		public int ToNodePinType;
-	}
-
-	/// <summary>
 	/// From BDA_TEMPLATE_PIN_JOINT
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
@@ -305,6 +293,18 @@ namespace DirectShowLib.BDA
         Audio,
         Text,
         Data
+    }
+
+    /// <summary>
+    /// From BDA_TEMPLATE_CONNECTION
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential)]
+    public struct BDATemplateConnection
+    {
+        public int FromNodeType;
+        public int FromNodePinType;
+        public int ToNodeType;
+        public int ToNodePinType;
     }
 
     #endregion
