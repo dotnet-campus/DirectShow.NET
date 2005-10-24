@@ -179,6 +179,15 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IComponentsOldTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IComponentsTest.cs"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IComponentTypesTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -220,6 +229,11 @@
                 />
                 <File
                     RelPath = "IDVBTuningSpaceTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IEnumComponentsTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

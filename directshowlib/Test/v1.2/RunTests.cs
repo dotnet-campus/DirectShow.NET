@@ -159,6 +159,15 @@ namespace DirectShowLib.Test
 
             // IComponentTypeTest t54 = new IComponentTypeTest();
             // t54.DoTests();
+
+            // IComponentsOldTest t55 = new IComponentsOldTest();
+            // t55.DoTests();
+
+            // IComponentsTest t56 = new IComponentsTest();
+            // t56.DoTests();
+
+            IEnumComponentsTest t57 = new IEnumComponentsTest();
+            t57.DoTests();
         }
     }
 }

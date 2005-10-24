@@ -1345,13 +1345,19 @@ namespace DirectShowLib.BDA
     public interface IComponentsOld
     {
         [PreserveSig]
-        int get_Count([Out] out int Count);
+        int get_Count(
+            [Out] out int Count
+            );
 
         [PreserveSig, DispId((int) DispIDTuner.NEWENUM)]
-        int get__NewEnum([Out] out UCOMIEnumVARIANT ppNewEnum);
+        int get__NewEnum(
+            [Out] out UCOMIEnumVARIANT ppNewEnum
+            );
 
         [PreserveSig]
-        int EnumComponents([Out] out IEnumComponents ppNewEnum);
+        int EnumComponents(
+            [Out] out IEnumComponents ppNewEnum
+            );
 
         [PreserveSig, DispId((int) DispIDTuner.VALUE)]
         int get_Item(
@@ -1366,10 +1372,14 @@ namespace DirectShowLib.BDA
             );
 
         [PreserveSig, DispId((int) DispIDTuner.REMOVEITEM)]
-        int Remove([In] object Index);
+        int Remove(
+            [In] object Index
+            );
 
         [PreserveSig]
-        int Clone([Out] out IComponents NewList);
+        int Clone(
+            [Out] out IComponentsOld NewList
+            );
     }
 
 
@@ -2483,7 +2493,7 @@ namespace DirectShowLib.BDA
     {
         int Next(
             [In] int celt,
-            [Out] out IComponent rgelt,
+            [Out, MarshalAs(UnmanagedType.LPArray)] IComponent [] rgelt,
             [Out] out int pceltFetched
             );
 
