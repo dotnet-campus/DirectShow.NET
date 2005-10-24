@@ -1388,9 +1388,6 @@ namespace DirectShowLib.BDA
     }
 
 
-    //////////////////////////////////////////////////////////////////////////////////////
-    // Component Container
-    //////////////////////////////////////////////////////////////////////////////////////
     [Guid("FCD01846-0E19-11d3-9D8E-00C04F72D980"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface IComponentsOld
@@ -1424,9 +1421,6 @@ namespace DirectShowLib.BDA
     }
 
 
-    //////////////////////////////////////////////////////////////////////////////////////
-    // Component Container
-    //////////////////////////////////////////////////////////////////////////////////////
     [Guid("BF8D986F-8C2B-4131-94D7-4D3D9FCC21EF"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface IATSCLocator : ILocator
@@ -1547,9 +1541,7 @@ namespace DirectShowLib.BDA
         #endregion
     }
 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    // utility interfaces
-    ///////////////////////////////////////////////////////////////////////////////////////
+
     [Guid("3B21263F-26E8-489d-AAC4-924F7EFD9511"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IBroadcastEvent
@@ -1557,6 +1549,7 @@ namespace DirectShowLib.BDA
         [PreserveSig]
         int Fire(Guid EventID);
     }
+
 
     [Guid("39A48091-FFFE-4182-A161-3FF802640E26"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
@@ -1602,24 +1595,30 @@ namespace DirectShowLib.BDA
     public interface IComponentTypes
     {
         [PreserveSig]
-        int get_Count([Out] out int Count);
+        int get_Count(
+            [Out] out int Count
+            );
 
         [PreserveSig, DispId((int) DispIDTuner.NEWENUM)]
-        int get__NewEnum([Out] out UCOMIEnumVARIANT ppNewEnum);
+        int get__NewEnum(
+            [Out] out UCOMIEnumVARIANT ppNewEnum
+            );
 
         [PreserveSig]
-        int EnumComponentTypes([Out] out IEnumComponentTypes ppNewEnum);
+        int EnumComponentTypes(
+            [Out] out IEnumComponentTypes ppNewEnum
+            );
 
         [PreserveSig, DispId((int) DispIDTuner.VALUE)]
         int get_Item(
             [In] object varIndex,
-            [Out] out IEnumComponentTypes TuningSpace
+            [Out] out IComponentType TuningSpace
             );
 
         [PreserveSig, DispId((int) DispIDTuner.VALUE)]
         int put_Item(
-            [In] IComponentType ComponentType,
-            [Out] out object NewIndex
+            [In] object NewIndex,
+            [In] IComponentType ComponentType
             );
 
         [PreserveSig, DispId((int) DispIDTuner.ADDITEM)]
@@ -1629,10 +1628,14 @@ namespace DirectShowLib.BDA
             );
 
         [PreserveSig, DispId((int) DispIDTuner.REMOVEITEM)]
-        int Remove([In] object Index);
+        int Remove(
+            [In] object Index
+            );
 
         [PreserveSig]
-        int Clone([Out] out IComponentTypes NewList);
+        int Clone(
+            [Out] out IComponentTypes NewList
+            );
     }
 
 
@@ -1693,7 +1696,7 @@ namespace DirectShowLib.BDA
     {
         int Next(
             [In] int celt,
-            [Out] out IComponentType rgelt,
+            [Out, MarshalAs(UnmanagedType.LPArray)] IComponentType [] rgelt,
             [Out] out int pceltFetched
             );
 
