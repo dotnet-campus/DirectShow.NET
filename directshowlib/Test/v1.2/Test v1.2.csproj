@@ -188,6 +188,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IComponentTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IComponentTypesTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
