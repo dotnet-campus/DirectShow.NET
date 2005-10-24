@@ -1151,7 +1151,7 @@ namespace DirectShowLib.BDA
         new int put__MediaFormatType([In, MarshalAs(UnmanagedType.LPStruct)] Guid MediaFormatType);
 
         [PreserveSig, DispId((int) DispIDTuner.CT_MEDIATYPE)]
-        new int get_MediaType([Out] out AMMediaType MediaType);
+        new int get_MediaType([Out] AMMediaType MediaType);
 
         [PreserveSig, DispId((int) DispIDTuner.CT_MEDIATYPE)]
         new int put_MediaType([In] AMMediaType MediaType);
@@ -1218,7 +1218,7 @@ namespace DirectShowLib.BDA
         new int put__MediaFormatType([In, MarshalAs(UnmanagedType.LPStruct)] Guid MediaFormatType);
 
         [PreserveSig, DispId((int) DispIDTuner.CT_MEDIATYPE)]
-        new int get_MediaType([Out] out AMMediaType MediaType);
+        new int get_MediaType([Out] AMMediaType MediaType);
 
         [PreserveSig, DispId((int) DispIDTuner.CT_MEDIATYPE)]
         new int put_MediaType([In] AMMediaType MediaType);
@@ -1295,7 +1295,7 @@ namespace DirectShowLib.BDA
         new int put__MediaFormatType([In, MarshalAs(UnmanagedType.LPStruct)] Guid MediaFormatType);
 
         [PreserveSig, DispId((int) DispIDTuner.CT_MEDIATYPE)]
-        new int get_MediaType([Out] out AMMediaType MediaType);
+        new int get_MediaType([Out] AMMediaType MediaType);
 
         [PreserveSig, DispId((int) DispIDTuner.CT_MEDIATYPE)]
         new int put_MediaType([In] AMMediaType MediaType);
@@ -1590,55 +1590,6 @@ namespace DirectShowLib.BDA
     }
 
 
-    [Guid("0DC13D4A-0313-11d3-9D8E-00C04F72D980"),
-    InterfaceType(ComInterfaceType.InterfaceIsDual)]
-    public interface IComponentTypes
-    {
-        [PreserveSig]
-        int get_Count(
-            [Out] out int Count
-            );
-
-        [PreserveSig, DispId((int) DispIDTuner.NEWENUM)]
-        int get__NewEnum(
-            [Out] out UCOMIEnumVARIANT ppNewEnum
-            );
-
-        [PreserveSig]
-        int EnumComponentTypes(
-            [Out] out IEnumComponentTypes ppNewEnum
-            );
-
-        [PreserveSig, DispId((int) DispIDTuner.VALUE)]
-        int get_Item(
-            [In] object varIndex,
-            [Out] out IComponentType TuningSpace
-            );
-
-        [PreserveSig, DispId((int) DispIDTuner.VALUE)]
-        int put_Item(
-            [In] object NewIndex,
-            [In] IComponentType ComponentType
-            );
-
-        [PreserveSig, DispId((int) DispIDTuner.ADDITEM)]
-        int Add(
-            [In] IComponentType ComponentType,
-            [Out] out object NewIndex
-            );
-
-        [PreserveSig, DispId((int) DispIDTuner.REMOVEITEM)]
-        int Remove(
-            [In] object Index
-            );
-
-        [PreserveSig]
-        int Clone(
-            [Out] out IComponentTypes NewList
-            );
-    }
-
-
     [Guid("2A6E2939-2595-11d3-B64C-00C04F79498E"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IEnumComponents
@@ -1687,81 +1638,6 @@ namespace DirectShowLib.BDA
 
         [PreserveSig, DispId((int) DispIDTuner.C_CLONE)]
         int Clone([Out] out IComponent NewComponent);
-    }
-
-
-    [Guid("8A674B4A-1F63-11d3-B64C-00C04F79498E"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IEnumComponentTypes
-    {
-        int Next(
-            [In] int celt,
-            [Out, MarshalAs(UnmanagedType.LPArray)] IComponentType [] rgelt,
-            [Out] out int pceltFetched
-            );
-
-        int Skip([In] int celt);
-
-        int Reset();
-
-        int Clone([Out] out IEnumComponentTypes ppEnum);
-    }
-
-
-    [Guid("6A340DC0-0311-11d3-9D8E-00C04F72D980"),
-    InterfaceType(ComInterfaceType.InterfaceIsDual)]
-    public interface IComponentType
-    {
-        [PreserveSig, DispId((int) DispIDTuner.CT_CATEGORY)]
-        int get_Category([Out] out ComponentCategory Category);
-
-        [PreserveSig, DispId((int) DispIDTuner.CT_CATEGORY)]
-        int put_Category([In] ComponentCategory Category);
-
-        [PreserveSig, DispId((int) DispIDTuner.CT_MEDIAMAJORTYPE)]
-        int get_MediaMajorType([Out, MarshalAs(UnmanagedType.BStr)] out string MediaMajorType);
-
-        [PreserveSig, DispId((int) DispIDTuner.CT_MEDIAMAJORTYPE)]
-        int put_MediaMajorType([In, MarshalAs(UnmanagedType.BStr)] string MediaMajorType);
-
-        [PreserveSig, DispId((int) DispIDTuner.CT__MEDIAMAJORTYPE)]
-        int get__MediaMajorType([Out] out Guid MediaMajorType);
-
-        [PreserveSig, DispId((int) DispIDTuner.CT__MEDIAMAJORTYPE)]
-        int put__MediaMajorType([In, MarshalAs(UnmanagedType.LPStruct)] Guid MediaMajorType);
-
-        [PreserveSig, DispId((int) DispIDTuner.CT_MEDIASUBTYPE)]
-        int get_MediaSubType([Out, MarshalAs(UnmanagedType.BStr)] out string MediaSubType);
-
-        [PreserveSig, DispId((int) DispIDTuner.CT_MEDIASUBTYPE)]
-        int put_MediaSubType([In, MarshalAs(UnmanagedType.BStr)] string MediaSubType);
-
-        [PreserveSig, DispId((int) DispIDTuner.CT__MEDIASUBTYPE)]
-        int get__MediaSubType([Out] out Guid MediaSubType);
-
-        [PreserveSig, DispId((int) DispIDTuner.CT__MEDIASUBTYPE)]
-        int put__MediaSubType([In, MarshalAs(UnmanagedType.LPStruct)] Guid MediaSubType);
-
-        [PreserveSig, DispId((int) DispIDTuner.CT_MEDIAFORMATTYPE)]
-        int get_MediaFormatType([Out, MarshalAs(UnmanagedType.BStr)] out string MediaFormatType);
-
-        [PreserveSig, DispId((int) DispIDTuner.CT_MEDIAFORMATTYPE)]
-        int put_MediaFormatType([In, MarshalAs(UnmanagedType.BStr)] string MediaFormatType);
-
-        [PreserveSig, DispId((int) DispIDTuner.CT__MEDIAFORMATTYPE)]
-        int get__MediaFormatType([Out] out Guid MediaFormatType);
-
-        [PreserveSig, DispId((int) DispIDTuner.CT__MEDIAFORMATTYPE)]
-        int put__MediaFormatType([In, MarshalAs(UnmanagedType.LPStruct)] Guid MediaFormatType);
-
-        [PreserveSig, DispId((int) DispIDTuner.CT_MEDIATYPE)]
-        int get_MediaType([Out] out AMMediaType MediaType);
-
-        [PreserveSig, DispId((int) DispIDTuner.CT_MEDIATYPE)]
-        int put_MediaType([In] AMMediaType MediaType);
-
-        [PreserveSig, DispId((int) DispIDTuner.CT_CLONE)]
-        int Clone([Out] out IComponentType NewCT);
     }
 
 
@@ -2539,6 +2415,164 @@ namespace DirectShowLib.BDA
 
         [PreserveSig, DispId((int) DispIDTuner.L_DVBT_INUSE)]
         int put_OtherFrequencyInUse([In, MarshalAs(UnmanagedType.VariantBool)] bool OtherFrequencyInUseVal);
+    }
+
+
+    [Guid("8A674B4A-1F63-11d3-B64C-00C04F79498E"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IEnumComponentTypes
+    {
+        int Next(
+            [In] int celt,
+            [Out, MarshalAs(UnmanagedType.LPArray)] IComponentType [] rgelt,
+            [Out] out int pceltFetched
+            );
+
+        int Skip([In] int celt);
+
+        int Reset();
+
+        int Clone([Out] out IEnumComponentTypes ppEnum);
+    }
+
+
+    [Guid("6A340DC0-0311-11d3-9D8E-00C04F72D980"),
+    InterfaceType(ComInterfaceType.InterfaceIsDual)]
+    public interface IComponentType
+    {
+        [PreserveSig, DispId((int) DispIDTuner.CT_CATEGORY)]
+        int get_Category(
+            [Out] out ComponentCategory Category
+            );
+
+        [PreserveSig, DispId((int) DispIDTuner.CT_CATEGORY)]
+        int put_Category(
+            [In] ComponentCategory Category
+            );
+
+        [PreserveSig, DispId((int) DispIDTuner.CT_MEDIAMAJORTYPE)]
+        int get_MediaMajorType(
+            [Out, MarshalAs(UnmanagedType.BStr)] out string MediaMajorType
+            );
+
+        [PreserveSig, DispId((int) DispIDTuner.CT_MEDIAMAJORTYPE)]
+        int put_MediaMajorType(
+            [In, MarshalAs(UnmanagedType.BStr)] string MediaMajorType
+            );
+
+        [PreserveSig, DispId((int) DispIDTuner.CT__MEDIAMAJORTYPE)]
+        int get__MediaMajorType(
+            [Out] out Guid MediaMajorType
+            );
+
+        [PreserveSig, DispId((int) DispIDTuner.CT__MEDIAMAJORTYPE)]
+        int put__MediaMajorType(
+            [In, MarshalAs(UnmanagedType.LPStruct)] Guid MediaMajorType
+            );
+
+        [PreserveSig, DispId((int) DispIDTuner.CT_MEDIASUBTYPE)]
+        int get_MediaSubType(
+            [Out, MarshalAs(UnmanagedType.BStr)] out string MediaSubType
+            );
+
+        [PreserveSig, DispId((int) DispIDTuner.CT_MEDIASUBTYPE)]
+        int put_MediaSubType(
+            [In, MarshalAs(UnmanagedType.BStr)] string MediaSubType
+            );
+
+        [PreserveSig, DispId((int) DispIDTuner.CT__MEDIASUBTYPE)]
+        int get__MediaSubType(
+            [Out] out Guid MediaSubType
+            );
+
+        [PreserveSig, DispId((int) DispIDTuner.CT__MEDIASUBTYPE)]
+        int put__MediaSubType(
+            [In, MarshalAs(UnmanagedType.LPStruct)] Guid MediaSubType
+            );
+
+        [PreserveSig, DispId((int) DispIDTuner.CT_MEDIAFORMATTYPE)]
+        int get_MediaFormatType(
+            [Out, MarshalAs(UnmanagedType.BStr)] out string MediaFormatType
+            );
+
+        [PreserveSig, DispId((int) DispIDTuner.CT_MEDIAFORMATTYPE)]
+        int put_MediaFormatType(
+            [In, MarshalAs(UnmanagedType.BStr)] string MediaFormatType
+            );
+
+        [PreserveSig, DispId((int) DispIDTuner.CT__MEDIAFORMATTYPE)]
+        int get__MediaFormatType(
+            [Out] out Guid MediaFormatType
+            );
+
+        [PreserveSig, DispId((int) DispIDTuner.CT__MEDIAFORMATTYPE)]
+        int put__MediaFormatType(
+            [In, MarshalAs(UnmanagedType.LPStruct)] Guid MediaFormatType
+            );
+
+        [PreserveSig, DispId((int) DispIDTuner.CT_MEDIATYPE)]
+        int get_MediaType(
+            [Out] AMMediaType MediaType
+            );
+
+        [PreserveSig, DispId((int) DispIDTuner.CT_MEDIATYPE)]
+        int put_MediaType(
+            [In] AMMediaType MediaType
+            );
+
+        [PreserveSig, DispId((int) DispIDTuner.CT_CLONE)]
+        int Clone(
+            [Out] out IComponentType NewCT
+            );
+    }
+
+
+    [Guid("0DC13D4A-0313-11d3-9D8E-00C04F72D980"),
+    InterfaceType(ComInterfaceType.InterfaceIsDual)]
+    public interface IComponentTypes
+    {
+        [PreserveSig]
+        int get_Count(
+            [Out] out int Count
+            );
+
+        [PreserveSig, DispId((int) DispIDTuner.NEWENUM)]
+        int get__NewEnum(
+            [Out] out UCOMIEnumVARIANT ppNewEnum
+            );
+
+        [PreserveSig]
+        int EnumComponentTypes(
+            [Out] out IEnumComponentTypes ppNewEnum
+            );
+
+        [PreserveSig, DispId((int) DispIDTuner.VALUE)]
+        int get_Item(
+            [In] object varIndex,
+            [Out] out IComponentType TuningSpace
+            );
+
+        [PreserveSig, DispId((int) DispIDTuner.VALUE)]
+        int put_Item(
+            [In] object NewIndex,
+            [In] IComponentType ComponentType
+            );
+
+        [PreserveSig, DispId((int) DispIDTuner.ADDITEM)]
+        int Add(
+            [In] IComponentType ComponentType,
+            [Out] out object NewIndex
+            );
+
+        [PreserveSig, DispId((int) DispIDTuner.REMOVEITEM)]
+        int Remove(
+            [In] object Index
+            );
+
+        [PreserveSig]
+        int Clone(
+            [Out] out IComponentTypes NewList
+            );
     }
 
 
