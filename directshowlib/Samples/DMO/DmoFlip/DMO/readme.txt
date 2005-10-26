@@ -18,5 +18,72 @@ or IMediaParams::AddEnvelope.  Valid values for FlipMode:
         FlipX = 2,
         FlipY + FlipX = 3
 
-Note that while the DoFlip routine might benefit (performance-wise) from using unsafe code, 
-I haven't done so in order to keep the sample simple.  This is a sample, not production code.
+Note that some of the cases in the DoFlip routine would benefit greatly (performance-wise) from 
+using unsafe code.  I haven't done so in order to keep the sample simple.  However, if you are 
+interested, the code might look like this:
+
+// Flip along the X axis
+case FlipMode.FlipX:
+    // For each row
+    for (int x=0; x < m_Height; x++)
+    {
+        // Calculate the read/write positions
+        int s = (x * m_Stride);
+        int src = s;
+        int dst = (m_Stride - BPP) + s;
+
+        byte* ps = (byte*)(src + pbInData.ToInt32());
+        byte* pd = (byte*)(dst + pbOutData.ToInt32());
+
+        // For each pixel in the row
+        for (int y=0; y < m_Width; y ++)
+        {
+            if (BPP == 4)
+            {
+                *((int *)pd) = *((int*)(ps));
+                ps += 4;
+                pd -= 4;
+            }
+            else
+            {
+                *pd = *ps;
+                *((short *)(pd + 1)) = *((short *)(ps + 1));
+                ps += 3;
+                pd -= 3;
+            }
+        }
+    }
+    break;
+
+// Flip along both the X & Y axis
+case FlipMode.FlipY | FlipMode.FlipX:
+
+    // For each row
+    for (int x=0; x < m_Height; x++)
+    {
+        // Calculate the read/write positions
+        int src = (x * m_Stride);
+        int dst = (m_Stride - BPP) + (cbInData - ((x+1) * m_Stride));
+
+        byte* ps = (byte*)(src + pbInData.ToInt32());
+        byte* pd = (byte*)(dst + pbOutData.ToInt32());
+
+        // For each pixel in the row
+        for (int y=0; y < m_Width; y ++)
+        {
+            if (BPP == 4)
+            {
+                *((int *)pd) = *((int*)(ps));
+                ps += 4;
+                pd -= 4;
+            }
+            else
+            {
+                *pd = *ps;
+                *((short *)(pd + 1)) = *((short *)(ps + 1));
+                ps += 3;
+                pd -= 3;
+            }
+        }
+    }
+    break;
