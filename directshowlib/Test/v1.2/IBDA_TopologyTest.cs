@@ -181,14 +181,13 @@ namespace DirectShowLib.Test
     private void TestSetMediaType()
     {
       int hr = 0;
-      AMMediaType[] mediaTypes;
+      AMMediaType mediaType;
       Guid KSDATAFORMAT_TYPE_BDA_ANTENNA = new Guid("71985F41-1CA1-11d3-9CC8-00C04F7971E0");
 
-      mediaTypes = new AMMediaType[1];
-      mediaTypes[0] = new AMMediaType();
-      mediaTypes[0].formatType = KSDATAFORMAT_TYPE_BDA_ANTENNA;
+      mediaType = new AMMediaType();
+      mediaType.formatType = KSDATAFORMAT_TYPE_BDA_ANTENNA;
 
-      hr = topology.SetMediaType(pinIds[0], mediaTypes);
+      hr = topology.SetMediaType(pinIds[0], mediaType);
 
       Debug.Assert((hr == 0), "IBDA_Topology.SetMediaType");
     }
