@@ -210,10 +210,10 @@ namespace DirectShowLib.BDA
 		InterfaceType(ComInterfaceType.InterfaceIsDual)]
 	public interface IXDSToRat
 	{
-		[PreserveSig, DispId(1)]
+		[PreserveSig]
 		int Init();
 
-		[PreserveSig, DispId(2)]
+		[PreserveSig]
 		int ParseXDSBytePair(
 			[In] byte byte1,
 			[In] byte byte2,
@@ -227,27 +227,27 @@ namespace DirectShowLib.BDA
 		InterfaceType(ComInterfaceType.InterfaceIsDual)]
 	public interface IEvalRat
 	{
-		[PreserveSig, DispId(1)]
+		[PreserveSig]
 		int get_BlockedRatingAttributes(
 			[In] EnTvRat_System enSystem,
 			[In] EnTvRat_GenericLevel enLevel,
 			[Out] out BfEnTvRat_GenericAttributes plbfAttrs
 			);
 
-		[PreserveSig, DispId(1)]
+		[PreserveSig]
 		int put_BlockedRatingAttributes(
 			[In] EnTvRat_System enSystem,
 			[In] EnTvRat_GenericLevel enLevel,
 			[In] BfEnTvRat_GenericAttributes plbfAttrs
 			);
 
-		[PreserveSig, DispId(2)]
+		[PreserveSig]
 		int get_BlockUnRated([Out, MarshalAs(UnmanagedType.Bool)] out bool pfBlockUnRatedShows);
 
-		[PreserveSig, DispId(2)]
+		[PreserveSig]
 		int put_BlockUnRated([In, MarshalAs(UnmanagedType.Bool)] bool pfBlockUnRatedShows);
 
-		[PreserveSig, DispId(3)]
+		[PreserveSig]
 		int MostRestrictiveRating(
 			[In] EnTvRat_System enSystem1,
 			[In] EnTvRat_GenericLevel enEnLevel1,
@@ -260,7 +260,7 @@ namespace DirectShowLib.BDA
 			[Out] out BfEnTvRat_GenericAttributes plbfEnAttr
 			);
 
-		[PreserveSig, DispId(4)]
+		[PreserveSig]
 		int TestRating(
 			[In] EnTvRat_System enShowSystem,
 			[In] EnTvRat_GenericLevel enShowLevel,
