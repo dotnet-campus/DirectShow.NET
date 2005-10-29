@@ -53,13 +53,13 @@ namespace DirectShowLib.Test
       int hr = 0;
       GuardInterval guard;
 
-      hr = locator.put_Guard(GuardInterval.GUARD_1_32);
+      hr = locator.put_Guard(GuardInterval.Guard1_32);
       DsError.ThrowExceptionForHR(hr);
 
       hr = locator.get_Guard(out guard);
       DsError.ThrowExceptionForHR(hr);
 
-      Debug.Assert(guard == GuardInterval.GUARD_1_32, "IDVBTLocator.get_Guard / put_Guard");
+      Debug.Assert(guard == GuardInterval.Guard1_32, "IDVBTLocator.get_Guard / put_Guard");
     }
 
     private void TestHAlpha()
@@ -67,13 +67,13 @@ namespace DirectShowLib.Test
       int hr = 0;
       HierarchyAlpha alpha;
 
-      hr = locator.put_HAlpha(HierarchyAlpha.HALPHA_4);
+      hr = locator.put_HAlpha(HierarchyAlpha.HAlpha4);
       DsError.ThrowExceptionForHR(hr);
 
       hr = locator.get_HAlpha(out alpha);
       DsError.ThrowExceptionForHR(hr);
 
-      Debug.Assert(alpha == HierarchyAlpha.HALPHA_4, "IDVBTLocator.get_HAlpha / put_HAlpha");
+      Debug.Assert(alpha == HierarchyAlpha.HAlpha4, "IDVBTLocator.get_HAlpha / put_HAlpha");
     }
 
     private void TestLPInnerFEC()
@@ -82,21 +82,21 @@ namespace DirectShowLib.Test
       FECMethod fec;
       BinaryConvolutionCodeRate rate;
 
-      hr = locator.put_LPInnerFEC(FECMethod.VITERBI);
+      hr = locator.put_LPInnerFEC(FECMethod.Viterbi);
       DsError.ThrowExceptionForHR(hr);
 
       hr = locator.get_LPInnerFEC(out fec);
       DsError.ThrowExceptionForHR(hr);
 
-      Debug.Assert((fec == FECMethod.VITERBI), "IDVBTLocator.get_LPInnerFEC / put_LPInnerFEC");
+      Debug.Assert((fec == FECMethod.Viterbi), "IDVBTLocator.get_LPInnerFEC / put_LPInnerFEC");
 
-      hr = locator.put_LPInnerFECRate(BinaryConvolutionCodeRate.RATE_5_11);
+      hr = locator.put_LPInnerFECRate(BinaryConvolutionCodeRate.Rate5_11);
       DsError.ThrowExceptionForHR(hr);
 
       hr = locator.get_LPInnerFECRate(out rate);
       DsError.ThrowExceptionForHR(hr);
 
-      Debug.Assert((rate == BinaryConvolutionCodeRate.RATE_5_11), "IDVBTLocator.get_LPInnerFECRate / put_LPInnerFECRate");
+      Debug.Assert((rate == BinaryConvolutionCodeRate.Rate5_11), "IDVBTLocator.get_LPInnerFECRate / put_LPInnerFECRate");
     }
 
     private void TestMode()
@@ -104,13 +104,13 @@ namespace DirectShowLib.Test
       int hr = 0;
       TransmissionMode mode;
 
-      hr = locator.put_Mode(TransmissionMode.MODE_8K);
+      hr = locator.put_Mode(TransmissionMode.Mode8K);
       DsError.ThrowExceptionForHR(hr);
 
       hr = locator.get_Mode(out mode);
       DsError.ThrowExceptionForHR(hr);
 
-      Debug.Assert(mode == TransmissionMode.MODE_8K, "IDVBTLocator.get_Mode / put_Mode");
+      Debug.Assert(mode == TransmissionMode.Mode8K, "IDVBTLocator.get_Mode / put_Mode");
     }
 
     private void TestOtherFrequencyInUse()

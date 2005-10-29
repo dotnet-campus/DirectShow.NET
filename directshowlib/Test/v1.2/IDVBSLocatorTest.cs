@@ -79,13 +79,13 @@ namespace DirectShowLib.Test
       int hr = 0;
       Polarisation pol;
 
-      hr = locator.put_SignalPolarisation(Polarisation.LINEAR_H);
+      hr = locator.put_SignalPolarisation(Polarisation.LinearH);
       DsError.ThrowExceptionForHR(hr);
 
       hr = locator.get_SignalPolarisation(out pol);
       DsError.ThrowExceptionForHR(hr);
 
-      Debug.Assert(pol == Polarisation.LINEAR_H, "IDVBSLocator.get_SignalPolarisation / put_SignalPolarisation");
+      Debug.Assert(pol == Polarisation.LinearH, "IDVBSLocator.get_SignalPolarisation / put_SignalPolarisation");
     }
 
     private void TestWestPosition()

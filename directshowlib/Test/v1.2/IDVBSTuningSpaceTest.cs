@@ -95,13 +95,13 @@ namespace DirectShowLib.Test
       int hr = 0;
       SpectralInversion val;
 
-      hr = tuningSpace.put_SpectralInversion(SpectralInversion.NORMAL);
+      hr = tuningSpace.put_SpectralInversion(SpectralInversion.Normal);
       DsError.ThrowExceptionForHR(hr);
 
       hr = tuningSpace.get_SpectralInversion(out val);
       DsError.ThrowExceptionForHR(hr);
 
-      Debug.Assert(val == SpectralInversion.NORMAL, "IDVBSTuningSpace.get_SpectralInversion / put_SpectralInversion");
+      Debug.Assert(val == SpectralInversion.Normal, "IDVBSTuningSpace.get_SpectralInversion / put_SpectralInversion");
     }
   }
 }

@@ -65,21 +65,21 @@ namespace DirectShowLib.Test
       int hr = 0;
       FECMethod fec;
 
-      hr = locator.put_InnerFEC(FECMethod.VITERBI);
+      hr = locator.put_InnerFEC(FECMethod.Viterbi);
       DsError.ThrowExceptionForHR(hr);
 
       hr = locator.get_InnerFEC(out fec);
       DsError.ThrowExceptionForHR(hr);
 
-      Debug.Assert((fec == FECMethod.VITERBI), "ILocator.get_InnerFEC / put_InnerFEC");
+      Debug.Assert((fec == FECMethod.Viterbi), "ILocator.get_InnerFEC / put_InnerFEC");
 
-      hr = locator.put_OuterFEC(FECMethod.RS_204_188);
+      hr = locator.put_OuterFEC(FECMethod.RS204_188);
       DsError.ThrowExceptionForHR(hr);
 
       hr = locator.get_OuterFEC(out fec);
       DsError.ThrowExceptionForHR(hr);
 
-      Debug.Assert((fec == FECMethod.RS_204_188), "ILocator.get_OuterFEC / put_OuterFEC");
+      Debug.Assert((fec == FECMethod.RS204_188), "ILocator.get_OuterFEC / put_OuterFEC");
     }
 
     private void TestFECRate()
@@ -87,21 +87,21 @@ namespace DirectShowLib.Test
       int hr = 0;
       BinaryConvolutionCodeRate rate;
 
-      hr = locator.put_InnerFECRate(BinaryConvolutionCodeRate.RATE_3_4);
+      hr = locator.put_InnerFECRate(BinaryConvolutionCodeRate.Rate3_4);
       DsError.ThrowExceptionForHR(hr);
 
       hr = locator.get_InnerFECRate(out rate);
       DsError.ThrowExceptionForHR(hr);
 
-      Debug.Assert((rate == BinaryConvolutionCodeRate.RATE_3_4), "ILocator.get_InnerFECRate / put_InnerFECRate");
+      Debug.Assert((rate == BinaryConvolutionCodeRate.Rate3_4), "ILocator.get_InnerFECRate / put_InnerFECRate");
 
-      hr = locator.put_OuterFECRate(BinaryConvolutionCodeRate.RATE_4_5);
+      hr = locator.put_OuterFECRate(BinaryConvolutionCodeRate.Rate4_5);
       DsError.ThrowExceptionForHR(hr);
 
       hr = locator.get_OuterFECRate(out rate);
       DsError.ThrowExceptionForHR(hr);
 
-      Debug.Assert((rate == BinaryConvolutionCodeRate.RATE_4_5), "ILocator.get_OuterFECRate / put_OuterFECRate");
+      Debug.Assert((rate == BinaryConvolutionCodeRate.Rate4_5), "ILocator.get_OuterFECRate / put_OuterFECRate");
     }
 
     private void TestModulation()
@@ -109,13 +109,13 @@ namespace DirectShowLib.Test
       int hr = 0;
       ModulationType mod;
 
-      hr = locator.put_Modulation(ModulationType.MOD_96QAM);
+      hr = locator.put_Modulation(ModulationType.Mod96Qam);
       DsError.ThrowExceptionForHR(hr);
 
       hr = locator.get_Modulation(out mod);
       DsError.ThrowExceptionForHR(hr);
 
-      Debug.Assert(mod == ModulationType.MOD_96QAM, "ILocator.get_Modulation / put_Modulation");
+      Debug.Assert(mod == ModulationType.Mod96Qam, "ILocator.get_Modulation / put_Modulation");
     }
 
     private void TestSymbolRate()
