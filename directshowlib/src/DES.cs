@@ -338,7 +338,7 @@ namespace DirectShowLib.DES
     /// <summary>
     /// From unnamed enum
     /// </summary>
-    public enum TimeLineInsertMode
+    public enum TimelineInsertMode
     {
         Insert = 1,
         Overlay = 2
@@ -1090,12 +1090,12 @@ namespace DirectShowLib.DES
 
         [PreserveSig]
         int GetInsertMode(
-            out TimeLineInsertMode pMode
+            out TimelineInsertMode pMode
             );
 
         [PreserveSig]
         int SetInsertMode(
-            TimeLineInsertMode Mode
+            TimelineInsertMode Mode
             );
 
         [PreserveSig]

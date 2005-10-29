@@ -34,6 +34,7 @@ namespace DirectShowLib
   /// <summary>
   /// For AMINTERLACE_*
   /// </summary>
+  [Flags]
   public enum AMInterlace
   {
     None = 0,
@@ -64,6 +65,7 @@ namespace DirectShowLib
   /// <summary>
   /// For AMCONTROL_*
   /// </summary>
+  [Flags]
   public enum AMControl
   {
     None = 0,

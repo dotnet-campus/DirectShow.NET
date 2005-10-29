@@ -119,6 +119,7 @@ namespace DirectShowLib.DMO
     /// <summary>
     /// From DMO_INPUT_STREAM_INFO_FLAGS
     /// </summary>
+    [Flags]
     public enum DMOInputStreamInfo
     {
         None = 0x0,
