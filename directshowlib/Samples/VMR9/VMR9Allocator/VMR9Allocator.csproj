@@ -90,11 +90,6 @@
                     HintPath = "..\..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.XML.dll"
                 />
                 <Reference
-                    Name = "DirectShowLib"
-                    AssemblyName = "DirectShowLib"
-                    HintPath = "..\..\..\lib\DirectShowLib.dll"
-                />
-                <Reference
                     Name = "Microsoft.DirectX"
                     AssemblyName = "Microsoft.DirectX"
                     HintPath = "..\..\..\..\..\..\WINDOWS\Microsoft.NET\Managed DirectX\v9.02.2904\Microsoft.DirectX.dll"
@@ -105,6 +100,11 @@
                     AssemblyName = "Microsoft.DirectX.Direct3D"
                     HintPath = "..\..\..\..\..\..\WINDOWS\Microsoft.NET\Managed DirectX\v9.02.2904\Microsoft.DirectX.Direct3D.dll"
                     AssemblyFolderKey = "hklm\current managed directx 9.2"
+                />
+                <Reference
+                    Name = "DirectShowLib"
+                    AssemblyName = "DirectShowLib"
+                    HintPath = "..\..\..\Lib\DirectShowLib.dll"
                 />
             </References>
         </Build>

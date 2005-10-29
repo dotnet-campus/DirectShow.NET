@@ -192,10 +192,37 @@ namespace DirectShowLib.Sample
         filter = null;
       }
 
+
       if (graph != null)
       {
+        RemoveAllFilters();
+
         Marshal.ReleaseComObject(graph);
         graph = null;
+      }
+    }
+
+    public void RemoveAllFilters()
+    {
+      int hr = 0;
+      IEnumFilters enumFilters;
+      ArrayList filtersArray = new ArrayList();
+
+      hr = graph.EnumFilters(out enumFilters);
+      DsError.ThrowExceptionForHR(hr);
+
+      IBaseFilter[] filters = new IBaseFilter[1];
+      int fetched;
+
+      while(enumFilters.Next(filters.Length, filters, out fetched) == 0)
+      {
+        filtersArray.Add(filters[0]);
+      }
+
+      foreach(IBaseFilter filter in filtersArray)
+      {
+        hr = graph.RemoveFilter(filter);
+        while (Marshal.ReleaseComObject(filter) > 0);
       }
     }
 
