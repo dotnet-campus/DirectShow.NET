@@ -136,7 +136,7 @@ namespace DirectShowLib.Test
 
             p.MediaType = new AMMediaType();
             p.MediaType.majorType = MediaType.Video;
-            p.MediaType.subType = MediaSubType.MPEG2Video;
+            p.MediaType.subType = MediaSubType.Mpeg2Video;
 
             hr = m_itg.SetSmartRecompressFormat(p);
             DESError.ThrowExceptionForHR(hr);
