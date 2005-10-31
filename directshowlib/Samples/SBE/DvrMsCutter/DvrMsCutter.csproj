@@ -98,6 +98,10 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "readme.txt"
+                    BuildAction = "Content"
+                />
+                <File
                     RelPath = "SBECutter.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
