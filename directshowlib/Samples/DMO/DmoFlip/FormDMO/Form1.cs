@@ -206,7 +206,7 @@ namespace FormDMO
             hr = icgb.RenderStream(null, null, ibfSource, dmoFilter, ibfRender);
             DsError.ThrowExceptionForHR(hr);
 
-            ConfigVideo(ibfRender, hControl);
+            ConfigVideo(graphBuilder as IVideoWindow, hControl);
 
             Marshal.ReleaseComObject(ibfSource);
             Marshal.ReleaseComObject(ibfRender);
@@ -247,10 +247,9 @@ namespace FormDMO
             return g2[0];
         }
 
-        private void ConfigVideo(IBaseFilter ibfRender, Control hControl)
+        private void ConfigVideo(IVideoWindow ivw, Control hControl)
         {
             int hr;
-            IVideoWindow ivw = ibfRender as IVideoWindow;
 
             hr = ivw.put_Owner(hControl.Handle);
             DsError.ThrowExceptionForHR(hr);
