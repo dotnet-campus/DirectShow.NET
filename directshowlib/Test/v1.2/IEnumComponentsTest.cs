@@ -36,7 +36,7 @@ namespace DirectShowLib.Test
             int hr;
             object o;
 
-            IComponentsOld comps = (IComponentsOld) new Components();
+            IComponents comps = (IComponents) new Components();
 
             IComponent icomp = (IComponent)new Component();
 

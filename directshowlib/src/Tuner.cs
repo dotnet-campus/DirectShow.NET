@@ -1184,7 +1184,7 @@ namespace DirectShowLib.BDA
 
     [Guid("FCD01846-0E19-11d3-9D8E-00C04F72D980"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
-    public interface IComponentsOld
+    public interface IComponents
     {
         [PreserveSig]
         int get_Count(
@@ -1220,7 +1220,7 @@ namespace DirectShowLib.BDA
 
         [PreserveSig]
         int Clone(
-            [Out] out IComponentsOld NewList
+            [Out] out IComponents NewList
             );
     }
 
@@ -2292,7 +2292,7 @@ namespace DirectShowLib.BDA
 
     [Guid("39A48091-FFFE-4182-A161-3FF802640E26"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
-    public interface IComponents
+    public interface IComponentsNew
     {
         [PreserveSig]
         int get_Count([Out] out int Count);
@@ -2319,7 +2319,7 @@ namespace DirectShowLib.BDA
         int Remove([In] object Index);
 
         [PreserveSig]
-        int Clone([Out] out IComponents NewList);
+        int Clone([Out] out IComponentsNew NewList);
 
         [PreserveSig]
         int put_Item( 
