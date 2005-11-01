@@ -37,6 +37,7 @@ namespace DirectShowLib.Test
         TestPreferredComponentTypes();
         TestTuningSpace();
         TestTuneRequestAndValidate();
+        TestTriggerSignalEvents();
 
         (graphBuilder as IMediaControl).Run();
 
@@ -216,6 +217,26 @@ namespace DirectShowLib.Test
       Debug.Assert(strength > 0, "ITuner.get_SignalStrength");
     }
 
+    private void TestTriggerSignalEvents()
+    {
+      int hr = 0;
+
+      // This method is supposed to be use to specify pulling interval of an "undocumented" 
+      // callback interface : ISignalEvents
+      //
+      // This interface is not registered on my computer and i only found it documented in the 
+      // DX 8.1 section from the Japan MSDN Library...
+
+      // every 1000ms
+      hr = tuner.TriggerSignalEvents(1000);
+      DsError.ThrowExceptionForHR(hr);
+
+      // Disable pulling
+      hr = tuner.TriggerSignalEvents(0);
+      DsError.ThrowExceptionForHR(hr);
+
+      Debug.Assert(hr == 0, "ITuner.TriggerSignalEvents");
+    }
 
 	}
 }
