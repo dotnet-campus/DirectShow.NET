@@ -64,6 +64,25 @@ namespace DirectShowLib
     }
 
     /// <summary>
+    /// From AM_VIDEO_FLAG_* defines
+    /// </summary>
+    [Flags]
+    public enum AMVideoFlag
+    {
+        FieldMask         = 0x0003,
+        InterleavedFrame  = 0x0000,
+        Field1            = 0x0001,
+        Field2            = 0x0002,
+        Field1First       = 0x0004,
+        Weave             = 0x0008,
+        IPBMask           = 0x0030,
+        ISample           = 0x0000,
+        PSample           = 0x0010,
+        BSample           = 0x0020,
+        RepeatField       = 0x0040
+    }
+
+    /// <summary>
     /// From ALLOCATOR_PROPERTIES
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -82,7 +101,7 @@ namespace DirectShowLib
     public struct AMSample2Properties
     {
         public int cbData;
-        public int dwTypeSpecificFlags;
+        public AMVideoFlag dwTypeSpecificFlags;
         public AMSamplePropertyFlags dwSampleFlags;
         public int lActual;
         public long tStart;
@@ -297,7 +316,7 @@ namespace DirectShowLib
         [PreserveSig]
         int GetProperties(
             [In] int cbProperties,
-            [Out] IntPtr pbProperties // BYTE *
+            [In] IntPtr pbProperties // BYTE *
             );
 
         [PreserveSig]

@@ -257,10 +257,10 @@ namespace DirectShowLib
         int SetServiceState(WSTState State);
 
         [PreserveSig]
-        int GetOutputFormat(out BitmapInfoHeader lpbmih);
+        int GetOutputFormat([MarshalAs(UnmanagedType.LPStruct)] BitmapInfoHeader lpbmih);
 
         [PreserveSig]
-        int SetOutputFormat(BitmapInfo lpbmi);
+        int SetOutputFormat(BitmapInfoHeader lpbmi);
 
         [PreserveSig]
         int GetBackgroundColor(out int pdwPhysColor);
@@ -293,10 +293,10 @@ namespace DirectShowLib
         int GetHoldPage([MarshalAs(UnmanagedType.Bool)] out bool pbHoldPage);
 
         [PreserveSig]
-        int GetCurrentPage(out WSTPage pWstPage);
+        int GetCurrentPage([In, Out] WSTPage pWstPage);
 
         [PreserveSig]
-        int SetCurrentPage(WSTPage WstPage);
+        int SetCurrentPage([In] WSTPage WstPage);
     }
 
     [Guid("b45dd570-3c77-11d1-abe1-00a0c905f375"),

@@ -109,10 +109,10 @@ namespace DirectShowLib
 		int SetServiceState([In] AMLine21CCState State);
 
 		[PreserveSig]
-		int GetOutputFormat([Out] out BitmapInfoHeader lpbmih);
+		int GetOutputFormat([Out] BitmapInfoHeader lpbmih);
 
 		[PreserveSig]
-		int SetOutputFormat([In] BitmapInfo lpbmih);
+		int SetOutputFormat([In] BitmapInfoHeader lpbmih);
 
 		[PreserveSig]
 		int GetBackgroundColor([Out] out int pdwPhysColor);

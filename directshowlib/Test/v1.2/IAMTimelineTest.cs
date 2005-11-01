@@ -162,16 +162,16 @@ namespace DirectShowLib.Test
         private void TestInsertMode()
         {
             int hr;
-            TimeLineInsertMode m;
+            TimelineInsertMode m;
 
             // E_NOTIMPL
-            hr = m_pTimeline.SetInsertMode(TimeLineInsertMode.Insert);
+            hr = m_pTimeline.SetInsertMode(TimelineInsertMode.Insert);
             //DsError.ThrowExceptionForHR(hr); 
 
             hr = m_pTimeline.GetInsertMode(out m);
             DsError.ThrowExceptionForHR(hr);
 
-            Debug.Assert(TimeLineInsertMode.Overlay == m, "TimeLineInsertMode");
+            Debug.Assert(TimelineInsertMode.Overlay == m, "TimelineInsertMode");
         }
 
         private void TestCreateNode()
