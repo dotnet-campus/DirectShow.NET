@@ -1,4 +1,29 @@
 -----------------------------------------------------------------
+V 1.2 - Minor upgrade
+
+52 more interfaces tested.
+
+359 Defined
+167 Tested
+ 35 Deprecated & undocumented
+ 67 Others not scheduled to be tested
+---
+ 90 left to be tested
+
+See Interfaces.txt for the current list of tested interfaces.
+
+4 new samples have been added.
+
+Samples:
+
+Samples\DMO\DMOFlip
+Samples\DMO\DMOSplit
+Samples\Editing\DESCombine
+Samples\SBE\DvrMsCutter
+
+See readme.rtf and the readme.txt in each project for details of what these samples show.
+
+-----------------------------------------------------------------
 V 1.1 - Minor upgrade
 
 54 more interfaces tested, 61 new (untested) interfaces defined including DES & Streaming
