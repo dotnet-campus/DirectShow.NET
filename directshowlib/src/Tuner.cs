@@ -1182,49 +1182,6 @@ namespace DirectShowLib.BDA
     }
 
 
-    [Guid("FCD01846-0E19-11d3-9D8E-00C04F72D980"),
-    InterfaceType(ComInterfaceType.InterfaceIsDual)]
-    public interface IComponents
-    {
-        [PreserveSig]
-        int get_Count(
-            [Out] out int Count
-            );
-
-        [PreserveSig]
-        int get__NewEnum(
-            [Out] out UCOMIEnumVARIANT ppNewEnum
-            );
-
-        [PreserveSig]
-        int EnumComponents(
-            [Out] out IEnumComponents ppNewEnum
-            );
-
-        [PreserveSig]
-        int get_Item(
-            [In] object varIndex,
-            [Out] out IComponent TuningSpace
-            );
-
-        [PreserveSig]
-        int Add(
-            [In] IComponent Component,
-            [Out] out object NewIndex
-            );
-
-        [PreserveSig]
-        int Remove(
-            [In] object Index
-            );
-
-        [PreserveSig]
-        int Clone(
-            [Out] out IComponents NewList
-            );
-    }
-
-
     [Guid("BF8D986F-8C2B-4131-94D7-4D3D9FCC21EF"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface IATSCLocator : ILocator
@@ -2427,6 +2384,49 @@ namespace DirectShowLib.BDA
             [Out] out IMPEG2TuneRequest TuneRequest
             );
     }
+
+    [Guid("FCD01846-0E19-11d3-9D8E-00C04F72D980"),
+    InterfaceType(ComInterfaceType.InterfaceIsDual)]
+    public interface IComponents
+    {
+        [PreserveSig]
+        int get_Count(
+            [Out] out int Count
+            );
+
+        [PreserveSig]
+        int get__NewEnum(
+            [Out] out UCOMIEnumVARIANT ppNewEnum
+            );
+
+        [PreserveSig]
+        int EnumComponents(
+            [Out] out IEnumComponents ppNewEnum
+            );
+
+        [PreserveSig]
+        int get_Item(
+            [In] object varIndex,
+            [Out] out IComponent TuningSpace
+            );
+
+        [PreserveSig]
+        int Add(
+            [In] IComponent Component,
+            [Out] out object NewIndex
+            );
+
+        [PreserveSig]
+        int Remove(
+            [In] object Index
+            );
+
+        [PreserveSig]
+        int Clone(
+            [Out] out IComponents NewList
+            );
+    }
+
 
 
     #endregion
