@@ -66,7 +66,8 @@ namespace DirectShowLib.Test
             int hr;
             long pStart, pStop;
 
-            IAMTimelineObj pFirst;
+            IAMTimelineSplittable ps;
+            IAMTimelineObj pFirst, pSecond;
             hr = m_pTimeline.CreateEmptyNode( out pFirst, TimelineMajorType.Source);
             DESError.ThrowExceptionForHR(hr);
 
@@ -83,34 +84,20 @@ namespace DirectShowLib.Test
             // Connect the track to the source
             hr = m_VideoTrack.SrcAdd( pFirst );
             DESError.ThrowExceptionForHR(hr);
-            hr = pFirstSrc.GetMediaTimes(out pStart, out pStop);
-            hr = pFirstSrc.FixMediaTimes(ref pStart, ref pStop);
 
-            // --------------------------------------
-            IAMTimelineObj pNext;
+            // Split the source
+            ps = pFirst as IAMTimelineSplittable;
 
-            hr = m_pTimeline.CreateEmptyNode( out pNext, TimelineMajorType.Source);
+            long l = 500000000;
+            hr = ps.SplitAt(l);
             DESError.ThrowExceptionForHR(hr);
 
-            hr = pNext.SetStartStop( 10000000000, 20000000000 );
+            // Get the new chunk
+            hr = m_VideoTrack.GetNextSrc(out pSecond, ref l);
             DESError.ThrowExceptionForHR(hr);
 
-            IAMTimelineSrc pSecondSrc = (IAMTimelineSrc)pNext;
-            hr = pSecondSrc.SetMediaTimes(10000000000, 20000000000);
-
-            // Put in the file name
-            hr = pSecondSrc.SetMediaName( "foo.avi" );
-            DESError.ThrowExceptionForHR(hr);
-
-            // Connect the track to the source
-            hr = m_VideoTrack.SrcAdd( pNext );
-            DESError.ThrowExceptionForHR(hr);
-
-            //IXml2Dex ix = (IXml2Dex)new Xml2Dex();
-            //ix.WriteXMLFile(m_pTimeline, @"c:\foo.txt");
-
-            // --------------------------------------
-            hr = pSecondSrc.SpliceWithNext(pNext);
+            // Re-join the two
+            hr = pFirstSrc.SpliceWithNext(pSecond);
             DESError.ThrowExceptionForHR(hr);
         }
 
