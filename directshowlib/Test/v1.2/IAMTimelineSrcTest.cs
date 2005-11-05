@@ -64,7 +64,6 @@ namespace DirectShowLib.Test
         private void TestSplice()
         {
             int hr;
-            long pStart, pStop;
 
             IAMTimelineSplittable ps;
             IAMTimelineObj pFirst, pSecond;
