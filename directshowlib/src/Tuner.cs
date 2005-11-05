@@ -30,8 +30,6 @@ namespace DirectShowLib.BDA
 
     #region Declarations
 
-#if ALLOW_UNTESTED_INTERFACES
-
     [ComImport, Guid("5FFDC5E6-B83A-4b55-B6E8-C69E765FE9DB")]
     public class TuningSpace
     {
@@ -121,8 +119,6 @@ namespace DirectShowLib.BDA
     public class DVBTuneRequest
     {
     }
-
-#endif
 
     [ComImport, Guid("A1A2B1C4-0E3A-11d3-9D8E-00C04F72D980")]
     public class ComponentTypes
