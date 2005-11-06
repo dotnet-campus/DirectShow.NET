@@ -18,7 +18,4 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyVersion("1.0.0.0")]
 
 [assembly: AssemblyDelaySign(false)]
-#if !DEBUG
-[assembly: AssemblyKeyFile(@"..\..\mykey.snk")]
-#endif
 [assembly: AssemblyKeyName("")]
