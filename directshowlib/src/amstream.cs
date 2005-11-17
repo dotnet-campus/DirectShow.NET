@@ -164,7 +164,7 @@ namespace DirectShowLib.MultimediaStreaming
 
         [PreserveSig]
         new int GetMediaStream(
-            [In] DsGuid idPurpose,
+            [In, MarshalAs(UnmanagedType.LPStruct)] Guid idPurpose,
             [MarshalAs(UnmanagedType.Interface)] out IMediaStream ppMediaStream
             );
 

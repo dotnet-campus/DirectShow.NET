@@ -141,6 +141,50 @@ namespace DirectShowLib.MultimediaStreaming
 
     #endregion
 
+    #region Classes
+
+    /// <summary>
+    /// From CLSID_AMMultiMediaStream
+    /// </summary>
+    [ComImport, Guid("49c47ce5-9ba4-11d0-8212-00c04fc32c45")]
+    public class AMMultiMediaStream
+    {
+    }
+
+    /// <summary>
+    /// From CLSID_AMMediaTypeStream
+    /// </summary>
+    [ComImport, Guid("CF0F2F7C-F7BF-11d0-900D-00C04FD9189D")]
+    public class AMMediaTypeStream
+    {
+    }
+
+    /// <summary>
+    /// From CLSID_AMDirectDrawStream
+    /// </summary>
+    [ComImport, Guid("49c47ce4-9ba4-11d0-8212-00c04fc32c45")]
+    public class AMDirectDrawStream
+    {
+    }
+
+    /// <summary>
+    /// From CLSID_AMAudioStream
+    /// </summary>
+    [ComImport, Guid("8496e040-af4c-11d0-8212-00c04fc32c45")]
+    public class AMAudioStream
+    {
+    }
+
+    /// <summary>
+    /// From CLSID_AMAudioData
+    /// </summary>
+    [ComImport, Guid("f2468580-af8a-11d0-8212-00c04fc32c45")]
+    public class AMAudioData
+    {
+    }
+
+    #endregion
+
     #region Declarations
 
 #if ALLOW_UNTESTED_INTERFACES
@@ -201,6 +245,19 @@ namespace DirectShowLib.MultimediaStreaming
 
 
 #endif
+    #endregion
+
+    #region GUIDS
+
+    public class MSPID
+    {
+        /// <summary> MSPID_PrimaryVideo </summary>
+        public static readonly Guid PrimaryVideo = new Guid(0xa35ff56a, 0x9fda, 0x11d0, 0x8f, 0xdf, 0x0, 0xc0, 0x4f, 0xd9, 0x18, 0x9d);
+
+        /// <summary> MSPID_PrimaryAudio </summary>
+        public static readonly Guid PrimaryAudio = new Guid(0xa35ff56b, 0x9fda, 0x11d0, 0x8f, 0xdf, 0x0, 0xc0, 0x4f, 0xd9, 0x18, 0x9d);
+    }
+
     #endregion
 
     #region Interfaces
