@@ -53,7 +53,7 @@ namespace DirectShowLib.MultimediaStreaming
     public enum AMMMultiStream
     {
         None = 0x0,
-        NOGRAPHTHREAD = 0x1
+        NoGraphThread = 0x1
     }
 
     /// <summary>
@@ -164,7 +164,7 @@ namespace DirectShowLib.MultimediaStreaming
 
         [PreserveSig]
         new int GetMediaStream(
-            [In, MarshalAs(UnmanagedType.LPStruct)] Guid idPurpose,
+            [In] DsGuid idPurpose,
             [MarshalAs(UnmanagedType.Interface)] out IMediaStream ppMediaStream
             );
 
@@ -226,9 +226,9 @@ namespace DirectShowLib.MultimediaStreaming
         [PreserveSig]
         int AddMediaStream(
             [In, MarshalAs(UnmanagedType.IUnknown)] object pStreamObject,
-            [In, MarshalAs(UnmanagedType.LPStruct)] Guid PurposeId,
+            [In] DsGuid PurposeId,
             [In] AMMStream dwFlags,
-            [MarshalAs(UnmanagedType.Interface)] out IMediaStream ppNewStream
+            [Out] IMediaStream ppNewStream
             );
 
         [PreserveSig]
@@ -333,7 +333,7 @@ namespace DirectShowLib.MultimediaStreaming
 
         [PreserveSig]
         int GetMediaStream(
-            [In, MarshalAs(UnmanagedType.LPStruct)] Guid idPurpose,
+            [In] Guid idPurpose,
             [MarshalAs(UnmanagedType.Interface)] out IMediaStream ppMediaStream
             );
 
@@ -444,7 +444,7 @@ namespace DirectShowLib.MultimediaStreaming
 
         [PreserveSig]
         int SetStreamAllocatorRequirements(
-            [In] ref AllocatorProperties pProps
+            [In] AllocatorProperties pProps
             );
     }
 
