@@ -158,6 +158,16 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IAuxInTuningSpaceTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IDVBCLocatorTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IFilterMap3Test.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -179,6 +189,11 @@
                 />
                 <File
                     RelPath = "IMediaStreamTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IMPEG2TuneRequestSupportTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

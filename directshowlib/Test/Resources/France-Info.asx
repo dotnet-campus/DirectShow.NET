@@ -1,0 +1,13 @@
+<ASX VERSION="3.0">
+<ABSTRACT>FRANCEINFO LIVE</ABSTRACT>
+<TITLE>FRANCEINFO LIVE</TITLE>
+<AUTHOR>FRANCEINFO - YACAST FRANCE</AUTHOR>
+<COPYRIGHT>(c) 2002, FRANCEINFO</COPYRIGHT>
+<PARAM name="Moo" value="foo"/>
+<PARAM name="track" value="1"/>
+<ENTRY>
+	<REF HREF="mms://viptvr.yacast.fr/encoderfranceinfo" />
+	<REF HREF="mms://viptvr.yacast.fr/encoderfranceinfo" />
+	<REF HREF="mms://a1234.l252143334.c2521.e.lm.akamaistream.net/D/1234/6703/666/reflector:43334" />
+</ENTRY>
+</ASX>
