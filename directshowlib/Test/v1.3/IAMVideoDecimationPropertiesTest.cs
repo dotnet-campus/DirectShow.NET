@@ -17,7 +17,7 @@ namespace DirectShowLib.Test
         {
             Config();
 
-            TestQuery();
+            TestUsage();
         }
 
         private void TestUsage()

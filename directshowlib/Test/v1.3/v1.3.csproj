@@ -118,11 +118,6 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "IAMGraphBuilderCallbackTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "IAMLine21DecoderTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -153,11 +148,6 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "IAMVfwCaptureDialogsTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "IAMVideoDecimationPropertiesTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -179,11 +169,6 @@
                 />
                 <File
                     RelPath = "IFilterMap3Test.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IGetCapabilitiesKeyTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -214,11 +199,6 @@
                 />
                 <File
                     RelPath = "IPinFlowControlTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IReferenceClock2Test.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
