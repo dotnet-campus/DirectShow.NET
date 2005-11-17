@@ -148,6 +148,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IAMResourceControlTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IAMVfwCaptureDialogsTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
