@@ -188,6 +188,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IMPEG2PIDMapTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IMPEG2StreamIdMapTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

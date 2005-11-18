@@ -449,14 +449,14 @@ namespace DirectShowLib.BDA
         [PreserveSig]
         int MapPID(
             [In] int culPID,
-            [In] ref int pulPID,
+            [In, MarshalAs(UnmanagedType.LPArray)] int [] pulPID,
             [In] MediaSampleContent MediaSampleContent
             );
 
         [PreserveSig]
         int UnmapPID(
             [In] int culPID,
-            [In] ref int pulPID
+            [In, MarshalAs(UnmanagedType.LPArray)] int [] pulPID
             );
 
         [PreserveSig]
