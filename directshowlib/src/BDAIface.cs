@@ -46,10 +46,10 @@ namespace DirectShowLib.BDA
     /// </summary>
     public enum MediaSampleContent
     {
-        TRANSPORT_PACKET, //  complete TS packet e.g. pass-through mode
-        ELEMENTARY_STREAM, //  PES payloads; audio/video only
-        MPEG2_PSI, //  PAT, PMT, CAT, Private
-        TRANSPORT_PAYLOAD //  gathered TS packet payloads (PES packets, etc...)
+        TransportPacket,
+        ElementaryStream,
+        Mpeg2PSI,
+        TransportPayload
     }
 
     /// <summary>
