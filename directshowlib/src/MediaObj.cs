@@ -130,7 +130,7 @@ namespace DirectShowLib.DMO
     }
 
     /// <summary>
-    /// DMO_OUTPUT_STREAM_INFO_FLAGS
+    /// From DMO_OUTPUT_STREAM_INFO_FLAGS
     /// </summary>
     [Flags]
     public enum DMOOutputStreamInfo

@@ -108,7 +108,7 @@ namespace DirectShowLib
     }
 
     /// <summary>
-    /// _AMRESCTL_RESERVEFLAGS
+    /// From _AMRESCTL_RESERVEFLAGS
     /// </summary>
     [Flags]
     public enum AMResCtlReserveFlags
@@ -626,7 +626,7 @@ namespace DirectShowLib
     }
 
     /// <summary>
-    /// AMPROPERTY_PIN
+    /// From AMPROPERTY_PIN
     /// </summary>
     public enum AMPropertyPin
     {
@@ -635,7 +635,7 @@ namespace DirectShowLib
     }
 
     /// <summary>
-    /// AMTunerSubChannel
+    /// From AMTunerSubChannel
     /// </summary>
     public enum AMTunerSubChannel
     {
@@ -644,7 +644,7 @@ namespace DirectShowLib
     }
 
     /// <summary>
-    /// AMTunerSignalStrength
+    /// From AMTunerSignalStrength
     /// </summary>
     public enum AMTunerSignalStrength
     {
@@ -654,7 +654,7 @@ namespace DirectShowLib
     }
 
     /// <summary>
-    /// AMTunerModeType
+    /// From AMTunerModeType
     /// </summary>
     [Flags]
     public enum AMTunerModeType
@@ -668,7 +668,7 @@ namespace DirectShowLib
     }
 
     /// <summary>
-    /// AMTunerEventType
+    /// From AMTunerEventType
     /// </summary>
     public enum AMTunerEventType
     {
@@ -718,7 +718,7 @@ namespace DirectShowLib
     }
 
     /// <summary>
-    /// VideoControlFlags
+    /// From VideoControlFlags
     /// </summary>
     [Flags]
     public enum VideoControlFlags
@@ -731,7 +731,7 @@ namespace DirectShowLib
     }
 
     /// <summary>
-    /// TVAudioMode
+    /// From TVAudioMode
     /// </summary>
     [Flags]
     public enum TVAudioMode
@@ -744,7 +744,7 @@ namespace DirectShowLib
     }
 
     /// <summary>
-    /// VideoProcAmpProperty
+    /// From VideoProcAmpProperty
     /// </summary>
     public enum VideoProcAmpProperty
     {
@@ -761,7 +761,7 @@ namespace DirectShowLib
     }
 
     /// <summary>
-    /// VideoProcAmpFlags
+    /// From VideoProcAmpFlags
     /// </summary>
     [Flags]
     public enum VideoProcAmpFlags
@@ -804,7 +804,7 @@ namespace DirectShowLib
     }
 
     /// <summary>
-    /// AMTVAudioEventType
+    /// From AMTVAudioEventType
     /// </summary>
     [Flags]
     public enum AMTVAudioEventType
@@ -813,7 +813,7 @@ namespace DirectShowLib
     }
 
     /// <summary>
-    /// CompressionCaps
+    /// From CompressionCaps
     /// </summary>
     [Flags]
     public enum CompressionCaps
