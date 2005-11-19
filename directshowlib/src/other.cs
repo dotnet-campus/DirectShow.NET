@@ -44,6 +44,35 @@ namespace DirectShowLib
     }
 
     /// <summary>
+    /// Not from DirectShow
+    /// </summary>
+    public enum MPEGAudioDivider
+    {
+        CDAudio = 1,
+        FMRadio = 2,
+        AMRadio = 4
+    }
+
+    /// <summary>
+    /// Not from DirectShow
+    /// </summary>
+    public enum MPEGAudioAccuracy
+    {
+        Best = 0x0000,
+        High = 0x4000,
+        Full = 0x8000
+    }
+
+    /// <summary>
+    /// Not from DirectShow
+    /// </summary>
+    public enum MPEGAudioChannels
+    {
+        Mono = 1,
+        Stereo = 2
+    }
+
+    /// <summary>
     /// From AM_WST_LEVEL
     /// </summary>
     public enum WSTLevel 
@@ -305,32 +334,32 @@ namespace DirectShowLib
     {
         [PreserveSig]
         int get_FrequencyDivider(
-            out int pDivider
+            out MPEGAudioDivider pDivider
             );
 
         [PreserveSig]
         int put_FrequencyDivider(
-            int Divider
+            MPEGAudioDivider Divider
             );
 
         [PreserveSig]
         int get_DecoderAccuracy(
-            out int pAccuracy
+            out MPEGAudioAccuracy pAccuracy
             );
 
         [PreserveSig]
         int put_DecoderAccuracy(
-            int Accuracy
+            MPEGAudioAccuracy Accuracy
             );
 
         [PreserveSig]
         int get_Stereo(
-            out int pStereo
+            out MPEGAudioChannels pStereo
             );
 
         [PreserveSig]
         int put_Stereo(
-            int Stereo
+            MPEGAudioChannels Stereo
             );
 
         [PreserveSig]

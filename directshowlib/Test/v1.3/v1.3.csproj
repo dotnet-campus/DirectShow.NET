@@ -203,6 +203,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IMpegAudioDecoderTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IMultiMediaStreamTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
