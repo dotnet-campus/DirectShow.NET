@@ -128,6 +128,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IAMMediaTypeSampleTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IAMMultiMediaStreamTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -219,6 +224,11 @@
                 />
                 <File
                     RelPath = "IPinFlowControlTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IStreamSampleTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

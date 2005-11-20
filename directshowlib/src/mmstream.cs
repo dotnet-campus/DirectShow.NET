@@ -377,15 +377,15 @@ namespace DirectShowLib.MultimediaStreaming
 
         [PreserveSig]
         int SetSampleTimes(
-            [In] ref long pStartTime,
-            [In] ref long pEndTime
+            [In] DsLong pStartTime,
+            [In] DsLong pEndTime
             );
 
         [PreserveSig]
         int Update(
             [In] SSUpdate dwFlags,
             [In] IntPtr hEvent,
-            [In, MarshalAs(UnmanagedType.Interface)] IStreamSample pfnAPC,
+            [In] IntPtr pfnAPC,
             [In] IntPtr dwAPCData
             );
 

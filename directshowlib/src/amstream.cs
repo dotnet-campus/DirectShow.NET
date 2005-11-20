@@ -431,7 +431,7 @@ namespace DirectShowLib.MultimediaStreaming
         [PreserveSig]
         int CreateSample(
             [In] int lSampleSize,
-            [In] ref byte pbBuffer,
+            [In] IntPtr pbBuffer,
             [In] int dwFlags,
             [In, MarshalAs(UnmanagedType.IUnknown)] object pUnkOuter,
             [MarshalAs(UnmanagedType.Interface)] out IAMMediaTypeSample ppAMMediaTypeSample
@@ -469,15 +469,15 @@ namespace DirectShowLib.MultimediaStreaming
 
         [PreserveSig]
         new int SetSampleTimes(
-            [In] ref long pStartTime,
-            [In] ref long pEndTime
+            [In] DsLong pStartTime,
+            [In] DsLong pEndTime
             );
 
         [PreserveSig]
         new int Update(
             [In] SSUpdate dwFlags,
             [In] IntPtr hEvent,
-            [In, MarshalAs(UnmanagedType.Interface)] IStreamSample pfnAPC,
+            [In] IntPtr pfnAPC,
             [In] IntPtr dwAPCData
             );
 
@@ -491,13 +491,13 @@ namespace DirectShowLib.MultimediaStreaming
 
         [PreserveSig]
         int SetPointer(
-            [In] ref byte pBuffer,
+            [In] IntPtr pBuffer,
             [In] int lSize
             );
 
         [PreserveSig]
         int GetPointer(
-            [Out] IntPtr ppBuffer
+            [Out] out IntPtr ppBuffer
             );
 
         [PreserveSig]
@@ -511,8 +511,8 @@ namespace DirectShowLib.MultimediaStreaming
 
         [PreserveSig]
         int SetTime(
-            [In] ref long pTimeStart,
-            [In] ref long pTimeEnd
+            [In] DsLong pTimeStart,
+            [In] DsLong pTimeEnd
             );
 
         [PreserveSig]
@@ -541,7 +541,7 @@ namespace DirectShowLib.MultimediaStreaming
 
         [PreserveSig]
         int GetMediaType(
-            IntPtr ppMediaType
+            out AMMediaType ppMediaType
             );
 
         [PreserveSig]
@@ -565,8 +565,8 @@ namespace DirectShowLib.MultimediaStreaming
 
         [PreserveSig]
         int SetMediaTime(
-            [In] ref long pTimeStart,
-            [In] ref long pTimeEnd
+            [In] DsLong pTimeStart,
+            [In] DsLong pTimeEnd
             );
     }
 
