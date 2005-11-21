@@ -40,7 +40,7 @@ namespace DirectShowLib
     {
         CanSeek = 1,
         CanScan = 2,
-        MarmerSeek = 4,
+        MarkerSeek = 4,
         ScanWithoutClock = 8,
         NoStandardRepaint = 16,
         Buffering = 32,
@@ -194,7 +194,10 @@ namespace DirectShowLib
         int GetMarkerTime(int MarkerNum, out double pMarkerTime);
 
         [PreserveSig]
-        int GetMarkerName(int MarkerNum, [MarshalAs(UnmanagedType.BStr)] out string pbstrMarkerName);
+        int GetMarkerName(
+            int MarkerNum, 
+            [MarshalAs(UnmanagedType.BStr)] out string pbstrMarkerName
+            );
 
         [PreserveSig]
         int put_PlaybackSpeed(double Speed);
