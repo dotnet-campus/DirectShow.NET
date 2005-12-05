@@ -40,7 +40,7 @@ namespace DirectShowLib.MultimediaStreaming
         [PreserveSig]
         int SetBuffer(
             [In] int cbSize, 
-            [In] ref byte pbData, 
+            [In] IntPtr pbData, 
             [In] int dwFlags
             );
 
@@ -67,7 +67,7 @@ namespace DirectShowLib.MultimediaStreaming
         [PreserveSig]
         new int SetBuffer(
             [In] int cbSize, 
-            [In] ref byte pbData, 
+            [In] IntPtr pbData, 
             [In] int dwFlags
             );
 
@@ -87,12 +87,12 @@ namespace DirectShowLib.MultimediaStreaming
 
         [PreserveSig]
         int GetFormat(
-            out WaveFormatEx pWaveFormatCurrent
+            [Out] WaveFormatEx pWaveFormatCurrent
             );
 
         [PreserveSig]
         int SetFormat(
-            [In] ref WaveFormatEx lpWaveFormat
+            [In, MarshalAs(UnmanagedType.LPStruct)] WaveFormatEx lpWaveFormat
             );
     }
 
@@ -140,12 +140,12 @@ namespace DirectShowLib.MultimediaStreaming
 
         [PreserveSig]
         int GetFormat(
-            out WaveFormatEx pWaveFormatCurrent
+            [Out, MarshalAs(UnmanagedType.LPStruct)] WaveFormatEx pWaveFormatCurrent
             );
 
         [PreserveSig]
         int SetFormat(
-            [In] ref WaveFormatEx lpWaveFormat
+            [In] WaveFormatEx lpWaveFormat
             );
 
         [PreserveSig]
@@ -177,15 +177,15 @@ namespace DirectShowLib.MultimediaStreaming
 
         [PreserveSig]
         new int SetSampleTimes(
-            [In] ref long pStartTime, 
-            [In] ref long pEndTime
+            [In] DsLong pStartTime, 
+            [In] DsLong pEndTime
             );
 
         [PreserveSig]
         new int Update(
             [In] SSUpdate dwFlags, 
             [In] IntPtr hEvent, 
-            [In, MarshalAs(UnmanagedType.Interface)] IStreamSample pfnAPC, 
+            [In] IntPtr pfnAPC, 
             [In] IntPtr dwAPCData
             );
 

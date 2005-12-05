@@ -111,7 +111,7 @@ namespace DirectShowLib
     /// <summary>
     /// From WAVEFORMATEX
     /// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+    [StructLayout(LayoutKind.Sequential, Pack=2)]
     public class WaveFormatEx
     {
         public short wFormatTag;
