@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTVViewer", "DTVViewer.csproj", "{F3FCD690-6D1A-4A42-AFC1-A3A3D56D7DBC}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{F3FCD690-6D1A-4A42-AFC1-A3A3D56D7DBC}.Debug.ActiveCfg = Debug|.NET
+		{F3FCD690-6D1A-4A42-AFC1-A3A3D56D7DBC}.Debug.Build.0 = Debug|.NET
+		{F3FCD690-6D1A-4A42-AFC1-A3A3D56D7DBC}.Release.ActiveCfg = Release|.NET
+		{F3FCD690-6D1A-4A42-AFC1-A3A3D56D7DBC}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
