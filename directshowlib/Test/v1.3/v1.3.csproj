@@ -163,12 +163,27 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IAnalogTVTuningSpaceTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IATSCChannelTuneRequestTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IAudioMediaStreamTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
                     RelPath = "IAuxInTuningSpaceTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IChannelTuneRequestTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
