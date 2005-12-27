@@ -53,6 +53,15 @@ namespace DirectShowLib.BDA
     }
 
     /// <summary>
+    /// From BDA_CHANGE_STATE
+    /// </summary>
+    public enum BDAChangeState
+    {
+      ChangesComplete = 0,
+      ChangesPending 
+    }
+
+    /// <summary>
     /// From PID_MAP
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -207,7 +216,7 @@ namespace DirectShowLib.BDA
         int CommitChanges();
 
         [PreserveSig]
-        int GetChangeState([Out] out int pState);
+        int GetChangeState([Out] out BDAChangeState pState);
     }
 
     [Guid("0DED49D5-A8B7-4d5d-97A1-12B0C195874D"),
