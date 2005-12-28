@@ -103,6 +103,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "BDAUtils.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IAMClockSlaveTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -173,12 +178,47 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IATSCLocatorTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IATSCTuningSpaceTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IAudioMediaStreamTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
                     RelPath = "IAuxInTuningSpaceTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IBDA_AutoDemodulateTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IBDA_DeviceControlTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IBDA_DigitalDemodulatorTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IBDA_FrequencyFilterTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IBDA_LNBInfoTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
