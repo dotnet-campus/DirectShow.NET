@@ -36,6 +36,7 @@ namespace DirectShowLib
     /// <summary>
     /// unnamed enum
     /// </summary>
+    [Flags]
     public enum Merit
     {
         Preferred    = 0x800000,
@@ -305,7 +306,7 @@ namespace DirectShowLib
         public Guid clsConnectsToFilter;
         [MarshalAs(UnmanagedType.LPWStr)] public string strConnectsToPin;
         public int nMediaTypes;
-        [MarshalAs(UnmanagedType.LPStruct)] public RegPinTypes lpMediaType;
+        [MarshalAs(UnmanagedType.LPStruct)] public RegPinTypes [] lpMediaType;
     }
 
     /// <summary>
@@ -317,9 +318,9 @@ namespace DirectShowLib
         public RegPinFlag dwFlags;
         public int cInstances;
         public int nMediaTypes;
-        public IntPtr lpMediaType; // REGPINTYPES *
+        public RegPinTypes [] lpMediaType;
         public int nMediums;
-        public IntPtr lpMedium; // REGPINMEDIUM *
+        public RegPinMedium [] lpMedium;
         public Guid clsPinCategory;
     }
 
@@ -332,9 +333,9 @@ namespace DirectShowLib
         [FieldOffset(0)] public int dwVersion;
         [FieldOffset(4)] public int dwMerit;
         [FieldOffset(8)] public int cPins;
-        [FieldOffset(12)] public IntPtr rgPins; // REGFILTERPINS *
+        [FieldOffset(12)] public RegFilterPins [] rgPins;
         [FieldOffset(8)] public int cPins2;
-        [FieldOffset(12)] public IntPtr rgPins2; // REGFILTERPINS2 *
+        [FieldOffset(12)] public RegFilterPins2 [] rgPins2;
     }
 
     /// <summary>
@@ -1033,10 +1034,10 @@ namespace DirectShowLib
         int RegisterFilter(
             [In] Guid clsidFilter,
             [In, MarshalAs(UnmanagedType.LPWStr)] string Name,
-            [Out] out UCOMIMoniker ppMoniker,
-            [In] Guid pclsidCategory,
+            [In, Out] UCOMIMoniker ppMoniker,
+            [In] DsGuid pclsidCategory,
             [In, MarshalAs(UnmanagedType.LPWStr)] string szInstance,
-            [In] ref RegFilter2 prf2
+            [In] RegFilter2 prf2
             );
 
         [PreserveSig]
@@ -1083,10 +1084,10 @@ namespace DirectShowLib
         new int RegisterFilter(
             [In] Guid clsidFilter,
             [In, MarshalAs(UnmanagedType.LPWStr)] string Name,
-            [Out] out UCOMIMoniker ppMoniker,
-            [In] Guid pclsidCategory,
+            [In, Out] UCOMIMoniker ppMoniker,
+            [In] DsGuid pclsidCategory,
             [In, MarshalAs(UnmanagedType.LPWStr)] string szInstance,
-            [In] ref RegFilter2 prf2
+            [In] RegFilter2 prf2
             );
 
         [PreserveSig]

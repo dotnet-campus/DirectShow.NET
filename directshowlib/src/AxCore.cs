@@ -86,7 +86,7 @@ namespace DirectShowLib
     /// From ALLOCATOR_PROPERTIES
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct AllocatorProperties
+    public class AllocatorProperties
     {
         public int cBuffers;
         public int cbBuffer;

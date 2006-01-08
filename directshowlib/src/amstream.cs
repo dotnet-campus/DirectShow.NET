@@ -418,7 +418,7 @@ namespace DirectShowLib.MultimediaStreaming
 
         [PreserveSig]
         int GetFormat(
-            out AMMediaType pMediaType,
+            [Out, MarshalAs(UnmanagedType.LPStruct)] AMMediaType pMediaType,
             [In] int dwFlags
             );
 
@@ -444,7 +444,7 @@ namespace DirectShowLib.MultimediaStreaming
 
         [PreserveSig]
         int SetStreamAllocatorRequirements(
-            [In] AllocatorProperties pProps
+            [In, MarshalAs(UnmanagedType.LPStruct)] AllocatorProperties pProps
             );
     }
 
