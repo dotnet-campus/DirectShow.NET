@@ -94,6 +94,7 @@ namespace DirectShowLib
     [Flags]
     public enum AMStreamSelectInfoFlags
     {
+        Disabled = 0x0,
         Enabled = 0x01,
         Exclusive = 0x02
     }
@@ -104,6 +105,7 @@ namespace DirectShowLib
     [Flags]
     public enum AMStreamSelectEnableFlags
     {
+        DisableAll = 0x0,
         Enable = 0x01,
         EnableAll = 0x02
     }
