@@ -303,6 +303,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IPinConnectionTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IPinFlowControlTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
