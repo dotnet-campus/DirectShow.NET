@@ -69,7 +69,7 @@ namespace DirectShowLib
 	public interface IMixerOCXNotify
 	{
 		[PreserveSig]
-		int OnInvalidateRect([In] Rectangle lpcRect);
+		int OnInvalidateRect([In] DsRect lpcRect);
 
 		[PreserveSig]
 		int OnStatusChange([In] MixerState ulStatusFlags);
@@ -107,14 +107,16 @@ namespace DirectShowLib
 		[PreserveSig]
 		int OnDraw(
 			[In] IntPtr hdcDraw, // HDC
-			[In] Rectangle prcDraw
+			[In] DsRect prcDraw
 			);
 
 		[PreserveSig]
 		int SetDrawRegion(
-			[In] Point lpptTopLeftSC,
-			[In] Rectangle prcDrawCC,
-			[In] Rectangle lprcClip
+            // While in theory this takes an LPPOINT, in practice
+            // it must be NULL.
+			[In] IntPtr lpptTopLeftSC,
+			[In] DsRect prcDrawCC,
+			[In] DsRect lprcClip
 			);
 
 		[PreserveSig]
