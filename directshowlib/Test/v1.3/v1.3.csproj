@@ -163,6 +163,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IAMStreamSelectTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IAMVideoDecimationPropertiesTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
