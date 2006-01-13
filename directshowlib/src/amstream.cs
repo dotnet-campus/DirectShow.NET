@@ -31,8 +31,6 @@ namespace DirectShowLib.MultimediaStreaming
 
     #region Declarations
 
-#if ALLOW_UNTESTED_INTERFACES
-
     /// <summary>
     /// From unnamed enum
     /// </summary>
@@ -70,7 +68,6 @@ namespace DirectShowLib.MultimediaStreaming
         Run = 0x8
     }
 
-#endif
     #endregion
 
     #region Interfaces
@@ -150,6 +147,7 @@ namespace DirectShowLib.MultimediaStreaming
     }
 
 
+#endif
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
     Guid("BEBE595C-9A6F-11D0-8FDE-00C04FD9189D")]
     public interface IAMMultiMediaStream : IMultiMediaStream
@@ -248,128 +246,6 @@ namespace DirectShowLib.MultimediaStreaming
         int Render(
             [In] AMOpenModes dwFlags
             );
-    }
-
-
-    [Guid("BEBE595E-9A6F-11D0-8FDE-00C04FD9189D"), 
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IMediaStreamFilter : IBaseFilter
-    {
-        #region IPersist Methods
-
-        [PreserveSig]
-        new int GetClassID(
-            out Guid pClassID
-            );
-
-        #endregion
-
-        #region IMediaFilter Methods
-
-        [PreserveSig]
-        new int Stop();
-
-        [PreserveSig]
-        new int Pause();
-
-        [PreserveSig]
-        new int Run(
-            long tStart
-            );
-
-        [PreserveSig]
-        new int GetState(
-            [In] int dwMilliSecsTimeout,
-            out FilterState State
-            );
-
-        [PreserveSig]
-        new int SetSyncSource(
-            [In, MarshalAs(UnmanagedType.Interface)] IReferenceClock pClock
-            );
-
-        [PreserveSig]
-        new int GetSyncSource(
-            [MarshalAs(UnmanagedType.Interface)] out IReferenceClock pClock
-            );
-
-        #endregion
-
-        #region IBaseFilter Methods
-
-        [PreserveSig]
-        new int EnumPins(
-            [MarshalAs(UnmanagedType.Interface)] out IEnumPins ppEnum
-            );
-
-        [PreserveSig]
-        new int FindPin(
-            [In, MarshalAs(UnmanagedType.LPWStr)] string Id,
-            [MarshalAs(UnmanagedType.Interface)] out IPin ppPin
-            );
-
-        [PreserveSig]
-        new int QueryFilterInfo(
-            out FilterInfo pInfo
-            );
-
-        [PreserveSig]
-        new int JoinFilterGraph(
-            [In, MarshalAs(UnmanagedType.Interface)] IFilterGraph pGraph,
-            [In, MarshalAs(UnmanagedType.LPWStr)] string pName
-            );
-
-        [PreserveSig]
-        new int QueryVendorInfo(
-            [MarshalAs(UnmanagedType.LPWStr)] out string pVendorInfo
-            );
-
-        #endregion
-
-        [PreserveSig]
-        int AddMediaStream(
-            [In, MarshalAs(UnmanagedType.Interface)] IAMMediaStream pAMMediaStream
-            );
-
-        [PreserveSig]
-        int GetMediaStream(
-            [In] Guid idPurpose,
-            [MarshalAs(UnmanagedType.Interface)] out IMediaStream ppMediaStream
-            );
-
-        [PreserveSig]
-        int EnumMediaStreams(
-            [In] int Index,
-            [MarshalAs(UnmanagedType.Interface)] out IMediaStream ppMediaStream
-            );
-
-        [PreserveSig]
-        int SupportSeeking(
-            [In, MarshalAs(UnmanagedType.Bool)] bool bRenderer
-            );
-
-        [PreserveSig]
-        int ReferenceTimeToStreamTime(
-            [In, Out] ref long pTime
-            );
-
-        [PreserveSig]
-        int GetCurrentStreamTime(
-            out long pCurrentStreamTime
-            );
-
-        [PreserveSig]
-        int WaitUntil(
-            [In] long WaitStreamTime
-            );
-
-        [PreserveSig]
-        int Flush(
-            [In, MarshalAs(UnmanagedType.Bool)] bool bCancelEOS
-            );
-
-        [PreserveSig]
-        int EndOfStream();
     }
 
 
@@ -570,8 +446,132 @@ namespace DirectShowLib.MultimediaStreaming
             );
     }
 
+    [Guid("BEBE595E-9A6F-11D0-8FDE-00C04FD9189D"), 
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IMediaStreamFilter : IBaseFilter
+    {
+        #region IPersist Methods
 
+        [PreserveSig]
+        new int GetClassID(
+            out Guid pClassID
+            );
+
+        #endregion
+
+        #region IMediaFilter Methods
+
+        [PreserveSig]
+        new int Stop();
+
+        [PreserveSig]
+        new int Pause();
+
+        [PreserveSig]
+        new int Run(
+            long tStart
+            );
+
+        [PreserveSig]
+        new int GetState(
+            [In] int dwMilliSecsTimeout,
+            out FilterState State
+            );
+
+        [PreserveSig]
+        new int SetSyncSource(
+            [In, MarshalAs(UnmanagedType.Interface)] IReferenceClock pClock
+            );
+
+        [PreserveSig]
+        new int GetSyncSource(
+            [MarshalAs(UnmanagedType.Interface)] out IReferenceClock pClock
+            );
+
+        #endregion
+
+        #region IBaseFilter Methods
+
+        [PreserveSig]
+        new int EnumPins(
+            [MarshalAs(UnmanagedType.Interface)] out IEnumPins ppEnum
+            );
+
+        [PreserveSig]
+        new int FindPin(
+            [In, MarshalAs(UnmanagedType.LPWStr)] string Id,
+            [MarshalAs(UnmanagedType.Interface)] out IPin ppPin
+            );
+
+        [PreserveSig]
+        new int QueryFilterInfo(
+            out FilterInfo pInfo
+            );
+
+        [PreserveSig]
+        new int JoinFilterGraph(
+            [In, MarshalAs(UnmanagedType.Interface)] IFilterGraph pGraph,
+            [In, MarshalAs(UnmanagedType.LPWStr)] string pName
+            );
+
+        [PreserveSig]
+        new int QueryVendorInfo(
+            [MarshalAs(UnmanagedType.LPWStr)] out string pVendorInfo
+            );
+
+        #endregion
+
+        [PreserveSig]
+        int AddMediaStream(
+#if ALLOW_UNTESTED_INTERFACES
+            [In, MarshalAs(UnmanagedType.Interface)] IAMMediaStream pAMMediaStream
+#else
+            [In, MarshalAs(UnmanagedType.Interface)] object pAMMediaStream
 #endif
+            );
+
+        [PreserveSig]
+        int GetMediaStream(
+            [In, MarshalAs(UnmanagedType.LPStruct)] Guid idPurpose,
+            [MarshalAs(UnmanagedType.Interface)] out IMediaStream ppMediaStream
+            );
+
+        [PreserveSig]
+        int EnumMediaStreams(
+            [In] int Index,
+            [MarshalAs(UnmanagedType.Interface)] out IMediaStream ppMediaStream
+            );
+
+        [PreserveSig]
+        int SupportSeeking(
+            [In, MarshalAs(UnmanagedType.Bool)] bool bRenderer
+            );
+
+        [PreserveSig]
+        int ReferenceTimeToStreamTime(
+            [In, Out] ref long pTime
+            );
+
+        [PreserveSig]
+        int GetCurrentStreamTime(
+            out long pCurrentStreamTime
+            );
+
+        [PreserveSig]
+        int WaitUntil(
+            [In] long WaitStreamTime
+            );
+
+        [PreserveSig]
+        int Flush(
+            [In, MarshalAs(UnmanagedType.Bool)] bool bCancelEOS
+            );
+
+        [PreserveSig]
+        int EndOfStream();
+    }
+
+
     #endregion
 }
 
