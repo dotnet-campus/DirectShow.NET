@@ -437,7 +437,7 @@ namespace DirectShowLib.BDA
         [PreserveSig]
         int Next(
             [In] int cRequest,
-            [Out] out PIDMap pPIDMap,
+            [Out, MarshalAs(UnmanagedType.LPArray)] PIDMap[] pPIDMap,
             [Out] out int pcReceived
             );
 
