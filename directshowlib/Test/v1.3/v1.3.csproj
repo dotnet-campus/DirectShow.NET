@@ -263,6 +263,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "ILanguageComponentTypeTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IMediaSample2Test.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -279,6 +284,11 @@
                 />
                 <File
                     RelPath = "IMixerOCXTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IMPEG2ComponentTypeTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
