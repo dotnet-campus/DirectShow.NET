@@ -1020,19 +1020,20 @@ namespace DirectShowLib
     {
         [PreserveSig]
         int CreateCategory(
-            [In] Guid clsidCategory,
+            [In, MarshalAs(UnmanagedType.LPStruct)] Guid clsidCategory,
             [In] Merit dwCategoryMerit,
             [In, MarshalAs(UnmanagedType.LPWStr)] string Description
             );
 
         [PreserveSig]
         int UnregisterFilter(
-            [In] Guid clsidCategory,
+            [In, MarshalAs(UnmanagedType.LPStruct)] Guid clsidCategory,
             [In, MarshalAs(UnmanagedType.LPWStr)] string szInstance,
-            [In] Guid Filter
+            [In, MarshalAs(UnmanagedType.LPStruct)] Guid Filter
             );
 
         [PreserveSig]
+        [Obsolete("This interface has not been tested.", false)]
         int RegisterFilter(
             [In] Guid clsidFilter,
             [In, MarshalAs(UnmanagedType.LPWStr)] string Name,
