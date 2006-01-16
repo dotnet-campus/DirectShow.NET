@@ -31,14 +31,25 @@ namespace DirectShowLib.BDA
     #region Declarations
 
 #if ALLOW_UNTESTED_INTERFACES
+
+    /// <summary>
+    /// From BDA_MULTICAST_MODE
+    /// </summary>
+    public enum MulticastMode
+    {
+        PromiscuousMulticast = 0,
+        FilteredMulticast,
+        NoMulticast
+    }
+
     /// <summary>
     /// From KSPROPERTY_IPSINK
     /// </summary>
     public enum KSPropertyIPSink
     {
-        MULTICASTLIST,
-        ADAPTER_DESCRIPTION,
-        ADAPTER_ADDRESS
+        MulticastList,
+        AdapterDescription,
+        AdapterAddress
     }
 
     /// <summary>
@@ -129,20 +140,20 @@ namespace DirectShowLib.BDA
         [PreserveSig]
         int PutMulticastList( 
             int ulcbAddresses,
-            IntPtr pAddressList); // BYTE []
+            IntPtr pAddressList);
         
         [PreserveSig]
         int GetMulticastList( 
-            int pulcbAddresses,
-            IntPtr pAddressList); // BYTE []
+            ref int pulcbAddresses,
+            IntPtr pAddressList);
         
         [PreserveSig]
         int PutMulticastMode( 
-            int ulModeMask);
+            MulticastMode ulModeMask);
         
         [PreserveSig]
         int GetMulticastMode( 
-            out int pulModeMask);
+            out MulticastMode pulModeMask);
         
     }
 

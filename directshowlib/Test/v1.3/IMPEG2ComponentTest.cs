@@ -69,6 +69,8 @@ namespace DirectShowLib.Test
 
             hr = m_m2c.get_ProgramNumber(out pn);
             DsError.ThrowExceptionForHR(hr);
+
+            Debug.Assert(pn == 456, "ProgramNumber");
         }
 
         private void Config()
