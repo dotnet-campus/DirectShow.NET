@@ -297,6 +297,9 @@ namespace DirectShowLib.Test
 
             // IAMMediaContent2Test t97 = new IAMMediaContent2Test();
             // t97.DoTests();
+
+            // IMediaStreamFilterTest t98 = new IMediaStreamFilterTest();
+            // t98.DoTests();
         }
     }
 }

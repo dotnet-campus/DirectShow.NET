@@ -17,7 +17,7 @@
                 DelaySign = "false"
                 OutputType = "Exe"
                 PreBuildEvent = ""
-                PostBuildEvent = "if not exist foo.avi copy $(SolutionDir)..\Resources\foo.avi .&#xd;&#xa;if not exist p.wmv copy $(SolutionDir)..\Resources\p.wmv .&#xd;&#xa;if not exist France-Info.asx copy $(SolutionDir)..\Resources\France-Info.asx ."
+                PostBuildEvent = "if not exist foo.avi copy $(SolutionDir)..\Resources\foo.avi .&#xd;&#xa;if not exist p.wmv copy $(SolutionDir)..\Resources\p.wmv .&#xd;&#xa;if not exist France-Info.asx copy $(SolutionDir)..\Resources\France-Info.asx .&#xd;&#xa;if not exist nwn.mp1 copy $(SolutionDir)..\Resources\nwn.mp1 .&#xd;&#xa;"
                 RootNamespace = "v1._3"
                 RunPostBuildEvent = "OnBuildSuccess"
                 StartupObject = ""

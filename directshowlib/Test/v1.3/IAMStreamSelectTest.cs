@@ -68,8 +68,11 @@ namespace DirectShowLib.Test
             IGraphBuilder gb = (IGraphBuilder)new FilterGraph();
             IBaseFilter pFilter;
 
-            int hr = gb.RenderFile(@"c:\nwn_1.mpg", null);
+            int hr = gb.RenderFile(@"nwn.mp1", null);
+            DsError.ThrowExceptionForHR(hr);
+
             hr = gb.FindFilterByName("MPEG-I Stream Splitter", out pFilter);
+            DsError.ThrowExceptionForHR(hr);
 
             m_ss = pFilter as IAMStreamSelect;
 
