@@ -127,6 +127,20 @@ namespace DirectShowLib
         ForceMinimize
     }
 
+
+    /// <summary>
+    /// From DISPATCH_* defines
+    /// </summary>
+    [Flags]
+    public enum DispatchFlags : short
+    {
+        None = 0x0,
+        Method =       0x1,
+        PropertyGet = 0x2,
+        PropertyPut = 0x4,
+        PropertyPutRef = 0x8
+    }
+
     #endregion
 
 	#region Interfaces
@@ -160,7 +174,7 @@ namespace DirectShowLib
 		int Confidence([Out] out int pConfidence);
 
 		[PreserveSig]
-		int Postpone([In] long newtime);
+		int Postpone([In] double newtime);
 
 		[PreserveSig]
 		int GetHResult([Out] out int phrResult);
@@ -173,24 +187,25 @@ namespace DirectShowLib
 		[PreserveSig]
 		int InvokeAtStreamTime(
 			[Out] out IDeferredCommand pCmd,
-			[In] long time,
-			[In] Guid iid,
+			[In] double time,
+			[In, MarshalAs(UnmanagedType.LPStruct)] Guid iid,
 			[In] int dispidMethod,
-			[In] short wFlags,
+			[In] DispatchFlags wFlags,
 			[In] int cArgs,
 			[In] object[] pDispParams,
-			[Out] out object pvarResult,
-			[Out] out short puArgErr
+            [In] IntPtr pvarResult,
+            [Out] out short puArgErr
 			);
 
 		int InvokeAtPresentationTime(
-			[In] long time,
-			[In] Guid iid,
+            [Out] out IDeferredCommand pCmd,
+            [In] double time,
+			[In, MarshalAs(UnmanagedType.LPStruct)] Guid iid,
 			[In] int dispidMethod,
-			[In] short wFlags,
+			[In] DispatchFlags wFlags,
 			[In] int cArgs,
 			[In] object[] pDispParams,
-			[Out] out object pvarResult,
+			[In] IntPtr pvarResult,
 			[Out] out short puArgErr
 			);
 	}

@@ -333,6 +333,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IQueueCommandTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IStreamSampleTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
