@@ -168,20 +168,20 @@ namespace DirectShowLib.BDA
         [PreserveSig]
         int PutMulticastList( 
             int ulcbAddresses,
-            IntPtr pAddressList); // BYTE []
+            IntPtr pAddressList);
         
         [PreserveSig]
         int GetMulticastList( 
-            out int pulcbAddresses,
-            IntPtr pAddressList);  // BYTE []
+            ref int pulcbAddresses,
+            IntPtr pAddressList);
         
         [PreserveSig]
         int PutMulticastMode( 
-            int ulModeMask);
+            MulticastMode ulModeMask);
         
         [PreserveSig]
         int GetMulticastMode( 
-            out int pulModeMask);
+            out MulticastMode pulModeMask);
         
     }
 
@@ -200,16 +200,16 @@ namespace DirectShowLib.BDA
         
         [PreserveSig]
         int GetMulticastList( 
-            out int pulcbAddresses,
+            ref int pulcbAddresses,
             IntPtr pAddressList);  // BYTE []
         
         [PreserveSig]
         int PutMulticastMode( 
-            int ulModeMask);
+            MulticastMode ulModeMask);
         
         [PreserveSig]
         int GetMulticastMode( 
-            out int pulModeMask);
+            out MulticastMode pulModeMask);
     }
 
 
