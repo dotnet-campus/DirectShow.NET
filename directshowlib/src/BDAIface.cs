@@ -76,7 +76,7 @@ namespace DirectShowLib.BDA
     /// From PID_MAP
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct PIDMap
+    public class PIDMap
     {
         public int ulPID;
         public MediaSampleContent MediaSampleContent;
