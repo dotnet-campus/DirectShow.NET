@@ -86,7 +86,6 @@ namespace DirectShowLib.Test
             int hr2;
             IDeferredCommand defc;
             short e;
-            int p;
 
             hr = m_qc.InvokeAtStreamTime(
                 out defc,
