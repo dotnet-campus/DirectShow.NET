@@ -293,7 +293,17 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IMPEG2ComponentTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IMPEG2ComponentTypeTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IMpeg2DataTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
