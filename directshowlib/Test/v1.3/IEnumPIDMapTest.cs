@@ -18,6 +18,7 @@ namespace DirectShowLib.Test
 
         public void DoTests()
         {
+            Config2();
             Configure();
 
             try
@@ -77,7 +78,10 @@ namespace DirectShowLib.Test
             DsROTEntry rot = new DsROTEntry(gb);
             IBaseFilter pFilter = (IBaseFilter)new MPEG2Demultiplexer();
             AMMediaType amt = new AMMediaType();
+            amt.majorType = MediaType.Video;
             IPin pPin;
+            int [] pid = new int[1];
+            pid[0] = 123;
 
             hr = gb.AddFilter(pFilter, "fdsa");
             DsError.ThrowExceptionForHR(hr);
@@ -88,8 +92,40 @@ namespace DirectShowLib.Test
             DsError.ThrowExceptionForHR(hr);
 
             IMPEG2PIDMap pmap = pPin as IMPEG2PIDMap;
-            hr = pmap.EnumPIDMap(out m_pm);
+            //hr = pmap.MapPID(1, pid, MediaSampleContent.ElementaryStream);
+            //DsError.ThrowExceptionForHR(hr);
+            //hr = pmap.EnumPIDMap(out m_pm);
             DsError.ThrowExceptionForHR(hr);
+        }
+
+        private void Config2()
+        {
+            int hr;
+            IPin pPin;
+            AMMediaType mt;
+            IMpeg2Demultiplexer ism;
+            IMPEG2PIDMap pm;
+            IEnumPIDMap epm2;
+            object o;
+            IntPtr ip;
+            IntPtr ip2;
+            IntPtr ip3;
+            Guid g = typeof(IEnumPIDMap).GUID;
+
+            ism = (IMpeg2Demultiplexer)new MPEG2Demultiplexer();
+            mt = new AMMediaType();
+
+            hr = ism.CreateOutputPin(mt, "Pin1", out pPin);
+            pm = pPin as IMPEG2PIDMap;
+
+            hr = pm.EnumPIDMap(out ip);
+            Marshal.QueryInterface(ip, ref g, out ip2);
+            Marshal.QueryInterface(ip2, ref g, out ip3);
+            o = System.Runtime.Remoting.Services.EnterpriseServicesHelper.WrapIUnknownWithComObject( ip );
+            m_pm = o as IEnumPIDMap;
+            hr = m_pm.Reset();
+            hr = m_pm.Skip(0);
+            hr = m_pm.Clone(out epm2);
         }
     }
 }
