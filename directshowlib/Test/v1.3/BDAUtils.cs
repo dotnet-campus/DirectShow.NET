@@ -209,5 +209,36 @@ namespace DirectShowLib.Test
       }
     }
 
+    public static void AddNetworkFiltersToGraph(IFilterGraph2 graphBuilder, out IBaseFilter bdaMPE, out IBaseFilter bdaIPSink)
+    {
+      int hr = 0;
+      DsDevice[] devices;
+
+      bdaMPE = null;
+      bdaIPSink = null;
+
+      devices = DsDevice.GetDevicesOfCat(FilterCategory.BDAReceiverComponentsCategory);
+      foreach (DsDevice device in devices)
+      {
+        if (device.Name.IndexOf("BDA MPE") != -1)
+        {
+          hr = graphBuilder.AddSourceFilterForMoniker(device.Mon, null, "BDA MPE Filter", out bdaMPE);
+          DsError.ThrowExceptionForHR(hr);
+          break;
+        }
+      }
+      
+      devices = DsDevice.GetDevicesOfCat(FilterCategory.BDARenderingFiltersCategory);
+      foreach (DsDevice device in devices)
+      {
+        if (device.Name.Equals("BDA IP Sink"))
+        {
+          hr = graphBuilder.AddSourceFilterForMoniker(device.Mon, null, "BDA IP Sink", out bdaIPSink);
+          DsError.ThrowExceptionForHR(hr);
+          break;
+        }
+      }
+    }
+
 	}
 }
