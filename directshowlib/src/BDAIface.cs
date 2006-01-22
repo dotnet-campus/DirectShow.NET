@@ -409,7 +409,8 @@ namespace DirectShowLib.BDA
     }
 
     [Guid("3F4DC8E2-4050-11d3-8F4B-00C04F7971E2"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
+    Obsolete("IBDA_IPSinkControl is no longer being supported for Ring 3 clients. Use the BDA_IPSinkInfo interface instead.")]
     public interface IBDA_IPSinkControl
     {
         [PreserveSig]
@@ -430,7 +431,7 @@ namespace DirectShowLib.BDA
         [PreserveSig]
         int get_MulticastList( 
             out int pulcbAddresses,
-            IntPtr ppbAddressList); // BYTE **
+            out IntPtr ppbAddressList); // BYTE **
         
         [PreserveSig]
         int get_AdapterIPAddress( 
