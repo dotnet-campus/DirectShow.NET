@@ -278,11 +278,6 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "IEnumPIDMapTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "IFilterMap3Test.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
