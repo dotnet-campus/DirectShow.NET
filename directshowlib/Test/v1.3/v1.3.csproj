@@ -238,6 +238,16 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IBDA_IPSinkControlTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IBDA_IPSinkInfoTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IBDA_IPV4FilterTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
