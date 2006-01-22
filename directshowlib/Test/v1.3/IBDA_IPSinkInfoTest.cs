@@ -154,27 +154,29 @@ namespace DirectShowLib.Test
     {
       int hr = 0;
       int addressCount;
-      IntPtr addressList = Marshal.AllocCoTaskMem(6*20);
+      IntPtr addressList;
 
-      hr = sinkInfo.get_MulticastList(out addressCount, addressList);
+      hr = sinkInfo.get_MulticastList(out addressCount, out addressList);
       DsError.ThrowExceptionForHR(hr);
 
       // I don't know how the use thoses 6 bytes addresses...
       for (int i = 0; i < addressCount; i++)
       {
-/*
+
         Debug.WriteLine(string.Format("{0:x}-{1:x}-{2:x}-{3:x}-{4:x}-{5:x}", Marshal.ReadByte(addressList, i*6 + 0), 
                                                                              Marshal.ReadByte(addressList, i*6 + 1),
                                                                              Marshal.ReadByte(addressList, i*6 + 2),
                                                                              Marshal.ReadByte(addressList, i*6 + 3),
                                                                              Marshal.ReadByte(addressList, i*6 + 4),
                                                                              Marshal.ReadByte(addressList, i*6 + 5)));
-*/
+/*
         Debug.WriteLine(string.Format("{0}.{1}.{2}.{3}:{4}", Marshal.ReadByte(addressList, i*6 + 0), 
                                                              Marshal.ReadByte(addressList, i*6 + 1),
                                                              Marshal.ReadByte(addressList, i*6 + 2),
                                                              Marshal.ReadByte(addressList, i*6 + 3),
                                                              Marshal.ReadInt16(addressList, i*6 + 4)));
+*/
+        Marshal.FreeCoTaskMem(addressList);
       }
 
       Debug.Assert(addressCount > 0, "IBDA_IPSinkInfo.get_MulticastList");
