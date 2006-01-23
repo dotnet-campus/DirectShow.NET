@@ -34,20 +34,6 @@ namespace DirectShowLib
 
 #if ALLOW_UNTESTED_INTERFACES
     /// <summary>
-    /// unnamed enum
-    /// </summary>
-    [Flags]
-    public enum Merit
-    {
-        Preferred    = 0x800000,
-        Normal       = 0x600000,
-        Unlikely     = 0x400000,
-        DoNotUse     = 0x200000,
-        SWCompressor = 0x100000,
-        HWCompressor = 0x100050
-    }
-
-    /// <summary>
     /// From QualityMessageType
     /// </summary>
     public enum QualityMessageType
@@ -86,50 +72,6 @@ namespace DirectShowLib
     {
         Auto = 0x0001,
         Manual = 0x0002
-    }
-
-    /// <summary>
-    /// From _AMSTREAMSELECTINFOFLAGS
-    /// </summary>
-    [Flags]
-    public enum AMStreamSelectInfoFlags
-    {
-        Disabled = 0x0,
-        Enabled = 0x01,
-        Exclusive = 0x02
-    }
-
-    /// <summary>
-    /// From _AMSTREAMSELECTENABLEFLAGS
-    /// </summary>
-    [Flags]
-    public enum AMStreamSelectEnableFlags
-    {
-        DisableAll = 0x0,
-        Enable = 0x01,
-        EnableAll = 0x02
-    }
-
-    /// <summary>
-    /// From _AMRESCTL_RESERVEFLAGS
-    /// </summary>
-    [Flags]
-    public enum AMResCtlReserveFlags
-    {
-        Reserve = 0x00,
-        UnReserve = 0x01
-    }
-
-    /// <summary>
-    /// From DECIMATION_USAGE
-    /// </summary>
-    public enum DecimationUsage
-    {
-        Legacy,
-        UseDecoderOnly,
-        UseVideoPortOnly,
-        UseOverlayOnly,
-        Default
     }
 
     /// <summary>
@@ -176,18 +118,6 @@ namespace DirectShowLib
     }
 
     /// <summary>
-    /// From AMOVERLAYFX
-    /// </summary>
-    [Flags]
-    public enum AMOverlayFX
-    {
-        NoFX = 0x00000000,
-        MirrorLeftRight = 0x00000002,
-        MirrorUpDown = 0x00000004,
-        Deinterlace = 0x00000008
-    }
-
-    /// <summary>
     /// From VIDEOENCODER_BITRATE_MODE
     /// </summary>
     public enum VideoEncoderBitrateMode
@@ -195,28 +125,6 @@ namespace DirectShowLib
         ConstantBitRate = 0,
         VariableBitRateAverage,
         VariableBitRatePeak
-    }
-
-    /// <summary>
-    /// From AM_QUERY_DECODER_* defines
-    /// </summary>
-    public enum AMQueryDecoder
-    {
-        VMRSupport = 0x00000001,
-        DXVA_1Support = 0x00000002,
-        DVDSupport = 0x00000003,
-        ATSC_SDSupport = 0x00000004,
-        ATSC_HDSupport = 0x00000005,
-        VMR9Support = 0x00000006
-    }
-
-    /// <summary>
-    /// From DECODER_CAP_* defines
-    /// </summary>
-    public enum DecoderCap
-    {
-        NotSupported = 0x00000000,
-        Supported = 0x00000001
     }
 
     /// <summary>
@@ -516,6 +424,98 @@ namespace DirectShowLib
         InputPin = 0x00000001,
         OutputPin = 0x00000002,
         Filter = 0x00000004
+    }
+
+    /// <summary>
+    /// From AM_QUERY_DECODER_* defines
+    /// </summary>
+    public enum AMQueryDecoder
+    {
+        VMRSupport = 0x00000001,
+        DXVA_1Support = 0x00000002,
+        DVDSupport = 0x00000003,
+        ATSC_SDSupport = 0x00000004,
+        ATSC_HDSupport = 0x00000005,
+        VMR9Support = 0x00000006
+    }
+
+    /// <summary>
+    /// From DECODER_CAP_* defines
+    /// </summary>
+    public enum DecoderCap
+    {
+        NotSupported = 0x00000000,
+        Supported = 0x00000001
+    }
+
+    /// <summary>
+    /// From DECIMATION_USAGE
+    /// </summary>
+    public enum DecimationUsage
+    {
+        Legacy,
+        UseDecoderOnly,
+        UseVideoPortOnly,
+        UseOverlayOnly,
+        Default
+    }
+
+    /// <summary>
+    /// From AMOVERLAYFX
+    /// </summary>
+    [Flags]
+    public enum AMOverlayFX
+    {
+        NoFX = 0x00000000,
+        MirrorLeftRight = 0x00000002,
+        MirrorUpDown = 0x00000004,
+        Deinterlace = 0x00000008
+    }
+
+    /// <summary>
+    /// From _AMRESCTL_RESERVEFLAGS
+    /// </summary>
+    [Flags]
+    public enum AMResCtlReserveFlags
+    {
+        Reserve = 0x00,
+        UnReserve = 0x01
+    }
+
+    /// <summary>
+    /// From _AMSTREAMSELECTINFOFLAGS
+    /// </summary>
+    [Flags]
+    public enum AMStreamSelectInfoFlags
+    {
+        Disabled = 0x0,
+        Enabled = 0x01,
+        Exclusive = 0x02
+    }
+
+    /// <summary>
+    /// From _AMSTREAMSELECTENABLEFLAGS
+    /// </summary>
+    [Flags]
+    public enum AMStreamSelectEnableFlags
+    {
+        DisableAll = 0x0,
+        Enable = 0x01,
+        EnableAll = 0x02
+    }
+
+    /// <summary>
+    /// unnamed enum
+    /// </summary>
+    [Flags]
+    public enum Merit
+    {
+        Preferred    = 0x800000,
+        Normal       = 0x600000,
+        Unlikely     = 0x400000,
+        DoNotUse     = 0x200000,
+        SWCompressor = 0x100000,
+        HWCompressor = 0x100050
     }
 
     /// <summary>
@@ -1014,110 +1014,6 @@ namespace DirectShowLib
             );
     }
 
-    [Guid("b79bb0b0-33c1-11d1-abe1-00a0c905f375"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IFilterMapper2
-    {
-        [PreserveSig]
-        int CreateCategory(
-            [In, MarshalAs(UnmanagedType.LPStruct)] Guid clsidCategory,
-            [In] Merit dwCategoryMerit,
-            [In, MarshalAs(UnmanagedType.LPWStr)] string Description
-            );
-
-        [PreserveSig]
-        int UnregisterFilter(
-            [In, MarshalAs(UnmanagedType.LPStruct)] Guid clsidCategory,
-            [In, MarshalAs(UnmanagedType.LPWStr)] string szInstance,
-            [In, MarshalAs(UnmanagedType.LPStruct)] Guid Filter
-            );
-
-        [PreserveSig]
-        [Obsolete("This interface has not been tested.", false)]
-        int RegisterFilter(
-            [In] Guid clsidFilter,
-            [In, MarshalAs(UnmanagedType.LPWStr)] string Name,
-            [In, Out] UCOMIMoniker ppMoniker,
-            [In] DsGuid pclsidCategory,
-            [In, MarshalAs(UnmanagedType.LPWStr)] string szInstance,
-            [In] RegFilter2 prf2
-            );
-
-        [PreserveSig]
-        int EnumMatchingFilters(
-            [Out] out UCOMIEnumMoniker ppEnum,
-            [In] int dwFlags,
-            [In, MarshalAs(UnmanagedType.Bool)] bool bExactMatch,
-            [In] Merit dwMerit,
-            [In, MarshalAs(UnmanagedType.Bool)] bool bInputNeeded,
-            [In] int cInputTypes,
-            [In, MarshalAs(UnmanagedType.LPArray, ArraySubType=UnmanagedType.Struct)] Guid[] pInputTypes, // GUID *
-            [In] RegPinMedium pMedIn,
-            [In] DsGuid pPinCategoryIn,
-            [In, MarshalAs(UnmanagedType.Bool)] bool bRender,
-            [In, MarshalAs(UnmanagedType.Bool)] bool bOutputNeeded,
-            [In] int cOutputTypes,
-            [In, MarshalAs(UnmanagedType.LPArray, ArraySubType=UnmanagedType.Struct)] Guid[] pOutputTypes, // GUID *
-            [In] RegPinMedium pMedOut,
-            [In] DsGuid pPinCategoryOut
-            );
-    }
-
-    [Guid("b79bb0b1-33c1-11d1-abe1-00a0c905f375"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IFilterMapper3 : IFilterMapper2
-    {
-        #region IFilterMapper2 Methods
-
-        [PreserveSig]
-        new int CreateCategory(
-            [In] Guid clsidCategory,
-            [In] Merit dwCategoryMerit,
-            [In, MarshalAs(UnmanagedType.LPWStr)] string Description
-            );
-
-        [PreserveSig]
-        new int UnregisterFilter(
-            [In] Guid clsidCategory,
-            [In, MarshalAs(UnmanagedType.LPWStr)] string szInstance,
-            [In] Guid Filter
-            );
-
-        [PreserveSig]
-        new int RegisterFilter(
-            [In] Guid clsidFilter,
-            [In, MarshalAs(UnmanagedType.LPWStr)] string Name,
-            [In, Out] UCOMIMoniker ppMoniker,
-            [In] DsGuid pclsidCategory,
-            [In, MarshalAs(UnmanagedType.LPWStr)] string szInstance,
-            [In] RegFilter2 prf2
-            );
-
-        [PreserveSig]
-        new int EnumMatchingFilters(
-            [Out] out UCOMIEnumMoniker ppEnum,
-            [In] int dwFlags,
-            [In, MarshalAs(UnmanagedType.Bool)] bool bExactMatch,
-            [In] Merit dwMerit,
-            [In, MarshalAs(UnmanagedType.Bool)] bool bInputNeeded,
-            [In] int cInputTypes,
-            [In, MarshalAs(UnmanagedType.LPArray, ArraySubType=UnmanagedType.Struct)] Guid[] pInputTypes, // GUID *
-            [In] RegPinMedium pMedIn,
-            [In] DsGuid pPinCategoryIn,
-            [In, MarshalAs(UnmanagedType.Bool)] bool bRender,
-            [In, MarshalAs(UnmanagedType.Bool)] bool bOutputNeeded,
-            [In] int cOutputTypes,
-            [In, MarshalAs(UnmanagedType.LPArray, ArraySubType=UnmanagedType.Struct)] Guid[] pOutputTypes, // GUID *
-            [In] RegPinMedium pMedOut,
-            [In] DsGuid pPinCategoryOut
-            );
-
-        #endregion
-
-        [PreserveSig]
-        int GetICreateDevEnum([Out] out ICreateDevEnum ppEnum);
-    }
-
     [Guid("56a868a5-0ad4-11ce-b03a-0020af0ba770"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IQualityControl
@@ -1163,7 +1059,7 @@ namespace DirectShowLib
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IOverlayNotify2 : IOverlayNotify
     {
-        #region IOverlayNotify Methods
+    #region IOverlayNotify Methods
 
         [PreserveSig]
         new int OnPaletteChange(
@@ -1187,7 +1083,7 @@ namespace DirectShowLib
             [In] Rectangle pDestinationRect
             );
 
-        #endregion
+    #endregion
 
         [PreserveSig]
         int OnDisplayChange(IntPtr hMonitor); // HMONITOR
@@ -1506,7 +1402,7 @@ namespace DirectShowLib
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IBPCSatelliteTuner : IAMTuner
     {
-        #region IAMTuner Methods
+    #region IAMTuner Methods
 
         [PreserveSig]
         new int put_Channel(
@@ -1567,7 +1463,7 @@ namespace DirectShowLib
         [PreserveSig]
         new int UnRegisterNotificationCallBack([In] IAMTunerNotification pNotify);
 
-        #endregion
+    #endregion
 
         [PreserveSig]
         int get_DefaultSubChannelTypes(
@@ -1941,43 +1837,6 @@ namespace DirectShowLib
         int GetDevId([Out] out int pdwDevId);
     }
 
-    [Guid("c1960960-17f5-11d1-abe1-00a0c905f375"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IAMStreamSelect
-    {
-        [PreserveSig]
-        int Count([Out] out int pcStreams);
-
-        [PreserveSig]
-        int Info(
-            [In] int lIndex,
-            [Out] out AMMediaType ppmt,
-            [Out] out AMStreamSelectInfoFlags pdwFlags,
-            [Out] out int plcid,
-            [Out] out int pdwGroup,
-            [Out, MarshalAs(UnmanagedType.LPWStr)] out string ppszName,
-            [Out, MarshalAs(UnmanagedType.IUnknown)] out object ppObject,
-            [Out, MarshalAs(UnmanagedType.IUnknown)] out object ppUnk
-            );
-
-        [PreserveSig]
-        int Enable(
-            [In] int lIndex,
-            [In] AMStreamSelectEnableFlags dwFlags
-            );
-    }
-
-    [Guid("8389d2d0-77d7-11d1-abe6-00a0c905f375"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IAMResourceControl
-    {
-        [PreserveSig]
-        int Reserve(
-            [In] AMResCtlReserveFlags dwFlags,
-            [In] IntPtr pvReserved // PVOID
-            );
-    }
-
     [Guid("4d5466b0-a49c-11d1-abe8-00a0c905f375"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IAMClockAdjust
@@ -2017,17 +1876,6 @@ namespace DirectShowLib
 
         [PreserveSig]
         int ResetDecimationImageSize();
-    }
-
-    [Guid("60d32930-13da-11d3-9ec6-c4fcaef5c7be"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IAMVideoDecimationProperties
-    {
-        [PreserveSig]
-        int QueryDecimationUsage([Out] out DecimationUsage lpUsage);
-
-        [PreserveSig]
-        int SetDecimationUsage([In] DecimationUsage Usage);
     }
 
     [Guid("F185FE76-E64E-11d2-B76E-00C04FB6BD3D"),
@@ -2090,41 +1938,6 @@ namespace DirectShowLib
         int GetLatency(out long prtLatency);
     }
 
-    [Guid("62fae250-7e65-4460-bfc9-6398b322073c"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IAMOverlayFX
-    {
-        [PreserveSig]
-        int QueryOverlayFXCaps([Out] out AMOverlayFX lpdwOverlayFXCaps);
-
-        [PreserveSig]
-        int SetOverlayFX([In] AMOverlayFX dwOverlayFX);
-
-        [PreserveSig]
-        int GetOverlayFX([Out] out AMOverlayFX lpdwOverlayFX);
-    }
-
-    [Guid("436eee9c-264f-4242-90e1-4e330c107512"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IMpeg2Demultiplexer
-    {
-        [PreserveSig]
-        int CreateOutputPin(
-            [In] AMMediaType pMediaType,
-            [In, MarshalAs(UnmanagedType.LPWStr)] string pszPinName,
-            [Out] out IPin ppIPin
-            );
-
-        [PreserveSig]
-        int SetOutputPinMediaType(
-            [In, MarshalAs(UnmanagedType.LPWStr)] string pszPinName,
-            [In] AMMediaType pMediaType
-            );
-
-        [PreserveSig]
-        int DeleteOutputPin([In, MarshalAs(UnmanagedType.LPWStr)] string pszPinName);
-    }
-
     [Guid("945C1566-6202-46fc-96C7-D87F289C6534"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IEnumStreamIdMap
@@ -2177,17 +1990,6 @@ namespace DirectShowLib
             [In, MarshalAs(UnmanagedType.LPStruct)] Guid guidService,
             [In, MarshalAs(UnmanagedType.IUnknown)] object pUnkObject
             );
-    }
-
-    [Guid("9FD52741-176D-4b36-8F51-CA8F933223BE"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IAMClockSlave
-    {
-        [PreserveSig]
-        int SetErrorTolerance([In] int dwTolerance);
-
-        [PreserveSig]
-        int GetErrorTolerance([Out] out int pdwTolerance);
     }
 
     [Guid("4995f511-9ddb-4f12-bd3b-f04611807b79"),
@@ -2332,7 +2134,7 @@ namespace DirectShowLib
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IVideoEncoder : IEncoderAPI
     {
-        #region IEncoderAPI Methods
+    #region IEncoderAPI Methods
 
         [PreserveSig]
         new int IsSupported([In] Guid Api);
@@ -2373,18 +2175,7 @@ namespace DirectShowLib
             [In] object Value
             );
 
-        #endregion
-    }
-
-    [Guid("c0dff467-d499-4986-972b-e1d9090fa941"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IAMDecoderCaps
-    {
-        [PreserveSig]
-        int GetDecoderCaps(
-            [In] AMQueryDecoder dwCapIndex,
-            [Out] out DecoderCap lpdwCap
-            );
+    #endregion
     }
 
     [Guid("6feded3e-0ff1-4901-a2f1-43f7012c8515"),
@@ -3535,6 +3326,223 @@ namespace DirectShowLib
             [In] int EventParam1,
             [In] int EventParam2
             );
+    }
+
+    [Guid("9FD52741-176D-4b36-8F51-CA8F933223BE"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IAMClockSlave
+    {
+        [PreserveSig]
+        int SetErrorTolerance([In] int dwTolerance);
+
+        [PreserveSig]
+        int GetErrorTolerance([Out] out int pdwTolerance);
+    }
+
+    [Guid("c0dff467-d499-4986-972b-e1d9090fa941"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IAMDecoderCaps
+    {
+        [PreserveSig]
+        int GetDecoderCaps(
+            [In] AMQueryDecoder dwCapIndex,
+            [Out] out DecoderCap lpdwCap
+            );
+    }
+
+    [Guid("62fae250-7e65-4460-bfc9-6398b322073c"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IAMOverlayFX
+    {
+        [PreserveSig]
+        int QueryOverlayFXCaps([Out] out AMOverlayFX lpdwOverlayFXCaps);
+
+        [PreserveSig]
+        int SetOverlayFX([In] AMOverlayFX dwOverlayFX);
+
+        [PreserveSig]
+        int GetOverlayFX([Out] out AMOverlayFX lpdwOverlayFX);
+    }
+
+    [Guid("8389d2d0-77d7-11d1-abe6-00a0c905f375"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IAMResourceControl
+    {
+        [PreserveSig]
+        int Reserve(
+            [In] AMResCtlReserveFlags dwFlags,
+            [In] IntPtr pvReserved // PVOID
+            );
+    }
+
+    [Guid("c1960960-17f5-11d1-abe1-00a0c905f375"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IAMStreamSelect
+    {
+        [PreserveSig]
+        int Count([Out] out int pcStreams);
+
+        [PreserveSig]
+        int Info(
+            [In] int lIndex,
+            [Out] out AMMediaType ppmt,
+            [Out] out AMStreamSelectInfoFlags pdwFlags,
+            [Out] out int plcid,
+            [Out] out int pdwGroup,
+            [Out, MarshalAs(UnmanagedType.LPWStr)] out string ppszName,
+            [Out, MarshalAs(UnmanagedType.IUnknown)] out object ppObject,
+            [Out, MarshalAs(UnmanagedType.IUnknown)] out object ppUnk
+            );
+
+        [PreserveSig]
+        int Enable(
+            [In] int lIndex,
+            [In] AMStreamSelectEnableFlags dwFlags
+            );
+    }
+
+    [Guid("60d32930-13da-11d3-9ec6-c4fcaef5c7be"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IAMVideoDecimationProperties
+    {
+        [PreserveSig]
+        int QueryDecimationUsage([Out] out DecimationUsage lpUsage);
+
+        [PreserveSig]
+        int SetDecimationUsage([In] DecimationUsage Usage);
+    }
+
+    [Guid("b79bb0b0-33c1-11d1-abe1-00a0c905f375"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IFilterMapper2
+    {
+        [PreserveSig]
+        int CreateCategory(
+            [In, MarshalAs(UnmanagedType.LPStruct)] Guid clsidCategory,
+            [In] Merit dwCategoryMerit,
+            [In, MarshalAs(UnmanagedType.LPWStr)] string Description
+            );
+
+        [PreserveSig]
+        int UnregisterFilter(
+            [In, MarshalAs(UnmanagedType.LPStruct)] Guid clsidCategory,
+            [In, MarshalAs(UnmanagedType.LPWStr)] string szInstance,
+            [In, MarshalAs(UnmanagedType.LPStruct)] Guid Filter
+            );
+
+        [PreserveSig]
+        [Obsolete("This interface has not been tested.", false)]
+        int RegisterFilter(
+            [In] Guid clsidFilter,
+            [In, MarshalAs(UnmanagedType.LPWStr)] string Name,
+            [In, Out] UCOMIMoniker ppMoniker,
+            [In] DsGuid pclsidCategory,
+            [In, MarshalAs(UnmanagedType.LPWStr)] string szInstance,
+#if ALLOW_UNTESTED_INTERFACES
+            [In] RegFilter2 prf2
+#else
+            [In] object prf2
+#endif
+            );
+
+        [PreserveSig]
+        int EnumMatchingFilters(
+            [Out] out UCOMIEnumMoniker ppEnum,
+            [In] int dwFlags,
+            [In, MarshalAs(UnmanagedType.Bool)] bool bExactMatch,
+            [In] Merit dwMerit,
+            [In, MarshalAs(UnmanagedType.Bool)] bool bInputNeeded,
+            [In] int cInputTypes,
+            [In, MarshalAs(UnmanagedType.LPArray, ArraySubType=UnmanagedType.Struct)] Guid[] pInputTypes, // GUID *
+            [In] RegPinMedium pMedIn,
+            [In] DsGuid pPinCategoryIn,
+            [In, MarshalAs(UnmanagedType.Bool)] bool bRender,
+            [In, MarshalAs(UnmanagedType.Bool)] bool bOutputNeeded,
+            [In] int cOutputTypes,
+            [In, MarshalAs(UnmanagedType.LPArray, ArraySubType=UnmanagedType.Struct)] Guid[] pOutputTypes, // GUID *
+            [In] RegPinMedium pMedOut,
+            [In] DsGuid pPinCategoryOut
+            );
+    }
+
+    [Guid("b79bb0b1-33c1-11d1-abe1-00a0c905f375"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IFilterMapper3 : IFilterMapper2
+    {
+        #region IFilterMapper2 Methods
+
+        [PreserveSig]
+        new int CreateCategory(
+            [In] Guid clsidCategory,
+            [In] Merit dwCategoryMerit,
+            [In, MarshalAs(UnmanagedType.LPWStr)] string Description
+            );
+
+        [PreserveSig]
+        new int UnregisterFilter(
+            [In] Guid clsidCategory,
+            [In, MarshalAs(UnmanagedType.LPWStr)] string szInstance,
+            [In] Guid Filter
+            );
+
+        [PreserveSig]
+        new int RegisterFilter(
+            [In] Guid clsidFilter,
+            [In, MarshalAs(UnmanagedType.LPWStr)] string Name,
+            [In, Out] UCOMIMoniker ppMoniker,
+            [In] DsGuid pclsidCategory,
+            [In, MarshalAs(UnmanagedType.LPWStr)] string szInstance,
+#if ALLOW_UNTESTED_INTERFACES
+            [In] RegFilter2 prf2
+#else
+            [In] object prf2
+#endif
+            );
+
+        [PreserveSig]
+        new int EnumMatchingFilters(
+            [Out] out UCOMIEnumMoniker ppEnum,
+            [In] int dwFlags,
+            [In, MarshalAs(UnmanagedType.Bool)] bool bExactMatch,
+            [In] Merit dwMerit,
+            [In, MarshalAs(UnmanagedType.Bool)] bool bInputNeeded,
+            [In] int cInputTypes,
+            [In, MarshalAs(UnmanagedType.LPArray, ArraySubType=UnmanagedType.Struct)] Guid[] pInputTypes, // GUID *
+            [In] RegPinMedium pMedIn,
+            [In] DsGuid pPinCategoryIn,
+            [In, MarshalAs(UnmanagedType.Bool)] bool bRender,
+            [In, MarshalAs(UnmanagedType.Bool)] bool bOutputNeeded,
+            [In] int cOutputTypes,
+            [In, MarshalAs(UnmanagedType.LPArray, ArraySubType=UnmanagedType.Struct)] Guid[] pOutputTypes, // GUID *
+            [In] RegPinMedium pMedOut,
+            [In] DsGuid pPinCategoryOut
+            );
+
+        #endregion
+
+        [PreserveSig]
+        int GetICreateDevEnum([Out] out ICreateDevEnum ppEnum);
+    }
+
+    [Guid("436eee9c-264f-4242-90e1-4e330c107512"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IMpeg2Demultiplexer
+    {
+        [PreserveSig]
+        int CreateOutputPin(
+            [In] AMMediaType pMediaType,
+            [In, MarshalAs(UnmanagedType.LPWStr)] string pszPinName,
+            [Out] out IPin ppIPin
+            );
+
+        [PreserveSig]
+        int SetOutputPinMediaType(
+            [In, MarshalAs(UnmanagedType.LPWStr)] string pszPinName,
+            [In] AMMediaType pMediaType
+            );
+
+        [PreserveSig]
+        int DeleteOutputPin([In, MarshalAs(UnmanagedType.LPWStr)] string pszPinName);
     }
 
     #endregion

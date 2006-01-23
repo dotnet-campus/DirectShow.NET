@@ -34,116 +34,12 @@ namespace DirectShowLib
 #if ALLOW_UNTESTED_INTERFACES
 
     /// <summary>
-    /// From AM_MPEG_AUDIO_DUAL_* defines
-    /// </summary>
-    public enum MPEGAudioDual
-    {
-        Merge,
-        Left,
-        Right
-    }
-
-    /// <summary>
-    /// Not from DirectShow
-    /// </summary>
-    public enum MPEGAudioDivider
-    {
-        CDAudio = 1,
-        FMRadio = 2,
-        AMRadio = 4
-    }
-
-    /// <summary>
-    /// Not from DirectShow
-    /// </summary>
-    public enum MPEGAudioAccuracy
-    {
-        Best = 0x0000,
-        High = 0x4000,
-        Full = 0x8000
-    }
-
-    /// <summary>
-    /// Not from DirectShow
-    /// </summary>
-    public enum MPEGAudioChannels
-    {
-        Mono = 1,
-        Stereo = 2
-    }
-
-    /// <summary>
-    /// From AM_WST_LEVEL
-    /// </summary>
-    public enum WSTLevel 
-    {
-        Level1_5 = 0
-    }
-
-    /// <summary>
-    /// From AM_WST_SERVICE
-    /// </summary>
-    public enum WSTService
-    {
-        None = 0,
-        Text,
-        IDS,
-        Invalid
-    }
-
-    /// <summary>
-    /// From AM_WST_STATE
-    /// </summary>
-    public enum WSTState
-    {
-        Off = 0,
-        On
-    }
-
-    /// <summary>
     /// From AM_WST_STYLE
     /// </summary>
     public enum WSTStyle
     {
         None = 0,
         Invers
-    }
-
-    /// <summary>
-    /// From AM_WST_DRAWBGMODE
-    /// </summary>
-    public enum WSTDrawBGMode
-    {
-        Opaque,
-        Transparent
-    }
-
-    /// <summary>
-    /// From AM_WST_PAGE
-    /// </summary>
-    [StructLayout(LayoutKind.Sequential)]
-    public struct WSTPage
-    {
-        public int	dwPageNr ;
-        public int	dwSubPageNr ;
-        public IntPtr pucPageData; // BYTE	*
-    }
-
-    /// <summary>
-    /// From MPEG1WAVEFORMAT
-    /// </summary>
-    [StructLayout(LayoutKind.Sequential)]
-    public struct MPEG1WaveFormat
-    {
-        public WaveFormatEx    wfx;
-        public short            fwHeadLayer;
-        public int           dwHeadBitrate;
-        public short            fwHeadMode;
-        public short            fwHeadModeExt;
-        public short            wHeadEmphasis;
-        public short            fwHeadFlags;
-        public int           dwPTSLow;
-        public int           dwPTSHigh;
     }
 
     /// <summary>
@@ -241,6 +137,110 @@ namespace DirectShowLib
 
 #endif
 
+    /// <summary>
+    /// From AM_WST_LEVEL
+    /// </summary>
+    public enum WSTLevel 
+    {
+        Level1_5 = 0
+    }
+
+    /// <summary>
+    /// From AM_WST_SERVICE
+    /// </summary>
+    public enum WSTService
+    {
+        None = 0,
+        Text,
+        IDS,
+        Invalid
+    }
+
+    /// <summary>
+    /// From AM_WST_STATE
+    /// </summary>
+    public enum WSTState
+    {
+        Off = 0,
+        On
+    }
+
+    /// <summary>
+    /// From AM_WST_DRAWBGMODE
+    /// </summary>
+    public enum WSTDrawBGMode
+    {
+        Opaque,
+        Transparent
+    }
+
+    /// <summary>
+    /// Not from DirectShow
+    /// </summary>
+    public enum MPEGAudioDivider
+    {
+        CDAudio = 1,
+        FMRadio = 2,
+        AMRadio = 4
+    }
+
+    /// <summary>
+    /// From AM_MPEG_AUDIO_DUAL_* defines
+    /// </summary>
+    public enum MPEGAudioDual
+    {
+        Merge,
+        Left,
+        Right
+    }
+
+    /// <summary>
+    /// Not from DirectShow
+    /// </summary>
+    public enum MPEGAudioAccuracy
+    {
+        Best = 0x0000,
+        High = 0x4000,
+        Full = 0x8000
+    }
+
+    /// <summary>
+    /// Not from DirectShow
+    /// </summary>
+    public enum MPEGAudioChannels
+    {
+        Mono = 1,
+        Stereo = 2
+    }
+
+    /// <summary>
+    /// From AM_WST_PAGE
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential)]
+    public struct WSTPage
+    {
+        public int	dwPageNr ;
+        public int	dwSubPageNr ;
+        public IntPtr pucPageData; // BYTE	*
+    }
+
+    /// <summary>
+    /// From MPEG1WAVEFORMAT
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential)]
+    public struct MPEG1WaveFormat
+    {
+        public WaveFormatEx    wfx;
+        public short            fwHeadLayer;
+        public int           dwHeadBitrate;
+        public short            fwHeadMode;
+        public short            fwHeadModeExt;
+        public short            wHeadEmphasis;
+        public short            fwHeadFlags;
+        public int           dwPTSLow;
+        public int           dwPTSHigh;
+    }
+
     #endregion
 
     #region Interfaces
@@ -267,6 +267,186 @@ namespace DirectShowLib
     {
         [PreserveSig]
         int GetCapabilitiesKey( [Out] out IntPtr pHKey ); // HKEY
+    }
+
+    [Guid("256A6A21-FBAD-11d1-82BF-00A0C9696C8F"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IAMVideoAcceleratorNotify
+    {
+        [PreserveSig]
+        int GetUncompSurfacesInfo([In, MarshalAs(UnmanagedType.LPStruct)] Guid pGuid,
+            [Out] out AMVAUncompBufferInfo pUncompBufferInfo);
+
+        [PreserveSig]
+        int SetUncompSurfacesInfo([In] int dwActualUncompSurfacesAllocated);
+
+        [PreserveSig]
+        int GetCreateVideoAcceleratorData([In, MarshalAs(UnmanagedType.LPStruct)] Guid pGuid,
+            [Out] out int pdwSizeMiscData,
+            [Out] IntPtr ppMiscData); // LPVOID
+    }
+
+    [Guid("256A6A22-FBAD-11d1-82BF-00A0C9696C8F"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IAMVideoAccelerator
+    {
+        [PreserveSig]
+        int GetVideoAcceleratorGUIDs([Out] out int pdwNumGuidsSupported,
+            [In, Out] Guid [] pGuidsSupported);
+
+        [PreserveSig]
+        int GetUncompFormatsSupported( [In, MarshalAs(UnmanagedType.LPStruct)] Guid pGuid,
+            [Out] out int pdwNumFormatsSupported,
+            [Out] out DDPixelFormat pFormatsSupported);
+
+        [PreserveSig]
+        int GetInternalMemInfo([In, MarshalAs(UnmanagedType.LPStruct)] Guid pGuid,
+            [In] AMVAUncompDataInfo pamvaUncompDataInfo,
+            [Out] out AMVAInternalMemInfo pamvaInternalMemInfo);
+
+        [PreserveSig]
+        int GetCompBufferInfo([In, MarshalAs(UnmanagedType.LPStruct)] Guid pGuid,
+            [In] AMVAUncompDataInfo pamvaUncompDataInfo,
+            [In, Out] int pdwNumTypesCompBuffers,
+            [Out] out AMVACompBufferInfo pamvaCompBufferInfo);
+
+        [PreserveSig]
+        int GetInternalCompBufferInfo([Out] out int pdwNumTypesCompBuffers,
+            [Out] out AMVACompBufferInfo pamvaCompBufferInfo);
+
+        [PreserveSig]
+        int BeginFrame([In] AMVABeginFrameInfo amvaBeginFrameInfo);
+
+        [PreserveSig]
+        int EndFrame([In] AMVAEndFrameInfo pEndFrameInfo);
+
+        [PreserveSig]
+        int GetBuffer(
+            [In] int dwTypeIndex,
+            [In] int dwBufferIndex,
+            [In, MarshalAs(UnmanagedType.Bool)] bool bReadOnly,
+            [Out] IntPtr ppBuffer, // LPVOID
+            [Out] out int lpStride);
+
+        [PreserveSig]
+        int ReleaseBuffer([In] int dwTypeIndex,
+            [In] int dwBufferIndex);
+
+        [PreserveSig]
+        int Execute(
+            [In] int dwFunction,
+            [In] IntPtr lpPrivateInputData, // LPVOID
+            [In] int cbPrivateInputData,
+            [In] IntPtr lpPrivateOutputDat, // LPVOID
+            [In] int cbPrivateOutputData,
+            [In] int dwNumBuffers,
+            [In] AMVABufferInfo pamvaBufferInfo);
+
+        [PreserveSig]
+        int QueryRenderStatus([In] int dwTypeIndex,
+            [In] int dwBufferIndex,
+            [In] int dwFlags);
+
+        [PreserveSig]
+        int DisplayFrame([In] int dwFlipToIndex,
+            [In] IMediaSample pMediaSample);
+    }
+
+    [Guid("56a868fd-0ad4-11ce-b0a3-0020af0ba770"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IAMFilterGraphCallback
+    {
+        [PreserveSig]
+        int UnableToRender(IPin pPin);
+    }
+
+    [Guid("AB6B4AFE-F6E4-11d0-900D-00C04FD9189D"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IDirectDrawMediaSample
+    {
+        [PreserveSig]
+        int GetSurfaceAndReleaseLock(
+            [MarshalAs(UnmanagedType.IUnknown)] out object ppDirectDrawSurface, // IDirectDrawSurface
+            out Rectangle pRect);
+
+        [PreserveSig]
+        int LockMediaSamplePointer();
+    }
+
+    [Guid("AB6B4AFC-F6E4-11d0-900D-00C04FD9189D"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IDirectDrawMediaSampleAllocator
+    {
+        [PreserveSig]
+        int GetDirectDraw(
+            [MarshalAs(UnmanagedType.IUnknown)] out object ppDirectDraw); // IDirectDraw
+
+    }
+
+#endif
+
+    [Guid("45086030-F7E4-486a-B504-826BB5792A3B"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IConfigAsfWriter
+    {
+        [PreserveSig,
+        Obsolete("This method is now obsolete because it assumes version 4.0 Windows Media Format SDK profiles. Use GetCurrentProfile or GetCurrentProfileGuid instead to correctly identify a profile.", false)]
+        int ConfigureFilterUsingProfileId([In] int dwProfileId);
+
+        [PreserveSig, 
+        Obsolete("This method is now obsolete because it assumes version 4.0 Windows Media Format SDK profiles. Use GetCurrentProfile or GetCurrentProfileGuid instead to correctly identify a profile.", false)]
+        int GetCurrentProfileId([Out] out int pdwProfileId);
+
+        [PreserveSig,
+        Obsolete("Using Guids is considered obsolete by MS.  The preferred approach is using an IWMProfile.  See ConfigureFilterUsingProfile", false)]
+        int ConfigureFilterUsingProfileGuid([In, MarshalAs(UnmanagedType.LPStruct)] Guid guidProfile);
+
+        [PreserveSig,
+        Obsolete("Using Guids is considered obsolete by MS.  The preferred approach is using an IWMProfile.  See GetCurrentProfile", false)]
+        int GetCurrentProfileGuid([Out] out Guid pProfileGuid);
+
+        [PreserveSig,
+        Obsolete("This method requires IWMProfile, which in turn requires several other interfaces.  Rather than duplicate all those interfaces here, it is recommended that you use the WindowsMediaLib from http://DirectShowNet.SourceForge.net", false)]
+        int ConfigureFilterUsingProfile([In] IntPtr pProfile);
+
+        [PreserveSig,
+        Obsolete("This method requires IWMProfile, which in turn requires several other interfaces.  Rather than duplicate all those interfaces here, it is recommended that you use the WindowsMediaLib from http://DirectShowNet.SourceForge.net", false)]
+        int GetCurrentProfile([Out] out IntPtr ppProfile);
+
+        [PreserveSig]
+        int SetIndexMode([In, MarshalAs(UnmanagedType.Bool)] bool bIndexFile);
+
+        [PreserveSig]
+        int GetIndexMode([Out, MarshalAs(UnmanagedType.Bool)] out bool pbIndexFile);
+    }
+
+    [Guid("546F4260-D53E-11cf-B3F0-00AA003761C5"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IAMDirectSound
+    {
+        [PreserveSig]
+        int GetDirectSoundInterface([MarshalAs(UnmanagedType.IUnknown)] out object lplpds); // IDirectSound
+
+        [PreserveSig]
+        int GetPrimaryBufferInterface([MarshalAs(UnmanagedType.IUnknown)] out object lplpdsb); // IDirectSoundBuffer
+
+        [PreserveSig]
+        int GetSecondaryBufferInterface([MarshalAs(UnmanagedType.IUnknown)] out object lplpdsb); // IDirectSoundBuffer
+
+        [PreserveSig]
+        int ReleaseDirectSoundInterface([MarshalAs(UnmanagedType.IUnknown)] object lpds); // IDirectSound
+
+        [PreserveSig]
+        int ReleasePrimaryBufferInterface([MarshalAs(UnmanagedType.IUnknown)] object lpdsb); // IDirectSoundBuffer
+
+        [PreserveSig]
+        int ReleaseSecondaryBufferInterface([MarshalAs(UnmanagedType.IUnknown)] object lpdsb); // IDirectSoundBuffer
+
+        [PreserveSig]
+        int SetFocusWindow(IntPtr hWnd, [In, MarshalAs(UnmanagedType.Bool)] bool bSet);
+
+        [PreserveSig]
+        int GetFocusWindow(out IntPtr hWnd, [Out, MarshalAs(UnmanagedType.Bool)] out bool bSet);
     }
 
     [Guid("C056DE21-75C2-11d3-A184-00105AEF9F33"),
@@ -396,186 +576,6 @@ namespace DirectShowLib
         int get_AudioFormat(
             out MPEG1WaveFormat lpFmt
             );
-    }
-
-    [Guid("256A6A21-FBAD-11d1-82BF-00A0C9696C8F"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IAMVideoAcceleratorNotify
-    {
-        [PreserveSig]
-        int GetUncompSurfacesInfo([In, MarshalAs(UnmanagedType.LPStruct)] Guid pGuid,
-            [Out] out AMVAUncompBufferInfo pUncompBufferInfo);
-
-        [PreserveSig]
-        int SetUncompSurfacesInfo([In] int dwActualUncompSurfacesAllocated);
-
-        [PreserveSig]
-        int GetCreateVideoAcceleratorData([In, MarshalAs(UnmanagedType.LPStruct)] Guid pGuid,
-            [Out] out int pdwSizeMiscData,
-            [Out] IntPtr ppMiscData); // LPVOID
-    }
-
-    [Guid("256A6A22-FBAD-11d1-82BF-00A0C9696C8F"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IAMVideoAccelerator
-    {
-        [PreserveSig]
-        int GetVideoAcceleratorGUIDs([Out] out int pdwNumGuidsSupported,
-            [In, Out] Guid [] pGuidsSupported);
-
-        [PreserveSig]
-        int GetUncompFormatsSupported( [In, MarshalAs(UnmanagedType.LPStruct)] Guid pGuid,
-            [Out] out int pdwNumFormatsSupported,
-            [Out] out DDPixelFormat pFormatsSupported);
-
-        [PreserveSig]
-        int GetInternalMemInfo([In, MarshalAs(UnmanagedType.LPStruct)] Guid pGuid,
-            [In] AMVAUncompDataInfo pamvaUncompDataInfo,
-            [Out] out AMVAInternalMemInfo pamvaInternalMemInfo);
-
-        [PreserveSig]
-        int GetCompBufferInfo([In, MarshalAs(UnmanagedType.LPStruct)] Guid pGuid,
-            [In] AMVAUncompDataInfo pamvaUncompDataInfo,
-            [In, Out] int pdwNumTypesCompBuffers,
-            [Out] out AMVACompBufferInfo pamvaCompBufferInfo);
-
-        [PreserveSig]
-        int GetInternalCompBufferInfo([Out] out int pdwNumTypesCompBuffers,
-            [Out] out AMVACompBufferInfo pamvaCompBufferInfo);
-
-        [PreserveSig]
-        int BeginFrame([In] AMVABeginFrameInfo amvaBeginFrameInfo);
-
-        [PreserveSig]
-        int EndFrame([In] AMVAEndFrameInfo pEndFrameInfo);
-
-        [PreserveSig]
-        int GetBuffer(
-            [In] int dwTypeIndex,
-            [In] int dwBufferIndex,
-            [In, MarshalAs(UnmanagedType.Bool)] bool bReadOnly,
-            [Out] IntPtr ppBuffer, // LPVOID
-            [Out] out int lpStride);
-
-        [PreserveSig]
-        int ReleaseBuffer([In] int dwTypeIndex,
-            [In] int dwBufferIndex);
-
-        [PreserveSig]
-        int Execute(
-            [In] int dwFunction,
-            [In] IntPtr lpPrivateInputData, // LPVOID
-            [In] int cbPrivateInputData,
-            [In] IntPtr lpPrivateOutputDat, // LPVOID
-            [In] int cbPrivateOutputData,
-            [In] int dwNumBuffers,
-            [In] AMVABufferInfo pamvaBufferInfo);
-
-        [PreserveSig]
-        int QueryRenderStatus([In] int dwTypeIndex,
-            [In] int dwBufferIndex,
-            [In] int dwFlags);
-
-        [PreserveSig]
-        int DisplayFrame([In] int dwFlipToIndex,
-            [In] IMediaSample pMediaSample);
-    }
-
-    [Guid("56a868fd-0ad4-11ce-b0a3-0020af0ba770"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IAMFilterGraphCallback
-    {
-        [PreserveSig]
-        int UnableToRender(IPin pPin);
-    }
-
-    [Guid("546F4260-D53E-11cf-B3F0-00AA003761C5"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IAMDirectSound
-    {
-        [PreserveSig]
-        int GetDirectSoundInterface([MarshalAs(UnmanagedType.IUnknown)] out object lplpds); // IDirectSound
-
-        [PreserveSig]
-        int GetPrimaryBufferInterface([MarshalAs(UnmanagedType.IUnknown)] out object lplpdsb); // IDirectSoundBuffer
-
-        [PreserveSig]
-        int GetSecondaryBufferInterface([MarshalAs(UnmanagedType.IUnknown)] out object lplpdsb); // IDirectSoundBuffer
-
-        [PreserveSig]
-        int ReleaseDirectSoundInterface([MarshalAs(UnmanagedType.IUnknown)] object lpds); // IDirectSound
-
-        [PreserveSig]
-        int ReleasePrimaryBufferInterface([MarshalAs(UnmanagedType.IUnknown)] object lpdsb); // IDirectSoundBuffer
-
-        [PreserveSig]
-        int ReleaseSecondaryBufferInterface([MarshalAs(UnmanagedType.IUnknown)] object lpdsb); // IDirectSoundBuffer
-
-        [PreserveSig]
-        int SetFocusWindow(IntPtr hWnd, [In, MarshalAs(UnmanagedType.Bool)] bool bSet);
-
-        [PreserveSig]
-        int GetFocusWindow(out IntPtr hWnd, [Out, MarshalAs(UnmanagedType.Bool)] out bool bSet);
-    }
-
-    [Guid("AB6B4AFE-F6E4-11d0-900D-00C04FD9189D"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IDirectDrawMediaSample
-    {
-        [PreserveSig]
-        int GetSurfaceAndReleaseLock(
-            [MarshalAs(UnmanagedType.IUnknown)] out object ppDirectDrawSurface, // IDirectDrawSurface
-            out Rectangle pRect);
-
-        [PreserveSig]
-        int LockMediaSamplePointer();
-    }
-
-    [Guid("AB6B4AFC-F6E4-11d0-900D-00C04FD9189D"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IDirectDrawMediaSampleAllocator
-    {
-        [PreserveSig]
-        int GetDirectDraw(
-            [MarshalAs(UnmanagedType.IUnknown)] out object ppDirectDraw); // IDirectDraw
-
-    }
-
-#endif
-
-    [Guid("45086030-F7E4-486a-B504-826BB5792A3B"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IConfigAsfWriter
-    {
-        [PreserveSig,
-        Obsolete("This method is now obsolete because it assumes version 4.0 Windows Media Format SDK profiles. Use GetCurrentProfile or GetCurrentProfileGuid instead to correctly identify a profile.", false)]
-        int ConfigureFilterUsingProfileId([In] int dwProfileId);
-
-        [PreserveSig, 
-        Obsolete("This method is now obsolete because it assumes version 4.0 Windows Media Format SDK profiles. Use GetCurrentProfile or GetCurrentProfileGuid instead to correctly identify a profile.", false)]
-        int GetCurrentProfileId([Out] out int pdwProfileId);
-
-        [PreserveSig,
-        Obsolete("Using Guids is considered obsolete by MS.  The preferred approach is using an IWMProfile.  See ConfigureFilterUsingProfile", false)]
-        int ConfigureFilterUsingProfileGuid([In, MarshalAs(UnmanagedType.LPStruct)] Guid guidProfile);
-
-        [PreserveSig,
-        Obsolete("Using Guids is considered obsolete by MS.  The preferred approach is using an IWMProfile.  See GetCurrentProfile", false)]
-        int GetCurrentProfileGuid([Out] out Guid pProfileGuid);
-
-        [PreserveSig,
-        Obsolete("This method requires IWMProfile, which in turn requires several other interfaces.  Rather than duplicate all those interfaces here, it is recommended that you use the WindowsMediaLib from http://DirectShowNet.SourceForge.net", false)]
-        int ConfigureFilterUsingProfile([In] IntPtr pProfile);
-
-        [PreserveSig,
-        Obsolete("This method requires IWMProfile, which in turn requires several other interfaces.  Rather than duplicate all those interfaces here, it is recommended that you use the WindowsMediaLib from http://DirectShowNet.SourceForge.net", false)]
-        int GetCurrentProfile([Out] out IntPtr ppProfile);
-
-        [PreserveSig]
-        int SetIndexMode([In, MarshalAs(UnmanagedType.Bool)] bool bIndexFile);
-
-        [PreserveSig]
-        int GetIndexMode([Out, MarshalAs(UnmanagedType.Bool)] out bool pbIndexFile);
     }
 
     #endregion
