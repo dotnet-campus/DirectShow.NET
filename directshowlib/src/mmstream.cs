@@ -187,8 +187,6 @@ namespace DirectShowLib.MultimediaStreaming
 
     #region Declarations
 
-#if ALLOW_UNTESTED_INTERFACES
-
     /// <summary>
     /// From COMPLETION_STATUS_FLAGS
     /// </summary>
@@ -243,8 +241,6 @@ namespace DirectShowLib.MultimediaStreaming
         Asynchronous = 0x4
     }
 
-
-#endif
     #endregion
 
     #region GUIDS
@@ -261,8 +257,6 @@ namespace DirectShowLib.MultimediaStreaming
     #endregion
 
     #region Interfaces
-
-#if ALLOW_UNTESTED_INTERFACES
 
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown), 
     Guid("B502D1BD-9A57-11D0-8FDE-00C04FD9189D")]
@@ -396,8 +390,6 @@ namespace DirectShowLib.MultimediaStreaming
             );
     }
 
-
-#endif
     #endregion
 }
 

@@ -83,18 +83,6 @@ namespace DirectShowLib
     }
 
     /// <summary>
-    /// From ALLOCATOR_PROPERTIES
-    /// </summary>
-    [StructLayout(LayoutKind.Sequential)]
-    public class AllocatorProperties
-    {
-        public int cBuffers;
-        public int cbBuffer;
-        public int cbAlign;
-        public int cbPrefix;
-    }
-
-    /// <summary>
     /// From AM_SAMPLE2_PROPERTIES
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -205,6 +193,18 @@ namespace DirectShowLib
         ReturnTime = 0x08,
         Segment = 0x10,
         NoFlush = 0x20
+    }
+
+    /// <summary>
+    /// From ALLOCATOR_PROPERTIES
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential)]
+    public class AllocatorProperties
+    {
+        public int cBuffers;
+        public int cbBuffer;
+        public int cbAlign;
+        public int cbPrefix;
     }
 
     #endregion
