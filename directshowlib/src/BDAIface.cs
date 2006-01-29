@@ -416,12 +416,12 @@ namespace DirectShowLib.BDA
         [PreserveSig]
         int GetMulticastList( 
             out int pulcbSize,
-            IntPtr pbBuffer); // BYTE **
+            out IntPtr pbBuffer); // BYTE **
         
         [PreserveSig]
         int GetAdapterIPAddress( 
             out int pulcbSize,
-            IntPtr pbBuffer); // BYTE **
+            out IntPtr pbBuffer); // BYTE **
     }
 
     [Guid("A750108F-492E-4d51-95F7-649B23FF7AD7"),
