@@ -115,7 +115,7 @@ namespace DirectShowLib.Test
 			hr = pEvent.GetEventHandle(out eventHandle);
 			DsError.ThrowExceptionForHR(hr);
 
-			hr = _extDevice.Calibrate(eventHandle, (int)ExtDeviceCaps.Active, out ret);
+			hr = _extDevice.Calibrate(eventHandle, ExtDeviceCaps.Active, out ret);
 			//DsError.ThrowExceptionForHR(hr); //E_NOTIMPL , but atleast it's called.
 
 			hr = _extDevice.Calibrate(eventHandle, 0, out ret);
