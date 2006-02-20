@@ -123,6 +123,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IAMExtDeviceTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IAMExtendedSeekingTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
