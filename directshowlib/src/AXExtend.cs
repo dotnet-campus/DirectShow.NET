@@ -1639,7 +1639,7 @@ namespace DirectShowLib
         [PreserveSig]
         int Calibrate(
             [In] IntPtr hEvent, // HEVENT
-            [In] int Mode, //Active / Inactive
+            [In] ExtDeviceCaps Mode, //Active / Inactive
             [Out] out int pStatus
             );
 
