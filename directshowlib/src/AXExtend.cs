@@ -847,6 +847,7 @@ namespace DirectShowLib
 	[Flags]
 	public enum VfwCaptureDialogs
 	{
+		None = 0x00,
 		Source = 0x01,
 		Format = 0x02,
 		Display = 0x04
@@ -876,6 +877,7 @@ namespace DirectShowLib
 	/// 
 	public enum ExtDeviceCaps
 	{
+		None = 0, 
 		Base = 0x1000,
 		CanRecord = Base+1,
 		CanRecordStrobe = Base+2,
