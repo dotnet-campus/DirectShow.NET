@@ -155,19 +155,6 @@ namespace DirectShowLib
 		All2 = Advise.All | Advise.DisplayChange
 	}
 
-	/// <summary>
-	/// From MPEG2_PROGRAM_* defines
-	/// </summary>
-	public enum MPEG2Program
-	{
-		StreamMap = 0x00000000,
-		ElementaryStream = 0x00000001,
-		DirecoryPesPacket = 0x00000002,
-		PackHeader = 0x00000003,
-		PesSteam = 0x00000004,
-		SystemHeader = 0x00000005,
-	}
-
 	// ------------------------------------------------------------------------
 
 	/// <summary>
@@ -388,6 +375,19 @@ namespace DirectShowLib
 		StopDefined = 0x00000002,
 		Discarding = 0x00000004,
 		StopSendExtra = 0x00000010
+	}
+
+	/// <summary>
+	/// From MPEG2_PROGRAM_* defines
+	/// </summary>
+	public enum MPEG2Program
+	{
+		StreamMap = 0x00000000,
+		ElementaryStream = 0x00000001,
+		DirecoryPesPacket = 0x00000002,
+		PackHeader = 0x00000003,
+		PesSteam = 0x00000004,
+		SystemHeader = 0x00000005,
 	}
 
 	/// <summary>
@@ -874,7 +874,6 @@ namespace DirectShowLib
 	/// <summary>
 	/// From ED_DEVCAP*, ED_DEVTYPE* etc.
 	/// </summary>
-	/// 
 	public enum ExtDeviceCaps
 	{
 		None = 0, 
@@ -1615,43 +1614,6 @@ namespace DirectShowLib
             );
     }
 
-    [Guid("B5730A90-1A2C-11cf-8C23-00AA006B6814"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IAMExtDevice
-    {
-        [PreserveSig]
-        int GetCapability(
-            [In] ExtDeviceCaps Capability,
-            [Out] out ExtDeviceCaps pValue,
-            [Out] out double pdblValue
-            );
-
-        [PreserveSig]
-        int get_ExternalDeviceID([Out, MarshalAs(UnmanagedType.LPWStr)] out string ppszData);
-
-        [PreserveSig]
-        int get_ExternalDeviceVersion([Out, MarshalAs(UnmanagedType.LPWStr)] out string ppszData);
-
-        [PreserveSig]
-        int put_DevicePower([In] ExtDeviceCaps PowerMode);
-
-        [PreserveSig]
-        int get_DevicePower([Out] out ExtDeviceCaps pPowerMode);
-
-        [PreserveSig]
-        int Calibrate(
-            [In] IntPtr hEvent, // HEVENT
-            [In] ExtDeviceCaps Mode, //Active / Inactive
-            [Out] out int pStatus
-            );
-
-        [PreserveSig]
-        int put_DevicePort([In] ExtDevicePort DevicePort);
-
-        [PreserveSig]
-        int get_DevicePort([Out] out ExtDevicePort pDevicePort);
-    }
-
     [Guid("A03CD5F0-3045-11cf-8C44-00AA006B6814"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IAMExtTransport
@@ -2042,28 +2004,6 @@ namespace DirectShowLib
 
         [PreserveSig]
         int Clone([Out] out IEnumStreamIdMap ppIEnumStreamIdMap);
-    }
-
-    [Guid("D0E04C47-25B8-4369-925A-362A01D95444"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IMPEG2StreamIdMap
-    {
-        [PreserveSig]
-        int MapStreamId(
-            [In] int ulStreamId,
-            [In] MPEG2Program MediaSampleContent,
-            [In] int ulSubstreamFilterValue,
-            [In] int iDataOffset
-            );
-
-        [PreserveSig]
-        int UnmapStreamId(
-            [In] int culStreamId,
-            [In, MarshalAs(UnmanagedType.LPArray)] int[] pulStreamId
-            );
-
-        [PreserveSig]
-        int EnumStreamIdMap([Out] out IEnumStreamIdMap ppIEnumStreamIdMap);
     }
 
     [Guid("7B3A2F01-0751-48DD-B556-004785171C54"),
@@ -3630,6 +3570,70 @@ namespace DirectShowLib
         int DeleteOutputPin([In, MarshalAs(UnmanagedType.LPWStr)] string pszPinName);
     }
 
-    #endregion
+	[Guid("B5730A90-1A2C-11cf-8C23-00AA006B6814"),
+	InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	public interface IAMExtDevice
+	{
+		[PreserveSig]
+		int GetCapability(
+			[In] ExtDeviceCaps Capability,
+			[Out] out ExtDeviceCaps pValue,
+			[Out] out double pdblValue
+			);
+
+		[PreserveSig]
+		int get_ExternalDeviceID([Out, MarshalAs(UnmanagedType.LPWStr)] out string ppszData);
+
+		[PreserveSig]
+		int get_ExternalDeviceVersion([Out, MarshalAs(UnmanagedType.LPWStr)] out string ppszData);
+
+		[PreserveSig]
+		int put_DevicePower([In] ExtDeviceCaps PowerMode);
+
+		[PreserveSig]
+		int get_DevicePower([Out] out ExtDeviceCaps pPowerMode);
+
+		[PreserveSig]
+		int Calibrate(
+			[In] IntPtr hEvent, // HEVENT
+			[In] ExtDeviceCaps Mode, //Active / Inactive
+			[Out] out int pStatus
+			);
+
+		[PreserveSig]
+		int put_DevicePort([In] ExtDevicePort DevicePort);
+
+		[PreserveSig]
+		int get_DevicePort([Out] out ExtDevicePort pDevicePort);
+	}
+
+	[Guid("D0E04C47-25B8-4369-925A-362A01D95444"),
+	InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	public interface IMPEG2StreamIdMap
+	{
+		[PreserveSig]
+		int MapStreamId(
+			[In] int ulStreamId,
+			[In] MPEG2Program MediaSampleContent,
+			[In] int ulSubstreamFilterValue,
+			[In] int iDataOffset
+			);
+
+		[PreserveSig]
+		int UnmapStreamId(
+			[In] int culStreamId,
+			[In, MarshalAs(UnmanagedType.LPArray)] int[] pulStreamId
+			);
+
+		[PreserveSig,
+		Obsolete("Because of bug in DS 9.0c, you can't get the StreamId map from .NET", false)]
+#if ALLOW_UNTESTED_INTERFACES
+		int EnumStreamIdMap([Out] out IEnumStreamIdMap ppIEnumStreamIdMap);
+#else
+		int EnumStreamIdMap([Out] out object ppIEnumStreamIdMap);
+#endif
+	}
+
+	#endregion
 
 }

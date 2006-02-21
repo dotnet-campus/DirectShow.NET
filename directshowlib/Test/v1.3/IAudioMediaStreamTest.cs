@@ -42,12 +42,15 @@ namespace DirectShowLib.Test
 
         private void TestCreate()
         {
+#if ALLOW_UNTESTED_INTERFACES
             int hr;
+
             IAudioStreamSample pSample = null;
             IAudioData pData = new foo() as IAudioData;
 
             hr = m_ams.CreateSample(pData, 0, out pSample);
             MsError.ThrowExceptionForHR(hr);
+#endif
         }
 
         private void TestFormat()
@@ -106,6 +109,7 @@ namespace DirectShowLib.Test
         }
 	}
 
+#if ALLOW_UNTESTED_INTERFACES
     class foo : IAudioData
     {
         #region IAudioData Members
@@ -154,6 +158,7 @@ namespace DirectShowLib.Test
         #endregion
 
     }
+#endif
 
 
 }

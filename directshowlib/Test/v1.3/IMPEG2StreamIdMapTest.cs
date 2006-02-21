@@ -45,11 +45,13 @@ namespace DirectShowLib.Test
 
         private void TestEnum()
         {
+#if ALLOW_UNTESTED_INTERFACES
             int hr;
             IEnumStreamIdMap pEnum;
 
             hr = m_sim.EnumStreamIdMap(out pEnum);
             DsError.ThrowExceptionForHR(hr);
+#endif
         }
 
         private void TestDelete()
