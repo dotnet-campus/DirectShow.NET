@@ -72,6 +72,8 @@ namespace DirectShowLib.MultimediaStreaming
 
     #region Interfaces
 
+#if ALLOW_UNTESTED_INTERFACES
+
     [Guid("BEBE595D-9A6F-11D0-8FDE-00C04FD9189D"), 
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IAMMediaStream : IMediaStream
@@ -145,6 +147,7 @@ namespace DirectShowLib.MultimediaStreaming
     }
 
 
+#endif
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
     Guid("BEBE595C-9A6F-11D0-8FDE-00C04FD9189D")]
     public interface IAMMultiMediaStream : IMultiMediaStream
