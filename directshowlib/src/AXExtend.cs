@@ -936,6 +936,28 @@ namespace DirectShowLib
 		Test = Base+56
 	}
 
+	public enum ExtTransportCaps
+	{
+		None = 0,
+		Base = 0x1000,
+		CanEject = Base+100,
+		CanBumpPlay = Base+101,
+		CanPlayBackwards = Base+102,
+		CanSetEE = Base + 103,
+		CanSetPB = Base+104,
+		CanDelayVideoIn = Base+105,
+		CanDelayVideoOut = Base+106,
+		CanDelayAudioIn = Base+107,
+		CanDelayAudioOut = Base+108,
+		FwdVariableMax = Base+109,
+		FwdVariableMin = Base+800,
+		RevVariableMax = Base+110,
+		RevVariableMin = Base+801,
+
+		
+
+	}
+
     /// <summary>
     /// From VIDEO_STREAM_CONFIG_CAPS
     /// </summary>
