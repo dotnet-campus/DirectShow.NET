@@ -952,7 +952,7 @@ namespace DirectShowLib
 		FwdVariableMax = Base+109,
 		FwdVariableMin = Base+800,
 		RevVariableMax = Base+110,
-		RevVariableMin = Base+801,
+		RevVariableMin = Base+801
 
 		
 
