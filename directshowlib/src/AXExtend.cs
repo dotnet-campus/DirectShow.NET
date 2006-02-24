@@ -871,91 +871,154 @@ namespace DirectShowLib
 		Max = Usb
 	}
 
+	public enum ExtDeviceBase
+	{
+		Base = 0x1000
+	}
+
 	/// <summary>
 	/// From ED_DEVCAP*, ED_DEVTYPE* etc.
 	/// </summary>
 	public enum ExtDeviceCaps
 	{
 		None = 0, 
-		Base = 0x1000,
-		CanRecord = Base+1,
-		CanRecordStrobe = Base+2,
-		HasAudio = Base+3,
-		HasVideo = Base+4,
-		UsesFiles = Base+5,
-		CanSave = Base+6,
-		DeviceType = Base+7,
-		VCR = Base+8,
-		LaserDisk = Base+9,
-		ATR = Base+10,
-		DDR = Base+11,
-		Router = Base+12,
-		Keyer = Base+13,
-		MixerVideo = Base+14,
-		DVE = Base+15,
-		WipeGen = Base+16,
-		MixerAudio = Base+17,
-		CG = Base+18,
-		TBC = Base+19,
-		TCG = Base+20,
-		GPI = Base+21, 
-		Joystick = Base+22,
-		Keyboard = Base+3,
-		ExternalDeviceID = Base+24,
-		TimeCodeRead = Base+25,
-		TimeCodeWrite = Base+26,
-		CtlTrkRead = Base+27,
-		IndexRead = Base+28,
-		PreRoll = Base+29,
-		PostRoll = Base+30,
-		SyncAccuracy = Base+31,
-		Precise = Base+32,
-		Frame = Base+33,
-		Rough = Base+34,
-		NormalRate = Base+35,
-		Rate24 = Base+36,
-		Rate25 = Base+37,
-		Rate2997 = Base+38,
-		Rate30 = Base+39,
-		CanPreview = Base+40,
-		CanMonitorSources = Base+41,
-		CanTest = Base+42,
-		VideoInputs = Base+43,
-		AudioInputs = Base+44,
-		NeedsCalibrating = Base+45,
-		SeekType = Base+46,
-		Perfect = Base+47,
-		Fast = Base+48,
-		Slow = Base+49,
-		On = Base+50,
-		Off = Base+51,
-		Standby = Base+52,
-		Active = Base+53,
-		Inactive = Base+54,
-		All = Base+55,
-		Test = Base+56
+		CanRecord = ExtDeviceBase.Base+1,
+		CanRecordStrobe =ExtDeviceBase.Base+2,
+		HasAudio =ExtDeviceBase.Base+3,
+		HasVideo = ExtDeviceBase.Base+4,
+		UsesFiles = ExtDeviceBase.Base+5,
+		CanSave = ExtDeviceBase.Base+6,
+		DeviceType = ExtDeviceBase.Base+7,
+		VCR = ExtDeviceBase.Base+8,
+		LaserDisk = ExtDeviceBase.Base+9,
+		ATR = ExtDeviceBase.Base+10,
+		DDR = ExtDeviceBase.Base+11,
+		Router = ExtDeviceBase.Base+12,
+		Keyer = ExtDeviceBase.Base+13,
+		MixerVideo = ExtDeviceBase.Base+14,
+		DVE = ExtDeviceBase.Base+15,
+		WipeGen = ExtDeviceBase.Base+16,
+		MixerAudio = ExtDeviceBase.Base+17,
+		CG = ExtDeviceBase.Base+18,
+		TBC = ExtDeviceBase.Base+19,
+		TCG = ExtDeviceBase.Base+20,
+		GPI = ExtDeviceBase.Base+21, 
+		Joystick = ExtDeviceBase.Base+22,
+		Keyboard = ExtDeviceBase.Base+3,
+		ExternalDeviceID = ExtDeviceBase.Base+24,
+		TimeCodeRead = ExtDeviceBase.Base+25,
+		TimeCodeWrite = ExtDeviceBase.Base+26,
+		CtlTrkRead = ExtDeviceBase.Base+27,
+		IndexRead = ExtDeviceBase.Base+28,
+		PreRoll = ExtDeviceBase.Base+29,
+		PostRoll = ExtDeviceBase.Base+30,
+		SyncAccuracy = ExtDeviceBase.Base+31,
+		Precise = ExtDeviceBase.Base+32,
+		Frame = ExtDeviceBase.Base+33,
+		Rough = ExtDeviceBase.Base+34,
+		NormalRate = ExtDeviceBase.Base+35,
+		Rate24 = ExtDeviceBase.Base+36,
+		Rate25 = ExtDeviceBase.Base+37,
+		Rate2997 = ExtDeviceBase.Base+38,
+		Rate30 = ExtDeviceBase.Base+39,
+		CanPreview = ExtDeviceBase.Base+40,
+		CanMonitorSources = ExtDeviceBase.Base+41,
+		CanTest = ExtDeviceBase.Base+42,
+		VideoInputs = ExtDeviceBase.Base+43,
+		AudioInputs = ExtDeviceBase.Base+44,
+		NeedsCalibrating = ExtDeviceBase.Base+45,
+		SeekType = ExtDeviceBase.Base+46,
+		Perfect = ExtDeviceBase.Base+47,
+		Fast = ExtDeviceBase.Base+48,
+		Slow = ExtDeviceBase.Base+49,
+		On = ExtDeviceBase.Base+50,
+		Off = ExtDeviceBase.Base+51,
+		Standby = ExtDeviceBase.Base+52,
+		Active = ExtDeviceBase.Base+53,
+		Inactive = ExtDeviceBase.Base+54,
+		All = ExtDeviceBase.Base+55,
+		Test = ExtDeviceBase.Base+56
 	}
 
+	/// <summary>
+	/// From ED_TRANSCAP*
+	/// </summary>
 	public enum ExtTransportCaps
 	{
 		None = 0,
-		Base = 0x1000,
-		CanEject = Base+100,
-		CanBumpPlay = Base+101,
-		CanPlayBackwards = Base+102,
-		CanSetEE = Base + 103,
-		CanSetPB = Base+104,
-		CanDelayVideoIn = Base+105,
-		CanDelayVideoOut = Base+106,
-		CanDelayAudioIn = Base+107,
-		CanDelayAudioOut = Base+108,
-		FwdVariableMax = Base+109,
-		FwdVariableMin = Base+800,
-		RevVariableMax = Base+110,
-		RevVariableMin = Base+801
+		CanEject = ExtDeviceBase.Base+100,
+		CanBumpPlay = ExtDeviceBase.Base+101,
+		CanPlayBackwards = ExtDeviceBase.Base+102,
+		CanSetEE = ExtDeviceBase.Base+103,
+		CanSetPB = ExtDeviceBase.Base+104,
+		CanDelayVideoIn = ExtDeviceBase.Base+105,
+		CanDelayVideoOut = ExtDeviceBase.Base+106,
+		CanDelayAudioIn = ExtDeviceBase.Base+107,
+		CanDelayAudioOut = ExtDeviceBase.Base+108,
+		FwdVariableMax = ExtDeviceBase.Base+109,
+		FwdVariableMin = ExtDeviceBase.Base+800,
+		RevVariableMax = ExtDeviceBase.Base+110,
+		RevVariableMin = ExtDeviceBase.Base+801,
+		FwdShuttleMax = ExtDeviceBase.Base+802,
+		FwdShuttleMin = ExtDeviceBase.Base+803,
+		RevShuttleMax = ExtDeviceBase.Base+804,
+		RevShuttleMin = ExtDeviceBase.Base+805,
+		NumAudioTracks = ExtDeviceBase.Base+111,
+		LTCTrack = ExtDeviceBase.Base+112,
+		NeedsTBC = ExtDeviceBase.Base+113,
+		NeedsCueing = ExtDeviceBase.Base+114,
+		CanInsert = ExtDeviceBase.Base+115,
+		CanAssemble = ExtDeviceBase.Base+116,
+		FieldStep = ExtDeviceBase.Base+117,
+		ClockIncRate = ExtDeviceBase.Base+118,
+		CanDetechLength = ExtDeviceBase.Base+119,
+		CanFreeze = ExtDeviceBase.Base+120,
+		HasTuner = ExtDeviceBase.Base+121,
+		HasTimer = ExtDeviceBase.Base+122,
+		HasClock = ExtDeviceBase.Base+123,
+		MultipleEdits = ExtDeviceBase.Base+806,
+		IsMaster = ExtDeviceBase.Base+807,
+		HasDT = ExtDeviceBase.Base+808
+	}
 
-		
+	/// <summary>
+	/// From ED_MEDIA*
+	/// </summary>
+	public enum ExtTransportMediaStates
+	{
+		None = 0,
+		SpinUp = ExtDeviceBase.Base+130,
+		SpinDown = ExtDeviceBase.Base+131,
+		Unload = ExtDeviceBase.Base+132
+	}
 
+	/// <summary>
+	/// From ED_MODE*
+	/// </summary>
+	public enum ExtTransportModes
+	{
+		None = 0,
+		Play = ExtDeviceBase.Base+200,
+		Stop = ExtDeviceBase.Base+201,
+		Freeze = ExtDeviceBase.Base+202,
+		Thaw = ExtDeviceBase.Base+203,
+		FF = ExtDeviceBase.Base+204,
+		Rew = ExtDeviceBase.Base+205,
+		Record = ExtDeviceBase.Base+206,
+		RecordStrobe = ExtDeviceBase.Base+207,
+		RecordFreeze = ExtDeviceBase.Base+808,
+		Step = ExtDeviceBase.Base+208,
+		StepFwd = Step,
+		StepRew = ExtDeviceBase.Base+809,
+		Shuttle = ExtDeviceBase.Base+209,
+		EditCue = ExtDeviceBase.Base+210,
+		VarSpeed = ExtDeviceBase.Base+211,
+		Perform = ExtDeviceBase.Base+212,
+		LinkOn = ExtDeviceBase.Base+280,
+		LinkOff = ExtDeviceBase.Base+281,
+		NotifyEnable = ExtDeviceBase.Base+810,
+		NotifyDisable = ExtDeviceBase.Base+811,
+		ShotSearch = ExtDeviceBase.Base+812
 	}
 
     /// <summary>
@@ -1642,16 +1705,16 @@ namespace DirectShowLib
     {
         [PreserveSig]
         int GetCapability(
-            [In] int Capability,
+            [In] ExtTransportCaps Capability,
             [Out] out int pValue,
             [Out] out double pdblValue
             );
 
         [PreserveSig]
-        int put_MediaState([In] int State);
+        int put_MediaState([In] ExtTransportMediaStates State);
 
         [PreserveSig]
-        int get_MediaState([Out] out int pState);
+        int get_MediaState([Out] out ExtTransportMediaStates pState);
 
         [PreserveSig]
         int put_LocalControl([In] int State);
@@ -1704,10 +1767,10 @@ namespace DirectShowLib
             );
 
         [PreserveSig]
-        int put_Mode([In] int Mode);
+        int put_Mode([In] ExtTransportModes Mode);
 
         [PreserveSig]
-        int get_Mode([Out] out int pMode);
+        int get_Mode([Out] out ExtTransportModes pMode);
 
         [PreserveSig]
         int put_Rate([In] double dblRate);
