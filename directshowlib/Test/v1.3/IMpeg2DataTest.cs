@@ -204,7 +204,7 @@ namespace DirectShowLib.Test
       ManualResetEvent mre = new ManualResetEvent(false);
       short PID = 0x12; // is the PID of a Event Information Table (EIT)
       byte TID = 0x4e; // is the TID for event_information_section - actual_transport_stream, present/following
-      short NID = 1;    // 1 is the Network ID of the broadcast selectionned
+      //short NID = 1;    // 1 is the Network ID of the broadcast selectionned
 
       MPEG2Filter mpeg2Filter = new MPEG2Filter();
       mpeg2Filter.bVersionNumber = 1;
