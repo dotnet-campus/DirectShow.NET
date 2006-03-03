@@ -31,8 +31,6 @@ namespace DirectShowLib
 
     #region Declarations
 
-#if ALLOW_UNTESTED_INTERFACES
-
     /// <summary>
     /// From MPEG_REQUEST_TYPE
     /// </summary>
@@ -203,12 +201,10 @@ namespace DirectShowLib
         public IntPtr pDataBuffer;
     }
 
-#endif
     #endregion
 
     #region Interfaces
 
-#if ALLOW_UNTESTED_INTERFACES
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown), 
     Guid("9B396D40-F380-4E3C-A514-1A82BF6EBFE6")]
     public interface IMpeg2Data
@@ -311,6 +307,6 @@ namespace DirectShowLib
             );
     }
 
-#endif
-    #endregion
+
+	#endregion
 }
