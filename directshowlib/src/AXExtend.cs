@@ -56,7 +56,7 @@ namespace DirectShowLib
 	/// </summary>
 	public enum CameraControlProperty
 	{
-		Pan,
+		Pan = 1,
 		Tilt,
 		Roll,
 		Zoom,
@@ -68,8 +68,10 @@ namespace DirectShowLib
 	/// <summary>
 	/// CameraControlFlags
 	/// </summary>
+	[Flags]
 	public enum CameraControlFlags
 	{
+		None = 0x0,
 		Auto = 0x0001,
 		Manual = 0x0002
 	}
