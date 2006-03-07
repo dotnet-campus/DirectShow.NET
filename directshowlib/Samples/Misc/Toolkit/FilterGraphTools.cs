@@ -26,24 +26,50 @@ namespace DirectShowLib.Utils
     /// Add a filter to a DirectShow Graph using its CLSID
     /// </summary>
     /// <param name="graphBuilder">a GraphBuilder object</param>
-    /// <param name="clsid">the CLSID of the filter</param>
+    /// <param name="clsid">a valid CLSID. This object must implement IBaseFilter</param>
     /// <param name="name">the name used in the graph</param>
     /// <returns>an instance of the filter if the method have successfully create it, null if not</returns>
+    /// <remarks>
+    /// You can use <see cref="IsThisComObjectInstalled">IsThisComObjectInstalled</see> to check is the CLSID is valid before calling this method
+    /// </remarks>
+    /// <example>This sample show how to programmatically add a NVIDIA Video decoder filter to a graph
+    /// <code>
+    /// Guid nvidiaVideoDecClsid = new Guid("71E4616A-DB5E-452B-8CA5-71D9CC7805E9");
+    /// 
+    /// if (FilterGraphTools.IsThisComObjectInstalled(nvidiaVideoDecClsid))
+    /// {
+    ///   filter = FilterGraphTools.AddFilterFromClsid(graphBuilder, nvidiaVideoDecClsid, "NVIDIA Video Decoder");
+    /// }
+    /// else
+    /// {
+    ///   // use another filter...
+    /// }
+    /// </code>
+    /// </example>
+    /// <seealso cref="IsThisComObjectInstalled"/>
     /// <exception cref="System.ArgumentNullException">Thrown if graphBuilder is null</exception>
 
     [SecurityPermission(SecurityAction.LinkDemand, UnmanagedCode=true)]
     public static IBaseFilter AddFilterFromClsid(IGraphBuilder graphBuilder, Guid clsid, string name)
     {
       int hr = 0;
+      IBaseFilter filter = null;
 
       if (graphBuilder == null)
         throw new ArgumentNullException("graphBuilder");
 
-      Type type = Type.GetTypeFromCLSID(clsid);
-      IBaseFilter filter = (IBaseFilter) Activator.CreateInstance(type);
+      try
+      {
+        Type type = Type.GetTypeFromCLSID(clsid);
+        filter = (IBaseFilter) Activator.CreateInstance(type);
 
-      hr = graphBuilder.AddFilter(filter, name);
-      DsError.ThrowExceptionForHR(hr);
+        hr = graphBuilder.AddFilter(filter, name);
+        DsError.ThrowExceptionForHR(hr);
+      }
+      catch
+      {
+        return null;
+      }
 
       return filter;
     }
@@ -55,6 +81,11 @@ namespace DirectShowLib.Utils
     /// <param name="deviceCategory">the filter category (<see cref="DirectShowLib.FilterCategory">DirectShowLib.FilterCategory</see>)</param>
     /// <param name="friendlyName">the filter name (case-sensitive)</param>
     /// <returns>an instance of the filter if the method have successfully create it, null if not</returns>
+    /// <example>This sample show how to programmatically add a NVIDIA Video decoder filter to a graph
+    /// <code>
+    /// filter = FilterGraphTools.AddFilterByName(graphBuilder, FilterCategory.LegacyAmFilterCategory, "NVIDIA Video Decoder");
+    /// </code>
+    /// </example>
     /// <exception cref="System.ArgumentNullException">Thrown if graphBuilder is null</exception>
     /// <exception cref="System.Runtime.InteropServices.COMException">Thrown if errors occur when the filter is add to the graph</exception>
 
@@ -67,12 +98,13 @@ namespace DirectShowLib.Utils
         throw new ArgumentNullException("graphBuilder");
 
       DsDevice[] devices = DsDevice.GetDevicesOfCat(deviceCategory);
-      foreach (DsDevice device in devices)
+
+      for(int i = 0; i < devices.Length; i++)
       {
-        if (!device.Name.Equals(friendlyName))
+        if (!devices[i].Name.Equals(friendlyName))
           continue;
 
-        hr = (graphBuilder as IFilterGraph2).AddSourceFilterForMoniker(device.Mon, null, friendlyName, out filter);
+        hr = (graphBuilder as IFilterGraph2).AddSourceFilterForMoniker(devices[i].Mon, null, friendlyName, out filter);
         DsError.ThrowExceptionForHR(hr);
 
         break;
@@ -88,32 +120,46 @@ namespace DirectShowLib.Utils
     /// <param name="devicePath">a moniker path</param>
     /// <param name="name">the name used in the graph</param>
     /// <returns>an instance of the filter if the method have successfully create it, null if not</returns>
+    /// <example>This sample show how to programmatically add a NVIDIA Video decoder filter to a graph
+    /// <code>
+    /// string devicePath = @"@device:sw:{083863F1-70DE-11D0-BD40-00A0C911CE86}\{71E4616A-DB5E-452B-8CA5-71D9CC7805E9}";
+    /// filter = FilterGraphTools.AddFilterByDevicePath(graphBuilder, devicePath, "NVIDIA Video Decoder");
+    /// </code>
+    /// </example>
     /// <exception cref="System.ArgumentNullException">Thrown if graphBuilder is null</exception>
-    /// <exception cref="System.Runtime.InteropServices.COMException">Thrown if errors occur when the device path is parsed or when the filter is add to the graph</exception>
 
     [SecurityPermission(SecurityAction.LinkDemand, UnmanagedCode=true)]
     public static IBaseFilter AddFilterByDevicePath(IGraphBuilder graphBuilder, string devicePath, string name)
     {
       int hr = 0;
-      IBaseFilter filter;
-      UCOMIBindCtx bindCtx;
-      UCOMIMoniker moniker;
+      IBaseFilter filter = null;
+      UCOMIBindCtx bindCtx = null;
+      UCOMIMoniker moniker = null;
       int eaten;
 
       if (graphBuilder == null)
         throw new ArgumentNullException("graphBuilder");
 
-      hr = NativeMethods.CreateBindCtx(0, out bindCtx);
-      Marshal.ThrowExceptionForHR(hr);
+      try
+      {
+        hr = NativeMethods.CreateBindCtx(0, out bindCtx);
+        Marshal.ThrowExceptionForHR(hr);
 
-      hr = NativeMethods.MkParseDisplayName(bindCtx, devicePath, out eaten, out moniker);
-      Marshal.ThrowExceptionForHR(hr);
+        hr = NativeMethods.MkParseDisplayName(bindCtx, devicePath, out eaten, out moniker);
+        Marshal.ThrowExceptionForHR(hr);
 
-      hr = (graphBuilder as IFilterGraph2).AddSourceFilterForMoniker(moniker, bindCtx, name, out filter);
-      DsError.ThrowExceptionForHR(hr);
-
-      Marshal.ReleaseComObject(bindCtx);
-      Marshal.ReleaseComObject(moniker);
+        hr = (graphBuilder as IFilterGraph2).AddSourceFilterForMoniker(moniker, bindCtx, name, out filter);
+        DsError.ThrowExceptionForHR(hr);
+      }
+      catch
+      {
+        // An error occur. Just returning null...
+      }
+      finally
+      {
+        if (bindCtx != null) Marshal.ReleaseComObject(bindCtx);
+        if (moniker != null) Marshal.ReleaseComObject(moniker);
+      }
 
       return filter;
     }
@@ -122,7 +168,7 @@ namespace DirectShowLib.Utils
     /// Find a filter in a DirectShow Graph using its name
     /// </summary>
     /// <param name="graphBuilder">a GraphBuilder object</param>
-    /// <param name="filterName">the filter name</param>
+    /// <param name="filterName">the searched filter name (case-sensitive)</param>
     /// <returns>an instance of the filter if found, null if not</returns>
     /// <seealso cref="FindFilterByClsid"/>
     /// <exception cref="System.ArgumentNullException">Thrown if graphBuilder is null</exception>
@@ -146,12 +192,18 @@ namespace DirectShowLib.Utils
         while(enumFilters.Next(filters.Length, filters, out fetched) == 0)
         {
           FilterInfo filterInfo;
-          hr = filters[0].QueryFilterInfo(out filterInfo);
 
-          if (filterInfo.achName.Equals(filterName))
+          hr = filters[0].QueryFilterInfo(out filterInfo);
+          if (hr == 0)
           {
-            filter = filters[0];
-            break;
+            if (filterInfo.pGraph != null)
+              Marshal.ReleaseComObject(filterInfo.pGraph);
+
+            if (filterInfo.achName.Equals(filterName))
+            {
+              filter = filters[0];
+              break;
+            }
           }
 
           Marshal.ReleaseComObject(filters[0]);
@@ -191,7 +243,7 @@ namespace DirectShowLib.Utils
 
         while(enumFilters.Next(filters.Length, filters, out fetched) == 0)
         {
-          Guid clsid = Guid.Empty;
+          Guid clsid;
 
           hr = filters[0].GetClassID(out clsid);
 
@@ -217,11 +269,23 @@ namespace DirectShowLib.Utils
     /// <param name="graphBuilder">a GraphBuilder object</param>
     /// <param name="source">a filter object</param>
     /// <param name="pinName">the pin name</param>
+    /// <returns>true if rendering is a success, false is something else occur</returns>
+    /// <example>
+    /// <code>
+    /// hr = graphBuilder.AddSourceFilter(@"foo.avi", "Source Filter", out filter);
+    /// DsError.ThrowExceptionForHR(hr);
+    /// 
+    /// if (!FilterGraphTools.RenderPin(graphBuilder, filter, "Output"))
+    /// {
+    ///   // Something wrong occurred...
+    /// }
+    /// </code>
+    /// </example>
     /// <exception cref="System.ArgumentNullException">Thrown if graphBuilder or source is null</exception>
     /// <remarks>This method assume that the filter is part of the given graph</remarks>
     
     [SecurityPermission(SecurityAction.LinkDemand, UnmanagedCode=true)]
-    public static void RenderPin(IGraphBuilder graphBuilder, IBaseFilter source, string pinName)
+    public static bool RenderPin(IGraphBuilder graphBuilder, IBaseFilter source, string pinName)
     {
       int hr = 0;
 
@@ -236,10 +300,51 @@ namespace DirectShowLib.Utils
       if (pin != null)
       {
         hr = graphBuilder.Render(pin);
+        Marshal.ReleaseComObject(pin);
+
+        return (hr >= 0);
+      }
+
+      return false;
+    }
+
+    /// <summary>
+    /// Disconnect all pins of a given filter
+    /// </summary>
+    /// <param name="graphBuilder">a GraphBuilder object</param>
+    /// <param name="filter">a filter object</param>
+    /// <exception cref="System.ArgumentNullException">Thrown if graphBuilder or filter is null</exception>
+    /// <exception cref="System.Runtime.InteropServices.COMException">Thrown if errors occured during the disconnection process</exception>
+    /// <remarks>This method assume that the filter is part of the given graph</remarks>
+
+    [SecurityPermission(SecurityAction.LinkDemand, UnmanagedCode=true)]
+    public static void DisconnectPins(IGraphBuilder graphBuilder, IBaseFilter filter)
+    {
+      int hr = 0;
+
+      if (graphBuilder == null)
+        throw new ArgumentNullException("graphBuilder");
+
+      if (filter == null)
+        throw new ArgumentNullException("filter");
+
+      IEnumPins enumPins;
+      IPin[] pins = new IPin[1];
+      int fetched;
+
+      hr = filter.EnumPins(out enumPins);
+      DsError.ThrowExceptionForHR(hr);
+
+      while(enumPins.Next(pins.Length, pins, out fetched) == 0)
+      {
+        hr = pins[0].Disconnect();
         DsError.ThrowExceptionForHR(hr);
 
-        Marshal.ReleaseComObject(pin);
+        Marshal.ReleaseComObject(pins[0]);
       }
+
+      if (enumPins != null) 
+        Marshal.ReleaseComObject(enumPins);
     }
 
     /// <summary>
@@ -247,6 +352,8 @@ namespace DirectShowLib.Utils
     /// </summary>
     /// <param name="graphBuilder">a GraphBuilder object</param>
     /// <exception cref="System.ArgumentNullException">Thrown if graphBuilder is null</exception>
+    /// <exception cref="System.Runtime.InteropServices.COMException">Thrown if the method can't enumerate its filters</exception>
+    /// <remarks>This method don't throw an exception if an error occure during pins disconnections</remarks>
     
     [SecurityPermission(SecurityAction.LinkDemand, UnmanagedCode=true)]
     public static void DisconnectAllPins(IGraphBuilder graphBuilder)
@@ -265,19 +372,11 @@ namespace DirectShowLib.Utils
 
       while(enumFilters.Next(filters.Length, filters, out fetched) == 0)
       {
-        IEnumPins enumPins;
-        IPin[] pins = new IPin[1];
-
-        hr = filters[0].EnumPins(out enumPins);
-        DsError.ThrowExceptionForHR(hr);
-
-        while(enumPins.Next(pins.Length, pins, out fetched) == 0)
+        try
         {
-          hr = pins[0].Disconnect();
-          Marshal.ReleaseComObject(pins[0]);
+          DisconnectPins(graphBuilder, filters[0]);
         }
-
-        Marshal.ReleaseComObject(enumPins);
+        catch{}
         Marshal.ReleaseComObject(filters[0]);
       }
 
@@ -289,6 +388,7 @@ namespace DirectShowLib.Utils
     /// </summary>
     /// <param name="graphBuilder">a GraphBuilder object</param>
     /// <exception cref="System.ArgumentNullException">Thrown if graphBuilder is null</exception>
+    /// <exception cref="System.Runtime.InteropServices.COMException">Thrown if the method can't enumerate its filters</exception>
     
     [SecurityPermission(SecurityAction.LinkDemand, UnmanagedCode=true)]
     public static void RemoveAllFilters(IGraphBuilder graphBuilder)
@@ -319,13 +419,14 @@ namespace DirectShowLib.Utils
     }
 
     /// <summary>
-    /// Save a DirectShow Graph from a file
+    /// Save a DirectShow Graph from a GRF file
     /// </summary>
     /// <param name="graphBuilder">a GraphBuilder object</param>
     /// <param name="fileName">the file to be saved</param>
     /// <exception cref="System.ArgumentNullException">Thrown if graphBuilder is null</exception>
     /// <exception cref="System.Runtime.InteropServices.COMException">Thrown if errors occur during the file creation</exception>
     /// <seealso cref="LoadGraphFile"/>
+    /// <remarks>This method overwrite existing file</remarks>
     
     [SecurityPermission(SecurityAction.LinkDemand, UnmanagedCode=true)]
     public static void SaveGraphFile(IGraphBuilder graphBuilder, string fileName)
@@ -379,6 +480,7 @@ namespace DirectShowLib.Utils
     /// <param name="graphBuilder">a GraphBuilder object</param>
     /// <param name="fileName">the file to be opened</param>
     /// <exception cref="System.ArgumentNullException">Thrown if graphBuilder is null</exception>
+    /// <exception cref="System.ArgumentException">Thrown if the given file is not a valid graph file</exception>
     /// <exception cref="System.Runtime.InteropServices.COMException">Thrown if errors occur during the loading</exception>
     /// <seealso cref="SaveGraphFile"/>
     
@@ -395,7 +497,7 @@ namespace DirectShowLib.Utils
       try
       {
         if (NativeMethods.StgIsStorageFile(fileName) != 0)
-          return;
+          throw new ArgumentException();
 
         hr = NativeMethods.StgOpenStorage(
           fileName,
@@ -441,7 +543,7 @@ namespace DirectShowLib.Utils
     /// This method is intended to be used with <see cref="ShowFilterPropertyPage">ShowFilterPropertyPage</see>
     /// </remarks>
     
-    public static bool SupportsPropertyPage(IBaseFilter filter)
+    public static bool IsSupportingPropertyPages(IBaseFilter filter)
     {
       if (filter == null)
         throw new ArgumentNullException("filter");
@@ -456,11 +558,12 @@ namespace DirectShowLib.Utils
     /// <param name="parent">A hwnd handle.</param>
     /// <exception cref="System.ArgumentNullException">Thrown if filter is null</exception>
     /// <remarks>
-    /// You can check if a filter support Property Pages with the <see cref="SupportsPropertyPage">SupportsPropertyPage</see> method
+    /// You can check if a filter support Property Pages with the <see cref="IsSupportingPropertyPages">IsSupportingPropertyPages</see> method.<br/>
+    /// <strong>Warning</strong> : This method is blocking. It only return when the Property Pages are closed.
     /// </remarks>
     /// <example>This sample show how to check if a filter support Property Pages and display them
     /// <code>
-    /// if (FilterGraphTools.SupportsPropertyPage(myFilter))
+    /// if (FilterGraphTools.IsSupportingPropertyPages(myFilter))
     /// {
     ///   FilterGraphTools.ShowFilterPropertyPage(myFilter, myForm.Handle);
     /// }
@@ -478,10 +581,13 @@ namespace DirectShowLib.Utils
       if (filter == null)
         throw new ArgumentNullException("filter");
 
-      if (SupportsPropertyPage(filter))
+      if (IsSupportingPropertyPages(filter))
       {
         hr = filter.QueryFilterInfo(out filterInfo);
         DsError.ThrowExceptionForHR(hr);
+
+        if (filterInfo.pGraph != null)
+          Marshal.ReleaseComObject(filterInfo.pGraph);
 
         hr = (filter as ISpecifyPropertyPages).GetPages(out caGuid);
         DsError.ThrowExceptionForHR(hr);
@@ -499,8 +605,6 @@ namespace DirectShowLib.Utils
           );
 
         Marshal.FreeCoTaskMem(caGuid.pElems);
-        if (filterInfo.pGraph != null)
-          Marshal.ReleaseComObject(filterInfo.pGraph);
       }
     }
 
@@ -563,6 +667,95 @@ namespace DirectShowLib.Utils
     public static bool IsVMR7Present()
     {
       return IsThisComObjectInstalled(typeof(VideoMixingRenderer).GUID);
+    }
+
+    /// <summary>
+    /// Connect two pins from two given filters
+    /// </summary>
+    /// <param name="graphBuilder">a GraphBuilder object</param>
+    /// <param name="upFilter">the upstream filter</param>
+    /// <param name="sourcePinName">the upstream filter pin name</param>
+    /// <param name="downFilter">the downstream filter</param>
+    /// <param name="destPinName">the downstream filter pin name</param>
+    /// <param name="useIntelligentConnect">define is the method can use DirectShow's Intelligent Connect</param>
+    /// <exception cref="System.ArgumentNullException">Thrown if graphBuilder, upFilter or downFilter are null</exception>
+    /// <exception cref="System.ArgumentException">Thrown if pin names are not found in filters</exception>
+    /// <exception cref="System.Runtime.InteropServices.COMException">Thrown if pins can't connect</exception>
+    /// <remarks>
+    /// If useIntelligentConnect is true, this method can add missing filters between the two pins.<br/>
+    /// If useIntelligentConnect is false, this method works only if the two media types are compatible.
+    /// </remarks>
+
+    public static void ConnectFilters(IGraphBuilder graphBuilder, IBaseFilter upFilter, string sourcePinName, IBaseFilter downFilter, string destPinName, bool useIntelligentConnect)
+    {
+      if (graphBuilder == null)
+        throw new ArgumentNullException("graphBuilder");
+
+      if (upFilter == null)
+        throw new ArgumentNullException("upFilter");
+
+      if (downFilter == null)
+        throw new ArgumentNullException("downFilter");
+
+      IPin sourcePin, destPin;
+
+      sourcePin = DsFindPin.ByName(upFilter, sourcePinName);
+      if (sourcePin == null)
+        throw new ArgumentException("The source filter have no pin called : " + sourcePinName, sourcePinName);
+
+      destPin = DsFindPin.ByName(downFilter, destPinName);
+      if (destPin == null)
+        throw new ArgumentException("The destination filter have no pin called : " + destPinName, destPinName);
+
+      try
+      {
+        ConnectFilters(graphBuilder, sourcePin, destPin, useIntelligentConnect);
+      }
+      finally
+      {
+        Marshal.ReleaseComObject(sourcePin);
+        Marshal.ReleaseComObject(destPin);
+      }
+    }
+
+    /// <summary>
+    /// Connect two pins
+    /// </summary>
+    /// <param name="graphBuilder">a GraphBuilder object</param>
+    /// <param name="sourcePin">the source pin</param>
+    /// <param name="destPin">the destination pin</param>
+    /// <param name="useIntelligentConnect">define is the method can use DirectShow's Intelligent Connect</param>
+    /// <exception cref="System.ArgumentNullException">Thrown if graphBuilder, sourcePin or destPin are null</exception>
+    /// <exception cref="System.Runtime.InteropServices.COMException">Thrown if pins can't connect</exception>
+    /// <remarks>
+    /// If useIntelligentConnect is true, this method can add missing filters between the two pins.<br/>
+    /// If useIntelligentConnect is false, this method works only if the two media types are compatible.
+    /// </remarks>
+
+    [SecurityPermission(SecurityAction.LinkDemand, UnmanagedCode=true)]
+    public static void ConnectFilters(IGraphBuilder graphBuilder, IPin sourcePin, IPin destPin, bool useIntelligentConnect)
+    {
+      int hr = 0;
+
+      if (graphBuilder == null)
+        throw new ArgumentNullException("graphBuilder");
+
+      if (sourcePin == null)
+        throw new ArgumentNullException("sourcePin");
+
+      if (destPin == null)
+        throw new ArgumentNullException("destPin");
+
+      if (useIntelligentConnect)
+      {
+        hr = graphBuilder.Connect(sourcePin, destPin);
+        DsError.ThrowExceptionForHR(hr);
+      }
+      else
+      {
+        hr = graphBuilder.ConnectDirect(sourcePin, destPin, null);
+        DsError.ThrowExceptionForHR(hr);
+      }
     }
 
 	}
