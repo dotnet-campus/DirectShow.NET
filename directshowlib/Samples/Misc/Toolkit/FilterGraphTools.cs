@@ -15,7 +15,7 @@ using DirectShowLib;
 namespace DirectShowLib.Utils
 {
     /// <summary>
-    /// A collection of methods to do DirectShow recuring tasks.
+    /// A collection of methods to do common DirectShow tasks.
     /// </summary>
 
     public sealed class FilterGraphTools
@@ -32,7 +32,7 @@ namespace DirectShowLib.Utils
         /// <remarks>
         /// You can use <see cref="IsThisComObjectInstalled">IsThisComObjectInstalled</see> to check is the CLSID is valid before calling this method
         /// </remarks>
-        /// <example>This sample show hows to programmatically add a NVIDIA Video decoder filter to a graph
+        /// <example>This sample shows how to programmatically add a NVIDIA Video decoder filter to a graph
         /// <code>
         /// Guid nvidiaVideoDecClsid = new Guid("71E4616A-DB5E-452B-8CA5-71D9CC7805E9");
         /// 
@@ -83,10 +83,10 @@ namespace DirectShowLib.Utils
         /// Add a filter to a DirectShow Graph using its name
         /// </summary>
         /// <param name="graphBuilder">the IGraphBuilder interface of the graph</param>
-        /// <param name="deviceCategory">the filter category (<see cref="DirectShowLib.FilterCategory">DirectShowLib.FilterCategory</see>)</param>
+        /// <param name="deviceCategory">the filter category (see DirectShowLib.FilterCategory)</param>
         /// <param name="friendlyName">the filter name (case-sensitive)</param>
         /// <returns>an instance of the filter if the method successfully created it, null if not</returns>
-        /// <example>This sample show how to programmatically add a NVIDIA Video decoder filter to a graph
+        /// <example>This sample shows how to programmatically add a NVIDIA Video decoder filter to a graph
         /// <code>
         /// filter = FilterGraphTools.AddFilterByName(graphBuilder, FilterCategory.LegacyAmFilterCategory, "NVIDIA Video Decoder");
         /// </code>
@@ -123,9 +123,9 @@ namespace DirectShowLib.Utils
         /// </summary>
         /// <param name="graphBuilder">the IGraphBuilder interface of the graph</param>
         /// <param name="devicePath">a moniker path</param>
-        /// <param name="name">the name used in the graph</param>
-        /// <returns>an instance of the filter if the method have successfully create it, null if not</returns>
-        /// <example>This sample show how to programmatically add a NVIDIA Video decoder filter to a graph
+        /// <param name="name">the name to use for the filter in the graph</param>
+        /// <returns>an instance of the filter if the method successfully creates it, null if not</returns>
+        /// <example>This sample shows how to programmatically add a NVIDIA Video decoder filter to a graph
         /// <code>
         /// string devicePath = @"@device:sw:{083863F1-70DE-11D0-BD40-00A0C911CE86}\{71E4616A-DB5E-452B-8CA5-71D9CC7805E9}";
         /// filter = FilterGraphTools.AddFilterByDevicePath(graphBuilder, devicePath, "NVIDIA Video Decoder");
@@ -266,7 +266,7 @@ namespace DirectShowLib.Utils
         }
 
         /// <summary>
-        /// Render filter's pin in a DirectShow Graph
+        /// Render a filter's pin in a DirectShow Graph
         /// </summary>
         /// <param name="graphBuilder">the IGraphBuilder interface of the graph</param>
         /// <param name="source">the filter containing the pin to render</param>
@@ -284,7 +284,7 @@ namespace DirectShowLib.Utils
         /// </code>
         /// </example>
         /// <exception cref="System.ArgumentNullException">Thrown if graphBuilder or source is null</exception>
-        /// <remarks>This method assume that the filter is part of the given graph</remarks>
+        /// <remarks>This method assumes that the filter is part of the given graph</remarks>
     
         [SecurityPermission(SecurityAction.LinkDemand, UnmanagedCode=true)]
         public static bool RenderPin(IGraphBuilder graphBuilder, IBaseFilter source, string pinName)
@@ -360,7 +360,7 @@ namespace DirectShowLib.Utils
         /// <param name="graphBuilder">the IGraphBuilder interface of the graph</param>
         /// <exception cref="System.ArgumentNullException">Thrown if graphBuilder is null</exception>
         /// <exception cref="System.Runtime.InteropServices.COMException">Thrown if the method can't enumerate its filters</exception>
-        /// <remarks>This method don't throw an exception if an error occure during pins disconnections</remarks>
+        /// <remarks>This method doesn't throw an exception if an error occurs during pin disconnections</remarks>
     
         [SecurityPermission(SecurityAction.LinkDemand, UnmanagedCode=true)]
         public static void DisconnectAllPins(IGraphBuilder graphBuilder)
@@ -438,7 +438,7 @@ namespace DirectShowLib.Utils
         }
 
         /// <summary>
-        /// Save a DirectShow Graph from a GRF file
+        /// Save a DirectShow Graph to a GRF file
         /// </summary>
         /// <param name="graphBuilder">the IGraphBuilder interface of the graph</param>
         /// <param name="fileName">the file to be saved</param>
@@ -695,7 +695,7 @@ namespace DirectShowLib.Utils
         }
 
         /// <summary>
-        /// Connect two pins from two given filters
+        /// Connect pins from two filters
         /// </summary>
         /// <param name="graphBuilder">the IGraphBuilder interface of the graph</param>
         /// <param name="upFilter">the upstream filter</param>
@@ -744,7 +744,7 @@ namespace DirectShowLib.Utils
         }
 
         /// <summary>
-        /// Connect two pins
+        /// Connect pins from two filters
         /// </summary>
         /// <param name="graphBuilder">the IGraphBuilder interface of the graph</param>
         /// <param name="sourcePin">the source (upstream / output) pin</param>
