@@ -369,7 +369,7 @@ namespace DirectShowLib.DES
     [StructLayout(LayoutKind.Sequential, Pack=4)]
     public class SCompFmt0
     {
-        public long nFormatId;
+        public int nFormatId;
         public AMMediaType MediaType;
     }
 
