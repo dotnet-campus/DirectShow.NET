@@ -43,7 +43,7 @@ namespace DirectShowLib.DMO
     }
 
     /// <summary>
-    /// From MP_Data
+    /// From MP_DATA
     /// </summary>
     [StructLayout(LayoutKind.Explicit)]
     public struct MPData
