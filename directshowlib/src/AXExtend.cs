@@ -1,4 +1,4 @@
-#region license
+	#region license
 
 /*
 DirectShowLib - Provide access to DirectShow interfaces via .NET
@@ -936,10 +936,13 @@ namespace DirectShowLib
 		On = ExtDeviceBase.Base+50,
 		Off = ExtDeviceBase.Base+51,
 		Standby = ExtDeviceBase.Base+52,
-		Active = ExtDeviceBase.Base+53,
-		Inactive = ExtDeviceBase.Base+54,
 		All = ExtDeviceBase.Base+55,
-		Test = ExtDeviceBase.Base+56
+		Test = ExtDeviceBase.Base+56,
+		DeviceTypeCamera = ExtDeviceBase.Base+900,
+		DeviceTypeTuner = ExtDeviceBase.Base+901,
+		DeviceTypeDvhs = ExtDeviceBase.Base+902,
+		DeviceTypeUnknown = ExtDeviceBase.Base+903,
+		CapabilityUnknown = ExtDeviceBase.Base+910,
 	}
 
 	/// <summary>
@@ -980,7 +983,7 @@ namespace DirectShowLib
 		HasClock = ExtDeviceBase.Base+123,
 		MultipleEdits = ExtDeviceBase.Base+806,
 		IsMaster = ExtDeviceBase.Base+807,
-		HasDT = ExtDeviceBase.Base+808
+		HasDT = ExtDeviceBase.Base+814
 	}
 
 	/// <summary>
@@ -1020,7 +1023,255 @@ namespace DirectShowLib
 		LinkOff = ExtDeviceBase.Base+281,
 		NotifyEnable = ExtDeviceBase.Base+810,
 		NotifyDisable = ExtDeviceBase.Base+811,
-		ShotSearch = ExtDeviceBase.Base+812
+		ShotSearch = ExtDeviceBase.Base+812,
+		PlayFastestFwd = ExtDeviceBase.Base+933,
+		PlaySlowestFwd = ExtDeviceBase.Base+934,
+		PlayFastestRev = ExtDeviceBase.Base+935,
+		PlaySlowestRev = ExtDeviceBase.Base+936,
+		Wind = ExtDeviceBase.Base+937,
+		RewFastest = ExtDeviceBase.Base+938,
+		RevPlay = ExtDeviceBase.Base+939
+	}
+
+	/// <summary>
+	/// from ED_MEDIA* etc.
+	/// </summary>
+	public enum ExtTransportStatus
+	{
+		None = 0,
+		Mode = ExtDeviceBase.Base+500,
+		Error = ExtDeviceBase.Base+501, 
+		Local = ExtDeviceBase.Base+502,
+		RecordInhibit = ExtDeviceBase.Base+503,
+		ServoLock = ExtDeviceBase.Base+504,
+		MediaPresent = ExtDeviceBase.Base+505,
+		MediaLength = ExtDeviceBase.Base+506,
+		MediaSize = ExtDeviceBase.Base+507,
+		MediaTrackCount = ExtDeviceBase.Base+508,
+		MediaTrackLength = ExtDeviceBase.Base+509,
+		MediaSide = ExtDeviceBase.Base+510,
+		MediaType = ExtDeviceBase.Base+511,
+		MediaVhs = ExtDeviceBase.Base+512,
+		MediaSvhs = ExtDeviceBase.Base+513,
+		MediaHi8 = ExtDeviceBase.Base+514,
+		MediaUmatic = ExtDeviceBase.Base+515,
+		MediaDvc = ExtDeviceBase.Base+516,
+		Media1Inch = ExtDeviceBase.Base+517,
+		MediaD1 = ExtDeviceBase.Base+518,
+		MediaD2 = ExtDeviceBase.Base+519,
+		MediaD3 = ExtDeviceBase.Base+520,
+		MediaD5 = ExtDeviceBase.Base+521,
+		MediaDBeta = ExtDeviceBase.Base+522,
+		MediaBeta = ExtDeviceBase.Base+523,
+		Media8mm = ExtDeviceBase.Base+524,
+		MediaDdr = ExtDeviceBase.Base+525,
+		MediaSx = ExtDeviceBase.Base+813,
+		MediaOther = ExtDeviceBase.Base+526,
+		MediaClv = ExtDeviceBase.Base+527,
+		MediaCav = ExtDeviceBase.Base+528,
+		MediaPosition = ExtDeviceBase.Base+529,
+		MediaNeo = ExtDeviceBase.Base+531, 
+		MediaVhsc = ExtDeviceBase.Base+925, 
+		MediaUnknown = ExtDeviceBase.Base+926, 
+		MediaNotPresent = ExtDeviceBase.Base+927, 
+		LinkMode = ExtDeviceBase.Base+530,
+		DevRemovedHeventGet = ExtDeviceBase.Base+960,
+		DevRemovedHeventRelease = ExtDeviceBase.Base+961,
+		ModeChangeNotify = ExtDeviceBase.Base+932,
+		ControlHeventGet = ExtDeviceBase.Base+928,
+		ControlHeventRelease = ExtDeviceBase.Base+929,
+		NotifyHeventGet =  ExtDeviceBase.Base+930,
+		NotifyHeventRelease =  ExtDeviceBase.Base+931
+	}
+
+	/// <summary>
+	/// From ED_TRANSBASIC* etc.
+	/// </summary>
+	public enum ExtTransportParameters
+	{
+		None = 0,
+		TimeFormat = ExtDeviceBase.Base + 540,
+		TimeFormatMilliseconds = ExtDeviceBase.Base + 541,
+		TimeFormatFrames = ExtDeviceBase.Base + 542,
+		TimeFormatReferenceTime = ExtDeviceBase.Base + 543,
+		TimeFormatHmsf = ExtDeviceBase.Base + 547,
+		TimeFormatTmsf = ExtDeviceBase.Base + 548,
+		TimeReference = ExtDeviceBase.Base + 549,
+		TimeReferenceTimeCode = ExtDeviceBase.Base + 550,
+		TimeReferenceControlTrack = ExtDeviceBase.Base + 551,
+		TimeReferenceIndex = ExtDeviceBase.Base + 552,
+		TimeReferenceAtn = ExtDeviceBase.Base + 958,
+		SuperImpose = ExtDeviceBase.Base + 553,
+		EndStopAction = ExtDeviceBase.Base + 554,
+		RecordFormat = ExtDeviceBase.Base + 555,
+		RecordFormatSp = ExtDeviceBase.Base + 556,
+		RecordFormatLp = ExtDeviceBase.Base + 557,
+		RecordFormatEp = ExtDeviceBase.Base + 558,
+		StepCount = ExtDeviceBase.Base + 559,
+		StepUnit = ExtDeviceBase.Base + 560,
+		StepField = ExtDeviceBase.Base + 561,
+		StepFrame = ExtDeviceBase.Base + 562,
+		Step3_2 = ExtDeviceBase.Base + 563,
+		PreRoll = ExtDeviceBase.Base + 564,
+		RecPreRoll = ExtDeviceBase.Base + 565,
+		PostRoll = ExtDeviceBase.Base + 566,
+		EditDelay = ExtDeviceBase.Base + 567,
+		PlayTcDelay = ExtDeviceBase.Base + 568,
+		RecTcDelay = ExtDeviceBase.Base + 569,
+		EditField = ExtDeviceBase.Base + 570,
+		FrameServo = ExtDeviceBase.Base + 571,
+		CfServo = ExtDeviceBase.Base + 572,
+		ServoRef = ExtDeviceBase.Base + 573,
+		ServoRefExternal = ExtDeviceBase.Base + 574,
+		ServoRefInput = ExtDeviceBase.Base + 575,
+		ServoRefInternal = ExtDeviceBase.Base + 576,
+		ServoRefAuto = ExtDeviceBase.Base + 577,
+		WarnGl = ExtDeviceBase.Base + 578,
+		SetTracking = ExtDeviceBase.Base + 579,
+		SetTrackingPlus = ExtDeviceBase.Base + 580,
+		SetTrackingMinus = ExtDeviceBase.Base + 581,
+		SetTrackingReset = ExtDeviceBase.Base + 582,
+		SetFreezeTimeout = ExtDeviceBase.Base + 583,
+		VolumeName = ExtDeviceBase.Base + 584,
+		Ballistic_1 = ExtDeviceBase.Base + 585,
+		Ballistic_2 = ExtDeviceBase.Base + 586,
+		Ballistic_3 = ExtDeviceBase.Base + 587,
+		Ballistic_4 = ExtDeviceBase.Base + 588,
+		Ballistic_5 = ExtDeviceBase.Base + 589,
+		Ballistic_6 = ExtDeviceBase.Base + 590,
+		Ballistic_7 = ExtDeviceBase.Base + 591,
+		Ballistic_8 = ExtDeviceBase.Base + 592,
+		Ballistic_9 = ExtDeviceBase.Base + 593,
+		Ballistic_10 = ExtDeviceBase.Base + 594,
+		Ballistic_11 = ExtDeviceBase.Base + 595,
+		Ballistic_12 = ExtDeviceBase.Base + 596,
+		Ballistic_13 = ExtDeviceBase.Base + 597,
+		Ballistic_14 = ExtDeviceBase.Base + 598,
+		Ballistic_15 = ExtDeviceBase.Base + 599,
+		Ballistic_16 = ExtDeviceBase.Base + 600,
+		Ballistic_17 = ExtDeviceBase.Base + 601,
+		Ballistic_18 = ExtDeviceBase.Base + 602,
+		Ballistic_19 = ExtDeviceBase.Base + 603,
+		Ballistic_20 = ExtDeviceBase.Base + 604,
+		SetClock = ExtDeviceBase.Base + 605,
+		SetCounterFormat = ExtDeviceBase.Base + 606,
+		SetCounterValue  = ExtDeviceBase.Base + 607,
+		SetTunerChUp = ExtDeviceBase.Base + 608,
+		SetTunerChDn = ExtDeviceBase.Base + 609,
+		SetTunerSkUp = ExtDeviceBase.Base + 610,
+		SetTunerSkDn = ExtDeviceBase.Base + 611,
+		SetTunerCh = ExtDeviceBase.Base + 612,
+		SetTunerNum = ExtDeviceBase.Base + 613,
+		SetTimerEvent = ExtDeviceBase.Base + 614,
+		SetTimerStartDay = ExtDeviceBase.Base + 615,
+		SetTimerStartTime = ExtDeviceBase.Base + 616,
+		SetTimerStopDay = ExtDeviceBase.Base + 617,
+		SetTimerStopTime = ExtDeviceBase.Base + 618,
+		VideoSetOutput = ExtDeviceBase.Base + 630,
+		E2E = ExtDeviceBase.Base + 631,
+		Playback = ExtDeviceBase.Base + 632,
+		Off = ExtDeviceBase.Base + 633,
+		VideoSetSource = ExtDeviceBase.Base + 634,
+		AudioEnableOutput = ExtDeviceBase.Base + 640,
+		AudioEnableRecord = ExtDeviceBase.Base + 642,
+		AudioEnableSelsync = ExtDeviceBase.Base + 643,
+		AudioSetSource = ExtDeviceBase.Base + 644,
+		AudioSetMonitor = ExtDeviceBase.Base + 645,
+		RawExtDeviceCommand = ExtDeviceBase.Base + 920,
+		InputSignal = ExtDeviceBase.Base + 940,
+		OutputSignal = ExtDeviceBase.Base + 941,
+		Signal_525_60_SD = ExtDeviceBase.Base + 942,
+		Signal_525_60_SDL = ExtDeviceBase.Base + 943,
+		Signal_625_50_SD = ExtDeviceBase.Base + 944,
+		Signal_625_50_SDL = ExtDeviceBase.Base + 945,
+		Signal_MPEG2TS = ExtDeviceBase.Base + 946,
+		Signal_625_60_HD =  ExtDeviceBase.Base + 947,
+		Signal_625_50_HD =  ExtDeviceBase.Base + 948,
+		Signal_2500_60_MPEG = ExtDeviceBase.Base + 980,
+		Signal_1250_60_MPEG = ExtDeviceBase.Base + 981,
+		Signal_0625_60_MPEG = ExtDeviceBase.Base + 982,
+		Signal_2500_50_MPEG = ExtDeviceBase.Base + 985,
+		Signal_1250_50_MPEG = ExtDeviceBase.Base + 986,
+		Signal_0625_50_MPEG = ExtDeviceBase.Base + 987,
+		SignalUnknown = ExtDeviceBase.Base + 990
+	}
+	
+	/// <summary>
+	/// From ED_AUDIO*
+	/// </summary>
+	[Flags]
+	public enum ExtTransportAudio
+	{
+		AudioAll = 0x10000000,	//	or any of the following OR'd together
+		Audio1 = 0x0000001,
+		Audio2 = 0x0000002,
+		Audio3 = 0x0000004,
+		Audio4 = 0x0000008,
+		Audio5 = 0x0000010,
+		Audio6 = 0x0000020,
+		Audio7 = 0x0000040,
+		Audio8 = 0x0000080,
+		Audio9 = 0x0000100,
+		Audio10 = 0x0000200,
+		Audio11 = 0x0000400,
+		Audio12 = 0x0000800,
+		Audio13 = 0x0001000,
+		Audio14 = 0x0002000,
+		Audio15 = 0x0004000,
+		Audio16 = 0x0008000,
+		Audio17 = 0x0010000,
+		Audio18 = 0x0020000,
+		Audio19 = 0x0040000,
+		Audio20 = 0x0080000,
+		Audio21 = 0x0100000,
+		Audio22 = 0x0200000,
+		Audio23 = 0x0400000,
+		Audio24 = 0x0800000,
+		Video = 0x2000000
+	}
+
+	/// <summary>
+	/// From ED_EDIT*
+	/// </summary>
+	public enum ExtTransportEdit
+	{
+		Invalid = ExtDeviceBase.Base + 652,
+		Executing = ExtDeviceBase.Base + 653,
+		Active = ExtDeviceBase.Base+53,
+		Inactive = ExtDeviceBase.Base+54,
+		Register = ExtDeviceBase.Base + 654,
+		Delete = ExtDeviceBase.Base + 655,
+		Hevent = ExtDeviceBase.Base + 656,
+		Test = ExtDeviceBase.Base + 657,
+		Immediate = ExtDeviceBase.Base + 658,
+		Mode = ExtDeviceBase.Base + 659,
+		ModeAssemble = ExtDeviceBase.Base + 660,
+		ModeInsert = ExtDeviceBase.Base + 661,
+		ModeCrashRecord = ExtDeviceBase.Base + 662,
+		ModeBookmarkTime = ExtDeviceBase.Base + 663,
+		ModeBookmarkChapter = ExtDeviceBase.Base + 664,
+		Master = ExtDeviceBase.Base + 666,
+		Track = ExtDeviceBase.Base + 667,
+		SourceInPoint = ExtDeviceBase.Base + 668,
+		SourceOutPoint = ExtDeviceBase.Base + 669,
+		RecInPoint = ExtDeviceBase.Base + 670,
+		RecOutPoint = ExtDeviceBase.Base + 671,
+		RehearseMode = ExtDeviceBase.Base + 672,
+		BVB = ExtDeviceBase.Base + 673,
+		VBV = ExtDeviceBase.Base + 674,
+		VVV = ExtDeviceBase.Base + 675,
+		Perform = ExtDeviceBase.Base + 676,
+		Abort = ExtDeviceBase.Base + 677,
+		TimeOut = ExtDeviceBase.Base + 678,
+		Seek = ExtDeviceBase.Base + 679,
+		SeekMode = ExtDeviceBase.Base + 680,
+		SeekEditIn = ExtDeviceBase.Base + 681,
+		SeekEditOut = ExtDeviceBase.Base + 682,
+		SeekPreRoll = ExtDeviceBase.Base + 683,
+		SeekPreRollCt = ExtDeviceBase.Base + 684,
+		SeekBookmark = ExtDeviceBase.Base + 685,
+		Offset = ExtDeviceBase.Base + 686,
+		PreRead = ExtDeviceBase.Base + 815,
 	}
 
     /// <summary>
@@ -1726,46 +1977,46 @@ namespace DirectShowLib
 
         [PreserveSig]
         int GetStatus(
-            [In] int StatusItem,
+            [In] ExtTransportStatus StatusItem,
             [Out] out int pValue
             );
 
         [PreserveSig]
         int GetTransportBasicParameters(
-            [In] int Param,
+            [In] ExtTransportParameters Param,
             [Out] out int pValue,
             [Out, MarshalAs(UnmanagedType.LPWStr)] out string ppszData
             );
 
         [PreserveSig]
         int SetTransportBasicParameters(
-            [In] int Param,
+            [In] ExtTransportParameters Param,
             [In] int Value,
             [In, MarshalAs(UnmanagedType.LPWStr)] string pszData
             );
 
         [PreserveSig]
         int GetTransportVideoParameters(
-            [In] int Param,
+            [In] ExtTransportParameters Param,
             [Out] out int pValue
             );
 
         [PreserveSig]
         int SetTransportVideoParameters(
-            [In] int Param,
+            [In] ExtTransportParameters Param,
             [In] int Value
             );
 
         [PreserveSig]
         int GetTransportAudioParameters(
-            [In] int Param,
+            [In] ExtTransportParameters Param,
             [Out] out int pValue
             );
 
         [PreserveSig]
         int SetTransportAudioParameters(
-            [In] int Param,
-            [In] int Value
+            [In] ExtTransportParameters Param,
+            [In] ExtTransportAudio Value
             );
 
         [PreserveSig]
@@ -1815,26 +2066,26 @@ namespace DirectShowLib
         [PreserveSig]
         int GetEditPropertySet(
             [In] int EditID,
-            [Out] out int pState
+            [Out] out ExtTransportEdit pState
             );
 
         [PreserveSig]
         int SetEditPropertySet(
             [In, Out] ref int pEditID,
-            [In] int State
+            [In] ExtTransportEdit State
             );
 
         [PreserveSig]
         int GetEditProperty(
             [In] int EditID,
-            [In] int Param,
+            [In] ExtTransportEdit Param,
             [Out] out int pValue
             );
 
         [PreserveSig]
         int SetEditProperty(
             [In] int EditID,
-            [In] int Param,
+            [In] ExtTransportEdit Param,
             [In] int Value
             );
 
@@ -3683,7 +3934,7 @@ namespace DirectShowLib
 		[PreserveSig]
 		int Calibrate(
 			[In] IntPtr hEvent, // HEVENT
-			[In] ExtDeviceCaps Mode, //Active / Inactive
+			[In] ExtTransportEdit Mode, //Active / Inactive
 			[Out] out int pStatus
 			);
 
