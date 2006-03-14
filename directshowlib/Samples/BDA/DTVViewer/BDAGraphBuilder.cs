@@ -91,7 +91,7 @@ namespace DirectShowLib.Sample
       Guid networkProviderClsId;
 
       // First test if the Generic Network Provider is available (only on MCE 2005 + Update Rollup 2)
-      if (FilterGraphTools.CheckIfThisComComponentIsInstalled(genProviderClsId))
+      if (FilterGraphTools.IsThisComObjectInstalled(genProviderClsId))
       {
         this.networkProvider =  FilterGraphTools.AddFilterFromClsid(this.graphBuilder, genProviderClsId, "Generic Network Provider");
 
