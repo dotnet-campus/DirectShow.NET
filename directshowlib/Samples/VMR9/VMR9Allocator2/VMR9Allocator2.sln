@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VMR9Allocator2", "VMR9Allocator2.csproj", "{16A0709D-4952-4801-9C3C-3607940121B6}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{16A0709D-4952-4801-9C3C-3607940121B6}.Debug.ActiveCfg = Debug|.NET
+		{16A0709D-4952-4801-9C3C-3607940121B6}.Debug.Build.0 = Debug|.NET
+		{16A0709D-4952-4801-9C3C-3607940121B6}.Release.ActiveCfg = Release|.NET
+		{16A0709D-4952-4801-9C3C-3607940121B6}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
