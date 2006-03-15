@@ -2,7 +2,7 @@
 
 /*
 DirectShowLib - Provide access to DirectShow interfaces via .NET
-Copyright (C) 2005
+Copyright (C) 2006
 http://sourceforge.net/projects/directshownet/
 
 This library is free software; you can redistribute it and/or
@@ -27,8 +27,7 @@ using System.Runtime.InteropServices;
 
 namespace DirectShowLib.BDA
 {
-
-	#region Declarations
+    #region Declarations
 
 #if ALLOW_UNTESTED_INTERFACES
 
@@ -200,9 +199,9 @@ namespace DirectShowLib.BDA
 	}
 #endif
 
-	#endregion
+    #endregion
 
-	#region Interfaces
+    #region Interfaces
 
 #if ALLOW_UNTESTED_INTERFACES
 
@@ -270,5 +269,5 @@ namespace DirectShowLib.BDA
 
 #endif
 
-	#endregion
+    #endregion
 }
