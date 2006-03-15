@@ -11,6 +11,7 @@ namespace DirectShowLib.Test
 	public class IAMExtTransportTest
 	{
 		private DsDevice _dvDevice = null;
+        private IAMExtTransport _extTransport = null;
 		
 		public IAMExtTransportTest()
 		{
