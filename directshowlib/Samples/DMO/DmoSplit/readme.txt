@@ -8,3 +8,6 @@ There are detailed steps in the DMOFlip sample (remember, this directory is the 
 sample!) in the IMediaObjectImpl.chm file talking about how to make a DMO.  In particular, 
 you should look at the "IMediaObjectImpl Class" page in the file which provides step by 
 step instructions on how to write a DMO.
+
+For people who have never written a COM object, you may find the article at 
+http://community.borland.com/article/0,1410,32754,00.html to be informative.
