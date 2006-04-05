@@ -53,7 +53,7 @@ namespace DirectShowLib.Test
             hr = mms.GetEndOfStreamEventHandle(out pEOS);
             MsError.ThrowExceptionForHR(hr);
 
-            mre.Handle = pEOS;
+            mre.SafeWaitHandle = new Microsoft.Win32.SafeHandles.SafeWaitHandle(pEOS, true);
 
             hr = mms.Seek(0);
             MsError.ThrowExceptionForHR(hr);

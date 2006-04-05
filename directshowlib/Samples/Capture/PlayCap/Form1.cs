@@ -25,6 +25,10 @@ using System.Windows.Forms;
 
 using DirectShowLib;
 
+#if !USING_NET11
+using System.Runtime.InteropServices.ComTypes;
+#endif
+
 namespace DirectShowLib.Samples
 {
 	public class Form1 : System.Windows.Forms.Form
@@ -145,9 +149,13 @@ namespace DirectShowLib.Samples
     public IBaseFilter FindCaptureDevice()
     {
       int hr = 0;
+#if USING_NET11
       UCOMIEnumMoniker classEnum = null;
       UCOMIMoniker[] moniker = new UCOMIMoniker[1];
-      int fetched = 0;
+#else
+      IEnumMoniker classEnum = null;
+      IMoniker[] moniker = new IMoniker[1];
+#endif
       object source = null;
 
       // Create the system device enumerator
@@ -173,7 +181,12 @@ namespace DirectShowLib.Samples
       // Note that if the Next() call succeeds but there are no monikers,
       // it will return 1 (S_FALSE) (which is not a failure).  Therefore, we
       // check that the return code is 0 (S_OK).
-      if (classEnum.Next (moniker.Length, moniker, out fetched) == 0)
+#if USING_NET11
+      int i;
+      if (classEnum.Next (moniker.Length, moniker, out i) == 0)
+#else
+      if (classEnum.Next (moniker.Length, moniker, IntPtr.Zero) == 0)
+#endif
       {
         // Bind Moniker to a filter object
         Guid iid = typeof(IBaseFilter).GUID;

@@ -53,13 +53,6 @@ namespace DxScan
 				}
 			}
 			base.Dispose( disposing );
-            lock (this)
-            {
-                if (cam != null)
-                {
-                    cam.Quit();
-                }
-            }
 		}
 
 		#region Windows Form Designer generated code

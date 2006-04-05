@@ -11,7 +11,6 @@ using NUnit.Framework;
 
 namespace DirectShowLib.Test
 {
-    [TestFixture]
     public class IMediaEventTest
     {
         DsROTEntry m_ROT = null;
@@ -25,7 +24,6 @@ namespace DirectShowLib.Test
         /// <summary>
         /// Test all methods
         /// </summary>
-        [Test]
         public void DoTests()
         {
             int hr;
@@ -39,7 +37,7 @@ namespace DirectShowLib.Test
             DsError.ThrowExceptionForHR(hr);
 
             ManualResetEvent mre = new ManualResetEvent(false);
-            mre.Handle = hEvent;
+            mre.SafeWaitHandle = new Microsoft.Win32.SafeHandles.SafeWaitHandle(hEvent, true);
 
             // Should get an event before this
             bool b = mre.WaitOne(5000, true);

@@ -5,12 +5,12 @@ using System;
 using System.Collections;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.ComTypes;
 using System.Threading;
 using NUnit.Framework;
 
 namespace DirectShowLib.Test
 {
-    [TestFixture]
     public class ICreateDevEnumTest
     {
         // This is used to signal when the callbacks are called
@@ -18,24 +18,33 @@ namespace DirectShowLib.Test
         {
         }
 
-        [Test]
         public void DoTests()
         {
             int hr;
 
+            int x;
             CreateDevEnum cde = new CreateDevEnum();
             ICreateDevEnum devEnum = cde as ICreateDevEnum;
-            UCOMIEnumMoniker em;
-            UCOMIMoniker[] monikers = new UCOMIMoniker[1];
-            int lFetched;
+            IEnumMoniker em;
+            IMoniker[] monikers = new IMoniker[5];
+            IntPtr p = Marshal.AllocCoTaskMem(4);
 
-            hr = devEnum.CreateClassEnumerator(FilterCategory.VideoCompressorCategory, out em, CDef.DevmonDMO);
-            DsError.ThrowExceptionForHR(hr);
+            try
+            {
+                hr = devEnum.CreateClassEnumerator(FilterCategory.ActiveMovieCategories, out em, CDef.None);
+                DsError.ThrowExceptionForHR(hr);
 
-            hr = em.Next(1, monikers, out lFetched);
-            DsError.ThrowExceptionForHR(hr);
+                hr = em.Next(monikers.Length, monikers, p);
+                DsError.ThrowExceptionForHR(hr);
 
-            Debug.Assert(lFetched > 0, "CreateClassEnumerator");
+                x = Marshal.ReadInt32(p);
+            }
+            finally
+            {
+                Marshal.FreeCoTaskMem(p);
+            }
+
+            Debug.Assert(x > 0, "CreateClassEnumerator");
         }
     }
 }

@@ -12,6 +12,10 @@ using System.Security.Permissions;
 
 using DirectShowLib;
 
+#if !USING_NET11
+using System.Runtime.InteropServices.ComTypes;
+#endif
+
 namespace DirectShowLib.Utils
 {
     /// <summary>
@@ -139,9 +143,14 @@ namespace DirectShowLib.Utils
         {
             int hr = 0;
             IBaseFilter filter = null;
-            UCOMIBindCtx bindCtx = null;
-            UCOMIMoniker moniker = null;
-            int eaten;
+#if USING_NET11
+			UCOMIBindCtx bindCtx = null;
+			UCOMIMoniker moniker = null;
+#else
+			IBindCtx bindCtx = null;
+			IMoniker moniker = null;
+#endif
+			int eaten;
 
             if (graphBuilder == null)
                 throw new ArgumentNullException("graphBuilder");
@@ -452,7 +461,11 @@ namespace DirectShowLib.Utils
         {
             int hr = 0;
             IStorage storage = null;
+#if USING_NET11
             UCOMIStream stream = null;
+#else
+            IStream stream = null;
+#endif
 
             if (graphBuilder == null)
                 throw new ArgumentNullException("graphBuilder");
@@ -508,7 +521,11 @@ namespace DirectShowLib.Utils
         {
             int hr = 0;
             IStorage storage = null;
-            UCOMIStream stream = null;
+#if USING_NET11
+			UCOMIStream stream = null;
+#else
+			IStream stream = null;
+#endif
 
             if (graphBuilder == null)
                 throw new ArgumentNullException("graphBuilder");
@@ -830,7 +847,11 @@ namespace DirectShowLib.Utils
             [In] STGM grfMode,
             [In] int reserved1,
             [In] int reserved2,
-            [Out] out UCOMIStream ppstm
+#if USING_NET11
+			[Out] out UCOMIStream ppstm
+#else
+			[Out] out IStream ppstm
+#endif
             );
 
         [PreserveSig]
@@ -839,8 +860,12 @@ namespace DirectShowLib.Utils
             [In] IntPtr reserved1,
             [In] STGM grfMode,
             [In] int reserved2,
-            [Out] out UCOMIStream ppstm
-            );
+#if USING_NET11
+			[Out] out UCOMIStream ppstm
+#else
+			[Out] out IStream ppstm
+#endif
+			);
 
         [PreserveSig]
         int CreateStorage(
@@ -903,10 +928,16 @@ namespace DirectShowLib.Utils
         [PreserveSig]
         int SetElementTimes(
             [In, MarshalAs(UnmanagedType.LPWStr)] string pwcsName, 
-            [In] FILETIME pctime, 
-            [In] FILETIME patime, 
-            [In] FILETIME pmtime
-            );
+#if USING_NET11
+			[In] FILETIME pctime,
+			[In] FILETIME patime,
+			[In] FILETIME pmtime
+#else
+			[In] System.Runtime.InteropServices.ComTypes.FILETIME pctime,
+            [In] System.Runtime.InteropServices.ComTypes.FILETIME patime,
+            [In] System.Runtime.InteropServices.ComTypes.FILETIME pmtime
+#endif
+			);
 
         [PreserveSig]
         int SetClass([In, MarshalAs(UnmanagedType.LPStruct)] Guid clsid);
@@ -919,8 +950,12 @@ namespace DirectShowLib.Utils
 
         [PreserveSig]
         int Stat(
-            [Out] out STATSTG pStatStg, 
-            [In] int grfStatFlag
+#if USING_NET11
+			[Out] out STATSTG pStatStg, 
+#else
+			[Out] out System.Runtime.InteropServices.ComTypes.STATSTG pStatStg, 
+#endif
+			[In] int grfStatFlag
             );
     }
 
@@ -929,10 +964,18 @@ namespace DirectShowLib.Utils
         private NativeMethods(){}
 
         [DllImport("ole32.dll")]
-        public static extern int CreateBindCtx(int reserved, out UCOMIBindCtx ppbc);
+#if USING_NET11
+		public static extern int CreateBindCtx(int reserved, out UCOMIBindCtx ppbc);
+#else
+		public static extern int CreateBindCtx(int reserved, out IBindCtx ppbc);
+#endif
 
         [DllImport("ole32.dll")]
-        public static extern int MkParseDisplayName(UCOMIBindCtx pcb, [MarshalAs(UnmanagedType.LPWStr)] string szUserName, out int pchEaten, out UCOMIMoniker ppmk);
+#if USING_NET11
+		public static extern int MkParseDisplayName(UCOMIBindCtx pcb, [MarshalAs(UnmanagedType.LPWStr)] string szUserName, out int pchEaten, out UCOMIMoniker ppmk);
+#else
+		public static extern int MkParseDisplayName(IBindCtx pcb, [MarshalAs(UnmanagedType.LPWStr)] string szUserName, out int pchEaten, out IMoniker ppmk);
+#endif
 
         [DllImport("olepro32.dll", CharSet=CharSet.Unicode, ExactSpelling=true)]
         public static extern int OleCreatePropertyFrame(

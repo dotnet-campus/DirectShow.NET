@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.ComTypes;
 
 using DirectShowLib.BDA;
 using DirectShowLib;
@@ -91,7 +92,7 @@ namespace DirectShowLib.Test
     private void TestNewEnum()
     {
       int hr;
-      UCOMIEnumVARIANT pEnum;
+      IEnumVARIANT pEnum;
 
       hr = m_comps.get__NewEnum(out pEnum);
       DsError.ThrowExceptionForHR(hr);

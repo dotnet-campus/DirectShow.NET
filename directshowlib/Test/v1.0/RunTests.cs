@@ -14,9 +14,6 @@ namespace DirectShowLib.Test
         [STAThread]
         static void Main(string[] args)
         {
-            // This code, while complete, won't run on all machines.  The problem
-            // is that not all audio cards support all these capabilities.  As a
-            // result, some (or all) of the calls return E_NOTIMPLEMENTED.
             //IAMAudioInputMixerTest t3 = new IAMAudioInputMixerTest();
             //t3.DoTests();
 
@@ -29,9 +26,9 @@ namespace DirectShowLib.Test
             //IVMRFilterConfig9Test t4 = new IVMRFilterConfig9Test();
             //t4.DoTests();
 
-            IVMRWindowlessControl9Test t5 = new IVMRWindowlessControl9Test();
-            t5.Show();
-            t5.DoTests();
+            //IVMRWindowlessControl9Test t5 = new IVMRWindowlessControl9Test();
+            //t5.Show();
+            //t5.DoTests();
 
             //IMediaSampleTest t6 = new IMediaSampleTest();
             //t6.DoTests();
@@ -150,8 +147,8 @@ namespace DirectShowLib.Test
             //IAMVideoProcAmpTest en02 = new IAMVideoProcAmpTest();
             //en02.DoTests();
 
-            //ICaptureGraphBuilder2Test dpw41 = new ICaptureGraphBuilder2Test();
-            //dpw41.DoTests();
+            // ICaptureGraphBuilder2Test dpw41 = new ICaptureGraphBuilder2Test();
+            // dpw41.DoTests();
 
             //IAMVfwCompressDialogsTest dpw42 = new IAMVfwCompressDialogsTest();
             //dpw42.DoTests();

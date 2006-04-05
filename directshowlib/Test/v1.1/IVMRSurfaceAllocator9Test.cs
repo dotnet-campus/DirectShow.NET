@@ -183,10 +183,10 @@ namespace DirectShowLib.Test
         // Assume this call works (ie Hardware new enough to create a TextureSurface : dx7 video board or better)
         // This test also doesn't support YUV surfaces creation
       }
-      catch (DirectXException dxe)
-      {
-        return dxe.ErrorCode;
-      }
+      //catch (DirectXException dxe)
+      //{
+      //  return dxe.ErrorCode;
+      //}
       catch (COMException e)
       {
         return e.ErrorCode;

@@ -41,7 +41,11 @@ namespace TCP
 
             // NOTE: DNS lookups are nice and all but quite time consuming.
             strHostName = Dns.GetHostName();
+#if USING_NET11
             IPHostEntry ipEntry = Dns.GetHostByName( strHostName );
+#else
+            IPHostEntry ipEntry = Dns.GetHostEntry( strHostName );
+#endif
             aryLocalAddr = ipEntry.AddressList;
 
             // Verify we got an IP address.

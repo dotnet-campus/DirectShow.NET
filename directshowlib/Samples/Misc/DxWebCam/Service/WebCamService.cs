@@ -67,6 +67,8 @@ namespace WebCamService
         }		
 
         #region Member Variables
+        private const int MAXOUTSTANDINGPACKETS = 3;
+
         /// <summary>
         /// The thread will run the job.
         /// The job is the Method Run() below
@@ -239,12 +241,78 @@ namespace WebCamService
             } while ( !bShutDown );
         }
 
+        class PacketCount : IDisposable
+        {
+            private int m_PacketCount;
+            private int m_MaxPackets;
+
+            public PacketCount(int i)
+            {
+                m_MaxPackets = i;
+                m_PacketCount = 0;
+            }
+
+            public bool AddPacket()
+            {
+                bool b;
+
+                lock (this)
+                {
+                    b = m_PacketCount < m_MaxPackets;
+                    if (b)
+                    {
+                        m_PacketCount++;
+                    }
+                    else
+                    {
+                        Debug.WriteLine("Max outstanding Packets reached");
+                    }
+                }
+
+                return b;
+            }
+
+            public void RemovePacket()
+            {
+                lock (this)
+                {
+                    if (m_PacketCount > 0)
+                    {
+                        m_PacketCount--;
+                    }
+                    else
+                    {
+                        Debug.WriteLine("Packet count is messed up");
+                    }
+                }
+            }
+
+            public int Count()
+            {
+                return m_PacketCount;
+            }
+
+            #region IDisposable Members
+
+            public void Dispose()
+            {
+#if DEBUG
+                if (m_PacketCount != 0)
+                {
+                    Debug.WriteLine("Packets left over: " + m_PacketCount.ToString());
+                }
+#endif
+            }
+
+            #endregion
+        }
+
         // A client attached to the tcp port
         private void Connected(object sender, ref object t)
         {
             lock (this)
             {
-                t = 0;
+                t = new PacketCount(MAXOUTSTANDINGPACKETS);
                 iConnectionCount++;
 
                 if (iConnectionCount == 1)
@@ -253,6 +321,7 @@ namespace WebCamService
                 }
             }
         }
+
         // A client detached from the tcp port
         private void Disconnected(object sender, ref object t)
         {
@@ -265,29 +334,20 @@ namespace WebCamService
                 }
             }
         }
+
         private void Receive(Object sender, ref object o, ref byte [] b, int ByteCount)
         {
-            lock (o)
-            {
-                o = ((int)o) - ByteCount;
-                Debug.Assert((int) o >= 0);
-            }
+            PacketCount pc = (PacketCount)o;
+            pc.RemovePacket();
         }
+
         private void Send(Object sender, ref object o, ref bool b)
         {
-            lock (o)
-            {
-                if ((int) o < 3)
-                {
-                    o = ((int)o) + 1;
-                }
-                else
-                {
-                    Debug.WriteLine("Skipped");
-                    b = false;
-                }
-            }
+            PacketCount pc = (PacketCount)o;
+
+            b = pc.AddPacket();
         }
+
         // Find the appropriate encoder
         private ImageCodecInfo GetEncoderInfo(String mimeType)
         {

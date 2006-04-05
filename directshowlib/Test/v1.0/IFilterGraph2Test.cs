@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace DirectShowLib.Test
 {
@@ -12,7 +13,7 @@ namespace DirectShowLib.Test
 
 		public IFilterGraph2Test()
 		{
-		}
+        }
 
     public void DoTests()
     {
@@ -41,9 +42,8 @@ namespace DirectShowLib.Test
     {
       int hr = 0;
       ICreateDevEnum devEnum = (ICreateDevEnum) new CreateDevEnum();
-      UCOMIEnumMoniker enumMoniker = null;
-      UCOMIMoniker[] monikers = new UCOMIMoniker[1];
-      int fetched = 0;
+      IEnumMoniker enumMoniker = null;
+      IMoniker[] monikers = new IMoniker[1];
 
       // In this method, i try to add an Audio Renderer by browsing the 
       // AudioRenderer Filters Category...
@@ -51,7 +51,7 @@ namespace DirectShowLib.Test
       Marshal.ThrowExceptionForHR(hr);
       Marshal.ReleaseComObject(devEnum);
 
-      hr = enumMoniker.Next(1, monikers, out fetched);
+      hr = enumMoniker.Next(1, monikers, IntPtr.Zero);
       Marshal.ThrowExceptionForHR(hr);
 
       hr = this.filterGraph2.AddSourceFilterForMoniker(monikers[0], null, "Audio Renderer from Moniker", out this.audioRenderer);

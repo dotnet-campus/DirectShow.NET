@@ -121,7 +121,7 @@ Public Class Form1
     Dim cam As Capture = Nothing
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles StartStop.Click
-        Cursor.Current = Cursors.WaitCursor
+        Cursor = Cursors.WaitCursor
         If (cam Is Nothing) Then
             cam = New Capture(VIDEODEVICE, FRAMERATE, VIDEOWIDTH, VIDEOHEIGHT, TextBox3.Text)
             cam.SetLogo(TextBox2.Text)
@@ -135,7 +135,7 @@ Public Class Form1
             TextBox1.Text = "Not Running"
             StartStop.Text = "Start"
         End If
-        Cursor.Current = Cursors.Default
+        Cursor = Cursors.Default
 
     End Sub
 End Class

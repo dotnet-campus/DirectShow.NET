@@ -59,7 +59,7 @@ namespace DirectShowLib.Test
             IPin iPin = m_pc as IPin;
             System.Threading.ManualResetEvent mre = new System.Threading.ManualResetEvent(false);
             
-            hr = m_pc.NotifyEndOfStream(mre.Handle);
+            hr = m_pc.NotifyEndOfStream(mre.SafeWaitHandle.DangerousGetHandle());
             DsError.ThrowExceptionForHR(hr);
 
             hr = iPin.EndOfStream();

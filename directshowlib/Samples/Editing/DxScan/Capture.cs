@@ -31,7 +31,6 @@ namespace DxScan
         private int m_videoWidth;
         private int m_videoHeight;
         private int m_stride;
-        private bool m_Quit = false;
         public int m_Count = 0;
         public int m_Blacks = 0;
 
@@ -97,10 +96,6 @@ namespace DxScan
             DsError.ThrowExceptionForHR(hr);
         }
 
-        public void Quit()
-        {
-            m_Quit = true;
-        }
         /// <summary> build the capture graph for grabber. </summary>
         private void SetupGraph(string FileName)
         {

@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.ComTypes;
 using System.Threading;
 using NUnit.Framework;
 
@@ -11,7 +12,7 @@ namespace DirectShowLib.Test
 {
     class MyErrorLog : IErrorLog
     {
-        public int AddError(string Desc, EXCEPINFO ex)
+        public int AddError(string Desc, System.Runtime.InteropServices.ComTypes.EXCEPINFO ex)
         {
             Debug.WriteLine(Desc);
 
@@ -19,7 +20,6 @@ namespace DirectShowLib.Test
         }
     }
 
-    [TestFixture]
     public class IPropertyBagTest
     {
         IPropertyBag m_ipb;
@@ -28,7 +28,6 @@ namespace DirectShowLib.Test
         {
         }
 
-        [Test]
         public void DoTests()
         {
             BuildGraph();

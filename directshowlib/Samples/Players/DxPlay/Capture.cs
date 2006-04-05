@@ -101,7 +101,11 @@ namespace DxPlay
 
                 // Wrap the graph event with a ManualResetEvent
                 m_mre = new ManualResetEvent(false);
+#if USING_NET11
                 m_mre.Handle = hEvent;
+#else
+                m_mre.SafeWaitHandle = new Microsoft.Win32.SafeHandles.SafeWaitHandle(hEvent, true);
+#endif
 
                 // Create a new thread to wait for events
                 Thread t = new Thread(new ThreadStart(this.EventWait));

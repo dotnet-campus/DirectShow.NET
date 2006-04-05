@@ -212,7 +212,7 @@ namespace DirectShowLib.Test
       //mpeg2Filter.fSpecifyTableIdExtension = true;
       //mpeg2Filter.TableIdExtension = NID;
       
-      hr = mpeg2Data.GetStreamOfSections(PID, TID, mpeg2Filter, mre.Handle, out mpeg2Stream);
+      hr = mpeg2Data.GetStreamOfSections(PID, TID, mpeg2Filter, mre.SafeWaitHandle.DangerousGetHandle(), out mpeg2Stream);
       DsError.ThrowExceptionForHR(hr);
 
       Debug.Assert((hr == 0) &&  (mpeg2Stream != null), "IMpeg2Data.GetStreamOfSections");

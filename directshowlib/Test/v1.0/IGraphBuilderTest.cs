@@ -61,7 +61,7 @@ namespace DirectShowLib.Test
 
       // We should plan extended tests with this method to see 
       // if we could mix .Net text writing with GraphBuilder writings
-      hr = this.graphBuilder.SetLogFile(this.logFile.Handle);
+      hr = this.graphBuilder.SetLogFile(this.logFile.SafeFileHandle.DangerousGetHandle());
       Marshal.ThrowExceptionForHR(hr);
       Debug.Assert(hr == 0, "IGraphBuilder.SetLogFile");
     }

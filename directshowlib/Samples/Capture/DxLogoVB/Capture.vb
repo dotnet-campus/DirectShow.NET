@@ -248,8 +248,8 @@ Public Class Capture
         ' Guid iid = typeof(IAMStreamConfig).GUID;
         Dim IMyInterfaceAttribute As Attribute = Attribute.GetCustomAttribute(GetType(IAMStreamConfig), GetType(GuidAttribute))
         Dim iid As Guid = New Guid(CType(IMyInterfaceAttribute, GuidAttribute).Value)
-        Dim o As Object
-        Dim media As AMMediaType
+        Dim o As Object = Nothing
+        Dim media As AMMediaType = Nothing
         Dim videoStreamConfig As IAMStreamConfig
         Dim videoControl As IAMVideoControl = DirectCast(capFilter, IAMVideoControl)
 
@@ -324,6 +324,7 @@ Public Class Capture
 
                 ' Stop the graph
                 hr = m_mediaCtrl.Stop()
+                m_mediaCtrl = Nothing
                 m_bRunning = False
             End If
         Catch ex As Exception

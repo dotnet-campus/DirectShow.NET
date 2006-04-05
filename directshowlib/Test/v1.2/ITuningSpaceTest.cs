@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.ComTypes;
 
 using DirectShowLib.BDA;
 
@@ -104,7 +105,7 @@ namespace DirectShowLib.Test
     private void TestEnumDeviceMonikers()
     {
       int hr = 0;
-      UCOMIEnumMoniker enumM;
+      IEnumMoniker enumM;
 
       hr = tuningSpace.EnumDeviceMonikers(out enumM);
       

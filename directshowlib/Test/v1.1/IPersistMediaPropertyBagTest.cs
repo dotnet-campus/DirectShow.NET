@@ -168,7 +168,7 @@ namespace DirectShowLib.Test
 
         #region IErrorLog Members
 
-        public int AddError(string pszPropName, EXCEPINFO pExcepInfo)
+        public int AddError(string pszPropName, System.Runtime.InteropServices.ComTypes.EXCEPINFO pExcepInfo)
         {
             // TODO:  Add IPersistMediaPropertyBagTest.AddError implementation
             return 0;

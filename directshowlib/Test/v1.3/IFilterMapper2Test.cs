@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.ComTypes;
 using DirectShowLib;
 using Microsoft.Win32;
 
@@ -48,7 +49,7 @@ namespace DirectShowLib.Test
         private void TestEnumMatchingFilters()
         {
             int hr;
-            UCOMIEnumMoniker pEnum;
+            IEnumMoniker pEnum;
             Guid [] pInputType = new Guid[4];
             Guid [] pOutputType = new Guid[4];
 
@@ -144,18 +145,17 @@ namespace DirectShowLib.Test
         {
         }
 
-        private int CountFilters(UCOMIEnumMoniker pEnum)
+        private int CountFilters(IEnumMoniker pEnum)
         {
             int hr;
             int c = 0;
-            int junk;
-            UCOMIMoniker [] mon = new UCOMIMoniker[1];
+            IMoniker [] mon = new IMoniker[1];
 
             do
             {
-                hr = pEnum.Next(1, mon, out junk);
+                hr = pEnum.Next(1, mon, IntPtr.Zero);
                 c++;
-            } while (hr == 0 && junk == 1);
+            } while (hr == 0);
 
 
             return c - 1;

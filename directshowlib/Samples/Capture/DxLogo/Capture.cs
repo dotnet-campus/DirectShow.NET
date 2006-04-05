@@ -364,6 +364,7 @@ namespace DxLogo
                 {
                     // Stop the graph
                     hr = m_mediaCtrl.Stop();
+                    m_mediaCtrl = null;
                     m_bRunning = false;
                 }
             }

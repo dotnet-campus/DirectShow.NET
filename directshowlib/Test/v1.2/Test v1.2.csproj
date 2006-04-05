@@ -1,374 +1,267 @@
-<VisualStudioProject>
-    <CSHARP
-        ProjectType = "Local"
-        ProductVersion = "7.10.3077"
-        SchemaVersion = "2.0"
-        ProjectGuid = "{5A2F1F84-85CB-45C6-AC1E-88B22236710F}"
-    >
-        <Build>
-            <Settings
-                ApplicationIcon = ""
-                AssemblyKeyContainerName = ""
-                AssemblyName = "Test"
-                AssemblyOriginatorKeyFile = ""
-                DefaultClientScript = "JScript"
-                DefaultHTMLPageLayout = "Grid"
-                DefaultTargetSchema = "IE50"
-                DelaySign = "false"
-                OutputType = "WinExe"
-                PreBuildEvent = ""
-                PostBuildEvent = "if not exist foo.avi copy $(SolutionDir)..\Resources\foo.avi .&#xd;&#xa;if not exist foo2.avi copy $(SolutionDir)..\Resources\foo2.avi ."
-                RootNamespace = "DirectShowLib.Test"
-                RunPostBuildEvent = "OnBuildSuccess"
-                StartupObject = ""
-            >
-                <Config
-                    Name = "Debug"
-                    AllowUnsafeBlocks = "false"
-                    BaseAddress = "285212672"
-                    CheckForOverflowUnderflow = "false"
-                    ConfigurationOverrideFile = ""
-                    DefineConstants = "DEBUG;TRACE;ALLOW_UNTESTED_INTERFACES"
-                    DocumentationFile = ""
-                    DebugSymbols = "true"
-                    FileAlignment = "4096"
-                    IncrementalBuild = "false"
-                    NoStdLib = "false"
-                    NoWarn = ""
-                    Optimize = "false"
-                    OutputPath = "bin\Debug\"
-                    RegisterForComInterop = "false"
-                    RemoveIntegerChecks = "false"
-                    TreatWarningsAsErrors = "false"
-                    WarningLevel = "4"
-                />
-                <Config
-                    Name = "Release"
-                    AllowUnsafeBlocks = "false"
-                    BaseAddress = "285212672"
-                    CheckForOverflowUnderflow = "false"
-                    ConfigurationOverrideFile = ""
-                    DefineConstants = "TRACE"
-                    DocumentationFile = ""
-                    DebugSymbols = "false"
-                    FileAlignment = "4096"
-                    IncrementalBuild = "false"
-                    NoStdLib = "false"
-                    NoWarn = ""
-                    Optimize = "true"
-                    OutputPath = "bin\Release\"
-                    RegisterForComInterop = "false"
-                    RemoveIntegerChecks = "false"
-                    TreatWarningsAsErrors = "false"
-                    WarningLevel = "4"
-                />
-            </Settings>
-            <References>
-                <Reference
-                    Name = "System"
-                    AssemblyName = "System"
-                    HintPath = "..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.dll"
-                />
-                <Reference
-                    Name = "System.Data"
-                    AssemblyName = "System.Data"
-                    HintPath = "..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Data.dll"
-                />
-                <Reference
-                    Name = "System.Drawing"
-                    AssemblyName = "System.Drawing"
-                    HintPath = "..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Drawing.dll"
-                />
-                <Reference
-                    Name = "System.Windows.Forms"
-                    AssemblyName = "System.Windows.Forms"
-                    HintPath = "..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Windows.Forms.dll"
-                />
-                <Reference
-                    Name = "System.XML"
-                    AssemblyName = "System.Xml"
-                    HintPath = "..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.XML.dll"
-                />
-                <Reference
-                    Name = "DirectShowLib"
-                    Project = "{CE009BFA-5EF6-4153-B2A1-2FA79698A9AE}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
-            </References>
-        </Build>
-        <Files>
-            <Include>
-                <File
-                    RelPath = "AssemblyInfo.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "BDAUtils.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IAMSetErrorLogTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IAMTimelineCompTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IAMTimelineEffectable.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IAMTimelineGroupTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IAMTimelineObjTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IAMTimelineSplittableTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IAMTimelineSrcTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IAMTimelineTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IAMTimelineTrackTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IAMTimelineTransableTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IAMTimelineTransTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IAMTimelineVirtualTrackTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IBDA_SignalStatisticsTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IBDA_TopologyTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IComponentsOldTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IComponentsTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IComponentTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IComponentTypesTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IComponentTypeTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "ICreatePropBagOnRegKeyTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IDVBSLocatorTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IDVBSTuningSpaceTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IDVBTLocatorTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IDVBTuneRequestTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IDVBTuningSpace2Test.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IDVBTuningSpaceTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IEnumComponentsTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IEnumComponentTypesTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IEnumDMOTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IEnumTuningSpacesTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IFrequencyMapTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "ILocatorTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IMediaDetTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IMediaLocatorTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IMediaObjectInPlaceTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IMediaObjectTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IMediaParamInfoTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IMediaParamsTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IMPEG2TuneRequestTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IPropertySetterTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IRenderEngine2Test.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IRenderEngineTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "ISmartRenderEngineTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "ITuneRequestTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "ITunerTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "ITuningSpaceContainerTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "ITuningSpacesTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "ITuningSpaceTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IXml2DexTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "MoTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "RunTests.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "ToDo v12.htm"
-                    BuildAction = "Content"
-                />
-            </Include>
-        </Files>
-    </CSHARP>
-</VisualStudioProject>
-
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5A2F1F84-85CB-45C6-AC1E-88B22236710F}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>Test</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>DirectShowLib.Test</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE;ALLOW_UNTESTED_INTERFACES</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <ProjectReference Include="..\..\src\DirectShowLib-2005.csproj">
+      <Name>DirectShowLib</Name>
+      <Project>{CE009BFA-5EF6-4153-B2A1-2FA79698A9AE}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BDAUtils.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IAMSetErrorLogTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IAMTimelineCompTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IAMTimelineEffectable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IAMTimelineGroupTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IAMTimelineObjTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IAMTimelineSplittableTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IAMTimelineSrcTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IAMTimelineTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IAMTimelineTrackTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IAMTimelineTransableTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IAMTimelineTransTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IAMTimelineVirtualTrackTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IBDA_SignalStatisticsTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IBDA_TopologyTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IComponentsOldTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IComponentsTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IComponentTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IComponentTypesTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IComponentTypeTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ICreatePropBagOnRegKeyTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IDVBSLocatorTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IDVBSTuningSpaceTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IDVBTLocatorTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IDVBTuneRequestTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IDVBTuningSpace2Test.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IDVBTuningSpaceTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IEnumComponentsTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IEnumComponentTypesTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IEnumDMOTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IEnumTuningSpacesTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IFrequencyMapTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ILocatorTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IMediaDetTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IMediaLocatorTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IMediaObjectInPlaceTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IMediaObjectTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IMediaParamInfoTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IMediaParamsTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IMPEG2TuneRequestTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IPropertySetterTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IRenderEngine2Test.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IRenderEngineTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ISmartRenderEngineTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ITuneRequestTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ITunerTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ITuningSpaceContainerTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ITuningSpacesTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ITuningSpaceTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IXml2DexTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MoTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="RunTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Content Include="ToDo v12.htm" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>if not exist foo.avi copy $(SolutionDir)..\Resources\foo.avi .
+if not exist foo2.avi copy $(SolutionDir)..\Resources\foo2.avi .</PostBuildEvent>
+  </PropertyGroup>
+</Project>

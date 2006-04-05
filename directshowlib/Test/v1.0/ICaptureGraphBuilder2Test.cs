@@ -24,7 +24,6 @@ namespace DirectShowLib.Test
         }
     }
 
-	[TestFixture]
 	public class ICaptureGraphBuilder2Test
 	{
         private const string g_SourceTestFile = @"foo.avi";
@@ -43,7 +42,6 @@ namespace DirectShowLib.Test
 		/// <summary>
 		/// Test all IBasicVideo methods
 		/// </summary>
-		[Test]
 		public void DoTests()
 		{
 			m_graphBuilder = BuildGraph(g_SourceTestFile);

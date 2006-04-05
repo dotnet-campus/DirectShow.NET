@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.ComTypes;
 
 using DirectShowLib.BDA;
 
@@ -146,7 +147,7 @@ namespace DirectShowLib.Test
     private void TestEnums()
     {
       int hr = 0;
-      UCOMIEnumVARIANT enumTS1;
+      IEnumVARIANT enumTS1;
       IEnumTuningSpaces enumTS2;
 
       hr = tsContainer.get__NewEnum(out enumTS1);

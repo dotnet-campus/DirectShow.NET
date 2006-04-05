@@ -44,6 +44,8 @@ namespace DirectShowLib.Test
             Debug.Assert(fn == FileName, "GetCurFile");
             Debug.Assert(pmt.majorType == MediaType.Stream, "GetCurFile type");
 
+            Marshal.AddRef(pmt.unkPtr);
+
             hr = m_ppsink.SetFileName(@"c:\foo2.out", pmt);
             DsError.ThrowExceptionForHR(hr);
 
@@ -73,13 +75,8 @@ namespace DirectShowLib.Test
             hr = ifg2.AddSourceFilterForMoniker(dev.Mon, null, dev.Name, out ppFilter);
             DsError.ThrowExceptionForHR(hr);
 
-            // Get a ICaptureGraphBuilder2
-            ICaptureGraphBuilder2 icgb = (ICaptureGraphBuilder2) new CaptureGraphBuilder2();
-            hr = icgb.SetFiltergraph( (IGraphBuilder)graphBuilder );
-            DsError.ThrowExceptionForHR(hr);
-
             // Use the ICaptureGraphBuilder2 to add the avi mux
-            hr = icgb.SetOutputFileName(MediaSubType.Avi, FileName, out ppbf, out m_ppsink);
+            hr = icgb2.SetOutputFileName(MediaSubType.Avi, FileName, out ppbf, out m_ppsink);
             DsError.ThrowExceptionForHR(hr);
 
             hr = icgb2.RenderStream(PinCategory.Capture, MediaType.Video, ppFilter, null, ppbf);

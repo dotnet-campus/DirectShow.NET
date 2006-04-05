@@ -1,396 +1,273 @@
-<VisualStudioProject>
-    <CSHARP
-        ProjectType = "Local"
-        ProductVersion = "7.10.3077"
-        SchemaVersion = "2.0"
-        ProjectGuid = "{4E88DA02-82B3-44de-8322-85B2E0D88BD1}"
-    >
-        <Build>
-            <Settings
-                ApplicationIcon = ""
-                AssemblyKeyContainerName = ""
-                AssemblyName = "Test"
-                AssemblyOriginatorKeyFile = ""
-                DefaultClientScript = "JScript"
-                DefaultHTMLPageLayout = "Grid"
-                DefaultTargetSchema = "IE50"
-                DelaySign = "false"
-                OutputType = "Exe"
-                PreBuildEvent = ""
-                PostBuildEvent = "if not exist foo.avi copy $(SolutionDir)..\Resources\foo.avi ."
-                RootNamespace = "Test"
-                RunPostBuildEvent = "OnBuildSuccess"
-                StartupObject = ""
-            >
-                <Config
-                    Name = "Debug"
-                    AllowUnsafeBlocks = "true"
-                    BaseAddress = "285212672"
-                    CheckForOverflowUnderflow = "false"
-                    ConfigurationOverrideFile = ""
-                    DefineConstants = "DEBUG;TRACE"
-                    DocumentationFile = ""
-                    DebugSymbols = "true"
-                    FileAlignment = "4096"
-                    IncrementalBuild = "true"
-                    NoStdLib = "false"
-                    NoWarn = ""
-                    Optimize = "false"
-                    OutputPath = "bin\Debug\"
-                    RegisterForComInterop = "false"
-                    RemoveIntegerChecks = "false"
-                    TreatWarningsAsErrors = "false"
-                    WarningLevel = "4"
-                />
-                <Config
-                    Name = "Release"
-                    AllowUnsafeBlocks = "false"
-                    BaseAddress = "285212672"
-                    CheckForOverflowUnderflow = "false"
-                    ConfigurationOverrideFile = ""
-                    DefineConstants = "TRACE"
-                    DocumentationFile = ""
-                    DebugSymbols = "false"
-                    FileAlignment = "4096"
-                    IncrementalBuild = "false"
-                    NoStdLib = "false"
-                    NoWarn = ""
-                    Optimize = "true"
-                    OutputPath = "bin\Release\"
-                    RegisterForComInterop = "false"
-                    RemoveIntegerChecks = "false"
-                    TreatWarningsAsErrors = "false"
-                    WarningLevel = "4"
-                />
-            </Settings>
-            <References>
-                <Reference
-                    Name = "System"
-                    AssemblyName = "System"
-                    HintPath = "..\..\..\WINDOWS\Microsoft.NET\Framework\v1.0.3705\System.dll"
-                />
-                <Reference
-                    Name = "System.Data"
-                    AssemblyName = "System.Data"
-                    HintPath = "..\..\..\WINDOWS\Microsoft.NET\Framework\v1.0.3705\System.Data.dll"
-                />
-                <Reference
-                    Name = "System.XML"
-                    AssemblyName = "System.Xml"
-                    HintPath = "..\..\..\WINDOWS\Microsoft.NET\Framework\v1.0.3705\System.XML.dll"
-                />
-                <Reference
-                    Name = "System.Drawing"
-                    AssemblyName = "System.Drawing"
-                    HintPath = "..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Drawing.dll"
-                />
-                <Reference
-                    Name = "System.Windows.Forms"
-                    AssemblyName = "System.Windows.Forms"
-                    HintPath = "..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Windows.Forms.dll"
-                />
-                <Reference
-                    Name = "DirectShowLib"
-                    Project = "{CE009BFA-5EF6-4153-B2A1-2FA79698A9AE}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
-                <Reference
-                    Name = "Microsoft.DirectX"
-                    AssemblyName = "Microsoft.DirectX"
-                    HintPath = "..\..\..\..\..\WINDOWS\Microsoft.NET\Managed DirectX\v9.02.2904\Microsoft.DirectX.dll"
-                    AssemblyFolderKey = "hklm\current managed directx 9.2"
-                />
-                <Reference
-                    Name = "Microsoft.DirectX.Direct3D"
-                    AssemblyName = "Microsoft.DirectX.Direct3D"
-                    HintPath = "..\..\..\..\..\WINDOWS\Microsoft.NET\Managed DirectX\v9.02.2904\Microsoft.DirectX.Direct3D.dll"
-                    AssemblyFolderKey = "hklm\current managed directx 9.2"
-                />
-            </References>
-        </Build>
-        <Files>
-            <Include>
-                <File
-                    RelPath = "AssemblyInfo.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IAMFilterMiscFlagsTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IAMGraphStreamsTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IAMMediaContentTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IAMOpenProgressTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IAMStatsTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IAMStreamControlTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IConfigAsfWriterTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IDMOWrapperFilterTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IDVEncTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IDVRGB219Test.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IDVSplitterTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IEnumStreamBufferRecordingAttribTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IFilterChainTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IGraphVersionTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IIPDVDecTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IMediaEventSinkTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IMediaPropertyBagTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IMixerPinConfig2Test.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IMixerPinConfigTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IPersistMediaPropertyBagTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IQualPropTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IStreamBufferConfigure2Test.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IStreamBufferConfigureTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IStreamBufferDataCountersTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IStreamBufferInitializeTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IStreamBufferMediaSeeking2Test.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IStreamBufferMediaSeekingTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IStreamBufferRecCompTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IStreamBufferRecordControlTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IStreamBufferRecordingAttributeTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IStreamBufferSink2Test.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IStreamBufferSink3Test.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IStreamBufferSinkTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IStreamBufferSourceTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IVMRAspectRatioControl9Test.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IVMRAspectRatioControlTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IVMRDeinterlaceControl9Test.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IVMRDeinterlaceControlTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IVMRImageCompositor9Test.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IVMRImageCompositorTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IVMRImagePresenterConfig9Test.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IVMRImagePresenterConfigTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IVMRMixerBitmap9Test.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IVMRMixerBitmapTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IVMRMixerControl9Test.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IVMRMixerControlTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IVMRMonitorConfig9Test.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IVMRMonitorConfigTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IVMRSurfaceAllocator9Test.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IVMRSurfaceAllocatorEx9Test.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IVMRSurfaceAllocatorNotify9Test.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IVMRVideoStreamControl9Test.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IVMRVideoStreamControlTest.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "RunTests.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "ToDo v11.htm"
-                    BuildAction = "None"
-                />
-            </Include>
-        </Files>
-    </CSHARP>
-</VisualStudioProject>
-
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4E88DA02-82B3-44DE-8322-85B2E0D88BD1}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>Test</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Test</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.DirectX.Direct3D, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <ProjectReference Include="..\..\src\DirectShowLib-2005.csproj">
+      <Name>DirectShowLib</Name>
+      <Project>{CE009BFA-5EF6-4153-B2A1-2FA79698A9AE}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IAMFilterMiscFlagsTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IAMGraphStreamsTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IAMMediaContentTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IAMOpenProgressTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IAMStatsTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IAMStreamControlTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IConfigAsfWriterTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IDMOWrapperFilterTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IDVEncTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IDVRGB219Test.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IDVSplitterTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IEnumStreamBufferRecordingAttribTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IFilterChainTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IGraphVersionTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IIPDVDecTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IMediaEventSinkTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IMediaPropertyBagTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IMixerPinConfig2Test.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IMixerPinConfigTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IPersistMediaPropertyBagTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IQualPropTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IStreamBufferConfigure2Test.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IStreamBufferConfigureTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IStreamBufferDataCountersTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IStreamBufferInitializeTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IStreamBufferMediaSeeking2Test.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IStreamBufferMediaSeekingTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IStreamBufferRecCompTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IStreamBufferRecordControlTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IStreamBufferRecordingAttributeTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IStreamBufferSink2Test.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IStreamBufferSink3Test.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IStreamBufferSinkTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IStreamBufferSourceTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IVMRAspectRatioControl9Test.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IVMRAspectRatioControlTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IVMRDeinterlaceControl9Test.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IVMRDeinterlaceControlTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IVMRImageCompositor9Test.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IVMRImageCompositorTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IVMRImagePresenterConfig9Test.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IVMRImagePresenterConfigTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IVMRMixerBitmap9Test.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IVMRMixerBitmapTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IVMRMixerControl9Test.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IVMRMixerControlTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IVMRMonitorConfig9Test.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IVMRMonitorConfigTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IVMRSurfaceAllocator9Test.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IVMRSurfaceAllocatorEx9Test.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IVMRSurfaceAllocatorNotify9Test.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IVMRVideoStreamControl9Test.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IVMRVideoStreamControlTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="RunTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <None Include="ToDo v11.htm" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>if not exist foo.avi copy $(SolutionDir)..\Resources\foo.avi .</PostBuildEvent>
+  </PropertyGroup>
+</Project>

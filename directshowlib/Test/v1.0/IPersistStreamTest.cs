@@ -6,6 +6,7 @@ using System;
 using System.Text;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.ComTypes;
 using System.Threading;
 using NUnit.Framework;
 using DirectShowLib.Dvd;
@@ -15,11 +16,10 @@ using System.IO;
 
 namespace DirectShowLib.Test
 {
-  [TestFixture]
   public class IPersistStreamTest
   {
     // The drive containing testme.iso
-    const string MyDisk = @"f:\video_ts";
+    const string MyDisk = @"d:\video_ts";
 
     IDvdInfo2 m_idi2 = null;
     IDvdControl2 m_idc2 = null;
@@ -31,7 +31,7 @@ namespace DirectShowLib.Test
     extern private static int CreateStreamOnHGlobal( 
       IntPtr hGlobalMemHandle, 
       bool fDeleteOnRelease, 
-      out UCOMIStream pOutStm);
+      out IStream pOutStm);
 
     public IPersistStreamTest()
     {
@@ -39,7 +39,6 @@ namespace DirectShowLib.Test
     /// <summary>
     /// Test all IDvdControl2Test methods
     /// </summary>
-    [Test]
     public void DoTests()
     {
       IDvdGraphBuilder idgb = GetDvdGraph();
@@ -172,7 +171,7 @@ namespace DirectShowLib.Test
     void TestSaveLoad()
     {
       int hr;
-      UCOMIStream uis = null;
+      IStream uis = null;
       long siz;
       hr = m_ips.GetSizeMax(out siz);
 
@@ -187,7 +186,7 @@ namespace DirectShowLib.Test
       hr = m_ips.IsDirty();
       Debug.Assert(hr == 1, "dirty3");
 
-      STATSTG p;
+      System.Runtime.InteropServices.ComTypes.STATSTG p;
       uis.Stat(out p, 0);
 
       // Make sure something got written

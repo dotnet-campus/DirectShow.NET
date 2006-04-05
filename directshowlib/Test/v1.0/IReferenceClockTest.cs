@@ -11,7 +11,6 @@ using System.ComponentModel;
 
 namespace DirectShowLib.Test
 {
-    [TestFixture]
     public class IReferenceClockTest
     {
         DsROTEntry m_ROT = null;
@@ -25,14 +24,31 @@ namespace DirectShowLib.Test
         /// <summary>
         /// Test all methods
         /// </summary>
-        [Test]
         public void DoTests()
         {
-            BuildGraph();
+            try
+            {
+                BuildGraph();
 
-            TestGetTime();
-            TestAdviseTime();
-            TestAdvisePeriodic(); // Includes Unadvise
+                TestGetTime();
+                TestAdviseTime();
+                TestAdvisePeriodic(); // Includes Unadvise
+            }
+            finally
+            {
+                if (m_ROT != null)
+                {
+                    m_ROT.Dispose();
+                }
+                if (m_imc != null)
+                {
+                    Marshal.ReleaseComObject(m_imc);
+                }
+                if (m_irc != null)
+                {
+                    Marshal.ReleaseComObject(m_irc);
+                }
+            }
         }
 
         void TestGetTime()
@@ -58,7 +74,7 @@ namespace DirectShowLib.Test
             DsError.ThrowExceptionForHR(hr);
 
             // Ask for a notification
-            hr = m_irc.AdviseTime(stime, 10000000, mre.Handle, out cookie);
+            hr = m_irc.AdviseTime(stime, 10000000, mre.SafeWaitHandle.DangerousGetHandle(), out cookie);
             DsError.ThrowExceptionForHR(hr);
 
             // Wait for the notification
@@ -88,7 +104,7 @@ namespace DirectShowLib.Test
             DsError.ThrowExceptionForHR(hr);
 
             // Ask for periodic notification
-            hr = m_irc.AdvisePeriodic(stime + 10000000, 10000000, mre.Handle, out cookie);
+            hr = m_irc.AdvisePeriodic(stime + 10000000, 10000000, mre.SafeWaitHandle.DangerousGetHandle(), out cookie);
             DsError.ThrowExceptionForHR(hr);
 
             // Make sure we get some notifications
@@ -140,44 +156,44 @@ namespace DirectShowLib.Test
         }
 
         // Class to use semaphores
-        public sealed class Semaphore : WaitHandle
+        internal sealed class Semaphore : WaitHandle
         {
             public Semaphore( int maxCount )
             {
-                Handle = CreateSemaphore( IntPtr.Zero, maxCount, maxCount, null );      
-                if ( Handle == InvalidHandle )
+                SafeWaitHandle = new Microsoft.Win32.SafeHandles.SafeWaitHandle(CreateSemaphore(IntPtr.Zero, maxCount, maxCount, null), true);
+                if ( SafeWaitHandle.IsInvalid )
                     throw new Win32Exception( Marshal.GetLastWin32Error() );      
             }
 
             public Semaphore( int initialCount, int maxCount )
             {
-                Handle = CreateSemaphore( IntPtr.Zero, initialCount, maxCount, null );      
+                SafeWaitHandle = new Microsoft.Win32.SafeHandles.SafeWaitHandle(CreateSemaphore(IntPtr.Zero, initialCount, maxCount, null), true);
 
-                if ( Handle == InvalidHandle )
-                    throw new Win32Exception( Marshal.GetLastWin32Error() );      
+                if (SafeWaitHandle.IsInvalid)
+                    throw new Win32Exception(Marshal.GetLastWin32Error());      
             }
 
             public Semaphore( int maxCount, string name )
             {
-                Handle = CreateSemaphore( IntPtr.Zero, maxCount, maxCount, name );
+                SafeWaitHandle = new Microsoft.Win32.SafeHandles.SafeWaitHandle(CreateSemaphore(IntPtr.Zero, maxCount, maxCount, name), true);
 
-                if ( Handle == InvalidHandle )
-                    throw new Win32Exception( Marshal.GetLastWin32Error() );
+                if (SafeWaitHandle.IsInvalid)
+                    throw new Win32Exception(Marshal.GetLastWin32Error());
             }
 
             public Semaphore( int initialCount, int maxCount, string name )
             {
-                Handle = CreateSemaphore( IntPtr.Zero, initialCount, maxCount, name );
+                SafeWaitHandle = new Microsoft.Win32.SafeHandles.SafeWaitHandle(CreateSemaphore(IntPtr.Zero, initialCount, maxCount, name), true);
 
-                if ( Handle == InvalidHandle )
-                    throw new Win32Exception( Marshal.GetLastWin32Error() );
+                if (SafeWaitHandle.IsInvalid)
+                    throw new Win32Exception(Marshal.GetLastWin32Error());
             }
 
             public int ReleaseSemaphore()
             {
                 IntPtr previousCount = new IntPtr();
 
-                if ( !ReleaseSemaphore( Handle, 1, out previousCount ) )
+                if ( !ReleaseSemaphore( SafeWaitHandle.DangerousGetHandle(), 1, out previousCount ) )
                     throw new Win32Exception( Marshal.GetLastWin32Error() );
 
                 return previousCount.ToInt32();
@@ -187,7 +203,7 @@ namespace DirectShowLib.Test
             {
                 IntPtr previousCount = new IntPtr();
 
-                if ( !ReleaseSemaphore( Handle, count, out previousCount ) )
+                if ( !ReleaseSemaphore( SafeWaitHandle.DangerousGetHandle(), count, out previousCount ) )
                     throw new Win32Exception( Marshal.GetLastWin32Error() );
 
                 return previousCount.ToInt32();
