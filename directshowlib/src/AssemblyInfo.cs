@@ -32,7 +32,7 @@ using System.Security.Permissions;
 [assembly : AssemblyDescription(".NET Interfaces for calling DirectShow.  See http://directshownet.sourceforge.net/")]
 [assembly : AssemblyConfiguration("")]
 [assembly : AssemblyCompany("")]
-[assembly : AssemblyVersion("1.3.0.*")]
+[assembly : AssemblyVersion("1.4.0.*")]
 #if DEBUG
 [assembly : AssemblyProduct("Debug Version")]
 #else
@@ -43,7 +43,6 @@ using System.Security.Permissions;
 [assembly : AssemblyCulture("")]
 [assembly : AssemblyDelaySign(false)]
 // Path is relative to the resulting executable (\Bin\Debug)
-[assembly : AssemblyKeyFile("..\\..\\DShowNET.snk")]
 [assembly : AssemblyKeyName("")]
 [assembly : ComVisible(false)]
 [assembly : CLSCompliant(true)]

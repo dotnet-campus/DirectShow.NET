@@ -25,6 +25,10 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 using System;
 using System.Runtime.InteropServices;
 
+#if !USING_NET11
+using System.Runtime.InteropServices.ComTypes;
+#endif
+
 namespace DirectShowLib
 {
     #region Declarations
@@ -58,7 +62,11 @@ namespace DirectShowLib
         [PreserveSig]
         int CreateClassEnumerator(
             [In, MarshalAs(UnmanagedType.LPStruct)] Guid pType,
+#if USING_NET11
             [Out] out UCOMIEnumMoniker ppEnumMoniker,
+#else
+            [Out] out IEnumMoniker ppEnumMoniker,
+#endif
             [In] CDef dwFlags);
     }
 

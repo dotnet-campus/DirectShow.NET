@@ -27,6 +27,10 @@ using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Text;
 
+#if !USING_NET11
+using System.Runtime.InteropServices.ComTypes;
+#endif
+
 namespace DirectShowLib
 {
     #region Declarations
@@ -2215,7 +2219,11 @@ namespace DirectShowLib
     public interface IAMGraphBuilderCallback
     {
         [PreserveSig]
+#if USING_NET11
         int SelectedFilter([In] UCOMIMoniker pMon);
+#else
+        int SelectedFilter([In] IMoniker pMon);
+#endif
 
         [PreserveSig]
         int CreatedFilter([In] IBaseFilter pFil);
@@ -2291,14 +2299,26 @@ namespace DirectShowLib
             );
 
         [PreserveSig]
+#if USING_NET11
         int GetAllSettings([In] UCOMIStream pStream);
+#else
+        int GetAllSettings([In] IStream pStream);
+#endif
 
         [PreserveSig]
+#if USING_NET11
         int SetAllSettings([In] UCOMIStream pStream);
+#else
+        int SetAllSettings([In] IStream pStream);
+#endif
 
         [PreserveSig]
         int SetAllSettingsWithNotify(
+#if USING_NET11
             [In] UCOMIStream pStream,
+#else
+            [In] IStream pStream,
+#endif
             [Out] out Guid[] ChangedParam,
             [Out] out int ChangedParamCount
             );
@@ -2730,8 +2750,13 @@ namespace DirectShowLib
 
         [PreserveSig]
         int AddSourceFilterForMoniker(
+#if USING_NET11
             [In] UCOMIMoniker pMoniker,
             [In] UCOMIBindCtx pCtx,
+#else
+            [In] IMoniker pMoniker,
+            [In] IBindCtx pCtx,
+#endif
             [In, MarshalAs(UnmanagedType.LPWStr)] string lpcwstrFilterName,
             [Out] out IBaseFilter ppFilter
             );
@@ -3649,11 +3674,15 @@ namespace DirectShowLib
             );
 
         [PreserveSig]
-        [Obsolete("This interface has not been tested.", false)]
+        [Obsolete("This method has not been tested.", false)]
         int RegisterFilter(
             [In] Guid clsidFilter,
             [In, MarshalAs(UnmanagedType.LPWStr)] string Name,
+#if USING_NET11
             [In, Out] UCOMIMoniker ppMoniker,
+#else
+            [In, Out] IMoniker ppMoniker,
+#endif
             [In] DsGuid pclsidCategory,
             [In, MarshalAs(UnmanagedType.LPWStr)] string szInstance,
 #if ALLOW_UNTESTED_INTERFACES
@@ -3665,7 +3694,11 @@ namespace DirectShowLib
 
         [PreserveSig]
         int EnumMatchingFilters(
+#if USING_NET11
             [Out] out UCOMIEnumMoniker ppEnum,
+#else
+            [Out] out IEnumMoniker ppEnum,
+#endif
             [In] int dwFlags,
             [In, MarshalAs(UnmanagedType.Bool)] bool bExactMatch,
             [In] Merit dwMerit,
@@ -3704,10 +3737,15 @@ namespace DirectShowLib
             );
 
         [PreserveSig]
+        [Obsolete("This method has not been tested.", false)]
         new int RegisterFilter(
             [In] Guid clsidFilter,
             [In, MarshalAs(UnmanagedType.LPWStr)] string Name,
+#if USING_NET11
             [In, Out] UCOMIMoniker ppMoniker,
+#else
+            [In, Out] IMoniker ppMoniker,
+#endif
             [In] DsGuid pclsidCategory,
             [In, MarshalAs(UnmanagedType.LPWStr)] string szInstance,
 #if ALLOW_UNTESTED_INTERFACES
@@ -3719,7 +3757,11 @@ namespace DirectShowLib
 
         [PreserveSig]
         new int EnumMatchingFilters(
+#if USING_NET11
             [Out] out UCOMIEnumMoniker ppEnum,
+#else
+            [Out] out IEnumMoniker ppEnum,
+#endif
             [In] int dwFlags,
             [In, MarshalAs(UnmanagedType.Bool)] bool bExactMatch,
             [In] Merit dwMerit,
