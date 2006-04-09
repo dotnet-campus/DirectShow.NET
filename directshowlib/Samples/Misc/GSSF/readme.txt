@@ -7,6 +7,14 @@ or FITNESS FOR A PARTICULAR PURPOSE.
 
 The Generic Sample Source Filter - A way to implement a source filter in c#
 
+What it does/Why you might want it:
+==================================
+There are a number of ways you can modify frames as they go down the graph (see DxLogo or
+DmoFlip).  However, until now there wasn't a way to GENERATE frames.  This filter allows 
+you to be the source of samples for the graph.  And it doesn't require those samples 
+to be video.
+
+
 Why I wrote this filter:
 =======================
 
@@ -15,7 +23,7 @@ Why I wrote this filter:
 The reason I wrote this filter was to overcome one of the remaining restrictions to using c#
 to do DirectShow programming.  When we released version 1.0 of this library, you could build 
 and run graphs, but only using existing filters.  It wasn't until version 1.2 that we added
-support for writing DMOs in c#.  DMOs are essentially a lite-weight filter.  Using the DMO
+support for writing DMOs in c#.  DMOs are essentially a light-weight filter.  Using the DMO
 Wrapper Filter, you could write your own filters and add them to the graph (check out the
 DmoFlip and DmoSplit samples).
 
@@ -24,7 +32,7 @@ However, the DMO Wrapper filter has limitations:
 "It does not support DMOs with zero inputs, multiple inputs, or zero outputs. 
 (It does support DMOs with one input and multiple outputs.)"
 
-These are the limitations I'm working to overcome.  Given that, c# can be used to write the 
+These are the limitations I'm working to overcome.  With that, c# can be used to write the 
 majority of the filters that you are likely to need:
 
 1) The easiest part of this to overcome was the part about zero outputs.  I'm not quite sure
@@ -36,7 +44,7 @@ samples for how to deal with what DMOWF does when nothing is connected to the ou
 2) Zero inputs was a little tougher.  That's what this filter is designed to do.  Zero inputs means
 that the filter only does outputs, which is essentially the definition of a source filter.  This source
 filter is given its MediaType by the application.  It also calls the application to populate each of the
-samples to send down the graph.  Pacing, timing, and content are thus controlled by the c# application.
+samples to send down the graph.
 
 It isn't a perfect solution.  Specifically, this filter doesn't support multiple output pins (although
 you could have this filter output a single stream which is split downstream by a DMO that you write).  It
@@ -90,8 +98,8 @@ is going to support (AMMediaType).  There are three methods that you can use to 
    int SetMediaTypeEx([MarshalAs(UnmanagedType.LPStruct)] AMMediaType amt, int lBufferSize);
 
 If you are going to be doing video, and you are getting your video from files, consider using SetMediaTypeFromBitmap.  Parameter1
-is a BitmapInfoHeader that describes the video images.  Parameter 2 is the FramesPerSecond you will be providing frames at.  The
-rest of the members of the struct are populated with reasonable values.
+is a BitmapInfoHeader that describes the video images.  Parameter 2 is the FramesPerSecond at which you will be providing frames.
+The rest of the members of the AMMediaType struct are populated with reasonable values.
 
 If that is too limited for you (for example if you want finer control over the subtype), consider using SetMediaType.  Note
 that this form still requires the FormatType to be VideoInfoHeader.
@@ -124,11 +132,14 @@ on the information in the AMMediaType.  That information must remain constant, o
 100% true, but if you know the exception, you know the implications).
 
 - Signaling end of stream: When you have no more samples to send to the graph, return 1 (S_FALSE) from your callback.  You can
-also return any HRESULT error you like.  This will terminate the graph with an error.
+also return any HRESULT error you like, which will terminate the graph with an error.
 
 - Building the filter: The source to the filter is included.  However, you will need to have the base class libraries.  MS ships
 the code to the libraries, but does not include the actual LIB files, so you need to build them first.  Then update this project
-to point to them.
+to point to them.  A pre-built release version of the filter is included (GSSF.ax).  Make sure you  run "RegSvr32 GSSF.ax" before
+you use it.
+
+- To uninstall the filter, run "regsvr32 /u gssf.ax".
 
 - The code in the cpp file is pretty clean.  It is based on the PushSource sample from the DXSDK, but there isn't much left of the
 original sample code (mostly class and file names).  If you are comfortable at all with c++ code, this really isn't so bad to read.  
