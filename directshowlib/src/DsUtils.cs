@@ -1059,12 +1059,12 @@ namespace DirectShowLib
             hr = enumDev.CreateClassEnumerator(FilterCategory, out enumMon, 0);
             DsError.ThrowExceptionForHR(hr);
 
-            try
+            // CreateClassEnumerator returns null for enumMon if there are no entries
+            if (hr != 1)
             {
                 try
                 {
-                    // CreateClassEnumerator returns null for enumMon if there are no entries
-                    if (hr != 1)
+                    try
                     {
 #if USING_NET11
                         UCOMIMoniker[] mon = new UCOMIMoniker[1];
@@ -1076,7 +1076,7 @@ namespace DirectShowLib
 						int j;
 						while ((enumMon.Next(1, mon, out j) == 0))
 #else
-						while ((enumMon.Next(1, mon, IntPtr.Zero) == 0))
+                        while ((enumMon.Next(1, mon, IntPtr.Zero) == 0))
 #endif
                         {
                             try
@@ -1093,23 +1093,27 @@ namespace DirectShowLib
                             }
                         }
                     }
-                }
-                finally
-                {
-                    Marshal.ReleaseComObject(enumMon);
-                }
+                    finally
+                    {
+                        Marshal.ReleaseComObject(enumMon);
+                    }
 
-                // Copy the ArrayList to the DsDevice[]
-                devret = new DsDevice[devs.Count];
-                devs.CopyTo(devret);
-            }
-            catch
-            {
-                foreach (DsDevice d in devs)
-                {
-                    d.Dispose();
+                    // Copy the ArrayList to the DsDevice[]
+                    devret = new DsDevice[devs.Count];
+                    devs.CopyTo(devret);
                 }
-                throw;
+                catch
+                {
+                    foreach (DsDevice d in devs)
+                    {
+                        d.Dispose();
+                    }
+                    throw;
+                }
+            }
+            else
+            {
+                devret = new DsDevice[0];
             }
 
             return devret;
