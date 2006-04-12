@@ -1,5 +1,19 @@
+v 1.4 - Minor upgrade (2006-04-12)
+
+I didn't think we'd be doing another release quite so soon.  No, it isn't because we found
+bugs.  We decided to rebuild the library and samples under vs2005.  We have added a solution 
+and csproj file to the library and each of the samples so that you can compile them under 
+either vs2003 or vs2005.  
+
+Well, all right, we found 1 bug: MPEG1WaveFormat was declared as a struct, and should have been 
+a class.  After nearly 12,000 downloads, this is only the 5th bug found in the library.  Not bad.
+
+Further, we have split the samples off in to a separate download.  Now that the library is 
+"finished", it doesn't make sense to tie the release of samples to the release of the library.
+See the Samples package for a description of new samples.
+
 -----------------------------------------------------------------
-V 1.3 - Minor upgrade
+V 1.3 - Minor upgrade (2006-03-16)
 
 Note: As of this release, there are no more interfaces to be tested in DirectShow v9.0c.  So,
 until Microsoft releases a new version of DS (or until bugs are found in the existing library),
@@ -31,7 +45,7 @@ Samples\VMR9\VMR9Allocator2
 See Docs\readme.rtf and the readme.txt in each project for details of what these samples show.
 
 -----------------------------------------------------------------
-V 1.2 - Minor upgrade
+V 1.2 - Minor upgrade (2005-11-06)
 
 52 more interfaces tested.
 
@@ -56,7 +70,7 @@ Samples\SBE\DvrMsCutter
 See readme.rtf and the readme.txt in each project for details of what these samples show.
 
 -----------------------------------------------------------------
-V 1.1 - Minor upgrade
+V 1.1 - Minor upgrade (2005-08-29)
 
 54 more interfaces tested, 61 new (untested) interfaces defined including DES & Streaming
 
@@ -86,7 +100,7 @@ Capture\DxSnap was improved to work with more hardware types.
 
 
 -----------------------------------------------------------------
-V 1.0 Original release
+V 1.0 Original release (2005-07-03)
 
 
 297 Interfaces defined
