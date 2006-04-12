@@ -43,6 +43,9 @@ using System.Security.Permissions;
 [assembly : AssemblyCulture("")]
 [assembly : AssemblyDelaySign(false)]
 // Path is relative to the resulting executable (\Bin\Debug)
+#if USING_NET11
+[assembly : AssemblyKeyFile("..\\..\\DShowNET.snk")]
+#endif
 [assembly : AssemblyKeyName("")]
 [assembly : ComVisible(false)]
 [assembly : CLSCompliant(true)]
