@@ -1649,30 +1649,32 @@ namespace DirectShowLib
         [PreserveSig]
         int RequestAllocator(
             [In] IMemAllocator pPreferred,
-            [In] AllocatorProperties pProps,
+            [In, MarshalAs(UnmanagedType.LPStruct)] AllocatorProperties pProps,
             [Out] out IMemAllocator ppActual
             );
 
         [PreserveSig]
         int Request(
             [In] IMediaSample pSample,
-            [In] int dwUser
+            [In] IntPtr dwUser
             );
 
         [PreserveSig]
         int WaitForNext(
             [In] int dwTimeout,
             [Out] out IMediaSample ppSample,
-            [Out] out int pdwUser
+            [Out] out IntPtr pdwUser
             );
 
         [PreserveSig]
-        int SyncReadAligned([In] IMediaSample pSample);
+        int SyncReadAligned(
+            [In] IMediaSample pSample
+            );
 
         [PreserveSig]
         int SyncRead(
             [In] long llPosition,
-            [In] long lLength,
+            [In] int lLength,
             [Out] out IntPtr pBuffer // BYTE *
             );
 
