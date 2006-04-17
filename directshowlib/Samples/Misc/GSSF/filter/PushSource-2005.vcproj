@@ -123,7 +123,7 @@
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
-			CharacterSet="2"
+			CharacterSet="1"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -216,6 +216,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				CommandLine="regsvr32 /s &quot;$(TargetPath)&quot;"
 			/>
 		</Configuration>
 	</Configurations>

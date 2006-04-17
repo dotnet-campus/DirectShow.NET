@@ -40,6 +40,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
+				RegisterOutput="TRUE"
 				AdditionalOptions="/ignore:4089 /ignore:4078 "
 				AdditionalDependencies="strmbasd.lib msvcrtd.lib winmm.lib odbc32.lib odbccp32.lib"
 				OutputFile="Debug/GSSF.ax"
@@ -89,7 +90,7 @@
 			ConfigurationType="2"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
+			CharacterSet="1">
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="3"
@@ -112,7 +113,8 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/ignore:4089 /ignore:4078  /ignore:4078 "
+				RegisterOutput="TRUE"
+				AdditionalOptions="/ignore:4089 /ignore:4078  /ignore:4078"
 				AdditionalDependencies="strmbase.lib msvcrt.lib winmm.lib odbc32.lib odbccp32.lib"
 				OutputFile="Release/GSSF.ax"
 				LinkIncremental="1"
