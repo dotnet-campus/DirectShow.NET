@@ -614,7 +614,7 @@ namespace DirectShowLib.Sample
         lock(this)
         {
           // Relinquish ownership (IMPORTANT!) after hiding video window
-          if (this.videoWindow != null)
+          if (!this.isAudioOnly)
           {
             hr = this.videoWindow.put_Visible(OABool.False);
             DsError.ThrowExceptionForHR(hr);
