@@ -32,6 +32,7 @@ namespace FormDMO
 
         private IFilterGraph2 graphBuilder = null;
         private IMediaParams m_param = null;
+        private DsROTEntry m_rot = null;
 
         public Form1()
 		{
@@ -57,6 +58,13 @@ namespace FormDMO
                 Marshal.ReleaseComObject(m_param);
                 m_param = null;
             }
+
+            if (m_rot != null)
+            {
+                m_rot.Dispose();
+                m_rot = null;
+            }
+
             if (graphBuilder != null)
             {
                 (graphBuilder as IMediaControl).Stop();
@@ -161,7 +169,9 @@ namespace FormDMO
             ICaptureGraphBuilder2 icgb = (ICaptureGraphBuilder2)new CaptureGraphBuilder2();
 
             graphBuilder = (IFilterGraph2) new FilterGraph();
-            DsROTEntry rot = new DsROTEntry(graphBuilder);
+#if DEBUG
+            m_rot = new DsROTEntry(graphBuilder);
+#endif
 
             hr = icgb.SetFiltergraph(graphBuilder);
             DsError.ThrowExceptionForHR(hr);

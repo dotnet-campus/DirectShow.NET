@@ -27,6 +27,8 @@ namespace FormDMO
 	{
 
         private IFilterGraph2 graphBuilder = null;
+        private DsROTEntry m_rot = null;
+
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton rbLeft;
@@ -51,6 +53,12 @@ namespace FormDMO
 		protected override void Dispose( bool disposing )
 		{
 			base.Dispose( disposing );
+
+            if (m_rot != null)
+            {
+                m_rot.Dispose();
+                m_rot = null;
+            }
             if (graphBuilder != null)
             {
                 (graphBuilder as IMediaControl).Stop();
@@ -185,7 +193,9 @@ namespace FormDMO
             ICaptureGraphBuilder2 icgb = (ICaptureGraphBuilder2)new CaptureGraphBuilder2();
 
             graphBuilder = (IFilterGraph2) new FilterGraph();
-            DsROTEntry rot = new DsROTEntry(graphBuilder);
+#if DEBUG
+            m_rot = new DsROTEntry(graphBuilder);
+#endif
 
             hr = icgb.SetFiltergraph(graphBuilder);
             DsError.ThrowExceptionForHR(hr);
