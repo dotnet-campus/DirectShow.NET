@@ -711,6 +711,13 @@ namespace DESCombineLib
                 throw new Exception("Graph not yet started");
             }
 
+#if DEBUG
+            if (m_rot != null)
+            {
+                m_rot.Dispose();
+                m_rot = null;
+            }
+#endif
             if (m_State < ClassState.GraphCompleting)
             {
                 ChangeState(ClassState.Cancelling);
@@ -1116,6 +1123,8 @@ namespace DESCombineLib
         /// <remarks>May fire events, so do not call from Form.Dispose().</remarks>
         public void Dispose()
         {
+            GC.SuppressFinalize(this);
+
             if (m_Video != null)
             {
                 m_Video.Dispose();
@@ -1132,11 +1141,13 @@ namespace DESCombineLib
                 Marshal.ReleaseComObject(m_pTimeline);
                 m_pTimeline = null;
             }
+
             if (m_pRenderEngine != null)
             {
                 Marshal.ReleaseComObject(m_pRenderEngine);
                 m_pRenderEngine = null;
             }
+
 #if DEBUG
             if (m_rot != null)
             {
@@ -1144,7 +1155,6 @@ namespace DESCombineLib
                 m_rot = null;
             }
 #endif
-
             if (m_pControl != null)
             {
                 m_pControl.Stop();

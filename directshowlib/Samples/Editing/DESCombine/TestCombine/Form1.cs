@@ -414,6 +414,16 @@ namespace TestConverter
             // Required for Windows Form Designer support
             //
             InitializeComponent();
+
+#if USING_NET20
+            // While I don't believe the cross thread accessing of 
+            // controls I am doing in this program presents any risks, 
+            // it does not follow MS best practices.  What's more,
+            // in .NET 2.0, the debugger will complain.  Unless
+            // you have these two statements.
+            TextBox.CheckForIllegalCrossThreadCalls = false;
+            ProgressBar.CheckForIllegalCrossThreadCalls = false;
+#endif
         }
 
         protected override void Dispose( bool disposing )
