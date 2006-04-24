@@ -29,6 +29,7 @@ namespace DxPlay
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.TextBox tbFileName;
         private System.ComponentModel.IContainer components = null;
+        private TextBox textBox1;
 
         DxPlay m_play = null;
 
@@ -39,6 +40,10 @@ namespace DxPlay
 			//
 			InitializeComponent();
 
+#if USING_NET20
+            TextBox.CheckForIllegalCrossThreadCalls = false;
+            textBox1.Text = "Running this code under the debugger in vs 2005 will give VERY poor performance.  Use \"Debug/Start without Debugging\" for decent performance.";
+#endif
 		}
 
 		/// <summary>
@@ -68,58 +73,70 @@ namespace DxPlay
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.btnStart = new System.Windows.Forms.Button();
-			this.label1 = new System.Windows.Forms.Label();
-			this.panel1 = new System.Windows.Forms.Panel();
-			this.tbFileName = new System.Windows.Forms.TextBox();
-			this.SuspendLayout();
-			// 
-			// btnStart
-			// 
-			this.btnStart.Location = new System.Drawing.Point(16, 40);
-			this.btnStart.Name = "btnStart";
-			this.btnStart.Size = new System.Drawing.Size(64, 32);
-			this.btnStart.TabIndex = 1;
-			this.btnStart.Text = "Start";
-			this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
-			// 
-			// label1
-			// 
-			this.label1.Location = new System.Drawing.Point(0, 8);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(88, 16);
-			this.label1.TabIndex = 2;
-			this.label1.Text = "Source Files dir";
-			// 
-			// panel1
-			// 
-			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.panel1.Location = new System.Drawing.Point(8, 88);
-			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(320, 240);
-			this.panel1.TabIndex = 10;
-			// 
-			// tbFileName
-			// 
-			this.tbFileName.Location = new System.Drawing.Point(88, 8);
-			this.tbFileName.Name = "tbFileName";
-			this.tbFileName.Size = new System.Drawing.Size(208, 20);
-			this.tbFileName.TabIndex = 9;
-			this.tbFileName.Text = "c:\\vss\\catchpic";
-			// 
-			// Form1
-			// 
-			this.AcceptButton = this.btnStart;
-			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-			this.ClientSize = new System.Drawing.Size(336, 338);
-			this.Controls.Add(this.panel1);
-			this.Controls.Add(this.label1);
-			this.Controls.Add(this.btnStart);
-			this.Controls.Add(this.tbFileName);
-			this.Name = "Form1";
-			this.Text = "DxPlay";
-			this.Closing += new System.ComponentModel.CancelEventHandler(this.Form1_Closing);
-			this.ResumeLayout(false);
+            this.btnStart = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.tbFileName = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.SuspendLayout();
+            // 
+            // btnStart
+            // 
+            this.btnStart.Location = new System.Drawing.Point(8, 37);
+            this.btnStart.Name = "btnStart";
+            this.btnStart.Size = new System.Drawing.Size(57, 32);
+            this.btnStart.TabIndex = 1;
+            this.btnStart.Text = "Start";
+            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
+            // 
+            // label1
+            // 
+            this.label1.Location = new System.Drawing.Point(0, 8);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(88, 16);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Source Files dir";
+            // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Location = new System.Drawing.Point(8, 88);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(320, 240);
+            this.panel1.TabIndex = 10;
+            // 
+            // tbFileName
+            // 
+            this.tbFileName.Location = new System.Drawing.Point(88, 8);
+            this.tbFileName.Name = "tbFileName";
+            this.tbFileName.Size = new System.Drawing.Size(208, 20);
+            this.tbFileName.TabIndex = 9;
+            this.tbFileName.Text = "c:\\vss\\catchpic";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Enabled = false;
+            this.textBox1.Location = new System.Drawing.Point(71, 37);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(256, 45);
+            this.textBox1.TabIndex = 11;
+            // 
+            // Form1
+            // 
+            this.AcceptButton = this.btnStart;
+            this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
+            this.ClientSize = new System.Drawing.Size(336, 338);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.btnStart);
+            this.Controls.Add(this.tbFileName);
+            this.Name = "Form1";
+            this.Text = "DxPlay";
+            this.Closing += new System.ComponentModel.CancelEventHandler(this.Form1_Closing);
+            this.ResumeLayout(false);
+            this.PerformLayout();
 
 		}
 		#endregion
