@@ -1,0 +1,7 @@
+IAMTimecodeReader	5
+IAMBufferNegotiation	2
+IServiceProvider 1
+IObjectWithSite
+IRegisterServiceProvider 1
+IServiceProvider 1
+IAMGraphBuilderCallback 2
