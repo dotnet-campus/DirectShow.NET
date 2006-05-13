@@ -47,6 +47,6 @@ using System.Security.Permissions;
 [assembly : AssemblyKeyFile("..\\..\\DShowNET.snk")]
 #endif
 [assembly : AssemblyKeyName("")]
-[assembly : ComVisible(false)]
+[assembly : ComVisible(true)]
 [assembly : CLSCompliant(true)]
 [assembly : SecurityPermission(SecurityAction.RequestMinimum, UnmanagedCode=true)]
