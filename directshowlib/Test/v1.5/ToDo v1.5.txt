@@ -1,7 +1,10 @@
-IAMTimecodeReader	5
-IAMBufferNegotiation	2
-IServiceProvider 1
-IObjectWithSite
-IRegisterServiceProvider 1
-IServiceProvider 1
-IAMGraphBuilderCallback 2
+Interface				Methods	Assigned	Reviewer
+
+IAMTimecodeReader			5
+IAMBufferNegotiation		2	snarfle		ready
+IServiceProvider			1	snarfle		ready
+IObjectWithSite				2	snarfle		ready
+IRegisterServiceProvider	1	snarfle		ready
+IServiceProvider			1	snarfle		ready
+IAMGraphBuilderCallback		2	snarfle		ready
+IAsyncReader				8	snarfle		ready
