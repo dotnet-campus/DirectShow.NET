@@ -181,7 +181,7 @@ namespace DirectShowLib
     /// From MPEG_CONTEXT
     /// </summary>
     [StructLayout(LayoutKind.Sequential, Pack=1)]
-    public struct MPEGContext
+    public class MPEGContext
     {
         public MPEGContextType Type;
         public MPEGContextUnion U;
@@ -259,7 +259,7 @@ namespace DirectShowLib
     }
 
 
-    [ComImport, Guid("AFEC1EB5-2A64-46C6-BF4B-AE3CCB6AFDB0"), 
+    [Guid("AFEC1EB5-2A64-46C6-BF4B-AE3CCB6AFDB0"), 
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface ISectionList
     {

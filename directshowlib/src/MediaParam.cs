@@ -107,7 +107,7 @@ namespace DirectShowLib.DMO
     /// <summary>
     /// From MP_PARAMINFO
     /// </summary>
-    [StructLayout(LayoutKind.Sequential, Pack=4)]
+    [StructLayout(LayoutKind.Sequential, Pack = 4, CharSet = CharSet.Unicode)]
     public struct ParamInfo
     {
         public MPType mpType;

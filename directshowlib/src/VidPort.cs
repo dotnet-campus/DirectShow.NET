@@ -50,8 +50,8 @@ namespace DirectShowLib
     [StructLayout(LayoutKind.Sequential)]
     public struct AMVPSize
     {
-        int           dwWidth;                // the width
-        int           dwHeight;               // the height
+        public int           dwWidth;                // the width
+        public int           dwHeight;               // the height
     }
 
     /// <summary>
@@ -60,11 +60,11 @@ namespace DirectShowLib
     [StructLayout(LayoutKind.Sequential)]
     public struct DDVideoPortConnect
     {
-        int dwSize;
-        int  dwPortWidth;
-        Guid  guidTypeID;
-        int  dwFlags;
-        IntPtr dwReserved1;
+        public int dwSize;
+        public int  dwPortWidth;
+        public Guid  guidTypeID;
+        public int  dwFlags;
+        public IntPtr dwReserved1;
     }
 
     /// <summary>
@@ -73,19 +73,19 @@ namespace DirectShowLib
     [StructLayout(LayoutKind.Sequential)]
     public struct VPDataInfo
     {
-        int           dwSize;
-        int           dwMicrosecondsPerField;
-        AMVPDimInfo     amvpDimInfo;
-        int           dwPictAspectRatioX;
-        int           dwPictAspectRatioY;
-        bool            bEnableDoubleClock;
-        bool            bEnableVACT;
-        bool            bDataIsInterlaced;
-        int            lHalfLinesOdd;
-        bool            bFieldPolarityInverted;
-        int           dwNumLinesInVREF;
-        int            lHalfLinesEven;
-        int           dwReserved1;
+        public int           dwSize;
+        public int           dwMicrosecondsPerField;
+        public AMVPDimInfo     amvpDimInfo;
+        public int           dwPictAspectRatioX;
+        public int           dwPictAspectRatioY;
+        public bool            bEnableDoubleClock;
+        public bool            bEnableVACT;
+        public bool            bDataIsInterlaced;
+        public int            lHalfLinesOdd;
+        public bool            bFieldPolarityInverted;
+        public int           dwNumLinesInVREF;
+        public int            lHalfLinesEven;
+        public int           dwReserved1;
     }
 
     /// <summary>
@@ -94,11 +94,11 @@ namespace DirectShowLib
     [StructLayout(LayoutKind.Sequential)]
     public struct AMVPDimInfo
     {
-        int           dwFieldWidth;
-        int           dwFieldHeight;
-        int           dwVBIWidth;
-        int           dwVBIHeight;
-        Rectangle            rcValidRegion;
+        public int           dwFieldWidth;
+        public int           dwFieldHeight;
+        public int           dwVBIWidth;
+        public int           dwVBIHeight;
+        public Rectangle            rcValidRegion;
     }
 
 

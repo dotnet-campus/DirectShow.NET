@@ -208,7 +208,7 @@ namespace DirectShowLib
 		public Guid clsConnectsToFilter;
 		[MarshalAs(UnmanagedType.LPWStr)] public string strConnectsToPin;
 		public int nMediaTypes;
-		[MarshalAs(UnmanagedType.LPStruct)] public RegPinTypes [] lpMediaType;
+		[MarshalAs(UnmanagedType.ByValArray)] public RegPinTypes [] lpMediaType;
 	}
 
 	/// <summary>
@@ -229,15 +229,20 @@ namespace DirectShowLib
 	/// <summary>
 	/// From REGFILTER2
 	/// </summary>
-	[StructLayout(LayoutKind.Explicit)]
+    [StructLayout(LayoutKind.Explicit)]
+    public struct RF
+    {
+        [FieldOffset(0)] public RegFilterPins [] rgPins;
+        [FieldOffset(0)] public RegFilterPins2 [] rgPins2;
+    };
+
+    [StructLayout(LayoutKind.Sequential)]
 	public struct RegFilter2
 	{
-		[FieldOffset(0)] public int dwVersion;
-		[FieldOffset(4)] public int dwMerit;
-		[FieldOffset(8)] public int cPins;
-		[FieldOffset(12)] public RegFilterPins [] rgPins;
-		[FieldOffset(8)] public int cPins2;
-		[FieldOffset(12)] public RegFilterPins2 [] rgPins2;
+		public int dwVersion;
+		public int dwMerit;
+		public int cPins;
+        public RF rgPins;
 	}
 
 	/// <summary>
@@ -1360,7 +1365,7 @@ namespace DirectShowLib
         [PreserveSig]
         int Next(
             [In] int cFilters,
-            [Out] out RegFilter [] apRegFilter,
+            [Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] RegFilter [] apRegFilter,
             [Out] out int pcFetched
             );
 
@@ -1675,7 +1680,7 @@ namespace DirectShowLib
         int SyncRead(
             [In] long llPosition,
             [In] int lLength,
-            [Out] out IntPtr pBuffer // BYTE *
+            [Out] IntPtr pBuffer // BYTE *
             );
 
         [PreserveSig]
@@ -1793,7 +1798,7 @@ namespace DirectShowLib
         int SuggestAllocatorProperties([In] AllocatorProperties pprop);
 
         [PreserveSig]
-        int GetAllocatorProperties([Out] out AllocatorProperties pprop);
+        int GetAllocatorProperties([Out] AllocatorProperties pprop);
     }
 
     [Guid("C6E13370-30AC-11d0-A18C-00A0C9118956"),
@@ -2191,7 +2196,7 @@ namespace DirectShowLib
         [PreserveSig]
         int Next(
             [In] int cRequest,
-            [Out] out StreamIdMap [] pStreamIdMap, // STREAM_ID_MAP *
+            [Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] StreamIdMap [] pStreamIdMap, // STREAM_ID_MAP *
             [Out] out int pcReceived
             );
 
@@ -2374,7 +2379,7 @@ namespace DirectShowLib
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IVideoEncoder : IEncoderAPI
     {
-    #region IEncoderAPI Methods
+        #region IEncoderAPI Methods
 
         [PreserveSig]
         new int IsSupported([In] Guid Api);
@@ -2415,7 +2420,7 @@ namespace DirectShowLib
             [In] object Value
             );
 
-    #endregion
+        #endregion
     }
 
     [Guid("6feded3e-0ff1-4901-a2f1-43f7012c8515"),
@@ -3547,7 +3552,7 @@ namespace DirectShowLib
             [Out] out DVEncoderVideoFormat VideoFormat,
             [Out] out DVEncoderFormat DVFormat,
             [Out] out DVEncoderResolution Resolution,
-            [In, MarshalAs(UnmanagedType.I4)] OABool fDVInfo,
+            [In] OABool fDVInfo,
             [Out] out DVInfo sDVInfo
             );
 
@@ -3556,7 +3561,7 @@ namespace DirectShowLib
             [In] DVEncoderVideoFormat VideoFormat,
             [In] DVEncoderFormat DVFormat,
             [In] DVEncoderResolution Resolution,
-            [In, MarshalAs(UnmanagedType.I4)] OABool fDVInfo,
+            [In] OABool fDVInfo,
             [In] DVInfo sDVInfo
             );
     }

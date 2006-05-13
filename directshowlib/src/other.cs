@@ -87,14 +87,13 @@ namespace DirectShowLib
     /// <summary>
     /// From DDSCAPS2
     /// </summary>
-    [StructLayout(LayoutKind.Explicit)]
+    [StructLayout(LayoutKind.Sequential)]
     public struct DDSCaps2
     {
-        [FieldOffset(0)] public int       dwCaps;
-        [FieldOffset(4)] public int       dwCaps2;
-        [FieldOffset(8)] public int       dwCaps3;
-        [FieldOffset(12)] public int       dwCaps4; // Is this supposed to be a array?
-        [FieldOffset(12)] public int       dwVolumeDepth;
+        public int       dwCaps;
+        public int       dwCaps2;
+        public int       dwCaps3;
+        public int       dwCaps4;
     }
 
     /// <summary>
@@ -248,7 +247,7 @@ namespace DirectShowLib
     /// From ACM_MPEG_* defines
     /// </summary>
     [Flags]
-    public enum AcmMpegHeadFlags
+    public enum AcmMpegHeadFlags : short
     {
         None = 0x0,
         PrivateBit = 0x1,
@@ -261,7 +260,7 @@ namespace DirectShowLib
     /// <summary>
     /// From MPEG1WAVEFORMAT
     /// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+    [StructLayout(LayoutKind.Sequential, Pack=2)]
     public class MPEG1WaveFormat
     {
         public WaveFormatEx wfx;
@@ -280,6 +279,33 @@ namespace DirectShowLib
     #region Interfaces
 
 #if ALLOW_UNTESTED_INTERFACES
+
+    [Guid("FC4801A3-2BA9-11CF-A229-00AA003D7352"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IObjectWithSite
+    {
+        [PreserveSig]
+        int SetSite(
+            [In, MarshalAs(UnmanagedType.IUnknown)] object pUnkSite
+            );
+
+        [PreserveSig]
+        int GetSite(
+            [In, MarshalAs(UnmanagedType.LPStruct)] DsGuid riid,
+            [MarshalAs(UnmanagedType.IUnknown)] out object ppvSite
+            );
+    }
+
+    [Guid("6d5140c1-7436-11ce-8034-00aa006009fa"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IServiceProvider
+    {
+        int QueryService(
+            [In, MarshalAs(UnmanagedType.LPStruct)] DsGuid guidService,
+            [In, MarshalAs(UnmanagedType.LPStruct)] DsGuid riid,
+            [MarshalAs(UnmanagedType.IUnknown)] out object ppvObject
+            );
+    }
 
     [Guid("c47a3420-005c-11d2-9038-00a0c9697298"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]

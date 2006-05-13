@@ -180,7 +180,7 @@ namespace DirectShowLib.BDA
         [PreserveSig]
         int Next(
             [In] int cRequest,
-            [Out, MarshalAs(UnmanagedType.LPArray)] PIDMap[] pPIDMap,
+            [Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] PIDMap[] pPIDMap,
             [Out] out int pcReceived
             );
 

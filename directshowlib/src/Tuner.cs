@@ -1367,7 +1367,7 @@ namespace DirectShowLib.BDA
     {
         int Next(
             [In] int celt,
-            [Out, MarshalAs(UnmanagedType.LPArray)] IComponentType [] rgelt,
+            [Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] IComponentType [] rgelt,
             [Out] out int pceltFetched
             );
 
@@ -1572,7 +1572,7 @@ namespace DirectShowLib.BDA
     {
         int Next(
             [In] int celt,
-            [Out, MarshalAs(UnmanagedType.LPArray)] IComponent [] rgelt,
+            [Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] IComponent [] rgelt,
             [Out] out int pceltFetched
             );
 

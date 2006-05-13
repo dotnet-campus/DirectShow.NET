@@ -579,7 +579,7 @@ namespace DirectShowLib.Dvd
     /// <summary>
     /// From DVD_KaraokeAttributes
     /// </summary>
-    [StructLayout(LayoutKind.Sequential, Pack=1)]
+    [StructLayout(LayoutKind.Sequential, Pack=1, Size=32)]
     public class DvdKaraokeAttributes
     {
         public byte bVersion;

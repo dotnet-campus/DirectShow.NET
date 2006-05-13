@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 #endregion
 
+using System;
 using System.Runtime.InteropServices;
 
 #if !USING_NET11
@@ -180,7 +181,7 @@ namespace DirectShowLib.BDA
 		[PreserveSig]
 		int Next(
 			[In] int celt,
-			[Out] out IGuideDataProperty ppprop,
+			[Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] IGuideDataProperty [] ppprop,
 			[Out] out int pcelt
 			);
 

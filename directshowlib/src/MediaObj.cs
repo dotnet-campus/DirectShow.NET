@@ -410,9 +410,9 @@ namespace DirectShowLib.DMO
         [PreserveSig]
         int Next(
             int cItemsToFetch,
-            [Out, MarshalAs(UnmanagedType.LPArray)] Guid[] pCLSID,
-            [Out, MarshalAs(UnmanagedType.LPArray)] string[] Names,
-            out int pcItemsFetched
+            [Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] Guid[] pCLSID,
+            [Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] string[] Names,
+            [Out] out int pcItemsFetched
             );
 
         [PreserveSig]

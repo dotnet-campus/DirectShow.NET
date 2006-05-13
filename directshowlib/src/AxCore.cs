@@ -89,7 +89,7 @@ namespace DirectShowLib
     [StructLayout(LayoutKind.Sequential, Pack=1, CharSet=CharSet.Unicode)]
     public struct PinInfo
     {
-        public IBaseFilter filter;
+        [MarshalAs(UnmanagedType.Interface)] public IBaseFilter filter;
         public PinDirection dir;
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst=128)] public string name;
     }
@@ -155,7 +155,7 @@ namespace DirectShowLib
     public struct FilterInfo
     {
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst=128)] public string achName;
-        [MarshalAs(UnmanagedType.IUnknown)] public IFilterGraph pGraph;
+        [MarshalAs(UnmanagedType.Interface)] public IFilterGraph pGraph;
     }
 
     /// <summary>
@@ -200,7 +200,7 @@ namespace DirectShowLib
         public long tStart;
         public long tStop;
         public int dwStreamId;
-        [MarshalAs(UnmanagedType.LPStruct)] public AMMediaType pMediaType;
+        public IntPtr pMediaType;
         public IntPtr pbBuffer; // BYTE *
         public int cbBuffer;
     }
@@ -730,8 +730,8 @@ namespace DirectShowLib
         [PreserveSig]
         int Next(
             [In] int cFilters,
-            [Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)]	IBaseFilter[]	ppFilter,
-            [Out] out int	pcFetched
+            [Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] IBaseFilter[] ppFilter,
+            [Out] out int pcFetched
             );
 
         [PreserveSig]
@@ -801,7 +801,7 @@ namespace DirectShowLib
         [PreserveSig]
         int Next(
             [In] int cMediaTypes,
-            [In, Out, MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(EMTMarshaler))] AMMediaType[] ppMediaTypes,
+            [In, Out, MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(EMTMarshaler), SizeParamIndex = 0)] AMMediaType[] ppMediaTypes,
             [Out] out int pcFetched
             );
 
