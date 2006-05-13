@@ -526,7 +526,7 @@ namespace DxPlay
         public ImageFromFiles(string sPath, long FPS)
         {
             m_sPath = sPath;
-            m_FPS = FPS;
+            m_FPS = UNIT / FPS;
         }
 
         /// <summary>
@@ -684,7 +684,7 @@ namespace DxPlay
         /// <param name="FPS">Frames per second to use</param>
         public ImageFromPixels(long FPS)
         {
-            m_FPS = FPS;
+            m_FPS = UNIT / FPS;
             m_b = 211;
             m_g = 197;
         }

@@ -2,7 +2,7 @@
 ; it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty 
 ; of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
 
-LIBRARY     PushSource.ax
+LIBRARY     GSSF.ax
 
 EXPORTS
             DllMain                 PRIVATE

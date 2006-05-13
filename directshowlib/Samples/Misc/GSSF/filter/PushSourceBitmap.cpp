@@ -30,7 +30,10 @@ CPushPinBitmap::CPushPinBitmap(HRESULT *phr, CSource *pFilter)
 
 CPushPinBitmap::~CPushPinBitmap()
 {
-	m_Callback->Release();
+    if (m_Callback != NULL)
+    {
+	    m_Callback->Release();
+    }
 }
 
 
