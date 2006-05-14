@@ -68,7 +68,7 @@ namespace DirectShowLib
     /// <summary>
     /// From AM_SAMPLE_PROPERTY_FLAGS
     /// </summary>
-    [Flags] // May not be flags?
+    [Flags]
     public enum AMSamplePropertyFlags
     {
         SplicePoint = 0x01,
@@ -76,6 +76,7 @@ namespace DirectShowLib
         DataDiscontinuity = 0x04,
         TypeChanged = 0x08,
         TimeValid = 0x10,
+        MediaTimeValid  = 0x20,
         TimeDiscontinuity = 0x40,
         FlushOnPause = 0x80,
         StopValid = 0x100,
