@@ -88,6 +88,9 @@ namespace DirectShowLib.Test
             int hr;
             IntPtr ip = Marshal.AllocCoTaskMem(iSize);
             AMSample2Properties stru = new AMSample2Properties();
+            AMSample2Properties stru2 = new AMSample2Properties();
+            AMMediaType amt = new AMMediaType();
+            AMMediaType amt2;
 
             for (int x=0; x < iSize / 4; x++)
             {
@@ -107,10 +110,18 @@ namespace DirectShowLib.Test
             IntPtr ip2 = Marshal.ReadIntPtr(ip, 36);
             if (ip2 != IntPtr.Zero)
             {
-                Marshal.PtrToStructure(ip2, stru.pMediaType);
+                Marshal.PtrToStructure(ip2, amt);
             }
             stru.pbBuffer = Marshal.ReadIntPtr(ip, 40);
             stru.cbBuffer = Marshal.ReadInt32(ip, 44);
+
+            // An alternate approach
+            Marshal.PtrToStructure(ip, stru2);
+            if (stru2.pMediaType != IntPtr.Zero)
+            {
+                amt2 = new AMMediaType();
+                Marshal.PtrToStructure(stru2.pMediaType, amt2);
+            }
 
             Debug.Assert(stru.cbData == iSize, "GetProperties");
 
