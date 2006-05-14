@@ -194,8 +194,13 @@ namespace DirectShowLib.DMO
 
     #region GUIDS
 
-    public class DMOCategory
+    sealed public class DMOCategory
     {
+        private DMOCategory()
+        {
+            // Prevent people from trying to instantiate this class
+        }
+
         /// <summary> DMOCATEGORY_AUDIO_DECODER </summary>
         public static readonly Guid AudioDecoder = new Guid(0x57f2db8b, 0xe6bb, 0x4513, 0x9d, 0x43, 0xdc, 0xd2, 0xa6, 0x59, 0x31, 0x25);
 

@@ -193,7 +193,7 @@ namespace DirectShowLib
     /// From AM_SAMPLE2_PROPERTIES
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct AMSample2Properties
+    public class AMSample2Properties
     {
         public int cbData;
         public AMVideoFlag dwTypeSpecificFlags;

@@ -679,8 +679,13 @@ namespace DirectShowLib
 
     #region GUIDS
 
-    public class FilterCategory
+    sealed public class FilterCategory
     {
+        private FilterCategory()
+        {
+            // Prevent people from trying to instantiate this class
+        }
+
         /// <summary> CLSID_AudioInputDeviceCategory, audio capture category </summary>
         public static readonly Guid AudioInputDevice = new Guid(0x33d9a762, 0x90c8, 0x11d0, 0xbd, 0x43, 0x00, 0xa0, 0xc9, 0x11, 0xce, 0x86);
 
@@ -799,11 +804,12 @@ namespace DirectShowLib
         public static readonly Guid LTMMVideoProcessors = new Guid(0xE526D606, 0x22E7, 0x494C, 0xB8, 0x1E, 0xAC, 0x0A, 0x94, 0xBF, 0xE6, 0x03);
     }
 
-    public class VMRClsId
+    sealed public class VMRClsId
     {
-        // -------------------------------------------------------------------------
-        // VMR GUIDS
-        // -------------------------------------------------------------------------
+        private VMRClsId()
+        {
+            // Prevent people from trying to instantiate this class
+        }
 
         /// <summary>CLSID_AllocPresenter</summary>
         public static readonly Guid AllocPresenter = new Guid(0x99d54f63, 0x1a69, 0x41ae, 0xaa, 0x4d, 0xc9, 0x76, 0xeb, 0x3f, 0x07, 0x13);
@@ -812,11 +818,13 @@ namespace DirectShowLib
         public static readonly Guid AllocPresenterDDXclMode = new Guid(0x4444ac9e, 0x242e, 0x471b, 0xa3, 0xc7, 0x45, 0xdc, 0xd4, 0x63, 0x52, 0xbc);
     }
 
-    public class TVEClsId
+    sealed public class TVEClsId
     {
-        // -------------------------------------------------------------------------
-        // TVE Receiver filter guids
-        // -------------------------------------------------------------------------
+        private TVEClsId()
+        {
+            // Prevent people from trying to instantiate this class
+        }
+
         /// <summary>CLSID_DShowTVEFilter</summary>
         public static readonly Guid DShowTVEFilter = new Guid(0x05500280, 0xFAA5, 0x4DF9, 0x82, 0x46, 0xBF, 0xC2, 0x3A, 0xC5, 0xCE, 0xA8);
 
@@ -830,11 +838,13 @@ namespace DirectShowLib
         public static readonly Guid TVEFilterStatsProperties = new Guid(0x05500283, 0xFAA5, 0x4DF9, 0x82, 0x46, 0xBF, 0xC2, 0x3A, 0xC5, 0xCE, 0xA8);
     }
 
-    public class ENCAPIClsId
+    sealed public class ENCAPIClsId
     {
-        // -------------------------------------------------------------------------
-        // Defined ENCAPI parameter GUIDs
-        // -------------------------------------------------------------------------
+        private ENCAPIClsId()
+        {
+            // Prevent people from trying to instantiate this class
+        }
+
         /// <summary>CLSID_IVideoEncoderProxy</summary>
         public static readonly Guid IVideoEncoderProxy = new Guid(0xb43c4eec, 0x8c32, 0x4791, 0x91, 0x02, 0x50, 0x8a, 0xda, 0x5e, 0xe8, 0xe7);
 
@@ -845,8 +855,13 @@ namespace DirectShowLib
         public static readonly Guid IVideoEncoderCodecAPIProxy = new Guid(0xb05dabd9, 0x56e5, 0x4fdc, 0xaf, 0xa4, 0x8a, 0x47, 0xe9, 0x1f, 0x1c, 0x9c);
     }
 
-    public class MediaType
+    sealed public class MediaType
     {
+        private MediaType()
+        {
+            // Prevent people from trying to instantiate this class
+        }
+
         public static readonly Guid Null = Guid.Empty;
 
         /// <summary> MEDIATYPE_Video 'vids' </summary>
@@ -898,8 +913,13 @@ namespace DirectShowLib
         public static readonly Guid Mpeg2Sections = new Guid(0x455f176c, 0x4b06, 0x47ce, 0x9a, 0xef, 0x8c, 0xae, 0xf7, 0x3d, 0xf7, 0xb5);
     }
 
-    public class MediaSubType
+    sealed public class MediaSubType
     {
+        private MediaSubType()
+        {
+            // Prevent people from trying to instantiate this class
+        }
+
         public static readonly Guid Null = Guid.Empty;
 
         /// <summary> MEDIASUBTYPE_CLPL </summary>
@@ -1278,8 +1298,13 @@ namespace DirectShowLib
         public static readonly Guid None = new Guid(0xe436eb8e, 0x524f, 0x11ce, 0x9f, 0x53, 0x00, 0x20, 0xaf, 0x0b, 0xa7, 0x70);
     }
 
-    public class FormatType
+    sealed public class FormatType
     {
+        private FormatType()
+        {
+            // Prevent people from trying to instantiate this class
+        }
+
         public static readonly Guid Null = Guid.Empty;
 
         /// <summary> FORMAT_None </summary>
@@ -1316,8 +1341,13 @@ namespace DirectShowLib
         public static readonly Guid Mpeg2Audio = new Guid(0xe06d80e5, 0xdb46, 0x11cf, 0xb4, 0xd1, 0x00, 0x80, 0x5f, 0x6c, 0xbb, 0xea);
     }
 
-    public class PropSetID
+    sealed public class PropSetID
     {
+        private PropSetID()
+        {
+            // Prevent people from trying to instantiate this class
+        }
+
         /// <summary> AMPROPSETID_Pin</summary>
         public static readonly Guid Pin = new Guid(0x9b00f101, 0x1567, 0x11d1, 0xb3, 0xf1, 0x00, 0xaa, 0x00, 0x37, 0x61, 0xc5);
 
@@ -1356,8 +1386,13 @@ namespace DirectShowLib
 
     }
 
-    public class PinCategory
+    sealed public class PinCategory
     {
+        private PinCategory()
+        {
+            // Prevent people from trying to instantiate this class
+        }
+
         /// <summary> PIN_CATEGORY_CAPTURE </summary>
         public static readonly Guid Capture = new Guid(0xfb6c4281, 0x0353, 0x11d1, 0x90, 0x5f, 0x00, 0x00, 0xc0, 0xcc, 0x16, 0xba);
 
@@ -1396,8 +1431,13 @@ namespace DirectShowLib
 
     }
 
-    public class FindDirection
+    sealed public class FindDirection
     {
+        private FindDirection()
+        {
+            // Prevent people from trying to instantiate this class
+        }
+
         /// <summary> LOOK_UPSTREAM_ONLY </summary>
         public static readonly Guid UpstreamOnly = new Guid(0xac798be0, 0x98e3, 0x11d1, 0xb3, 0xf1, 0x00, 0xaa, 0x00, 0x37, 0x61, 0xc5);
 
@@ -1405,8 +1445,13 @@ namespace DirectShowLib
         public static readonly Guid DownstreamOnly = new Guid(0xac798be1, 0x98e3, 0x11d1, 0xb3, 0xf1, 0x00, 0xaa, 0x00, 0x37, 0x61, 0xc5);
     }
 
-    public class TimeFormat
+    sealed public class TimeFormat
     {
+        private TimeFormat()
+        {
+            // Prevent people from trying to instantiate this class
+        }
+
         // 00000000-0000-0000-0000-000000000000 TIME_FORMAT_NONE
         public static readonly Guid None = new Guid(0x0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
@@ -1426,8 +1471,13 @@ namespace DirectShowLib
         public static readonly Guid MediaTime = new Guid(0x7b785574, 0x8c82, 0x11cf, 0xbc, 0x0c, 0x00, 0xaa, 0x00, 0xac, 0x74, 0xf6);
     }
 
-    public class PropertyPages
+    sealed public class PropertyPages
     {
+        private PropertyPages()
+        {
+            // Prevent people from trying to instantiate this class
+        }
+
         /// <summary> CLSID_CrossbarFilterPropertyPage </summary>
         public static readonly Guid CrossbarFilterPropertyPage = new Guid(0x71f96461, 0x78f3, 0x11d0, 0xa1, 0x8c, 0x00, 0xa0, 0xc9, 0x11, 0x89, 0x56);
 
@@ -1486,8 +1536,13 @@ namespace DirectShowLib
         public static readonly Guid TVAudioFilterPropertyPage = new Guid(0x71f96463, 0x78f3, 0x11d0, 0xa1, 0x8c, 0x00, 0xa0, 0xc9, 0x11, 0x89, 0x56);
     }
 
-    public class BDANodeCategory
+    sealed public class BDANodeCategory
     {
+        private BDANodeCategory()
+        {
+            // Prevent people from trying to instantiate this class
+        }
+
         /// <summary> KSNODE_BDA_RF_TUNER </summary>
         public static readonly Guid RFTuner = new Guid(0x71985f4c, 0x1ca1, 0x11d3, 0x9c, 0xc8, 0x00, 0xc0, 0x4f, 0x79, 0x71, 0xe0);
 

@@ -232,7 +232,7 @@ namespace DirectShowLib
     /// From REGFILTER2
     /// </summary>
     [StructLayout(LayoutKind.Explicit)]
-    public struct RF
+    public struct RegFilter2Union
     {
         [FieldOffset(0)] public RegFilterPins [] rgPins;
         [FieldOffset(0)] public RegFilterPins2 [] rgPins2;
@@ -244,7 +244,7 @@ namespace DirectShowLib
         public int dwVersion;
         public int dwMerit;
         public int cPins;
-        public RF rgPins;
+        public RegFilter2Union rgPins;
     }
 
     /// <summary>
@@ -2290,7 +2290,7 @@ namespace DirectShowLib
         [PreserveSig]
         int RegisterForEvent(
             [In] Guid Api,
-            [In] int userData
+            [In] IntPtr userData
             );
 
         [PreserveSig]

@@ -30,8 +30,13 @@ namespace DirectShowLib.DMO
 {
     #region Declarations
 
-    public class MediaParamTimeFormat
+    sealed public class MediaParamTimeFormat
     {
+        private MediaParamTimeFormat()
+        {
+            // Prevent people from trying to instantiate this class
+        }
+
         /// <summary> GUID_TIME_REFERENCE </summary>
         public static readonly Guid Reference = new Guid(0x93ad712b, 0xdaa0, 0x4ffe, 0xbc, 0x81, 0xb0, 0xce, 0x50, 0x0f, 0xcd, 0xd9);
 
