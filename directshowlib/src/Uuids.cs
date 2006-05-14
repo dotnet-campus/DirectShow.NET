@@ -169,6 +169,22 @@ namespace DirectShowLib
     {
     }
 
+    /// <summary>
+    /// Unnamed clsid
+    /// </summary>
+    [ComImport, Guid("33facfe0-a9be-11d0-a520-00a0d10129c0")]
+    public class SAMIParser
+    {
+    }
+
+    /// <summary>
+    /// Unnamed clsid
+    /// </summary>
+    [ComImport, Guid("48025243-2D39-11CE-875D-00608CB78066")]
+    public class InternalScriptCommandRenderer 
+    {
+    }
+
     #endregion
 
     #region Filter Classes
