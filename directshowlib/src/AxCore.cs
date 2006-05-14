@@ -37,6 +37,7 @@ namespace DirectShowLib
     [Flags]
     public enum AMGBF
     {
+        None = 0,
         PrevFrameSkipped = 1,
         NotAsyncPoint = 2,
         NoWait = 4,
@@ -127,6 +128,7 @@ namespace DirectShowLib
     [Flags]
     public enum AMSeekingSeekingCapabilities
     {
+        None = 0,
         CanSeekAbsolute = 0x001,
         CanSeekForwards = 0x002,
         CanSeekBackwards = 0x004,

@@ -97,6 +97,7 @@ namespace DirectShowLib.DMO
     [Flags]
     public enum MPCaps
     {
+        None = 0,
         Jump = 0x1,
         Linear = 0x2,
         Square = 0x4,

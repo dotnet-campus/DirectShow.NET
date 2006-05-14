@@ -46,6 +46,7 @@ namespace DirectShowLib
     [Flags]
     public enum AMPlayListFlags
     {
+        None = 0,
         StartInScanMode	= 0x1,
         ForceBanner	= 0x2
     }

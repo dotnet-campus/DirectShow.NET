@@ -36,6 +36,7 @@ namespace DirectShowLib
     [Flags]
     public enum MixerData
     {
+        None = 0,
         AspectRatio = 0x00000001, // picture aspect ratio changed
         NativeSize = 0x00000002, // native size of video changed
         Palette = 0x00000004 // palette of video changed

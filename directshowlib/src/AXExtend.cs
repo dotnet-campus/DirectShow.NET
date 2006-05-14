@@ -36,199 +36,201 @@ namespace DirectShowLib
     #region Declarations
 
 #if ALLOW_UNTESTED_INTERFACES
-	/// <summary>
-	/// From QualityMessageType
-	/// </summary>
-	public enum QualityMessageType
-	{
-		Famine,
-		Flood
-	}
+    /// <summary>
+    /// From QualityMessageType
+    /// </summary>
+    public enum QualityMessageType
+    {
+        Famine,
+        Flood
+    }
 
-	/// <summary>
-	/// From VideoCopyProtectionType
-	/// </summary>
-	public enum VideoCopyProtectionType
-	{
-		MacrovisionBasic,
-		MacrovisionCBI
-	}
+    /// <summary>
+    /// From VideoCopyProtectionType
+    /// </summary>
+    public enum VideoCopyProtectionType
+    {
+        MacrovisionBasic,
+        MacrovisionCBI
+    }
 
-	/// <summary>
-	/// CameraControlProperty
-	/// </summary>
-	public enum CameraControlProperty
-	{
-		Pan = 1,
-		Tilt,
-		Roll,
-		Zoom,
-		Exposure,
-		Iris,
-		Focus
-	}
+    /// <summary>
+    /// CameraControlProperty
+    /// </summary>
+    public enum CameraControlProperty
+    {
+        Pan = 1,
+        Tilt,
+        Roll,
+        Zoom,
+        Exposure,
+        Iris,
+        Focus
+    }
 
-	/// <summary>
-	/// CameraControlFlags
-	/// </summary>
-	[Flags]
-	public enum CameraControlFlags
-	{
-		None = 0x0,
-		Auto = 0x0001,
-		Manual = 0x0002
-	}
+    /// <summary>
+    /// CameraControlFlags
+    /// </summary>
+    [Flags]
+    public enum CameraControlFlags
+    {
+        None = 0x0,
+        Auto = 0x0001,
+        Manual = 0x0002
+    }
 
-	/// <summary>
-	/// From _AM_PUSHSOURCE_FLAGS
-	/// </summary>
-	[Flags]
-	public enum AMPushSourceFlags
-	{
-		InternalRM = 0x00000001,
-		NotLive = 0x00000002,
-		PivateClock = 0x00000004,
-		UseStreamClock = 0x00010000,
-		UseClockChain = 0x00020000,
-	}
+    /// <summary>
+    /// From _AM_PUSHSOURCE_FLAGS
+    /// </summary>
+    [Flags]
+    public enum AMPushSourceFlags
+    {
+        None = 0,
+        InternalRM = 0x00000001,
+        NotLive = 0x00000002,
+        PrivateClock = 0x00000004,
+        UseStreamClock = 0x00010000,
+        UseClockChain = 0x00020000,
+    }
 
-	/// <summary>
-	/// From _DVResolution
-	/// </summary>
-	public enum DVResolution
-	{
-		Full = 1000,
-		Half = 1001,
-		Quarter = 1002,
-		Dc = 1003
-	}
+    /// <summary>
+    /// From _DVResolution
+    /// </summary>
+    public enum DVResolution
+    {
+        Full = 1000,
+        Half = 1001,
+        Quarter = 1002,
+        Dc = 1003
+    }
 
-	/// <summary>
-	/// From _AM_AUDIO_RENDERER_STAT_PARAM
-	/// </summary>
-	public enum AMAudioRendererStatParam
-	{
-		BreakCount = 1,
-		SlaveMode,
-		SilenceDur,
-		LastBufferDur,
-		Discontinuities,
-		SlaveRate,
-		SlaveDropWriteDur,
-		SlaveHighLowError,
-		SlaveLastHighLowError,
-		SlaveAccumError,
-		BufferFullness,
-		Jitter
-	}
+    /// <summary>
+    /// From _AM_AUDIO_RENDERER_STAT_PARAM
+    /// </summary>
+    public enum AMAudioRendererStatParam
+    {
+        BreakCount = 1,
+        SlaveMode,
+        SilenceDur,
+        LastBufferDur,
+        Discontinuities,
+        SlaveRate,
+        SlaveDropWriteDur,
+        SlaveHighLowError,
+        SlaveLastHighLowError,
+        SlaveAccumError,
+        BufferFullness,
+        Jitter
+    }
 
-	/// <summary>
-	/// From VIDEOENCODER_BITRATE_MODE
-	/// </summary>
-	public enum VideoEncoderBitrateMode
-	{
-		ConstantBitRate = 0,
-		VariableBitRateAverage,
-		VariableBitRatePeak
-	}
+    /// <summary>
+    /// From VIDEOENCODER_BITRATE_MODE
+    /// </summary>
+    public enum VideoEncoderBitrateMode
+    {
+        ConstantBitRate = 0,
+        VariableBitRateAverage,
+        VariableBitRatePeak
+    }
 
-	/// <summary>
-	/// From unnamed enum (REG_PINFLAG_B_*)
-	/// </summary>
-	[Flags]
-	public enum RegPinFlag
-	{
-		Zero = 0x1,
-		Renderer = 0x2,
-		Many = 0x4,
-		Output = 0x8
-	}
+    /// <summary>
+    /// From unnamed enum (REG_PINFLAG_B_*)
+    /// </summary>
+    [Flags]
+    public enum RegPinFlag
+    {
+        None = 0,
+        Zero = 0x1,
+        Renderer = 0x2,
+        Many = 0x4,
+        Output = 0x8
+    }
 
-	/// <summary>
-	/// From unnamed enum (ADVISE_*)
-	/// </summary>
-	[Flags]
-	public enum Advise
-	{
-		None = 0x0,
-		Clipping = 0x1,
-		Palette = 0x2,
-		ColorKey = 0x4,
-		Position = 0x8,
-		DisplayChange = 0x10,
-		All = Advise.Clipping | Advise.Palette | Advise.ColorKey | Advise.Position,
-		All2 = Advise.All | Advise.DisplayChange
-	}
+    /// <summary>
+    /// From unnamed enum (ADVISE_*)
+    /// </summary>
+    [Flags]
+    public enum Advise
+    {
+        None = 0x0,
+        Clipping = 0x1,
+        Palette = 0x2,
+        ColorKey = 0x4,
+        Position = 0x8,
+        DisplayChange = 0x10,
+        All = Advise.Clipping | Advise.Palette | Advise.ColorKey | Advise.Position,
+        All2 = Advise.All | Advise.DisplayChange
+    }
 
-	// ------------------------------------------------------------------------
+    // ------------------------------------------------------------------------
 
-	/// <summary>
-	/// From REGFILTER
-	/// </summary>
-	[StructLayout(LayoutKind.Sequential)]
-	public struct RegFilter
-	{
-		public Guid Clsid;
-		[MarshalAs(UnmanagedType.LPWStr)] public string Name;
-	}
+    /// <summary>
+    /// From REGFILTER
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential)]
+    public struct RegFilter
+    {
+        public Guid Clsid;
+        [MarshalAs(UnmanagedType.LPWStr)] public string Name;
+    }
 
-	/// <summary>
-	/// From REGPINTYPES
-	/// </summary>
-	[StructLayout(LayoutKind.Sequential)]
-	public struct RegPinTypes
-	{
-		public Guid clsMajorType;
-		public Guid clsMinorType;
-	}
+    /// <summary>
+    /// From REGPINTYPES
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential)]
+    public struct RegPinTypes
+    {
+        public Guid clsMajorType;
+        public Guid clsMinorType;
+    }
 
-	/// <summary>
-	/// From Quality
-	/// </summary>
-	[StructLayout(LayoutKind.Sequential)]
-	public struct Quality
-	{
-		public QualityMessageType Type;
-		public int Proportion;
-		public long Late;
-		public long TimeStamp;
-	}
+    /// <summary>
+    /// From Quality
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential)]
+    public struct Quality
+    {
+        public QualityMessageType Type;
+        public int Proportion;
+        public long Late;
+        public long TimeStamp;
+    }
 
-	/// <summary>
-	/// From REGFILTERPINS
-	/// </summary>
-	[StructLayout(LayoutKind.Sequential)]
-	public struct RegFilterPins
-	{
-		[MarshalAs(UnmanagedType.LPWStr)] public string strName;
-		[MarshalAs(UnmanagedType.Bool)] public bool bRendered;
-		[MarshalAs(UnmanagedType.Bool)] public bool bOutput;
-		[MarshalAs(UnmanagedType.Bool)] public bool bZero;
-		[MarshalAs(UnmanagedType.Bool)] public bool bMany;
-		public Guid clsConnectsToFilter;
-		[MarshalAs(UnmanagedType.LPWStr)] public string strConnectsToPin;
-		public int nMediaTypes;
-		[MarshalAs(UnmanagedType.ByValArray)] public RegPinTypes [] lpMediaType;
-	}
+    /// <summary>
+    /// From REGFILTERPINS
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential)]
+    public struct RegFilterPins
+    {
+        [MarshalAs(UnmanagedType.LPWStr)] public string strName;
+        [MarshalAs(UnmanagedType.Bool)] public bool bRendered;
+        [MarshalAs(UnmanagedType.Bool)] public bool bOutput;
+        [MarshalAs(UnmanagedType.Bool)] public bool bZero;
+        [MarshalAs(UnmanagedType.Bool)] public bool bMany;
+        public Guid clsConnectsToFilter;
+        [MarshalAs(UnmanagedType.LPWStr)] public string strConnectsToPin;
+        public int nMediaTypes;
+        [MarshalAs(UnmanagedType.ByValArray)] public RegPinTypes [] lpMediaType;
+    }
 
-	/// <summary>
-	/// From REGFILTERPINS2
-	/// </summary>
-	[StructLayout(LayoutKind.Sequential)]
-	public struct RegFilterPins2
-	{
-		public RegPinFlag dwFlags;
-		public int cInstances;
-		public int nMediaTypes;
-		public RegPinTypes [] lpMediaType;
-		public int nMediums;
-		public RegPinMedium [] lpMedium;
-		public Guid clsPinCategory;
-	}
+    /// <summary>
+    /// From REGFILTERPINS2
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential)]
+    public struct RegFilterPins2
+    {
+        public RegPinFlag dwFlags;
+        public int cInstances;
+        public int nMediaTypes;
+        public RegPinTypes [] lpMediaType;
+        public int nMediums;
+        public RegPinMedium [] lpMedium;
+        public Guid clsPinCategory;
+    }
 
-	/// <summary>
-	/// From REGFILTER2
-	/// </summary>
+    /// <summary>
+    /// From REGFILTER2
+    /// </summary>
     [StructLayout(LayoutKind.Explicit)]
     public struct RF
     {
@@ -237,130 +239,130 @@ namespace DirectShowLib
     };
 
     [StructLayout(LayoutKind.Sequential)]
-	public struct RegFilter2
-	{
-		public int dwVersion;
-		public int dwMerit;
-		public int cPins;
+    public struct RegFilter2
+    {
+        public int dwVersion;
+        public int dwMerit;
+        public int cPins;
         public RF rgPins;
-	}
+    }
 
-	/// <summary>
-	/// From RGNDATAHEADER
-	/// </summary>
-	[StructLayout(LayoutKind.Sequential)]
-	public struct RgnDataHeader
-	{
-		public int dwSize;
-		public int iType;
-		public int nCount;
-		public int nRgnSize;
-		public Rectangle rcBound;
-	}
+    /// <summary>
+    /// From RGNDATAHEADER
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential)]
+    public struct RgnDataHeader
+    {
+        public int dwSize;
+        public int iType;
+        public int nCount;
+        public int nRgnSize;
+        public Rectangle rcBound;
+    }
 
-	/// <summary>
-	/// From RGNDATA
-	/// </summary>
-	[StructLayout(LayoutKind.Sequential)]
-	public struct RgnData
-	{
-		public RgnDataHeader rdh;
-		public IntPtr Buffer;
-	}
+    /// <summary>
+    /// From RGNDATA
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential)]
+    public struct RgnData
+    {
+        public RgnDataHeader rdh;
+        public IntPtr Buffer;
+    }
 
-	/// <summary>
-	/// From TIMECODE
-	/// </summary>
-	[StructLayout(LayoutKind.Sequential, Pack=1)]
-	public struct TimeCode
-	{
-		public short wFrameRate;
-		public short wFrameFract;
-		public int dwFrames;
-	}
+    /// <summary>
+    /// From TIMECODE
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, Pack=1)]
+    public struct TimeCode
+    {
+        public short wFrameRate;
+        public short wFrameFract;
+        public int dwFrames;
+    }
 
-	/// <summary>
-	/// From TIMECODE_SAMPLE
-	/// </summary>
-	[StructLayout(LayoutKind.Sequential)]
-	public struct TimeCodeSample
-	{
-		public long qwTick;
-		public TimeCode timecode;
-		public int dwUser;
-		public int dwFlags;
-	}
+    /// <summary>
+    /// From TIMECODE_SAMPLE
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential)]
+    public struct TimeCodeSample
+    {
+        public long qwTick;
+        public TimeCode timecode;
+        public int dwUser;
+        public int dwFlags;
+    }
 
-	/// <summary>
-	/// From STREAM_ID_MAP
-	/// </summary>
-	[StructLayout(LayoutKind.Sequential)]
-	public struct StreamIdMap
-	{
-		public int stream_id;
-		public int dwMediaSampleContent;
-		public int ulSubstreamFilterValue;
-		public int iDataOffset;
-	}
+    /// <summary>
+    /// From STREAM_ID_MAP
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential)]
+    public struct StreamIdMap
+    {
+        public int stream_id;
+        public int dwMediaSampleContent;
+        public int ulSubstreamFilterValue;
+        public int iDataOffset;
+    }
 
-	/// <summary>
-	/// From CodecAPIEventData
-	/// </summary>
-	[StructLayout(LayoutKind.Sequential)]
-	public struct CodecAPIEventData
-	{
-		public Guid guid;
-		public int dataLength;
-		public int reserved1;
-		public int reserved2;
-		public int reserved3;
-	}
+    /// <summary>
+    /// From CodecAPIEventData
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential)]
+    public struct CodecAPIEventData
+    {
+        public Guid guid;
+        public int dataLength;
+        public int reserved1;
+        public int reserved2;
+        public int reserved3;
+    }
 
-	/// <summary>
-	/// From AMCOPPSignature
-	/// </summary>
-	[StructLayout(LayoutKind.Sequential)]
-	public struct AMCOPPSignature
-	{
-		[MarshalAs(UnmanagedType.ByValArray, ArraySubType=UnmanagedType.I1, SizeConst=256)] public byte[] Signature;
-	}
+    /// <summary>
+    /// From AMCOPPSignature
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential)]
+    public struct AMCOPPSignature
+    {
+        [MarshalAs(UnmanagedType.ByValArray, ArraySubType=UnmanagedType.I1, SizeConst=256)] public byte[] Signature;
+    }
 
-	/// <summary>
-	/// From AMCOPPCommand
-	/// </summary>
-	[StructLayout(LayoutKind.Sequential)]
-	public struct AMCOPPCommand
-	{
-		public Guid macKDI;
-		public Guid guidCommandID;
-		public int dwSequence;
-		public int cbSizeData;
-		[MarshalAs(UnmanagedType.ByValArray, ArraySubType=UnmanagedType.I1, SizeConst=4056)] public byte[] CommandData;
-	}
+    /// <summary>
+    /// From AMCOPPCommand
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential)]
+    public struct AMCOPPCommand
+    {
+        public Guid macKDI;
+        public Guid guidCommandID;
+        public int dwSequence;
+        public int cbSizeData;
+        [MarshalAs(UnmanagedType.ByValArray, ArraySubType=UnmanagedType.I1, SizeConst=4056)] public byte[] CommandData;
+    }
 
-	/// <summary>
-	/// From AMCOPPStatusInput
-	/// </summary>
-	[StructLayout(LayoutKind.Sequential)]
-	public struct AMCOPPStatusInput
-	{
-		public Guid rApp;
-		public Guid guidStatusRequestID;
-		public int dwSequence;
-		public int cbSizeData;
-		[MarshalAs(UnmanagedType.ByValArray, ArraySubType=UnmanagedType.I1, SizeConst=4056)] public byte[] StatusData;
-	}
+    /// <summary>
+    /// From AMCOPPStatusInput
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential)]
+    public struct AMCOPPStatusInput
+    {
+        public Guid rApp;
+        public Guid guidStatusRequestID;
+        public int dwSequence;
+        public int cbSizeData;
+        [MarshalAs(UnmanagedType.ByValArray, ArraySubType=UnmanagedType.I1, SizeConst=4056)] public byte[] StatusData;
+    }
 
-	/// <summary>
-	/// From AMCOPPStatusOutput
-	/// </summary>
-	[StructLayout(LayoutKind.Sequential)]
-	public struct AMCOPPStatusOutput
-	{
-		public Guid macKDI;
-		public int cbSizeData;
-		[MarshalAs(UnmanagedType.ByValArray, ArraySubType=UnmanagedType.I1, SizeConst=4076)] public byte[] COPPStatus;
-	}
+    /// <summary>
+    /// From AMCOPPStatusOutput
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential)]
+    public struct AMCOPPStatusOutput
+    {
+        public Guid macKDI;
+        public int cbSizeData;
+        [MarshalAs(UnmanagedType.ByValArray, ArraySubType=UnmanagedType.I1, SizeConst=4076)] public byte[] COPPStatus;
+    }
 
 #endif
 
@@ -370,6 +372,7 @@ namespace DirectShowLib
     [Flags]
     public enum AMFilterMiscFlags
     {
+        None = 0,
         IsRenderer = 0x00000001,
         IsSource = 0x00000002
     }
@@ -520,6 +523,7 @@ namespace DirectShowLib
     [Flags]
     public enum Merit
     {
+        None = 0,
         Preferred    = 0x800000,
         Normal       = 0x600000,
         Unlikely     = 0x400000,
@@ -631,7 +635,6 @@ namespace DirectShowLib
     /// <summary>
     /// From KSPROPERTY_SUPPORT_* defines
     /// </summary>
-    [Flags]
     public enum KSPropertySupport
     {
         Get = 1,
@@ -749,6 +752,7 @@ namespace DirectShowLib
     [Flags]
     public enum TVAudioMode
     {
+        None = 0,
         Mono = 0x0001,
         Stereo = 0x0002,
         LangA = 0x0010,
@@ -779,6 +783,7 @@ namespace DirectShowLib
     [Flags]
     public enum VideoProcAmpFlags
     {
+        None = 0,
         Auto = 0x0001,
         Manual = 0x0002
     }
@@ -822,6 +827,7 @@ namespace DirectShowLib
     [Flags]
     public enum AMTVAudioEventType
     {
+        None = 0,
         Changed = 0x0001
     }
 
@@ -845,6 +851,7 @@ namespace DirectShowLib
     [Flags]
     public enum VfwCompressDialogs
     {
+        None = 0,
         Config = 0x01,
         About = 0x02,
         QueryConfig = 0x04,
@@ -1203,14 +1210,15 @@ namespace DirectShowLib
         Signal_0625_50_MPEG = ExtDeviceBase.Base + 987,
         SignalUnknown = ExtDeviceBase.Base + 990
     }
-	
+    
     /// <summary>
     /// From ED_AUDIO*
     /// </summary>
     [Flags]
     public enum ExtTransportAudio
     {
-        AudioAll = 0x10000000,	//	or any of the following OR'd together
+        None = 0,
+        AudioAll = 0x10000000,  //  or any of the following OR'd together
         Audio1 = 0x0000001,
         Audio2 = 0x0000002,
         Audio3 = 0x0000004,
@@ -3870,7 +3878,7 @@ namespace DirectShowLib
         [PreserveSig,
         Obsolete("Because of bug in DS 9.0c, you can't get the StreamId map from .NET", false)]
 #if ALLOW_UNTESTED_INTERFACES
-		int EnumStreamIdMap([Out] out IEnumStreamIdMap ppIEnumStreamIdMap);
+        int EnumStreamIdMap([Out] out IEnumStreamIdMap ppIEnumStreamIdMap);
 #else
         int EnumStreamIdMap([Out] out object ppIEnumStreamIdMap);
 #endif

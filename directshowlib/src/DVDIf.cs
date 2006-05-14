@@ -141,6 +141,7 @@ namespace DirectShowLib.Dvd
     [Flags]
     public enum DvdTimeCodeFlags
     {
+        None = 0,
         FPS25 = 0x00000001,
         FPS30 = 0x00000002,
         DropFrame = 0x00000004,
@@ -153,6 +154,7 @@ namespace DirectShowLib.Dvd
     [Flags]
     public enum ValidUOPFlag
     {
+        None = 0,
         PlayTitleOrAtTime = 0x00000001,
         PlayChapter = 0x00000002,
         PlayTitle = 0x00000004,
@@ -222,6 +224,7 @@ namespace DirectShowLib.Dvd
     [Flags]
     public enum DvdParentalLevel
     {
+        None = 0,
         Level8 = 0x8000,
         Level7 = 0x4000,
         Level6 = 0x2000,
@@ -295,6 +298,7 @@ namespace DirectShowLib.Dvd
     [Flags]
     public enum DvdKaraokeDownMix
     {
+        None = 0,
         Mix_0to0 = 0x0001,
         Mix_1to0 = 0x0002,
         Mix_2to0 = 0x0004,
@@ -317,6 +321,7 @@ namespace DirectShowLib.Dvd
     [Flags]
     public enum DvdKaraokeContents : short
     {
+        None = 0,
         GuideVocal1 = 0x0001,
         GuideVocal2 = 0x0002,
         GuideMelody1 = 0x0004,
@@ -439,6 +444,7 @@ namespace DirectShowLib.Dvd
     [Flags]
     public enum DvdAudioCaps
     {
+        None = 0,
         AC3 = 0x00000001,
         MPEG2 = 0x00000002,
         LPCM = 0x00000004,
@@ -476,6 +482,7 @@ namespace DirectShowLib.Dvd
     [Flags]
     public enum AMOverlayNotifyFlags
     {
+        None = 0,
         VisibleChange = 0x00000001,
         SourceChange = 0x00000002,
         DestChange = 0x00000004

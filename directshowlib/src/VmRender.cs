@@ -38,6 +38,7 @@ namespace DirectShowLib
     [Flags]
     public enum VMRPresentationFlags
     {
+        None = 0,
         SyncPoint = 0x00000001,
         Preroll = 0x00000002,
         Discontinuity = 0x00000004,
@@ -51,6 +52,7 @@ namespace DirectShowLib
     [Flags]
     public enum VMRSurfaceAllocationFlags
     {
+        None = 0,
         PixelFormatValid = 0x01,
         ThreeDTarget = 0x02,
         AllowSysMem = 0x04,
@@ -118,6 +120,7 @@ namespace DirectShowLib
     [Flags]
     public enum VMRBitmap
     {
+        None = 0,
         Disable = 0x00000001,
         Hdc = 0x00000002,
         EntireDDS = 0x00000004,
@@ -132,6 +135,7 @@ namespace DirectShowLib
     [Flags]
     public enum VMRDeinterlacePrefs
     {
+        None = 0,
         NextBest = 0x01,
         BOB = 0x02,
         Weave = 0x04,
@@ -195,6 +199,7 @@ namespace DirectShowLib
     [Flags]
     public enum VMRMode
     {
+        None = 0,
         Windowed = 0x00000001,
         Windowless = 0x00000002,
         Renderless = 0x00000004,

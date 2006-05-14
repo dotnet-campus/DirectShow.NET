@@ -36,6 +36,7 @@ namespace DirectShowLib
     [Flags]
     public enum AMExtendedSeekingCapabilities
     {
+        None = 0,
         CanSeek = 1,
         CanScan = 2,
         MarkerSeek = 4,

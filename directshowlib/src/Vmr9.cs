@@ -36,6 +36,7 @@ namespace DirectShowLib
     [Flags]
     public enum VMR9PresentationFlags
     {
+        None = 0,
         SyncPoint = 0x00000001,
         Preroll = 0x00000002,
         Discontinuity = 0x00000004,
@@ -49,6 +50,7 @@ namespace DirectShowLib
     [Flags]
     public enum VMR9SurfaceAllocationFlags
     {
+        None = 0,
         ThreeDRenderTarget = 0x0001,
         DXVATarget = 0x0002,
         TextureSurface = 0x0004,
@@ -63,6 +65,7 @@ namespace DirectShowLib
     [Flags]
     public enum VMR9ProcAmpControlFlags
     {
+        None = 0,
         Brightness = 0x00000001,
         Contrast = 0x00000002,
         Hue = 0x00000004,
@@ -126,6 +129,7 @@ namespace DirectShowLib
     [Flags]
     public enum VMR9AlphaBitmapFlags
     {
+        None = 0,
         Disable = 0x00000001,
         hDC = 0x00000002,
         EntireDDS = 0x00000004,
@@ -140,6 +144,7 @@ namespace DirectShowLib
     [Flags]
     public enum VMR9DeinterlacePrefs
     {
+        None = 0,
         NextBest = 0x01,
         BOB = 0x02,
         Weave = 0x04,
@@ -152,6 +157,7 @@ namespace DirectShowLib
     [Flags]
     public enum VMR9RenderPrefs
     {
+        None = 0,
         DoNotRenderBorder = 0x00000001, // app paints color keys
         Mask = 0x00000001, // OR of all above flags
     }
@@ -162,6 +168,7 @@ namespace DirectShowLib
     [Flags]
     public enum VMR9Mode
     {
+        None = 0,
         Windowed = 0x00000001,
         Windowless = 0x00000002,
         Renderless = 0x00000004,
@@ -182,6 +189,7 @@ namespace DirectShowLib
     /// </summary>
     public enum VMR9SampleFormat
     {
+        None = 0,
         Reserved = 1,
         ProgressiveFrame = 2,
         FieldInterleavedEvenFirst = 3,

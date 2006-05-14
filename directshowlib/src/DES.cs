@@ -326,6 +326,7 @@ namespace DirectShowLib.DES
     [Flags]
     public enum TimelineMajorType
     {
+        None = 0,
         Composite = 1,
         Effect = 0x10,
         Group = 0x80,
