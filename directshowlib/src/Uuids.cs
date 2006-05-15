@@ -185,6 +185,15 @@ namespace DirectShowLib
     {
     }
 
+    /// <summary>
+    /// CLSID_BroadcastEventService
+    /// </summary>
+    [ComImport, Guid("0B3FFB92-0919-4934-9D5B-619C719D0202")]
+    public class BroadcastEventService
+    {
+    }
+
+
     #endregion
 
     #region Filter Classes

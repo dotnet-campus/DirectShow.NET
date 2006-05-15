@@ -37,6 +37,9 @@ namespace v1._5
 
             //IAMFilterGraphCallbackTest t7 = new IAMFilterGraphCallbackTest();
             //t7.DoTests();
+
+            //IBroadcastEventTest t8 = new IBroadcastEventTest();
+            //t8.DoTests();
         }
     }
 }

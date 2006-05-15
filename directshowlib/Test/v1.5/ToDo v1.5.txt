@@ -8,3 +8,5 @@ IRegisterServiceProvider	1	snarfle		ready
 IServiceProvider			1	snarfle		ready
 IAMGraphBuilderCallback		2	snarfle		ready
 IAsyncReader				8	snarfle		ready
+IQualityControl				2	snarfle		
+IBroadcastEvent				1	snarfle		ready

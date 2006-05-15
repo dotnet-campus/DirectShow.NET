@@ -36,6 +36,7 @@
     <Compile Include="IAMBufferNegotiationTest.cs" />
     <Compile Include="IAMFilterGraphCallbackTest.cs" />
     <Compile Include="IAMGraphBuilderCallbackTest.cs" />
+    <Compile Include="IBroadCastEventTest.cs" />
     <Compile Include="IObjectWithSiteTest.cs" />
     <Compile Include="IServiceProviderTest.cs" />
     <Compile Include="RunTests.cs" />
