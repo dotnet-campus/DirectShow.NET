@@ -43,6 +43,9 @@ namespace v1._5
 
             //IQualityControlTest t9 = new IQualityControlTest();
             //t9.DoTests();
+
+            //IAMAudioRendererStatsTest t10 = new IAMAudioRendererStatsTest();
+            //t10.DoTests();
         }
     }
 }

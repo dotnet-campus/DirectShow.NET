@@ -9,5 +9,18 @@ IAMGraphBuilderCallback		2	snarfle		ready
 IAsyncReader				8	snarfle		ready
 IQualityControl				2	snarfle		ready
 IBroadcastEvent				1	snarfle		ready
-IAMAudioRendererStats		1	snarfle
+IAMAudioRendererStats		1	snarfle		ready
 IAMClockAdjust				1	snarfle
+
+IAMMediaStream				5
+IAMVideoAccelerator			12
+IMemAllocator				6
+IMemAllocatorCallbackTemp	2
+IMemInputPin				6
+IResourceManager			8
+ISeekingPassThru			1
+IStreamBuilder				2
+ITuneRequestInfo			7
+IVPConfig					2
+IVPNotify					2
+IVPNotify2					2
