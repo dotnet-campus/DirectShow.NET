@@ -10,11 +10,11 @@ IAsyncReader				8	snarfle		ready
 IQualityControl				2	snarfle		ready
 IBroadcastEvent				1	snarfle		ready
 IAMAudioRendererStats		1	snarfle		ready
-IAMClockAdjust				1	snarfle
+IAMClockAdjust				1	snarfle		ready
+IMemAllocator				6	snarfle		ready
 
 IAMMediaStream				5
 IAMVideoAccelerator			12
-IMemAllocator				6
 IMemAllocatorCallbackTemp	2
 IMemInputPin				6
 IResourceManager			8

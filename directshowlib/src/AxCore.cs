@@ -253,8 +253,8 @@ namespace DirectShowLib
     {
         [PreserveSig]
         int SetProperties(
-            [In] AllocatorProperties pRequest,
-            [Out, MarshalAs(UnmanagedType.LPStruct)] out AllocatorProperties pActual
+            [In, MarshalAs(UnmanagedType.LPStruct)] AllocatorProperties pRequest,
+            [Out, MarshalAs(UnmanagedType.LPStruct)] AllocatorProperties pActual
             );
 
         [PreserveSig]

@@ -46,6 +46,12 @@ namespace v1._5
 
             //IAMAudioRendererStatsTest t10 = new IAMAudioRendererStatsTest();
             //t10.DoTests();
+
+            //IAMClockAdjustTest t11 = new IAMClockAdjustTest();
+            //t11.DoTests();
+
+            //IMemAllocatorTest t12 = new IMemAllocatorTest();
+            //t12.DoTests();
         }
     }
 }

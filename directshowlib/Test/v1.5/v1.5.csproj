@@ -36,9 +36,11 @@
   <ItemGroup>
     <Compile Include="IAMAudioRendererStatsTest.cs" />
     <Compile Include="IAMBufferNegotiationTest.cs" />
+    <Compile Include="IAMClockAdjustTest.cs" />
     <Compile Include="IAMFilterGraphCallbackTest.cs" />
     <Compile Include="IAMGraphBuilderCallbackTest.cs" />
     <Compile Include="IBroadCastEventTest.cs" />
+    <Compile Include="IMemAllocatorTest.cs" />
     <Compile Include="IObjectWithSiteTest.cs" />
     <Compile Include="IQualityControlTest.cs" />
     <Compile Include="IServiceProviderTest.cs" />
