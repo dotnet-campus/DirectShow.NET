@@ -1,6 +1,5 @@
 Interface				Methods	Assigned	Reviewer
 
-IAMTimecodeReader			5
 IAMBufferNegotiation		2	snarfle		ready
 IServiceProvider			1	snarfle		ready
 IObjectWithSite				2	snarfle		ready
@@ -8,5 +7,7 @@ IRegisterServiceProvider	1	snarfle		ready
 IServiceProvider			1	snarfle		ready
 IAMGraphBuilderCallback		2	snarfle		ready
 IAsyncReader				8	snarfle		ready
-IQualityControl				2	snarfle		
+IQualityControl				2	snarfle		ready
 IBroadcastEvent				1	snarfle		ready
+IAMAudioRendererStats		1	snarfle
+IAMClockAdjust				1	snarfle

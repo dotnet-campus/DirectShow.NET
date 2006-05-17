@@ -40,6 +40,9 @@ namespace v1._5
 
             //IBroadcastEventTest t8 = new IBroadcastEventTest();
             //t8.DoTests();
+
+            //IQualityControlTest t9 = new IQualityControlTest();
+            //t9.DoTests();
         }
     }
 }
