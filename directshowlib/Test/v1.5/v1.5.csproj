@@ -44,6 +44,7 @@
     <Compile Include="IMemAllocatorTest.cs" />
     <Compile Include="IObjectWithSiteTest.cs" />
     <Compile Include="IQualityControlTest.cs" />
+    <Compile Include="ISeekingPassThruTest.cs" />
     <Compile Include="IServiceProviderTest.cs" />
     <Compile Include="RunTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
