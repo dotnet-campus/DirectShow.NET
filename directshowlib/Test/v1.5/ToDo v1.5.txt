@@ -15,13 +15,11 @@ IMemAllocator				6	snarfle		ready
 IMemAllocatorCallbackTemp	2	snarfle		ready
 IMemAllocatorNotifyCallbackTemp 1 snarfle	ready
 ISeekingPassThru			1	snarfle		ready
+IVPNotify					2	snarfle		ready
+IVPNotify2					2	snarfle		ready
+IAMMediaStream				5	snarfle		ready
 
-IAMMediaStream				5
 IAMVideoAccelerator			12
-IMemInputPin				6
 IResourceManager			8
-IStreamBuilder				2
+IResourceConsumer			2
 ITuneRequestInfo			7
-IVPConfig					2
-IVPNotify					2
-IVPNotify2					2

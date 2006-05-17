@@ -477,7 +477,7 @@ namespace DirectShowLib.MultimediaStreaming
 
         [PreserveSig]
         new int Run(
-            long tStart
+            [In] long tStart
             );
 
         [PreserveSig]

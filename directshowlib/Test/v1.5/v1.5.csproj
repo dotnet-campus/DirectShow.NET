@@ -39,6 +39,7 @@
     <Compile Include="IAMClockAdjustTest.cs" />
     <Compile Include="IAMFilterGraphCallbackTest.cs" />
     <Compile Include="IAMGraphBuilderCallbackTest.cs" />
+    <Compile Include="IAMMediaStreamTest.cs" />
     <Compile Include="IBroadCastEventTest.cs" />
     <Compile Include="IMemAllocatorCallbackTempTest.cs" />
     <Compile Include="IMemAllocatorTest.cs" />
@@ -46,6 +47,8 @@
     <Compile Include="IQualityControlTest.cs" />
     <Compile Include="ISeekingPassThruTest.cs" />
     <Compile Include="IServiceProviderTest.cs" />
+    <Compile Include="IVPNotify2Test.cs" />
+    <Compile Include="IVPNotifyTest.cs" />
     <Compile Include="RunTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

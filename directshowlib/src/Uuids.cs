@@ -574,6 +574,14 @@ namespace DirectShowLib
     public class OverlayMixer
     {
     }
+    
+    /// <summary>
+    /// CLSID_OverlayMixer2
+    /// </summary>
+    [ComImport, Guid("A0025E90-E45B-11D1-ABE9-00A0C905F375")]
+    public class OverlayMixer2
+    {
+    }
 
 
     /// <summary>

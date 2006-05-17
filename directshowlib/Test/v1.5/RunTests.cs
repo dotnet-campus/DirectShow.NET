@@ -56,8 +56,17 @@ namespace v1._5
             //IMemAllocatorCallbackTempTest t13 = new IMemAllocatorCallbackTempTest();
             //t13.DoTests();
 
-            ISeekingPassThruTest t14 = new ISeekingPassThruTest();
-            t14.DoTests();
+            //ISeekingPassThruTest t14 = new ISeekingPassThruTest();
+            //t14.DoTests();
+
+            //IVPNotifyTest t15 = new IVPNotifyTest();
+            //t15.DoTests();
+
+            //IVPNotify2Test t16 = new IVPNotify2Test();
+            //t16.DoTests();
+
+            //IAMMediaStreamTest t17 = new IAMMediaStreamTest();
+            //t17.DoTests();
         }
     }
 }
