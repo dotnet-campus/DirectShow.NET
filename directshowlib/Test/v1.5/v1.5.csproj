@@ -40,6 +40,7 @@
     <Compile Include="IAMFilterGraphCallbackTest.cs" />
     <Compile Include="IAMGraphBuilderCallbackTest.cs" />
     <Compile Include="IBroadCastEventTest.cs" />
+    <Compile Include="IMemAllocatorCallbackTempTest.cs" />
     <Compile Include="IMemAllocatorTest.cs" />
     <Compile Include="IObjectWithSiteTest.cs" />
     <Compile Include="IQualityControlTest.cs" />

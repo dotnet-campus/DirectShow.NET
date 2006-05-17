@@ -52,6 +52,9 @@ namespace v1._5
 
             //IMemAllocatorTest t12 = new IMemAllocatorTest();
             //t12.DoTests();
+
+            //IMemAllocatorCallbackTempTest t13 = new IMemAllocatorCallbackTempTest();
+            //t13.DoTests();
         }
     }
 }

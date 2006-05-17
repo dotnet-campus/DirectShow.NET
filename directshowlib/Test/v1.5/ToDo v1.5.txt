@@ -12,10 +12,11 @@ IBroadcastEvent				1	snarfle		ready
 IAMAudioRendererStats		1	snarfle		ready
 IAMClockAdjust				1	snarfle		ready
 IMemAllocator				6	snarfle		ready
+IMemAllocatorCallbackTemp	2	snarfle		ready
+IMemAllocatorNotifyCallbackTemp 1 snarfle	ready
 
 IAMMediaStream				5
 IAMVideoAccelerator			12
-IMemAllocatorCallbackTemp	2
 IMemInputPin				6
 IResourceManager			8
 ISeekingPassThru			1
