@@ -78,7 +78,6 @@ namespace v1._5
 
         private void Setup()
         {
-            int hr;
             m_ma = new MemoryAllocator() as IMemAllocator;
         }
     }

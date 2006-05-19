@@ -67,6 +67,9 @@ namespace v1._5
 
             //IAMMediaStreamTest t17 = new IAMMediaStreamTest();
             //t17.DoTests();
+
+            //IResourceManagerTest t18 = new IResourceManagerTest();
+            //t18.DoTests();
         }
     }
 }

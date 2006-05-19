@@ -32,6 +32,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IAMAudioRendererStatsTest.cs" />
@@ -45,6 +46,7 @@
     <Compile Include="IMemAllocatorTest.cs" />
     <Compile Include="IObjectWithSiteTest.cs" />
     <Compile Include="IQualityControlTest.cs" />
+    <Compile Include="IResourceManagerTest.cs" />
     <Compile Include="ISeekingPassThruTest.cs" />
     <Compile Include="IServiceProviderTest.cs" />
     <Compile Include="IVPNotify2Test.cs" />

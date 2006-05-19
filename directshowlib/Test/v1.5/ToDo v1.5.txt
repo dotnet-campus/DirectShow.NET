@@ -19,7 +19,5 @@ IVPNotify					2	snarfle		ready
 IVPNotify2					2	snarfle		ready
 IAMMediaStream				5	snarfle		ready
 
-IAMVideoAccelerator			12
 IResourceManager			8
 IResourceConsumer			2
-ITuneRequestInfo			7
