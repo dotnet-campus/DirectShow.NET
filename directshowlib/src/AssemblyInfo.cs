@@ -32,6 +32,7 @@ using System.Security.Permissions;
 [assembly : AssemblyDescription(".NET Interfaces for calling DirectShow.  See http://directshownet.sourceforge.net/")]
 [assembly : AssemblyConfiguration("")]
 [assembly : AssemblyCompany("")]
+[assembly : Guid("6D0386CE-37E6-4f77-B678-07C584105DC6")]
 [assembly : AssemblyVersion("1.4.0.*")]
 #if DEBUG
 [assembly : AssemblyProduct("Debug Version")]
@@ -47,6 +48,6 @@ using System.Security.Permissions;
 [assembly : AssemblyKeyFile("..\\..\\DShowNET.snk")]
 #endif
 [assembly : AssemblyKeyName("")]
-[assembly : ComVisible(true)]
+[assembly : ComVisible(false)]
 [assembly : CLSCompliant(true)]
 [assembly : SecurityPermission(SecurityAction.RequestMinimum, UnmanagedCode=true)]
