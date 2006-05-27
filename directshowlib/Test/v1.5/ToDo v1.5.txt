@@ -4,7 +4,6 @@ IAMBufferNegotiation		2	snarfle		ready
 IServiceProvider			1	snarfle		ready
 IObjectWithSite				2	snarfle		ready
 IRegisterServiceProvider	1	snarfle		ready
-IServiceProvider			1	snarfle		ready
 IAMGraphBuilderCallback		2	snarfle		ready
 IAsyncReader				8	snarfle		ready
 IQualityControl				2	snarfle		ready
@@ -18,6 +17,3 @@ ISeekingPassThru			1	snarfle		ready
 IVPNotify					2	snarfle		ready
 IVPNotify2					2	snarfle		ready
 IAMMediaStream				5	snarfle		ready
-
-IResourceManager			8
-IResourceConsumer			2
