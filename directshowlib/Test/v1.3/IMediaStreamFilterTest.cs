@@ -38,7 +38,6 @@ namespace DirectShowLib.Test
 
         private void TestAdd()
         {
-#if ALLOW_UNTESTED_INTERFACES
 			int hr;
 
             IAMMediaStream aStream;
@@ -54,7 +53,6 @@ namespace DirectShowLib.Test
             // If it can read the purpose id, it must have been able to read the aStream
             // and that's close enough
             Debug.Assert(hr == MsResults.E_PurposeId, "AddMediaStream");
-#endif
         }
 
         private void TestWait()

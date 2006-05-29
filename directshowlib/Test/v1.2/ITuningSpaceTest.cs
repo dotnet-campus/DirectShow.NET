@@ -83,10 +83,8 @@ namespace DirectShowLib.Test
 
       Debug.Assert((hr == 0) && (tuneReq != null), "ITuningSpace.CreateTuneRequest");
 
-#if ALLOW_UNTESTED_INTERFACES
       // ATSC tuning spaces create ATSC tune request...
       Debug.Assert(tuneReq is IATSCChannelTuneRequest, "ITuningSpace.CreateTuneRequest");
-#endif
 
       Marshal.ReleaseComObject(tuneReq);
     }
