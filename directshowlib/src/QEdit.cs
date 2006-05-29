@@ -38,14 +38,14 @@ namespace DirectShowLib
     {
         None = 0,
         IsInterlaced          = 0x00000001,
-        OneFieldPerSample     = 0x00000002, 
-        Field1First           = 0x00000004, 
-        Unused                = 0x00000008, 
-        FieldPatternMask      = 0x00000030, 
-        FieldPatField1Only    = 0x00000000, 
-        FieldPatField2Only    = 0x00000010, 
-        FieldPatBothRegular   = 0x00000020, 
-        FieldPatBothIrregular = 0x00000030, 
+        OneFieldPerSample     = 0x00000002,
+        Field1First           = 0x00000004,
+        Unused                = 0x00000008,
+        FieldPatternMask      = 0x00000030,
+        FieldPatField1Only    = 0x00000000,
+        FieldPatField2Only    = 0x00000010,
+        FieldPatBothRegular   = 0x00000020,
+        FieldPatBothIrregular = 0x00000030,
         DisplayModeMask       = 0x000000c0,
         DisplayModeBobOnly    = 0x00000000,
         DisplayModeWeaveOnly  = 0x00000040,
@@ -69,8 +69,8 @@ namespace DirectShowLib
     {
         None = 0,
         Used      = 0x00000001,
-        PadTo4x3  = 0x00000002, 
-        PadTo16x9 = 0x00000004, 
+        PadTo4x3  = 0x00000002,
+        PadTo16x9 = 0x00000004,
     }
 
     /// <summary>
@@ -126,7 +126,8 @@ namespace DirectShowLib
 
     #region Interfaces
 
-    [Guid("6B652FFF-11FE-4fce-92AD-0266B5D7C78F"),
+    [ComImport,
+    Guid("6B652FFF-11FE-4fce-92AD-0266B5D7C78F"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface ISampleGrabber
     {
@@ -156,8 +157,8 @@ namespace DirectShowLib
         int SetCallback(ISampleGrabberCB pCallback, int WhichMethodToCallback);
     }
 
-
-    [Guid("0579154A-2B53-4994-B0D0-E773148EFF85"),
+    [ComImport,
+    Guid("0579154A-2B53-4994-B0D0-E773148EFF85"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface ISampleGrabberCB
     {

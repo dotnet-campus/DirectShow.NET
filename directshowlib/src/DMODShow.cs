@@ -29,7 +29,8 @@ namespace DirectShowLib
 {
     #region Interfaces
 
-    [Guid("52d6f586-9f0f-4824-8fc8-e32ca04930c2"),
+    [ComImport,
+    Guid("52d6f586-9f0f-4824-8fc8-e32ca04930c2"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IDMOWrapperFilter
     {

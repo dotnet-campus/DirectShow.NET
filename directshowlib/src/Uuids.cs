@@ -152,7 +152,7 @@ namespace DirectShowLib
     public class SectionList
     {
     }
-  
+
     /// <summary>
     /// CLSID_Mpeg2Stream
     /// </summary>
@@ -160,7 +160,7 @@ namespace DirectShowLib
     public class Mpeg2Stream
     {
     }
-  
+
     /// <summary>
     /// CLSID_Mpeg2Data
     /// </summary>
@@ -181,7 +181,7 @@ namespace DirectShowLib
     /// Unnamed clsid
     /// </summary>
     [ComImport, Guid("48025243-2D39-11CE-875D-00608CB78066")]
-    public class InternalScriptCommandRenderer 
+    public class InternalScriptCommandRenderer
     {
     }
 
@@ -363,7 +363,6 @@ namespace DirectShowLib
     /// CLSID_DVBTNetworkProvider
     /// </summary>
     [ComImport, Guid("216C62DF-6D7F-4e9a-8571-05F14EDB766A")]
-
     public class DVBTNetworkProvider
     {
     }
@@ -574,7 +573,7 @@ namespace DirectShowLib
     public class OverlayMixer
     {
     }
-    
+
     /// <summary>
     /// CLSID_OverlayMixer2
     /// </summary>
@@ -916,13 +915,13 @@ namespace DirectShowLib
 
         /// <summary> MEDIATYPE_LMRT </summary>
         public static readonly Guid LMRT = new Guid(0x74726c6d, 0x0000, 0x0010, 0x80, 0x00, 0x00, 0xaa, 0x00, 0x38, 0x9b, 0x71);
-        
+
         /// <summary> MEDIATYPE_URL_STREAM </summary>
         public static readonly Guid URLStream = new Guid(0x736c7275, 0x0000, 0x0010, 0x80, 0x00, 0x00, 0xaa, 0x00, 0x38, 0x9b, 0x71);
-        
+
         /// <summary> MEDIATYPE_AnalogVideo </summary>
         public static readonly Guid AnalogVideo = new Guid(0x0482dde1, 0x7817, 0x11cf, 0x8a, 0x03, 0x00, 0xaa, 0x00, 0x6e, 0xcb, 0x65);
-        
+
         /// <summary> MEDIATYPE_AnalogAudio </summary>
         public static readonly Guid AnalogAudio = new Guid(0x0482dee1, 0x7817, 0x11cf, 0x8a, 0x03, 0x00, 0xaa, 0x00, 0x6e, 0xcb, 0x65);
 

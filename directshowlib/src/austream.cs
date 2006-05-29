@@ -32,21 +32,22 @@ namespace DirectShowLib.MultimediaStreaming
 
 #if ALLOW_UNTESTED_INTERFACES
 
-    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown), 
+    [ComImport,
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
     Guid("327FC560-AF60-11D0-8212-00C04FC32C45")]
     public interface IMemoryData
     {
         [PreserveSig]
         int SetBuffer(
-            [In] int cbSize, 
-            [In] IntPtr pbData, 
+            [In] int cbSize,
+            [In] IntPtr pbData,
             [In] int dwFlags
             );
 
         [PreserveSig]
         int GetInfo(
-            out int pdwLength, 
-            [Out] IntPtr ppbData, 
+            out int pdwLength,
+            [Out] IntPtr ppbData,
             out int pcbActualData
             );
 
@@ -56,24 +57,24 @@ namespace DirectShowLib.MultimediaStreaming
             );
     }
 
-
-    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown), 
+    [ComImport,
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
     Guid("54C719C0-AF60-11D0-8212-00C04FC32C45")]
     public interface IAudioData : IMemoryData
     {
-    #region IMemoryData Methods
+        #region IMemoryData Methods
 
         [PreserveSig]
         new int SetBuffer(
-            [In] int cbSize, 
-            [In] IntPtr pbData, 
+            [In] int cbSize,
+            [In] IntPtr pbData,
             [In] int dwFlags
             );
 
         [PreserveSig]
         new int GetInfo(
-            out int pdwLength, 
-            [Out] IntPtr ppbData, 
+            out int pdwLength,
+            [Out] IntPtr ppbData,
             out int pcbActualData
             );
 
@@ -82,7 +83,7 @@ namespace DirectShowLib.MultimediaStreaming
             [In] int cbDataValid
             );
 
-    #endregion
+        #endregion
 
         [PreserveSig]
         int GetFormat(
@@ -95,12 +96,12 @@ namespace DirectShowLib.MultimediaStreaming
             );
     }
 
-
-    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown), 
+    [ComImport,
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
     Guid("345FEE00-ABA5-11D0-8212-00C04FC32C45")]
     public interface IAudioStreamSample : IStreamSample
     {
-    #region IStreamSample Methods
+        #region IStreamSample Methods
 
         [PreserveSig]
         new int GetMediaStream(
@@ -109,32 +110,32 @@ namespace DirectShowLib.MultimediaStreaming
 
         [PreserveSig]
         new int GetSampleTimes(
-            out long pStartTime, 
-            out long pEndTime, 
+            out long pStartTime,
+            out long pEndTime,
             out long pCurrentTime
             );
 
         [PreserveSig]
         new int SetSampleTimes(
-            [In] DsLong pStartTime, 
+            [In] DsLong pStartTime,
             [In] DsLong pEndTime
             );
 
         [PreserveSig]
         new int Update(
-            [In] SSUpdate dwFlags, 
-            [In] IntPtr hEvent, 
-            [In] IntPtr pfnAPC, 
+            [In] SSUpdate dwFlags,
+            [In] IntPtr hEvent,
+            [In] IntPtr pfnAPC,
             [In] IntPtr dwAPCData
             );
 
         [PreserveSig]
         new int CompletionStatus(
-            [In] CompletionStatusFlags dwFlags, 
+            [In] CompletionStatusFlags dwFlags,
             [In] int dwMilliseconds
             );
 
-    #endregion
+        #endregion
 
         [PreserveSig]
         int GetAudioData(
@@ -145,7 +146,8 @@ namespace DirectShowLib.MultimediaStreaming
 
 #endif
 
-    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown), 
+    [ComImport,
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
     Guid("F7537560-A3BE-11D0-8212-00C04FC32C45")]
     public interface IAudioMediaStream : IMediaStream
     {
@@ -158,24 +160,24 @@ namespace DirectShowLib.MultimediaStreaming
 
         [PreserveSig]
         new int GetInformation(
-            out Guid pPurposeId, 
+            out Guid pPurposeId,
             out StreamType pType);
 
         [PreserveSig]
         new int SetSameFormat(
-            [In, MarshalAs(UnmanagedType.Interface)] IMediaStream pStreamThatHasDesiredFormat, 
+            [In, MarshalAs(UnmanagedType.Interface)] IMediaStream pStreamThatHasDesiredFormat,
             [In] int dwFlags);
 
         [PreserveSig]
         new int AllocateSample(
-            [In] int dwFlags, 
+            [In] int dwFlags,
             [MarshalAs(UnmanagedType.Interface)] out IStreamSample ppSample
             );
 
         [PreserveSig]
         new int CreateSharedSample(
-            [In, MarshalAs(UnmanagedType.Interface)] IStreamSample pExistingSample, 
-            [In] int dwFlags, 
+            [In, MarshalAs(UnmanagedType.Interface)] IStreamSample pExistingSample,
+            [In] int dwFlags,
             [MarshalAs(UnmanagedType.Interface)] out IStreamSample ppNewSample
             );
 
@@ -199,12 +201,12 @@ namespace DirectShowLib.MultimediaStreaming
         [PreserveSig]
         int CreateSample(
 #if ALLOW_UNTESTED_INTERFACES
-            [In, MarshalAs(UnmanagedType.Interface)] IAudioData pAudioData, 
-            [In] int dwFlags, 
+            [In, MarshalAs(UnmanagedType.Interface)] IAudioData pAudioData,
+            [In] int dwFlags,
             [MarshalAs(UnmanagedType.Interface)] out IAudioStreamSample ppSample
 #else
-            [In, MarshalAs(UnmanagedType.Interface)] object pAudioData, 
-            [In] int dwFlags, 
+            [In, MarshalAs(UnmanagedType.Interface)] object pAudioData,
+            [In] int dwFlags,
             [MarshalAs(UnmanagedType.Interface)] out object ppSample
 #endif
             );

@@ -106,7 +106,7 @@ namespace DirectShowLib.DMO
         Jump = 0x1,
         Linear = 0x2,
         Square = 0x4,
-        InvSquare	= 0x8,
+        InvSquare = 0x8,
         Sine = 0x10
     }
 
@@ -131,7 +131,8 @@ namespace DirectShowLib.DMO
 
     #region Interfaces
 
-    [ComVisible(true), InterfaceType(ComInterfaceType.InterfaceIsIUnknown), 
+    [ComImport,
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
     Guid("6D6CBB60-A223-44AA-842F-A2F06750BE6D")]
     public interface IMediaParamInfo
     {
@@ -142,13 +143,13 @@ namespace DirectShowLib.DMO
 
         [PreserveSig]
         int GetParamInfo(
-            [In] int dwParamIndex, 
+            [In] int dwParamIndex,
             out ParamInfo pInfo
             );
 
         [PreserveSig]
         int GetParamText(
-            [In] int dwParamIndex, 
+            [In] int dwParamIndex,
             out IntPtr ip
             );
 
@@ -159,55 +160,54 @@ namespace DirectShowLib.DMO
 
         [PreserveSig]
         int GetSupportedTimeFormat(
-            [In] int dwFormatIndex, 
+            [In] int dwFormatIndex,
             out Guid pguidTimeFormat
             );
 
         [PreserveSig]
         int GetCurrentTimeFormat(
-            out Guid pguidTimeFormat, 
+            out Guid pguidTimeFormat,
             out int pTimeData
             );
     }
 
-
-    [ComVisible(true), InterfaceType(ComInterfaceType.InterfaceIsIUnknown), 
+    [ComImport,
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
     Guid("6D6CBB61-A223-44AA-842F-A2F06750BE6E")]
     public interface IMediaParams
     {
         [PreserveSig]
         int GetParam(
-            [In] int dwParamIndex, 
+            [In] int dwParamIndex,
             out MPData pValue
             );
 
         [PreserveSig]
         int SetParam(
-            [In] int dwParamIndex, 
+            [In] int dwParamIndex,
             [In] MPData value
             );
 
         [PreserveSig]
         int AddEnvelope(
-            [In] int dwParamIndex, 
-            [In] int cSegments, 
+            [In] int dwParamIndex,
+            [In] int cSegments,
             [In, MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] MPEnvelopeSegment [] pEnvelopeSegments
             );
 
         [PreserveSig]
         int FlushEnvelope(
-            [In] int dwParamIndex, 
-            [In] long refTimeStart, 
+            [In] int dwParamIndex,
+            [In] long refTimeStart,
             [In] long refTimeEnd
             );
 
         [PreserveSig]
         int SetTimeFormat(
-            [In] Guid MediaParamTimeFormat, 
+            [In] Guid MediaParamTimeFormat,
             [In] int mpTimeData
             );
     }
-
 
     #endregion
 }

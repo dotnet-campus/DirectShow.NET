@@ -201,6 +201,7 @@ namespace DirectShowLib.BDA
     public class EvalRat
     {
     }
+
 #endif
 
     #endregion
@@ -209,7 +210,8 @@ namespace DirectShowLib.BDA
 
 #if ALLOW_UNTESTED_INTERFACES
 
-    [Guid("C5C5C5B0-3ABC-11D6-B25B-00C04FA0C026"),
+    [ComImport,
+    Guid("C5C5C5B0-3ABC-11D6-B25B-00C04FA0C026"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface IXDSToRat
     {
@@ -226,7 +228,8 @@ namespace DirectShowLib.BDA
             );
     }
 
-    [Guid("C5C5C5B1-3ABC-11D6-B25B-00C04FA0C026"),
+    [ComImport,
+    Guid("C5C5C5B1-3ABC-11D6-B25B-00C04FA0C026"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface IEvalRat
     {

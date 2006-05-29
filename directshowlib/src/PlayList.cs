@@ -36,8 +36,8 @@ namespace DirectShowLib
     /// </summary>
     public enum AMPlayListItemFlags
     {
-        CanSkip	= 0x1,
-        CanBind	= 0x2
+        CanSkip = 0x1,
+        CanBind = 0x2
     }
 
     /// <summary>
@@ -47,8 +47,8 @@ namespace DirectShowLib
     public enum AMPlayListFlags
     {
         None = 0,
-        StartInScanMode	= 0x1,
-        ForceBanner	= 0x2
+        StartInScanMode = 0x1,
+        ForceBanner = 0x2
     }
 
 #endif
@@ -59,114 +59,114 @@ namespace DirectShowLib
 
 #if ALLOW_UNTESTED_INTERFACES
 
-    [Guid("56a868ff-0ad4-11ce-b03a-0020af0ba770"),
+    [ComImport,
+    Guid("56a868ff-0ad4-11ce-b03a-0020af0ba770"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IAMPlayListItem
     {
-        int GetFlags( 
+        int GetFlags(
             out AMPlayListItemFlags pdwFlags
             );
-        
-        int GetSourceCount( 
+
+        int GetSourceCount(
             out int pdwSources
             );
-        
-        int GetSourceURL( 
+
+        int GetSourceURL(
             int dwSourceIndex,
             [MarshalAs(UnmanagedType.BStr)] out string pbstrURL
             );
-        
-        int GetSourceStart( 
+
+        int GetSourceStart(
             int dwSourceIndex,
             out long prtStart
             );
-        
-        int GetSourceDuration( 
+
+        int GetSourceDuration(
             int dwSourceIndex,
             out long prtDuration
             );
-        
-        int GetSourceStartMarker( 
+
+        int GetSourceStartMarker(
             int dwSourceIndex,
             out int pdwMarker
             );
-        
-        int GetSourceEndMarker( 
+
+        int GetSourceEndMarker(
             int dwSourceIndex,
             out int pdwMarker
             );
-        
-        int GetSourceStartMarkerName( 
+
+        int GetSourceStartMarkerName(
             int dwSourceIndex,
             [MarshalAs(UnmanagedType.BStr)] out string pbstrStartMarker
             );
-        
-        int GetSourceEndMarkerName( 
+
+        int GetSourceEndMarkerName(
             int dwSourceIndex,
             [MarshalAs(UnmanagedType.BStr)] out string pbstrEndMarker
             );
-        
-        int GetLinkURL( 
+
+        int GetLinkURL(
             [MarshalAs(UnmanagedType.BStr)] out string pbstrURL);
-        
-        int GetScanDuration( 
+
+        int GetScanDuration(
             int dwSourceIndex,
             out long prtScanDuration
-            );        
+            );
     }
 
-
-    [Guid("56a868fe-0ad4-11ce-b03a-0020af0ba770"),
+    [ComImport,
+    Guid("56a868fe-0ad4-11ce-b03a-0020af0ba770"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IAMPlayList
     {
-        int GetFlags( 
+        int GetFlags(
             out AMPlayListFlags pdwFlags
             );
-        
-        int GetItemCount( 
+
+        int GetItemCount(
             out int pdwItems
             );
-        
-        int GetItem( 
+
+        int GetItem(
             int dwItemIndex,
             out IAMPlayListItem ppItem
             );
-        
-        int GetNamedEvent( 
+
+        int GetNamedEvent(
             string pwszEventName,
             int dwItemIndex,
             out IAMPlayListItem ppItem,
             out AMPlayListItemFlags pdwFlags
             );
-        
-        int GetRepeatInfo( 
+
+        int GetRepeatInfo(
             out int pdwRepeatCount,
             out int pdwRepeatStart,
             out int pdwRepeatEnd
             );
     }
 
-
-    [Guid("4C437B91-6E9E-11d1-A704-006097C4E476"),
+    [ComImport,
+    Guid("4C437B91-6E9E-11d1-A704-006097C4E476"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface ISpecifyParticularPages
     {
-        int GetPages( 
+        int GetPages(
             [In, MarshalAs(UnmanagedType.LPStruct)] Guid guidWhatPages,
             out DsCAUUID pPages
-            );        
+            );
     }
-    
 
-    [Guid("02EF04DD-7580-11d1-BECE-00C04FB6E937"),
+    [ComImport,
+    Guid("02EF04DD-7580-11d1-BECE-00C04FB6E937"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IAMRebuild
     {
         int RebuildNow( );
-        
     };
-    
+
 #endif
 
     #endregion

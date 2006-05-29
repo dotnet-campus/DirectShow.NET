@@ -45,14 +45,15 @@ namespace DirectShowLib
         Buffering = 32,
         SendsVideoFrameReady = 64
     }
-    
+
     #endregion
 
     #region Interfaces
 
 #if ALLOW_UNTESTED_INTERFACES
 
-    [Guid("FA2AA8F1-8B62-11D0-A520-000000000000"),
+    [ComImport,
+    Guid("FA2AA8F1-8B62-11D0-A520-000000000000"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface IAMNetShowConfig
     {
@@ -124,7 +125,8 @@ namespace DirectShowLib
 
     }
 
-    [Guid("FA2AA8F2-8B62-11D0-A520-000000000000"),
+    [ComImport,
+    Guid("FA2AA8F2-8B62-11D0-A520-000000000000"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface IAMChannelInfo
     {
@@ -148,7 +150,8 @@ namespace DirectShowLib
 
     }
 
-    [Guid("FA2AA8F3-8B62-11D0-A520-000000000000"),
+    [ComImport,
+    Guid("FA2AA8F3-8B62-11D0-A520-000000000000"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface IAMNetworkStatus
     {
@@ -175,7 +178,8 @@ namespace DirectShowLib
 
     }
 
-    [Guid("FA2AA8F5-8B62-11D0-A520-000000000000"),
+    [ComImport,
+    Guid("FA2AA8F5-8B62-11D0-A520-000000000000"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface IAMNetShowExProps
     {
@@ -208,7 +212,8 @@ namespace DirectShowLib
 
     }
 
-    [Guid("FA2AA8F6-8B62-11D0-A520-000000000000"),
+    [ComImport,
+    Guid("FA2AA8F6-8B62-11D0-A520-000000000000"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface IAMExtendedErrorInfo
     {
@@ -223,7 +228,8 @@ namespace DirectShowLib
 
     }
 
-    [Guid("AAE7E4E2-6388-11D1-8D93-006097C9A2B2"),
+    [ComImport,
+    Guid("AAE7E4E2-6388-11D1-8D93-006097C9A2B2"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface IAMNetShowPreroll
     {
@@ -235,7 +241,8 @@ namespace DirectShowLib
 
     }
 
-    [Guid("4746B7C8-700E-11D1-BECC-00C04FB6E937"),
+    [ComImport,
+    Guid("4746B7C8-700E-11D1-BECC-00C04FB6E937"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IDShowPlugin
     {
@@ -246,9 +253,11 @@ namespace DirectShowLib
         int get_UserAgent([MarshalAs(UnmanagedType.BStr)] out string pUserAgent);
 
     }
+
 #endif
 
-    [Guid("FA2AA8F4-8B62-11D0-A520-000000000000"),
+    [ComImport,
+    Guid("FA2AA8F4-8B62-11D0-A520-000000000000"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface IAMMediaContent
     {
@@ -293,7 +302,8 @@ namespace DirectShowLib
 
     }
 
-    [Guid("FA2AA8F9-8B62-11D0-A520-000000000000"),
+    [ComImport,
+    Guid("FA2AA8F9-8B62-11D0-A520-000000000000"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface IAMExtendedSeeking
     {
@@ -311,7 +321,7 @@ namespace DirectShowLib
 
         [PreserveSig]
         int GetMarkerName(
-            int MarkerNum, 
+            int MarkerNum,
             [MarshalAs(UnmanagedType.BStr)] out string pbstrMarkerName
             );
 
@@ -323,7 +333,8 @@ namespace DirectShowLib
 
     }
 
-    [Guid("CE8F78C1-74D9-11D2-B09D-00A0C9A81117"),
+    [ComImport,
+    Guid("CE8F78C1-74D9-11D2-B09D-00A0C9A81117"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface IAMMediaContent2
     {

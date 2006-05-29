@@ -75,13 +75,8 @@ namespace DirectShowLib
 
     #region Interfaces
 
-    //--------------------------------------------------------------------
-    //
-    //  IPinFlowControl - supported by output pins
-    //
-    //--------------------------------------------------------------------
-
-    [Guid("c56e9858-dbf3-4f6b-8119-384af2060deb"),
+    [ComImport,
+    Guid("c56e9858-dbf3-4f6b-8119-384af2060deb"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPinFlowControl
     {
@@ -92,8 +87,8 @@ namespace DirectShowLib
             );
     }
 
-
-    [Guid("DCFBDCF6-0DC2-45f5-9AB2-7C330EA09C29"),
+    [ComImport,
+    Guid("DCFBDCF6-0DC2-45f5-9AB2-7C330EA09C29"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IFilterChain
     {
@@ -122,7 +117,8 @@ namespace DirectShowLib
             );
     }
 
-    [Guid("ade0fd60-d19d-11d2-abf6-00a0c905f375"),
+    [ComImport,
+    Guid("ade0fd60-d19d-11d2-abf6-00a0c905f375"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IGraphConfigCallback
     {
@@ -134,7 +130,8 @@ namespace DirectShowLib
 
     }
 
-    [Guid("03A1EB8E-32BF-4245-8502-114D08A9CB88"),
+    [ComImport,
+    Guid("03A1EB8E-32BF-4245-8502-114D08A9CB88"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IGraphConfig
     {
@@ -144,7 +141,7 @@ namespace DirectShowLib
             [In] IPin pInputPin,
             [In, MarshalAs(UnmanagedType.LPStruct)] AMMediaType pmtFirstConnection,
             [In] IBaseFilter pUsingFilter, // can be NULL
-            [In] IntPtr hAbortEvent, // HANDLE 
+            [In] IntPtr hAbortEvent, // HANDLE
             [In] AMGraphConfigReconnect dwFlags
             );
 
@@ -202,7 +199,8 @@ namespace DirectShowLib
             );
     }
 
-    [Guid("4a9a62d3-27d4-403d-91e9-89f540e55534"),
+    [ComImport,
+    Guid("4a9a62d3-27d4-403d-91e9-89f540e55534"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPinConnection
     {

@@ -55,23 +55,23 @@ namespace DirectShowLib
         Starvation = 0x17, // EC_STARVATION
         OleEvent = 0x18, // EC_OLE_EVENT
         NotifyWindow = 0x19, // EC_NOTIFY_WINDOW
-        StreamControlStopped = 0x1A, // EC_STREAM_CONTROL_STOPPED  
-        StreamControlStarted = 0x1B, // EC_STREAM_CONTROL_STARTED  
-        EndOfSegment = 0x1C, // EC_END_OF_SEGMENT          
-        SegmentStarted = 0x1D, // EC_SEGMENT_STARTED         
-        LengthChanged = 0x1E, // EC_LENGTH_CHANGED          
-        DeviceLost = 0x1f, // EC_DEVICE_LOST             
-        StepComplete = 0x24, // EC_STEP_COMPLETE           
-        TimeCodeAvailable = 0x30, // EC_TIMECODE_AVAILABLE      
-        ExtDeviceModeChange = 0x31, // EC_EXTDEVICE_MODE_CHANGE   
-        StateChange = 0x32, // EC_STATE_CHANGE            
-        GraphChanged = 0x50, // EC_GRAPH_CHANGED           
-        ClockUnset = 0x51, // EC_CLOCK_UNSET             
-        VMRRenderDeviceSet = 0x53, // EC_VMR_RENDERDEVICE_SET    
-        VMRSurfaceFlipped = 0x54, // EC_VMR_SURFACE_FLIPPED     
-        VMRReconnectionFailed = 0x55, // EC_VMR_RECONNECTION_FAILED 
-        PreprocessComplete = 0x56, // EC_PREPROCESS_COMPLETE     
-        CodecApiEvent = 0x57, // EC_CODECAPI_EVENT          
+        StreamControlStopped = 0x1A, // EC_STREAM_CONTROL_STOPPED
+        StreamControlStarted = 0x1B, // EC_STREAM_CONTROL_STARTED
+        EndOfSegment = 0x1C, // EC_END_OF_SEGMENT
+        SegmentStarted = 0x1D, // EC_SEGMENT_STARTED
+        LengthChanged = 0x1E, // EC_LENGTH_CHANGED
+        DeviceLost = 0x1f, // EC_DEVICE_LOST
+        StepComplete = 0x24, // EC_STEP_COMPLETE
+        TimeCodeAvailable = 0x30, // EC_TIMECODE_AVAILABLE
+        ExtDeviceModeChange = 0x31, // EC_EXTDEVICE_MODE_CHANGE
+        StateChange = 0x32, // EC_STATE_CHANGE
+        GraphChanged = 0x50, // EC_GRAPH_CHANGED
+        ClockUnset = 0x51, // EC_CLOCK_UNSET
+        VMRRenderDeviceSet = 0x53, // EC_VMR_RENDERDEVICE_SET
+        VMRSurfaceFlipped = 0x54, // EC_VMR_SURFACE_FLIPPED
+        VMRReconnectionFailed = 0x55, // EC_VMR_RECONNECTION_FAILED
+        PreprocessComplete = 0x56, // EC_PREPROCESS_COMPLETE
+        CodecApiEvent = 0x57, // EC_CODECAPI_EVENT
 
         // DVDevCod.h
         DvdDomainChange = 0x101, // EC_DVD_DOMAIN_CHANGE
@@ -103,7 +103,7 @@ namespace DirectShowLib
         DvdKaraokeMode = 0x11b, // EC_DVD_KARAOKE_MODE
 
         // AudEvCod.h
-        SNDDEVInError = 0x200, // EC_SNDDEV_IN_ERROR 
+        SNDDEVInError = 0x200, // EC_SNDDEV_IN_ERROR
         SNDDEVOutError = 0x201, // EC_SNDDEV_OUT_ERROR
 
         WMTIndexEvent = 0x0251, // EC_WMT_INDEX_EVENT

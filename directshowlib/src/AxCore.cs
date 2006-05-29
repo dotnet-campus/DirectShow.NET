@@ -29,8 +29,6 @@ namespace DirectShowLib
 {
     #region Declarations
 
-#if ALLOW_UNTESTED_INTERFACES
-
     /// <summary>
     /// From AM_GBF_* defines
     /// </summary>
@@ -43,8 +41,6 @@ namespace DirectShowLib
         NoWait = 4,
         NoDDSurfaceLock = 8
     }
-
-#endif
 
     /// <summary>
     /// From AM_VIDEO_FLAG_* defines
@@ -215,11 +211,12 @@ namespace DirectShowLib
 
 #if ALLOW_UNTESTED_INTERFACES
 
-    [Guid("36b73885-c2c8-11cf-8b46-00805f6cef60"),
+    [ComImport,
+    Guid("36b73885-c2c8-11cf-8b46-00805f6cef60"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IReferenceClock2 : IReferenceClock
     {
-    #region IReferenceClock Methods
+        #region IReferenceClock Methods
 
         [PreserveSig]
         new int GetTime([Out] out long pTime);
@@ -243,98 +240,11 @@ namespace DirectShowLib
         [PreserveSig]
         new int Unadvise([In] int dwAdviseCookie);
 
-    #endregion
+        #endregion
     }
 
-
-    [Guid("56a8689c-0ad4-11ce-b03a-0020af0ba770"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IMemAllocator
-    {
-        [PreserveSig]
-        int SetProperties(
-            [In, MarshalAs(UnmanagedType.LPStruct)] AllocatorProperties pRequest,
-            [Out, MarshalAs(UnmanagedType.LPStruct)] AllocatorProperties pActual
-            );
-
-        [PreserveSig]
-        int GetProperties(
-            [Out, MarshalAs(UnmanagedType.LPStruct)] AllocatorProperties pProps
-            );
-
-        [PreserveSig]
-        int Commit();
-
-        [PreserveSig]
-        int Decommit();
-
-        [PreserveSig]
-        int GetBuffer(
-            [Out] out IMediaSample ppBuffer,
-            [In] long pStartTime,
-            [In] long pEndTime,
-            [In] AMGBF dwFlags
-            );
-
-        [PreserveSig]
-        int ReleaseBuffer(
-            [In] IMediaSample pBuffer
-            );
-    }
-
-
-    [Guid("379a0cf0-c1de-11d2-abf5-00a0c905f375"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IMemAllocatorCallbackTemp : IMemAllocator
-    {
-    #region IMemAllocator Methods
-
-        [PreserveSig]
-        new int SetProperties(
-            [In] AllocatorProperties pRequest,
-            [Out, MarshalAs(UnmanagedType.LPStruct)] AllocatorProperties pActual
-            );
-
-        [PreserveSig]
-        new int GetProperties([Out] AllocatorProperties pProps);
-
-        [PreserveSig]
-        new int Commit();
-
-        [PreserveSig]
-        new int Decommit();
-
-        [PreserveSig]
-        new int GetBuffer(
-            [Out] out IMediaSample ppBuffer,
-            [In] long pStartTime,
-            [In] long pEndTime,
-            [In] AMGBF dwFlags
-            );
-
-        [PreserveSig]
-        new int ReleaseBuffer([In] IMediaSample pBuffer);
-
-    #endregion
-
-        [PreserveSig]
-        int SetNotify([In] IMemAllocatorNotifyCallbackTemp pNotify);
-
-        [PreserveSig]
-        int GetFreeCount([Out] out int plBuffersFree);
-    }
-
-
-    [Guid("92980b30-c1de-11d2-abf5-00a0c905f375"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IMemAllocatorNotifyCallbackTemp
-    {
-        [PreserveSig]
-        int NotifyRelease();
-    }
-
-
-    [Guid("56a8689d-0ad4-11ce-b03a-0020af0ba770"),
+    [ComImport,
+    Guid("56a8689d-0ad4-11ce-b03a-0020af0ba770"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IMemInputPin
     {
@@ -364,8 +274,8 @@ namespace DirectShowLib
         int ReceiveCanBlock();
     }
 
-
-    [Guid("a3d8cec0-7e5a-11cf-bbc5-00805f6cef20"),
+    [ComImport,
+    Guid("a3d8cec0-7e5a-11cf-bbc5-00805f6cef20"),
     Obsolete("This interface has been deprecated.", false),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IAMovieSetup
@@ -379,7 +289,8 @@ namespace DirectShowLib
 
 #endif
 
-    [Guid("56a86891-0ad4-11ce-b03a-0020af0ba770"),
+    [ComImport,
+    Guid("56a86891-0ad4-11ce-b03a-0020af0ba770"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPin
     {
@@ -450,8 +361,8 @@ namespace DirectShowLib
             );
     }
 
-
-    [Guid("36b73880-c2c8-11cf-8b46-00805f6cef60"),
+    [ComImport,
+    Guid("36b73880-c2c8-11cf-8b46-00805f6cef60"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IMediaSeeking
     {
@@ -523,8 +434,8 @@ namespace DirectShowLib
         int GetPreroll([Out] out long pllPreroll);
     }
 
-
-    [Guid("56a8689a-0ad4-11ce-b03a-0020af0ba770"),
+    [ComImport,
+    Guid("56a8689a-0ad4-11ce-b03a-0020af0ba770"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IMediaSample
     {
@@ -592,8 +503,8 @@ namespace DirectShowLib
             );
     }
 
-
-    [Guid("56a86899-0ad4-11ce-b03a-0020af0ba770"),
+    [ComImport,
+    Guid("56a86899-0ad4-11ce-b03a-0020af0ba770"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IMediaFilter : IPersist
     {
@@ -627,8 +538,8 @@ namespace DirectShowLib
         int GetSyncSource([Out] out IReferenceClock pClock);
     }
 
-
-    [Guid("56a86895-0ad4-11ce-b03a-0020af0ba770"),
+    [ComImport,
+    Guid("56a86895-0ad4-11ce-b03a-0020af0ba770"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IBaseFilter : IMediaFilter
     {
@@ -684,8 +595,8 @@ namespace DirectShowLib
         int QueryVendorInfo([Out, MarshalAs(UnmanagedType.LPWStr)] out string pVendorInfo);
     }
 
-
-    [Guid("56a8689f-0ad4-11ce-b03a-0020af0ba770"),
+    [ComImport,
+    Guid("56a8689f-0ad4-11ce-b03a-0020af0ba770"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IFilterGraph
     {
@@ -725,8 +636,8 @@ namespace DirectShowLib
         int SetDefaultSyncSource();
     }
 
-
-    [Guid("56a86893-0ad4-11ce-b03a-0020af0ba770"),
+    [ComImport,
+    Guid("56a86893-0ad4-11ce-b03a-0020af0ba770"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IEnumFilters
     {
@@ -747,8 +658,8 @@ namespace DirectShowLib
         int Clone([Out] out IEnumFilters ppEnum);
     }
 
-
-    [Guid("56a86892-0ad4-11ce-b03a-0020af0ba770"),
+    [ComImport,
+    Guid("56a86892-0ad4-11ce-b03a-0020af0ba770"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IEnumPins
     {
@@ -769,8 +680,8 @@ namespace DirectShowLib
         int Clone([Out] out IEnumPins ppEnum);
     }
 
-
-    [Guid("56a86897-0ad4-11ce-b03a-0020af0ba770"),
+    [ComImport,
+    Guid("56a86897-0ad4-11ce-b03a-0020af0ba770"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IReferenceClock
     {
@@ -797,7 +708,8 @@ namespace DirectShowLib
         int Unadvise([In] int dwAdviseCookie);
     }
 
-    [Guid("89c31040-846b-11ce-97d3-00aa0055595a"),
+    [ComImport,
+    Guid("89c31040-846b-11ce-97d3-00aa0055595a"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IEnumMediaTypes
     {
@@ -818,7 +730,8 @@ namespace DirectShowLib
         int Clone([Out] out IEnumMediaTypes ppEnum);
     }
 
-    [Guid("36b73884-c2c8-11cf-8b46-00805f6cef60"),
+    [ComImport,
+    Guid("36b73884-c2c8-11cf-8b46-00805f6cef60"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IMediaSample2 : IMediaSample
     {
@@ -899,6 +812,92 @@ namespace DirectShowLib
             );
     }
 
+    [ComImport,
+    Guid("92980b30-c1de-11d2-abf5-00a0c905f375"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IMemAllocatorNotifyCallbackTemp
+    {
+        [PreserveSig]
+        int NotifyRelease();
+    }
+
+    [ComImport,
+    Guid("379a0cf0-c1de-11d2-abf5-00a0c905f375"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IMemAllocatorCallbackTemp : IMemAllocator
+    {
+        #region IMemAllocator Methods
+
+        [PreserveSig]
+        new int SetProperties(
+            [In] AllocatorProperties pRequest,
+            [Out, MarshalAs(UnmanagedType.LPStruct)] AllocatorProperties pActual
+            );
+
+        [PreserveSig]
+        new int GetProperties([Out] AllocatorProperties pProps);
+
+        [PreserveSig]
+        new int Commit();
+
+        [PreserveSig]
+        new int Decommit();
+
+        [PreserveSig]
+        new int GetBuffer(
+            [Out] out IMediaSample ppBuffer,
+            [In] long pStartTime,
+            [In] long pEndTime,
+            [In] AMGBF dwFlags
+            );
+
+        [PreserveSig]
+        new int ReleaseBuffer([In] IMediaSample pBuffer);
+
+        #endregion
+
+        [PreserveSig]
+        int SetNotify([In] IMemAllocatorNotifyCallbackTemp pNotify);
+
+        [PreserveSig]
+        int GetFreeCount([Out] out int plBuffersFree);
+    }
+
+    [ComImport,
+    Guid("56a8689c-0ad4-11ce-b03a-0020af0ba770"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IMemAllocator
+    {
+        [PreserveSig]
+        int SetProperties(
+            [In, MarshalAs(UnmanagedType.LPStruct)] AllocatorProperties pRequest,
+            [Out, MarshalAs(UnmanagedType.LPStruct)] AllocatorProperties pActual
+            );
+
+        [PreserveSig]
+        int GetProperties(
+            [Out, MarshalAs(UnmanagedType.LPStruct)] AllocatorProperties pProps
+            );
+
+        [PreserveSig]
+        int Commit();
+
+        [PreserveSig]
+        int Decommit();
+
+        [PreserveSig]
+        int GetBuffer(
+            [Out] out IMediaSample ppBuffer,
+            [In] long pStartTime,
+            [In] long pEndTime,
+            [In] AMGBF dwFlags
+            );
+
+        [PreserveSig]
+        int ReleaseBuffer(
+            [In] IMediaSample pBuffer
+            );
+    }
 
     #endregion
 }

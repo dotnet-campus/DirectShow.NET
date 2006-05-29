@@ -138,7 +138,7 @@ namespace DirectShowLib
     /// <summary>
     /// From AM_WST_LEVEL
     /// </summary>
-    public enum WSTLevel 
+    public enum WSTLevel
     {
         Level1_5 = 0
     }
@@ -217,9 +217,9 @@ namespace DirectShowLib
     [StructLayout(LayoutKind.Sequential)]
     public struct WSTPage
     {
-        public int	dwPageNr ;
-        public int	dwSubPageNr ;
-        public IntPtr pucPageData; // BYTE	*
+        public int dwPageNr ;
+        public int dwSubPageNr ;
+        public IntPtr pucPageData; // BYTE *
     }
 
     /// <summary>
@@ -280,34 +280,8 @@ namespace DirectShowLib
 
 #if ALLOW_UNTESTED_INTERFACES
 
-    [Guid("FC4801A3-2BA9-11CF-A229-00AA003D7352"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IObjectWithSite
-    {
-        [PreserveSig]
-        int SetSite(
-            [In, MarshalAs(UnmanagedType.IUnknown)] object pUnkSite
-            );
-
-        [PreserveSig]
-        int GetSite(
-            [In, MarshalAs(UnmanagedType.LPStruct)] DsGuid riid,
-            [MarshalAs(UnmanagedType.IUnknown)] out object ppvSite
-            );
-    }
-
-    [Guid("6d5140c1-7436-11ce-8034-00aa006009fa"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IServiceProvider
-    {
-        int QueryService(
-            [In, MarshalAs(UnmanagedType.LPStruct)] DsGuid guidService,
-            [In, MarshalAs(UnmanagedType.LPStruct)] DsGuid riid,
-            [MarshalAs(UnmanagedType.IUnknown)] out object ppvObject
-            );
-    }
-
-    [Guid("c47a3420-005c-11d2-9038-00a0c9697298"),
+    [ComImport,
+    Guid("c47a3420-005c-11d2-9038-00a0c9697298"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IAMParse
     {
@@ -321,7 +295,8 @@ namespace DirectShowLib
         int Flush();
     }
 
-    [Guid("a8809222-07bb-48ea-951c-33158100625b"),
+    [ComImport,
+    Guid("a8809222-07bb-48ea-951c-33158100625b"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IGetCapabilitiesKey
     {
@@ -329,7 +304,8 @@ namespace DirectShowLib
         int GetCapabilitiesKey( [Out] out IntPtr pHKey ); // HKEY
     }
 
-    [Guid("256A6A21-FBAD-11d1-82BF-00A0C9696C8F"),
+    [ComImport,
+    Guid("256A6A21-FBAD-11d1-82BF-00A0C9696C8F"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IAMVideoAcceleratorNotify
     {
@@ -346,7 +322,8 @@ namespace DirectShowLib
             [Out] IntPtr ppMiscData); // LPVOID
     }
 
-    [Guid("256A6A22-FBAD-11d1-82BF-00A0C9696C8F"),
+    [ComImport,
+    Guid("256A6A22-FBAD-11d1-82BF-00A0C9696C8F"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IAMVideoAccelerator
     {
@@ -412,15 +389,8 @@ namespace DirectShowLib
             [In] IMediaSample pMediaSample);
     }
 
-    [Guid("56a868fd-0ad4-11ce-b0a3-0020af0ba770"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IAMFilterGraphCallback
-    {
-        [PreserveSig]
-        int UnableToRender(IPin pPin);
-    }
-
-    [Guid("AB6B4AFE-F6E4-11d0-900D-00C04FD9189D"),
+    [ComImport,
+    Guid("AB6B4AFE-F6E4-11d0-900D-00C04FD9189D"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IDirectDrawMediaSample
     {
@@ -433,7 +403,8 @@ namespace DirectShowLib
         int LockMediaSamplePointer();
     }
 
-    [Guid("AB6B4AFC-F6E4-11d0-900D-00C04FD9189D"),
+    [ComImport,
+    Guid("AB6B4AFC-F6E4-11d0-900D-00C04FD9189D"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IDirectDrawMediaSampleAllocator
     {
@@ -445,7 +416,8 @@ namespace DirectShowLib
 
 #endif
 
-    [Guid("45086030-F7E4-486a-B504-826BB5792A3B"),
+    [ComImport,
+    Guid("45086030-F7E4-486a-B504-826BB5792A3B"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IConfigAsfWriter
     {
@@ -453,7 +425,7 @@ namespace DirectShowLib
         Obsolete("This method is now obsolete because it assumes version 4.0 Windows Media Format SDK profiles. Use GetCurrentProfile or GetCurrentProfileGuid instead to correctly identify a profile.", false)]
         int ConfigureFilterUsingProfileId([In] int dwProfileId);
 
-        [PreserveSig, 
+        [PreserveSig,
         Obsolete("This method is now obsolete because it assumes version 4.0 Windows Media Format SDK profiles. Use GetCurrentProfile or GetCurrentProfileGuid instead to correctly identify a profile.", false)]
         int GetCurrentProfileId([Out] out int pdwProfileId);
 
@@ -480,7 +452,8 @@ namespace DirectShowLib
         int GetIndexMode([Out, MarshalAs(UnmanagedType.Bool)] out bool pbIndexFile);
     }
 
-    [Guid("546F4260-D53E-11cf-B3F0-00AA003761C5"),
+    [ComImport,
+    Guid("546F4260-D53E-11cf-B3F0-00AA003761C5"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IAMDirectSound
     {
@@ -509,7 +482,8 @@ namespace DirectShowLib
         int GetFocusWindow(out IntPtr hWnd, [Out, MarshalAs(UnmanagedType.Bool)] out bool bSet);
     }
 
-    [Guid("C056DE21-75C2-11d3-A184-00105AEF9F33"),
+    [ComImport,
+    Guid("C056DE21-75C2-11d3-A184-00105AEF9F33"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IAMWstDecoder
     {
@@ -568,7 +542,8 @@ namespace DirectShowLib
         int SetCurrentPage([In] WSTPage WstPage);
     }
 
-    [Guid("b45dd570-3c77-11d1-abe1-00a0c905f375"),
+    [ComImport,
+    Guid("b45dd570-3c77-11d1-abe1-00a0c905f375"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IMpegAudioDecoder
     {
@@ -635,6 +610,44 @@ namespace DirectShowLib
         [PreserveSig]
         int get_AudioFormat(
             out MPEG1WaveFormat lpFmt
+            );
+    }
+
+    [ComImport,
+    Guid("56a868fd-0ad4-11ce-b0a3-0020af0ba770"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IAMFilterGraphCallback
+    {
+        [PreserveSig]
+        int UnableToRender(IPin pPin);
+    }
+
+    [ComImport,
+    Guid("6d5140c1-7436-11ce-8034-00aa006009fa"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IServiceProvider
+    {
+        int QueryService(
+            [In, MarshalAs(UnmanagedType.LPStruct)] DsGuid guidService,
+            [In, MarshalAs(UnmanagedType.LPStruct)] DsGuid riid,
+            [MarshalAs(UnmanagedType.IUnknown)] out object ppvObject
+            );
+    }
+
+    [ComImport,
+    Guid("FC4801A3-2BA9-11CF-A229-00AA003D7352"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IObjectWithSite
+    {
+        [PreserveSig]
+        int SetSite(
+            [In, MarshalAs(UnmanagedType.IUnknown)] object pUnkSite
+            );
+
+        [PreserveSig]
+        int GetSite(
+            [In, MarshalAs(UnmanagedType.LPStruct)] DsGuid riid,
+            [MarshalAs(UnmanagedType.IUnknown)] out object ppvSite
             );
     }
 

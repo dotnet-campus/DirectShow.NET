@@ -63,7 +63,7 @@ namespace DirectShowLib
         public int  lColorEnable;
         public int  dwReserved1;
     }
-    
+
     public enum AspectRatioMode
     {
         Stretched,
@@ -76,7 +76,8 @@ namespace DirectShowLib
 
     #region Interfaces
 
-    [Guid("EBF47182-8764-11d1-9E69-00C04FD7C15B"),
+    [ComImport,
+    Guid("EBF47182-8764-11d1-9E69-00C04FD7C15B"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IMixerPinConfig2 : IMixerPinConfig
     {
@@ -87,7 +88,7 @@ namespace DirectShowLib
             int dwLeft,
             int dwTop,
             int dwRight,
-            int dwBottom);    
+            int dwBottom);
 
         [PreserveSig]
         new int GetRelativePosition(
@@ -161,7 +162,8 @@ namespace DirectShowLib
             );
     }
 
-    [Guid("593CDDE1-0759-11d1-9E69-00C04FD7C15B"),
+    [ComImport,
+    Guid("593CDDE1-0759-11d1-9E69-00C04FD7C15B"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IMixerPinConfig
     {
@@ -170,7 +172,7 @@ namespace DirectShowLib
             int dwLeft,
             int dwTop,
             int dwRight,
-            int dwBottom);    
+            int dwBottom);
 
         [PreserveSig]
         int GetRelativePosition(
@@ -231,7 +233,6 @@ namespace DirectShowLib
             [Out, MarshalAs(UnmanagedType.Bool)] out bool pbStreamTransparent
             );
     }
-
 
     #endregion
 }

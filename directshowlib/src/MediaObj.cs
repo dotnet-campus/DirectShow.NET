@@ -39,7 +39,7 @@ namespace DirectShowLib.DMO
     public enum DMOQualityStatus
     {
         None = 0x0,
-        Enabled	= 0x1
+        Enabled = 0x1
     }
 
 #endif
@@ -54,7 +54,7 @@ namespace DirectShowLib.DMO
         SyncPoint = 0x1,
         Time = 0x2,
         TimeLength = 0x4,
-        InComplete	= 0x1000000
+        InComplete = 0x1000000
     } ;
     /// <summary>
     /// From DMO_ENUM_FLAGS
@@ -103,8 +103,8 @@ namespace DirectShowLib.DMO
     [Flags]
     public enum DMOInplaceProcess
     {
-        Normal	= 0,
-        Zero	= 0x1
+        Normal = 0,
+        Zero = 0x1
     }
 
     /// <summary>
@@ -116,7 +116,7 @@ namespace DirectShowLib.DMO
         None = 0x0,
         WholeSamples = 0x1,
         SingleSamplePerBuffer = 0x2,
-        FixedSampleSize	= 0x4,
+        FixedSampleSize = 0x4,
         HoldsBuffers = 0x8
     }
 
@@ -127,10 +127,10 @@ namespace DirectShowLib.DMO
     public enum DMOOutputStreamInfo
     {
         None = 0x0,
-        WholeSamples	= 0x1,
-        SingleSamplePerBuffer	= 0x2,
-        FixedSampleSize	= 0x4,
-        Discardable	= 0x8,
+        WholeSamples = 0x1,
+        SingleSamplePerBuffer = 0x2,
+        FixedSampleSize = 0x4,
+        Discardable = 0x8,
         Optional = 0x10
     }
 
@@ -163,7 +163,7 @@ namespace DirectShowLib.DMO
     public enum DMOVideoOutputStream
     {
         None = 0x0,
-        NeedsPreviousSample	= 0x1
+        NeedsPreviousSample = 0x1
     }
 
     /// <summary>
@@ -385,7 +385,8 @@ namespace DirectShowLib.DMO
 
 #if ALLOW_UNTESTED_INTERFACES
 
-    [Guid("65ABEA96-CF36-453F-AF8A-705E98F16260"),
+    [ComImport,
+    Guid("65ABEA96-CF36-453F-AF8A-705E98F16260"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IDMOQualityControl
     {
@@ -405,10 +406,10 @@ namespace DirectShowLib.DMO
             );
     }
 
-
 #endif
 
-    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
+    [ComImport,
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
     Guid("2C3CD98A-2BFA-4A53-9C27-5249BA64BA0F")]
     public interface IEnumDMO
     {
@@ -434,8 +435,8 @@ namespace DirectShowLib.DMO
             );
     }
 
-
-    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
+    [ComImport,
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
     Guid("651B9AD0-0FC7-4AA9-9538-D89931010741")]
     public interface IMediaObjectInPlace
     {
@@ -458,8 +459,8 @@ namespace DirectShowLib.DMO
             );
     }
 
-
-    [Guid("59EFF8B9-938C-4A26-82F2-95CB84CDC837"),
+    [ComImport,
+    Guid("59EFF8B9-938C-4A26-82F2-95CB84CDC837"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IMediaBuffer
     {
@@ -480,8 +481,8 @@ namespace DirectShowLib.DMO
             );
     }
 
-
-    [ComVisible(true), Guid("D8AD0F58-5494-4102-97C5-EC798E59BCF4"),
+    [ComImport,
+    Guid("D8AD0F58-5494-4102-97C5-EC798E59BCF4"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IMediaObject
     {
@@ -613,7 +614,8 @@ namespace DirectShowLib.DMO
             );
     }
 
-    [Guid("BE8F4F4E-5B16-4D29-B350-7F6B5D9298AC"),
+    [ComImport,
+    Guid("BE8F4F4E-5B16-4D29-B350-7F6B5D9298AC"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IDMOVideoOutputOptimizations
     {
@@ -641,7 +643,6 @@ namespace DirectShowLib.DMO
             out DMOVideoOutputStream pdwRequestedFeatures
             );
     }
-
 
     #endregion
 }

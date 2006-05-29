@@ -106,7 +106,8 @@ namespace DirectShowLib
 
 #if ALLOW_UNTESTED_INTERFACES
 
-    [Guid("36d39eb0-dd75-11ce-bf0e-00aa0055595a"),
+    [ComImport,
+    Guid("36d39eb0-dd75-11ce-bf0e-00aa0055595a"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IDirectDrawVideo
     {
@@ -159,8 +160,8 @@ namespace DirectShowLib
         int WillUseFullScreen(out int UseWhenFullScreen);
     }
 
-
-    [Guid("dd1d7110-7836-11cf-bf47-00aa0055595a"),
+    [ComImport,
+    Guid("dd1d7110-7836-11cf-bf47-00aa0055595a"),
     Obsolete("This interface has been deprecated.", false),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IFullScreenVideo
@@ -218,19 +219,19 @@ namespace DirectShowLib
 
     }
 
-
-    [Guid("53479470-f1dd-11cf-bc42-00aa00ac74f6"),
+    [ComImport,
+    Guid("53479470-f1dd-11cf-bc42-00aa00ac74f6"),
     Obsolete("This interface has been deprecated.", false),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IFullScreenVideoEx : IFullScreenVideo
     {
-    #region IFullScreenVideo methods
+        #region IFullScreenVideo methods
 
         [PreserveSig]
         new int CountModes(out int pModes);
 
         [PreserveSig]
-        new int GetModeInfo(int Mode,out int pWidth,out int pHeight,out int pDepth);
+        new int GetModeInfo(int Mode, out int pWidth, out int pHeight, out int pDepth);
 
         [PreserveSig]
         new int GetCurrentMode(out int pMode);
@@ -242,7 +243,7 @@ namespace DirectShowLib
         new int IsModeEnabled(int Mode);
 
         [PreserveSig]
-        new int SetEnabled(int Mode,int bEnabled);
+        new int SetEnabled(int Mode, int bEnabled);
 
         [PreserveSig]
         new int GetClipFactor(out int pClipFactor);
@@ -276,13 +277,13 @@ namespace DirectShowLib
 
         [PreserveSig]
         new int SetDefault();
-    #endregion
+        #endregion
 
         [PreserveSig]
-        int SetAcceleratorTable(IntPtr hwnd,IntPtr hAccel); // HACCEL
+        int SetAcceleratorTable(IntPtr hwnd, IntPtr hAccel); // HACCEL
 
         [PreserveSig]
-        int GetAcceleratorTable(out IntPtr phwnd,out IntPtr phAccel); // HACCEL
+        int GetAcceleratorTable(out IntPtr phwnd, out IntPtr phAccel); // HACCEL
 
         [PreserveSig]
         int KeepPixelAspectRatio(int KeepAspect);
@@ -292,8 +293,8 @@ namespace DirectShowLib
 
     }
 
-
-    [Guid("61ded640-e912-11ce-a099-00aa00479a58"),
+    [ComImport,
+    Guid("61ded640-e912-11ce-a099-00aa00479a58"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IBaseVideoMixer
     {
@@ -321,7 +322,8 @@ namespace DirectShowLib
 
 #endif
 
-    [Guid("1bd0ecb0-f8e2-11ce-aac6-0020af0b99a3"),
+    [ComImport,
+    Guid("1bd0ecb0-f8e2-11ce-aac6-0020af0b99a3"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IQualProp
     {
@@ -344,7 +346,6 @@ namespace DirectShowLib
         int get_DevSyncOffset(out int piDev);
 
     }
-
 
     #endregion
 }

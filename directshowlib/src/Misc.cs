@@ -48,7 +48,8 @@ namespace DirectShowLib
 
     #region Interfaces
 
-    [Guid("00000109-0000-0000-C000-000000000046"),
+    [ComImport,
+    Guid("00000109-0000-0000-C000-000000000046"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPersistStream : IPersist
     {
@@ -61,7 +62,7 @@ namespace DirectShowLib
 
         [PreserveSig]
         int IsDirty();
-        
+
         [PreserveSig]
 #if USING_NET11
         int Load([In] UCOMIStream pStm);
@@ -77,13 +78,13 @@ namespace DirectShowLib
             [In] IStream pStm,
 #endif
             [In, MarshalAs(UnmanagedType.Bool)] bool fClearDirty);
-        
+
         [PreserveSig]
         int GetSizeMax([Out] out long pcbSize);
     }
 
-
-    [Guid("0000010c-0000-0000-C000-000000000046"),
+    [ComImport,
+    Guid("0000010c-0000-0000-C000-000000000046"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPersist
     {
@@ -91,19 +92,21 @@ namespace DirectShowLib
         int GetClassID([Out] out Guid pClassID);
     }
 
-    [Guid("b61178d1-a2d9-11cf-9e53-00aa00a216a1"),
+    [ComImport,
+    Guid("b61178d1-a2d9-11cf-9e53-00aa00a216a1"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IKsPin
     {
         /// <summary>
         /// The caller must free the returned structures, using the CoTaskMemFree function
-        /// </summary> 
+        /// </summary>
         [PreserveSig]
         int KsQueryMediums(
             out IntPtr ip);
     }
 
-    [Guid("B196B28B-BAB4-101A-B69C-00AA00341D07"),
+    [ComImport,
+    Guid("B196B28B-BAB4-101A-B69C-00AA00341D07"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface ISpecifyPropertyPages
     {
@@ -111,7 +114,8 @@ namespace DirectShowLib
         int GetPages(out DsCAUUID pPages);
     }
 
-    [Guid("55272A00-42CB-11CE-8135-00AA004BB851"),
+    [ComImport,
+    Guid("55272A00-42CB-11CE-8135-00AA004BB851"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPropertyBag
     {
@@ -129,7 +133,8 @@ namespace DirectShowLib
             );
     }
 
-    [Guid("3127CA40-446E-11CE-8135-00AA004BB851"),
+    [ComImport,
+    Guid("3127CA40-446E-11CE-8135-00AA004BB851"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IErrorLog
     {

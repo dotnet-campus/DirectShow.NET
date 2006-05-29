@@ -55,7 +55,8 @@ namespace DirectShowLib
 
     #region Interfaces
 
-    [Guid("29840822-5B84-11D0-BD3B-00A0C911CE86"),
+    [ComImport,
+    Guid("29840822-5B84-11D0-BD3B-00A0C911CE86"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface ICreateDevEnum
     {

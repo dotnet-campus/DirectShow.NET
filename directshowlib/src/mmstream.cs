@@ -29,6 +29,7 @@ using System.Runtime.InteropServices;
 namespace DirectShowLib.MultimediaStreaming
 {
     #region Utility classes
+
     sealed public class MsResults
     {
         private MsResults()
@@ -237,7 +238,7 @@ namespace DirectShowLib.MultimediaStreaming
     public enum MMSSF
     {
         HasClock = 0x1,
-        SupportSeek	= 0x2,
+        SupportSeek = 0x2,
         Asynchronous = 0x4
     }
 
@@ -263,7 +264,8 @@ namespace DirectShowLib.MultimediaStreaming
 
     #region Interfaces
 
-    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown), 
+    [ComImport,
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
     Guid("B502D1BD-9A57-11D0-8FDE-00C04FD9189D")]
     public interface IMediaStream
     {
@@ -303,8 +305,8 @@ namespace DirectShowLib.MultimediaStreaming
             );
     }
 
-
-    [Guid("B502D1BC-9A57-11D0-8FDE-00C04FD9189D"), 
+    [ComImport,
+    Guid("B502D1BC-9A57-11D0-8FDE-00C04FD9189D"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IMultiMediaStream
     {
@@ -357,8 +359,8 @@ namespace DirectShowLib.MultimediaStreaming
             );
     }
 
-
-    [Guid("B502D1BE-9A57-11D0-8FDE-00C04FD9189D"), 
+    [ComImport,
+    Guid("B502D1BE-9A57-11D0-8FDE-00C04FD9189D"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IStreamSample
     {

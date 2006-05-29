@@ -28,20 +28,6 @@ namespace DirectShowLib
 {
     #region Declarations
 
-#if ALLOW_UNTESTED_INTERFACES
-	/// <summary>
-	/// From AM_LINE21_CCSTYLE
-	/// </summary>
-	public enum AMLine21CCStyle
-	{
-		None = 0,
-		PopOn,
-		PaintOn,
-		RollUp
-	}
-
-#endif
-
     /// <summary>
     /// From AM_LINE21_CCLEVEL
     /// </summary>
@@ -87,7 +73,8 @@ namespace DirectShowLib
 
     #region Interfaces
 
-    [Guid("6E8D4A21-310C-11d0-B79A-00AA003767A7"),
+    [ComImport,
+    Guid("6E8D4A21-310C-11d0-B79A-00AA003767A7"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IAMLine21Decoder
     {
@@ -130,7 +117,6 @@ namespace DirectShowLib
         [PreserveSig]
         int SetDrawBackgroundMode([In] AMLine21DrawBGMode Mode);
     }
-
 
     #endregion
 }

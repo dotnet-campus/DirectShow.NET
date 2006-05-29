@@ -204,51 +204,52 @@ namespace DirectShowLib
 
     #region Interfaces
 
-    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown), 
+    [ComImport,
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
     Guid("9B396D40-F380-4E3C-A514-1A82BF6EBFE6")]
     public interface IMpeg2Data
     {
         [PreserveSig]
         int GetSection(
-            [In] short pid, 
-            [In] byte tid, 
-            [In] MPEG2Filter pFilter, 
-            [In] int dwTimeout, 
+            [In] short pid,
+            [In] byte tid,
+            [In] MPEG2Filter pFilter,
+            [In] int dwTimeout,
             [MarshalAs(UnmanagedType.Interface)] out ISectionList ppSectionList
             );
 
         [PreserveSig]
         int GetTable(
-            [In] short pid, 
-            [In] byte tid, 
-            [In] MPEG2Filter pFilter, 
-            [In] int dwTimeout, 
+            [In] short pid,
+            [In] byte tid,
+            [In] MPEG2Filter pFilter,
+            [In] int dwTimeout,
             [MarshalAs(UnmanagedType.Interface)] out ISectionList ppSectionList
             );
 
         [PreserveSig]
         int GetStreamOfSections(
-            [In] short pid, 
-            [In] byte tid, 
-            [In] MPEG2Filter pFilter, 
-            [In] IntPtr hDataReadyEvent, 
+            [In] short pid,
+            [In] byte tid,
+            [In] MPEG2Filter pFilter,
+            [In] IntPtr hDataReadyEvent,
             [MarshalAs(UnmanagedType.Interface)] out IMpeg2Stream ppMpegStream
             );
     }
 
-
-    [Guid("400CC286-32A0-4CE4-9041-39571125A635"), 
+    [ComImport,
+    Guid("400CC286-32A0-4CE4-9041-39571125A635"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IMpeg2Stream
     {
         [PreserveSig]
         int Initialize(
-            [In] MPEGRequestType requestType, 
-            [In, MarshalAs(UnmanagedType.Interface)] IMpeg2Data pMpeg2Data, 
-            [In, MarshalAs(UnmanagedType.LPStruct)] MPEGContext pContext, 
-            [In] short pid, 
-            [In] byte tid, 
-            [In, MarshalAs(UnmanagedType.LPStruct)] MPEG2Filter pFilter, 
+            [In] MPEGRequestType requestType,
+            [In, MarshalAs(UnmanagedType.Interface)] IMpeg2Data pMpeg2Data,
+            [In, MarshalAs(UnmanagedType.LPStruct)] MPEGContext pContext,
+            [In] short pid,
+            [In] byte tid,
+            [In, MarshalAs(UnmanagedType.LPStruct)] MPEG2Filter pFilter,
             [In] IntPtr hDataReadyEvent
             );
 
@@ -258,20 +259,20 @@ namespace DirectShowLib
             );
     }
 
-
-    [Guid("AFEC1EB5-2A64-46C6-BF4B-AE3CCB6AFDB0"), 
+    [ComImport,
+    Guid("AFEC1EB5-2A64-46C6-BF4B-AE3CCB6AFDB0"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface ISectionList
     {
         [PreserveSig]
         int Initialize(
-            [In] MPEGRequestType requestType, 
-            [In, MarshalAs(UnmanagedType.Interface)] IMpeg2Data pMpeg2Data, 
-            [In, MarshalAs(UnmanagedType.LPStruct)] MPEGContext pContext, 
-            [In] short pid, 
-            [In] byte tid, 
-            [In, MarshalAs(UnmanagedType.LPStruct)] MPEG2Filter pFilter, 
-            [In] int timeout, 
+            [In] MPEGRequestType requestType,
+            [In, MarshalAs(UnmanagedType.Interface)] IMpeg2Data pMpeg2Data,
+            [In, MarshalAs(UnmanagedType.LPStruct)] MPEGContext pContext,
+            [In] short pid,
+            [In] byte tid,
+            [In, MarshalAs(UnmanagedType.LPStruct)] MPEG2Filter pFilter,
+            [In] int timeout,
             [In] IntPtr hDoneEvent
             );
 
@@ -290,8 +291,8 @@ namespace DirectShowLib
 
         [PreserveSig]
         int GetSectionData(
-            [In] short SectionNumber, 
-            [Out] out int pdwRawPacketLength, 
+            [In] short SectionNumber,
+            [Out] out int pdwRawPacketLength,
             [Out] out IntPtr ppSection // PSECTION*
             );
 
@@ -305,7 +306,6 @@ namespace DirectShowLib
             out byte pTableId
             );
     }
-
 
     #endregion
 }

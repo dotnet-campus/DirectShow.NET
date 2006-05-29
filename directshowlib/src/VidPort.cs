@@ -33,18 +33,6 @@ namespace DirectShowLib
 #if ALLOW_UNTESTED_INTERFACES
 
     /// <summary>
-    /// From AMVP_MODE
-    /// </summary>
-    public enum AMVP_Mode
-    {   
-        Weave,
-        BobInterleaved,
-        BobNonInterleaved,
-        SkipEven,
-        SkipOdd
-    }
-
-    /// <summary>
     /// From AMVPSIZE
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -103,6 +91,18 @@ namespace DirectShowLib
 
 
 #endif
+
+    /// <summary>
+    /// From AMVP_MODE
+    /// </summary>
+    public enum AMVP_Mode
+    {
+        Weave,
+        BobInterleaved,
+        BobNonInterleaved,
+        SkipEven,
+        SkipOdd
+    }
 
     #endregion
 
@@ -185,11 +185,12 @@ namespace DirectShowLib
             );
     }
 
-    [Guid("BC29A660-30E3-11d0-9E69-00C04FD7C15B"),
+    [ComImport,
+    Guid("BC29A660-30E3-11d0-9E69-00C04FD7C15B"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IVPConfig : IVPBaseConfig
     {
-    #region IVPBaseConfig Methods
+        #region IVPBaseConfig Methods
 
         [PreserveSig]
         new int GetConnectInfo(
@@ -262,7 +263,7 @@ namespace DirectShowLib
             int dwYOrigin
             );
 
-    #endregion
+        #endregion
 
         [PreserveSig]
         int IsVPDecimationAllowed(
@@ -275,11 +276,12 @@ namespace DirectShowLib
             );
     }
 
-    [Guid("EC529B00-1A1F-11D1-BAD9-00609744111A"),
+    [ComImport,
+    Guid("EC529B00-1A1F-11D1-BAD9-00609744111A"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IVPVBIConfig : IVPBaseConfig
     {
-    #region IVPBaseConfig Methods
+        #region IVPBaseConfig Methods
 
         [PreserveSig]
         new int GetConnectInfo(
@@ -352,27 +354,37 @@ namespace DirectShowLib
             int dwYOrigin
             );
 
-    #endregion
+        #endregion
 
     }
 
-    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IVPBaseNotify
-    {
-        [PreserveSig]
-        int RenegotiateVPParameters();
-    }
-
-    [Guid("C76794A1-D6C5-11d0-9E69-00C04FD7C15B"),
+    [ComImport,
+    Guid("EC529B01-1A1F-11D1-BAD9-00609744111A"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IVPNotify : IVPBaseNotify
+    public interface IVPVBINotify : IVPBaseNotify
     {
-    #region IVPBaseNotify
+        #region IVPBaseNotify
 
         [PreserveSig]
         new int RenegotiateVPParameters();
 
-    #endregion
+        #endregion
+
+    }
+
+#endif
+
+    [ComImport,
+    Guid("C76794A1-D6C5-11d0-9E69-00C04FD7C15B"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IVPNotify : IVPBaseNotify
+    {
+        #region IVPBaseNotify
+
+        [PreserveSig]
+        new int RenegotiateVPParameters();
+
+        #endregion
 
         [PreserveSig]
         int SetDeinterlaceMode(
@@ -385,18 +397,26 @@ namespace DirectShowLib
             );
     }
 
-    [Guid("EBF47183-8764-11d1-9E69-00C04FD7C15B"),
+    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IVPBaseNotify
+    {
+        [PreserveSig]
+        int RenegotiateVPParameters();
+    }
+
+    [ComImport,
+    Guid("EBF47183-8764-11d1-9E69-00C04FD7C15B"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IVPNotify2 : IVPNotify
     {
-    #region IVPBaseNotify
+        #region IVPBaseNotify
 
         [PreserveSig]
         new int RenegotiateVPParameters();
 
-    #endregion
+        #endregion
 
-    #region IVPNotify Methods
+        #region IVPNotify Methods
 
         [PreserveSig]
         new int SetDeinterlaceMode(
@@ -408,7 +428,7 @@ namespace DirectShowLib
             out AMVP_Mode pMode
             );
 
-    #endregion
+        #endregion
 
         [PreserveSig]
         int SetVPSyncMaster(
@@ -422,18 +442,5 @@ namespace DirectShowLib
 
     }
 
-    [Guid("EC529B01-1A1F-11D1-BAD9-00609744111A"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IVPVBINotify : IVPBaseNotify
-    {
-    #region IVPBaseNotify
-
-        [PreserveSig]
-        new int RenegotiateVPParameters();
-
-    #endregion
-
-    }
-#endif
     #endregion
 }
