@@ -5,6 +5,7 @@ using DirectShowLib;
 
 namespace v1._5
 {
+#if ALLOW_UNTESTED_INTERFACES
     class IResourceManagerTest : IResourceConsumer
     {
         private IResourceManager m_rm;
@@ -66,4 +67,5 @@ namespace v1._5
 
         #endregion
     }
+#endif
 }

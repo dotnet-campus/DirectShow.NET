@@ -1,19 +1,22 @@
 Interface				Methods	Assigned	Reviewer
 
-IAMBufferNegotiation		2	snarfle		ready
-IServiceProvider			1	snarfle		ready
-IObjectWithSite				2	snarfle		ready
-IRegisterServiceProvider	1	snarfle		ready
-IAMGraphBuilderCallback		2	snarfle		ready
-IAsyncReader				8	snarfle		ready
-IQualityControl				2	snarfle		ready
-IBroadcastEvent				1	snarfle		ready
 IAMAudioRendererStats		1	snarfle		ready
+IAMBufferNegotiation		2	snarfle		ready
 IAMClockAdjust				1	snarfle		ready
+IAMGraphBuilderCallback		2	snarfle		ready
+IAMMediaStream				5	snarfle		ready
+IAsyncReader				8	snarfle		ready
+IBDA_SignalProperties		6	snarfle		ready
+IBDAComparable				6
+IBroadcastEvent				1	snarfle		ready
 IMemAllocator				6	snarfle		ready
 IMemAllocatorCallbackTemp	2	snarfle		ready
 IMemAllocatorNotifyCallbackTemp 1 snarfle	ready
+IQualityControl				2	snarfle		ready
+IRegisterServiceProvider	1	snarfle		ready
 ISeekingPassThru			1	snarfle		ready
 IVPNotify					2	snarfle		ready
 IVPNotify2					2	snarfle		ready
-IAMMediaStream				5	snarfle		ready
+
+IServiceProvider			1	snarfle		ready
+IObjectWithSite				2	snarfle		ready

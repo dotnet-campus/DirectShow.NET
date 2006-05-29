@@ -70,6 +70,9 @@ namespace v1._5
 
             //IResourceManagerTest t18 = new IResourceManagerTest();
             //t18.DoTests();
+
+            //IBDA_SignalPropertiesTest t19 = new IBDA_SignalPropertiesTest();
+            //t19.DoTests();
         }
     }
 }
