@@ -1,0 +1,32 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DESCombineLib", "DESCombineLib\DESCombineLib.csproj", "{A10D4671-34C7-4AD8-B537-B2B9C48242F7}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestCombine", "TestCombine\TestCombine.csproj", "{B20FEBE5-4895-4930-8017-C7614AB6C49B}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{A10D4671-34C7-4AD8-B537-B2B9C48242F7}.Debug.ActiveCfg = Debug|.NET
+		{A10D4671-34C7-4AD8-B537-B2B9C48242F7}.Debug.Build.0 = Debug|.NET
+		{A10D4671-34C7-4AD8-B537-B2B9C48242F7}.Release.ActiveCfg = Release|.NET
+		{A10D4671-34C7-4AD8-B537-B2B9C48242F7}.Release.Build.0 = Release|.NET
+		{B20FEBE5-4895-4930-8017-C7614AB6C49B}.Debug.ActiveCfg = Debug|.NET
+		{B20FEBE5-4895-4930-8017-C7614AB6C49B}.Debug.Build.0 = Debug|.NET
+		{B20FEBE5-4895-4930-8017-C7614AB6C49B}.Release.ActiveCfg = Release|.NET
+		{B20FEBE5-4895-4930-8017-C7614AB6C49B}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(SolutionItems) = postSolution
+		readme.txt = readme.txt
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
