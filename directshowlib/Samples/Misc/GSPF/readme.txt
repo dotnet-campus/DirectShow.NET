@@ -97,7 +97,8 @@ Important:
 ==========
 
 To support IAsyncReader, you MUST support random seeking within the data.  How random depends on what the downstream filter
-chooses to do.  It may be that it only backs up once to re-read a header.  But it may not.  
+chooses to do.  It may be that it really reads the file sequentially and doesn't back up at all.  Or it may jump all over
+the place.
 
 
 A few things to know:

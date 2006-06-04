@@ -12,9 +12,9 @@
 	</Platforms>
 	<Configurations>
 		<Configuration
-			Name="Debug Unicode|Win32"
-			OutputDirectory=".\Debug_Unicode"
-			IntermediateDirectory=".\Debug_Unicode"
+			Name="Debug|Win32"
+			OutputDirectory=".\Debug"
+			IntermediateDirectory=".\Debug"
 			ConfigurationType="2"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -27,10 +27,10 @@
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderFile=".\Debug_Unicode/PullSource.pch"
-				AssemblerListingLocation=".\Debug_Unicode/"
-				ObjectFile=".\Debug_Unicode/"
-				ProgramDataBaseFileName=".\Debug_Unicode/"
+				PrecompiledHeaderFile=".\Debug/PullSource.pch"
+				AssemblerListingLocation=".\Debug/"
+				ObjectFile=".\Debug/"
+				ProgramDataBaseFileName=".\Debug/"
 				WarningLevel="4"
 				SuppressStartupBanner="TRUE"
 				DebugInformationFormat="3"
@@ -43,15 +43,15 @@
 				RegisterOutput="TRUE"
 				AdditionalOptions="/ignore:4089 /ignore:4078 "
 				AdditionalDependencies="strmbasd.lib msvcrtd.lib winmm.lib odbc32.lib odbccp32.lib"
-				OutputFile="Debug_Unicode/PullSource.ax"
+				OutputFile="Debug/PullSource.ax"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="&quot;C:\Program Files\Microsoft SDKs\Windows\v1.0\samples\Multimedia\DirectShow\BaseClasses\Debug_Unicode&quot;"
 				IgnoreAllDefaultLibraries="TRUE"
 				ModuleDefinitionFile=".\PullSource.def"
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile=".\Debug_Unicode/PullSource.pdb"
-				ImportLibrary=".\Debug_Unicode/PullSource.lib"
+				ProgramDatabaseFile=".\Debug/PullSource.pdb"
+				ImportLibrary=".\Debug/PullSource.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
@@ -59,7 +59,7 @@
 				MkTypLibCompatible="TRUE"
 				SuppressStartupBanner="TRUE"
 				TargetEnvironment="1"
-				TypeLibraryName=".\Debug_Unicode/PullSource.tlb"
+				TypeLibraryName=".\Debug/PullSource.tlb"
 				HeaderFileName=""/>
 			<Tool
 				Name="VCPostBuildEventTool"
@@ -84,9 +84,9 @@
 				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
 		</Configuration>
 		<Configuration
-			Name="Release Unicode|Win32"
-			OutputDirectory=".\Release_Unicode"
-			IntermediateDirectory=".\Release_Unicode"
+			Name="Release|Win32"
+			OutputDirectory=".\Release"
+			IntermediateDirectory=".\Release"
 			ConfigurationType="2"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -101,10 +101,10 @@
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="TRUE"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderFile=".\Release_Unicode/PullSource.pch"
-				AssemblerListingLocation=".\Release_Unicode/"
-				ObjectFile=".\Release_Unicode/"
-				ProgramDataBaseFileName=".\Release_Unicode/"
+				PrecompiledHeaderFile=".\Release/PullSource.pch"
+				AssemblerListingLocation=".\Release/"
+				ObjectFile=".\Release/"
+				ProgramDataBaseFileName=".\Release/"
 				WarningLevel="4"
 				SuppressStartupBanner="TRUE"
 				CallingConvention="2"
@@ -116,17 +116,17 @@
 				RegisterOutput="TRUE"
 				AdditionalOptions="/ignore:4089 /ignore:4078  /ignore:4078 "
 				AdditionalDependencies="advapi32.lib gdi32.lib uuid.lib oleaut32.lib user32.lib ole32.lib strmbase.lib winmm.lib kernel32.lib msvcrt.lib $(NOINHERIT)"
-				OutputFile="Release_Unicode/PullSource.ax"
+				OutputFile="Release/PullSource.ax"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="&quot;C:\Program Files\Microsoft SDKs\Windows\v1.0\samples\Multimedia\DirectShow\BaseClasses\Release_Unicode&quot;"
 				IgnoreAllDefaultLibraries="TRUE"
 				IgnoreDefaultLibraryNames=""
 				ModuleDefinitionFile=".\PullSource.def"
-				ProgramDatabaseFile=".\Release_Unicode/PullSource.pdb"
+				ProgramDatabaseFile=".\Release/PullSource.pdb"
 				OptimizeReferences="1"
 				EnableCOMDATFolding="2"
-				ImportLibrary=".\Release_Unicode/PullSource.lib"
+				ImportLibrary=".\Release/PullSource.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
@@ -134,7 +134,7 @@
 				MkTypLibCompatible="TRUE"
 				SuppressStartupBanner="TRUE"
 				TargetEnvironment="1"
-				TypeLibraryName=".\Release_Unicode/PullSource.tlb"
+				TypeLibraryName=".\Release/PullSource.tlb"
 				HeaderFileName=""/>
 			<Tool
 				Name="VCPostBuildEventTool"/>
@@ -170,7 +170,7 @@
 			<File
 				RelativePath="PullSourceFilter.cpp">
 				<FileConfiguration
-					Name="Debug Unicode|Win32">
+					Name="Debug|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -179,7 +179,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release Unicode|Win32">
+					Name="Release|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -190,7 +190,7 @@
 			<File
 				RelativePath="setup.cpp">
 				<FileConfiguration
-					Name="Debug Unicode|Win32">
+					Name="Debug|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -199,7 +199,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release Unicode|Win32">
+					Name="Release|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"

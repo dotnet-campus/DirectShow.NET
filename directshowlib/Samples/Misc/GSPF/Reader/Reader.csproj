@@ -72,7 +72,7 @@
                 <Reference
                     Name = "DirectShowLib"
                     AssemblyName = "DirectShowLib"
-                    HintPath = "..\..\..\SourceForge\directshowlib\lib\DirectShowLib.dll"
+                    HintPath = "..\..\..\..\src\bin\Debug\DirectShowLib.dll"
                 />
             </References>
         </Build>

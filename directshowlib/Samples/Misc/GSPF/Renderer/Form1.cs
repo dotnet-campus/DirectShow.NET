@@ -3,7 +3,6 @@ using System.Drawing;
 using System.Collections;
 using System.ComponentModel;
 using System.Windows.Forms;
-using System.Data;
 
 using System.Runtime.InteropServices;
 using DxPlayx;
@@ -83,6 +82,7 @@ namespace Renderer2
             // 
             // button1
             // 
+            this.button1.Enabled = false;
             this.button1.Location = new System.Drawing.Point(216, 80);
             this.button1.Name = "button1";
             this.button1.TabIndex = 4;
@@ -123,6 +123,7 @@ namespace Renderer2
 				{
 					m_play = new DxPlay(tbFileName.Text);
 					m_play.Completed +=new EventHandler(m_play_Completed);
+                    button1.Enabled = true;
                 }
 				catch(COMException ce)
 				{

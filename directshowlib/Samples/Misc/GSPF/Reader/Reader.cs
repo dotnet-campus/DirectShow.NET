@@ -16,111 +16,6 @@ using DirectShowLib;
 
 namespace rdr
 {
-    #region DirectShow Interfaces
-
-    // Since these interfaces are untested in DirectShowLib, they aren't exposed.
-    // So I have copy/pasted them here.  They are the same as are found in v1.4.
-
-    /// <summary>
-    /// From AM_GBF_* defines
-    /// </summary>
-    [Flags]
-    public enum AMGBF
-    {
-        None = 0,
-        PrevFrameSkipped = 1,
-        NotAsyncPoint = 2,
-        NoWait = 4,
-        NoDDSurfaceLock = 8
-    }
-
-    [Guid("56a8689c-0ad4-11ce-b03a-0020af0ba770"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IMemAllocator
-    {
-        [PreserveSig]
-        int SetProperties(
-            [In] AllocatorProperties pRequest,
-            [Out] AllocatorProperties pActual
-            );
-
-        [PreserveSig]
-        int GetProperties(
-            [Out, MarshalAs(UnmanagedType.LPStruct)] AllocatorProperties pProps
-            );
-
-        [PreserveSig]
-        int Commit();
-
-        [PreserveSig]
-        int Decommit();
-
-        [PreserveSig]
-        int GetBuffer(
-            [Out] out IMediaSample ppBuffer,
-            [In] long pStartTime,
-            [In] long pEndTime,
-            [In] AMGBF dwFlags
-            );
-
-        [PreserveSig]
-        int ReleaseBuffer(
-            [In] IMediaSample pBuffer
-            );
-    }
-
-    [Guid("56a868aa-0ad4-11ce-b03a-0020af0ba770"),
-	InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	public interface IAsyncReader
-	{
-		[PreserveSig]
-		int RequestAllocator(
-			[In] IMemAllocator pPreferred,
-			[In, MarshalAs(UnmanagedType.LPStruct)] AllocatorProperties pProps,
-			[Out] out IMemAllocator ppActual
-			);
-
-		[PreserveSig]
-		int Request(
-			[In] IMediaSample pSample,
-			[In] IntPtr dwUser
-			);
-
-		[PreserveSig]
-		int WaitForNext(
-			[In] int dwTimeout,
-			[Out] out IMediaSample ppSample,
-			[Out] out IntPtr pdwUser
-			);
-
-		[PreserveSig]
-		int SyncReadAligned(
-            [In] IMediaSample pSample
-            );
-
-		[PreserveSig]
-		int SyncRead(
-			[In] long llPosition,
-			[In] int lLength,
-			[In] IntPtr pBuffer // BYTE *
-			);
-
-		[PreserveSig]
-		int Length(
-			[Out] out long pTotal,
-			[Out] out long pAvailable
-			);
-
-		[PreserveSig]
-		int BeginFlush();
-
-		[PreserveSig]
-		int EndFlush();
-	}
-
-
-    #endregion
-
     #region Local Interfaces
 
     [Guid("A6AD4353-4690-438e-AAB6-3F345C221D6F")]
@@ -236,7 +131,7 @@ namespace rdr
             lock(this) // Protect the m_ variables
             {
                 // Release any previous allocator
-                if (m_MemAlloc != null)
+                if ( (m_MemAlloc != null) && (m_MemAlloc != pPreferred) )
                 {
                     Marshal.ReleaseComObject(m_MemAlloc);
                     m_MemAlloc = null;
@@ -249,7 +144,8 @@ namespace rdr
                 }
                 else
                 {
-                    // Todo - In theory, we should provide our own allocator if one isn't offered
+                    // Todo - In theory, we should provide our own allocator if one isn't offered.
+                    // In practice, no one accepts an allocator if I offer one.
                     hr = E_Fail;
                 }
             }
@@ -326,7 +222,7 @@ namespace rdr
                     // If there is another request, reset the event.  Also
                     // if the graph is flushing, allow the other threads
                     // to exit
-                    if (m_Requests.Count > 0 || m_GraphIsFlushing)
+                    if ( (m_Requests.Count > 0) || (m_GraphIsFlushing) )
                     {
                         m_Wait.Set();
                     }

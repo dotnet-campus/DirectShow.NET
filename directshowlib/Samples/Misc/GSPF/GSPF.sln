@@ -13,22 +13,22 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reader", "Reader\Reader.csp
 EndProject
 Global
 	GlobalSection(SolutionConfiguration) = preSolution
-		Debug Unicode = Debug Unicode
-		Release Unicode = Release Unicode
+		Debug = Debug
+		Release = Release
 	EndGlobalSection
 	GlobalSection(ProjectConfiguration) = postSolution
-		{70B24BBF-E59F-4F91-A74B-01288E1DECB3}.Debug Unicode.ActiveCfg = Debug Unicode|Win32
-		{70B24BBF-E59F-4F91-A74B-01288E1DECB3}.Debug Unicode.Build.0 = Debug Unicode|Win32
-		{70B24BBF-E59F-4F91-A74B-01288E1DECB3}.Release Unicode.ActiveCfg = Release Unicode|Win32
-		{70B24BBF-E59F-4F91-A74B-01288E1DECB3}.Release Unicode.Build.0 = Release Unicode|Win32
-		{B02B2D12-F0F1-4E87-AC3D-8825FB4EEFFC}.Debug Unicode.ActiveCfg = Debug|.NET
-		{B02B2D12-F0F1-4E87-AC3D-8825FB4EEFFC}.Debug Unicode.Build.0 = Debug|.NET
-		{B02B2D12-F0F1-4E87-AC3D-8825FB4EEFFC}.Release Unicode.ActiveCfg = Release|.NET
-		{B02B2D12-F0F1-4E87-AC3D-8825FB4EEFFC}.Release Unicode.Build.0 = Release|.NET
-		{F625A785-6696-4441-AA3B-C136A3E55648}.Debug Unicode.ActiveCfg = Debug|.NET
-		{F625A785-6696-4441-AA3B-C136A3E55648}.Debug Unicode.Build.0 = Debug|.NET
-		{F625A785-6696-4441-AA3B-C136A3E55648}.Release Unicode.ActiveCfg = Release|.NET
-		{F625A785-6696-4441-AA3B-C136A3E55648}.Release Unicode.Build.0 = Release|.NET
+		{70B24BBF-E59F-4F91-A74B-01288E1DECB3}.Debug.ActiveCfg = Debug|Win32
+		{70B24BBF-E59F-4F91-A74B-01288E1DECB3}.Debug.Build.0 = Debug|Win32
+		{70B24BBF-E59F-4F91-A74B-01288E1DECB3}.Release.ActiveCfg = Release|Win32
+		{70B24BBF-E59F-4F91-A74B-01288E1DECB3}.Release.Build.0 = Release|Win32
+		{B02B2D12-F0F1-4E87-AC3D-8825FB4EEFFC}.Debug.ActiveCfg = Debug|.NET
+		{B02B2D12-F0F1-4E87-AC3D-8825FB4EEFFC}.Debug.Build.0 = Debug|.NET
+		{B02B2D12-F0F1-4E87-AC3D-8825FB4EEFFC}.Release.ActiveCfg = Release|.NET
+		{B02B2D12-F0F1-4E87-AC3D-8825FB4EEFFC}.Release.Build.0 = Release|.NET
+		{F625A785-6696-4441-AA3B-C136A3E55648}.Debug.ActiveCfg = Debug|.NET
+		{F625A785-6696-4441-AA3B-C136A3E55648}.Debug.Build.0 = Debug|.NET
+		{F625A785-6696-4441-AA3B-C136A3E55648}.Release.ActiveCfg = Release|.NET
+		{F625A785-6696-4441-AA3B-C136A3E55648}.Release.Build.0 = Release|.NET
 	EndGlobalSection
 	GlobalSection(SolutionItems) = postSolution
 		readme.txt = readme.txt

@@ -70,24 +70,9 @@
                     HintPath = "..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.dll"
                 />
                 <Reference
-                    Name = "System.Data"
-                    AssemblyName = "System.Data"
-                    HintPath = "..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Data.dll"
-                />
-                <Reference
-                    Name = "System.Drawing"
-                    AssemblyName = "System.Drawing"
-                    HintPath = "..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Drawing.dll"
-                />
-                <Reference
                     Name = "System.Windows.Forms"
                     AssemblyName = "System.Windows.Forms"
                     HintPath = "..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Windows.Forms.dll"
-                />
-                <Reference
-                    Name = "System.XML"
-                    AssemblyName = "System.Xml"
-                    HintPath = "..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.XML.dll"
                 />
                 <Reference
                     Name = "rdr"
@@ -97,7 +82,12 @@
                 <Reference
                     Name = "DirectShowLib"
                     AssemblyName = "DirectShowLib"
-                    HintPath = "..\..\..\SourceForge\directshowlib\lib\DirectShowLib.dll"
+                    HintPath = "..\..\..\..\src\bin\Debug\DirectShowLib.dll"
+                />
+                <Reference
+                    Name = "System.Drawing"
+                    AssemblyName = "System.Drawing"
+                    HintPath = "..\..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Drawing.dll"
                 />
             </References>
         </Build>

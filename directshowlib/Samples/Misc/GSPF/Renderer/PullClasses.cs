@@ -17,7 +17,7 @@ namespace GenericSampleSourceFilterClasses
 	{
 	}
 
-    [Guid("C883E766-38E0-47a8-ABDF-852232C59718"),
+    [ComImport, Guid("C883E766-38E0-47a8-ABDF-852232C59718"),
 	InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IGenericPullConfig
 	{
