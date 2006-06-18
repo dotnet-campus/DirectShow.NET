@@ -57,7 +57,9 @@ namespace DirectShowLib
     public interface IKsTopologyInfo
     {
         [PreserveSig]
-        int get_NumCategories([Out] int pdwNumCategories);
+        int get_NumCategories(
+            [Out] out int pdwNumCategories
+            );
 
         [PreserveSig]
         int get_Category(
@@ -66,7 +68,9 @@ namespace DirectShowLib
             );
 
         [PreserveSig]
-        int get_NumConnections([Out] int pdwNumConnections);
+        int get_NumConnections(
+            [Out] out int pdwNumConnections
+            );
 
         [PreserveSig]
         int get_ConnectionInfo(
@@ -83,7 +87,9 @@ namespace DirectShowLib
             );
 
         [PreserveSig]
-        int get_NumNodes([Out] int pdwNumNodes);
+        int get_NumNodes(
+            [Out] int pdwNumNodes
+            );
 
         [PreserveSig]
         int get_NodeType(
@@ -92,11 +98,11 @@ namespace DirectShowLib
             );
 
         [PreserveSig]
-        int CreateNodeInstance(
-            [In] int dwNodeId,
-            [In] Guid iid,
-            [Out] out IntPtr ppvObject // void **
-            );
+        int CreateNodeInstance( 
+            [In] int dwNodeId, 
+            [In, MarshalAs(UnmanagedType.LPStruct)] Guid iid, 
+            [Out, MarshalAs(UnmanagedType.IUnknown)] out Object ppvObject  
+            ); 
     }
 
     [ComImport,
