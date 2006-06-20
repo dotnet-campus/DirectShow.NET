@@ -20,3 +20,6 @@ IVPNotify2					2	snarfle		ready
 
 IServiceProvider			1	snarfle		ready
 IObjectWithSite				2	snarfle		ready
+
+?IEncoderAPI and ICodecAPI 
+?ISelector and IKsTopologyInfo
