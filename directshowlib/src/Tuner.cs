@@ -551,6 +551,31 @@ namespace DirectShowLib.BDA
         int AutoProgram();
     }
 
+  [ComImport,
+   Guid("E60DFA45-8D56-4e65-A8AB-D6BE9412C249"),
+  InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+  public interface ITunerCap
+  {
+    [PreserveSig]
+    int SupportedNetworkTypes(
+      [In] int ulcNetworkTypesMax,
+      [Out] out int pulcNetworkTypes,
+      [In, Out] Guid[] pguidNetworkTypes
+      );
+
+    [PreserveSig]
+    int SupportedVideoFormats(
+      [Out] out int pulAMTunerModeType,
+      [Out] out int pulAnalogVideoStandard
+      );
+
+    [PreserveSig]
+    int AuxInputCount(
+      [Out] out int pulCompositeCount,
+      [Out] out int pulSvideoCount
+      );
+  }
+
 #endif
 
     [ComImport,
