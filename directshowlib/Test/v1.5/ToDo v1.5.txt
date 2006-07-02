@@ -1,25 +1,25 @@
 Interface				Methods	Assigned	Reviewer
 
-IAMAudioRendererStats		1	snarfle		ready
+IAMAudioRendererStats		1	snarfle		nowinskie (2/7/2006) : OK
 IAMBufferNegotiation		2	snarfle		ready
-IAMClockAdjust				1	snarfle		ready
-IAMGraphBuilderCallback		2	snarfle		ready
+IAMClockAdjust				1	snarfle		nowinskie (2/7/2006) : OK
+IAMGraphBuilderCallback		2	snarfle		nowinskie (2/7/2006) : OK
 IAMMediaStream				5	snarfle		ready
 IAsyncReader				8	snarfle		ready
-IBDA_SignalProperties		6	snarfle		ready
+IBDA_SignalProperties		6	snarfle		nowinskie (2/7/2006) : OK // My BDA Drivers don't support this interface and why the Demux support it is a complete mistery.
 IBDAComparable				6
-IBroadcastEvent				1	snarfle		ready
-IMemAllocator				6	snarfle		ready
-IMemAllocatorCallbackTemp	2	snarfle		ready
+IBroadcastEvent				1	snarfle		nowinskie (2/7/2006) : OK
+IMemAllocator				6	snarfle		nowinskie (2/7/2006) : OK
+IMemAllocatorCallbackTemp	2	snarfle		nowinskie (2/7/2006) : OK
 IMemAllocatorNotifyCallbackTemp 1 snarfle	ready
-IQualityControl				2	snarfle		ready
-IRegisterServiceProvider	1	snarfle		ready
-ISeekingPassThru			1	snarfle		ready
-IVPNotify					2	snarfle		ready
-IVPNotify2					2	snarfle		ready
+IQualityControl				2	snarfle		nowinskie (2/7/2006) : OK
+IRegisterServiceProvider	1	snarfle		nowinskie (2/7/2006) : OK
+ISeekingPassThru			1	snarfle		nowinskie (2/7/2006) : OK
+IVPNotify					2	snarfle		nowinskie (2/7/2006) : OK
+IVPNotify2					2	snarfle		nowinskie (2/7/2006) : OK
 
-IServiceProvider			1	snarfle		ready
-IObjectWithSite				2	snarfle		ready
+IServiceProvider			1	snarfle		nowinskie (2/7/2006) : OK
+IObjectWithSite				2	snarfle		nowinskie (2/7/2006) : OK
 
 ?IEncoderAPI and ICodecAPI 
 ?ISelector and IKsTopologyInfo
