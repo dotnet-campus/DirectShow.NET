@@ -88,7 +88,7 @@ namespace DirectShowLib
 
         [PreserveSig]
         int get_NumNodes(
-            [Out] int pdwNumNodes
+            [Out] out int pdwNumNodes
             );
 
         [PreserveSig]
