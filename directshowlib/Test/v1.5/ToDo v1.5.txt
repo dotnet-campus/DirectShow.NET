@@ -20,5 +20,3 @@ IVPNotify2					2	snarfle		nowinskie (2/7/2006) : OK
 
 IServiceProvider			1	snarfle		nowinskie (2/7/2006) : OK
 IObjectWithSite				2	snarfle		nowinskie (2/7/2006) : OK
-
-?ISelector and IKsTopologyInfo
