@@ -17,6 +17,7 @@ IRegisterServiceProvider	1	snarfle		nowinskie (2/7/2006) : OK
 ISeekingPassThru			1	snarfle		nowinskie (2/7/2006) : OK
 IVPNotify					2	snarfle		nowinskie (2/7/2006) : OK
 IVPNotify2					2	snarfle		nowinskie (2/7/2006) : OK
+IAudioData					2	snarfle		ready
 
 IServiceProvider			1	snarfle		nowinskie (2/7/2006) : OK
 IObjectWithSite				2	snarfle		nowinskie (2/7/2006) : OK

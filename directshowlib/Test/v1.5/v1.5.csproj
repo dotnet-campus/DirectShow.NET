@@ -31,6 +31,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -41,15 +42,18 @@
     <Compile Include="IAMFilterGraphCallbackTest.cs" />
     <Compile Include="IAMGraphBuilderCallbackTest.cs" />
     <Compile Include="IAMMediaStreamTest.cs" />
+    <Compile Include="IAudioDataTest.cs" />
     <Compile Include="IBDA_SignalPropertiesTest.cs" />
     <Compile Include="IBroadCastEventTest.cs" />
     <Compile Include="IMemAllocatorCallbackTempTest.cs" />
     <Compile Include="IMemAllocatorTest.cs" />
     <Compile Include="IObjectWithSiteTest.cs" />
+    <Compile Include="IOverlayTest.cs" />
     <Compile Include="IQualityControlTest.cs" />
     <Compile Include="IResourceManagerTest.cs" />
     <Compile Include="ISeekingPassThruTest.cs" />
     <Compile Include="IServiceProviderTest.cs" />
+    <Compile Include="IVPConfigTest.cs" />
     <Compile Include="IVPNotify2Test.cs" />
     <Compile Include="IVPNotifyTest.cs" />
     <Compile Include="RunTests.cs" />

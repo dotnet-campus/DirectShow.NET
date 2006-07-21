@@ -73,6 +73,15 @@ namespace v1._5
 
             //IBDA_SignalPropertiesTest t19 = new IBDA_SignalPropertiesTest();
             //t19.DoTests();
+
+            //IAudioDataTest t20 = new IAudioDataTest();
+            //t20.DoTests();
+
+            //IVPConfigTest t21 = new IVPConfigTest();
+            //t21.DoTests();
+
+            //IOverlayTest t22 = new IOverlayTest();
+            //t22.DoTests();
         }
     }
 }
