@@ -75,14 +75,14 @@
                     HintPath = "..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Windows.Forms.dll"
                 />
                 <Reference
-                    Name = "DirectShowLib"
-                    AssemblyName = "DirectShowLib"
-                    HintPath = "..\..\..\..\lib\DirectShowLib.dll"
-                />
-                <Reference
                     Name = "WindowsMediaLib"
                     AssemblyName = "WindowsMediaLib"
-                    HintPath = "..\..\..\..\..\windowsmedialib\lib\WindowsMediaLib.dll"
+                    HintPath = "..\..\..\lib\WindowsMediaLib.dll"
+                />
+                <Reference
+                    Name = "DirectShowLib"
+                    AssemblyName = "DirectShowLib"
+                    HintPath = "..\..\..\..\directshowlib\lib\DirectShowLib.dll"
                 />
             </References>
         </Build>
