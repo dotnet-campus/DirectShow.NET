@@ -2291,17 +2291,18 @@ namespace DirectShowLib
     [ComImport,
     Guid("70423839-6ACC-4b23-B079-21DBF08156A5"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    [Obsolete("This interface is deprecated and is maintained for backward compatibility only. New applications and drivers should use the ICodecAPI interface.")]
     public interface IEncoderAPI
     {
         [PreserveSig]
-        int IsSupported([In] Guid Api);
+        int IsSupported([In, MarshalAs(UnmanagedType.LPStruct)] Guid Api);
 
         [PreserveSig]
-        int IsAvailable([In] Guid Api);
+        int IsAvailable([In, MarshalAs(UnmanagedType.LPStruct)] Guid Api);
 
         [PreserveSig]
         int GetParameterRange(
-            [In] Guid Api,
+            [In, MarshalAs(UnmanagedType.LPStruct)] Guid Api,
             [Out] out object ValueMin,
             [Out] out object ValueMax,
             [Out] out object SteppingDelta
@@ -2309,26 +2310,26 @@ namespace DirectShowLib
 
         [PreserveSig]
         int GetParameterValues(
-            [In] Guid Api,
+            [In, MarshalAs(UnmanagedType.LPStruct)] Guid Api,
             [Out] out object[] Values,
             [Out] out int ValuesCount
             );
 
         [PreserveSig]
         int GetDefaultValue(
-            [In] Guid Api,
+            [In, MarshalAs(UnmanagedType.LPStruct)] Guid Api,
             [Out] out object Value
             );
 
         [PreserveSig]
         int GetValue(
-            [In] Guid Api,
+            [In, MarshalAs(UnmanagedType.LPStruct)] Guid Api,
             [Out] out object Value
             );
 
         [PreserveSig]
         int SetValue(
-            [In] Guid Api,
+            [In, MarshalAs(UnmanagedType.LPStruct)] Guid Api,
             [In] object Value
             );
     }
