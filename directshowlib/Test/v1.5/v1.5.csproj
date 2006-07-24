@@ -43,6 +43,7 @@
     <Compile Include="IAMGraphBuilderCallbackTest.cs" />
     <Compile Include="IAMMediaStreamTest.cs" />
     <Compile Include="IAudioDataTest.cs" />
+    <Compile Include="IBDAComparableTest.cs" />
     <Compile Include="IBDA_SignalPropertiesTest.cs" />
     <Compile Include="IBroadCastEventTest.cs" />
     <Compile Include="IMemAllocatorCallbackTempTest.cs" />
@@ -53,6 +54,7 @@
     <Compile Include="IResourceManagerTest.cs" />
     <Compile Include="ISeekingPassThruTest.cs" />
     <Compile Include="IServiceProviderTest.cs" />
+    <Compile Include="IVPConfigTest.cs" />
     <Compile Include="IVPNotify2Test.cs" />
     <Compile Include="IVPNotifyTest.cs" />
     <Compile Include="RunTests.cs" />
