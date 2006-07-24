@@ -37,7 +37,7 @@ namespace v1._5
             s.dwHeight = 1;
             s.dwWidth = 9;
 
-            hr = m_ivc.SetScalingFactors(ref s);
+            hr = m_ivc.SetScalingFactors(s);
             DsError.ThrowExceptionForHR(hr);
         }
 
