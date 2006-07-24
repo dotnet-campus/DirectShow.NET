@@ -82,6 +82,9 @@ namespace v1._5
 
             //IOverlayTest t22 = new IOverlayTest();
             //t22.DoTests();
+
+            //IBDAComparableTest t23 = new IBDAComparableTest();
+            //t23.DoTests();
         }
     }
 }
