@@ -7,7 +7,7 @@ IAMGraphBuilderCallback		2	snarfle		nowinskie (2/7/2006) : OK
 IAMMediaStream				5	snarfle		ready
 IAsyncReader				8	snarfle		ready
 IBDA_SignalProperties		6	snarfle		nowinskie (2/7/2006) : OK // My BDA Drivers don't support this interface and why the Demux support it is a complete mistery.
-IBDAComparable				6
+IBDAComparable				6	nowinskie	snarfle (24/7/2006) : OK
 IBroadcastEvent				1	snarfle		nowinskie (2/7/2006) : OK
 IMemAllocator				6	snarfle		nowinskie (2/7/2006) : OK
 IMemAllocatorCallbackTemp	2	snarfle		nowinskie (2/7/2006) : OK
