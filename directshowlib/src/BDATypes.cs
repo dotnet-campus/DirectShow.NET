@@ -307,5 +307,14 @@ namespace DirectShowLib.BDA
         public int ToNodePinType;
     }
 
+  [Flags]
+  public enum BDACompFlags 
+  {
+    NotDefined         = 0x00000000, // BDACOMP_NOT_DEFINED          
+    ExcludeTSFromTR    = 0x00000001, // BDACOMP_EXCLUDE_TS_FROM_TR   
+    IncludeLocatorInTR = 0x00000002, // BDACOMP_INCLUDE_LOCATOR_IN_TR
+  } 
+
+
     #endregion
 }
