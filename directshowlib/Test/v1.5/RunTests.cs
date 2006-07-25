@@ -85,6 +85,9 @@ namespace v1._5
 
             //IBDAComparableTest t23 = new IBDAComparableTest();
             //t23.DoTests();
+
+            //IAsyncReaderTest t24 = new IAsyncReaderTest();
+            //t24.DoTests();
         }
     }
 }
