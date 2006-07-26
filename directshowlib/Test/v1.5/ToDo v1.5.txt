@@ -1,23 +1,23 @@
 Interface				Methods	Assigned	Reviewer
 
 IAMAudioRendererStats		1	snarfle		nowinskie (2/7/2006) : OK
-IAMBufferNegotiation		2	snarfle		ready
+IAMBufferNegotiation		2	snarfle		oystein   (26/7/2006): OK
 IAMClockAdjust				1	snarfle		nowinskie (2/7/2006) : OK
 IAMGraphBuilderCallback		2	snarfle		nowinskie (2/7/2006) : OK
-IAMMediaStream				5	snarfle		ready
-IAsyncReader				8	snarfle		ready
+IAMMediaStream				5	snarfle		oystein	  (26/7/2006): OK
+IAsyncReader				8	snarfle		oystein   (26/7/2006): OK
 IBDA_SignalProperties		6	snarfle		nowinskie (2/7/2006) : OK // My BDA Drivers don't support this interface and why the Demux support it is a complete mistery.
 IBDAComparable				6	nowinskie	snarfle (24/7/2006) : OK
 IBroadcastEvent				1	snarfle		nowinskie (2/7/2006) : OK
 IMemAllocator				6	snarfle		nowinskie (2/7/2006) : OK
 IMemAllocatorCallbackTemp	2	snarfle		nowinskie (2/7/2006) : OK
-IMemAllocatorNotifyCallbackTemp 1 snarfle	ready
+IMemAllocatorNotifyCallbackTemp 1 snarfle	oystein	  (26/7/2006): OK
 IQualityControl				2	snarfle		nowinskie (2/7/2006) : OK
 IRegisterServiceProvider	1	snarfle		nowinskie (2/7/2006) : OK
 ISeekingPassThru			1	snarfle		nowinskie (2/7/2006) : OK
 IVPNotify					2	snarfle		nowinskie (2/7/2006) : OK
 IVPNotify2					2	snarfle		nowinskie (2/7/2006) : OK
-IAudioData					2	snarfle		ready
+IAudioData					2	snarfle		oystein   (26/7/2006): OK
 
 IServiceProvider			1	snarfle		nowinskie (2/7/2006) : OK
 IObjectWithSite				2	snarfle		nowinskie (2/7/2006) : OK
