@@ -49,6 +49,7 @@ namespace v1._5
             // that implements it for a test.  Note: You CANNOT use "out" here.
             hr = m_ibn.GetAllocatorProperties(prop);
             //DsError.ThrowExceptionForHR(hr);
+            rot.Dispose();
         }
 
         private void Setup()
