@@ -20,8 +20,8 @@ namespace v1._5
             // IAMTimecodeReaderTest t1 = new IAMTimecodeReaderTest();
             // t1.DoTests();
 
-            // IAMBufferNegotiationTest t2 = new IAMBufferNegotiationTest();
-            // t2.DoTests();
+            //IAMBufferNegotiationTest t2 = new IAMBufferNegotiationTest();
+            //t2.DoTests();
 
             //IObjectWithSiteTest t3 = new IObjectWithSiteTest();
             //t3.DoTests();
@@ -88,6 +88,9 @@ namespace v1._5
 
             //IAsyncReaderTest t24 = new IAsyncReaderTest();
             //t24.DoTests();
+
+            //IMemoryDataTest t25 = new IMemoryDataTest();
+            //t25.DoTests();
         }
     }
 }

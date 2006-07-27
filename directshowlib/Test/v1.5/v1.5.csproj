@@ -43,7 +43,6 @@
     <Compile Include="IAMGraphBuilderCallbackTest.cs" />
     <Compile Include="IAMMediaStreamTest.cs" />
     <Compile Include="IAsyncReaderTest.cs" />
-    <Compile Include="IAudioDataTest.cs" />
     <Compile Include="IBDAComparableTest.cs" />
     <Compile Include="IBDA_SignalPropertiesTest.cs" />
     <Compile Include="IBroadCastEventTest.cs" />
