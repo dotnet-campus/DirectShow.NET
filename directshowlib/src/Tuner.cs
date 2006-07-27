@@ -370,49 +370,6 @@ namespace DirectShowLib.BDA
             );
     }
 
-  [ComImport,
-  Guid("B34505E0-2F0E-497b-80BC-D43F3B24ED7F"),
-  InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-  public interface IBDAComparable
-  {
-    [PreserveSig]
-    int CompareExact(
-        [In, MarshalAs(UnmanagedType.IDispatch)] object CompareTo,
-        [Out] out int Result
-        );
-
-    [PreserveSig]
-    int CompareEquivalent(
-          [In, MarshalAs(UnmanagedType.IDispatch)] object CompareTo,
-          [In] BDACompFlags dwFlags,
-          [Out] out int Result
-          );
-
-    [PreserveSig]
-    int HashExact(
-          [Out] out long Result
-          );
-
-    [PreserveSig]
-    int HashExactIncremental(
-          [In] long PartialResult,
-          [Out] out long Result
-          );
-
-    [PreserveSig]
-    int HashEquivalent(
-          [In] BDACompFlags dwFlags,
-          [Out] out long Result
-          );
-
-    [PreserveSig]
-    int HashEquivalentIncremental(
-          [In] long PartialResult,
-          [In] BDACompFlags dwFlags,
-          [Out] out long Result
-          );
-  }
-
     [ComImport,
     Guid("2A6E293B-2595-11d3-B64C-00C04F79498E"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
@@ -2517,6 +2474,49 @@ namespace DirectShowLib.BDA
     {
         [PreserveSig]
         int Fire(Guid EventID);
+    }
+
+    [ComImport,
+    Guid("B34505E0-2F0E-497b-80BC-D43F3B24ED7F"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IBDAComparable
+    {
+        [PreserveSig]
+        int CompareExact(
+            [In, MarshalAs(UnmanagedType.IDispatch)] object CompareTo,
+            [Out] out int Result
+            );
+
+        [PreserveSig]
+        int CompareEquivalent(
+              [In, MarshalAs(UnmanagedType.IDispatch)] object CompareTo,
+              [In] BDACompFlags dwFlags,
+              [Out] out int Result
+              );
+
+        [PreserveSig]
+        int HashExact(
+              [Out] out long Result
+              );
+
+        [PreserveSig]
+        int HashExactIncremental(
+              [In] long PartialResult,
+              [Out] out long Result
+              );
+
+        [PreserveSig]
+        int HashEquivalent(
+              [In] BDACompFlags dwFlags,
+              [Out] out long Result
+              );
+
+        [PreserveSig]
+        int HashEquivalentIncremental(
+              [In] long PartialResult,
+              [In] BDACompFlags dwFlags,
+              [Out] out long Result
+              );
     }
 
     #endregion

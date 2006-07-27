@@ -186,97 +186,6 @@ namespace DirectShowLib
     }
 
     [ComImport,
-    Guid("BC29A660-30E3-11d0-9E69-00C04FD7C15B"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IVPConfig : IVPBaseConfig
-    {
-        #region IVPBaseConfig Methods
-
-        [PreserveSig]
-        new int GetConnectInfo(
-            out int pdwNumConnectInfo,
-            out DDVideoPortConnect pddVPConnectInfo
-            );
-
-        [PreserveSig]
-        new int SetConnectInfo(
-            int dwChosenEntry
-            );
-
-        [PreserveSig]
-        new int GetVPDataInfo(
-            out VPDataInfo pamvpDataInfo
-            );
-
-        [PreserveSig]
-        new int GetMaxPixelRate(
-            out AMVPSize pamvpSize,
-            out int pdwMaxPixelsPerSecond
-            );
-
-        [PreserveSig]
-        new int InformVPInputFormats(
-            int dwNumFormats,
-            DDPixelFormat pDDPixelFormats
-            );
-
-        [PreserveSig]
-        new int GetVideoFormats(
-            out int pdwNumFormats,
-            out DDPixelFormat pddPixelFormats
-            );
-
-        [PreserveSig]
-        new int SetVideoFormat(
-            int dwChosenEntry
-            );
-
-        [PreserveSig]
-        new int SetInvertPolarity(
-            );
-
-        [PreserveSig]
-        new int GetOverlaySurface(
-            out IntPtr ppddOverlaySurface // IDirectDrawSurface
-            );
-
-        [PreserveSig]
-        new int SetDirectDrawKernelHandle(
-            IntPtr dwDDKernelHandle
-            );
-
-        [PreserveSig]
-        new int SetVideoPortID(
-            int dwVideoPortID
-            );
-
-        [PreserveSig]
-        new int SetDDSurfaceKernelHandles(
-            int cHandles,
-            IntPtr rgDDKernelHandles
-            );
-
-        [PreserveSig]
-        new int SetSurfaceParameters(
-            int dwPitch,
-            int dwXOrigin,
-            int dwYOrigin
-            );
-
-        #endregion
-
-        [PreserveSig]
-        int IsVPDecimationAllowed(
-            [MarshalAs(UnmanagedType.Bool)] out bool pbIsDecimationAllowed
-            );
-
-        [PreserveSig]
-        int SetScalingFactors(
-            AMVPSize pamvpSize
-            );
-    }
-
-    [ComImport,
     Guid("EC529B00-1A1F-11D1-BAD9-00609744111A"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IVPVBIConfig : IVPBaseConfig
@@ -440,6 +349,97 @@ namespace DirectShowLib
             [MarshalAs(UnmanagedType.Bool)] out bool pbVPSyncMaster
             );
 
+    }
+
+    [ComImport,
+    Guid("BC29A660-30E3-11d0-9E69-00C04FD7C15B"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IVPConfig : IVPBaseConfig
+    {
+        #region IVPBaseConfig Methods
+
+        [PreserveSig]
+        new int GetConnectInfo(
+            out int pdwNumConnectInfo,
+            out DDVideoPortConnect pddVPConnectInfo
+            );
+
+        [PreserveSig]
+        new int SetConnectInfo(
+            int dwChosenEntry
+            );
+
+        [PreserveSig]
+        new int GetVPDataInfo(
+            out VPDataInfo pamvpDataInfo
+            );
+
+        [PreserveSig]
+        new int GetMaxPixelRate(
+            out AMVPSize pamvpSize,
+            out int pdwMaxPixelsPerSecond
+            );
+
+        [PreserveSig]
+        new int InformVPInputFormats(
+            int dwNumFormats,
+            DDPixelFormat pDDPixelFormats
+            );
+
+        [PreserveSig]
+        new int GetVideoFormats(
+            out int pdwNumFormats,
+            out DDPixelFormat pddPixelFormats
+            );
+
+        [PreserveSig]
+        new int SetVideoFormat(
+            int dwChosenEntry
+            );
+
+        [PreserveSig]
+        new int SetInvertPolarity(
+            );
+
+        [PreserveSig]
+        new int GetOverlaySurface(
+            out IntPtr ppddOverlaySurface // IDirectDrawSurface
+            );
+
+        [PreserveSig]
+        new int SetDirectDrawKernelHandle(
+            IntPtr dwDDKernelHandle
+            );
+
+        [PreserveSig]
+        new int SetVideoPortID(
+            int dwVideoPortID
+            );
+
+        [PreserveSig]
+        new int SetDDSurfaceKernelHandles(
+            int cHandles,
+            IntPtr rgDDKernelHandles
+            );
+
+        [PreserveSig]
+        new int SetSurfaceParameters(
+            int dwPitch,
+            int dwXOrigin,
+            int dwYOrigin
+            );
+
+        #endregion
+
+        [PreserveSig]
+        int IsVPDecimationAllowed(
+            [MarshalAs(UnmanagedType.Bool)] out bool pbIsDecimationAllowed
+            );
+
+        [PreserveSig]
+        int SetScalingFactors(
+            AMVPSize pamvpSize
+            );
     }
 
     #endregion

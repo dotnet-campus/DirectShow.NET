@@ -1651,56 +1651,6 @@ namespace DirectShowLib
     }
 
     [ComImport,
-    Guid("56a868aa-0ad4-11ce-b03a-0020af0ba770"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IAsyncReader
-    {
-        [PreserveSig]
-        int RequestAllocator(
-            [In] IMemAllocator pPreferred,
-            [In, MarshalAs(UnmanagedType.LPStruct)] AllocatorProperties pProps,
-            [Out] out IMemAllocator ppActual
-            );
-
-        [PreserveSig]
-        int Request(
-            [In] IMediaSample pSample,
-            [In] IntPtr dwUser
-            );
-
-        [PreserveSig]
-        int WaitForNext(
-            [In] int dwTimeout,
-            [Out] out IMediaSample ppSample,
-            [Out] out IntPtr pdwUser
-            );
-
-        [PreserveSig]
-        int SyncReadAligned(
-            [In] IMediaSample pSample
-            );
-
-        [PreserveSig]
-        int SyncRead(
-            [In] long llPosition,
-            [In] int lLength,
-            [Out] IntPtr pBuffer // BYTE *
-            );
-
-        [PreserveSig]
-        int Length(
-            [Out] out long pTotal,
-            [Out] out long pAvailable
-            );
-
-        [PreserveSig]
-        int BeginFlush();
-
-        [PreserveSig]
-        int EndFlush();
-    }
-
-    [ComImport,
     Guid("56a868ad-0ad4-11ce-b03a-0020af0ba770"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IResourceConsumer
@@ -4116,6 +4066,56 @@ namespace DirectShowLib
     {
         [PreserveSig]
         int SetClockDelta([In] long rtDelta);
+    }
+
+    [ComImport,
+    Guid("56a868aa-0ad4-11ce-b03a-0020af0ba770"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IAsyncReader
+    {
+        [PreserveSig]
+        int RequestAllocator(
+            [In] IMemAllocator pPreferred,
+            [In, MarshalAs(UnmanagedType.LPStruct)] AllocatorProperties pProps,
+            [Out] out IMemAllocator ppActual
+            );
+
+        [PreserveSig]
+        int Request(
+            [In] IMediaSample pSample,
+            [In] IntPtr dwUser
+            );
+
+        [PreserveSig]
+        int WaitForNext(
+            [In] int dwTimeout,
+            [Out] out IMediaSample ppSample,
+            [Out] out IntPtr pdwUser
+            );
+
+        [PreserveSig]
+        int SyncReadAligned(
+            [In] IMediaSample pSample
+            );
+
+        [PreserveSig]
+        int SyncRead(
+            [In] long llPosition,
+            [In] int lLength,
+            [Out] IntPtr pBuffer // BYTE *
+            );
+
+        [PreserveSig]
+        int Length(
+            [Out] out long pTotal,
+            [Out] out long pAvailable
+            );
+
+        [PreserveSig]
+        int BeginFlush();
+
+        [PreserveSig]
+        int EndFlush();
     }
 
     #endregion
