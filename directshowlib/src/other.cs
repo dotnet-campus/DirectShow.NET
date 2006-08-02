@@ -390,6 +390,15 @@ namespace DirectShowLib
     }
 
     [ComImport,
+    Guid("56a868fd-0ad4-11ce-b0a3-0020af0ba770"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IAMFilterGraphCallback
+    {
+        [PreserveSig]
+        int UnableToRender(IPin pPin);
+    }
+
+    [ComImport,
     Guid("AB6B4AFE-F6E4-11d0-900D-00C04FD9189D"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IDirectDrawMediaSample
@@ -614,15 +623,6 @@ namespace DirectShowLib
     }
 
     [ComImport,
-    Guid("56a868fd-0ad4-11ce-b0a3-0020af0ba770"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IAMFilterGraphCallback
-    {
-        [PreserveSig]
-        int UnableToRender(IPin pPin);
-    }
-
-    [ComImport,
     Guid("6d5140c1-7436-11ce-8034-00aa006009fa"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IServiceProvider
@@ -631,23 +631,6 @@ namespace DirectShowLib
             [In, MarshalAs(UnmanagedType.LPStruct)] DsGuid guidService,
             [In, MarshalAs(UnmanagedType.LPStruct)] DsGuid riid,
             [MarshalAs(UnmanagedType.IUnknown)] out object ppvObject
-            );
-    }
-
-    [ComImport,
-    Guid("FC4801A3-2BA9-11CF-A229-00AA003D7352"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IObjectWithSite
-    {
-        [PreserveSig]
-        int SetSite(
-            [In, MarshalAs(UnmanagedType.IUnknown)] object pUnkSite
-            );
-
-        [PreserveSig]
-        int GetSite(
-            [In, MarshalAs(UnmanagedType.LPStruct)] DsGuid riid,
-            [MarshalAs(UnmanagedType.IUnknown)] out object ppvSite
             );
     }
 
