@@ -81,17 +81,31 @@ namespace DirectShowLib
     /// <summary>
     /// From DDPIXELFORMAT
     /// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+    [StructLayout(LayoutKind.Explicit)]
     public struct DDPixelFormat
     {
-        public int dwSize;
-        public int dwFlags;
-        public int dwFourCC;
-        public int dwBitCount;
-        public int dwBitMask1;
-        public int dwGBitMask2;
-        public int dwBBitMask3;
-        public int dwBitMask4;
+        [FieldOffset(0)] public int dwSize;
+        [FieldOffset(4)] public int dwFlags;
+        [FieldOffset(8)] public int dwFourCC;
+
+        [FieldOffset(12)] public int dwRGBBitCount;
+        [FieldOffset(12)] public int dwYUVBitCount;
+        [FieldOffset(12)] public int dwZBufferBitDepth;
+        [FieldOffset(12)] public int dwAlphaBitDepth;
+
+        [FieldOffset(16)] public int dwRBitMask;
+        [FieldOffset(16)] public int dwYBitMask;
+
+        [FieldOffset(20)] public int dwGBitMask;
+        [FieldOffset(20)] public int dwUBitMask;
+
+        [FieldOffset(24)] public int dwBBitMask;
+        [FieldOffset(24)] public int dwVBitMask;
+
+        [FieldOffset(28)] public int dwRGBAlphaBitMask;
+        [FieldOffset(28)] public int dwYUVAlphaBitMask;
+        [FieldOffset(28)] public int dwRGBZBitMask;
+        [FieldOffset(28)] public int dwYUVZBitMask;
     }
 
     /// <summary>
@@ -133,7 +147,7 @@ namespace DirectShowLib
     [StructLayout(LayoutKind.Sequential)]
     public class DsLong
     {
-        public long Value;
+        private long Value;
     
         /// <summary>
         /// Constructor
@@ -223,10 +237,11 @@ namespace DirectShowLib
     /// <remarks>
     /// This class is necessary to enable null paramters passing.
     /// </remarks>
-    [StructLayout(LayoutKind.Sequential)]
+    [StructLayout(LayoutKind.Explicit)]
     public class DsGuid
     {
-        public Guid guid;
+        [FieldOffset(0)]
+        private Guid guid;
 
         public static readonly DsGuid Empty = Guid.Empty;
 
@@ -1058,8 +1073,8 @@ namespace DirectShowLib
 #endif
 
 #if USING_NET11
-                        int j;
-                        while ((enumMon.Next(1, mon, out j) == 0))
+						int j;
+						while ((enumMon.Next(1, mon, out j) == 0))
 #else
                         while ((enumMon.Next(1, mon, IntPtr.Zero) == 0))
 #endif
@@ -1505,7 +1520,6 @@ namespace DirectShowLib
 
         // The managed object passed in to MarshalManagedToNative, and modified in MarshalNativeToManaged
         protected object m_obj;
-        protected IntPtr m_ip;
         #endregion
 
         // The constructor.  This is called from GetInstance (below)
@@ -1519,12 +1533,12 @@ namespace DirectShowLib
         // for the COM call.  The input arg is the parameter that was passed to the method.
         virtual public IntPtr MarshalManagedToNative(object managedObj)
         {
-            // Save off the passed-in value.
+            // Save off the passed-in value.  Safe since we just checked the type.
             m_obj = managedObj;
 
             // Create an appropriately sized buffer, blank it, and send it to the marshaler to
             // make the COM call with.
-            int iSize = GetNativeDataSize() + 3; // Make sure we won't walk past EOB
+            int iSize = GetNativeDataSize() + 3;
             IntPtr p = Marshal.AllocCoTaskMem(iSize);
 
             for (int x=0; x < iSize / 4; x++)
@@ -1580,78 +1594,23 @@ namespace DirectShowLib
         // from MarshalManagedToNative.  The return value is unused.
         override public object MarshalNativeToManaged(IntPtr pNativeData)
         {
-            if (m_obj != null)
-            {
-                AMMediaType [] emt = m_obj as AMMediaType [];
+            AMMediaType [] emt = m_obj as AMMediaType [];
 
-                for (int x=0; x < emt.Length; x++)
-                {
-                    // Copy in the value, and advance the pointer
-                    IntPtr p = Marshal.ReadIntPtr(pNativeData, x * IntPtr.Size);
-                    if (p != IntPtr.Zero)
-                    {
-                        emt[x] = (AMMediaType) Marshal.PtrToStructure(p, typeof (AMMediaType));
-                    }
-                    else
-                    {
-                        emt[x] = null;
-                    }
-                }
-                CleanUpManagedData(null);
-            }
-            else
+            for (int x=0; x < emt.Length; x++)
             {
-                m_ip = pNativeData;
-                return new AMMediaType[113];
+                // Copy in the value, and advance the pointer
+                IntPtr p = Marshal.ReadIntPtr(pNativeData, x * IntPtr.Size);
+                if (p != IntPtr.Zero)
+                {
+                    emt[x] = (AMMediaType) Marshal.PtrToStructure(p, typeof (AMMediaType));
+                }
+                else
+                {
+                    emt[x] = null;
+                }
             }
 
             return null;
-        }
-
-        override public IntPtr MarshalManagedToNative(object managedObj)
-        {
-            IntPtr p;
-
-            if (m_ip == IntPtr.Zero)
-            {
-                // Save off the passed-in value.  Safe since we just checked the type.
-                m_obj = managedObj;
-
-                // Create an appropriately sized buffer, blank it, and send it to the marshaler to
-                // make the COM call with.
-                int iSize = GetNativeDataSize() + 3;
-                p = Marshal.AllocCoTaskMem(iSize);
-
-                for (int x=0; x < iSize / 4; x++)
-                {
-                    Marshal.WriteInt32(p, x * 4, 0);
-                }
-            }
-            else
-            {
-                AMMediaType [] amt = managedObj as AMMediaType[];
-                int iSize = IntPtr.Size;
-
-                int SizeOfAMMediaType = Marshal.SizeOf(typeof(AMMediaType));
-                p = m_ip;
-
-                for (int x=0; x < amt.Length; x++)
-                {
-                    if (amt[x] != null)
-                    {
-                        IntPtr ppp = Marshal.AllocCoTaskMem(SizeOfAMMediaType);
-                        Marshal.StructureToPtr(amt[x], ppp, false);
-                        Marshal.WriteIntPtr(m_ip, x * iSize, ppp);
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
-                m_ip = IntPtr.Zero;
-            }
-
-            return p;
         }
 
         // The number of bytes to marshal out
