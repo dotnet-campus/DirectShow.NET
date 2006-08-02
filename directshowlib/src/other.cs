@@ -634,5 +634,22 @@ namespace DirectShowLib
             );
     }
 
+    [ComImport,
+    Guid("FC4801A3-2BA9-11CF-A229-00AA003D7352"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IObjectWithSite
+    {
+        [PreserveSig]
+        int SetSite(
+            [In, MarshalAs(UnmanagedType.IUnknown)] object pUnkSite
+            );
+
+        [PreserveSig]
+        int GetSite(
+            [In, MarshalAs(UnmanagedType.LPStruct)] DsGuid riid,
+            [MarshalAs(UnmanagedType.IUnknown)] out object ppvSite
+            );
+    }
+
     #endregion
 }
