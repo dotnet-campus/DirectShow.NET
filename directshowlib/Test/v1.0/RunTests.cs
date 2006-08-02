@@ -14,6 +14,9 @@ namespace DirectShowLib.Test
         [STAThread]
         static void Main(string[] args)
         {
+            //IPinTest t51 = new IPinTest();
+            //t51.DoTests();
+
             //IAMAudioInputMixerTest t3 = new IAMAudioInputMixerTest();
             //t3.DoTests();
 
