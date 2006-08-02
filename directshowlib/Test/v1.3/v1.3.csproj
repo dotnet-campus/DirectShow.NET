@@ -194,9 +194,6 @@
     <Compile Include="IBDA_LNBInfoTest.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="IBDA_PinControlTest.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="IChannelTuneRequestTest.cs">
       <SubType>Code</SubType>
     </Compile>

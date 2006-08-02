@@ -176,6 +176,21 @@ namespace DirectShowLib.BDA
         int Clone([Out] out IEnumPIDMap ppIEnumPIDMap);
     }
 
+    [ComImport,
+    Guid("0DED49D5-A8B7-4d5d-97A1-12B0C195874D"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IBDA_PinControl
+    {
+        [PreserveSig]
+        int GetPinID([Out] out int pulPinID);
+
+        [PreserveSig]
+        int GetPinType([Out] out int pulPinType);
+
+        [PreserveSig]
+        int RegistrationContext([Out] out int pulRegistrationCtx);
+    }
+
 #endif
 
     [ComImport,
@@ -619,21 +634,6 @@ namespace DirectShowLib.BDA
         int EnumPIDMap([Out] out object pIEnumPIDMap);
 #endif
 
-    }
-
-    [ComImport,
-    Guid("0DED49D5-A8B7-4d5d-97A1-12B0C195874D"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IBDA_PinControl
-    {
-        [PreserveSig]
-        int GetPinID([Out] out int pulPinID);
-
-        [PreserveSig]
-        int GetPinType([Out] out int pulPinType);
-
-        [PreserveSig]
-        int RegistrationContext([Out] out int pulRegistrationCtx);
     }
 
     [ComImport,
