@@ -15,9 +15,9 @@ IMemAllocatorNotifyCallbackTemp 1 snarfle	oystein	  (26/7/2006): OK
 IQualityControl				2	snarfle		nowinskie (2/7/2006) : OK
 IRegisterServiceProvider	1	snarfle		nowinskie (2/7/2006) : OK
 ISeekingPassThru			1	snarfle		nowinskie (2/7/2006) : OK
+IVPBaseNotify				1	snarfle		interface can't be invoked directly.  Only used as parent for IVPNotify
 IVPNotify					2	snarfle		nowinskie (2/7/2006) : OK
 IVPNotify2					2	snarfle		nowinskie (2/7/2006) : OK
 
 IServiceProvider			1	snarfle		nowinskie (2/7/2006) : OK
 IObjectWithSite				2	snarfle		nowinskie (2/7/2006) : OK
-
