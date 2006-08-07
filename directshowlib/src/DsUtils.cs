@@ -1073,8 +1073,8 @@ namespace DirectShowLib
 #endif
 
 #if USING_NET11
-						int j;
-						while ((enumMon.Next(1, mon, out j) == 0))
+                        int j;
+                        while ((enumMon.Next(1, mon, out j) == 0))
 #else
                         while ((enumMon.Next(1, mon, IntPtr.Zero) == 0))
 #endif
