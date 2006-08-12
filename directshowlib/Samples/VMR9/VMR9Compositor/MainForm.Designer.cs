@@ -35,8 +35,9 @@
       this.menuFileClose = new System.Windows.Forms.ToolStripMenuItem();
       this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
       this.menuFileQuit = new System.Windows.Forms.ToolStripMenuItem();
-      this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
       this.menuAbout = new System.Windows.Forms.ToolStripMenuItem();
+      this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+      this.renderingPanel = new System.Windows.Forms.Panel();
       this.menuStrip1.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -73,8 +74,9 @@
       // menuFileClose
       // 
       this.menuFileClose.Name = "menuFileClose";
-      this.menuFileClose.Size = new System.Drawing.Size(111, 22);
+      this.menuFileClose.Size = new System.Drawing.Size(152, 22);
       this.menuFileClose.Text = "&Close";
+      this.menuFileClose.Click += new System.EventHandler(this.menuFileClose_Click);
       // 
       // toolStripSeparator1
       // 
@@ -88,10 +90,6 @@
       this.menuFileQuit.Text = "&Quit";
       this.menuFileQuit.Click += new System.EventHandler(this.menuFileQuit_Click);
       // 
-      // openFileDialog1
-      // 
-      this.openFileDialog1.Filter = resources.GetString("openFileDialog1.Filter");
-      // 
       // menuAbout
       // 
       this.menuAbout.Name = "menuAbout";
@@ -99,11 +97,24 @@
       this.menuAbout.Text = "&About";
       this.menuAbout.Click += new System.EventHandler(this.menuAbout_Click);
       // 
+      // openFileDialog1
+      // 
+      this.openFileDialog1.Filter = resources.GetString("openFileDialog1.Filter");
+      // 
+      // renderingPanel
+      // 
+      this.renderingPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.renderingPanel.Location = new System.Drawing.Point(0, 24);
+      this.renderingPanel.Name = "renderingPanel";
+      this.renderingPanel.Size = new System.Drawing.Size(640, 456);
+      this.renderingPanel.TabIndex = 1;
+      // 
       // MainForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(640, 480);
+      this.Controls.Add(this.renderingPanel);
       this.Controls.Add(this.menuStrip1);
       this.MainMenuStrip = this.menuStrip1;
       this.Name = "MainForm";
@@ -126,6 +137,7 @@
     private System.Windows.Forms.ToolStripMenuItem menuFileClose;
     private System.Windows.Forms.OpenFileDialog openFileDialog1;
     private System.Windows.Forms.ToolStripMenuItem menuAbout;
+    private System.Windows.Forms.Panel renderingPanel;
   }
 }
 

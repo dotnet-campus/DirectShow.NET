@@ -1,3 +1,10 @@
+/****************************************************************************
+While the underlying libraries are covered by LGPL, this sample is released 
+as public domain.  It is distributed in the hope that it will be useful, but 
+WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY 
+or FITNESS FOR A PARTICULAR PURPOSE.  
+*****************************************************************************/
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -80,8 +87,8 @@ namespace DirectShowLib.Sample
 
       windowlessCtrl = (IVMRWindowlessControl9)vmr9;
 
-      // Set "Parent" window
-      hr = windowlessCtrl.SetVideoClippingWindow(this.Handle);
+      // Set rendering window
+      hr = windowlessCtrl.SetVideoClippingWindow(renderingPanel.Handle);
       DsError.ThrowExceptionForHR(hr);
 
       // Set Aspect-Ratio
@@ -151,18 +158,18 @@ namespace DirectShowLib.Sample
     private void AddHandlers()
     {
       // Add handlers for VMR purpose
-      this.Paint += new PaintEventHandler(MainForm_Paint); // for WM_PAINT
-      this.Resize += new EventHandler(MainForm_ResizeMove); // for WM_SIZE
-      this.Move += new EventHandler(MainForm_ResizeMove); // for WM_MOVE
+      renderingPanel.Paint += new PaintEventHandler(MainForm_Paint); // for WM_PAINT
+      renderingPanel.Resize += new EventHandler(MainForm_ResizeMove); // for WM_SIZE
+      renderingPanel.Move += new EventHandler(MainForm_ResizeMove); // for WM_MOVE
       SystemEvents.DisplaySettingsChanged += new EventHandler(SystemEvents_DisplaySettingsChanged); // for WM_DISPLAYCHANGE
     }
 
     private void RemoveHandlers()
     {
       // remove handlers when they are no more needed
-      this.Paint -= new PaintEventHandler(MainForm_Paint);
-      this.Resize -= new EventHandler(MainForm_ResizeMove);
-      this.Move -= new EventHandler(MainForm_ResizeMove);
+      renderingPanel.Paint -= new PaintEventHandler(MainForm_Paint);
+      renderingPanel.Resize -= new EventHandler(MainForm_ResizeMove);
+      renderingPanel.Move -= new EventHandler(MainForm_ResizeMove);
       SystemEvents.DisplaySettingsChanged -= new EventHandler(SystemEvents_DisplaySettingsChanged);
     }
 
@@ -171,7 +178,7 @@ namespace DirectShowLib.Sample
       if (windowlessCtrl != null)
       {
         IntPtr hdc = e.Graphics.GetHdc();
-        int hr = windowlessCtrl.RepaintVideo(this.Handle, hdc);
+        int hr = windowlessCtrl.RepaintVideo(renderingPanel.Handle, hdc);
         e.Graphics.ReleaseHdc(hdc);
       }
     }
@@ -180,7 +187,7 @@ namespace DirectShowLib.Sample
     {
       if (windowlessCtrl != null)
       {
-        int hr = windowlessCtrl.SetVideoPosition(null, DsRect.FromRectangle(this.ClientRectangle));
+        int hr = windowlessCtrl.SetVideoPosition(null, DsRect.FromRectangle(renderingPanel.ClientRectangle));
       }
     }
 
@@ -207,6 +214,11 @@ namespace DirectShowLib.Sample
       }
     }
 
+    private void menuFileClose_Click(object sender, EventArgs e)
+    {
+      CloseInterfaces();
+    }
+
     private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
     {
       CloseInterfaces();
@@ -219,5 +231,6 @@ namespace DirectShowLib.Sample
 
       AboutBox.Show(title, text);
     }
+
   }
 }
