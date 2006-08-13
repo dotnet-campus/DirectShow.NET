@@ -1,10 +1,10 @@
-DTVViewer - A basic Digital TV (BDA) viewer sample
+DTVViewer - A basic Digital TV (BDA) viewer sample (version 1.1)
 
 This sample demonstrates how to use BDA to display Digital TV into a Windows Form.
 
 This application asks the user for tuning parameters. You have to know most of them to have a working Tune Request.
 
-DVB-T parameters are directly dependent on the emiter to which your root antenna is pointing. Each country's broadcasting DVB-T TVs have a website with that informations. Worst case, http://www.dvb.org/ can be a good start...
+DVB-T parameters are directly dependent on the emiter to which your roof antenna is pointing. Each country's broadcasting DVB-T TVs have a website with that informations. Worst case, http://www.dvb.org/ can be a good start...
 
 DVB-S parameters depend on the satellite pointed to by your dish antenna. This website http://www.lyngsat.com/ can be really useful!
 
@@ -20,3 +20,16 @@ DVBSTuning.cs & DVBTTuning.cs : Two Windows Forms designed to ask the user the t
 
 BDAGraphBuilder.cs : This is here the real Magic is! This class builds the BDA graph and tunes it with Tune Requests provided by DVBSTuning or DVBTTuning forms.
 
+About BDA driver models :
+
+A Digital TV hardware broadly provide 3 main functions :
+	1) Tuner : filters the particular frequency that carries the transport stream.
+	2) Demodulator : translates the analog signal into a digital bit stream.
+	3) Capture : moves the data into host memory.
+
+The BDA driver model allow IHV to provide drivers that physicaly appear in GraphEdit in three flavor :
+	1) The all-in-one filter model : The three functions are grouped in a single filter. This filter can be connected directly between the Network Provider and the MPEG-2 Demultiplexor. USB devices usually support this model...
+	2) The two filters model : The driver provide 2 filters. The first combine the Tuner and the Demodulator functions and the second is for the Capture function. You need to connect the two filters together to be able to build a working chain between the Network Provider and the MPEG-2 Demultiplexor. This is the most commun driver model. Almost all PCI hardware drivers are built using this model.
+	3) The three filters model : The driver provide 3 filters, one for each functions. You need to connect the three filters together to be able to build a working chain between the Network Provider and the MPEG-2 Demultiplexor. I never see this model in real life but it is technicaly possible...
+
+This new version (1.1) had been upgraded to support the three models (hope so)...

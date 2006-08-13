@@ -27,6 +27,7 @@ namespace DirectShowLib.Sample
     IBaseFilter networkProvider = null;
     IBaseFilter mpeg2Demux = null;
     IBaseFilter tuner = null;
+    IBaseFilter demodulator = null;
     IBaseFilter capture = null;
     IBaseFilter bdaTIF = null;
     IBaseFilter bdaSecTab = null;
@@ -169,39 +170,104 @@ namespace DirectShowLib.Sample
             Marshal.ReleaseComObject(tmp);
           }
         }
-        // Assume we found a tuner filter...
 
-        // Then enumerate BDA Receiver Components category to found a filter connecting 
-        // to the tuner and the MPEG2 Demux
-        devices = DsDevice.GetDevicesOfCat(FilterCategory.BDAReceiverComponentsCategory);
+        if (this.tuner == null)
+          throw new ApplicationException("Can't find a valid BDA tuner");
 
-        for(int i = 0; i < devices.Length; i++)
+        // trying to connect this filter to the MPEG-2 Demux
+        hr = capBuilder.RenderStream(null, null, tuner, null, mpeg2Demux);
+        if (hr >= 0)
         {
-          IBaseFilter tmp;
+          // this is a one filter model
+          this.demodulator = null;
+          this.capture = null;
+          return;
+        }
+        else
+        {
+          // Then enumerate BDA Receiver Components category to found a filter connecting 
+          // to the tuner and the MPEG2 Demux
+          devices = DsDevice.GetDevicesOfCat(FilterCategory.BDAReceiverComponentsCategory);
 
-          hr = graphBuilder.AddSourceFilterForMoniker(devices[i].Mon, null, devices[i].Name, out tmp);
-          DsError.ThrowExceptionForHR(hr);
-
-          hr = capBuilder.RenderStream(null, null, this.tuner, null, tmp);
-          if (hr == 0)
+          for (int i = 0; i < devices.Length; i++)
           {
-            // Got it !
-            this.capture = tmp;
+            IBaseFilter tmp;
 
-            // Connect it to the MPEG-2 Demux
-            hr = capBuilder.RenderStream(null, null, this.capture, null, this.mpeg2Demux);
-            if (hr < 0)
-              // BDA also support 3 filter scheme (never show it in real life).
-              throw new ApplicationException("This application only support the 2 filters BDA scheme");
+            hr = graphBuilder.AddSourceFilterForMoniker(devices[i].Mon, null, devices[i].Name, out tmp);
+            DsError.ThrowExceptionForHR(hr);
 
-            break;
-          }
-          else
-          {
-            // Try another...
-            hr = graphBuilder.RemoveFilter(tmp);
-            Marshal.ReleaseComObject(tmp);
-          }
+            hr = capBuilder.RenderStream(null, null, this.tuner, null, tmp);
+            if (hr == 0)
+            {
+              // Got it !
+              this.capture = tmp;
+
+              // Connect it to the MPEG-2 Demux
+              hr = capBuilder.RenderStream(null, null, this.capture, null, this.mpeg2Demux);
+              if (hr >= 0)
+              {
+                // This second filter connect both with the tuner and the demux.
+                // This is a capture filter...
+                return;
+              }
+              else
+              {
+                // This second filter connect with the tuner but not with the demux.
+                // This is in fact a demodulator filter. We now must find the true capture filter...
+
+                this.demodulator = this.capture;
+                this.capture = null;
+
+                // saving the Demodulator's DevicePath to avoid creating it twice.
+                string demodulatorDevicePath = devices[i].DevicePath;
+
+                for (int j = 0; i < devices.Length; j++)
+                {
+                  if (devices[j].DevicePath.Equals(demodulatorDevicePath))
+                    continue;
+
+                  hr = graphBuilder.AddSourceFilterForMoniker(devices[i].Mon, null, devices[i].Name, out tmp);
+                  DsError.ThrowExceptionForHR(hr);
+
+                  hr = capBuilder.RenderStream(null, null, this.demodulator, null, tmp);
+                  if (hr == 0)
+                  {
+                    // Got it !
+                    this.capture = tmp;
+
+                    // Connect it to the MPEG-2 Demux
+                    hr = capBuilder.RenderStream(null, null, this.capture, null, this.mpeg2Demux);
+                    if (hr >= 0)
+                    {
+                      // This second filter connect both with the demodulator and the demux.
+                      // This is a true capture filter...
+                      return;
+                    }
+                  }
+                  else
+                  {
+                    // Try another...
+                    hr = graphBuilder.RemoveFilter(tmp);
+                    Marshal.ReleaseComObject(tmp);
+                  }
+                } // for j
+
+                // We have a tuner and a capture/demodulator that don't connect with the demux
+                // and we found no additionals filters to build a working filters chain.
+                throw new ApplicationException("Can't find a valid BDA filter chain");
+              }
+            }
+            else
+            {
+              // Try another...
+              hr = graphBuilder.RemoveFilter(tmp);
+              Marshal.ReleaseComObject(tmp);
+            }
+          } // for i
+
+          // We have a tuner that connect to the Network Provider BUT not with the demux
+          // and we found no additionals filters to build a working filters chain.
+          throw new ApplicationException("Can't find a valid BDA filter chain");
         }
       }
       finally
