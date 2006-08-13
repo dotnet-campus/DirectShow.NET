@@ -1,3 +1,22 @@
+v 1.5 - Minor upgrade (2006-08-02)
+
+In addition to testing an additional 20 interfaces, we have also updated the existing 
+definitions to enable c# code to *implement* these interfaces (instead of just calling them).  
+This also fixes a fairly messy problem that could occur if you attempted to run regasm 
+against the DirectShowLib.dll.
+
+361 Defined
+250 Tested
+ 33 Deprecated & undocumented
+ 20 Are untestable due to hw constraints (no filters implement)
+ 27 Are untestable due to DS bugs
+ 31 Are untestable due to various other reasons
+
+
+See Interfaces.txt for the current list of tested interfaces.
+
+
+
 v 1.4 - Minor upgrade (2006-04-12)
 
 I didn't think we'd be doing another release quite so soon.  No, it isn't because we found
