@@ -43,7 +43,7 @@ namespace DirectShowLib
     }
 
     /// <summary>
-    /// #define MIXER_STATE_* defines
+    /// From MIXER_STATE_* defines
     /// </summary>
     public enum MixerState
     {
