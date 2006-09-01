@@ -47,11 +47,11 @@ namespace DirectShowLib
     }
 
     /// <summary>
-    /// CameraControlProperty
+    /// From CameraControlProperty
     /// </summary>
     public enum CameraControlProperty
     {
-        Pan = 1,
+        Pan = 0,
         Tilt,
         Roll,
         Zoom,
@@ -61,7 +61,7 @@ namespace DirectShowLib
     }
 
     /// <summary>
-    /// CameraControlFlags
+    /// From CameraControlFlags
     /// </summary>
     [Flags]
     public enum CameraControlFlags
@@ -1029,7 +1029,7 @@ namespace DirectShowLib
     }
 
     /// <summary>
-    /// from ED_MEDIA* etc.
+    /// From ED_MEDIA* etc.
     /// </summary>
     public enum ExtTransportStatus
     {
