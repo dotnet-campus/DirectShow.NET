@@ -3,6 +3,8 @@ of those files into a single output.  For example, you can take seconds 5-9 of v
 combine them with seconds 2-7 of videofile2.mpg, and output them to foo.avi.  Similarly with
 audio files.  Note that this is only a small subset of what can be done with DES.
 
+A sample showing how the library can be used from VB is included in the DesCombineVB directory.
+
 When using the sample program, if you want to use both the video and audio from a file, you
 should add the same file as both the video and audio file (when using the lib, just call 
 AddAVFile).  If you add audio from different files, note that the library doesn't make
