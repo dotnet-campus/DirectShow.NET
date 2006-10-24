@@ -600,7 +600,9 @@ namespace DirectShowLib.Sample
       }
       else
       {
-        Marshal.ReleaseComObject(frameStepTest);
+        // BUG 1560263 found by husakm (thanks)...
+        // Marshal.ReleaseComObject(frameStepTest);
+        this.frameStep = null;
         return false;
       }
     }
