@@ -64,7 +64,8 @@ namespace DirectShowLib.SBE
         ContentBecomingStale, // STREAMBUFFER_EC_CONTENT_BECOMING_STALE
         WriteFailure, // STREAMBUFFER_EC_WRITE_FAILURE
         ReadFailure, // STREAMBUFFER_EC_READ_FAILURE
-        RateChanged // STREAMBUFFER_EC_RATE_CHANGED
+        RateChanged, // STREAMBUFFER_EC_RATE_CHANGED
+        PrimaryAudio // STREAMBUFFER_EC_PRIMARY_AUDIO
     }
 
 
@@ -678,6 +679,77 @@ namespace DirectShowLib.SBE
         [PreserveSig]
         int ResetData();
     }
+
+#if ALLOW_UNTESTED_INTERFACES
+
+  [ComImport, Guid("7E2D2A1E-7192-4bd7-80C1-061FD1D10402"),
+  InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+  public interface IStreamBufferConfigure3 : IStreamBufferConfigure2
+  {
+    #region IStreamBufferConfigure
+
+    [PreserveSig]
+    new int SetDirectory([In, MarshalAs(UnmanagedType.LPWStr)] string pszDirectoryName);
+
+    [PreserveSig]
+    new int GetDirectory([Out, MarshalAs(UnmanagedType.LPWStr)] out string pszDirectoryName);
+
+    [PreserveSig]
+    new int SetBackingFileCount(
+        [In] int dwMin,
+        [In] int dwMax
+        );
+
+    [PreserveSig]
+    new int GetBackingFileCount(
+        [Out] out int dwMin,
+        [Out] out int dwMax
+        );
+
+    [PreserveSig]
+    new int SetBackingFileDuration([In] int dwSeconds);
+
+    [PreserveSig]
+    new int GetBackingFileDuration([Out] out int pdwSeconds);
+
+    #endregion
+
+    #region IStreamBufferConfigure2
+
+    [PreserveSig]
+    new int SetMultiplexedPacketSize([In] int cbBytesPerPacket);
+
+    [PreserveSig]
+    new int GetMultiplexedPacketSize([Out] out int pcbBytesPerPacket);
+
+    [PreserveSig]
+    new int SetFFTransitionRates(
+        [In] int dwMaxFullFrameRate,
+        [In] int dwMaxNonSkippingRate
+        );
+
+    [PreserveSig]
+    new int GetFFTransitionRates(
+        [Out] out int pdwMaxFullFrameRate,
+        [Out] out int pdwMaxNonSkippingRate
+        );
+
+    #endregion
+
+    [PreserveSig]
+    int SetStartRecConfig([In, MarshalAs(UnmanagedType.Bool)] bool fStartStopsCur);
+
+    [PreserveSig]
+    int GetStartRecConfig([Out, MarshalAs(UnmanagedType.Bool)] out bool pfStartStopsCur);
+
+    [PreserveSig]
+    int SetStartRecConfig([In, MarshalAs(UnmanagedType.LPWStr)] string pszNamespace);
+
+    [PreserveSig]
+    int GetStartRecConfig([Out, MarshalAs(UnmanagedType.LPWStr)] out string ppszNamespace);
+  }
+
+#endif
 
     #endregion
 }
