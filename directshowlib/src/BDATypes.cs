@@ -93,6 +93,78 @@ namespace DirectShowLib.BDA
         public int dwStride;
     }
 
+    /// <summary>
+    /// From ScanModulationTypes
+    /// </summary>
+    [Flags]
+    public enum ScanModulationTypes
+    {
+      ScanMod16QAM = 0x00000001,
+      ScanMod32QAM = 0x00000002,
+      ScanMod64QAM = 0x00000004,
+      ScanMod80QAM = 0x00000008,
+      ScanMod96QAM = 0x00000010,
+      ScanMod112QAM = 0x00000020,
+      ScanMod128QAM = 0x00000040,
+      ScanMod160QAM = 0x00000080,
+      ScanMod192QAM = 0x00000100,
+      ScanMod224QAM = 0x00000200,
+      ScanMod256QAM = 0x00000400,
+      ScanMod320QAM = 0x00000800,
+      ScanMod384QAM = 0x00001000,
+      ScanMod448QAM = 0x00002000,
+      ScanMod512QAM = 0x00004000,
+      ScanMod640QAM = 0x00008000,
+      ScanMod768QAM = 0x00010000,
+      ScanMod896QAM = 0x00020000,
+      ScanMod1024QAM = 0x00040000,
+      ScanModQPSK = 0x00080000,
+      ScanModBPSK = 0x00100000,
+      ScanModOQPSK = 0x00200000,
+      ScanMod8VSB = 0x00400000,
+      ScanMod16VSB = 0x00800000,
+      ScanModAM_RADIO = 0x01000000,
+      ScanModFM_RADIO = 0x02000000,
+      ScanMod8PSK = 0x04000000,
+      ScanModRF = 0x08000000,
+      MCEDigitalCable = ModulationType.Mod640Qam | ModulationType.Mod256Qam,
+      MCETerrestrialATSC = ModulationType.Mod8Vsb,
+      MCEAnalogTv = ModulationType.ModRF,
+      MCEAll_TV = unchecked((int)0xffffffff),
+    }
+
+    public enum RollOff
+    {
+      NotSet = -1,
+      NotDefined = 0,
+      Twenty = 1,
+      TwentyFive,
+      ThirtyFive,
+      Max
+    }
+
+    public enum Pilot
+    {
+      NotSet = -1,
+      NotDefined = 0,
+      Off = 1,
+      On,
+      Max
+    }
+
+    public enum ApplicationTypeType
+    {
+      SCTE28ConditionalAccess = 0,
+      SCTE28PODHostBindingInformation,
+      SCTE28IPService,
+      SCTE28NetworkInterfaceSCTE55_2,
+      SCTE28NetworkInterfaceSCTE55_1,
+      SCTE28CopyProtection,
+      SCTE28Diagnostic,
+      SCTE28Undesignated,
+      SCTE28Reserved,
+    }
+
 #endif
 
     /// <summary>
@@ -104,6 +176,9 @@ namespace DirectShowLib.BDA
         MethodNotDefined = 0,
         Viterbi = 1, // FEC is a Viterbi Binary Convolution.
         RS204_188, // The FEC is Reed-Solomon 204/188 (outer FEC)
+        Ldpc,
+        Bch,
+        RS147_130,
         Max,
     }
 
@@ -122,6 +197,12 @@ namespace DirectShowLib.BDA
         Rate5_6, // 5/6
         Rate5_11,
         Rate7_8, // 7/8
+        Rate1_4,
+        Rate1_3,
+        Rate2_5,
+        Rate6_7,
+        Rate8_9,
+        Rate9_10,
         RateMax
     }
 
@@ -185,6 +266,13 @@ namespace DirectShowLib.BDA
         Mod16Vsb,
         ModAnalogAmplitude, // std am
         ModAnalogFrequency, // std fm
+        Mod8Psk,
+        ModRF,
+        Mod16Apsk,
+        Mod32Apsk, 
+        ModNbcQpsk, 
+        ModNbc8Psk, 
+        ModDirectTv,
         ModMax
     }
 
@@ -234,6 +322,9 @@ namespace DirectShowLib.BDA
         ModeNotDefined = 0,
         Mode2K = 1, // Transmission uses 1705 carriers (use a 2K FFT)
         Mode8K, // Transmission uses 6817 carriers (use an 8K FFT)
+        Mode4K,
+        Mode2KInterleaved,
+        Mode4KInterleaved,
         ModeMax,
     }
 
@@ -266,23 +357,25 @@ namespace DirectShowLib.BDA
     public enum MPEG2StreamType
     {
         BdaUninitializedMpeg2StreamType = -1,
-        Reserved1 = 0x0,
-        IsoIec11172_2_Video = Reserved1 + 1,
-        IsoIec13818_2_Video = IsoIec11172_2_Video + 1,
-        IsoIec11172_3_Audio = IsoIec13818_2_Video + 1,
-        IsoIec13818_3_Audio = IsoIec11172_3_Audio + 1,
-        IsoIec13818_1_PrivateSection = IsoIec13818_3_Audio + 1,
-        IsoIec13818_1_Pes = IsoIec13818_1_PrivateSection + 1,
-        IsoIec13522_Mheg = IsoIec13818_1_Pes + 1,
-        AnnexADsmCC = IsoIec13522_Mheg + 1,
-        ItuTRecH222_1 = AnnexADsmCC + 1,
-        IsoIec13818_6_TypeA = ItuTRecH222_1 + 1,
-        IsoIec13818_6_TypeB = IsoIec13818_6_TypeA + 1,
-        IsoIec13818_6_TypeC = IsoIec13818_6_TypeB + 1,
-        IsoIec13818_6_TypeD = IsoIec13818_6_TypeC + 1,
-        IsoIec13818_1_Auxiliary = IsoIec13818_6_TypeD + 1,
-        IsoIec13818_1_Reserved = IsoIec13818_1_Auxiliary + 1,
-        UserPrivate = IsoIec13818_1_Reserved + 1
+        Reserved1 = 0x00,
+        IsoIec11172_2_Video = 0x01,
+        IsoIec13818_2_Video = 0x02,
+        IsoIec11172_3_Audio = 0x03,
+        IsoIec13818_3_Audio = 0x04,
+        IsoIec13818_1_PrivateSection = 0x05,
+        IsoIec13818_1_Pes = 0x06,
+        IsoIec13522_Mheg = 0x07,
+        AnnexADsmCC = 0x08,
+        ItuTRecH222_1 = 0x09,
+        IsoIec13818_6_TypeA = 0x0a,
+        IsoIec13818_6_TypeB = 0x0b,
+        IsoIec13818_6_TypeC = 0x0c,
+        IsoIec13818_6_TypeD = 0x0d,
+        IsoIec13818_1_Auxiliary = 0x0e,
+        IsoIec13818_1_Reserved = 0x0f,
+        UserPrivate = 0x10,
+        IsoIecUserPrivate = 0x80,
+        DolbyAc3Audio = 0x81
     }
 
     /// <summary>
