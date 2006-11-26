@@ -127,6 +127,7 @@
     <Compile Include="DMODShow.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="dsattrib.cs" />
     <Compile Include="DsUtils.cs">
       <SubType>Code</SubType>
     </Compile>
