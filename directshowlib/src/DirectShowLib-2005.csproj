@@ -131,6 +131,7 @@
     <Compile Include="DsUtils.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="dvbsiparser.cs" />
     <Compile Include="DVDIf.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -164,6 +165,8 @@
     <Compile Include="Mpeg2Data.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="mpeg2psiparser.cs" />
+    <Compile Include="Mpeg2Structs.cs" />
     <Compile Include="other.cs">
       <SubType>Code</SubType>
     </Compile>
