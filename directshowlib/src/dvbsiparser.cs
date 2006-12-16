@@ -336,7 +336,7 @@ namespace DirectShowLib.BDA
     [PreserveSig]
     int GetRecordDuration(
       [In] int dwRecordIndex,
-      [Out] out MpegTime pmdVal
+      [Out] out MpegDuration pmdVal
       );
 
     [PreserveSig]
