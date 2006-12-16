@@ -204,7 +204,11 @@ namespace DirectShowLib.Dvd
         ResetOnStop = 1,
         NotifyParentalLevelChange = 2,
         HMSFTimeCodeEvents = 3,
-        AudioDuringFFwdRew = 4
+        AudioDuringFFwdRew = 4,
+        EnableNonblockingAPIs = 5,
+        CacheSizeInMB = 6,
+        EnablePortableBookmarks = 7,
+        EnableExtendedCopyProtectErrors = 8,
     }
 
     /// <summary>
@@ -464,7 +468,9 @@ namespace DirectShowLib.Dvd
         SWDecPrefer = 0x04,
         SWDecOnly = 0x08,
         NoVPE = 0x100,
-        VMR9Only = 0x800
+        DoNotClear = 0x200,
+        VMR9Only = 0x800,
+        EvrOnly =0x1000,
     }
 
     /// <summary>
