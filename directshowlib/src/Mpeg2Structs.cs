@@ -283,10 +283,10 @@ namespace DirectShowLib.BDA
   }
 
   /// <summary>
-  /// From MPEG_TIME & MPEG_DURATION
+  /// From MPEG_DURATION & MPEG_TIME
   /// </summary>
   [StructLayout(LayoutKind.Sequential, Pack = 1)]
-  public struct MpegTime
+  public struct MpegDuration
   {
     public byte Hours;
     public byte Minutes;
