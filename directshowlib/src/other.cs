@@ -133,6 +133,17 @@ namespace DirectShowLib
         public IntPtr                  pMiscData; // LPVOID
     }
 
+    /// <summary>
+    /// From _AM_ASFWRITERCONFIG_PARAM
+    /// </summary>
+    public enum ASFWriterConfig
+    {
+        None = 0,
+        AutoIndex = 1,
+        MultiPass = 2,
+        DontCompress = 3
+    }
+
 #endif
 
     /// <summary>
@@ -279,6 +290,67 @@ namespace DirectShowLib
     #region Interfaces
 
 #if ALLOW_UNTESTED_INTERFACES
+
+    [ComImport,
+    Guid("7989CCAA-53F0-44f0-884A-F3B03F6AE066"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IConfigAsfWriter2 : IConfigAsfWriter
+    {
+        #region IConfigAsfWriter Methods
+
+        [PreserveSig,
+        Obsolete("This method is now obsolete because it assumes version 4.0 Windows Media Format SDK profiles. Use GetCurrentProfile or GetCurrentProfileGuid instead to correctly identify a profile.", false)]
+        new int ConfigureFilterUsingProfileId([In] int dwProfileId);
+
+        [PreserveSig,
+        Obsolete("This method is now obsolete because it assumes version 4.0 Windows Media Format SDK profiles. Use GetCurrentProfile or GetCurrentProfileGuid instead to correctly identify a profile.", false)]
+        new int GetCurrentProfileId([Out] out int pdwProfileId);
+
+        [PreserveSig,
+        Obsolete("Using Guids is considered obsolete by MS.  The preferred approach is using an IWMProfile.  See ConfigureFilterUsingProfile", false)]
+        new int ConfigureFilterUsingProfileGuid([In, MarshalAs(UnmanagedType.LPStruct)] Guid guidProfile);
+
+        [PreserveSig,
+        Obsolete("Using Guids is considered obsolete by MS.  The preferred approach is using an IWMProfile.  See GetCurrentProfile", false)]
+        new int GetCurrentProfileGuid([Out] out Guid pProfileGuid);
+
+        [PreserveSig,
+        Obsolete("This method requires IWMProfile, which in turn requires several other interfaces.  Rather than duplicate all those interfaces here, it is recommended that you use the WindowsMediaLib from http://DirectShowNet.SourceForge.net", false)]
+        new int ConfigureFilterUsingProfile([In] IntPtr pProfile);
+
+        [PreserveSig,
+        Obsolete("This method requires IWMProfile, which in turn requires several other interfaces.  Rather than duplicate all those interfaces here, it is recommended that you use the WindowsMediaLib from http://DirectShowNet.SourceForge.net", false)]
+        new int GetCurrentProfile([Out] out IntPtr ppProfile);
+
+        [PreserveSig]
+        new int SetIndexMode([In, MarshalAs(UnmanagedType.Bool)] bool bIndexFile);
+
+        [PreserveSig]
+        new int GetIndexMode([Out, MarshalAs(UnmanagedType.Bool)] out bool pbIndexFile);
+
+        #endregion
+
+        [PreserveSig]
+        int StreamNumFromPin(
+            IPin pPin,
+            out short pwStreamNum);
+
+        [PreserveSig]
+        int SetParam(
+            ASFWriterConfig dwParam,
+            int dwParam1,
+            int dwParam2);
+
+        [PreserveSig]
+        int GetParam(
+            ASFWriterConfig dwParam,
+            out int pdwParam1,
+            IntPtr pdwParam2);
+
+        [PreserveSig]
+        int ResetMultiPassState();
+
+    }
 
     [ComImport,
     Guid("c47a3420-005c-11d2-9038-00a0c9697298"),
