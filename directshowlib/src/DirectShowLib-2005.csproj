@@ -139,6 +139,7 @@
     <Compile Include="DynGraph.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="encdec.cs" />
     <Compile Include="EvCode.cs">
       <SubType>Code</SubType>
     </Compile>
