@@ -204,6 +204,53 @@ namespace DirectShowLib
 
     #region Interfaces
 
+#if ALLOW_UNTESTED_INTERFACES
+
+    [ComImport,
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
+    Guid("BDCDD913-9ECD-4fb2-81AE-ADF747EA75A5")]
+    public interface IMpeg2TableFilter
+    {
+        [PreserveSig]
+        int AddPID( 
+            short pid
+            );
+        
+        [PreserveSig]
+        int AddTable(
+            short pid,
+            byte tid
+            );
+        
+        [PreserveSig]
+        int AddExtension(
+            short pid,
+            byte tid,
+            short eid
+            );
+        
+        [PreserveSig]
+        int RemovePID(
+            short pid
+            );
+        
+        [PreserveSig]
+        int RemoveTable(
+            short pid,
+            byte tid
+            );
+        
+        [PreserveSig]
+        int RemoveExtension( 
+            short pid,
+            byte tid,
+            short eid
+            );
+        
+    }
+
+#endif
+
     [ComImport,
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
     Guid("9B396D40-F380-4E3C-A514-1A82BF6EBFE6")]

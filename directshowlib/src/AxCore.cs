@@ -212,6 +212,34 @@ namespace DirectShowLib
 #if ALLOW_UNTESTED_INTERFACES
 
     [ComImport,
+    Guid("ebec459c-2eca-4d42-a8af-30df557614b8"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IReferenceClockTimerControl
+    {
+        [PreserveSig]
+        int SetDefaultTimerResolution(
+            long timerResolution
+            );
+
+        [PreserveSig]
+        int GetDefaultTimerResolution(
+            out long pTimerResolution
+            );
+    }
+
+    [ComImport,
+    Guid("68961E68-832B-41ea-BC91-63593F3E70E3"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IMediaSample2Config
+    {
+        [PreserveSig]
+        int GetSurface(
+            [MarshalAs(UnmanagedType.IUnknown)] out object ppDirect3DSurface9
+            );
+
+    }
+
+    [ComImport,
     Guid("36b73885-c2c8-11cf-8b46-00805f6cef60"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IReferenceClock2 : IReferenceClock

@@ -41,7 +41,7 @@ namespace DirectShowLib.BDA
         Once = 2,
         Never = 3,
         NeverReally = 4,
-        NoMoare = 5,
+        NoMore = 5,
         FreeCit = 6,
         BF = 7,
         CnRecordingStop = 8,
@@ -56,6 +56,62 @@ namespace DirectShowLib.BDA
     #region Interfaces
 
 #if ALLOW_UNTESTED_INTERFACES
+
+    [ComImport,
+    Guid("FAF37694-909C-49cd-886F-C7382E5DB596"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IDTFilterBlockedOverlay
+    {
+        int SetOverlay( 
+            int dwOverlayCause
+            );
+        
+        int ClearOverlay( 
+            int dwOverlayCause
+            );
+        
+        int GetOverlay( 
+            out int pdwOverlayCause
+            );
+        
+    }
+    
+    [ComImport,
+    Guid("C4C4C4C2-0049-4E2B-98FB-9537F6CE516D"),
+    InterfaceType(ComInterfaceType.InterfaceIsDual)]
+    public interface IDTFilterEvents
+    {
+    }
+    
+    [ComImport,
+    Guid("C4C4C4C1-0049-4E2B-98FB-9537F6CE516D"),
+    InterfaceType(ComInterfaceType.InterfaceIsDual)]
+    public interface IETFilterEvents
+    {
+    }
+    
+    [ComImport,
+    Guid("C4C4C4C3-0049-4E2B-98FB-9537F6CE516D"),
+    InterfaceType(ComInterfaceType.InterfaceIsDual)]
+    public interface IXDSCodecEvents
+    {
+    }
+    
+    [ComImport,
+    Guid("C4C4C4D3-0049-4E2B-98FB-9537F6CE516D"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IXDSCodecConfig
+    {
+        [PreserveSig]
+        int GetSecureChannelObject( 
+            [MarshalAs(UnmanagedType.IUnknown)] out object ppUnkDRMSecureChannel
+            );
+        
+        [PreserveSig]
+        int SetPauseBufferTime( 
+            int dwPauseBufferTime
+            );
+    }
 
     [ComImport,
     Guid("C4C4C4B2-0049-4E2B-98FB-9537F6CE516D"),
@@ -106,6 +162,168 @@ namespace DirectShowLib.BDA
         [PreserveSig]
         int put_BlockUnRatedDelay(
             int msecsDelayBeforeBlock
+            );
+    }
+
+    [ComImport,
+    Guid("C4C4C4B4-0049-4E2B-98FB-9537F6CE516D"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IDTFilter2 : IDTFilter
+    {
+
+        #region IDTFilter methods
+
+        [PreserveSig]
+        new int get_EvalRatObjOK(
+            out int pHrCoCreateRetVal
+            );
+
+        [PreserveSig]
+        new int GetCurrRating(
+            out EnTvRat_System pEnSystem,
+            out EnTvRat_GenericLevel pEnRating,
+            out int plbfEnAttr
+            );
+
+        [PreserveSig]
+        new int get_BlockedRatingAttributes(
+            EnTvRat_System enSystem,
+            EnTvRat_GenericLevel enLevel,
+            out int plbfEnAttr
+            );
+
+        [PreserveSig]
+        new int put_BlockedRatingAttributes(
+            EnTvRat_System enSystem,
+            EnTvRat_GenericLevel enLevel,
+            int lbfAttrs
+            );
+
+        [PreserveSig]
+        new int get_BlockUnRated(
+            [MarshalAs(UnmanagedType.Bool)] out bool pfBlockUnRatedShows
+            );
+
+        [PreserveSig]
+        new int put_BlockUnRated(
+            [MarshalAs(UnmanagedType.Bool)] bool fBlockUnRatedShows
+            );
+
+        [PreserveSig]
+        new int get_BlockUnRatedDelay(
+            out int pmsecsDelayBeforeBlock
+            );
+
+        [PreserveSig]
+        new int put_BlockUnRatedDelay(
+            int msecsDelayBeforeBlock
+            );
+
+        #endregion
+
+        [PreserveSig]
+        int get_ChallengeUrl(
+            [MarshalAs(UnmanagedType.BStr)] out string pbstrChallengeUrl
+            );
+
+        [PreserveSig]
+        int GetCurrLicenseExpDate(
+            ProtType protType,
+           out int lpDateTime
+            );
+
+        [PreserveSig]
+        int GetLastErrorCode();
+
+    }
+
+    [ComImport,
+    Guid("513998cc-e929-4cdf-9fbd-bad1e0314866"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IDTFilter3 : IDTFilter2
+    {
+
+        #region IDTFilter methods
+
+        [PreserveSig]
+        new int get_EvalRatObjOK(
+            out int pHrCoCreateRetVal
+            );
+
+        [PreserveSig]
+        new int GetCurrRating(
+            out EnTvRat_System pEnSystem,
+            out EnTvRat_GenericLevel pEnRating,
+            out int plbfEnAttr
+            );
+
+        [PreserveSig]
+        new int get_BlockedRatingAttributes(
+            EnTvRat_System enSystem,
+            EnTvRat_GenericLevel enLevel,
+            out int plbfEnAttr
+            );
+
+        [PreserveSig]
+        new int put_BlockedRatingAttributes(
+            EnTvRat_System enSystem,
+            EnTvRat_GenericLevel enLevel,
+            int lbfAttrs
+            );
+
+        [PreserveSig]
+        new int get_BlockUnRated(
+            [MarshalAs(UnmanagedType.Bool)] out bool pfBlockUnRatedShows
+            );
+
+        [PreserveSig]
+        new int put_BlockUnRated(
+            [MarshalAs(UnmanagedType.Bool)] bool fBlockUnRatedShows
+            );
+
+        [PreserveSig]
+        new int get_BlockUnRatedDelay(
+            out int pmsecsDelayBeforeBlock
+            );
+
+        [PreserveSig]
+        new int put_BlockUnRatedDelay(
+            int msecsDelayBeforeBlock
+            );
+
+        #endregion
+
+        #region IDTFilter2 methods
+
+        [PreserveSig]
+        new int get_ChallengeUrl(
+            [MarshalAs(UnmanagedType.BStr)] out string pbstrChallengeUrl
+            );
+
+        [PreserveSig]
+        new int GetCurrLicenseExpDate(
+            ProtType protType,
+            out int lpDateTime
+            );
+
+        [PreserveSig]
+        new int GetLastErrorCode();
+
+        #endregion
+
+        [PreserveSig]
+        int GetProtectionType(
+            out ProtType pProtectionType
+            );
+
+        [PreserveSig]
+        int LicenseHasExpirationDate(
+            [MarshalAs(UnmanagedType.Bool)] out bool pfLicenseHasExpirationDate
+            );
+
+        [PreserveSig]
+        int SetRights(
+            [MarshalAs(UnmanagedType.BStr)] string bstrRights
             );
     }
 

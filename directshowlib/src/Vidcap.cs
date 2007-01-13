@@ -52,6 +52,365 @@ namespace DirectShowLib
 #if ALLOW_UNTESTED_INTERFACES
 
     [ComImport,
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
+    Guid("2BA1785D-4D1B-44EF-85E8-C7F1D3F20184")]
+    public interface ICameraControl
+    {
+        [PreserveSig]
+        int get_Exposure(
+            out int pValue,
+            out int pFlags
+            );
+
+        [PreserveSig]
+        int put_Exposure(
+            [In] int Value,
+            [In] int Flags
+            );
+
+        [PreserveSig]
+        int getRange_Exposure(
+            out int pMin,
+            out int pMax,
+            out int pSteppingDelta,
+            out int pDefault,
+            out int pCapsFlag
+            );
+
+        [PreserveSig]
+        int get_Focus(
+            out int pValue,
+            out int pFlags
+            );
+
+        [PreserveSig]
+        int put_Focus(
+            [In] int Value,
+            [In] int Flags
+            );
+
+        [PreserveSig]
+        int getRange_Focus(
+            out int pMin,
+            out int pMax,
+            out int pSteppingDelta,
+            out int pDefault,
+            out int pCapsFlag
+            );
+
+        [PreserveSig]
+        int get_Iris(
+            out int pValue,
+            out int pFlags
+            );
+
+        [PreserveSig]
+        int put_Iris(
+            [In] int Value,
+            [In] int Flags
+            );
+
+        [PreserveSig]
+        int getRange_Iris(
+            out int pMin,
+            out int pMax,
+            out int pSteppingDelta,
+            out int pDefault,
+            out int pCapsFlag
+            );
+
+        [PreserveSig]
+        int get_Zoom(
+            out int pValue,
+            out int pFlags
+            );
+
+        [PreserveSig]
+        int put_Zoom(
+            [In] int Value,
+            [In] int Flags
+            );
+
+        [PreserveSig]
+        int getRange_Zoom(
+            out int pMin,
+            out int pMax,
+            out int pSteppingDelta,
+            out int pDefault,
+            out int pCapsFlag
+            );
+
+        [PreserveSig]
+        int get_FocalLengths(
+            out int plOcularFocalLength,
+            out int plObjectiveFocalLengthMin,
+            out int plObjectiveFocalLengthMax
+            );
+
+        [PreserveSig]
+        int get_Pan(
+            out int pValue,
+            out int pFlags
+            );
+
+        [PreserveSig]
+        int put_Pan(
+            [In] int Value,
+            [In] int Flags
+            );
+
+        [PreserveSig]
+        int getRange_Pan(
+            out int pMin,
+            out int pMax,
+            out int pSteppingDelta,
+            out int pDefault,
+            out int pCapsFlag
+            );
+
+        [PreserveSig]
+        int get_Tilt(
+            out int pValue,
+            out int pFlags
+            );
+
+        [PreserveSig]
+        int put_Tilt(
+            [In] int Value,
+            [In] int Flags
+            );
+
+        [PreserveSig]
+        int getRange_Tilt(
+            out int pMin,
+            out int pMax,
+            out int pSteppingDelta,
+            out int pDefault,
+            out int pCapsFlag
+            );
+
+        [PreserveSig]
+        int get_PanTilt(
+            out int pPanValue,
+            out int pTiltValue,
+            out int pFlags
+            );
+
+        [PreserveSig]
+        int put_PanTilt(
+            [In] int PanValue,
+            [In] int TiltValue,
+            [In] int Flags
+            );
+
+        [PreserveSig]
+        int get_Roll(
+            out int pValue,
+            out int pFlags
+            );
+
+        [PreserveSig]
+        int put_Roll(
+            [In] int Value,
+            [In] int Flags
+            );
+
+        [PreserveSig]
+        int getRange_Roll(
+            out int pMin,
+            out int pMax,
+            out int pSteppingDelta,
+            out int pDefault,
+            out int pCapsFlag
+            );
+
+        [PreserveSig]
+        int get_ExposureRelative(
+            out int pValue,
+            out int pFlags
+            );
+
+        [PreserveSig]
+        int put_ExposureRelative(
+            [In] int Value,
+            [In] int Flags
+            );
+
+        [PreserveSig]
+        int getRange_ExposureRelative(
+            out int pMin,
+            out int pMax,
+            out int pSteppingDelta,
+            out int pDefault,
+            out int pCapsFlag
+            );
+
+        [PreserveSig]
+        int get_FocusRelative(
+            out int pValue,
+            out int pFlags
+            );
+
+        [PreserveSig]
+        int put_FocusRelative(
+            [In] int Value,
+            [In] int Flags
+            );
+
+        [PreserveSig]
+        int getRange_FocusRelative(
+            out int pMin,
+            out int pMax,
+            out int pSteppingDelta,
+            out int pDefault,
+            out int pCapsFlag
+            );
+
+        [PreserveSig]
+        int get_IrisRelative(
+            out int pValue,
+            out int pFlags
+            );
+
+        [PreserveSig]
+        int put_IrisRelative(
+            [In] int Value,
+            [In] int Flags
+            );
+
+        [PreserveSig]
+        int getRange_IrisRelative(
+            out int pMin,
+            out int pMax,
+            out int pSteppingDelta,
+            out int pDefault,
+            out int pCapsFlag
+            );
+
+        [PreserveSig]
+        int get_ZoomRelative(
+            out int pValue,
+            out int pFlags
+            );
+
+        [PreserveSig]
+        int put_ZoomRelative(
+            [In] int Value,
+            [In] int Flags
+            );
+
+        [PreserveSig]
+        int getRange_ZoomRelative(
+            out int pMin,
+            out int pMax,
+            out int pSteppingDelta,
+            out int pDefault,
+            out int pCapsFlag
+            );
+
+        [PreserveSig]
+        int get_PanRelative(
+            out int pValue,
+            out int pFlags
+            );
+
+        [PreserveSig]
+        int put_PanRelative(
+            [In] int Value,
+            [In] int Flags
+            );
+
+        [PreserveSig]
+        int get_TiltRelative(
+            out int pValue,
+            out int pFlags
+            );
+
+        [PreserveSig]
+        int put_TiltRelative(
+            [In] int Value,
+            [In] int Flags
+            );
+
+        [PreserveSig]
+        int getRange_TiltRelative(
+            out int pMin,
+            out int pMax,
+            out int pSteppingDelta,
+            out int pDefault,
+            out int pCapsFlag
+            );
+
+        [PreserveSig]
+        int get_PanTiltRelative(
+            out int pPanValue,
+            out int pTiltValue,
+            out int pFlags
+            );
+
+        [PreserveSig]
+        int put_PanTiltRelative(
+            [In] int PanValue,
+            [In] int TiltValue,
+            [In] int Flags
+            );
+
+        [PreserveSig]
+        int getRange_PanRelative(
+            out int pMin,
+            out int pMax,
+            out int pSteppingDelta,
+            out int pDefault,
+            out int pCapsFlag
+            );
+
+        [PreserveSig]
+        int get_RollRelative(
+            out int pValue,
+            out int pFlags
+            );
+
+        [PreserveSig]
+        int put_RollRelative(
+            [In] int Value,
+            [In] int Flags
+            );
+
+        [PreserveSig]
+        int getRange_RollRelative(
+            out int pMin,
+            out int pMax,
+            out int pSteppingDelta,
+            out int pDefault,
+            out int pCapsFlag
+            );
+
+        [PreserveSig]
+        int get_ScanMode(
+            out int pValue,
+            out int pFlags
+            );
+
+        [PreserveSig]
+        int put_ScanMode(
+            [In] int Value,
+            [In] int Flags
+            );
+
+        [PreserveSig]
+        int get_PrivacyMode(
+            out int pValue,
+            out int pFlags
+            );
+
+        [PreserveSig]
+        int put_PrivacyMode(
+            [In] int Value,
+            [In] int Flags
+            );
+    }
+
+    [ComImport,
     Guid("720D4AC0-7533-11D0-A5D6-28DB04C10000"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IKsTopologyInfo
