@@ -2148,7 +2148,7 @@ namespace DirectShowLib
     public interface ICodecAPI
     {
         [PreserveSig]
-        int IsSupported([In] Guid Api);
+        int IsSupported([In, MarshalAs(UnmanagedType.LPStruct)] Guid Api);
 
         [PreserveSig]
         int IsModifiable([In] Guid Api);
