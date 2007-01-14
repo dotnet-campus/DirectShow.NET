@@ -367,6 +367,13 @@ namespace DirectShowLib
     {
     }
 
+    /// <summary>
+    /// CLSID_NetworkProvider
+    /// </summary>
+    [ComImport, Guid("B2F3A67C-29DA-4c78-8831-091ED509A475")]
+    public class NetworkProvider
+    {
+    }
 
     /// <summary>
     /// CLSID_Colour
