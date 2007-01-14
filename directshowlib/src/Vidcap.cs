@@ -53,6 +53,287 @@ namespace DirectShowLib
 
     [ComImport,
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
+    Guid("4050560E-42A7-413a-85C2-09269A2D0F44")]
+    public interface IVideoProcAmp
+    {
+        [PreserveSig]
+        int get_BacklightCompensation(
+            out int pValue,
+            out VideoProcAmpFlags pFlags
+            );
+
+        [PreserveSig]
+        int put_BacklightCompensation(
+            int Value,
+            VideoProcAmpFlags Flags
+            );
+
+        [PreserveSig]
+        int getRange_BacklightCompensation(
+            out int pMin,
+            out int pMax,
+            out int pSteppingDelta,
+            out int pDefault,
+            out VideoProcAmpFlags pCapsFlag
+            );
+
+        [PreserveSig]
+            int get_Brightness(
+            out int pValue,
+            out VideoProcAmpFlags pFlags
+            );
+
+        [PreserveSig]
+            int put_Brightness (
+            int Value,
+            VideoProcAmpFlags Flags
+            );
+
+        [PreserveSig]
+        int getRange_Brightness(
+            out int pMin,
+            out int pMax,
+            out int pSteppingDelta,
+            out int pDefault,
+            out VideoProcAmpFlags pCapsFlag
+            );
+
+        [PreserveSig]
+        int get_ColorEnable(
+            out int pValue,
+            out VideoProcAmpFlags pFlags
+            );
+
+        [PreserveSig]
+        int put_ColorEnable(
+            int Value,
+            VideoProcAmpFlags Flags
+            );
+
+        [PreserveSig]
+        int getRange_ColorEnable(
+            out int pMin,
+            out int pMax,
+            out int pSteppingDelta,
+            out int pDefault,
+            out VideoProcAmpFlags pCapsFlag
+            );
+
+        [PreserveSig]
+        int get_Contrast(
+            out int pValue,
+            out VideoProcAmpFlags pFlags
+            );
+
+        [PreserveSig]
+            int put_Contrast(
+            int Value,
+            VideoProcAmpFlags Flags
+            );
+
+        [PreserveSig]
+        int getRange_Contrast(
+            out int pMin,
+            out int pMax,
+            out int pSteppingDelta,
+            out int pDefault,
+            out VideoProcAmpFlags pCapsFlag
+            );
+
+        [PreserveSig]
+        int get_Gamma(
+            out int pValue,
+            out VideoProcAmpFlags pFlags
+            );
+
+        [PreserveSig]
+        int put_Gamma(
+            int Value,
+            VideoProcAmpFlags Flags
+            );
+
+        [PreserveSig]
+        int getRange_Gamma(
+            out int pMin,
+            out int pMax,
+            out int pSteppingDelta,
+            out int pDefault,
+            out VideoProcAmpFlags pCapsFlag
+            );
+
+        [PreserveSig]
+        int get_Saturation(
+            out int pValue,
+            out VideoProcAmpFlags pFlags
+            );
+
+        [PreserveSig]
+        int put_Saturation(
+            int Value,
+            VideoProcAmpFlags Flags
+            );
+
+        [PreserveSig]
+        int getRange_Saturation(
+            out int pMin,
+            out int pMax,
+            out int pSteppingDelta,
+            out int pDefault,
+            out VideoProcAmpFlags pCapsFlag
+            );
+
+        [PreserveSig]
+        int get_Sharpness(
+            out int pValue,
+            out VideoProcAmpFlags pFlags
+            );
+
+        [PreserveSig]
+        int put_Sharpness(
+            int Value,
+            VideoProcAmpFlags Flags
+            );
+
+        [PreserveSig]
+        int getRange_Sharpness(
+            out int pMin,
+            out int pMax,
+            out int pSteppingDelta,
+            out int pDefault,
+            out VideoProcAmpFlags pCapsFlag
+            );
+
+        [PreserveSig]
+        int get_WhiteBalance(
+            out int pValue,
+            out VideoProcAmpFlags pFlags
+            );
+
+        [PreserveSig]
+        int put_WhiteBalance(
+            int Value,
+            VideoProcAmpFlags Flags
+            );
+
+        [PreserveSig]
+        int getRange_WhiteBalance(
+            out int pMin,
+            out int pMax,
+            out int pSteppingDelta,
+            out int pDefault,
+            out VideoProcAmpFlags pCapsFlag
+            );
+
+        [PreserveSig]
+        int get_Gain(
+            out int pValue,
+            out VideoProcAmpFlags pFlags
+            );
+
+        [PreserveSig]
+        int put_Gain(
+            int Value,
+            VideoProcAmpFlags Flags
+            );
+
+        [PreserveSig]
+        int getRange_Gain(
+            out int pMin,
+            out int pMax,
+            out int pSteppingDelta,
+            out int pDefault,
+            out VideoProcAmpFlags pCapsFlag
+            );
+
+        [PreserveSig]
+        int get_Hue(
+            out int pValue,
+            out VideoProcAmpFlags pFlags
+            );
+
+        [PreserveSig]
+        int put_Hue(
+            int Value,
+            VideoProcAmpFlags Flags
+            );
+
+        [PreserveSig]
+        int getRange_Hue(
+            out int pMin,
+            out int pMax,
+            out int pSteppingDelta,
+            out int pDefault,
+            out VideoProcAmpFlags pCapsFlag
+            );
+
+        [PreserveSig]
+        int get_DigitalMultiplier(
+            out int pValue,
+            out VideoProcAmpFlags pFlags
+            );
+
+        [PreserveSig]
+        int put_DigitalMultiplier(
+            int Value,
+            VideoProcAmpFlags Flags
+            );
+
+        [PreserveSig]
+        int getRange_DigitalMultiplier(
+            out int pMin,
+            out int pMax,
+            out int pSteppingDelta,
+            out int pDefault,
+            out VideoProcAmpFlags pCapsFlag
+            );
+
+        [PreserveSig]
+        int get_PowerlineFrequency(
+            out int pValue,
+            out VideoProcAmpFlags pFlags
+            );
+
+        [PreserveSig]
+        int put_PowerlineFrequency(
+            int Value,
+            VideoProcAmpFlags Flags
+            );
+
+        [PreserveSig]
+        int getRange_PowerlineFrequency(
+            out int pMin,
+            out int pMax,
+            out int pSteppingDelta,
+            out int pDefault,
+            out VideoProcAmpFlags pCapsFlag
+            );
+
+        [PreserveSig]
+        int get_WhiteBalanceComponent(
+            out int pValue1,
+            out int pValue2,
+            out VideoProcAmpFlags pFlags
+            );
+
+        [PreserveSig]
+        int put_WhiteBalanceComponent(
+            int Value1,
+            int Value2,
+            VideoProcAmpFlags Flags
+            );
+
+        [PreserveSig]
+        int getRange_WhiteBalanceComponent(
+            out int pMin,
+            out int pMax,
+            out int pSteppingDelta,
+            out int pDefault,
+            out VideoProcAmpFlags pCapsFlag
+            );
+    }
+
+    [ComImport,
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
     Guid("2BA1785D-4D1B-44EF-85E8-C7F1D3F20184")]
     public interface ICameraControl
     {
@@ -457,11 +738,11 @@ namespace DirectShowLib
             );
 
         [PreserveSig]
-        int CreateNodeInstance( 
-            [In] int dwNodeId, 
-            [In, MarshalAs(UnmanagedType.LPStruct)] Guid iid, 
-            [Out, MarshalAs(UnmanagedType.IUnknown)] out Object ppvObject  
-            ); 
+        int CreateNodeInstance(
+            [In] int dwNodeId,
+            [In, MarshalAs(UnmanagedType.LPStruct)] Guid iid,
+            [Out, MarshalAs(UnmanagedType.IUnknown)] out Object ppvObject
+            );
     }
 
     [ComImport,
