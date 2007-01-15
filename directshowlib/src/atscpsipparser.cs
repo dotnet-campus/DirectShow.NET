@@ -50,42 +50,43 @@ namespace DirectShowLib.BDA
 
 #if ALLOW_UNTESTED_INTERFACES
 
-  [ComImport, Guid("B2C98995-5EB2-4fb1-B406-F3E8E2026A9A"),
+  [ComImport,
+  Guid("B2C98995-5EB2-4fb1-B406-F3E8E2026A9A"),
   InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
   public interface IAtscPsipParser
   {
     [PreserveSig]
     int Initialize([In] IMpeg2Data punkMpeg2Data);
-        
+
     [PreserveSig]
     int GetPAT([Out] out IPAT ppPAT);
-        
+
     [PreserveSig]
     int GetCAT(
       [In] int dwTimeout,
       [Out] out ICAT ppCAT
       );
-        
+
     [PreserveSig]
     int GetPMT(
       [In] short pid,
       [In] IntPtr pwProgramNumber,
       [Out] out IPMT ppPMT
       );
-        
+
     [PreserveSig]
     int GetTSDT([Out] out ITSDT ppTSDT);
-        
+
     [PreserveSig]
     int GetMGT([Out] out IATSC_MGT ppMGT);
-        
+
     [PreserveSig]
     int GetVCT(
       [In] byte tableId,
       [In, MarshalAs(UnmanagedType.Bool)] bool fGetNextTable,
       [Out] out IATSC_VCT ppVCT
       );
-        
+
     [PreserveSig]
     int GetEIT(
       [In] short pid,
@@ -93,7 +94,7 @@ namespace DirectShowLib.BDA
       [In] int dwTimeout,
       [Out] out IATSC_EIT ppEIT
       );
-        
+
     [PreserveSig]
     int GetETT(
       [In] short pid,
@@ -101,10 +102,10 @@ namespace DirectShowLib.BDA
       [In] IntPtr pwEventId,
       [Out] out IATSC_ETT ppETT
       );
-        
+
     [PreserveSig]
     int GetSTT([Out] out IATSC_STT ppSTT);
-        
+
     [PreserveSig]
     int GetEAS(
       [In] short pid,
@@ -112,7 +113,8 @@ namespace DirectShowLib.BDA
       );
   }
 
-  [ComImport, Guid("8877dabd-c137-4073-97e3-779407a5d87a"),
+  [ComImport,
+  Guid("8877dabd-c137-4073-97e3-779407a5d87a"),
   InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
   public interface IATSC_MGT
   {
@@ -121,47 +123,47 @@ namespace DirectShowLib.BDA
       [In] ISectionList pSectionList,
       [In] IMpeg2Data pMPEGData
       );
-        
+
     [PreserveSig]
     int GetVersionNumber([Out] out byte pbVal);
-        
+
     [PreserveSig]
     int GetProtocolVersion([Out] out byte pbVal);
-        
+
     [PreserveSig]
     int GetCountOfRecords([Out] out int pdwVal);
-        
+
     [PreserveSig]
     int GetRecordType(
       [In] int dwRecordIndex,
       [Out] out short pwVal
       );
-        
+
     [PreserveSig]
     int GetRecordTypePid(
       [In] int dwRecordIndex,
       [Out] out short ppidVal
       );
-        
+
     [PreserveSig]
     int GetRecordVersionNumber(
       [In] int dwRecordIndex,
       [Out] out byte pbVal
       );
-        
+
     [PreserveSig]
     int GetRecordCountOfDescriptors(
       [In] int dwRecordIndex,
       [Out] out int pdwVal
       );
-        
+
     [PreserveSig]
     int GetRecordDescriptorByIndex(
       [In] int dwRecordIndex,
       [In] int dwIndex,
       [Out] out IGenericDescriptor ppDescriptor
       );
-        
+
     [PreserveSig]
     int GetRecordDescriptorByTag(
       [In] int dwRecordIndex,
@@ -169,16 +171,16 @@ namespace DirectShowLib.BDA
       [In] IntPtr pdwCookie,
       [Out] out IGenericDescriptor ppDescriptor
       );
-        
+
     [PreserveSig]
     int GetCountOfTableDescriptors([In, Out] ref int pdwVal);
-        
+
     [PreserveSig]
     int GetTableDescriptorByIndex(
       [In] int dwIndex,
       [Out] out IGenericDescriptor ppDescriptor
       );
-        
+
     [PreserveSig]
     int GetTableDescriptorByTag(
       [In] byte bTag,
@@ -187,7 +189,8 @@ namespace DirectShowLib.BDA
       );
   }
 
-  [ComImport, Guid("26879a18-32f9-46c6-91f0-fb6479270e8c"),
+  [ComImport,
+  Guid("26879a18-32f9-46c6-91f0-fb6479270e8c"),
   InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
   public interface IATSC_VCT
   {
@@ -196,121 +199,121 @@ namespace DirectShowLib.BDA
       [In] ISectionList pSectionList,
       [In] IMpeg2Data pMPEGData
       );
-        
+
     [PreserveSig]
     int GetVersionNumber([Out] out byte pbVal);
-        
+
     [PreserveSig]
     int GetTransportStreamId([Out] out short pwVal);
-        
+
     [PreserveSig]
     int GetProtocolVersion([Out] out byte pbVal);
-        
+
     [PreserveSig]
     int GetCountOfRecords([Out] out int pdwVal);
-        
+
     [PreserveSig]
-    int GetRecordName( 
+    int GetRecordName(
       [In] int dwRecordIndex,
       [Out, MarshalAs(UnmanagedType.LPWStr)] out string pwsName);
-        
+
     [PreserveSig]
-    int GetRecordMajorChannelNumber( 
+    int GetRecordMajorChannelNumber(
       [In] int dwRecordIndex,
       [Out] out short pwVal
       );
-        
+
     [PreserveSig]
-    int GetRecordMinorChannelNumber( 
+    int GetRecordMinorChannelNumber(
       [In] int dwRecordIndex,
       [Out] out short pwVal
       );
-        
+
     [PreserveSig]
-    int GetRecordModulationMode( 
+    int GetRecordModulationMode(
       [In] int dwRecordIndex,
       [Out] out byte pbVal
       );
-        
+
     [PreserveSig]
-    int GetRecordCarrierFrequency( 
+    int GetRecordCarrierFrequency(
       [In] int dwRecordIndex,
       [Out] out int pdwVal
       );
-        
+
     [PreserveSig]
-    int GetRecordTransportStreamId( 
+    int GetRecordTransportStreamId(
       [In] int dwRecordIndex,
       [Out] out short pwVal
       );
-        
+
     [PreserveSig]
-    int GetRecordProgramNumber( 
+    int GetRecordProgramNumber(
       [In] int dwRecordIndex,
       [Out] out short pwVal
       );
-        
+
     [PreserveSig]
-    int GetRecordEtmLocation( 
+    int GetRecordEtmLocation(
       [In] int dwRecordIndex,
       [Out] out byte pbVal
       );
-        
+
     [PreserveSig]
-    int GetRecordIsAccessControlledBitSet( 
+    int GetRecordIsAccessControlledBitSet(
       [In] int dwRecordIndex,
       [Out, MarshalAs(UnmanagedType.Bool)] out bool pfVal
       );
-        
+
     [PreserveSig]
-    int GetRecordIsHiddenBitSet( 
+    int GetRecordIsHiddenBitSet(
       [In] int dwRecordIndex,
       [Out, MarshalAs(UnmanagedType.Bool)] out bool pfVal
       );
-        
+
     [PreserveSig]
-    int GetRecordIsPathSelectBitSet( 
+    int GetRecordIsPathSelectBitSet(
       [In] int dwRecordIndex,
       [Out, MarshalAs(UnmanagedType.Bool)] out bool pfVal
       );
-        
+
     [PreserveSig]
-    int GetRecordIsOutOfBandBitSet( 
+    int GetRecordIsOutOfBandBitSet(
       [In] int dwRecordIndex,
       [Out, MarshalAs(UnmanagedType.Bool)] out bool pfVal
       );
-        
+
     [PreserveSig]
-    int GetRecordIsHideGuideBitSet( 
+    int GetRecordIsHideGuideBitSet(
       [In] int dwRecordIndex,
       [Out, MarshalAs(UnmanagedType.Bool)] out bool pfVal
       );
-        
+
     [PreserveSig]
-    int GetRecordServiceType( 
+    int GetRecordServiceType(
       [In] int dwRecordIndex,
       [Out] out byte pbVal
       );
-        
+
     [PreserveSig]
-    int GetRecordSourceId( 
+    int GetRecordSourceId(
       [In] int dwRecordIndex,
       [Out] out short pwVal
       );
-        
+
     [PreserveSig]
-    int GetRecordCountOfDescriptors( 
+    int GetRecordCountOfDescriptors(
       [In] int dwRecordIndex,
       [Out] out int pdwVal
       );
-        
+
     [PreserveSig]
-    int GetRecordDescriptorByIndex( 
+    int GetRecordDescriptorByIndex(
       [In] int dwRecordIndex,
       [In] int dwIndex,
       [Out] out IGenericDescriptor ppDescriptor
       );
-        
+
     [PreserveSig]
     int GetRecordDescriptorByTag(
       [In] int dwRecordIndex,
@@ -318,16 +321,16 @@ namespace DirectShowLib.BDA
       [In] IntPtr pdwCookie,
       [Out] out IGenericDescriptor ppDescriptor
       );
-        
+
     [PreserveSig]
     int GetCountOfTableDescriptors([In, Out] ref int pdwVal);
-        
+
     [PreserveSig]
     int GetTableDescriptorByIndex(
       [In] int dwIndex,
       [Out] out IGenericDescriptor ppDescriptor
       );
-        
+
     [PreserveSig]
     int GetTableDescriptorByTag(
       [In] byte bTag,
@@ -336,7 +339,8 @@ namespace DirectShowLib.BDA
       );
   }
 
-  [ComImport, Guid("d7c212d7-76a2-4b4b-aa56-846879a80096"),
+  [ComImport,
+  Guid("d7c212d7-76a2-4b4b-aa56-846879a80096"),
   InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
   public interface IATSC_EIT
   {
@@ -345,65 +349,65 @@ namespace DirectShowLib.BDA
       [In] ISectionList pSectionList,
       [In] IMpeg2Data pMPEGData
       );
-        
+
     [PreserveSig]
     int GetVersionNumber([Out] out byte pbVal);
-        
+
     [PreserveSig]
     int GetSourceId([Out] out short pwVal);
-        
+
     [PreserveSig]
     int GetProtocolVersion([Out] out byte pbVal);
-        
+
     [PreserveSig]
     int GetCountOfRecords([Out] out int pdwVal);
-        
+
     [PreserveSig]
     int GetRecordEventId(
       [In] int dwRecordIndex,
       [Out] out short pwVal
       );
-        
+
     [PreserveSig]
-    int GetRecordStartTime( 
+    int GetRecordStartTime(
       [In] int dwRecordIndex,
       [Out] out MpegDateAndTime pmdtVal
       );
-        
+
     [PreserveSig]
-    int GetRecordEtmLocation( 
+    int GetRecordEtmLocation(
       [In] int dwRecordIndex,
       [Out] out byte pbVal
       );
-        
+
     [PreserveSig]
-    int GetRecordDuration( 
+    int GetRecordDuration(
       [In] int dwRecordIndex,
       [Out] out MpegDuration pmdVal
       );
-        
+
     [PreserveSig]
-    int GetRecordTitleText( 
+    int GetRecordTitleText(
       [In] int dwRecordIndex,
       [Out] out int pdwLength,
       [Out] out IntPtr ppText
       );
-        
+
     [PreserveSig]
-    int GetRecordCountOfDescriptors( 
+    int GetRecordCountOfDescriptors(
       [In] int dwRecordIndex,
       [Out] out int pdwVal
       );
-        
+
     [PreserveSig]
-    int GetRecordDescriptorByIndex( 
+    int GetRecordDescriptorByIndex(
       [In] int dwRecordIndex,
       [In] int dwIndex,
       [Out] out IGenericDescriptor ppDescriptor
       );
-        
+
     [PreserveSig]
-    int GetRecordDescriptorByTag( 
+    int GetRecordDescriptorByTag(
       [In] int dwRecordIndex,
       [In] byte bTag,
       [In] IntPtr pdwCookie,
@@ -411,7 +415,8 @@ namespace DirectShowLib.BDA
       );
   }
 
-  [ComImport, Guid("5a142cc9-b8cf-4a86-a040-e9cadf3ef3e7"),
+  [ComImport,
+  Guid("5a142cc9-b8cf-4a86-a040-e9cadf3ef3e7"),
   InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
   public interface IATSC_ETT
   {
@@ -436,7 +441,8 @@ namespace DirectShowLib.BDA
       );
   }
 
-  [ComImport, Guid("6bf42423-217d-4d6f-81e1-3a7b360ec896"),
+  [ComImport,
+  Guid("6bf42423-217d-4d6f-81e1-3a7b360ec896"),
   InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
   public interface IATSC_STT
   {
@@ -475,7 +481,8 @@ namespace DirectShowLib.BDA
       );
   }
 
-  [ComImport, Guid("1FF544D6-161D-4fae-9FAA-4F9F492AE999"),
+  [ComImport,
+  Guid("1FF544D6-161D-4fae-9FAA-4F9F492AE999"),
   InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
   public interface ISCTE_EAS
   {
@@ -543,7 +550,7 @@ namespace DirectShowLib.BDA
     int GetDetailsAudioOOBSourceID([Out] out short pwVal);
 
     [PreserveSig]
-    int GetAlertText( 
+    int GetAlertText(
       [In, MarshalAs(UnmanagedType.BStr)] string bstrIS0639code,
       [Out, MarshalAs(UnmanagedType.BStr)] out string pbstrString
       );
@@ -593,86 +600,88 @@ namespace DirectShowLib.BDA
       );
   }
 
-  [ComImport, Guid("FF76E60C-0283-43ea-BA32-B422238547EE"),
+  [ComImport,
+  Guid("FF76E60C-0283-43ea-BA32-B422238547EE"),
   InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
   public interface IAtscContentAdvisoryDescriptor
   {
     [PreserveSig]
     int GetTag([Out] out byte pbVal);
-        
+
     [PreserveSig]
     int GetLength([Out] out byte pbVal);
-        
+
     [PreserveSig]
     int GetRatingRegionCount([Out] out byte pbVal);
-        
+
     [PreserveSig]
     int GetRecordRatingRegion(
       [In] byte bIndex,
       [Out] out byte pbVal
       );
-        
+
     [PreserveSig]
     int GetRecordRatedDimensions(
       [In] byte bIndex,
       [Out] out byte pbVal
       );
-        
+
     [PreserveSig]
     int GetRecordRatingDimension(
       [In] byte bIndexOuter,
       [In] byte bIndexInner,
       [Out] out byte pbVal
       );
-        
+
     [PreserveSig]
     int GetRecordRatingValue(
       [In] byte bIndexOuter,
       [In] byte bIndexInner,
       [Out] out byte pbVal
       );
-        
+
     [PreserveSig]
-    int GetRecordRatingDescriptionText( 
+    int GetRecordRatingDescriptionText(
       [In] byte bIndex,
       [Out] out byte pbLength,
       [Out] out IntPtr ppText
       );
   }
 
-  [ComImport, Guid("40834007-6834-46f0-BD45-D5F6A6BE258C"),
+  [ComImport,
+  Guid("40834007-6834-46f0-BD45-D5F6A6BE258C"),
   InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
   public interface ICaptionServiceDescriptor
   {
     [PreserveSig]
     int GetNumberOfServices([Out] out byte pbVal);
-        
+
     [PreserveSig]
-    int GetLanguageCode( 
+    int GetLanguageCode(
       [In] byte bIndex,
       [Out] out int LangCode // probably a byte[3]
       );
-        
+
     [PreserveSig]
     int GetCaptionServiceNumber(
       [In] byte bIndex,
       [Out] out byte pbVal
       );
-        
+
     [PreserveSig]
-    int GetCCType( 
+    int GetCCType(
       [In] byte bIndex,
       [Out] out byte pbVal
       );
-        
+
     [PreserveSig]
-    int GetEasyReader( 
+    int GetEasyReader(
       [In] byte bIndex,
       [Out] out byte pbVal
       );
-        
+
     [PreserveSig]
-    int GetWideAspectRatio( 
+    int GetWideAspectRatio(
       [In] byte bIndex,
       [Out] out byte pbVal
       );

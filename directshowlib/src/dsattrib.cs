@@ -34,7 +34,8 @@ namespace DirectShowLib.BDA
 
 #if ALLOW_UNTESTED_INTERFACES
 
-  [ComImport, Guid("583ec3cc-4960-4857-982b-41a33ea0a006"),
+  [ComImport,
+  Guid("583ec3cc-4960-4857-982b-41a33ea0a006"),
   InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
   public interface IAttributeSet
   {
@@ -46,7 +47,8 @@ namespace DirectShowLib.BDA
       );
   }
 
-  [ComImport, Guid("52dbd1ec-e48f-4528-9232-f442a68f0ae1"),
+  [ComImport,
+  Guid("52dbd1ec-e48f-4528-9232-f442a68f0ae1"),
   InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
   public interface IAttributeGet
   {

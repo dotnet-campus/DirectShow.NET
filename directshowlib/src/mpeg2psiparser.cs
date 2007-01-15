@@ -31,6 +31,9 @@ namespace DirectShowLib.BDA
 
 #if ALLOW_UNTESTED_INTERFACES
 
+    /// <summary>
+    /// From ProgramElement
+    /// </summary>
   [StructLayout(LayoutKind.Sequential,Pack=2)]
   public struct ProgramElement
   {
@@ -46,7 +49,8 @@ namespace DirectShowLib.BDA
 
 #if ALLOW_UNTESTED_INTERFACES
 
-  [ComImport, Guid("6A5918F8-A77A-4f61-AED0-5702BDCDA3E6"),
+  [ComImport,
+  Guid("6A5918F8-A77A-4f61-AED0-5702BDCDA3E6"),
   InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
   public interface IGenericDescriptor
   {
@@ -66,7 +70,8 @@ namespace DirectShowLib.BDA
     int GetBody([Out] out IntPtr ppbVal);
   }
 
-  [ComImport, Guid("6623B511-4B5F-43c3-9A01-E8FF84188060"),
+  [ComImport,
+  Guid("6623B511-4B5F-43c3-9A01-E8FF84188060"),
   InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
   public interface IPAT
   {
@@ -116,7 +121,8 @@ namespace DirectShowLib.BDA
     int ConvertNextToCurrent();
   }
 
-  [ComImport, Guid("7C6995FB-2A31-4bd7-953E-B1AD7FB7D31C"),
+  [ComImport,
+  Guid("7C6995FB-2A31-4bd7-953E-B1AD7FB7D31C"),
   InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
   public interface ICAT
   {
@@ -128,39 +134,40 @@ namespace DirectShowLib.BDA
 
     [PreserveSig]
     int GetVersionNumber([Out] out byte pbVal);
-        
+
     [PreserveSig]
     int GetCountOfTableDescriptors([Out] out int pdwVal);
-        
+
     [PreserveSig]
     int GetTableDescriptorByIndex(
       [In] int dwIndex,
       [Out] out IGenericDescriptor ppDescriptor
       );
-        
+
     [PreserveSig]
-    int GetTableDescriptorByTag( 
+    int GetTableDescriptorByTag(
       [In] byte bTag,
       [In, Out] IntPtr pdwCookie,
       [Out] out IGenericDescriptor ppDescriptor
       );
-        
+
     [PreserveSig]
     int RegisterForNextTable([In] IntPtr hNextTableAvailable);
-        
+
     [PreserveSig]
     int GetNextTable(
       [In] int dwTimeout,
       [Out] out ICAT ppCAT);
-        
+
     [PreserveSig]
     int RegisterForWhenCurrent([In] IntPtr hNextTableIsCurrent);
-        
+
     [PreserveSig]
     int ConvertNextToCurrent();
   }
 
-  [ComImport, Guid("01F3B398-9527-4736-94DB-5195878E97A8"),
+  [ComImport,
+  Guid("01F3B398-9527-4736-94DB-5195878E97A8"),
   InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
   public interface IPMT
   {
@@ -172,57 +179,57 @@ namespace DirectShowLib.BDA
 
     [PreserveSig]
     int GetProgramNumber([Out] out short pwVal);
-        
+
     [PreserveSig]
     int GetVersionNumber([Out] out byte pbVal);
-        
+
     [PreserveSig]
     int GetPcrPid([Out] out short pPidVal);
-        
+
     [PreserveSig]
     int GetCountOfTableDescriptors([Out] out int pdwVal);
-        
+
     [PreserveSig]
     int GetTableDescriptorByIndex(
       [In] int dwIndex,
       [Out] out IGenericDescriptor ppDescriptor
       );
-        
+
     [PreserveSig]
     int GetTableDescriptorByTag(
       [In] Byte bTag,
       [In, Out] IntPtr pdwCookie,
       [Out] out IGenericDescriptor ppDescriptor
       );
-        
+
     [PreserveSig]
     int GetCountOfRecords([Out] out short pwVal);
-        
+
     [PreserveSig]
     int GetRecordStreamType(
       [In] int dwRecordIndex,
       [Out] out byte pbVal
       );
-        
+
     [PreserveSig]
     int GetRecordElementaryPid(
       [In] int dwRecordIndex,
       [Out] out short pPidVal
       );
-        
+
     [PreserveSig]
     int GetRecordCountOfDescriptors(
       [In] int dwRecordIndex,
       [Out] out int pdwVal
       );
-        
+
     [PreserveSig]
     int GetRecordDescriptorByIndex(
       [In] int dwRecordIndex,
       [In] int dwDescIndex,
       [Out] out IGenericDescriptor ppDescriptor
       );
-        
+
     [PreserveSig]
     int GetRecordDescriptorByTag(
       [In] int dwRecordIndex,
@@ -230,33 +237,34 @@ namespace DirectShowLib.BDA
       [In, Out] IntPtr pdwCookie,
       [Out] out IGenericDescriptor ppDescriptor
       );
-        
+
     [PreserveSig]
     int QueryServiceGatewayInfo(
       [Out] out IntPtr ppDSMCCList, // a DSMCC_ELEMENT array
       [Out] out int puiCount
       );
-        
+
     [PreserveSig]
     int QueryMPEInfo(
       [Out] out IntPtr ppMPEList, // a MPE_ELEMENT array
       [Out] out int puiCount
       );
-        
+
     [PreserveSig]
     int RegisterForNextTable([In] IntPtr hNextTableAvailable);
-        
+
     [PreserveSig]
     int GetNextTable([Out] out IPMT ppPMT);
-        
+
     [PreserveSig]
     int RegisterForWhenCurrent([In] IntPtr hNextTableIsCurrent);
-        
+
     [PreserveSig]
     int ConvertNextToCurrent();
   }
 
-  [ComImport, Guid("D19BDB43-405B-4a7c-A791-C89110C33165"),
+  [ComImport,
+  Guid("D19BDB43-405B-4a7c-A791-C89110C33165"),
   InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
   public interface ITSDT
   {
@@ -268,37 +276,38 @@ namespace DirectShowLib.BDA
 
     [PreserveSig]
     int GetVersionNumber([Out] out byte pbVal);
-        
+
     [PreserveSig]
     int GetCountOfTableDescriptors([Out] out int pdwVal);
-        
+
     [PreserveSig]
     int GetTableDescriptorByIndex(
       [In] int dwIndex,
       [Out] out IGenericDescriptor ppDescriptor
       );
-        
+
     [PreserveSig]
     int GetTableDescriptorByTag(
       [In] byte bTag,
       [In, Out] IntPtr pdwCookie,
       [Out] out IGenericDescriptor ppDescriptor
       );
-        
+
     [PreserveSig]
     int RegisterForNextTable([In] IntPtr hNextTableAvailable);
-        
+
     [PreserveSig]
     int GetNextTable([Out] out ITSDT ppTSDT);
-        
+
     [PreserveSig]
     int RegisterForWhenCurrent([In] IntPtr hNextTableIsCurrent);
-        
+
     [PreserveSig]
     int ConvertNextToCurrent();
   }
 
-  [ComImport, Guid("919F24C5-7B14-42ac-A4B0-2AE08DAF00AC"),
+  [ComImport,
+  Guid("919F24C5-7B14-42ac-A4B0-2AE08DAF00AC"),
   InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
   public interface IPSITables
   {

@@ -133,6 +133,9 @@ namespace DirectShowLib.BDA
       MCEAll_TV = unchecked((int)0xffffffff),
     }
 
+    /// <summary>
+    /// From RollOff
+    /// </summary>
     public enum RollOff
     {
       NotSet = -1,
@@ -143,6 +146,9 @@ namespace DirectShowLib.BDA
       Max
     }
 
+    /// <summary>
+    /// From Pilot
+    /// </summary>
     public enum Pilot
     {
       NotSet = -1,
@@ -152,6 +158,9 @@ namespace DirectShowLib.BDA
       Max
     }
 
+    /// <summary>
+    /// From ApplicationTypeType
+    /// </summary>
     public enum ApplicationTypeType
     {
       SCTE28ConditionalAccess = 0,
@@ -269,9 +278,9 @@ namespace DirectShowLib.BDA
         Mod8Psk,
         ModRF,
         Mod16Apsk,
-        Mod32Apsk, 
-        ModNbcQpsk, 
-        ModNbc8Psk, 
+        Mod32Apsk,
+        ModNbcQpsk,
+        ModNbc8Psk,
         ModDirectTv,
         ModMax
     }
@@ -406,8 +415,8 @@ namespace DirectShowLib.BDA
     [Flags]
     public enum BDACompFlags
     {
-        NotDefined = 0x00000000, // BDACOMP_NOT_DEFINED          
-        ExcludeTSFromTR = 0x00000001, // BDACOMP_EXCLUDE_TS_FROM_TR   
+        NotDefined = 0x00000000, // BDACOMP_NOT_DEFINED
+        ExcludeTSFromTR = 0x00000001, // BDACOMP_EXCLUDE_TS_FROM_TR
         IncludeLocatorInTR = 0x00000002, // BDACOMP_INCLUDE_LOCATOR_IN_TR
     }
 

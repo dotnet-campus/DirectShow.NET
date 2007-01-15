@@ -111,7 +111,7 @@ namespace DirectShowLib.BDA
   public enum MpegSectionIs
   {
     Next = 0,
-    Current = 1,
+    Current = 1
   }
 
   /// <summary>
@@ -200,27 +200,27 @@ namespace DirectShowLib.BDA
   public struct DsmccFilterOptions
   {
     [MarshalAs(UnmanagedType.Bool)]
-    public bool fSpecifyProtocol;       
+    public bool fSpecifyProtocol;
     public byte Protocol;
     [MarshalAs(UnmanagedType.Bool)]
-    public bool fSpecifyType;           
+    public bool fSpecifyType;
     public byte Type;
     [MarshalAs(UnmanagedType.Bool)]
-    public bool fSpecifyMessageId;      
+    public bool fSpecifyMessageId;
     public short MessageId;
     [MarshalAs(UnmanagedType.Bool)]
     public bool fSpecifyTransactionId;
     [MarshalAs(UnmanagedType.Bool)]
-    public bool fUseTrxIdMessageIdMask; 
+    public bool fUseTrxIdMessageIdMask;
     public int TransactionId;
     [MarshalAs(UnmanagedType.Bool)]
-    public bool fSpecifyModuleVersion;  
+    public bool fSpecifyModuleVersion;
     public byte ModuleVersion;
     [MarshalAs(UnmanagedType.Bool)]
-    public bool fSpecifyBlockNumber;    
+    public bool fSpecifyBlockNumber;
     public short BlockNumber;
     [MarshalAs(UnmanagedType.Bool)]
-    public bool fGetModuleCall;         
+    public bool fGetModuleCall;
     public short NumberOfBlocksInModule;
   }
 
@@ -250,13 +250,13 @@ namespace DirectShowLib.BDA
     [MarshalAs(UnmanagedType.ByValArray, ArraySubType = UnmanagedType.U1, SizeConst = 16)]
     public byte[] Mask;
     [MarshalAs(UnmanagedType.Bool)]
-    public bool fSpecifyTableIdExtension; 
+    public bool fSpecifyTableIdExtension;
     public short TableIdExtension;
     [MarshalAs(UnmanagedType.Bool)]
-    public bool fSpecifyVersion;          
+    public bool fSpecifyVersion;
     public byte Version;
     [MarshalAs(UnmanagedType.Bool)]
-    public bool fSpecifySectionNumber;    
+    public bool fSpecifySectionNumber;
     public byte  SectionNumber;
     [MarshalAs(UnmanagedType.Bool)]
     public bool fSpecifyCurrentNext;
@@ -266,7 +266,7 @@ namespace DirectShowLib.BDA
     public bool fSpecifyDsmccOptions;
     public DsmccFilterOptions Dsmcc;
     [MarshalAs(UnmanagedType.Bool)]
-    public bool fSpecifyAtscOptions;      
+    public bool fSpecifyAtscOptions;
     public AtscFilterOptions Atsc;
   }
 
