@@ -62,53 +62,56 @@ namespace DirectShowLib.BDA
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IDTFilterBlockedOverlay
     {
-        int SetOverlay( 
+        [PreserveSig]
+        int SetOverlay(
             int dwOverlayCause
             );
-        
-        int ClearOverlay( 
+
+        [PreserveSig]
+        int ClearOverlay(
             int dwOverlayCause
             );
-        
-        int GetOverlay( 
+
+        [PreserveSig]
+        int GetOverlay(
             out int pdwOverlayCause
             );
-        
+
     }
-    
+
     [ComImport,
     Guid("C4C4C4C2-0049-4E2B-98FB-9537F6CE516D"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface IDTFilterEvents
     {
     }
-    
+
     [ComImport,
     Guid("C4C4C4C1-0049-4E2B-98FB-9537F6CE516D"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface IETFilterEvents
     {
     }
-    
+
     [ComImport,
     Guid("C4C4C4C3-0049-4E2B-98FB-9537F6CE516D"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface IXDSCodecEvents
     {
     }
-    
+
     [ComImport,
     Guid("C4C4C4D3-0049-4E2B-98FB-9537F6CE516D"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IXDSCodecConfig
     {
         [PreserveSig]
-        int GetSecureChannelObject( 
+        int GetSecureChannelObject(
             [MarshalAs(UnmanagedType.IUnknown)] out object ppUnkDRMSecureChannel
             );
-        
+
         [PreserveSig]
-        int SetPauseBufferTime( 
+        int SetPauseBufferTime(
             int dwPauseBufferTime
             );
     }
@@ -127,21 +130,21 @@ namespace DirectShowLib.BDA
         int GetCurrRating(
             out EnTvRat_System pEnSystem,
             out EnTvRat_GenericLevel pEnRating,
-            out int plbfEnAttr
+            out BfEnTvRat_GenericAttributes plbfEnAttr
             );
 
         [PreserveSig]
         int get_BlockedRatingAttributes(
             EnTvRat_System enSystem,
             EnTvRat_GenericLevel enLevel,
-            out int plbfEnAttr
+            out BfEnTvRat_GenericAttributes plbfEnAttr
             );
 
         [PreserveSig]
         int put_BlockedRatingAttributes(
             EnTvRat_System enSystem,
             EnTvRat_GenericLevel enLevel,
-            int lbfAttrs
+            BfEnTvRat_GenericAttributes lbfAttrs
             );
 
         [PreserveSig]
@@ -182,14 +185,14 @@ namespace DirectShowLib.BDA
         new int GetCurrRating(
             out EnTvRat_System pEnSystem,
             out EnTvRat_GenericLevel pEnRating,
-            out int plbfEnAttr
+            out BfEnTvRat_GenericAttributes plbfEnAttr
             );
 
         [PreserveSig]
         new int get_BlockedRatingAttributes(
             EnTvRat_System enSystem,
             EnTvRat_GenericLevel enLevel,
-            out int plbfEnAttr
+            out BfEnTvRat_GenericAttributes plbfEnAttr
             );
 
         [PreserveSig]
@@ -254,14 +257,14 @@ namespace DirectShowLib.BDA
         new int GetCurrRating(
             out EnTvRat_System pEnSystem,
             out EnTvRat_GenericLevel pEnRating,
-            out int plbfEnAttr
+            out BfEnTvRat_GenericAttributes plbfEnAttr
             );
 
         [PreserveSig]
         new int get_BlockedRatingAttributes(
             EnTvRat_System enSystem,
             EnTvRat_GenericLevel enLevel,
-            out int plbfEnAttr
+            out BfEnTvRat_GenericAttributes plbfEnAttr
             );
 
         [PreserveSig]
@@ -332,6 +335,7 @@ namespace DirectShowLib.BDA
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IDTFilterConfig
     {
+        [PreserveSig]
         int GetSecureChannelObject(
             [MarshalAs(UnmanagedType.IUnknown)] out object ppUnkDRMSecureChannel
             );
@@ -342,23 +346,28 @@ namespace DirectShowLib.BDA
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IETFilter
     {
+        [PreserveSig]
         int get_EvalRatObjOK(
             out int pHrCoCreateRetVal
             );
 
+        [PreserveSig]
         int GetCurrRating(
             out EnTvRat_System pEnSystem,
             out EnTvRat_GenericLevel pEnRating,
-            out int plbfEnAttr
+            out BfEnTvRat_GenericAttributes plbfEnAttr
             );
 
+        [PreserveSig]
         int GetCurrLicenseExpDate(
             ProtType protType,
             out int lpDateTime
-                );
+            );
 
+        [PreserveSig]
         int GetLastErrorCode();
 
+        [PreserveSig]
         int SetRecordingOn(
             [MarshalAs(UnmanagedType.Bool)] bool fRecState
             );
@@ -369,12 +378,14 @@ namespace DirectShowLib.BDA
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IETFilterConfig
     {
+        [PreserveSig]
         int InitLicense(
             int LicenseId
             );
 
+        [PreserveSig]
         int GetSecureChannelObject(
-            out object ppUnkDRMSecureChannel
+            [MarshalAs(UnmanagedType.IUnknown)] out object ppUnkDRMSecureChannel
             );
     }
 
@@ -383,18 +394,22 @@ namespace DirectShowLib.BDA
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IXDSCodec
     {
+        [PreserveSig]
         int get_XDSToRatObjOK(
             out int pHrCoCreateRetVal
                 );
 
+        [PreserveSig]
         int put_CCSubstreamService(
             int SubstreamMask
             );
 
+        [PreserveSig]
         int get_CCSubstreamService(
             out int pSubstreamMask
             );
 
+        [PreserveSig]
         int GetContentAdvisoryRating(
             out int pRat,
             out int pPktSeqID,
@@ -403,6 +418,7 @@ namespace DirectShowLib.BDA
             out long pTimeEnd
             );
 
+        [PreserveSig]
         int GetXDSPacket(
             out int pXDSClassPkt,
             out int pXDSTypePkt,
@@ -413,11 +429,13 @@ namespace DirectShowLib.BDA
             out long pTimeEnd
             );
 
+        [PreserveSig]
         int GetCurrLicenseExpDate(
             ProtType protType,
             out int lpDateTime
             );
 
+        [PreserveSig]
         int GetLastErrorCode();
     }
 
