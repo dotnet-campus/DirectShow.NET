@@ -30,6 +30,143 @@ namespace DirectShowLib
     #region COM Class Objects
 
     /// <summary>
+    /// CLSID_StreamBufferRecordingAttributes
+    /// </summary>
+    [ComImport, Guid("CCAA63AC-1057-4778-AE92-1206AB9ACEE6")]
+    public class StreamBufferRecordingAttributes
+    {
+    }
+
+    /// <summary>
+    /// CLSID_AudioRecord
+    /// </summary>
+    [ComImport, Guid("e30629d2-27e5-11ce-875d-00608cb78066")]
+    public class AudioRecord
+    {
+    }
+
+    /// <summary>
+    /// CLSID_AVICo
+    /// </summary>
+    [ComImport, Guid("D76E2820-1563-11cf-AC98-00AA004C0FA9")]
+    public class AVICo
+    {
+    }
+
+    /// <summary>
+    /// CLSID_AVIDoc
+    /// </summary>
+    [ComImport, Guid("D3588AB0-0781-11ce-B03A-0020AF0BA770")]
+    public class AVIDoc
+    {
+    }
+
+    /// <summary>
+    /// CLSID_AviReader
+    /// </summary>
+    [ComImport, Guid("1b544c21-fd0b-11ce-8c63-00aa0044b51e")]
+    public class AviReader
+    {
+    }
+
+    /// <summary>
+    /// CLSID_FGControl 
+    /// </summary>
+    [ComImport, Guid("e436ebb4-524f-11ce-9f53-0020af0ba770")]
+    public class FGControl
+    {
+    }
+
+  
+    /// <summary>
+    /// CLSID_FileSource
+    /// </summary>
+    [ComImport, Guid("701722e0-8ae3-11ce-a85c-00aa002feab5")]
+    public class FileSource
+    {
+    }
+
+    /// <summary>
+    /// CLSID_FilterMapper
+    /// </summary>
+    [ComImport, Guid("e436ebb2-524f-11ce-9f53-0020af0ba770")]
+    public class FilterMapper
+    {
+    }
+
+    /// <summary>
+    /// CLSID_ProtoFilterGraph
+    /// </summary>
+    [ComImport, Guid("e436ebb0-524f-11ce-9f53-0020af0ba770")]
+    public class ProtoFilterGraph
+    {
+    }
+
+    /// <summary>
+    /// CLSID_MOVReader
+    /// </summary>
+    [ComImport, Guid("44584800-F8EE-11ce-B2D4-00DD01101B85")]
+    public class MOVReader
+    {
+    }
+
+    /// <summary>
+    /// CLSID_VPObject
+    /// </summary>
+    [ComImport, Guid("CE292861-FC88-11d0-9E69-00C04FD7C15B")]
+    public class VPObject
+    {
+    }
+
+    /// <summary>
+    /// CLSID_VPVBIObject
+    /// </summary>
+    [ComImport, Guid("814B9801-1C88-11d1-BAD9-00609744111A")]
+    public class VPVBIObject
+    {
+    }
+
+    /// <summary>
+    /// CLSID_MPEG1Doc
+    /// </summary>
+    [ComImport, Guid("e4bbd160-4269-11ce-838d-00aa0055595a")]
+    public class MPEG1Doc
+    {
+    }
+
+    /// <summary>
+    /// CLSID_TextRender
+    /// </summary>
+    [ComImport, Guid("e30629d3-27e5-11ce-875d-00608cb78066")]
+    public class TextRender
+    {
+    }
+
+    /// <summary>
+    /// CLSID_CDeviceMoniker
+    /// </summary>
+    [ComImport, Guid("4315D437-5B8C-11d0-BD3B-00A0C911CE86")]
+    public class CDeviceMoniker
+    {
+    }
+
+    /// <summary>
+    /// CLSID_DTFilter
+    /// </summary>
+    [ComImport, Guid("C4C4C4F2-0049-4E2B-98FB-9537F6CE516D")]
+    public class DTFilter
+    {
+    }
+
+    /// <summary>
+    /// CLSID_ETFilter
+    /// </summary>
+    [ComImport, Guid("C4C4C4F1-0049-4E2B-98FB-9537F6CE516D")]
+    public class ETFilter
+    {
+    }
+
+    /// <summary>
     /// CLSID_FilterGraphPrivateThread
     /// </summary>
     [ComImport, Guid("a3ecbc41-581a-4476-b693-a63340462d8b")]
@@ -735,6 +872,18 @@ namespace DirectShowLib
         {
             // Prevent people from trying to instantiate this class
         }
+
+        /// <summary> CLSID_CPCAFiltersCategory </summary>
+        public static readonly Guid CPCAFiltersCategory = new Guid(0xC4C4C4FC, 0x0049, 0x4E2B, 0x98, 0xFB, 0x95, 0x37, 0xF6, 0xCE, 0x51, 0x6D);
+
+        /// <summary> CLSID_MediaEncoderCategory </summary>
+        public static readonly Guid MediaEncoderCategory = new Guid(0x7D22E920, 0x5CA9, 0x4787, 0x8C, 0x2B, 0xA6, 0x77, 0x9B, 0xD1, 0x17, 0x81);
+
+        /// <summary> CLSID_MediaMultiplexerCategory </summary>
+        public static readonly Guid MediaMultiplexerCategory = new Guid(0x236C9559, 0xADCE, 0x4736, 0xBF, 0x72, 0xBA, 0xB3, 0x4E, 0x39, 0x21, 0x96);
+
+        /// <summary> CLSID_DMOFilterCategory </summary>
+        public static readonly Guid DMOFilterCategory = new Guid(0xbcd5796c, 0xbd52, 0x4d30, 0xab, 0x76, 0x70, 0xf9, 0x75, 0xb8, 0x91, 0x99);
 
         /// <summary> CLSID_AudioInputDeviceCategory, audio capture category </summary>
         public static readonly Guid AudioInputDevice = new Guid(0x33d9a762, 0x90c8, 0x11d0, 0xbd, 0x43, 0x00, 0xa0, 0xc9, 0x11, 0xce, 0x86);
