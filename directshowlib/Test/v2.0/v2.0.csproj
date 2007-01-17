@@ -1,0 +1,75 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{39F37635-D59A-4996-90C3-900B5F305214}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>v1._6</RootNamespace>
+    <AssemblyName>v1.6</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IConfigAsfWriter2Test.cs" />
+    <Compile Include="IDTFilterConfigTest.cs" />
+    <Compile Include="IDTFilterTest.cs" />
+    <Compile Include="IETFilterConfigTest.cs" />
+    <Compile Include="IETFilterTest.cs" />
+    <Compile Include="IEvalRatTest.cs" />
+    <Compile Include="IGetCapabilitiesKeyTest.cs" />
+    <Compile Include="RunTests.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="IAMCameraControlTest.cs" />
+    <Compile Include="ICodecAPITest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ToDo v2.0.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\DirectShowLib-2005.csproj">
+      <Project>{CE009BFA-5EF6-4153-B2A1-2FA79698A9AE}</Project>
+      <Name>DirectShowLib-2005</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>if not exist foo.avi copy $(SolutionDir)..\Resources\foo.avi .
+if not exist p.wmv copy $(SolutionDir)..\Resources\p.wmv .
+if not exist France-Info.asx copy $(SolutionDir)..\Resources\France-Info.asx .
+if not exist nwn.mp1 copy $(SolutionDir)..\Resources\nwn.mp1 .
+</PostBuildEvent>
+  </PropertyGroup>
+</Project>
