@@ -51,7 +51,7 @@ namespace DirectShowLib.BDA
     [PreserveSig]
     int GetPMT(
       [In] short pid,
-      [In] short pwProgramNumber,
+      [In] IntPtr pwProgramNumber,
       [Out] out IPMT ppPMT
       );
 
@@ -61,27 +61,27 @@ namespace DirectShowLib.BDA
     [PreserveSig]
     int GetNIT(
       [In] byte tableId,
-      [In] short pwNetworkId,
+      [In] IntPtr pwNetworkId,
       [Out] out IDVB_NIT ppNIT
       );
 
     [PreserveSig]
     int GetSDT(
       [In] byte tableId,
-      [In] short pwTransportStreamId,
+      [In] IntPtr pwTransportStreamId,
       [Out] out IDVB_SDT ppSDT
       );
 
     [PreserveSig]
     int GetEIT(
       [In] byte tableId,
-      [In] short pwServiceId,
+      [In] IntPtr pwServiceId,
       [Out] out IDVB_EIT ppEIT
       );
 
     [PreserveSig]
     int GetBAT(
-      [In] short pwBouquetId,
+      [In] IntPtr pwBouquetId,
       [Out] out IDVB_BAT ppBAT
       );
 
