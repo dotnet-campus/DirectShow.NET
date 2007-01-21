@@ -88,7 +88,7 @@ namespace DirectShowLib.BDA
     int GetVersionNumber([Out] out byte pbVal);
 
     [PreserveSig]
-    int GetCountOfRecords([Out] out short pwVal);
+    int GetCountOfRecords([Out] out int pwVal);
 
     [PreserveSig]
     int GetRecordProgramNumber(
