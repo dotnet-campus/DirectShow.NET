@@ -1,8 +1,44 @@
-Interface				Methods	Assigned	Reviewer
+Interface							Methods	Assigned	Reviewer
 
-IAMCameraControl		3	philatkin	snarfle
-IConfigAsfWriter2		4	snarfle		ready
-IDTFilter				8	snarfle		ready
-IDTFilterConfig			1	snarfle		ready
-IETFilterConfig			2	snarfle		ready
-IEvalRat				6	snarfle		ready
+IAMCameraControl						3	philatkin	snarfle
+IConfigAsfWriter2						4	snarfle		ready
+IDTFilter								8	snarfle		ready
+IDTFilterConfig							1	snarfle		ready
+IETFilterConfig							2	snarfle		ready
+IEvalRat								6	snarfle		ready
+
+----DvbSiParser stuff
+IDvbSiParser							15
+IDVB_BAT								16
+ICAT									9
+IDVB_DIT								2
+IDVB_EIT								21
+IDVB_NIT								17
+IPAT									11
+IPMT									19
+IDVB_RST								7
+IDVB_SDT								18
+IDVB_SIT								15
+IDVB_ST									3
+IDVB_TDT								2
+IDVB_TOT								5
+ITSDT									9
+IDvbFrequencyListDescriptor				5
+IDvbLogicalChannelDescriptor			5
+IDvbSatelliteDeliverySystemDescriptor	9
+IDvbServiceDescriptor					8
+IDvbTerrestrialDeliverySystemDescriptor	11
+IGenericDescriptor						4
+
+----Misc stuff
+IMpeg2TableFilter						6
+IScanningTunerEx						8
+IStreamBufferConfigure3					4
+
+----HW dependent 
+IBDA_AutoDemodulateEx					3
+IBDA_ConditionalAccess					10
+IBDA_DiagnosticProperties				0
+IBDA_DRM								2
+IBDA_TransportStreamInfo				1
+ITunerCap								3
