@@ -45,7 +45,7 @@ namespace DirectShowLib.BDA
     /// From PID_MAP
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public class PIDMap
+    public struct PIDMap
     {
         public int ulPID;
         public MediaSampleContent MediaSampleContent;
@@ -270,8 +270,8 @@ namespace DirectShowLib.BDA
         [PreserveSig]
         int Next(
             [In] int cRequest,
-            [Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] PIDMap[] pPIDMap,
-            [Out] out int pcReceived
+            [Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0, ArraySubType=UnmanagedType.Struct)] PIDMap[] pPIDMap,
+            [In, Out] IntPtr pcReceived
             );
 
         [PreserveSig]
