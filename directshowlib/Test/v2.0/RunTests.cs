@@ -39,6 +39,70 @@ namespace v2_0
 
             //IGetCapabilitiesKeyTest t11 = new IGetCapabilitiesKeyTest();
             //t11.DoTests();
+
+            //IDvbSiParserTest t20 = new IDvbSiParserTest();
+            //t20.DoTests();
+
+            //IDVB_BATTest t21 = new IDVB_BATTest();
+            //t21.DoTests();
+
+            //ICATTest t22 = new ICATTest();
+            //t22.DoTests();
+
+            //IDVB_DITTest t23 = new IDVB_DITTest();
+            //t23.DoTests();
+
+            //IDVB_EITTest t24 = new IDVB_EITTest();
+            //t24.DoTests();
+
+            //IDVB_NITTest t25 = new IDVB_NITTest();
+            //t25.DoTests();
+
+            //IPATTest t26 = new IPATTest();
+            //t26.DoTests();
+
+            //IPMTTest t27 = new IPMTTest();
+            //t27.DoTests();
+
+            //IDVB_RSTTest t28 = new IDVB_RSTTest();
+            //t28.DoTests();
+
+            //IDVB_SDTTest t29 = new IDVB_SDTTest();
+            //t29.DoTests();
+
+            //IDVB_SITTest t30 = new IDVB_SITTest();
+            //t30.DoTests();
+
+            //IDVB_STTest t31 = new IDVB_STTest();
+            //t31.DoTests();
+
+            //IDVB_TDTTest t32 = new IDVB_TDTTest();
+            //t32.DoTests();
+
+            //IDVB_TOTTest t33 = new IDVB_TOTTest();
+            //t33.DoTests();
+
+            //ITSDTTest t34 = new ITSDTTest();
+            //t34.DoTests();
+
+            //IDvbFrequencyListDescriptorTest t35 = new IDvbFrequencyListDescriptorTest();
+            //t35.DoTests();
+
+            //IDvbLogicalChannelDescriptorTest t36 = new IDvbLogicalChannelDescriptorTest();
+            //t36.DoTests();
+
+            //IDvbSatelliteDeliverySystemDescriptorTest t37 = new IDvbSatelliteDeliverySystemDescriptorTest();
+            //t37.DoTests();
+
+            //IDvbServiceDescriptorTest t38 = new IDvbServiceDescriptorTest();
+            //t38.DoTests();
+
+            //IDvbTerrestrialDeliverySystemDescriptorTest t39 = new IDvbTerrestrialDeliverySystemDescriptorTest();
+            //t39.DoTests();
+
+            //IGenericDescriptorTest t40 = new IGenericDescriptorTest();
+            //t40.DoTests();
+
         }
     }
 }
