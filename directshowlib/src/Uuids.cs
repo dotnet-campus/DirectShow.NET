@@ -357,6 +357,21 @@ namespace DirectShowLib
     {
     }
 
+    /// <summary>
+    /// CLSID_AtscPsipParser
+    /// </summary>
+    [ComImport, Guid("3508C064-B94E-420b-A821-20C8096FAADC")]
+    public class AtscPsipParser
+    {
+    }
+
+    /// <summary>
+    /// CLSID_DvbSiParser
+    /// </summary>
+    [ComImport, Guid("F6B96EDA-1A94-4476-A85F-4D3DC7B39C3F")]
+    public class DvbSiParser
+    {
+    }
 
     #endregion
 
