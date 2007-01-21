@@ -54,10 +54,10 @@ namespace DirectShowLib.BDA
     {
         [PreserveSig]
         int RegisterTIFEx(
-            [In] IPin pTIFInputPin,
-            [In, Out] ref int ppvRegistrationContext,
-            [In, Out, MarshalAs(UnmanagedType.Interface)] ref object ppMpeg2DataControl
-            );
+          [In] IPin pTIFInputPin,
+          [Out] out int ppvRegistrationContext,
+          [Out, MarshalAs(UnmanagedType.Interface)] out object ppMpeg2DataControl
+          );
 
         [PreserveSig]
         int UnregisterTIF([In] int pvRegistrationContext);
