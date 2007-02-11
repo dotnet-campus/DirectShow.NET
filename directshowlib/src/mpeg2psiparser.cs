@@ -198,7 +198,7 @@ namespace DirectShowLib.BDA
     [PreserveSig]
     int GetTableDescriptorByTag(
       [In] Byte bTag,
-      [In, Out] IntPtr pdwCookie,
+      [In, Out] DsInt pdwCookie,
       [Out] out IGenericDescriptor ppDescriptor
       );
 
@@ -234,19 +234,19 @@ namespace DirectShowLib.BDA
     int GetRecordDescriptorByTag(
       [In] int dwRecordIndex,
       [In] Byte bTag,
-      [In, Out] IntPtr pdwCookie,
+      [In, Out] DsInt pdwCookie,
       [Out] out IGenericDescriptor ppDescriptor
       );
 
     [PreserveSig]
     int QueryServiceGatewayInfo(
-      [Out] out IntPtr ppDSMCCList, // a DSMCC_ELEMENT array
+      [Out, MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.Struct)] out DsmccElement[] ppDSMCCList,
       [Out] out int puiCount
       );
 
     [PreserveSig]
     int QueryMPEInfo(
-      [Out] out IntPtr ppMPEList, // a MPE_ELEMENT array
+      [Out, MarshalAs(UnmanagedType.LPArray, ArraySubType=UnmanagedType.Struct)] out MpeElement[] ppMPEList,
       [Out] out int puiCount
       );
 

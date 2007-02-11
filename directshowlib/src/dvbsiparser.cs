@@ -51,7 +51,7 @@ namespace DirectShowLib.BDA
     [PreserveSig]
     int GetPMT(
       [In] short pid,
-      [In] IntPtr pwProgramNumber,
+      [In] DsShort pwProgramNumber,
       [Out] out IPMT ppPMT
       );
 
@@ -845,6 +845,7 @@ namespace DirectShowLib.BDA
     int GetServiceNameEmphasized([Out, MarshalAs(UnmanagedType.BStr)] out string pbstrName);
   }
 #endif
+
 
   #endregion
 
