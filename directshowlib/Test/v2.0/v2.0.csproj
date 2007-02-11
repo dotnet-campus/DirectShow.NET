@@ -46,6 +46,8 @@
     <Compile Include="IETFilterTest.cs" />
     <Compile Include="IEvalRatTest.cs" />
     <Compile Include="IGetCapabilitiesKeyTest.cs" />
+    <Compile Include="IPATTest.cs" />
+    <Compile Include="IPMTTest.cs" />
     <Compile Include="RunTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IAMCameraControlTest.cs" />
