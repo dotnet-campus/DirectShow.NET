@@ -61,21 +61,21 @@ namespace DirectShowLib.BDA
     [PreserveSig]
     int GetNIT(
       [In] byte tableId,
-      [In] IntPtr pwNetworkId,
+      [In] DsShort pwNetworkId,
       [Out] out IDVB_NIT ppNIT
       );
 
     [PreserveSig]
     int GetSDT(
       [In] byte tableId,
-      [In] IntPtr pwTransportStreamId,
+      [In] DsShort pwTransportStreamId,
       [Out] out IDVB_SDT ppSDT
       );
 
     [PreserveSig]
     int GetEIT(
       [In] byte tableId,
-      [In] IntPtr pwServiceId,
+      [In] DsShort pwServiceId,
       [Out] out IDVB_EIT ppEIT
       );
 
@@ -146,7 +146,7 @@ namespace DirectShowLib.BDA
     [PreserveSig]
     int GetTableDescriptorByTag(
       [In] byte bTag,
-      [In] IntPtr pdwCookie,
+      [In] DsInt pdwCookie,
       [Out] out IGenericDescriptor ppDescriptor
       );
 
@@ -156,7 +156,7 @@ namespace DirectShowLib.BDA
     [PreserveSig]
     int GetRecordTransportStreamId(
       [In] int dwRecordIndex,
-      [Out] out int pwVal
+      [Out] out short pwVal
       );
 
     [PreserveSig]
@@ -182,7 +182,7 @@ namespace DirectShowLib.BDA
     int GetRecordDescriptorByTag(
       [In] int dwRecordIndex,
       [In] byte bTag,
-      [In] IntPtr pdwCookie,
+      [In] DsInt pdwCookie,
       [Out] out IGenericDescriptor ppDescriptor
       );
 
@@ -272,7 +272,7 @@ namespace DirectShowLib.BDA
     int GetRecordDescriptorByTag(
       [In] int dwRecordIndex,
       [In] byte bTag,
-      [In] IntPtr pdwCookie,
+      [In] DsInt pdwCookie,
       [Out] out IGenericDescriptor ppDescriptor
       );
 
@@ -372,7 +372,7 @@ namespace DirectShowLib.BDA
     int GetRecordDescriptorByTag(
       [In] int dwRecordIndex,
       [In] byte bTag,
-      [In] IntPtr pdwCookie,
+      [In] DsInt pdwCookie,
       [Out] out IGenericDescriptor ppDescriptor
       );
 
