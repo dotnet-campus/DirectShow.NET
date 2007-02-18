@@ -87,7 +87,7 @@ namespace v2_0
             hr = pidMapper.MapPID(pids.Length, pids, MediaSampleContent.Mpeg2PSI);
             DsError.ThrowExceptionForHR(hr);
       */
-      hr = parser.GetEIT(0x4e, IntPtr.Zero, out eit);
+      hr = parser.GetEIT(0x4e, null, out eit);
       Debug.Assert((hr == 0) && (eit != null), "IDvbSiParser.GetEIT failed (" + hr + ")");
       if (eit != null) Marshal.ReleaseComObject(eit);
     }
@@ -102,7 +102,7 @@ namespace v2_0
             hr = pidMapper.MapPID(pids.Length, pids, MediaSampleContent.Mpeg2PSI);
             DsError.ThrowExceptionForHR(hr);
       */
-      hr = parser.GetNIT(0x40, IntPtr.Zero, out nit);
+      hr = parser.GetNIT(0x40, null, out nit);
       Debug.Assert((hr == 0) && (nit != null), "IDvbSiParser.GetNIT failed (" + hr + ")");
       if (nit != null) Marshal.ReleaseComObject(nit);
     }
@@ -143,7 +143,7 @@ namespace v2_0
             DsError.ThrowExceptionForHR(hr);
       */
 
-      hr = parser.GetPMT(0x10, IntPtr.Zero, out pmt);
+      hr = parser.GetPMT(0x10, null, out pmt);
       Debug.Assert((hr == 0) && (pmt != null), "IDvbSiParser.GetPMT failed (" + hr + ")");
 
       if (pmt != null) Marshal.ReleaseComObject(pmt);

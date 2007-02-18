@@ -42,6 +42,9 @@
     <Compile Include="IDTFilterConfigTest.cs" />
     <Compile Include="IDTFilterTest.cs" />
     <Compile Include="IDvbSiParserTest.cs" />
+    <Compile Include="IDVB_EITTest.cs" />
+    <Compile Include="IDVB_NITTest.cs" />
+    <Compile Include="IDVB_SDTTest.cs" />
     <Compile Include="IETFilterConfigTest.cs" />
     <Compile Include="IETFilterTest.cs" />
     <Compile Include="IEvalRatTest.cs" />
