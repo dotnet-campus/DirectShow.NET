@@ -291,6 +291,11 @@ namespace DirectShowLib.BDA
     public byte Hours;
     public byte Minutes;
     public byte Seconds;
+
+    public TimeSpan ToTimeSpan()
+    {
+      return new TimeSpan(this.Hours, this.Minutes, this.Seconds);
+    }
   }
 
   /// <summary>
@@ -301,7 +306,12 @@ namespace DirectShowLib.BDA
   {
     public byte Date;
     public byte Month;
-    public byte Year;
+    public short Year;
+
+    public DateTime ToDateTime()
+    {
+      return new DateTime(this.Year, this.Month, this.Date);
+    }
   }
 
   /// <summary>
@@ -315,10 +325,15 @@ namespace DirectShowLib.BDA
     // Marshaling is faster like that...
     public byte Date;
     public byte Month;
-    public byte Year;
+    public short Year;
     public byte Hours;
     public byte Minutes;
     public byte Seconds;
+
+    public DateTime ToDateTime()
+    {
+      return new DateTime(this.Year, this.Month, this.Date, this.Hours, this.Minutes, this.Seconds);
+    }
   }
 
   /// <summary>
