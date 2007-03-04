@@ -44,14 +44,14 @@ namespace v2_0
       int hr = 0;
       IDVB_BAT bat;
 
-      hr = parser.GetBAT(IntPtr.Zero, out bat);
+      hr = parser.GetBAT(null, out bat);
       //Debug.Assert((hr == 0) && (bat != null), "IDvbSiParser.GetBAT failed");
       if (bat != null) Marshal.ReleaseComObject(bat);
 
       IntPtr bouquetId = Marshal.AllocCoTaskMem(sizeof(short));
       Marshal.WriteInt16(bouquetId, 8442);
 
-      hr = parser.GetBAT(bouquetId, out bat);
+      hr = parser.GetBAT(null, out bat);
       //Debug.Assert((hr == 0) && (bat != null), "IDvbSiParser.GetBAT failed");
       Marshal.FreeCoTaskMem(bouquetId);
       if (bat != null) Marshal.ReleaseComObject(bat);

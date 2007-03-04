@@ -102,7 +102,7 @@ namespace v2_0
         // Those values are valid for me but must be modified to be valid depending on your location
         hr = tuneRequest.get_Locator(out locator);
         DsError.ThrowExceptionForHR(hr);
-
+/*
         hr = locator.put_CarrierFrequency(586000);
         DsError.ThrowExceptionForHR(hr);
 
@@ -117,6 +117,38 @@ namespace v2_0
         DsError.ThrowExceptionForHR(hr);
         hr = (tuneRequest as IDVBTuneRequest).put_SID(260);
         DsError.ThrowExceptionForHR(hr);
+*/
+/*
+        hr = locator.put_CarrierFrequency(522000);
+        DsError.ThrowExceptionForHR(hr);
+
+        hr = tuneRequest.put_Locator(locator);
+        DsError.ThrowExceptionForHR(hr);
+
+        Marshal.ReleaseComObject(locator);
+
+        hr = (tuneRequest as IDVBTuneRequest).put_ONID(8442);
+        DsError.ThrowExceptionForHR(hr);
+        hr = (tuneRequest as IDVBTuneRequest).put_TSID(3);
+        DsError.ThrowExceptionForHR(hr);
+        hr = (tuneRequest as IDVBTuneRequest).put_SID(769);
+        DsError.ThrowExceptionForHR(hr);
+*/
+        hr = locator.put_CarrierFrequency(474000);
+        DsError.ThrowExceptionForHR(hr);
+
+        hr = tuneRequest.put_Locator(locator);
+        DsError.ThrowExceptionForHR(hr);
+
+        Marshal.ReleaseComObject(locator);
+
+        hr = (tuneRequest as IDVBTuneRequest).put_ONID(8442);
+        DsError.ThrowExceptionForHR(hr);
+        hr = (tuneRequest as IDVBTuneRequest).put_TSID(2);
+        DsError.ThrowExceptionForHR(hr);
+        hr = (tuneRequest as IDVBTuneRequest).put_SID(516);
+        DsError.ThrowExceptionForHR(hr);
+
       }
 
       if (networkType == BDANetworkType.DVBS)

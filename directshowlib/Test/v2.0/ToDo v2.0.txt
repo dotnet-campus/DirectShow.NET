@@ -9,26 +9,26 @@ IEvalRat								6	snarfle		ready
 
 ----DvbSiParser stuff
 IDvbSiParser							15
-IDVB_BAT								16
-ICAT									9
-IDVB_DIT								2
-IDVB_EIT								21
-IDVB_NIT								17
-IPAT									11
-IPMT									19
+IDVB_BAT								16	nowinskie	ready
+ICAT									9	nowinskie	ready
+IDVB_DIT								2	
+IDVB_EIT								21	nowinskie	ready
+IDVB_NIT								17	nowinskie	ready
+IPAT									11	nowinskie	ready
+IPMT									19	nowinskie	ready
 IDVB_RST								7
-IDVB_SDT								18
+IDVB_SDT								18	nowinskie	ready
 IDVB_SIT								15
-IDVB_ST									3
-IDVB_TDT								2
-IDVB_TOT								5
-ITSDT									9
+IDVB_ST									3	nowinskie
+IDVB_TDT								2	nowinskie
+IDVB_TOT								5	nowinskie	ready
+ITSDT									9	nowinskie
 IDvbFrequencyListDescriptor				5
 IDvbLogicalChannelDescriptor			5
 IDvbSatelliteDeliverySystemDescriptor	9
-IDvbServiceDescriptor					8
-IDvbTerrestrialDeliverySystemDescriptor	11
-IGenericDescriptor						4
+IDvbServiceDescriptor					8	nowinskie
+IDvbTerrestrialDeliverySystemDescriptor	11	nowinskie	ready
+IGenericDescriptor						4	nowinskie	ready
 
 ----Misc stuff
 IMpeg2TableFilter						6
