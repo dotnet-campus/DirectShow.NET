@@ -147,7 +147,7 @@ namespace DirectShowLib.BDA
     [PreserveSig]
     int GetTableDescriptorByTag(
       [In] byte bTag,
-      [In, Out] IntPtr pdwCookie,
+      [In, Out] DsInt pdwCookie,
       [Out] out IGenericDescriptor ppDescriptor
       );
 
@@ -289,7 +289,7 @@ namespace DirectShowLib.BDA
     [PreserveSig]
     int GetTableDescriptorByTag(
       [In] byte bTag,
-      [In, Out] IntPtr pdwCookie,
+      [In, Out] DsInt pdwCookie,
       [Out] out IGenericDescriptor ppDescriptor
       );
 

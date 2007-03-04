@@ -81,7 +81,7 @@ namespace DirectShowLib.BDA
 
     [PreserveSig]
     int GetBAT(
-      [In] IntPtr pwBouquetId,
+      [In] DsShort pwBouquetId,
       [Out] out IDVB_BAT ppBAT
       );
 
@@ -415,13 +415,13 @@ namespace DirectShowLib.BDA
     [PreserveSig]
     int GetTableDescriptorByIndex(
       [In] int dwIndex,
-      [In] IGenericDescriptor ppDescriptor
+      [Out] out IGenericDescriptor ppDescriptor
       );
 
     [PreserveSig]
     int GetTableDescriptorByTag(
       [In] byte bTag,
-      [In] IntPtr pdwCookie,
+      [In] DsInt pdwCookie,
       [Out] out IGenericDescriptor ppDescriptor
       );
 
@@ -456,7 +456,7 @@ namespace DirectShowLib.BDA
     int GetRecordDescriptorByTag(
       [In] int dwRecordIndex,
       [In] byte bTag,
-      [In] IntPtr pdwCookie,
+      [In] DsInt pdwCookie,
       [Out] out IGenericDescriptor ppDescriptor
       );
 
@@ -566,7 +566,7 @@ namespace DirectShowLib.BDA
     [PreserveSig]
     int GetTableDescriptorByTag(
       [In] byte bTag,
-      [In, Out] IntPtr pdwCookie,
+      [In, Out] DsInt pdwCookie,
       [Out] out IGenericDescriptor ppDescriptor
       );
   }
