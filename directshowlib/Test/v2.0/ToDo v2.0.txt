@@ -3,7 +3,7 @@ Interface							Methods	Assigned	Reviewer
 IAMCameraControl						3	philatkin	snarfle
 IConfigAsfWriter2						4	snarfle		ready
 IDTFilter								8	snarfle		ready
-IDTFilterConfig							1	snarfle		ready
+IDTFilterConfig							1	snarfle		oohansen
 IETFilterConfig							2	snarfle		ready
 IEvalRat								6	snarfle		ready
 
