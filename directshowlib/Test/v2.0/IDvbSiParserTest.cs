@@ -219,7 +219,6 @@ namespace v2_0
       IEnumPIDMap enumPIDMap;
       IEnumPIDMap enumPIDMap2;
       PIDMap[] pids = new PIDMap[1];
-      int dummy = 0;
 
       hr = pidMapper.EnumPIDMap(out enumPIDMap);
       DsError.ThrowExceptionForHR(hr);
