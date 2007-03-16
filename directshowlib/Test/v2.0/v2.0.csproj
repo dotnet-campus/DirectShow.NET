@@ -40,6 +40,7 @@
     <Compile Include="BdaUtils.cs" />
     <Compile Include="ICATTest.cs" />
     <Compile Include="IConfigAsfWriter2Test.cs" />
+    <Compile Include="IDTFilter2Test.cs" />
     <Compile Include="IDTFilterConfigTest.cs" />
     <Compile Include="IDTFilterTest.cs" />
     <Compile Include="IDvbServiceDescriptorTest.cs" />

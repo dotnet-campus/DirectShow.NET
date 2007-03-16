@@ -6,7 +6,7 @@ using System.Text;
 using DirectShowLib;
 using DirectShowLib.BDA;
 
-namespace v1._6
+namespace v2_0
 {
     public class IDTFilter2Test
     {
@@ -40,13 +40,11 @@ namespace v1._6
         private void TestGetCurrLicenseExpDate()
         {
             int hr;
-            int i = 0;
             ProtType p = ProtType.Once;
-            IntPtr p1 = Marshal.AllocCoTaskMem(8);
-            IntPtr p2 = Marshal.AllocCoTaskMem(8);
+            int p2;
 
             // Not implemented
-            hr = m_ft.GetCurrLicenseExpDate(out p1, out p2);
+            hr = m_ft.GetCurrLicenseExpDate(p, out p2);
             DsError.ThrowExceptionForHR(hr);
         }
 
@@ -60,7 +58,7 @@ namespace v1._6
 
         private void Configure()
         {
-            m_ft = (IDTFilter2)new DecryptTag();
+            m_ft = (IDTFilter2)new DTFilter();
         }
     }
 }
