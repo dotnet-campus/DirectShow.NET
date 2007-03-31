@@ -128,9 +128,7 @@ namespace DirectShowLib
 
             for (int i=0; i<this.cElems; i++)
             {
-                // In 32Bits OSs IntPtr constructor cast Int64 as Int32. 
-                // It should work on 32Bits and 64 Bits OSs...
-                IntPtr ptr = new IntPtr(this.pElems.ToInt64() + (IntPtr.Size * i));
+                IntPtr ptr = new IntPtr(this.pElems.ToInt64() + (Marshal.SizeOf(typeof(Guid)) * i));
                 retval[i] = (Guid) Marshal.PtrToStructure(ptr, typeof(Guid));
             }
 
