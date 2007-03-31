@@ -271,7 +271,7 @@ namespace DirectShowLib.BDA
         new int put_BlockedRatingAttributes(
             EnTvRat_System enSystem,
             EnTvRat_GenericLevel enLevel,
-            int lbfAttrs
+            BfEnTvRat_GenericAttributes lbfAttrs
             );
 
         [PreserveSig]
