@@ -273,10 +273,10 @@ namespace DirectShowLib.SBE
         int GetStartRecConfig([Out, MarshalAs(UnmanagedType.Bool)] out bool pfStartStopsCur);
 
         [PreserveSig]
-        int SetStartRecConfig([In, MarshalAs(UnmanagedType.LPWStr)] string pszNamespace);
+        int SetNamespace([In, MarshalAs(UnmanagedType.LPWStr)] string pszNamespace);
 
         [PreserveSig]
-        int GetStartRecConfig([Out, MarshalAs(UnmanagedType.LPWStr)] out string ppszNamespace);
+        int GetNamespace([Out, MarshalAs(UnmanagedType.LPWStr)] out string ppszNamespace);
     }
 
 #endif
