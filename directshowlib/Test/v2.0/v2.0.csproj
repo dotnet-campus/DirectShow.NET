@@ -58,8 +58,10 @@
     <Compile Include="IEvalRatTest.cs" />
     <Compile Include="IGenericDescriptorTest.cs" />
     <Compile Include="IGetCapabilitiesKeyTest.cs" />
+    <Compile Include="IMpeg2TableFilterTest.cs" />
     <Compile Include="IPATTest.cs" />
     <Compile Include="IPMTTest.cs" />
+    <Compile Include="IStreamBufferConfigure3Test.cs" />
     <Compile Include="ITSDTTest.cs" />
     <Compile Include="RunTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

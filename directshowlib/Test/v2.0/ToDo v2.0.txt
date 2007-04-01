@@ -33,7 +33,7 @@ IGenericDescriptor						4	nowinskie	ready
 ----Misc stuff
 IMpeg2TableFilter						6
 IScanningTunerEx						8
-IStreamBufferConfigure3					4
+IStreamBufferConfigure3					4	nowinskie	ready (Vista needed)
 
 ----HW dependent 
 IBDA_AutoDemodulateEx					3

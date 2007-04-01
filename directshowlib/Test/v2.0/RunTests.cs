@@ -103,6 +103,12 @@ namespace v2_0
             //IGenericDescriptorTest t40 = new IGenericDescriptorTest();
             //t40.DoTests();
 
+            //IMpeg2TableFilterTest t41 = new IMpeg2TableFilterTest();
+            //t41.DoTests();
+
+            IStreamBufferConfigure3Test t42 = new IStreamBufferConfigure3Test();
+            t42.DoTests();
+
         }
     }
 }
