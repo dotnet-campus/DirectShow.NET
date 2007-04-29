@@ -348,7 +348,7 @@ namespace DirectShowLib.DES
     /// <summary>
     /// From SCompFmt0
     /// </summary>
-    [StructLayout(LayoutKind.Sequential, Pack=4)]
+    [StructLayout(LayoutKind.Sequential)]
     public class SCompFmt0
     {
         public int nFormatId;

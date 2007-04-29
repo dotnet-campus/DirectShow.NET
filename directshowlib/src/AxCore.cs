@@ -84,7 +84,7 @@ namespace DirectShowLib
     /// <summary>
     /// From PIN_INFO
     /// </summary>
-    [StructLayout(LayoutKind.Sequential, Pack=1, CharSet=CharSet.Unicode)]
+    [StructLayout(LayoutKind.Sequential, CharSet=CharSet.Unicode)]
     public struct PinInfo
     {
         [MarshalAs(UnmanagedType.Interface)] public IBaseFilter filter;
@@ -96,7 +96,7 @@ namespace DirectShowLib
     /// From AM_MEDIA_TYPE - When you are done with an instance of this class,
     /// it should be released with FreeAMMediaType() to avoid leaking
     /// </summary>
-    [StructLayout(LayoutKind.Sequential, Pack=1)]
+    [StructLayout(LayoutKind.Sequential)]
     public class AMMediaType
     {
         public Guid majorType;
