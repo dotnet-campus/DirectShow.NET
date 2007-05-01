@@ -253,7 +253,7 @@ namespace DirectShowLib
     {
         public int uDevID;
         public DsRect rcMonitor;
-        public int hMon;
+        public IntPtr hMon;
         public int dwFlags;
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst=32)] public string szDevice;
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst=512)] public string szDescription;
