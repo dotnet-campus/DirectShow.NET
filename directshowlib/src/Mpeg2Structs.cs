@@ -271,18 +271,6 @@ namespace DirectShowLib.BDA
   }
 
   /// <summary>
-  /// From MPEG_STREAM_BUFFER
-  /// </summary>
-  [StructLayout(LayoutKind.Sequential, Pack = 4)]
-  public struct MpegStreamBuffer
-  {
-    public int hr;
-    public int dwDataBufferSize;
-    public int dwSizeOfDataRead;
-    public IntPtr pDataBuffer;
-  }
-
-  /// <summary>
   /// From MPEG_DURATION & MPEG_TIME
   /// </summary>
   [StructLayout(LayoutKind.Sequential, Pack = 1)]
@@ -337,43 +325,6 @@ namespace DirectShowLib.BDA
   }
 
   /// <summary>
-  /// From MPEG_CONTEXT_TYPE
-  /// </summary>
-  public enum MpegContextType
-  {
-    BcsDemux,
-    Winsock
-  }
-
-  /// <summary>
-  /// From MPEG_BCS_DEMUX
-  /// </summary>
-  [StructLayout(LayoutKind.Sequential, Pack = 4)]
-  public struct MpegBcsDemux
-  {
-    public int AVMGraphId;
-  }
-
-  /// <summary>
-  /// From MPEG_WINSOCK
-  /// </summary>
-  [StructLayout(LayoutKind.Sequential, Pack = 4)]
-  public struct MpegWinsock
-  {
-    public int AVMGraphId;
-  }
-
-  /// <summary>
-  /// From MPEG_CONTEXT
-  /// </summary>
-  [StructLayout(LayoutKind.Sequential, Pack = 4)]
-  public struct MpegContext
-  {
-    public MpegContextType Type;
-    public int AVMGraphId; // easier to marshal...
-  }
-
-  /// <summary>
   /// From MPEG_REQUEST_TYPE
   /// </summary>
   public enum MpegRequestType
@@ -396,7 +347,7 @@ namespace DirectShowLib.BDA
   public class MpegServiceRequest
   {
     public MpegRequestType Type;
-    public MpegContext Context;
+    public MPEGContext Context;
     public short Pid;
     public byte TableId;
     public MPEG2Filter Filter;
