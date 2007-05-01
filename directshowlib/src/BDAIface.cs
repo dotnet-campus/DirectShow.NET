@@ -130,21 +130,6 @@ namespace DirectShowLib.BDA
     }
 
     /// <summary>
-    /// From DrmPairingStatus
-    /// </summary>
-    public enum DrmPairingStatus
-    {
-      Succeeded = 0,
-      HardwareFailure,
-      NeedRevocationData,
-      NeedIndiv,
-      Other,
-      DrmInitFailed,
-      DrmNotPaired,
-      DrmRePairSoon
-    }
-
-    /// <summary>
     /// From BDA_DrmPairingError
     /// </summary>
     public enum BDA_DrmPairingError
