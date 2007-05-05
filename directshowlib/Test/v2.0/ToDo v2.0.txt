@@ -7,6 +7,21 @@ IDTFilterConfig							1	snarfle		oohansen
 IETFilterConfig							2	snarfle		oohansen
 IEvalRat								6	snarfle		oohansen
 
+IDigitalLocator							0	snarfle		ready
+IFilterGraph3							1	snarfle		ready
+IBroadcastEventEx						1	snarfle		ready
+
+IBDA_EasMessage							1	snarfle		Untestable since no filters implement
+IBDA_TransportStreamInfo				1	snarfle		Untestable since no filters implement
+IDTFilter2								3	snarfle		ready
+IXDSCodecConfig							2	snarfle		ready
+IReferenceClockTimerControl				2	snarfle		ready
+IATSCLocator2							2	snarfle		ready
+ICCSubStreamFiltering					2	snarfle		ready
+IDTFilter3								3	snarfle		ready
+IXDSCodec	7
+ICodecAPI	15
+
 ----DvbSiParser stuff
 IDvbSiParser							15
 IDVB_BAT								16	nowinskie	ready
@@ -28,17 +43,16 @@ IDvbLogicalChannelDescriptor			5
 IDvbSatelliteDeliverySystemDescriptor	9
 IDvbServiceDescriptor					8	nowinskie
 IDvbTerrestrialDeliverySystemDescriptor	11	nowinskie	ready
-IGenericDescriptor						4	nowinskie	ready
+IGenericDescriptor						4	nowinskie	snarfle
 
 ----Misc stuff
 IMpeg2TableFilter						6
 IScanningTunerEx						8
-IStreamBufferConfigure3					4	nowinskie	ready (Vista needed)
+IStreamBufferConfigure3					4	nowinskie	snarfle
 
 ----HW dependent 
 IBDA_AutoDemodulateEx					3
 IBDA_ConditionalAccess					10
 IBDA_DiagnosticProperties				0
 IBDA_DRM								2
-IBDA_TransportStreamInfo				1
 ITunerCap								3
