@@ -32,6 +32,26 @@ namespace DirectShowLib.BDA
 #if ALLOW_UNTESTED_INTERFACES
 
     /// <summary>
+    /// From KS_CC_SUBSTREAM_SERVICE_* defines
+    /// </summary>
+    [Flags]
+    public enum CCSubstreamService
+    {
+        None = 0,
+        CC1 = 0x0001, //CC1 (caption channel) 
+        CC2 = 0x0002, //CC2 (caption channel) 
+        T1 = 0x0004, // T1 (text channel) 
+        T2 = 0x0008, // T2 (text channel) 
+        CC3 = 0x0100, // CC3 (caption channel) 
+        CC4 = 0x0200, // CC4 (caption channel) 
+        T3 = 0x0400, // T3 (text channel) 
+        T4 = 0x0800, // T4 (text channel) 
+        XDS = 0x1000, // Extended Data Services (XDS) 
+        Field1 = 0x000F, // Bitmask to filter field 1 substreams. 
+        Field2 = 0x1F00 //Bitmask to filter field 2 substreams 
+    }
+
+    /// <summary>
     /// From KSPROPERTY_IPSINK
     /// </summary>
     public enum KSPropertyIPSink
@@ -322,10 +342,10 @@ namespace DirectShowLib.BDA
   public interface ICCSubStreamFiltering
   {
     [PreserveSig]
-    int get_SubstreamTypes([Out] out int Types);
+    int get_SubstreamTypes([Out] out CCSubstreamService Types);
 
     [PreserveSig]
-    int put_SubstreamTypes([In] int Types);
+    int put_SubstreamTypes([In] CCSubstreamService Types);
   }
 
   [ComImport,
