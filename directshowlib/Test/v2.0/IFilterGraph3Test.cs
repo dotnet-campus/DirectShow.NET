@@ -27,7 +27,7 @@ namespace v2_0
             Marshal.ReleaseComObject(m_ifg3);
         }
 
-        public void Configure()
+        private void Configure()
         {
             m_ifg3 = new FilterGraph() as IFilterGraph3;
 

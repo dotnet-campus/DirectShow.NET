@@ -38,15 +38,18 @@
   <ItemGroup>
     <Compile Include="BdaGraph.cs" />
     <Compile Include="BdaUtils.cs" />
+    <Compile Include="IATSCLocator2Test.cs" />
     <Compile Include="IBDA_EasMessageTest.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="IBDA_TransportStreamInfoTest.cs" />
     <Compile Include="IBroadcastEventExTest.cs" />
     <Compile Include="ICATTest.cs" />
+    <Compile Include="ICCSubStreamFilteringTest.cs" />
     <Compile Include="IConfigAsfWriter2Test.cs" />
     <Compile Include="IDigitalLocatorTest.cs" />
     <Compile Include="IDTFilter2Test.cs" />
+    <Compile Include="IDTFilter3Test.cs" />
     <Compile Include="IDTFilterConfigTest.cs" />
     <Compile Include="IDTFilterTest.cs" />
     <Compile Include="IDvbServiceDescriptorTest.cs" />
@@ -67,8 +70,10 @@
     <Compile Include="IGetCapabilitiesKeyTest.cs" />
     <Compile Include="IPATTest.cs" />
     <Compile Include="IPMTTest.cs" />
+    <Compile Include="IReferenceClockTimerControlTest.cs" />
     <Compile Include="IStreamBufferConfigure3Test.cs" />
     <Compile Include="ITSDTTest.cs" />
+    <Compile Include="IXDSCodecConfigTest.cs" />
     <Compile Include="RunTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IAMCameraControlTest.cs" />

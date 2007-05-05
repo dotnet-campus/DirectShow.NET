@@ -11,24 +11,29 @@ using DirectShowLib.BDA;
 
 namespace v2_0
 {
-    class IBDA_TransportStreamInfoTest
+    class IReferenceClockTimerControlTest
     {
-        IBDA_TransportStreamInfo m_tsi;
+        IReferenceClockTimerControl m_rctc;
 
         public void DoTests()
         {
-            int i;
+            int hr;
+            long l;
+
             Configure();
 
-            int hr = m_tsi.get_PatTableTickCount(out i);
+            hr = m_rctc.SetDefaultTimerResolution(20000);
             DsError.ThrowExceptionForHR(hr);
+
+            hr = m_rctc.GetDefaultTimerResolution(out l);
+            DsError.ThrowExceptionForHR(hr);
+
+            Debug.Assert(l == 20000, "DefaultTimerResolution");
         }
 
         private void Configure()
         {
-            Guid g = new Guid("{fc772ab0-0c7f-11d3-8ff2-00a0c9224cf4}");
-            Type type = Type.GetTypeFromCLSID(g);
-            m_tsi = Activator.CreateInstance(type) as IBDA_TransportStreamInfo;
+            m_rctc = new SystemClock() as IReferenceClockTimerControl;
         }
     }
 }

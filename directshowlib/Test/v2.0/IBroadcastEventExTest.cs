@@ -21,7 +21,7 @@ namespace v2_0
             DsError.ThrowExceptionForHR(hr);
         }
 
-        public void Configure()
+        private void Configure()
         {
             // WST Page filter
             Guid g = new Guid("{ad6c8934-f31b-4f43-b5e4-0541c1452f6f}");

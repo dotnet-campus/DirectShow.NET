@@ -11,24 +11,24 @@ using DirectShowLib.BDA;
 
 namespace v2_0
 {
-    class IBDA_TransportStreamInfoTest
+    class IXDSCodecTest
     {
-        IBDA_TransportStreamInfo m_tsi;
+        IXDSCodec m_xc;
 
         public void DoTests()
         {
-            int i;
-            Configure();
+            int hr;
+            object o;
 
-            int hr = m_tsi.get_PatTableTickCount(out i);
-            DsError.ThrowExceptionForHR(hr);
+            Configure();
         }
 
         private void Configure()
         {
+            // BDA MPEG2 Transport Information Filter
             Guid g = new Guid("{fc772ab0-0c7f-11d3-8ff2-00a0c9224cf4}");
             Type type = Type.GetTypeFromCLSID(g);
-            m_tsi = Activator.CreateInstance(type) as IBDA_TransportStreamInfo;
+            m_xc = Activator.CreateInstance(type) as IXDSCodec;
         }
     }
 }

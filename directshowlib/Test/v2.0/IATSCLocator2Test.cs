@@ -11,24 +11,29 @@ using DirectShowLib.BDA;
 
 namespace v2_0
 {
-    class IBDA_TransportStreamInfoTest
+    class IATSCLocator2Test
     {
-        IBDA_TransportStreamInfo m_tsi;
+        IATSCLocator2 m_al;
 
         public void DoTests()
         {
-            int i;
+            int hr;
+            int p;
+
             Configure();
 
-            int hr = m_tsi.get_PatTableTickCount(out i);
+            hr = m_al.put_ProgramNumber(213);
             DsError.ThrowExceptionForHR(hr);
+
+            hr = m_al.get_ProgramNumber(out p);
+            DsError.ThrowExceptionForHR(hr);
+
+            Debug.Assert(p == 213, "ProgramNumber");
         }
 
         private void Configure()
         {
-            Guid g = new Guid("{fc772ab0-0c7f-11d3-8ff2-00a0c9224cf4}");
-            Type type = Type.GetTypeFromCLSID(g);
-            m_tsi = Activator.CreateInstance(type) as IBDA_TransportStreamInfo;
+            m_al = new ATSCLocator() as IATSCLocator2;
         }
     }
 }

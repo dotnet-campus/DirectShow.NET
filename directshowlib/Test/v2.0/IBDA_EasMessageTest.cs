@@ -26,7 +26,7 @@ namespace v2_0
             DsError.ThrowExceptionForHR(hr);
         }
 
-        public void Configure()
+        private void Configure()
         {
             // BDA MPEG2 Transport Information Filter
             Guid g = new Guid("{fc772ab0-0c7f-11d3-8ff2-00a0c9224cf4}");

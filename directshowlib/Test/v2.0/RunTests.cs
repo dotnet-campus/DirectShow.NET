@@ -123,6 +123,21 @@ namespace v2_0
 
             //IBDA_TransportStreamInfoTest t47 = new IBDA_TransportStreamInfoTest();
             //t47.DoTests();
+
+            //IXDSCodecConfigTest t48 = new IXDSCodecConfigTest();
+            //t48.DoTests();
+
+            //IReferenceClockTimerControlTest t49 = new IReferenceClockTimerControlTest();
+            //t49.DoTests();
+
+            //IATSCLocator2Test t50 = new IATSCLocator2Test();
+            //t50.DoTests();
+
+            //ICCSubStreamFilteringTest t51 = new ICCSubStreamFilteringTest();
+            //t51.DoTests();
+
+            //IDTFilter3Test t52 = new IDTFilter3Test();
+            //t52.DoTests();
         }
     }
 }
