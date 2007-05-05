@@ -106,9 +106,23 @@ namespace v2_0
             //IMpeg2TableFilterTest t41 = new IMpeg2TableFilterTest();
             //t41.DoTests();
 
-            IStreamBufferConfigure3Test t42 = new IStreamBufferConfigure3Test();
-            t42.DoTests();
+            //IStreamBufferConfigure3Test t42 = new IStreamBufferConfigure3Test();
+            //t42.DoTests();
 
+            //IDigitalLocatorTest t43 = new IDigitalLocatorTest();
+            //t43.DoTests();
+
+            //IFilterGraph3Test t44 = new IFilterGraph3Test();
+            //t44.DoTests();
+
+            //IBroadcastEventExTest t45 = new IBroadcastEventExTest();
+            //t45.DoTests();
+
+            // IBDA_EasMessageTest t46 = new IBDA_EasMessageTest();
+            // t46.DoTests();
+
+            //IBDA_TransportStreamInfoTest t47 = new IBDA_TransportStreamInfoTest();
+            //t47.DoTests();
         }
     }
 }

@@ -32,7 +32,6 @@ namespace v2_0
             int hr;
             string s;
 
-            // Not implemented
             hr = m_ft.get_ChallengeUrl(out s);
             DsError.ThrowExceptionForHR(hr);
         }
@@ -43,9 +42,9 @@ namespace v2_0
             ProtType p = ProtType.Once;
             int p2;
 
-            // Not implemented
+            // Not implemented (per docs)
             hr = m_ft.GetCurrLicenseExpDate(p, out p2);
-            DsError.ThrowExceptionForHR(hr);
+            //DsError.ThrowExceptionForHR(hr);
         }
 
         private void TestGetLastErrorCode()
