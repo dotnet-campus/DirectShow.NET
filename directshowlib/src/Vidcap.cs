@@ -721,7 +721,7 @@ namespace DirectShowLib
         [PreserveSig]
         int get_NodeName(
             [In] int dwNodeId,
-            [Out, MarshalAs(UnmanagedType.LPWStr)] out string pwchNodeName,
+            [In] IntPtr pwchNodeName,
             [In] int dwBufSize,
             [Out] out int pdwNameLen
             );

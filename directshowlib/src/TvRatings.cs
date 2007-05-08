@@ -224,7 +224,7 @@ namespace DirectShowLib.BDA
             [In] byte byte2,
             [Out] out EnTvRat_System pEnSystem,
             [Out] out EnTvRat_GenericLevel pEnLevel,
-            [Out] BfEnTvRat_GenericAttributes plBfEnAttributes
+            [Out] out BfEnTvRat_GenericAttributes plBfEnAttributes
             );
     }
 
