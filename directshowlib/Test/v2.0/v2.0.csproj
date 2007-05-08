@@ -38,10 +38,15 @@
   <ItemGroup>
     <Compile Include="BdaGraph.cs" />
     <Compile Include="BdaUtils.cs" />
+    <Compile Include="IAnalogRadioTuningSpace2Test.cs" />
+    <Compile Include="IAnalogRadioTuningSpaceTest.cs" />
     <Compile Include="IATSCLocator2Test.cs" />
+    <Compile Include="IAuxInTuningSpace2Test.cs" />
     <Compile Include="IBDA_EasMessageTest.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="IBDA_NetworkProviderTest.cs" />
+    <Compile Include="IBDA_TIF_REGISTRATIONTest.cs" />
     <Compile Include="IBDA_TransportStreamInfoTest.cs" />
     <Compile Include="IBroadcastEventExTest.cs" />
     <Compile Include="ICATTest.cs" />
@@ -68,12 +73,16 @@
     <Compile Include="IFilterGraph3Test.cs" />
     <Compile Include="IGenericDescriptorTest.cs" />
     <Compile Include="IGetCapabilitiesKeyTest.cs" />
+    <Compile Include="IKsTopologyInfoTest.cs" />
     <Compile Include="IPATTest.cs" />
     <Compile Include="IPMTTest.cs" />
     <Compile Include="IReferenceClockTimerControlTest.cs" />
     <Compile Include="IStreamBufferConfigure3Test.cs" />
     <Compile Include="ITSDTTest.cs" />
+    <Compile Include="ITuneRequestInfoTest.cs" />
     <Compile Include="IXDSCodecConfigTest.cs" />
+    <Compile Include="IXDSCodecTest.cs" />
+    <Compile Include="IXDSToRatTest.cs" />
     <Compile Include="RunTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IAMCameraControlTest.cs" />

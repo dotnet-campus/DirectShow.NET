@@ -138,6 +138,33 @@ namespace v2_0
 
             //IDTFilter3Test t52 = new IDTFilter3Test();
             //t52.DoTests();
+
+            //IXDSCodecTest t53 = new IXDSCodecTest();
+            //t53.DoTests();
+
+            //IAuxInTuningSpace2Test t54 = new IAuxInTuningSpace2Test();
+            //t54.DoTests();
+
+            //IAnalogRadioTuningSpaceTest t55 = new IAnalogRadioTuningSpaceTest();
+            //t55.DoTests();
+
+            //IAnalogRadioTuningSpace2Test t56 = new IAnalogRadioTuningSpace2Test();
+            //t56.DoTests();
+
+            //IBDA_TIF_REGISTRATIONTest t57 = new IBDA_TIF_REGISTRATIONTest();
+            //t57.DoTests();
+
+            //IXDSToRatTest t58 = new IXDSToRatTest();
+            //t58.DoTests();
+
+            //IBDA_NetworkProviderTest t59 = new IBDA_NetworkProviderTest();
+            //t59.DoTests();
+
+            //ITuneRequestInfoTest t60 = new ITuneRequestInfoTest();
+            //t60.DoTests();
+
+            //IKsTopologyInfoTest t61 = new IKsTopologyInfoTest();
+            //t61.DoTests();
         }
     }
 }

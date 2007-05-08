@@ -6,21 +6,23 @@ IDTFilter								8	snarfle		oohansen
 IDTFilterConfig							1	snarfle		oohansen
 IETFilterConfig							2	snarfle		oohansen
 IEvalRat								6	snarfle		oohansen
-
 IDigitalLocator							0	snarfle		ready
 IFilterGraph3							1	snarfle		ready
 IBroadcastEventEx						1	snarfle		ready
-
-IBDA_EasMessage							1	snarfle		Untestable since no filters implement
-IBDA_TransportStreamInfo				1	snarfle		Untestable since no filters implement
 IDTFilter2								3	snarfle		ready
 IXDSCodecConfig							2	snarfle		ready
 IReferenceClockTimerControl				2	snarfle		ready
 IATSCLocator2							2	snarfle		ready
 ICCSubStreamFiltering					2	snarfle		ready
 IDTFilter3								3	snarfle		ready
-IXDSCodec	7
-ICodecAPI	15
+IAnalogRadioTuningSpace2				2	snarfle		ready
+IAuxInTuningSpace2						2	snarfle		ready
+IAnalogRadioTuningSpace					6	snarfle		ready
+IKsTopologyInfo							8	snarfle		ready
+
+ICodecAPI								15
+
+IBDA_TransportStreamInfo				1	snarfle		All methods return E_NOTIMPL
 
 ----DvbSiParser stuff
 IDvbSiParser							15
