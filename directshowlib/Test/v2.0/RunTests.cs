@@ -165,6 +165,10 @@ namespace v2_0
 
             //IKsTopologyInfoTest t61 = new IKsTopologyInfoTest();
             //t61.DoTests();
+
+            //ITunerCapTest t62 = new ITunerCapTest();
+            //t62.DoTests();
+
         }
     }
 }

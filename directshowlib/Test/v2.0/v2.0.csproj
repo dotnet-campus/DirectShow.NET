@@ -79,6 +79,7 @@
     <Compile Include="IReferenceClockTimerControlTest.cs" />
     <Compile Include="IStreamBufferConfigure3Test.cs" />
     <Compile Include="ITSDTTest.cs" />
+    <Compile Include="ITunerCapTest.cs" />
     <Compile Include="ITuneRequestInfoTest.cs" />
     <Compile Include="IXDSCodecConfigTest.cs" />
     <Compile Include="IXDSCodecTest.cs" />
