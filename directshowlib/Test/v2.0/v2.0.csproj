@@ -42,6 +42,7 @@
     <Compile Include="IAnalogRadioTuningSpaceTest.cs" />
     <Compile Include="IATSCLocator2Test.cs" />
     <Compile Include="IAuxInTuningSpace2Test.cs" />
+    <Compile Include="IBDA_AutoDemodulateExTest.cs" />
     <Compile Include="IBDA_EasMessageTest.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -169,6 +169,9 @@ namespace v2_0
             //ITunerCapTest t62 = new ITunerCapTest();
             //t62.DoTests();
 
+            //IBDA_AutoDemodulateExTest t63 = new IBDA_AutoDemodulateExTest();
+            //t63.DoTests();
+
         }
     }
 }

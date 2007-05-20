@@ -52,8 +52,8 @@ IScanningTunerEx						8
 IStreamBufferConfigure3					4	nowinskie	snarfle
 
 ----HW dependent 
-IBDA_AutoDemodulateEx					3
+IBDA_AutoDemodulateEx					3 nowinskie (no hw) ready
 IBDA_ConditionalAccess					10
 IBDA_DiagnosticProperties				0
 IBDA_DRM								2
-ITunerCap								3
+ITunerCap								3 nowinskie ready
