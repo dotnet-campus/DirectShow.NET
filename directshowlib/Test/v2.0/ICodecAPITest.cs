@@ -1,3 +1,5 @@
+// Can't test GetParameterRange
+
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -23,9 +25,65 @@ namespace v2_0
         {
             DoSetup();
             TestIsSupported();
+            TestIsModifiable();
+
+            DoSetup2();
+            TestGetParameterRange();
             TestSave();
 
             Marshal.ReleaseComObject(m_ica);
+        }
+
+        private void TestGetParameterRange()
+        {
+            int hr;
+            object p2 = 1; // new object();
+            object p3 = 2; // new object();
+            object p4 = 3; // new object();
+
+            //IntPtr ip2 = Marshal.AllocCoTaskMem(20);
+            //IntPtr ip3 = Marshal.AllocCoTaskMem(20);
+            //IntPtr ip4 = Marshal.AllocCoTaskMem(20);
+
+            //IntPtr ip5 = Marshal.AllocCoTaskMem(20);
+            //IntPtr ip6 = Marshal.AllocCoTaskMem(20);
+            //IntPtr ip7 = Marshal.AllocCoTaskMem(20);
+
+            //Marshal.WriteInt64(ip5, 0);
+            //Marshal.WriteInt64(ip6, 0);
+            //Marshal.WriteInt64(ip7, 0);
+
+            //Marshal.WriteIntPtr(ip2, ip5);
+            //Marshal.WriteIntPtr(ip3, ip6);
+            //Marshal.WriteIntPtr(ip4, ip7);
+            //long l2 = Marshal.ReadInt64(ip2);
+            //long l3 = Marshal.ReadInt64(ip3);
+            //long l4 = Marshal.ReadInt64(ip4);
+
+            hr = m_ica.GetParameterRange(PropSetID.CODECAPI_AVDecMmcssClass, out p2, out p3, out p4);
+            hr = m_ica.GetParameterRange(PropSetID.CODECAPI_AllSettings, out p2, out p3, out p4);
+            hr = m_ica.GetParameterRange(PropSetID.CODECAPI_AllSettings, out p2, out p3, out p4);
+            hr = m_ica.GetParameterRange(PropSetID.CODECAPI_AudioEncoder, out p2, out p3, out p4);
+            hr = m_ica.GetParameterRange(PropSetID.CODECAPI_ChangeLists, out p2, out p3, out p4);
+            hr = m_ica.GetParameterRange(PropSetID.CODECAPI_CurrentChangeList, out p2, out p3, out p4);
+            hr = m_ica.GetParameterRange(PropSetID.CODECAPI_SetAllDefaults, out p2, out p3, out p4);
+            hr = m_ica.GetParameterRange(PropSetID.CODECAPI_SupportsEvents, out p2, out p3, out p4);
+            hr = m_ica.GetParameterRange(PropSetID.CODECAPI_VideoEncoder, out p2, out p3, out p4);
+            hr = m_ica.GetParameterRange(PropSetID.DroppedFrames, out p2, out p3, out p4);
+            hr = m_ica.GetParameterRange(PropSetID.ENCAPIPARAM_BitRate, out p2, out p3, out p4);
+            hr = m_ica.GetParameterRange(PropSetID.ENCAPIPARAM_BitRateMode, out p2, out p3, out p4);
+            hr = m_ica.GetParameterRange(PropSetID.ENCAPIPARAM_PeakBitRate, out p2, out p3, out p4);
+            hr = m_ica.GetParameterRange(PropSetID.ENCAPIPARAM_SAP_MODE, out p2, out p3, out p4);
+
+            //l2 = Marshal.ReadInt64(ip2);
+            //l3 = Marshal.ReadInt64(ip3);
+            //l4 = Marshal.ReadInt64(ip4);
+
+            //l2 = Marshal.ReadInt64(ip5);
+            //l3 = Marshal.ReadInt64(ip6);
+            //l4 = Marshal.ReadInt64(ip7);
+
+            DsError.ThrowExceptionForHR(hr);
         }
 
         private void TestSave()
@@ -38,20 +96,42 @@ namespace v2_0
             hr = CreateStreamOnHGlobal(IntPtr.Zero, true, out uis);
 
             // false doesn't seem to work
-            hr = m_ica.SetAllSettings(uis);
-            DsError.ThrowExceptionForHR(hr);
-
+            hr = m_ica.GetAllSettings(uis);
+            if (hr >= 0) 
+            { 
+                Debug.WriteLine("TestSave"); 
+            }
         }
 
         private void TestIsSupported()
         {
             int hr;
-            Guid g = new Guid("138130AF-A79B-45D5-B4AA-87697457BA87");
-            Guid g2 = new Guid("374ac4df-7c98-4257-b13d-36087dbee458");
+            Guid g = new Guid();
 
             hr = m_ica.IsSupported(g);
-            hr = m_ica.IsSupported(g2);
+            Debug.Assert(hr == unchecked((int)0x80004001), "IsSupported");
+
+            hr = m_ica.IsSupported(PropSetID.CODECAPI_AVDecMmcssClass);
             DsError.ThrowExceptionForHR(hr);
+        }
+
+        private void TestIsModifiable()
+        {
+            int hr;
+            Guid g = new Guid();
+
+            hr = m_ica.IsModifiable(g);
+            Debug.Assert(hr == 1, "TestIsModifiable");
+
+            hr = m_ica.IsModifiable(PropSetID.CODECAPI_AVDecMmcssClass);
+            Debug.Assert(hr == 0, "TestIsModifiable");
+        }
+
+        private void DoSetup2()
+        {
+            Guid g = new Guid("{42150CD9-CA9A-4EA5-9939-30EE037F6E74}");
+            Type type = Type.GetTypeFromCLSID(g);
+            m_ica = Activator.CreateInstance(type) as ICodecAPI;
         }
 
         private void DoSetup()
@@ -67,9 +147,8 @@ namespace v2_0
                 try
                 {
                     m_ica = Marshal.BindToMoniker(s) as ICodecAPI;
-                    if (m_ica != null)
+                    if (dev.Name == "Microsoft MPEG-1/DD Audio Decoder")
                     {
-                        Debug.WriteLine(dev.Name);
                         break;
                     }
                 }
@@ -79,15 +158,6 @@ namespace v2_0
     }
 }
 #if asdf
-    public interface ICodecAPI
-    {
-        [PreserveSig]
-        int IsSupported([In] Guid Api);
-
-        [PreserveSig]
-        int IsModifiable([In] Guid Api);
-
-        [PreserveSig]
         int GetParameterRange(
             [In] Guid Api,
             [Out] out object ValueMin,
@@ -95,44 +165,36 @@ namespace v2_0
             [Out] out object SteppingDelta
             );
 
-        [PreserveSig]
         int GetParameterValues(
             [In] Guid Api,
             [Out] out object[] Values,
             [Out] out int ValuesCount
             );
 
-        [PreserveSig]
         int GetDefaultValue(
             [In] Guid Api,
             [Out] out object Value
             );
 
-        [PreserveSig]
         int GetValue(
             [In] Guid Api,
             [Out] out object Value
             );
 
-        [PreserveSig]
         int SetValue(
             [In] Guid Api,
             [In] object Value
             );
 
-        [PreserveSig]
         int RegisterForEvent(
             [In] Guid Api,
             [In] IntPtr userData
             );
 
-        [PreserveSig]
         int UnregisterForEvent([In] Guid Api);
 
-        [PreserveSig]
         int SetAllDefaults();
 
-        [PreserveSig]
         int SetValueWithNotify(
             [In] Guid Api,
             [In] object Value,
@@ -140,33 +202,16 @@ namespace v2_0
             [Out] int ChangedParamCount
             );
 
-        [PreserveSig]
         int SetAllDefaultsWithNotify(
             [Out] out Guid[] ChangedParam,
             [Out] out int ChangedParamCount
             );
 
-        [PreserveSig]
-#if USING_NET11
-        int GetAllSettings([In] UCOMIStream pStream);
-#else
         int GetAllSettings([In] IStream pStream);
-#endif
 
-        [PreserveSig]
-#if USING_NET11
-        int SetAllSettings([In] UCOMIStream pStream);
-#else
         int SetAllSettings([In] IStream pStream);
-#endif
 
-        [PreserveSig]
-        int SetAllSettingsWithNotify(
-#if USING_NET11
-            [In] UCOMIStream pStream,
-#else
             [In] IStream pStream,
-#endif
             [Out] out Guid[] ChangedParam,
             [Out] out int ChangedParamCount
             );
