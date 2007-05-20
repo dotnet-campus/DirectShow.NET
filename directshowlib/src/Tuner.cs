@@ -1240,20 +1240,20 @@ namespace DirectShowLib.BDA
   public interface ITunerCap
   {
     [PreserveSig]
-    int SupportedNetworkTypes(
+    int get_SupportedNetworkTypes(
       [In] int ulcNetworkTypesMax,
       [Out] out int pulcNetworkTypes,
-      [In, Out] Guid[] pguidNetworkTypes
+      [In, Out, MarshalAs(UnmanagedType.LPArray, ArraySubType=UnmanagedType.Struct)] Guid[] pguidNetworkTypes
       );
 
     [PreserveSig]
-    int SupportedVideoFormats(
+    int get_SupportedVideoFormats(
       [Out] out AMTunerModeType pulAMTunerModeType,
       [Out] out AnalogVideoStandard pulAnalogVideoStandard
       );
 
     [PreserveSig]
-    int AuxInputCount(
+    int get_AuxInputCount(
       [Out] out int pulCompositeCount,
       [Out] out int pulSvideoCount
       );
