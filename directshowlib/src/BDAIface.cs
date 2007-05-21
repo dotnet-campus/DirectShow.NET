@@ -319,7 +319,7 @@ namespace DirectShowLib.BDA
     [PreserveSig]
     int get_SupportedDeviceNodeTypes(
         [In] int ulcDeviceNodeTypesMax,
-        [In, Out] ref int pulcDeviceNodeTypes,
+        [Out] out int pulcDeviceNodeTypes,
         [In, Out, MarshalAs(UnmanagedType.LPArray, ArraySubType=UnmanagedType.Struct)] Guid[] pguidDeviceNodeTypes
         );
 

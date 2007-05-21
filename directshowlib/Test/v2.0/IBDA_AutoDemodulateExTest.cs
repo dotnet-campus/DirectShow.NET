@@ -51,12 +51,12 @@ namespace v2_0
       Guid[] networkTypes;
       int networkTypesWritten = 0;
 
-      hr = autoDemodulateEx.get_SupportedDeviceNodeTypes(0, ref networkTypesWritten, null);
+      hr = autoDemodulateEx.get_SupportedDeviceNodeTypes(0, out networkTypesWritten, null);
       Debug.Assert((hr == 0), "IBDA_AutoDemodulateEx.get_SupportedNetworkTypes failed");
 
       networkTypes = new Guid[networkTypesWritten];
 
-      hr = autoDemodulateEx.get_SupportedDeviceNodeTypes(networkTypes.Length, ref networkTypesWritten, networkTypes);
+      hr = autoDemodulateEx.get_SupportedDeviceNodeTypes(networkTypes.Length, out networkTypesWritten, networkTypes);
       Debug.Assert((hr == 0) && (networkTypesWritten > 0) && (networkTypes[0] == typeof(DVBTNetworkProvider).GUID), "IBDA_AutoDemodulateEx.get_SupportedNetworkTypes failed");
     }
 
