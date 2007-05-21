@@ -97,7 +97,7 @@ namespace v2_0
         hr = eit.GetRecordFreeCAMode(i, out freeCAMode);
         Debug.Assert((hr == 0), "IDVB_EIT.GetRecordFreeCAMode failed");
 
-        byte runningStatus = 0;
+        RunningStatus runningStatus = 0;
         hr = eit.GetRecordRunningStatus(i, out runningStatus);
         Debug.Assert((hr == 0 && (runningStatus != 0)), "IDVB_EIT.GetRecordRunningStatus failed");
 
