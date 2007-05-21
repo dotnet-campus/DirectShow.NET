@@ -138,7 +138,7 @@ namespace DirectShowLib.BDA
     /// <summary>
     /// From SmartCardApplication
     /// </summary>
-    [StructLayout(LayoutKind.Sequential, Pack = 1)]
+    [StructLayout(LayoutKind.Sequential)]
     public struct SmartCardApplication
     {
       public ApplicationTypeType ApplicationType;
