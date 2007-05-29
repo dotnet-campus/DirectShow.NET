@@ -16,13 +16,18 @@ namespace v2_0
 
     public void DoTests()
     {
-      Config();
+      try
+      {
+        Config();
 
-      TestInitialize();
+        TestInitialize();
 
-      TestBatch1();
-
-      Unconfig();
+        TestBatch1();
+      }
+      finally
+      {
+        Unconfig();
+      }
     }
 
     public void TestInitialize()

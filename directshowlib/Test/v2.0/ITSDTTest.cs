@@ -16,18 +16,23 @@ namespace v2_0
 
     public void DoTests()
     {
-      Config();
+      try
+      {
+        Config();
 
-      TestItsdtialize();
+        TestInitialize();
 
-      TestBatch1();
-      TestBatch2();
-      TestBatch3();
-
-      Unconfig();
+        TestBatch1();
+        TestBatch2();
+        TestBatch3();
+      }
+      finally
+      {
+        Unconfig();
+      }
     }
 
-    public void TestItsdtialize()
+    public void TestInitialize()
     {
       // This method is called by the Parser to itsdtialize the object. 
       // It's pointless to call it from an application.

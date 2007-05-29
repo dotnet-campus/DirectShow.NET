@@ -16,15 +16,20 @@ namespace v2_0
 
     public void DoTests()
     {
-      Config();
+      try
+      {
+        Config();
 
-      TestInitialize();
+        TestInitialize();
 
-      TestBatch1();
-      TestBatch2();
-      TestBatch3();
-
-      Unconfig();
+        TestBatch1();
+        TestBatch2();
+        TestBatch3();
+      }
+      finally
+      {
+        Unconfig();
+      }
     }
 
     public void TestInitialize()
@@ -84,7 +89,7 @@ namespace v2_0
         hr = sdt.GetRecordFreeCAMode(i, out FreeCAMode);
         Debug.Assert((hr == 0), "IDVB_SDT.GetRecordFreeCAMode failed");
 
-        byte runningStatus = 0;
+        RunningStatus runningStatus = 0;
         hr = sdt.GetRecordRunningStatus(i, out runningStatus);
         Debug.Assert((hr == 0), "IDVB_SDT.GetRecordRunningStatus failed");
 

@@ -16,16 +16,21 @@ namespace v2_0
 
     public void DoTests()
     {
-      Config();
+      try
+      {
+        Config();
 
-      TestInitialize();
+        TestInitialize();
 
-      TestBatch1();
-      TestBatch2();
-      TestBatch3();
-      TestBatch4();
-
-      Unconfig();
+        TestBatch1();
+        TestBatch2();
+        TestBatch3();
+        TestBatch4();
+      }
+      finally
+      {
+        Unconfig();
+      }
     }
 
     public void TestInitialize()
@@ -34,19 +39,23 @@ namespace v2_0
       // It's pointless to call it from an application.
     }
 
-    // Methods tested : GetPcrPid, GetVersionNumber, QueryMPEInfo
+    // Methods tested : GetPcrPid, GetVersionNumber, GetProgramNumber, QueryMPEInfo
     //                  QueryServiceGatewayInfo
     public void TestBatch1()
     {
       int hr = 0;
 
-      short programNumber = 0;
-      hr = pmt.GetPcrPid(out programNumber);
-      Debug.Assert((hr == 0) && (programNumber != 0), "IPMT.GetPcrPid failed");
+      short pidVal = 0;
+      hr = pmt.GetPcrPid(out pidVal);
+      Debug.Assert((hr == 0) && (pidVal != 0), "IPMT.GetPcrPid failed");
 
-      byte versionNumber = 0;
+      byte versionNumber = 0xff;
       hr = pmt.GetVersionNumber(out versionNumber);
-      Debug.Assert((hr == 0) && (versionNumber != 0), "IPMT.GetVersionNumber failed");
+      Debug.Assert((hr == 0) && (versionNumber != 0xff), "IPMT.GetVersionNumber failed");
+
+      short programNumber = 0;
+      hr = pmt.GetProgramNumber(out programNumber);
+      Debug.Assert((hr == 0) && (programNumber != 0), "IPMT.GetProgramNumber failed");
 
       const int MPEG2_S_SG_INFO_FOUND = 0x00040202;
       const int MPEG2_S_SG_INFO_NOT_FOUND = 0x00040203;
