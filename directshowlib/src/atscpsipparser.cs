@@ -168,7 +168,7 @@ namespace DirectShowLib.BDA
     int GetRecordDescriptorByTag(
       [In] int dwRecordIndex,
       [In] byte bTag,
-      [In] IntPtr pdwCookie,
+      [In, Out] DsInt pdwCookie,
       [Out] out IGenericDescriptor ppDescriptor
       );
 
@@ -318,7 +318,7 @@ namespace DirectShowLib.BDA
     int GetRecordDescriptorByTag(
       [In] int dwRecordIndex,
       [In] byte bTag,
-      [In] IntPtr pdwCookie,
+      [In, Out] DsInt pdwCookie,
       [Out] out IGenericDescriptor ppDescriptor
       );
 
@@ -410,7 +410,7 @@ namespace DirectShowLib.BDA
     int GetRecordDescriptorByTag(
       [In] int dwRecordIndex,
       [In] byte bTag,
-      [In] IntPtr pdwCookie,
+      [In, Out] DsInt pdwCookie,
       [Out] out IGenericDescriptor ppDescriptor
       );
   }
