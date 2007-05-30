@@ -25,25 +25,25 @@ IBDA_TransportStreamInfo				1	snarfle		All methods return E_NOTIMPL
 
 ----DvbSiParser stuff
 IDvbSiParser							15
-IDVB_BAT								16	nowinskie	ready
-ICAT									9	nowinskie	ready
+IDVB_BAT								16	nowinskie	snarfle
+ICAT									9	nowinskie	snarfle
 IDVB_DIT								2	
-IDVB_EIT								21	nowinskie	ready
-IDVB_NIT								17	nowinskie	ready
-IPAT									11	nowinskie	ready
-IPMT									19	nowinskie	ready
+IDVB_EIT								21	nowinskie	snarfle
+IDVB_NIT								17	nowinskie	snarfle
+IPAT									11	nowinskie	snarfle
+IPMT									19	nowinskie	snarfle
 IDVB_RST								7
-IDVB_SDT								18	nowinskie	ready
+IDVB_SDT								18	nowinskie	snarfle
 IDVB_SIT								15
 IDVB_ST									3	nowinskie
 IDVB_TDT								2	nowinskie
-IDVB_TOT								5	nowinskie	ready
+IDVB_TOT								5	nowinskie	snarfle
 ITSDT									9	nowinskie
 IDvbFrequencyListDescriptor				5
 IDvbLogicalChannelDescriptor			5
 IDvbSatelliteDeliverySystemDescriptor	9
 IDvbServiceDescriptor					8	nowinskie
-IDvbTerrestrialDeliverySystemDescriptor	11	nowinskie	ready
+IDvbTerrestrialDeliverySystemDescriptor	11	nowinskie	snarfle
 IGenericDescriptor						4	nowinskie	snarfle
 
 ----Misc stuff
@@ -52,8 +52,8 @@ IScanningTunerEx						8
 IStreamBufferConfigure3					4	nowinskie	snarfle
 
 ----HW dependent 
-IBDA_AutoDemodulateEx					3 nowinskie (no hw) ready
+IBDA_AutoDemodulateEx					3 nowinskie (no hw) can't test
 IBDA_ConditionalAccess					10
 IBDA_DiagnosticProperties				0
 IBDA_DRM								2
-ITunerCap								3 nowinskie ready
+ITunerCap								3 nowinskie snarfle
