@@ -24,36 +24,29 @@ ICodecAPI								15	snarfle		Can't test Parameters methods, nothing supports
 IBDA_TransportStreamInfo				1	snarfle		All methods return E_NOTIMPL
 
 ----DvbSiParser stuff
-IDvbSiParser							15
+IDvbSiParser							15  nowinskie   (parsialy tested in the following tests)
 IDVB_BAT								16	nowinskie	snarfle
 ICAT									9	nowinskie	snarfle
-IDVB_DIT								2	
+IDVB_DIT								2	nowinskie   KO (none of my channels broadcast that but a test is ready)
 IDVB_EIT								21	nowinskie	snarfle
 IDVB_NIT								17	nowinskie	snarfle
 IPAT									11	nowinskie	snarfle
 IPMT									19	nowinskie	snarfle
-IDVB_RST								7
 IDVB_SDT								18	nowinskie	snarfle
-IDVB_SIT								15
-IDVB_ST									3	nowinskie
-IDVB_TDT								2	nowinskie
+IDVB_ST									3	nowinskie   KO (none of my channels broadcast that but a test is ready)
+IDVB_TDT								2	nowinskie   KO (none of my channels broadcast that but a test is ready)
 IDVB_TOT								5	nowinskie	snarfle
-ITSDT									9	nowinskie
-IDvbFrequencyListDescriptor				5
-IDvbLogicalChannelDescriptor			5
-IDvbSatelliteDeliverySystemDescriptor	9
-IDvbServiceDescriptor					8	nowinskie
+ITSDT									9	nowinskie   KO (none of my channels broadcast that but a test is ready)
+IDvbFrequencyListDescriptor				5   nowinskie   KO (none of my channels broadcast that but a test is ready)
+IDvbLogicalChannelDescriptor			5   nowinskie   ready
+IDvbSatelliteDeliverySystemDescriptor	9   nowinskie   ready
+IDvbServiceDescriptor					8	nowinskie   KO (none of my channels broadcast that but a test is ready)
 IDvbTerrestrialDeliverySystemDescriptor	11	nowinskie	snarfle
 IGenericDescriptor						4	nowinskie	snarfle
 
 ----Misc stuff
-IMpeg2TableFilter						6
-IScanningTunerEx						8
 IStreamBufferConfigure3					4	nowinskie	snarfle
 
 ----HW dependent 
 IBDA_AutoDemodulateEx					3 nowinskie (no hw) can't test
-IBDA_ConditionalAccess					10
-IBDA_DiagnosticProperties				0
-IBDA_DRM								2
 ITunerCap								3 nowinskie snarfle

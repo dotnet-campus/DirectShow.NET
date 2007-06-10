@@ -16,12 +16,17 @@ namespace v2_0
 
     public void DoTests()
     {
-      Config();
+      try
+      {
+        Config();
 
-      TestBatch1();
-      TestBatch2();
-
-      Unconfig();
+        TestBatch1();
+        TestBatch2();
+      }
+      finally
+      {
+        Unconfig();
+      }
     }
 
     // Methods tested : GetTag, GetLength

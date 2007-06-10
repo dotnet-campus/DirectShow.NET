@@ -16,12 +16,17 @@ namespace v2_0
 
     public void DoTests()
     {
-      Config();
+      try
+      {
+        Config();
 
-//      TestBatch1();
-//      TestBatch2();
-
-      Unconfig();
+        //      TestBatch1();
+        //      TestBatch2();
+      }
+      finally
+      {
+        Unconfig();
+      }
     }
 
     private void Config()
@@ -39,7 +44,7 @@ namespace v2_0
       hr = parser.Initialize(graph.bdaSecTab as IMpeg2Data);
       Debug.Assert(hr == 0, "Initialize failed !!!");
 
-      while (true)
+      for (int j = 0; j < 100; j++)
       {
         hr = parser.GetBAT(null, out bat);
         Debug.Assert(bat != null, "Can't get a BAT object");

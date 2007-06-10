@@ -60,7 +60,13 @@ namespace v2_0
       hr = parser.Initialize(graph.bdaSecTab as IMpeg2Data);
       Debug.Assert(hr == 0, "Initialize failed !!!");
 
-      hr = parser.GetTDT(out tdt);
+      for (int i = 0; i < 10; i++)
+      {
+        hr = parser.GetTDT(out tdt);
+        if (tdt != null)
+          break;
+      }
+
       Debug.Assert(tdt != null, "Can't get a TDT object");
     }
 

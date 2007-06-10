@@ -58,10 +58,16 @@
     <Compile Include="IDTFilter3Test.cs" />
     <Compile Include="IDTFilterConfigTest.cs" />
     <Compile Include="IDTFilterTest.cs" />
-    <Compile Include="IDvbServiceDescriptorTest.cs" />
+    <Compile Include="IDvbFrequencyListDescriptorTest.cs" />
+    <Compile Include="IDvbLogicalChannelDescriptorTest.cs" />
+    <Compile Include="IDvbSatelliteDeliverySystemDescriptorTest.cs" />
+    <Compile Include="IDvbServiceDescriptorTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="IDvbSiParserTest.cs" />
     <Compile Include="IDvbTerrestrialDeliverySystemDescriptorTest.cs" />
     <Compile Include="IDVB_BATTest.cs" />
+    <Compile Include="IDVB_DITTest.cs" />
     <Compile Include="IDVB_EITTest.cs" />
     <Compile Include="IDVB_NITTest.cs" />
     <Compile Include="IDVB_SDTTest.cs" />

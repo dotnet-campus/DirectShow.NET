@@ -10,7 +10,7 @@ namespace v2_0
   public class BdaGraph
   {
     // Use this field to change the network type...
-    public BDANetworkType networkType = BDANetworkType.DVBT;
+    public BDANetworkType networkType = BDANetworkType.DVBS;
 
     public IFilterGraph2 graphBuilder;
     public DsROTEntry rot;
@@ -103,7 +103,7 @@ namespace v2_0
         hr = tuneRequest.get_Locator(out locator);
         DsError.ThrowExceptionForHR(hr);
 
-        hr = locator.put_CarrierFrequency(474166);
+        hr = locator.put_CarrierFrequency(586166);
         DsError.ThrowExceptionForHR(hr);
 
         hr = tuneRequest.put_Locator(locator);
@@ -113,13 +113,13 @@ namespace v2_0
 
         hr = (tuneRequest as IDVBTuneRequest).put_ONID(8442);
         DsError.ThrowExceptionForHR(hr);
-        hr = (tuneRequest as IDVBTuneRequest).put_TSID(2);
+        hr = (tuneRequest as IDVBTuneRequest).put_TSID(1);
         DsError.ThrowExceptionForHR(hr);
-        hr = (tuneRequest as IDVBTuneRequest).put_SID(513);
+        hr = (tuneRequest as IDVBTuneRequest).put_SID(259);
         DsError.ThrowExceptionForHR(hr);
 
 /*
-        hr = locator.put_CarrierFrequency(522000);
+        hr = locator.put_CarrierFrequency(522166);
         DsError.ThrowExceptionForHR(hr);
 
         hr = tuneRequest.put_Locator(locator);
@@ -135,7 +135,7 @@ namespace v2_0
         DsError.ThrowExceptionForHR(hr);
 */
 /*
-        hr = locator.put_CarrierFrequency(474000);
+        hr = locator.put_CarrierFrequency(562166);
         DsError.ThrowExceptionForHR(hr);
 
         hr = tuneRequest.put_Locator(locator);
@@ -145,9 +145,9 @@ namespace v2_0
 
         hr = (tuneRequest as IDVBTuneRequest).put_ONID(8442);
         DsError.ThrowExceptionForHR(hr);
-        hr = (tuneRequest as IDVBTuneRequest).put_TSID(2);
+        hr = (tuneRequest as IDVBTuneRequest).put_TSID(6);
         DsError.ThrowExceptionForHR(hr);
-        hr = (tuneRequest as IDVBTuneRequest).put_SID(516);
+        hr = (tuneRequest as IDVBTuneRequest).put_SID(1537);
         DsError.ThrowExceptionForHR(hr);
 */
       }
@@ -155,6 +155,7 @@ namespace v2_0
       if (networkType == BDANetworkType.DVBS)
       {
         // Those values are valid for me but must be modified to be valid depending on your Satellite dish
+/*
         hr = tuneRequest.get_Locator(out locator);
         DsError.ThrowExceptionForHR(hr);
 
@@ -177,6 +178,31 @@ namespace v2_0
         hr = (tuneRequest as IDVBTuneRequest).put_TSID(1);
         DsError.ThrowExceptionForHR(hr);
         hr = (tuneRequest as IDVBTuneRequest).put_SID(260);
+        DsError.ThrowExceptionForHR(hr);
+*/
+
+        hr = tuneRequest.get_Locator(out locator);
+        DsError.ThrowExceptionForHR(hr);
+
+        hr = locator.put_CarrierFrequency(11607000);
+        DsError.ThrowExceptionForHR(hr);
+
+        hr = (locator as IDVBSLocator).put_SignalPolarisation(Polarisation.LinearV);
+        DsError.ThrowExceptionForHR(hr);
+
+        hr = locator.put_SymbolRate(6944);
+        DsError.ThrowExceptionForHR(hr);
+
+        hr = tuneRequest.put_Locator(locator);
+        DsError.ThrowExceptionForHR(hr);
+
+        Marshal.ReleaseComObject(locator);
+
+        hr = (tuneRequest as IDVBTuneRequest).put_ONID(144);
+        DsError.ThrowExceptionForHR(hr);
+        hr = (tuneRequest as IDVBTuneRequest).put_TSID(100);
+        DsError.ThrowExceptionForHR(hr);
+        hr = (tuneRequest as IDVBTuneRequest).put_SID(289);
         DsError.ThrowExceptionForHR(hr);
       }
 
