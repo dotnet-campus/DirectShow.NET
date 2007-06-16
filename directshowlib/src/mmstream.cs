@@ -264,7 +264,7 @@ namespace DirectShowLib.MultimediaStreaming
 
     #region Interfaces
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
     Guid("B502D1BD-9A57-11D0-8FDE-00C04FD9189D")]
     public interface IMediaStream
@@ -305,7 +305,7 @@ namespace DirectShowLib.MultimediaStreaming
             );
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("B502D1BC-9A57-11D0-8FDE-00C04FD9189D"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IMultiMediaStream
@@ -359,7 +359,7 @@ namespace DirectShowLib.MultimediaStreaming
             );
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("B502D1BE-9A57-11D0-8FDE-00C04FD9189D"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IStreamSample

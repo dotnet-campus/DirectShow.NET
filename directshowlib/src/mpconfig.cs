@@ -76,7 +76,7 @@ namespace DirectShowLib
 
     #region Interfaces
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("EBF47182-8764-11d1-9E69-00C04FD7C15B"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IMixerPinConfig2 : IMixerPinConfig
@@ -162,7 +162,7 @@ namespace DirectShowLib
             );
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("593CDDE1-0759-11d1-9E69-00C04FD7C15B"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IMixerPinConfig

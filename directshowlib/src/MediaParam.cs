@@ -131,7 +131,7 @@ namespace DirectShowLib.DMO
 
     #region Interfaces
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
     Guid("6D6CBB60-A223-44AA-842F-A2F06750BE6D")]
     public interface IMediaParamInfo
@@ -171,7 +171,7 @@ namespace DirectShowLib.DMO
             );
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
     Guid("6D6CBB61-A223-44AA-842F-A2F06750BE6E")]
     public interface IMediaParams

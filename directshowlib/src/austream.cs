@@ -32,7 +32,7 @@ namespace DirectShowLib.MultimediaStreaming
 
 #if ALLOW_UNTESTED_INTERFACES
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
     Guid("327FC560-AF60-11D0-8212-00C04FC32C45")]
     public interface IMemoryData
@@ -57,7 +57,7 @@ namespace DirectShowLib.MultimediaStreaming
             );
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
     Guid("54C719C0-AF60-11D0-8212-00C04FC32C45")]
     public interface IAudioData : IMemoryData
@@ -96,7 +96,7 @@ namespace DirectShowLib.MultimediaStreaming
             );
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
     Guid("345FEE00-ABA5-11D0-8212-00C04FC32C45")]
     public interface IAudioStreamSample : IStreamSample
@@ -146,7 +146,7 @@ namespace DirectShowLib.MultimediaStreaming
 
 #endif
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
     Guid("F7537560-A3BE-11D0-8212-00C04FC32C45")]
     public interface IAudioMediaStream : IMediaStream

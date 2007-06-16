@@ -76,11 +76,11 @@ namespace DirectShowLib.BDA
     /// </summary>
     public enum SmartCardStatusType
     {
-      CardInserted = 0,
-      CardRemoved,
-      CardError,
-      CardDataChanged,
-      CardFirmwareUpgrade
+        CardInserted = 0,
+        CardRemoved,
+        CardError,
+        CardDataChanged,
+        CardFirmwareUpgrade
     }
 
     /// <summary>
@@ -88,9 +88,9 @@ namespace DirectShowLib.BDA
     /// </summary>
     public enum SmartCardAssociationType
     {
-      NotAssociated = 0,
-      Associated,
-      AssociationUnknown
+        NotAssociated = 0,
+        Associated,
+        AssociationUnknown
     }
 
     /// <summary>
@@ -98,19 +98,19 @@ namespace DirectShowLib.BDA
     /// </summary>
     public enum LocationCodeSchemeType
     {
-      SCTE_18 = 0
+        SCTE_18 = 0
     }
 
     /// <summary>
     /// From EALocationCodeType
     /// </summary>
-    [StructLayout(LayoutKind.Sequential, Pack=1)]
+    [StructLayout(LayoutKind.Sequential, Pack = 1)]
     public struct EALocationCodeType
     {
-      public LocationCodeSchemeType LocationCodeScheme;
-      public byte StateCode;
-      public byte CountySubdivision;
-      public short CountyCode;
+        public LocationCodeSchemeType LocationCodeScheme;
+        public byte StateCode;
+        public byte CountySubdivision;
+        public short CountyCode;
     }
 
     /// <summary>
@@ -118,9 +118,9 @@ namespace DirectShowLib.BDA
     /// </summary>
     public enum EntitlementType
     {
-      Entitled = 0,
-      NotEntitled,
-      TechnicalFailure
+        Entitled = 0,
+        NotEntitled,
+        TechnicalFailure
     }
 
     /// <summary>
@@ -128,11 +128,11 @@ namespace DirectShowLib.BDA
     /// </summary>
     public enum UICloseReasonType
     {
-      NotReady = 0,
-      UserClosed,
-      SystemClosed,
-      DeviceClosed,
-      ErrorClosed
+        NotReady = 0,
+        UserClosed,
+        SystemClosed,
+        DeviceClosed,
+        ErrorClosed
     }
 
     /// <summary>
@@ -141,12 +141,12 @@ namespace DirectShowLib.BDA
     [StructLayout(LayoutKind.Sequential)]
     public struct SmartCardApplication
     {
-      public ApplicationTypeType ApplicationType;
-      public short ApplicationVersion;
-      [MarshalAs(UnmanagedType.BStr)]
-      public string pbstrApplicationName;
-      [MarshalAs(UnmanagedType.BStr)]
-      public string pbstrApplicationURL;
+        public ApplicationTypeType ApplicationType;
+        public short ApplicationVersion;
+        [MarshalAs(UnmanagedType.BStr)]
+        public string pbstrApplicationName;
+        [MarshalAs(UnmanagedType.BStr)]
+        public string pbstrApplicationURL;
     }
 
     /// <summary>
@@ -154,14 +154,14 @@ namespace DirectShowLib.BDA
     /// </summary>
     public enum BDA_DrmPairingError
     {
-      Succeeded = 0,
-      HardwareFailure,
-      NeedRevocationData,
-      NeedIndiv,
-      Other,
-      DrmInitFailed,
-      DrmNotPaired,
-      DrmRePairSoon
+        Succeeded = 0,
+        HardwareFailure,
+        NeedRevocationData,
+        NeedIndiv,
+        Other,
+        DrmInitFailed,
+        DrmNotPaired,
+        DrmRePairSoon
     }
 
 #endif
@@ -213,7 +213,7 @@ namespace DirectShowLib.BDA
 
 #if ALLOW_UNTESTED_INTERFACES
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("fd501041-8ebe-11ce-8183-00aa00577da2"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IBDA_NetworkProvider
@@ -243,7 +243,7 @@ namespace DirectShowLib.BDA
         int UnRegisterDeviceFilter([In] int pvRegistrationContext);
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("71985F46-1CA1-11d3-9CC8-00C04F7971E0"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IBDA_VoidTransform
@@ -255,7 +255,7 @@ namespace DirectShowLib.BDA
         int Stop();
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("DDF15B0D-BD25-11d2-9CA0-00C04F7971E0"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IBDA_NullTransform
@@ -267,7 +267,7 @@ namespace DirectShowLib.BDA
         int Stop();
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("afb6c2a2-2c41-11d3-8a60-0000f81e0e4a"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IEnumPIDMap
@@ -275,7 +275,7 @@ namespace DirectShowLib.BDA
         [PreserveSig]
         int Next(
             [In] int cRequest,
-            [Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0, ArraySubType=UnmanagedType.Struct)] PIDMap[] pPIDMap,
+            [Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 0, ArraySubType = UnmanagedType.Struct)] PIDMap[] pPIDMap,
             [In, Out] IntPtr pcReceived
             );
 
@@ -289,7 +289,7 @@ namespace DirectShowLib.BDA
         int Clone([Out] out IEnumPIDMap ppIEnumPIDMap);
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("0DED49D5-A8B7-4d5d-97A1-12B0C195874D"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IBDA_PinControl
@@ -304,158 +304,158 @@ namespace DirectShowLib.BDA
         int RegistrationContext([Out] out int pulRegistrationCtx);
     }
 
-  [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
   Guid("34518D13-1182-48e6-B28F-B24987787326"),
   InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-  public interface IBDA_AutoDemodulateEx : IBDA_AutoDemodulate
-  {
-    #region IBDA_AutoDemodulate Methods
+    public interface IBDA_AutoDemodulateEx : IBDA_AutoDemodulate
+    {
+        #region IBDA_AutoDemodulate Methods
 
-    [PreserveSig]
-    new int put_AutoDemodulate();
+        [PreserveSig]
+        new int put_AutoDemodulate();
 
-    #endregion
+        #endregion
 
-    [PreserveSig]
-    int get_SupportedDeviceNodeTypes(
-        [In] int ulcDeviceNodeTypesMax,
-        [Out] out int pulcDeviceNodeTypes,
-        [In, Out, MarshalAs(UnmanagedType.LPArray, ArraySubType=UnmanagedType.Struct)] Guid[] pguidDeviceNodeTypes
-        );
+        [PreserveSig]
+        int get_SupportedDeviceNodeTypes(
+            [In] int ulcDeviceNodeTypesMax,
+            [Out] out int pulcDeviceNodeTypes,
+            [In, Out, MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.Struct)] Guid[] pguidDeviceNodeTypes
+            );
 
-    [PreserveSig]
-    int get_SupportedVideoFormats(
-      [Out] out AMTunerModeType pulAMTunerModeType,
-      [Out] out AnalogVideoStandard pulAnalogVideoStandard
-      );
+        [PreserveSig]
+        int get_SupportedVideoFormats(
+          [Out] out AMTunerModeType pulAMTunerModeType,
+          [Out] out AnalogVideoStandard pulAnalogVideoStandard
+          );
 
-    [PreserveSig]
-    int get_AuxInputCount(
-      [Out] out int pulCompositeCount,
-      [Out] out int pulSvideoCount
-      );
-  }
+        [PreserveSig]
+        int get_AuxInputCount(
+          [Out] out int pulCompositeCount,
+          [Out] out int pulSvideoCount
+          );
+    }
 
-  [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
   Guid("4B2BD7EA-8347-467b-8DBF-62F784929CC3"),
   InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-  public interface ICCSubStreamFiltering
-  {
-    [PreserveSig]
-    int get_SubstreamTypes([Out] out CCSubstreamService Types);
+    public interface ICCSubStreamFiltering
+    {
+        [PreserveSig]
+        int get_SubstreamTypes([Out] out CCSubstreamService Types);
 
-    [PreserveSig]
-    int put_SubstreamTypes([In] CCSubstreamService Types);
-  }
+        [PreserveSig]
+        int put_SubstreamTypes([In] CCSubstreamService Types);
+    }
 
-  [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
   Guid("D806973D-3EBE-46de-8FBB-6358FE784208"),
   InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-  public interface IBDA_EasMessage
-  {
-    [PreserveSig]
-    int get_EasMessage(
-      [In] int ulEventID,
-      [Out, MarshalAs(UnmanagedType.IUnknown)] out object ppEASObject
-      );
-  }
+    public interface IBDA_EasMessage
+    {
+        [PreserveSig]
+        int get_EasMessage(
+          [In] int ulEventID,
+          [Out, MarshalAs(UnmanagedType.IUnknown)] out object ppEASObject
+          );
+    }
 
-  [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
   Guid("8E882535-5F86-47AB-86CF-C281A72A0549"),
   InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-  public interface IBDA_TransportStreamInfo
-  {
-    [PreserveSig]
-    int get_PatTableTickCount([Out] out int pPatTickCount);
-  }
+    public interface IBDA_TransportStreamInfo
+    {
+        [PreserveSig]
+        int get_PatTableTickCount([Out] out int pPatTickCount);
+    }
 
-  [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
   Guid("CD51F1E0-7BE9-4123-8482-A2A796C0A6B0"),
   InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-  public interface IBDA_ConditionalAccess
-  {
-    [PreserveSig]
-    int get_SmartCardStatus(
-        [Out] out SmartCardStatusType pCardStatus,
-        [Out] out SmartCardAssociationType pCardAssociation,
-        [Out, MarshalAs(UnmanagedType.BStr)] out string pbstrCardError,
-        [Out, MarshalAs(UnmanagedType.VariantBool)] out bool pfOOBLocked
-        );
+    public interface IBDA_ConditionalAccess
+    {
+        [PreserveSig]
+        int get_SmartCardStatus(
+            [Out] out SmartCardStatusType pCardStatus,
+            [Out] out SmartCardAssociationType pCardAssociation,
+            [Out, MarshalAs(UnmanagedType.BStr)] out string pbstrCardError,
+            [Out, MarshalAs(UnmanagedType.VariantBool)] out bool pfOOBLocked
+            );
 
-    [PreserveSig]
-    int get_SmartCardInfo(
-        [Out, MarshalAs(UnmanagedType.BStr)] out string pbstrCardName,
-        [Out, MarshalAs(UnmanagedType.BStr)] out string pbstrCardManufacturer,
-        [Out, MarshalAs(UnmanagedType.VariantBool)] out bool pfDaylightSavings,
-        [Out] out byte pbyRatingRegion,
-        [Out] out int plTimeZoneOffsetMinutes,
-        [Out, MarshalAs(UnmanagedType.BStr)] out string pbstrLanguage,
-        [Out] out EALocationCodeType pEALocationCode
-        );
+        [PreserveSig]
+        int get_SmartCardInfo(
+            [Out, MarshalAs(UnmanagedType.BStr)] out string pbstrCardName,
+            [Out, MarshalAs(UnmanagedType.BStr)] out string pbstrCardManufacturer,
+            [Out, MarshalAs(UnmanagedType.VariantBool)] out bool pfDaylightSavings,
+            [Out] out byte pbyRatingRegion,
+            [Out] out int plTimeZoneOffsetMinutes,
+            [Out, MarshalAs(UnmanagedType.BStr)] out string pbstrLanguage,
+            [Out] out EALocationCodeType pEALocationCode
+            );
 
-    [PreserveSig]
-    int get_SmartCardApplications(
-        [In, Out] ref int pulcApplications,
-        [In] int ulcApplicationsMax,
-        [In, Out] SmartCardApplication[] rgApplications
-        );
+        [PreserveSig]
+        int get_SmartCardApplications(
+            [In, Out] ref int pulcApplications,
+            [In] int ulcApplicationsMax,
+            [In, Out] SmartCardApplication[] rgApplications
+            );
 
-    [PreserveSig]
-    int get_Entitlement(
-        [In] short usVirtualChannel,
-        [Out] out EntitlementType pEntitlement
-        );
+        [PreserveSig]
+        int get_Entitlement(
+            [In] short usVirtualChannel,
+            [Out] out EntitlementType pEntitlement
+            );
 
-    [PreserveSig]
-    int TuneByChannel([In] short usVirtualChannel);
+        [PreserveSig]
+        int TuneByChannel([In] short usVirtualChannel);
 
-    [PreserveSig]
-    int SetProgram([In] short usProgramNumber);
+        [PreserveSig]
+        int SetProgram([In] short usProgramNumber);
 
-    [PreserveSig]
-    int AddProgram([In] short usProgramNumber);
+        [PreserveSig]
+        int AddProgram([In] short usProgramNumber);
 
-    [PreserveSig]
-    int RemoveProgram([In] short usProgramNumber);
+        [PreserveSig]
+        int RemoveProgram([In] short usProgramNumber);
 
-    [PreserveSig]
-    int GetModuleUI(
-        [In] byte byDialogNumber,
-        [Out, MarshalAs(UnmanagedType.BStr)] out string pbstrURL
-        );
+        [PreserveSig]
+        int GetModuleUI(
+            [In] byte byDialogNumber,
+            [Out, MarshalAs(UnmanagedType.BStr)] out string pbstrURL
+            );
 
-    [PreserveSig]
-    int InformUIClosed(
-        [In] byte byDialogNumber,
-        [In] UICloseReasonType CloseReason
-        );
-  }
+        [PreserveSig]
+        int InformUIClosed(
+            [In] byte byDialogNumber,
+            [In] UICloseReasonType CloseReason
+            );
+    }
 
-  [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
   Guid("20e80cb5-c543-4c1b-8eb3-49e719eee7d4"),
   InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-  public interface IBDA_DiagnosticProperties : IPropertyBag
-  {
-  }
+    public interface IBDA_DiagnosticProperties : IPropertyBag
+    {
+    }
 
-  [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
   Guid("F98D88B0-1992-4cd6-A6D9-B9AFAB99330D"),
   InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-  public interface IBDA_DRM
-  {
-    [PreserveSig]
-    int GetDRMPairingStatus(
-      [Out] out BDA_DrmPairingError pdwStatus,
-      [Out] out int phError
-      );
+    public interface IBDA_DRM
+    {
+        [PreserveSig]
+        int GetDRMPairingStatus(
+          [Out] out BDA_DrmPairingError pdwStatus,
+          [Out] out int phError
+          );
 
-    [PreserveSig]
-    int PerformDRMPairing([In, MarshalAs(UnmanagedType.Bool)] bool fSync);
-  }
+        [PreserveSig]
+        int PerformDRMPairing([In, MarshalAs(UnmanagedType.Bool)] bool fSync);
+    }
 
 #endif
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("1347D106-CF3A-428a-A5CB-AC0D9A2A4338"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IBDA_SignalStatistics
@@ -491,7 +491,7 @@ namespace DirectShowLib.BDA
         int get_SampleTime([Out] out int plmsSampleTime);
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("79B56888-7FEA-4690-B45D-38FD3C7849BE"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IBDA_Topology
@@ -500,14 +500,14 @@ namespace DirectShowLib.BDA
         int GetNodeTypes(
             [Out] out int pulcNodeTypes,
             [In] int ulcNodeTypesMax,
-            [Out, MarshalAs(UnmanagedType.LPArray, ArraySubType=UnmanagedType.I4, SizeParamIndex=1)] int[] rgulNodeTypes
+            [Out, MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.I4, SizeParamIndex = 1)] int[] rgulNodeTypes
             );
 
         [PreserveSig]
         int GetNodeDescriptors(
             [Out] out int ulcNodeDescriptors,
             [In] int ulcNodeDescriptorsMax,
-            [Out, MarshalAs(UnmanagedType.LPArray, ArraySubType=UnmanagedType.LPStruct, SizeParamIndex=1)] BDANodeDescriptor[] rgNodeDescriptors
+            [Out, MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStruct, SizeParamIndex = 1)] BDANodeDescriptor[] rgNodeDescriptors
             );
 
         [PreserveSig]
@@ -515,21 +515,21 @@ namespace DirectShowLib.BDA
             [In] int ulNodeType,
             [Out] out int pulcInterfaces,
             [In] int ulcInterfacesMax,
-            [Out, MarshalAs(UnmanagedType.LPArray, ArraySubType=UnmanagedType.LPStruct, SizeParamIndex=2)] Guid[] rgguidInterfaces
+            [Out, MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStruct, SizeParamIndex = 2)] Guid[] rgguidInterfaces
             );
 
         [PreserveSig]
         int GetPinTypes(
             [Out] out int pulcPinTypes,
             [In] int ulcPinTypesMax,
-            [Out, MarshalAs(UnmanagedType.LPArray, ArraySubType=UnmanagedType.I4, SizeParamIndex=1)] int[] rgulPinTypes
+            [Out, MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.I4, SizeParamIndex = 1)] int[] rgulPinTypes
             );
 
         [PreserveSig]
         int GetTemplateConnections(
             [Out] out int pulcConnections,
             [In] int ulcConnectionsMax,
-            [Out, MarshalAs(UnmanagedType.LPArray, ArraySubType=UnmanagedType.LPStruct, SizeParamIndex=1)] BDATemplateConnection [] rgConnections
+            [Out, MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStruct, SizeParamIndex = 1)] BDATemplateConnection[] rgConnections
             );
 
         [PreserveSig]
@@ -569,7 +569,7 @@ namespace DirectShowLib.BDA
 
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("06FB45C1-693C-4ea7-B79F-7A6A54D8DEF2"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IFrequencyMap
@@ -583,7 +583,7 @@ namespace DirectShowLib.BDA
         [PreserveSig]
         int put_FrequencyMapping(
             [In] int ulCount,
-            [In, MarshalAs(UnmanagedType.LPArray, ArraySubType=UnmanagedType.I4)] int[] pList
+            [In, MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.I4)] int[] pList
             );
 
         [PreserveSig]
@@ -607,7 +607,7 @@ namespace DirectShowLib.BDA
 
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("DDF15B12-BD25-11d2-9CA0-00C04F7971E0"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IBDA_AutoDemodulate
@@ -616,7 +616,7 @@ namespace DirectShowLib.BDA
         int put_AutoDemodulate();
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("FD0A5AF3-B41D-11d2-9C95-00C04F7971E0"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IBDA_DeviceControl
@@ -634,7 +634,7 @@ namespace DirectShowLib.BDA
         int GetChangeState([Out] out BDAChangeState pState);
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("EF30F379-985B-4d10-B640-A79D5E04E1E0"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IBDA_DigitalDemodulator
@@ -682,7 +682,7 @@ namespace DirectShowLib.BDA
         int get_SpectralInversion([Out] out SpectralInversion pSpectralInversion);
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("71985F43-1CA1-11d3-9CC8-00C04F7971E0"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IBDA_EthernetFilter
@@ -711,7 +711,7 @@ namespace DirectShowLib.BDA
 
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("71985F47-1CA1-11d3-9CC8-00C04F7971E0"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IBDA_FrequencyFilter
@@ -753,7 +753,7 @@ namespace DirectShowLib.BDA
         int get_FrequencyMultiplier([Out] out int pulMultiplier);
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("3F4DC8E2-4050-11d3-8F4B-00C04F7971E2"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
     Obsolete("IBDA_IPSinkControl is no longer being supported for Ring 3 clients. Use the BDA_IPSinkInfo interface instead.")]
@@ -770,7 +770,7 @@ namespace DirectShowLib.BDA
             out IntPtr pbBuffer); // BYTE **
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("A750108F-492E-4d51-95F7-649B23FF7AD7"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IBDA_IPSinkInfo
@@ -789,7 +789,7 @@ namespace DirectShowLib.BDA
             [MarshalAs(UnmanagedType.BStr)]  out string pbstrBuffer);
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("71985F44-1CA1-11d3-9CC8-00C04F7971E0"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IBDA_IPV4Filter
@@ -818,7 +818,7 @@ namespace DirectShowLib.BDA
 
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("E1785A74-2A23-4fb3-9245-A8F88017EF33"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IBDA_IPV6Filter
@@ -846,7 +846,7 @@ namespace DirectShowLib.BDA
             out MulticastMode pulModeMask);
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("992CF102-49F9-4719-A664-C4F23E2408F4"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IBDA_LNBInfo
@@ -870,7 +870,7 @@ namespace DirectShowLib.BDA
         int get_HighLowSwitchFrequency([Out] out int pulSwitchFrequency);
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("afb6c2a1-2c41-11d3-8a60-0000f81e0e4a"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IMPEG2PIDMap
@@ -878,14 +878,14 @@ namespace DirectShowLib.BDA
         [PreserveSig]
         int MapPID(
             [In] int culPID,
-            [In, MarshalAs(UnmanagedType.LPArray)] int [] pulPID,
+            [In, MarshalAs(UnmanagedType.LPArray)] int[] pulPID,
             [In] MediaSampleContent MediaSampleContent
             );
 
         [PreserveSig]
         int UnmapPID(
             [In] int culPID,
-            [In, MarshalAs(UnmanagedType.LPArray)] int [] pulPID
+            [In, MarshalAs(UnmanagedType.LPArray)] int[] pulPID
             );
 
         [PreserveSig,
@@ -898,7 +898,7 @@ namespace DirectShowLib.BDA
 
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("D2F1644B-B409-11d2-BC69-00A0C9EE9E16"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IBDA_SignalProperties

@@ -48,7 +48,7 @@ namespace DirectShowLib
 
     #region Interfaces
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("00000109-0000-0000-C000-000000000046"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPersistStream : IPersist
@@ -83,7 +83,7 @@ namespace DirectShowLib
         int GetSizeMax([Out] out long pcbSize);
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("0000010c-0000-0000-C000-000000000046"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPersist
@@ -92,7 +92,7 @@ namespace DirectShowLib
         int GetClassID([Out] out Guid pClassID);
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("b61178d1-a2d9-11cf-9e53-00aa00a216a1"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IKsPin
@@ -105,7 +105,7 @@ namespace DirectShowLib
             out IntPtr ip);
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("B196B28B-BAB4-101A-B69C-00AA00341D07"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface ISpecifyPropertyPages
@@ -114,7 +114,7 @@ namespace DirectShowLib
         int GetPages(out DsCAUUID pPages);
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("55272A00-42CB-11CE-8135-00AA004BB851"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPropertyBag
@@ -133,7 +133,7 @@ namespace DirectShowLib
             );
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("3127CA40-446E-11CE-8135-00AA004BB851"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IErrorLog

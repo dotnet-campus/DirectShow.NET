@@ -211,7 +211,7 @@ namespace DirectShowLib
 
 #if ALLOW_UNTESTED_INTERFACES
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("ebec459c-2eca-4d42-a8af-30df557614b8"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IReferenceClockTimerControl
@@ -227,7 +227,7 @@ namespace DirectShowLib
             );
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("68961E68-832B-41ea-BC91-63593F3E70E3"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IMediaSample2Config
@@ -239,7 +239,7 @@ namespace DirectShowLib
 
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("36b73885-c2c8-11cf-8b46-00805f6cef60"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IReferenceClock2 : IReferenceClock
@@ -271,7 +271,7 @@ namespace DirectShowLib
         #endregion
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("56a8689d-0ad4-11ce-b03a-0020af0ba770"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IMemInputPin
@@ -302,7 +302,7 @@ namespace DirectShowLib
         int ReceiveCanBlock();
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("a3d8cec0-7e5a-11cf-bbc5-00805f6cef20"),
     Obsolete("This interface has been deprecated.", false),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -317,7 +317,7 @@ namespace DirectShowLib
 
 #endif
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("56a86891-0ad4-11ce-b03a-0020af0ba770"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPin
@@ -389,7 +389,7 @@ namespace DirectShowLib
             );
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("36b73880-c2c8-11cf-8b46-00805f6cef60"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IMediaSeeking
@@ -462,7 +462,7 @@ namespace DirectShowLib
         int GetPreroll([Out] out long pllPreroll);
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("56a8689a-0ad4-11ce-b03a-0020af0ba770"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IMediaSample
@@ -531,7 +531,7 @@ namespace DirectShowLib
             );
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("56a86899-0ad4-11ce-b03a-0020af0ba770"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IMediaFilter : IPersist
@@ -566,7 +566,7 @@ namespace DirectShowLib
         int GetSyncSource([Out] out IReferenceClock pClock);
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("56a86895-0ad4-11ce-b03a-0020af0ba770"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IBaseFilter : IMediaFilter
@@ -623,7 +623,7 @@ namespace DirectShowLib
         int QueryVendorInfo([Out, MarshalAs(UnmanagedType.LPWStr)] out string pVendorInfo);
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("56a8689f-0ad4-11ce-b03a-0020af0ba770"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IFilterGraph
@@ -664,7 +664,7 @@ namespace DirectShowLib
         int SetDefaultSyncSource();
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("56a86893-0ad4-11ce-b03a-0020af0ba770"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IEnumFilters
@@ -686,7 +686,7 @@ namespace DirectShowLib
         int Clone([Out] out IEnumFilters ppEnum);
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("56a86892-0ad4-11ce-b03a-0020af0ba770"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IEnumPins
@@ -708,7 +708,7 @@ namespace DirectShowLib
         int Clone([Out] out IEnumPins ppEnum);
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("56a86897-0ad4-11ce-b03a-0020af0ba770"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IReferenceClock
@@ -736,7 +736,7 @@ namespace DirectShowLib
         int Unadvise([In] int dwAdviseCookie);
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("89c31040-846b-11ce-97d3-00aa0055595a"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IEnumMediaTypes
@@ -758,7 +758,7 @@ namespace DirectShowLib
         int Clone([Out] out IEnumMediaTypes ppEnum);
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("36b73884-c2c8-11cf-8b46-00805f6cef60"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IMediaSample2 : IMediaSample
@@ -840,7 +840,7 @@ namespace DirectShowLib
             );
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("92980b30-c1de-11d2-abf5-00a0c905f375"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IMemAllocatorNotifyCallbackTemp
@@ -849,7 +849,7 @@ namespace DirectShowLib
         int NotifyRelease();
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("379a0cf0-c1de-11d2-abf5-00a0c905f375"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IMemAllocatorCallbackTemp : IMemAllocator
@@ -891,7 +891,7 @@ namespace DirectShowLib
         int GetFreeCount([Out] out int plBuffersFree);
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("56a8689c-0ad4-11ce-b03a-0020af0ba770"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IMemAllocator

@@ -73,7 +73,7 @@ namespace DirectShowLib
 
     #region Interfaces
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("6E8D4A21-310C-11d0-B79A-00AA003767A7"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IAMLine21Decoder

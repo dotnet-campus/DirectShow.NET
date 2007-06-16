@@ -29,7 +29,7 @@ namespace DirectShowLib
 {
     #region Interfaces
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("52d6f586-9f0f-4824-8fc8-e32ca04930c2"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IDMOWrapperFilter

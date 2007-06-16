@@ -106,7 +106,7 @@ namespace DirectShowLib
 
 #if ALLOW_UNTESTED_INTERFACES
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("36d39eb0-dd75-11ce-bf0e-00aa0055595a"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IDirectDrawVideo
@@ -160,7 +160,7 @@ namespace DirectShowLib
         int WillUseFullScreen(out int UseWhenFullScreen);
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("dd1d7110-7836-11cf-bf47-00aa0055595a"),
     Obsolete("This interface has been deprecated.", false),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -219,7 +219,7 @@ namespace DirectShowLib
 
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("53479470-f1dd-11cf-bc42-00aa00ac74f6"),
     Obsolete("This interface has been deprecated.", false),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -293,7 +293,7 @@ namespace DirectShowLib
 
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("61ded640-e912-11ce-a099-00aa00479a58"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IBaseVideoMixer
@@ -322,7 +322,7 @@ namespace DirectShowLib
 
 #endif
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("1bd0ecb0-f8e2-11ce-aac6-0020af0b99a3"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IQualProp

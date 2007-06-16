@@ -57,7 +57,7 @@ namespace DirectShowLib.BDA
 
 #if ALLOW_UNTESTED_INTERFACES
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("FAF37694-909C-49cd-886F-C7382E5DB596"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IDTFilterBlockedOverlay
@@ -79,28 +79,28 @@ namespace DirectShowLib.BDA
 
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("C4C4C4C2-0049-4E2B-98FB-9537F6CE516D"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface IDTFilterEvents
     {
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("C4C4C4C1-0049-4E2B-98FB-9537F6CE516D"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface IETFilterEvents
     {
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("C4C4C4C3-0049-4E2B-98FB-9537F6CE516D"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface IXDSCodecEvents
     {
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("C4C4C4D3-0049-4E2B-98FB-9537F6CE516D"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IXDSCodecConfig
@@ -116,7 +116,7 @@ namespace DirectShowLib.BDA
             );
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("C4C4C4B2-0049-4E2B-98FB-9537F6CE516D"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IDTFilter
@@ -168,7 +168,7 @@ namespace DirectShowLib.BDA
             );
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("C4C4C4B4-0049-4E2B-98FB-9537F6CE516D"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IDTFilter2 : IDTFilter
@@ -240,7 +240,7 @@ namespace DirectShowLib.BDA
 
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("513998cc-e929-4cdf-9fbd-bad1e0314866"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IDTFilter3 : IDTFilter2
@@ -330,7 +330,7 @@ namespace DirectShowLib.BDA
             );
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("C4C4C4D2-0049-4E2B-98FB-9537F6CE516D"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IDTFilterConfig
@@ -341,7 +341,7 @@ namespace DirectShowLib.BDA
             );
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("C4C4C4B1-0049-4E2B-98FB-9537F6CE516D"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IETFilter
@@ -373,7 +373,7 @@ namespace DirectShowLib.BDA
             );
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("C4C4C4D1-0049-4E2B-98FB-9537F6CE516D"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IETFilterConfig
@@ -389,7 +389,7 @@ namespace DirectShowLib.BDA
             );
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("C4C4C4B3-0049-4E2B-98FB-9537F6CE516D"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IXDSCodec

@@ -29,7 +29,7 @@ namespace DirectShowLib
 {
     #region Interfaces
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("8A674B48-1F63-11d3-B64C-00C04F79498E"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface ICreatePropBagOnRegKey

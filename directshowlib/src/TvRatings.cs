@@ -210,7 +210,7 @@ namespace DirectShowLib.BDA
 
 #if ALLOW_UNTESTED_INTERFACES
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("C5C5C5B0-3ABC-11D6-B25B-00C04FA0C026"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface IXDSToRat
@@ -228,7 +228,7 @@ namespace DirectShowLib.BDA
             );
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("C5C5C5B1-3ABC-11D6-B25B-00C04FA0C026"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface IEvalRat

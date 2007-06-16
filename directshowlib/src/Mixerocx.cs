@@ -58,7 +58,7 @@ namespace DirectShowLib
 
     #region Interfaces
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("81A3BD31-DEE1-11d1-8508-00A0C91F9CA0"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IMixerOCXNotify
@@ -73,7 +73,7 @@ namespace DirectShowLib
         int OnDataChange([In] MixerData ulDataFlags);
     }
 
-    [ComImport,
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("81A3BD32-DEE1-11d1-8508-00A0C91F9CA0"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IMixerOCX
