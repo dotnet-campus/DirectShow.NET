@@ -51,31 +51,31 @@ namespace v2_0
 
       byte innerFEC = 0;
       hr = dsdsDescriptor.GetFECInner(out innerFEC);
-      Debug.Assert(hr == 0, "IDvbSatelliteDeliverySystemDescriptor.GetFECInner failed");
+      Debug.Assert((hr == 0) && (innerFEC != 0), "IDvbSatelliteDeliverySystemDescriptor.GetFECInner failed");
 
       int freq = 0;
       hr = dsdsDescriptor.GetFrequency(out freq);
-      Debug.Assert(hr == 0, "IDvbSatelliteDeliverySystemDescriptor.GetFrequency failed");
+      Debug.Assert((hr == 0) && (freq != 0), "IDvbSatelliteDeliverySystemDescriptor.GetFrequency failed");
 
       byte modulation = 0;
       hr = dsdsDescriptor.GetModulation(out modulation);
-      Debug.Assert(hr == 0, "IDvbSatelliteDeliverySystemDescriptor.GetModulation failed");
+      Debug.Assert((hr == 0) && (modulation != 0), "IDvbSatelliteDeliverySystemDescriptor.GetModulation failed");
 
       short orbitalPos = 0;
       hr = dsdsDescriptor.GetOrbitalPosition(out orbitalPos);
-      Debug.Assert(hr == 0, "IDvbSatelliteDeliverySystemDescriptor.GetOrbitalPosition failed");
+      Debug.Assert((hr == 0) && (orbitalPos != 0), "IDvbSatelliteDeliverySystemDescriptor.GetOrbitalPosition failed");
 
       byte polarization = 0;
       hr = dsdsDescriptor.GetPolarization(out polarization);
-      Debug.Assert(hr == 0, "IDvbSatelliteDeliverySystemDescriptor.GetPolarization failed");
+      Debug.Assert((hr == 0) && (polarization != 0), "IDvbSatelliteDeliverySystemDescriptor.GetPolarization failed");
 
       int symbolRate = 0;
       hr = dsdsDescriptor.GetSymbolRate(out symbolRate);
-      Debug.Assert(hr == 0, "IDvbSatelliteDeliverySystemDescriptor.GetSymbolRate failed");
+      Debug.Assert((hr == 0) && (symbolRate != 0), "IDvbSatelliteDeliverySystemDescriptor.GetSymbolRate failed");
 
-      byte westEstFlag = 0;
+      byte westEstFlag = 1;
       hr = dsdsDescriptor.GetWestEastFlag(out westEstFlag);
-      Debug.Assert(hr == 0, "IDvbSatelliteDeliverySystemDescriptor.GetWestEastFlag failed");
+      Debug.Assert((hr == 0) && (westEstFlag != 1), "IDvbSatelliteDeliverySystemDescriptor.GetWestEastFlag failed");
     }
 
     private void Config()
