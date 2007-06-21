@@ -279,9 +279,11 @@
     </Compile>
     <EmbeddedResource Include="IDvdControl2Test.resx">
       <DependentUpon>IDvdControl2Test.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="IMediaEventExTest.resx">
       <DependentUpon>IMediaEventExTest.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="ToDo v10.htm" />
   </ItemGroup>

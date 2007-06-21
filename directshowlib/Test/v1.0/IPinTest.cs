@@ -1,6 +1,6 @@
-// $Id: IPinTest.cs,v 1.10 2005-06-15 06:08:42 snarfle Exp $
+// $Id: IPinTest.cs,v 1.11 2007-06-21 08:42:23 snarfle Exp $
 // $Author: snarfle $
-// $Revision: 1.10 $
+// $Revision: 1.11 $
 using System;
 using System.Runtime.InteropServices;
 using NUnit.Framework;
@@ -165,7 +165,7 @@ namespace DirectShowLib.Test
 		{
 			IBaseFilter filter = new SmartTee() as IBaseFilter;
 			int hr;
-			int lFetched;
+            IntPtr ip = Marshal.AllocCoTaskMem(4);
 			IEnumPins ppEnum;
 			IPin pRet = null;
 			IPin[] pPins = new IPin[1];
@@ -173,12 +173,13 @@ namespace DirectShowLib.Test
 			hr = filter.EnumPins(out ppEnum);
 			Marshal.ThrowExceptionForHR(hr);
 
-			while ((ppEnum.Next(1, pPins, out lFetched) >= 0) && (lFetched == 1))
+			while ((ppEnum.Next(1, pPins, ip) >= 0) && (Marshal.ReadInt32(ip) == 1))
 			{
 				pRet = pPins[0];
 				break;
 			}
-			Marshal.ReleaseComObject(ppEnum);
+            Marshal.FreeCoTaskMem(ip);
+            Marshal.ReleaseComObject(ppEnum);
 			return pRet;
 		}
 

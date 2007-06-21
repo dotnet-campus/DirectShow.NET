@@ -39,10 +39,13 @@ namespace DirectShowLib.Test
         public void TestNext()
         {
             int lFetched;
+            IntPtr ip = Marshal.AllocCoTaskMem(4);
             int hr;
             StreamBufferAttribute[] pAttribs = new StreamBufferAttribute[2];
 
-            hr = m_sbra.Next(2, pAttribs, out lFetched);
+            hr = m_sbra.Next(2, pAttribs, ip);
+            lFetched = Marshal.ReadInt32(ip);
+            Marshal.FreeCoTaskMem(ip);
             DsError.ThrowExceptionForHR(hr);
 
             Debug.Assert(lFetched == 2, "Next");
@@ -54,10 +57,9 @@ namespace DirectShowLib.Test
         public void TestReset()
         {
             int hr;
-            int lFetched;
             StreamBufferAttribute[] pAttribs = new StreamBufferAttribute[1];
 
-            hr = m_sbra.Next(1, pAttribs, out lFetched);
+            hr = m_sbra.Next(1, pAttribs, IntPtr.Zero);
             DsError.ThrowExceptionForHR(hr);
 
             Marshal.FreeCoTaskMem(pAttribs[0].pbAttribute);
@@ -65,7 +67,7 @@ namespace DirectShowLib.Test
             hr = m_sbra.Reset();
             DsError.ThrowExceptionForHR(hr);
 
-            hr = m_sbra.Next(1, pAttribs, out lFetched);
+            hr = m_sbra.Next(1, pAttribs, IntPtr.Zero);
             DsError.ThrowExceptionForHR(hr);
 
             Marshal.FreeCoTaskMem(pAttribs[0].pbAttribute);
@@ -74,10 +76,9 @@ namespace DirectShowLib.Test
         public void TestSkip()
         {
             int hr;
-            int lFetched;
             StreamBufferAttribute[] pAttribs = new StreamBufferAttribute[1];
 
-            hr = m_sbra.Next(1, pAttribs, out lFetched);
+            hr = m_sbra.Next(1, pAttribs, IntPtr.Zero);
             DsError.ThrowExceptionForHR(hr);
 
             Marshal.FreeCoTaskMem(pAttribs[0].pbAttribute);
@@ -85,7 +86,7 @@ namespace DirectShowLib.Test
             hr = m_sbra.Skip(1);
             DsError.ThrowExceptionForHR(hr);
 
-            hr = m_sbra.Next(1, pAttribs, out lFetched);
+            hr = m_sbra.Next(1, pAttribs, IntPtr.Zero);
             DsError.ThrowExceptionForHR(hr);
 
             Marshal.FreeCoTaskMem(pAttribs[0].pbAttribute);
@@ -94,14 +95,13 @@ namespace DirectShowLib.Test
         public void TestClone()
         {
             int hr;
-            int lFetched;
             StreamBufferAttribute[] pAttribs = new StreamBufferAttribute[1];
 
             IEnumStreamBufferRecordingAttrib cloneEnum;
             hr = m_sbra.Clone(out cloneEnum);
             DsError.ThrowExceptionForHR(hr);
 
-            hr = cloneEnum.Next(1, pAttribs, out lFetched);
+            hr = cloneEnum.Next(1, pAttribs, IntPtr.Zero);
             DsError.ThrowExceptionForHR(hr);
 
             Marshal.ReleaseComObject(cloneEnum);

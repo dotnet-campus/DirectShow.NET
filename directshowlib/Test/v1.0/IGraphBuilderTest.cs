@@ -153,12 +153,11 @@ namespace DirectShowLib.Test
       int hr = 0;
       IEnumFilters enumFilters = null;
       IBaseFilter[] filters = new IBaseFilter[1];
-      int fetched = 0;
 
       hr = graphBuilder.EnumFilters(out enumFilters);
       Marshal.ThrowExceptionForHR(hr);
 
-      while(enumFilters.Next(1, filters, out fetched) == 0)
+      while (enumFilters.Next(1, filters, IntPtr.Zero) == 0)
       {
         hr = graphBuilder.RemoveFilter(filters[0]);
         Marshal.ThrowExceptionForHR(hr);

@@ -61,6 +61,7 @@ namespace DirectShowLib.Test
             // Looking for the MS Screen Encoder MSS1
             tIn[0].type = MediaType.Video;
             tIn[0].subtype = new Guid(0x3153534D, 0x0000, 0x0010, 0x80, 0x00, 0x00, 0xAA, 0x00, 0x38, 0x9B, 0x71);
+            tIn[0].subtype = new Guid("D990EE14-776C-4723-BE46-3DA2F56F10B9");
 
             hr = DMOUtils.DMOEnum(DMOCategory.VideoEncoder, DMOEnumerator.IncludeKeyed, 0, null, 1, tIn, out idmo);
             DMOError.ThrowExceptionForHR(hr);
@@ -74,13 +75,12 @@ namespace DirectShowLib.Test
         {
             int hr;
             int iCnt = 0;
-            int i;
             Guid [] g = new Guid[1];
             string [] sn = new string[1];
 
             do
             {
-                hr = idmo.Next(1, g, sn, out i);
+                hr = idmo.Next(1, g, sn, IntPtr.Zero);
             } while (hr == 0 && iCnt++ < 100000);
 
             DMOError.ThrowExceptionForHR(hr);
@@ -91,14 +91,17 @@ namespace DirectShowLib.Test
         private void TestNext()
         {
             int hr;
-            int pf;
+            IntPtr ip = Marshal.AllocCoTaskMem(4);
             Guid [] g = new Guid[3];
             string [] s = new string[3];
 
-            hr = m_idmo.Next(3, g, s, out pf);
+            hr = m_idmo.Next(3, g, s, ip);
             DsError.ThrowExceptionForHR(hr);
 
+            Debug.Assert(Marshal.ReadInt32(ip) == 3);
+
             Debug.Assert(s[2] != null && g[2] != Guid.Empty, "Next");
+            Marshal.FreeCoTaskMem(ip);
         }
 
         private void TestSkip()

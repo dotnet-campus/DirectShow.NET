@@ -69,8 +69,11 @@ namespace DirectShowLib.Test
             IComponent[] ts = new IComponent[5];
             int fetched;
             int validObj = 0;
+            IntPtr ip = Marshal.AllocCoTaskMem(4);
 
-            hr = m_pEnum.Next(ts.Length, ts, out fetched);
+            hr = m_pEnum.Next(ts.Length, ts, ip);
+            fetched = Marshal.ReadInt32(ip);
+            Marshal.FreeCoTaskMem(ip);
             DsError.ThrowExceptionForHR(hr);
 
             for(int i = 0; i < fetched; i++)

@@ -36,7 +36,6 @@ namespace DirectShowLib.Test
       int hr = 0;
       IEnumFilters clone = null;
       IBaseFilter[] filters = new IBaseFilter[1];
-      int fetched = 0;
       int filterCount1 = 0;
       int filterCount2 = 0;
 
@@ -49,14 +48,14 @@ namespace DirectShowLib.Test
       DsError.ThrowExceptionForHR(hr);
 
       // Count how many filters are in this enumearation
-      while(this.enumFilters.Next(1, filters, out fetched) == 0)
+      while (this.enumFilters.Next(1, filters, IntPtr.Zero) == 0)
       {
         Marshal.ReleaseComObject(filters[0]);
         filterCount1++;
       }
 
       // Count how many filters are in this enumearation
-      while(clone.Next(1, filters, out fetched) == 0)
+      while (clone.Next(1, filters, IntPtr.Zero) == 0)
       {
         Marshal.ReleaseComObject(filters[0]);
         filterCount2++;
@@ -70,8 +69,8 @@ namespace DirectShowLib.Test
     public void TestNext()
     {
       int hr = 0;
+      IntPtr ip = Marshal.AllocCoTaskMem(4);
       IBaseFilter[] filters = new IBaseFilter[1];
-      int fetched = 0;
       FilterInfo fi = new FilterInfo();
 
       // Reset enumeration to be sure we are at the begining
@@ -79,8 +78,9 @@ namespace DirectShowLib.Test
       DsError.ThrowExceptionForHR(hr);
 
       // Get the first filter
-      hr = this.enumFilters.Next(1, filters, out fetched);
+      hr = this.enumFilters.Next(1, filters, ip);
       DsError.ThrowExceptionForHR(hr);
+      Debug.Assert(Marshal.ReadInt32(ip) == 1, "Next");
 
       hr = filters[0].QueryFilterInfo(out fi);
       DsError.ThrowExceptionForHR(hr);
@@ -89,7 +89,7 @@ namespace DirectShowLib.Test
       Marshal.ReleaseComObject(fi.pGraph);
 
       // Get the second filter
-      hr = this.enumFilters.Next(1, filters, out fetched);
+      hr = this.enumFilters.Next(1, filters, IntPtr.Zero);
       DsError.ThrowExceptionForHR(hr);
 
       hr = filters[0].QueryFilterInfo(out fi);
@@ -97,6 +97,7 @@ namespace DirectShowLib.Test
 
       Debug.Assert(fi.achName.Equals("Video Renderer"), "IEnumFilters.Next");
       Marshal.ReleaseComObject(fi.pGraph);
+      Marshal.FreeCoTaskMem(ip);
     }
 
     public void TestReset()
@@ -113,12 +114,11 @@ namespace DirectShowLib.Test
     {
       int hr = 0;
       IBaseFilter[] filters = new IBaseFilter[1];
-      int fetched = 0;
       int filterCount1 = 0;
       int filterCount2 = 0;
 
       // Count how many filters are in this enumearation
-      while(this.enumFilters.Next(1, filters, out fetched) == 0)
+      while (this.enumFilters.Next(1, filters, IntPtr.Zero) == 0)
       {
         Marshal.ReleaseComObject(filters[0]);
         filterCount1++;
@@ -128,7 +128,7 @@ namespace DirectShowLib.Test
       DsError.ThrowExceptionForHR(hr);
 
       // Count how many filters are in this enumearation but skip on each time
-      while(this.enumFilters.Next(1, filters, out fetched) == 0)
+      while (this.enumFilters.Next(1, filters, IntPtr.Zero) == 0)
       {
         // skip one filter
         hr = this.enumFilters.Skip(1);

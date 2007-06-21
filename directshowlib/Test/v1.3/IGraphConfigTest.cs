@@ -43,14 +43,13 @@ namespace DirectShowLib.Test
         private void TestCache()
         {
             int hr;
-            int f;
             IEnumFilters pEnum;
             IBaseFilter [] ibf = new IBaseFilter[1];
 
             hr = m_igc.EnumCacheFilter(out pEnum);
             DsError.ThrowExceptionForHR(hr);
 
-            Debug.Assert(pEnum.Next(1, ibf, out f) == 1, "EnumCacheFilter1");
+            Debug.Assert(pEnum.Next(1, ibf, IntPtr.Zero) == 1, "EnumCacheFilter1");
 
             hr = m_igc.AddFilterToCache(m_ibf);
             DsError.ThrowExceptionForHR(hr);
@@ -58,7 +57,7 @@ namespace DirectShowLib.Test
             hr = m_igc.EnumCacheFilter(out pEnum);
             DsError.ThrowExceptionForHR(hr);
 
-            Debug.Assert(pEnum.Next(1, ibf, out f) == 0, "EnumCacheFilter2");
+            Debug.Assert(pEnum.Next(1, ibf, IntPtr.Zero) == 0, "EnumCacheFilter2");
 
             Debug.Assert(ibf[0] == m_ibf, "AddFilterToCache");
 
@@ -68,7 +67,7 @@ namespace DirectShowLib.Test
             hr = m_igc.EnumCacheFilter(out pEnum);
             DsError.ThrowExceptionForHR(hr);
 
-            Debug.Assert(pEnum.Next(1, ibf, out f) == 1, "EnumCacheFilter3");
+            Debug.Assert(pEnum.Next(1, ibf, IntPtr.Zero) == 1, "EnumCacheFilter3");
         }
 
         private void TestRemove()

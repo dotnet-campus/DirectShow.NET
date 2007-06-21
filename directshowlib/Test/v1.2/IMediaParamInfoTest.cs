@@ -151,7 +151,6 @@ namespace DirectShowLib.Test
             IEnumDMO idmo;
             Guid [] g = new Guid[1];
             string [] sn = new string[1];
-            int i;
             int iCount = 0;
 
             hr = DMOUtils.DMOEnum(Guid.Empty, DMOEnumerator.None, 0, null, 0, null, out idmo);
@@ -162,7 +161,7 @@ namespace DirectShowLib.Test
                 DMOWrapperFilter dmoFilter = new DMOWrapperFilter();
                 IDMOWrapperFilter dmoWrapperFilter = (IDMOWrapperFilter) dmoFilter;
 
-                hr = idmo.Next(1, g, sn, out i);
+                hr = idmo.Next(1, g, sn, IntPtr.Zero);
                 DMOError.ThrowExceptionForHR(hr);
 
                 if (hr > 0)

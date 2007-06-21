@@ -168,13 +168,12 @@ namespace DirectShowLib.Test
         {
             int hr;
             int iCnt = 0;
-            int i;
             Guid [] g = new Guid[1];
             string [] sn = new string[1];
 
             do
             {
-                hr = idmo.Next(1, g, sn, out i);
+                hr = idmo.Next(1, g, sn, IntPtr.Zero);
             } while (hr == 0 && iCnt++ < 100000);
 
             DMOError.ThrowExceptionForHR(hr);
