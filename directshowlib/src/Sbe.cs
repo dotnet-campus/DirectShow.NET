@@ -485,7 +485,7 @@ namespace DirectShowLib.SBE
         int Next(
             [In] int cRequest,
             [Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] StreamBufferAttribute[] pStreamBufferAttribute,
-            [Out] out int pcReceived
+            [In] IntPtr pcReceived
             );
 
         [PreserveSig]

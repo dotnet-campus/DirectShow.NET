@@ -1495,7 +1495,7 @@ namespace DirectShowLib
         int Next(
             [In] int cFilters,
             [Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] RegFilter [] apRegFilter,
-            [Out] out int pcFetched
+            [In] IntPtr pcFetched
             );
 
         [PreserveSig]
@@ -2247,7 +2247,7 @@ namespace DirectShowLib
         int Next(
             [In] int cRequest,
             [Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] StreamIdMap [] pStreamIdMap, // STREAM_ID_MAP *
-            [Out] out int pcReceived
+            [In] IntPtr pcReceived
             );
 
         [PreserveSig]

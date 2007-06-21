@@ -189,7 +189,7 @@ namespace DirectShowLib.BDA
         int Next(
             [In] int celt,
             [Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] IGuideDataProperty [] ppprop,
-            [Out] out int pcelt
+            [In] IntPtr pcelt
             );
 
         [PreserveSig]
@@ -211,7 +211,7 @@ namespace DirectShowLib.BDA
         int Next(
             [In] int celt,
             [Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ITuneRequest[] ppprop,
-            [Out] out int pcelt
+            [In] IntPtr pcelt
             );
 
         [PreserveSig]

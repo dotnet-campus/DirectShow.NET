@@ -1373,7 +1373,6 @@ namespace DirectShowLib
         public static IPin ByDirection(IBaseFilter vSource, PinDirection vDir, int iIndex)
         {
             int hr;
-            int lFetched;
             IEnumPins ppEnum;
             PinDirection ppindir;
             IPin pRet = null;
@@ -1391,7 +1390,7 @@ namespace DirectShowLib
             try
             {
                 // Walk the pins looking for a match
-                while ((ppEnum.Next(1, pPins, out lFetched) >= 0) && (lFetched == 1))
+                while (ppEnum.Next(1, pPins, IntPtr.Zero) == 0)
                 {
                     // Read the direction
                     hr = pPins[0].QueryDirection(out ppindir);
@@ -1428,7 +1427,6 @@ namespace DirectShowLib
         public static IPin ByName(IBaseFilter vSource, string vPinName)
         {
             int hr;
-            int lFetched;
             IEnumPins ppEnum;
             PinInfo ppinfo;
             IPin pRet = null;
@@ -1446,7 +1444,7 @@ namespace DirectShowLib
             try
             {
                 // Walk the pins looking for a match
-                while ((ppEnum.Next(1, pPins, out lFetched) >= 0) && (lFetched == 1))
+                while (ppEnum.Next(1, pPins, IntPtr.Zero) == 0)
                 {
                     // Read the info
                     hr = pPins[0].QueryPinInfo(out ppinfo);
@@ -1481,7 +1479,6 @@ namespace DirectShowLib
         public static IPin ByCategory(IBaseFilter vSource, Guid PinCategory, int iIndex)
         {
             int hr;
-            int lFetched;
             IEnumPins ppEnum;
             IPin pRet = null;
             IPin[] pPins = new IPin[1];
@@ -1498,7 +1495,7 @@ namespace DirectShowLib
             try
             {
                 // Walk the pins looking for a match
-                while ((ppEnum.Next(1, pPins, out lFetched) >= 0) && (lFetched == 1))
+                while (ppEnum.Next(1, pPins, IntPtr.Zero) == 0)
                 {
                     // Is it the right category?
                     if (DsUtils.GetPinCategory(pPins[0]) == PinCategory)
@@ -1531,7 +1528,6 @@ namespace DirectShowLib
         public static IPin ByConnectionStatus(IBaseFilter vSource, PinConnectedStatus vStat, int iIndex)
         {
             int hr;
-            int lFetched;
             IEnumPins ppEnum;
             IPin pRet = null;
             IPin pOutPin;
@@ -1549,7 +1545,7 @@ namespace DirectShowLib
             try
             {
                 // Walk the pins looking for a match
-                while ((ppEnum.Next(1, pPins, out lFetched) >= 0) && (lFetched == 1))
+                while (ppEnum.Next(1, pPins, IntPtr.Zero) == 0)
                 {
                     // Read the connected status
                     hr = pPins[0].ConnectedTo(out pOutPin);

@@ -1814,7 +1814,7 @@ namespace DirectShowLib.BDA
         int Next(
             [In] int celt,
             [Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 0)] ITuningSpace[] rgelt,
-            [Out] out int pceltFetched
+            [In] IntPtr pceltFetched
             );
 
         int Skip([In] int celt);
@@ -2068,7 +2068,7 @@ namespace DirectShowLib.BDA
         int Next(
             [In] int celt,
             [Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 0)] IComponentType[] rgelt,
-            [Out] out int pceltFetched
+            [In] IntPtr pceltFetched
             );
 
         int Skip([In] int celt);
@@ -2273,7 +2273,7 @@ namespace DirectShowLib.BDA
         int Next(
             [In] int celt,
             [Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 0)] IComponent[] rgelt,
-            [Out] out int pceltFetched
+            [In] IntPtr pceltFetched
             );
 
         int Skip([In] int celt);

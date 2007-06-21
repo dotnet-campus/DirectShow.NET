@@ -276,7 +276,7 @@ namespace DirectShowLib.BDA
         int Next(
             [In] int cRequest,
             [Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 0, ArraySubType = UnmanagedType.Struct)] PIDMap[] pPIDMap,
-            [In, Out] IntPtr pcReceived
+            [In] IntPtr pcReceived
             );
 
         [PreserveSig]
