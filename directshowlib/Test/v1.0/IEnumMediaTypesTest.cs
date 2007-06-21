@@ -1,9 +1,10 @@
-// $Id: IEnumMediaTypesTest.cs,v 1.5 2005-06-23 23:44:51 snarfle Exp $
+// $Id: IEnumMediaTypesTest.cs,v 1.6 2007-06-21 21:37:07 snarfle Exp $
 // $Author: snarfle $
-// $Revision: 1.5 $
+// $Revision: 1.6 $
 using System.Runtime.InteropServices;
 using NUnit.Framework;
 using System;
+using System.Diagnostics;
 
 namespace DirectShowLib.Test
 {
@@ -25,51 +26,65 @@ namespace DirectShowLib.Test
 		public void TestNext()
 		{
 			int hr;
-			int lFetched;
-			AMMediaType[] ppMediaTypes = new AMMediaType[24];
+            IntPtr ip = Marshal.AllocCoTaskMem(4);
+			AMMediaType[] ppMediaTypes = new AMMediaType[10];
 
 			IEnumMediaTypes enumMediaTypes = GetEnumMediaTypes();
+            //IntPtr ip2 = Marshal.AllocCoTaskMem(ppMediaTypes.Length * IntPtr.Size);
 
             for (int x=0; x < 3; x++)
             {
-                hr = enumMediaTypes.Next(ppMediaTypes.Length, ppMediaTypes, out lFetched);
+                hr = enumMediaTypes.Next(ppMediaTypes.Length, ppMediaTypes, ip);
+
+                //for (int y = 0; y < Marshal.ReadInt32(ip); y++)
+                //{
+                //    ppMediaTypes[y] = new AMMediaType();
+                //    IntPtr ip3 = Marshal.ReadIntPtr(ip2, y * IntPtr.Size); // new IntPtr(ip2.ToInt64() + (y * IntPtr.Size));
+                //    Marshal.PtrToStructure(ip3, ppMediaTypes[y]);
+                //}
+
                 DsError.ThrowExceptionForHR(hr);
             }
+
+            Marshal.FreeCoTaskMem(ip);
 		}
 
 		[Test]
 		public void TestReset()
 		{
-			int hr;
-			int lFetched;
+            int hr;
+            IntPtr ip = Marshal.AllocCoTaskMem(4);
 			AMMediaType[] ppMediaTypes = new AMMediaType[1];
 
 			IEnumMediaTypes enumMediaTypes = GetEnumMediaTypes();
-			hr = enumMediaTypes.Next(ppMediaTypes.Length, ppMediaTypes, out lFetched);
+            hr = enumMediaTypes.Next(ppMediaTypes.Length, ppMediaTypes, ip);
 			DsError.ThrowExceptionForHR(hr);
+
+            Debug.Assert(Marshal.ReadInt32(ip) == 1, "Next");
 
 			hr = enumMediaTypes.Reset();
 			DsError.ThrowExceptionForHR(hr);
 
-			hr = enumMediaTypes.Next(1, ppMediaTypes, out lFetched);
+            hr = enumMediaTypes.Next(1, ppMediaTypes, IntPtr.Zero);
 			DsError.ThrowExceptionForHR(hr);
+
+            Marshal.FreeCoTaskMem(ip);
 		}
 
 		[Test]
 		public void TestSkip()
 		{
-			int hr;
-			int lFetched;
+            int hr;
 			AMMediaType[] ppMediaTypes = new AMMediaType[1];
 
 			IEnumMediaTypes enumMediaTypes = GetEnumMediaTypes();
-			hr = enumMediaTypes.Next(1, ppMediaTypes, out lFetched);
+            hr = enumMediaTypes.Next(1, ppMediaTypes, IntPtr.Zero);
 			DsError.ThrowExceptionForHR(hr);
 
 			hr = enumMediaTypes.Skip(1);
 			DsError.ThrowExceptionForHR(hr);
 
-			hr = enumMediaTypes.Next(1, ppMediaTypes, out lFetched);
+            hr = enumMediaTypes.Next(1, ppMediaTypes, IntPtr.Zero);
 			DsError.ThrowExceptionForHR(hr);
 
 		}
@@ -78,7 +93,6 @@ namespace DirectShowLib.Test
 		public void TestClone()
 		{
 			int hr;
-			int lFetched;
 			AMMediaType[] ppMediaTypes = new AMMediaType[1];
 
 			IEnumMediaTypes enumMediaTypes = GetEnumMediaTypes();
@@ -86,7 +100,7 @@ namespace DirectShowLib.Test
 			hr = enumMediaTypes.Clone(out cloneMediaType);
 			DsError.ThrowExceptionForHR(hr);
 
-			hr = cloneMediaType.Next(1, ppMediaTypes, out lFetched);
+            hr = cloneMediaType.Next(1, ppMediaTypes, IntPtr.Zero);
 			DsError.ThrowExceptionForHR(hr);
 
 		}

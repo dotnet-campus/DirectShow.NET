@@ -14,6 +14,9 @@ namespace DirectShowLib.Test
         [STAThread]
         static void Main(string[] args)
         {
+            //IEnumPinsTest t52 = new IEnumPinsTest();
+            //t52.DoTests();
+
             //IPinTest t51 = new IPinTest();
             //t51.DoTests();
 
