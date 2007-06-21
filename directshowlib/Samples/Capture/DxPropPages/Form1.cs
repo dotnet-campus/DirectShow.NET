@@ -14,6 +14,7 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using System.Data;
 using System.Runtime.InteropServices;
+using System.Diagnostics;
 
 using DirectShowLib;
 
@@ -38,7 +39,7 @@ namespace DirectShowLib.Samples
 		private System.ComponentModel.Container components = null;
 
 		//A (modified) definition of OleCreatePropertyFrame found here: http://groups.google.no/group/microsoft.public.dotnet.languages.csharp/browse_thread/thread/db794e9779144a46/55dbed2bab4cd772?lnk=st&q=[DllImport(%22olepro32.dll%22)]&rnum=1&hl=no#55dbed2bab4cd772
-		[DllImport("olepro32.dll")] 
+		[DllImport(@"oleaut32.dll")] 
 		public static extern int OleCreatePropertyFrame( 
 			IntPtr hwndOwner, 
 			int x, 
@@ -405,12 +406,50 @@ namespace DirectShowLib.Samples
 			hr = dev.QueryFilterInfo(out filterInfo); 
 			DsError.ThrowExceptionForHR(hr);
 
-			// Get the propertypages from the property bag
-			DsCAUUID caGUID;
-			hr = pProp.GetPages(out caGUID);
-			DsError.ThrowExceptionForHR(hr);
+            // Get the propertypages from the property bag
+            DsCAUUID caGUID;
+            hr = pProp.GetPages(out caGUID);
+            DsError.ThrowExceptionForHR(hr);
 
-			//Create and display the OlePropertyFrame
+            // Check for property pages on the output pin
+            IPin pPin = DsFindPin.ByDirection(dev, PinDirection.Output, 0);
+            ISpecifyPropertyPages pProp2 = pPin as ISpecifyPropertyPages;
+            if (pProp2 != null)
+            {
+                DsCAUUID caGUID2;
+                hr = pProp2.GetPages(out caGUID2);
+                DsError.ThrowExceptionForHR(hr);
+
+                if (caGUID2.cElems > 0)
+                {
+                    int soGuid = Marshal.SizeOf(typeof(Guid));
+
+                    // Create a new buffer to hold all the GUIDs
+                    IntPtr p1 = Marshal.AllocCoTaskMem((caGUID.cElems + caGUID2.cElems) * soGuid);
+
+                    // Copy over the pages from the Filter
+                    for (int x = 0; x < caGUID.cElems * soGuid; x++)
+                    {
+                        Marshal.WriteByte(p1, x, Marshal.ReadByte(caGUID.pElems, x));
+                    }
+
+                    // Add the pages from the pin
+                    for (int x = 0; x < caGUID2.cElems * soGuid; x++)
+                    {
+                        Marshal.WriteByte(p1, x + (caGUID.cElems * soGuid), Marshal.ReadByte(caGUID2.pElems, x));
+                    }
+
+                    // Release the old memory
+                    Marshal.FreeCoTaskMem(caGUID.pElems);
+                    Marshal.FreeCoTaskMem(caGUID2.pElems);
+
+                    // Reset caGUID to include both
+                    caGUID.pElems = p1;
+                    caGUID.cElems += caGUID2.cElems;
+                }
+            }
+
+            // Create and display the OlePropertyFrame
 			object oDevice = (object)dev;
 			hr = OleCreatePropertyFrame(this.Handle, 0, 0, filterInfo.achName, 1, ref oDevice, caGUID.cElems, caGUID.pElems, 0, 0, IntPtr.Zero);
 			DsError.ThrowExceptionForHR(hr);
@@ -418,7 +457,10 @@ namespace DirectShowLib.Samples
 			// Release COM objects
 			Marshal.FreeCoTaskMem(caGUID.pElems);
 			Marshal.ReleaseComObject(pProp);
-			Marshal.ReleaseComObject(filterInfo.pGraph);
+            if (filterInfo.pGraph != null)
+            {
+                Marshal.ReleaseComObject(filterInfo.pGraph);
+            }
 		}
 
 		private void button1_Click(object sender, System.EventArgs e)
