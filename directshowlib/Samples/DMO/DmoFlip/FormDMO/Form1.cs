@@ -243,9 +243,8 @@ namespace FormDMO
             int hr;
 
             IEnumDMO pEnum;
-            int i = 1;
-            Guid [] g2 = new Guid[i];
-            string [] sn = new String[i];
+            Guid [] g2 = new Guid[1];
+            string [] sn = new String[1];
 
             hr = DMOUtils.DMOEnum(cat, 0, 0, null, 0, null, out pEnum);
             DMOError.ThrowExceptionForHR(hr);
@@ -254,7 +253,7 @@ namespace FormDMO
             {
                 do
                 {
-                    hr = pEnum.Next(i, g2, sn, out i);
+                    hr = pEnum.Next(1, g2, sn, IntPtr.Zero);
                 } while (hr == 0 && sn[0] != gn);
 
                 // Handle any serious errors

@@ -202,9 +202,8 @@ namespace DirectShowLib.Utils
             if (hr == 0)
             {
                 IBaseFilter[] filters = new IBaseFilter[1];
-                int fetched;
 
-                while(enumFilters.Next(filters.Length, filters, out fetched) == 0)
+                while(enumFilters.Next(filters.Length, filters, IntPtr.Zero) == 0)
                 {
                     FilterInfo filterInfo;
 
@@ -252,9 +251,8 @@ namespace DirectShowLib.Utils
             if (hr == 0)
             {
                 IBaseFilter[] filters = new IBaseFilter[1];
-                int fetched;
 
-                while(enumFilters.Next(filters.Length, filters, out fetched) == 0)
+                while(enumFilters.Next(filters.Length, filters, IntPtr.Zero) == 0)
                 {
                     Guid clsid;
 
@@ -337,14 +335,13 @@ namespace DirectShowLib.Utils
 
             IEnumPins enumPins;
             IPin[] pins = new IPin[1];
-            int fetched;
 
             hr = filter.EnumPins(out enumPins);
             DsError.ThrowExceptionForHR(hr);
 
             try
             {
-                while(enumPins.Next(pins.Length, pins, out fetched) == 0)
+                while(enumPins.Next(pins.Length, pins, IntPtr.Zero) == 0)
                 {
                     try
                     {
@@ -386,9 +383,8 @@ namespace DirectShowLib.Utils
             try
             {
                 IBaseFilter[] filters = new IBaseFilter[1];
-                int fetched;
 
-                while(enumFilters.Next(filters.Length, filters, out fetched) == 0)
+                while(enumFilters.Next(filters.Length, filters, IntPtr.Zero) == 0)
                 {
                     try
                     {
@@ -427,9 +423,8 @@ namespace DirectShowLib.Utils
             try
             {
                 IBaseFilter[] filters = new IBaseFilter[1];
-                int fetched;
 
-                while(enumFilters.Next(filters.Length, filters, out fetched) == 0)
+                while(enumFilters.Next(filters.Length, filters, IntPtr.Zero) == 0)
                 {
                     filtersArray.Add(filters[0]);
                 }

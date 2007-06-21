@@ -212,9 +212,8 @@ namespace DirectShowLib.Sample
       DsError.ThrowExceptionForHR(hr);
 
       IBaseFilter[] filters = new IBaseFilter[1];
-      int fetched;
 
-      while(enumFilters.Next(filters.Length, filters, out fetched) == 0)
+      while(enumFilters.Next(filters.Length, filters, IntPtr.Zero) == 0)
       {
         filtersArray.Add(filters[0]);
       }

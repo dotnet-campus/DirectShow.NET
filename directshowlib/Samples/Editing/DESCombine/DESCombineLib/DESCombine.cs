@@ -1015,7 +1015,6 @@ namespace DESCombineLib
             bool bRet = false;
             AMMediaType [] pmt = new AMMediaType[1];
             IEnumMediaTypes ppEnum;
-            int i;
 
             // Walk the MediaTypes for the pin
             hr = pPin.EnumMediaTypes(out ppEnum);
@@ -1024,7 +1023,7 @@ namespace DESCombineLib
             try
             {
                 // Just read the first one
-                hr = ppEnum.Next(1, pmt, out i);
+                hr = ppEnum.Next(1, pmt, IntPtr.Zero);
                 DESError.ThrowExceptionForHR(hr);
 
                 bRet = pmt[0].majorType == MediaType.Video;

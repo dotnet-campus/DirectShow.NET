@@ -183,7 +183,7 @@ namespace DirectShowLib.Samples
       // check that the return code is 0 (S_OK).
 #if USING_NET11
       int i;
-      if (classEnum.Next (moniker.Length, moniker, out i) == 0)
+      if (classEnum.Next (moniker.Length, moniker, IntPtr.Zero) == 0)
 #else
       if (classEnum.Next (moniker.Length, moniker, IntPtr.Zero) == 0)
 #endif
