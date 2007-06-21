@@ -24,7 +24,7 @@ ICodecAPI								15	snarfle		Can't test Parameters methods, nothing supports
 IBDA_TransportStreamInfo				1	snarfle		All methods return E_NOTIMPL
 
 ----DvbSiParser stuff
-IDvbSiParser							15  nowinskie   (parsialy tested in the following tests)
+IDvbSiParser							15  nowinskie   (partially tested in the following tests)
 IDVB_BAT								16	nowinskie	snarfle
 ICAT									9	nowinskie	snarfle
 IDVB_DIT								2	nowinskie   KO (none of my channels broadcast that but a test is ready)
@@ -39,7 +39,7 @@ IDVB_TOT								5	nowinskie	snarfle
 ITSDT									9	nowinskie   KO (none of my channels broadcast that but a test is ready)
 IDvbFrequencyListDescriptor				5   nowinskie   KO (none of my channels broadcast that but a test is ready)
 IDvbLogicalChannelDescriptor			5   nowinskie   snarfle
-IDvbSatelliteDeliverySystemDescriptor	9   nowinskie   ready
+IDvbSatelliteDeliverySystemDescriptor	9   nowinskie   snarfle
 IDvbServiceDescriptor					8	nowinskie   KO (none of my channels broadcast that but a test is ready)
 IDvbTerrestrialDeliverySystemDescriptor	11	nowinskie	snarfle
 IGenericDescriptor						4	nowinskie	snarfle
