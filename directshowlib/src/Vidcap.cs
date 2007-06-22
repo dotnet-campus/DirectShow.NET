@@ -29,8 +29,6 @@ namespace DirectShowLib
 {
     #region Declarations
 
-#if ALLOW_UNTESTED_INTERFACES
-
     /// <summary>
     /// From KSTOPOLOGY_CONNECTION
     /// </summary>
@@ -42,8 +40,6 @@ namespace DirectShowLib
         public int ToNode;
         public int ToNodePin;
     }
-
-#endif
 
     #endregion
 
@@ -692,6 +688,35 @@ namespace DirectShowLib
     }
 
     [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("1ABDAECA-68B6-4F83-9371-B413907C7B9F"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface ISelector
+    {
+        [PreserveSig]
+        int get_NumSources([Out] out int pdwNumSources);
+
+        [PreserveSig]
+        int get_SourceNodeId([Out] out int pdwPinId);
+
+        [PreserveSig]
+        int put_SourceNodeId([In] int dwPinId);
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("11737C14-24A7-4bb5-81A0-0D003813B0C4"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IKsNodeControl
+    {
+        [PreserveSig]
+        int put_NodeId([In] int dwNodeId);
+
+        [PreserveSig]
+        int put_KsControl([In] IntPtr pKsControl); // PVOID
+    }
+
+#endif
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("720D4AC0-7533-11D0-A5D6-28DB04C10000"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IKsTopologyInfo
@@ -744,35 +769,6 @@ namespace DirectShowLib
             [Out, MarshalAs(UnmanagedType.IUnknown)] out Object ppvObject
             );
     }
-
-    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
-    Guid("1ABDAECA-68B6-4F83-9371-B413907C7B9F"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface ISelector
-    {
-        [PreserveSig]
-        int get_NumSources([Out] out int pdwNumSources);
-
-        [PreserveSig]
-        int get_SourceNodeId([Out] out int pdwPinId);
-
-        [PreserveSig]
-        int put_SourceNodeId([In] int dwPinId);
-    }
-
-    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
-    Guid("11737C14-24A7-4bb5-81A0-0D003813B0C4"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IKsNodeControl
-    {
-        [PreserveSig]
-        int put_NodeId([In] int dwNodeId);
-
-        [PreserveSig]
-        int put_KsControl([In] IntPtr pKsControl); // PVOID
-    }
-
-#endif
 
     #endregion
 }

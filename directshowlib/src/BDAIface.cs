@@ -32,26 +32,6 @@ namespace DirectShowLib.BDA
 #if ALLOW_UNTESTED_INTERFACES
 
     /// <summary>
-    /// From KS_CC_SUBSTREAM_SERVICE_* defines
-    /// </summary>
-    [Flags]
-    public enum CCSubstreamService
-    {
-        None = 0,
-        CC1 = 0x0001, //CC1 (caption channel) 
-        CC2 = 0x0002, //CC2 (caption channel) 
-        T1 = 0x0004, // T1 (text channel) 
-        T2 = 0x0008, // T2 (text channel) 
-        CC3 = 0x0100, // CC3 (caption channel) 
-        CC4 = 0x0200, // CC4 (caption channel) 
-        T3 = 0x0400, // T3 (text channel) 
-        T4 = 0x0800, // T4 (text channel) 
-        XDS = 0x1000, // Extended Data Services (XDS) 
-        Field1 = 0x000F, // Bitmask to filter field 1 substreams. 
-        Field2 = 0x1F00 //Bitmask to filter field 2 substreams 
-    }
-
-    /// <summary>
     /// From KSPROPERTY_IPSINK
     /// </summary>
     public enum KSPropertyIPSink
@@ -207,6 +187,26 @@ namespace DirectShowLib.BDA
         public Guid guidName;
     }
 
+    /// <summary>
+    /// From KS_CC_SUBSTREAM_SERVICE_* defines
+    /// </summary>
+    [Flags]
+    public enum CCSubstreamService
+    {
+        None = 0,
+        CC1 = 0x0001, //CC1 (caption channel) 
+        CC2 = 0x0002, //CC2 (caption channel) 
+        T1 = 0x0004, // T1 (text channel) 
+        T2 = 0x0008, // T2 (text channel) 
+        CC3 = 0x0100, // CC3 (caption channel) 
+        CC4 = 0x0200, // CC4 (caption channel) 
+        T3 = 0x0400, // T3 (text channel) 
+        T4 = 0x0800, // T4 (text channel) 
+        XDS = 0x1000, // Extended Data Services (XDS) 
+        Field1 = 0x000F, // Bitmask to filter field 1 substreams. 
+        Field2 = 0x1F00 //Bitmask to filter field 2 substreams 
+    }
+
     #endregion
 
     #region Interfaces
@@ -305,8 +305,8 @@ namespace DirectShowLib.BDA
     }
 
     [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
-  Guid("34518D13-1182-48e6-B28F-B24987787326"),
-  InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    Guid("34518D13-1182-48e6-B28F-B24987787326"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IBDA_AutoDemodulateEx : IBDA_AutoDemodulate
     {
         #region IBDA_AutoDemodulate Methods
@@ -337,20 +337,8 @@ namespace DirectShowLib.BDA
     }
 
     [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
-  Guid("4B2BD7EA-8347-467b-8DBF-62F784929CC3"),
-  InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface ICCSubStreamFiltering
-    {
-        [PreserveSig]
-        int get_SubstreamTypes([Out] out CCSubstreamService Types);
-
-        [PreserveSig]
-        int put_SubstreamTypes([In] CCSubstreamService Types);
-    }
-
-    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
-  Guid("D806973D-3EBE-46de-8FBB-6358FE784208"),
-  InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    Guid("D806973D-3EBE-46de-8FBB-6358FE784208"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IBDA_EasMessage
     {
         [PreserveSig]
@@ -361,8 +349,8 @@ namespace DirectShowLib.BDA
     }
 
     [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
-  Guid("8E882535-5F86-47AB-86CF-C281A72A0549"),
-  InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    Guid("8E882535-5F86-47AB-86CF-C281A72A0549"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IBDA_TransportStreamInfo
     {
         [PreserveSig]
@@ -370,8 +358,8 @@ namespace DirectShowLib.BDA
     }
 
     [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
-  Guid("CD51F1E0-7BE9-4123-8482-A2A796C0A6B0"),
-  InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    Guid("CD51F1E0-7BE9-4123-8482-A2A796C0A6B0"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IBDA_ConditionalAccess
     {
         [PreserveSig]
@@ -432,15 +420,15 @@ namespace DirectShowLib.BDA
     }
 
     [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
-  Guid("20e80cb5-c543-4c1b-8eb3-49e719eee7d4"),
-  InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    Guid("20e80cb5-c543-4c1b-8eb3-49e719eee7d4"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IBDA_DiagnosticProperties : IPropertyBag
     {
     }
 
     [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
-  Guid("F98D88B0-1992-4cd6-A6D9-B9AFAB99330D"),
-  InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    Guid("F98D88B0-1992-4cd6-A6D9-B9AFAB99330D"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IBDA_DRM
     {
         [PreserveSig]
@@ -920,6 +908,18 @@ namespace DirectShowLib.BDA
 
         [PreserveSig]
         int GetTuningSpace([Out] out Guid pguidTuingSpace);
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("4B2BD7EA-8347-467b-8DBF-62F784929CC3"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface ICCSubStreamFiltering
+    {
+        [PreserveSig]
+        int get_SubstreamTypes([Out] out CCSubstreamService Types);
+
+        [PreserveSig]
+        int put_SubstreamTypes([In] CCSubstreamService Types);
     }
 
     #endregion

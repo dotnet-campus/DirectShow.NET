@@ -47,31 +47,6 @@ namespace DirectShowLib
     }
 
     /// <summary>
-    /// From CameraControlProperty
-    /// </summary>
-    public enum CameraControlProperty
-    {
-        Pan = 0,
-        Tilt,
-        Roll,
-        Zoom,
-        Exposure,
-        Iris,
-        Focus
-    }
-
-    /// <summary>
-    /// From CameraControlFlags
-    /// </summary>
-    [Flags]
-    public enum CameraControlFlags
-    {
-        None = 0x0,
-        Auto = 0x0001,
-        Manual = 0x0002
-    }
-
-    /// <summary>
     /// From _AM_PUSHSOURCE_FLAGS
     /// </summary>
     [Flags]
@@ -1338,129 +1313,36 @@ namespace DirectShowLib
         Flood
     }
 
+    /// <summary>
+    /// From CameraControlProperty
+    /// </summary>
+    public enum CameraControlProperty
+    {
+        Pan = 0,
+        Tilt,
+        Roll,
+        Zoom,
+        Exposure,
+        Iris,
+        Focus
+    }
+
+    /// <summary>
+    /// From CameraControlFlags
+    /// </summary>
+    [Flags]
+    public enum CameraControlFlags
+    {
+        None = 0x0,
+        Auto = 0x0001,
+        Manual = 0x0002
+    }
+
     #endregion
 
     #region Interfaces
 
 #if ALLOW_UNTESTED_INTERFACES
-
-    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
-    Guid("aaf38154-b80b-422f-91e6-b66467509a07"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IFilterGraph3 : IFilterGraph2
-    {
-        #region IFilterGraph Methods
-
-        [PreserveSig]
-        new int AddFilter(
-            [In] IBaseFilter pFilter,
-            [In, MarshalAs(UnmanagedType.LPWStr)] string pName
-            );
-
-        [PreserveSig]
-        new int RemoveFilter([In] IBaseFilter pFilter);
-
-        [PreserveSig]
-        new int EnumFilters([Out] out IEnumFilters ppEnum);
-
-        [PreserveSig]
-        new int FindFilterByName(
-            [In, MarshalAs(UnmanagedType.LPWStr)] string pName,
-            [Out] out IBaseFilter ppFilter
-            );
-
-        [PreserveSig]
-        new int ConnectDirect(
-            [In] IPin ppinOut,
-            [In] IPin ppinIn,
-            [In, MarshalAs(UnmanagedType.LPStruct)]
-            AMMediaType pmt
-            );
-
-        [PreserveSig]
-        new int Reconnect([In] IPin ppin);
-
-        [PreserveSig]
-        new int Disconnect([In] IPin ppin);
-
-        [PreserveSig]
-        new int SetDefaultSyncSource();
-
-        #endregion
-
-        #region IGraphBuilder Method
-
-        [PreserveSig]
-        new int Connect(
-            [In] IPin ppinOut,
-            [In] IPin ppinIn
-            );
-
-        [PreserveSig]
-        new int Render([In] IPin ppinOut);
-
-        [PreserveSig]
-        new int RenderFile(
-            [In, MarshalAs(UnmanagedType.LPWStr)] string lpcwstrFile,
-            [In, MarshalAs(UnmanagedType.LPWStr)] string lpcwstrPlayList
-            );
-
-        [PreserveSig]
-        new int AddSourceFilter(
-            [In, MarshalAs(UnmanagedType.LPWStr)] string lpcwstrFileName,
-            [In, MarshalAs(UnmanagedType.LPWStr)] string lpcwstrFilterName,
-            [Out] out IBaseFilter ppFilter
-            );
-
-        [PreserveSig]
-        new int SetLogFile(IntPtr hFile); // DWORD_PTR
-
-        [PreserveSig]
-        new int Abort();
-
-        [PreserveSig]
-        new int ShouldOperationContinue();
-
-        #endregion
-
-        #region IFilterGraph2 methods
-
-        [PreserveSig]
-        new int AddSourceFilterForMoniker(
-#if USING_NET11
-            [In] UCOMIMoniker pMoniker,
-            [In] UCOMIBindCtx pCtx,
-#else
-            [In] IMoniker pMoniker,
-            [In] IBindCtx pCtx,
-#endif
-            [In, MarshalAs(UnmanagedType.LPWStr)] string lpcwstrFilterName,
-            [Out] out IBaseFilter ppFilter
-            );
-
-        [PreserveSig]
-        new int ReconnectEx(
-            [In] IPin ppin,
-            [In] AMMediaType pmt
-            );
-
-        [PreserveSig]
-        new int RenderEx(
-            [In] IPin pPinOut,
-            [In] AMRenderExFlags dwFlags,
-            [In] IntPtr pvContext // DWORD *
-            );
-
-        #endregion
-
-        [PreserveSig]
-        int SetSyncSourceEx( 
-            IReferenceClock pClockForMostOfFilterGraph,
-            IReferenceClock pClockForFilter,
-            IBaseFilter pFilter
-            );
-
-    }
 
     [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("D8D715A0-6E5E-11D0-B3F0-00AA003761C5"),
@@ -1853,36 +1735,6 @@ namespace DirectShowLib
 
         [PreserveSig]
         int NotifyGraphChange();
-    }
-
-    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
-    Guid("C6E13370-30AC-11d0-A18C-00A0C9118956"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IAMCameraControl
-    {
-        [PreserveSig]
-        int GetRange(
-            [In] CameraControlProperty Property,
-            [Out] out int pMin,
-            [Out] out int pMax,
-            [Out] out int pSteppingDelta,
-            [Out] out int pDefault,
-            [Out] out CameraControlFlags pCapsFlags
-            );
-
-        [PreserveSig]
-        int Set(
-            [In] CameraControlProperty Property,
-            [In] int lValue,
-            [In] CameraControlFlags Flags
-            );
-
-        [PreserveSig]
-        int Get(
-            [In] CameraControlProperty Property,
-            [Out] out int lValue,
-            [Out] out CameraControlFlags Flags
-            );
     }
 
     [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
@@ -4234,6 +4086,154 @@ namespace DirectShowLib
 
         [PreserveSig]
         int EndFlush();
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("C6E13370-30AC-11d0-A18C-00A0C9118956"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IAMCameraControl
+    {
+        [PreserveSig]
+        int GetRange(
+            [In] CameraControlProperty Property,
+            [Out] out int pMin,
+            [Out] out int pMax,
+            [Out] out int pSteppingDelta,
+            [Out] out int pDefault,
+            [Out] out CameraControlFlags pCapsFlags
+            );
+
+        [PreserveSig]
+        int Set(
+            [In] CameraControlProperty Property,
+            [In] int lValue,
+            [In] CameraControlFlags Flags
+            );
+
+        [PreserveSig]
+        int Get(
+            [In] CameraControlProperty Property,
+            [Out] out int lValue,
+            [Out] out CameraControlFlags Flags
+            );
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("aaf38154-b80b-422f-91e6-b66467509a07"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IFilterGraph3 : IFilterGraph2
+    {
+        #region IFilterGraph Methods
+
+        [PreserveSig]
+        new int AddFilter(
+            [In] IBaseFilter pFilter,
+            [In, MarshalAs(UnmanagedType.LPWStr)] string pName
+            );
+
+        [PreserveSig]
+        new int RemoveFilter([In] IBaseFilter pFilter);
+
+        [PreserveSig]
+        new int EnumFilters([Out] out IEnumFilters ppEnum);
+
+        [PreserveSig]
+        new int FindFilterByName(
+            [In, MarshalAs(UnmanagedType.LPWStr)] string pName,
+            [Out] out IBaseFilter ppFilter
+            );
+
+        [PreserveSig]
+        new int ConnectDirect(
+            [In] IPin ppinOut,
+            [In] IPin ppinIn,
+            [In, MarshalAs(UnmanagedType.LPStruct)]
+            AMMediaType pmt
+            );
+
+        [PreserveSig]
+        new int Reconnect([In] IPin ppin);
+
+        [PreserveSig]
+        new int Disconnect([In] IPin ppin);
+
+        [PreserveSig]
+        new int SetDefaultSyncSource();
+
+        #endregion
+
+        #region IGraphBuilder Method
+
+        [PreserveSig]
+        new int Connect(
+            [In] IPin ppinOut,
+            [In] IPin ppinIn
+            );
+
+        [PreserveSig]
+        new int Render([In] IPin ppinOut);
+
+        [PreserveSig]
+        new int RenderFile(
+            [In, MarshalAs(UnmanagedType.LPWStr)] string lpcwstrFile,
+            [In, MarshalAs(UnmanagedType.LPWStr)] string lpcwstrPlayList
+            );
+
+        [PreserveSig]
+        new int AddSourceFilter(
+            [In, MarshalAs(UnmanagedType.LPWStr)] string lpcwstrFileName,
+            [In, MarshalAs(UnmanagedType.LPWStr)] string lpcwstrFilterName,
+            [Out] out IBaseFilter ppFilter
+            );
+
+        [PreserveSig]
+        new int SetLogFile(IntPtr hFile); // DWORD_PTR
+
+        [PreserveSig]
+        new int Abort();
+
+        [PreserveSig]
+        new int ShouldOperationContinue();
+
+        #endregion
+
+        #region IFilterGraph2 methods
+
+        [PreserveSig]
+        new int AddSourceFilterForMoniker(
+#if USING_NET11
+            [In] UCOMIMoniker pMoniker,
+            [In] UCOMIBindCtx pCtx,
+#else
+[In] IMoniker pMoniker,
+[In] IBindCtx pCtx,
+#endif
+ [In, MarshalAs(UnmanagedType.LPWStr)] string lpcwstrFilterName,
+ [Out] out IBaseFilter ppFilter
+ );
+
+        [PreserveSig]
+        new int ReconnectEx(
+            [In] IPin ppin,
+            [In] AMMediaType pmt
+            );
+
+        [PreserveSig]
+        new int RenderEx(
+            [In] IPin pPinOut,
+            [In] AMRenderExFlags dwFlags,
+            [In] IntPtr pvContext // DWORD *
+            );
+
+        #endregion
+
+        [PreserveSig]
+        int SetSyncSourceEx(
+            IReferenceClock pClockForMostOfFilterGraph,
+            IReferenceClock pClockForFilter,
+            IBaseFilter pFilter
+            );
+
     }
 
     #endregion

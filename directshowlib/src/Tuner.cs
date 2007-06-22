@@ -664,138 +664,6 @@ namespace DirectShowLib.BDA
     }
 
     [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
-    Guid("19B595D8-839A-47F0-96DF-4F194F3C768C"),
-    InterfaceType(ComInterfaceType.InterfaceIsDual)]
-    public interface IDigitalLocator : ILocator
-    {
-        #region ILocator Methods
-
-        [PreserveSig]
-        new int get_CarrierFrequency([Out] out int Frequency);
-
-        [PreserveSig]
-        new int put_CarrierFrequency([In] int Frequency);
-
-        [PreserveSig]
-        new int get_InnerFEC([Out] out FECMethod FEC);
-
-        [PreserveSig]
-        new int put_InnerFEC([In] FECMethod FEC);
-
-        [PreserveSig]
-        new int get_InnerFECRate([Out] out BinaryConvolutionCodeRate FEC);
-
-        [PreserveSig]
-        new int put_InnerFECRate([In] BinaryConvolutionCodeRate FEC);
-
-        [PreserveSig]
-        new int get_OuterFEC([Out] out FECMethod FEC);
-
-        [PreserveSig]
-        new int put_OuterFEC([In] FECMethod FEC);
-
-        [PreserveSig]
-        new int get_OuterFECRate([Out] out BinaryConvolutionCodeRate FEC);
-
-        [PreserveSig]
-        new int put_OuterFECRate([In] BinaryConvolutionCodeRate FEC);
-
-        [PreserveSig]
-        new int get_Modulation([Out] out ModulationType Modulation);
-
-        [PreserveSig]
-        new int put_Modulation([In] ModulationType Modulation);
-
-        [PreserveSig]
-        new int get_SymbolRate([Out] out int Rate);
-
-        [PreserveSig]
-        new int put_SymbolRate([In] int Rate);
-
-        [PreserveSig]
-        new int Clone([Out] out ILocator NewLocator);
-
-        #endregion
-    }
-
-    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
-    Guid("612AA885-66CF-4090-BA0A-566F5312E4CA"),
-    InterfaceType(ComInterfaceType.InterfaceIsDual)]
-    public interface IATSCLocator2 : IATSCLocator
-    {
-        #region ILocator Methods
-
-        [PreserveSig]
-        new int get_CarrierFrequency([Out] out int Frequency);
-
-        [PreserveSig]
-        new int put_CarrierFrequency([In] int Frequency);
-
-        [PreserveSig]
-        new int get_InnerFEC([Out] out FECMethod FEC);
-
-        [PreserveSig]
-        new int put_InnerFEC([In] FECMethod FEC);
-
-        [PreserveSig]
-        new int get_InnerFECRate([Out] out BinaryConvolutionCodeRate FEC);
-
-        [PreserveSig]
-        new int put_InnerFECRate([In] BinaryConvolutionCodeRate FEC);
-
-        [PreserveSig]
-        new int get_OuterFEC([Out] out FECMethod FEC);
-
-        [PreserveSig]
-        new int put_OuterFEC([In] FECMethod FEC);
-
-        [PreserveSig]
-        new int get_OuterFECRate([Out] out BinaryConvolutionCodeRate FEC);
-
-        [PreserveSig]
-        new int put_OuterFECRate([In] BinaryConvolutionCodeRate FEC);
-
-        [PreserveSig]
-        new int get_Modulation([Out] out ModulationType Modulation);
-
-        [PreserveSig]
-        new int put_Modulation([In] ModulationType Modulation);
-
-        [PreserveSig]
-        new int get_SymbolRate([Out] out int Rate);
-
-        [PreserveSig]
-        new int put_SymbolRate([In] int Rate);
-
-        [PreserveSig]
-        new int Clone([Out] out ILocator NewLocator);
-
-        #endregion
-
-        #region IATSCLocator Methods
-
-        [PreserveSig]
-        new int get_PhysicalChannel([Out] out int PhysicalChannel);
-
-        [PreserveSig]
-        new int put_PhysicalChannel([In] int PhysicalChannel);
-
-        [PreserveSig]
-        new int get_TSID([Out] out int TSID);
-
-        [PreserveSig]
-        new int put_TSID([In] int TSID);
-
-        #endregion
-
-        [PreserveSig]
-        int get_ProgramNumber([Out] out int ProgramNumber);
-
-        [PreserveSig]
-        int put_ProgramNumber([In] int ProgramNumber);
-    }
-
-    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("48F66A11-171A-419A-9525-BEEECD51584C"),
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface IDigitalCableLocator : IATSCLocator2
@@ -877,28 +745,6 @@ namespace DirectShowLib.BDA
     }
 
     [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
-    Guid("3d9e3887-1929-423f-8021-43682de95448"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IBroadcastEventEx : IBroadcastEvent
-    {
-        #region IBroadcastEvent Methods
-
-        [PreserveSig]
-        new int Fire(Guid EventID);
-
-        #endregion
-
-        [PreserveSig]
-        int FireEx(
-          [In] Guid EventID,
-          [In] int Param1,
-          [In] int Param2,
-          [In] int Param3,
-          [In] int Param4
-          );
-    }
-
-    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("359B3901-572C-4854-BB49-CDEF66606A25"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IRegisterTuner
@@ -909,274 +755,6 @@ namespace DirectShowLib.BDA
             );
 
         int Unregister();
-    }
-
-    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
-    Guid("39DD45DA-2DA8-46BA-8A8A-87E2B73D983A"),
-    InterfaceType(ComInterfaceType.InterfaceIsDual)]
-    public interface IAnalogRadioTuningSpace2 : IAnalogRadioTuningSpace
-    {
-        #region ITuningSpace Methods
-
-        [PreserveSig]
-        new int get_UniqueName([Out, MarshalAs(UnmanagedType.BStr)] out string Name);
-
-        [PreserveSig]
-        new int put_UniqueName([In, MarshalAs(UnmanagedType.BStr)] string Name);
-
-        [PreserveSig]
-        new int get_FriendlyName([Out, MarshalAs(UnmanagedType.BStr)] out string Name);
-
-        [PreserveSig]
-        new int put_FriendlyName([In, MarshalAs(UnmanagedType.BStr)] string Name);
-
-        [PreserveSig]
-        new int get_CLSID([Out, MarshalAs(UnmanagedType.BStr)] out string SpaceCLSID);
-
-        [PreserveSig]
-        new int get_NetworkType([Out, MarshalAs(UnmanagedType.BStr)] out string NetworkTypeGuid);
-
-        [PreserveSig]
-        new int put_NetworkType([In, MarshalAs(UnmanagedType.BStr)] string NetworkTypeGuid);
-
-        [PreserveSig]
-        new int get__NetworkType([Out] out Guid NetworkTypeGuid);
-
-        [PreserveSig]
-        new int put__NetworkType([In, MarshalAs(UnmanagedType.LPStruct)] Guid NetworkTypeGuid);
-
-        [PreserveSig]
-        new int CreateTuneRequest([Out] out ITuneRequest TuneRequest);
-
-        [PreserveSig]
-        new int EnumCategoryGUIDs([Out, MarshalAs(UnmanagedType.IUnknown)] out object ppEnum); // IEnumGUID**
-
-        [PreserveSig]
-#if USING_NET11
-        new int EnumDeviceMonikers([Out] out UCOMIEnumMoniker ppEnum);
-#else
-        new int EnumDeviceMonikers([Out] out IEnumMoniker ppEnum);
-#endif
-
-        [PreserveSig]
-        new int get_DefaultPreferredComponentTypes([Out] out IComponentTypes ComponentTypes);
-
-        [PreserveSig]
-        new int put_DefaultPreferredComponentTypes([In] IComponentTypes NewComponentTypes);
-
-        [PreserveSig]
-        new int get_FrequencyMapping([Out, MarshalAs(UnmanagedType.BStr)] out string pMapping);
-
-        [PreserveSig]
-        new int put_FrequencyMapping([In, MarshalAs(UnmanagedType.BStr)] string Mapping);
-
-        [PreserveSig]
-        new int get_DefaultLocator([Out] out ILocator LocatorVal);
-
-        [PreserveSig]
-        new int put_DefaultLocator([In] ILocator LocatorVal);
-
-        [PreserveSig]
-        new int Clone([Out] out ITuningSpace NewTS);
-
-        #endregion
-
-        #region IAnalogRadioTuningSpace Methods
-
-        [PreserveSig]
-        new int get_MinFrequency([Out] out int MinFrequencyVal);
-
-        [PreserveSig]
-        new int put_MinFrequency([In] int NewMinFrequencyVal);
-
-        [PreserveSig]
-        new int get_MaxFrequency([Out] out int MaxFrequencyVal);
-
-        [PreserveSig]
-        new int put_MaxFrequency([In] int NewMaxFrequencyVal);
-
-        [PreserveSig]
-        new int get_Step([Out] out int StepVal);
-
-        [PreserveSig]
-        new int put_Step([In] int StepVal);
-
-        #endregion
-
-        int get_CountryCode(
-            out int CountryCodeVal
-            );
-
-        int put_CountryCode(
-            int NewCountryCodeVal
-            );
-    }
-
-    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
-    Guid("B10931ED-8BFE-4AB0-9DCE-E469C29A9729"),
-    InterfaceType(ComInterfaceType.InterfaceIsDual)]
-    public interface IAuxInTuningSpace2 : IAuxInTuningSpace
-    {
-        #region ITuningSpace Methods
-
-        [PreserveSig]
-        new int get_UniqueName([Out, MarshalAs(UnmanagedType.BStr)] out string Name);
-
-        [PreserveSig]
-        new int put_UniqueName([In, MarshalAs(UnmanagedType.BStr)] string Name);
-
-        [PreserveSig]
-        new int get_FriendlyName([Out, MarshalAs(UnmanagedType.BStr)] out string Name);
-
-        [PreserveSig]
-        new int put_FriendlyName([In, MarshalAs(UnmanagedType.BStr)] string Name);
-
-        [PreserveSig]
-        new int get_CLSID([Out, MarshalAs(UnmanagedType.BStr)] out string SpaceCLSID);
-
-        [PreserveSig]
-        new int get_NetworkType([Out, MarshalAs(UnmanagedType.BStr)] out string NetworkTypeGuid);
-
-        [PreserveSig]
-        new int put_NetworkType([In, MarshalAs(UnmanagedType.BStr)] string NetworkTypeGuid);
-
-        [PreserveSig]
-        new int get__NetworkType([Out] out Guid NetworkTypeGuid);
-
-        [PreserveSig]
-        new int put__NetworkType([In, MarshalAs(UnmanagedType.LPStruct)] Guid NetworkTypeGuid);
-
-        [PreserveSig]
-        new int CreateTuneRequest([Out] out ITuneRequest TuneRequest);
-
-        [PreserveSig]
-        new int EnumCategoryGUIDs([Out, MarshalAs(UnmanagedType.IUnknown)] out object ppEnum); // IEnumGUID**
-
-        [PreserveSig]
-#if USING_NET11
-        new int EnumDeviceMonikers([Out] out UCOMIEnumMoniker ppEnum);
-#else
-        new int EnumDeviceMonikers([Out] out IEnumMoniker ppEnum);
-#endif
-
-        [PreserveSig]
-        new int get_DefaultPreferredComponentTypes([Out] out IComponentTypes ComponentTypes);
-
-        [PreserveSig]
-        new int put_DefaultPreferredComponentTypes([In] IComponentTypes NewComponentTypes);
-
-        [PreserveSig]
-        new int get_FrequencyMapping([Out, MarshalAs(UnmanagedType.BStr)] out string pMapping);
-
-        [PreserveSig]
-        new int put_FrequencyMapping([In, MarshalAs(UnmanagedType.BStr)] string Mapping);
-
-        [PreserveSig]
-        new int get_DefaultLocator([Out] out ILocator LocatorVal);
-
-        [PreserveSig]
-        new int put_DefaultLocator([In] ILocator LocatorVal);
-
-        [PreserveSig]
-        new int Clone([Out] out ITuningSpace NewTS);
-
-        #endregion
-
-        int get_CountryCode(
-            out int CountryCodeVal);
-
-        int put_CountryCode(
-            int NewCountryCodeVal
-            );
-    }
-
-    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
-    Guid("2A6E293B-2595-11d3-B64C-00C04F79498E"),
-    InterfaceType(ComInterfaceType.InterfaceIsDual)]
-    public interface IAnalogRadioTuningSpace : ITuningSpace
-    {
-        #region ITuningSpace Methods
-
-        [PreserveSig]
-        new int get_UniqueName([Out, MarshalAs(UnmanagedType.BStr)] out string Name);
-
-        [PreserveSig]
-        new int put_UniqueName([In, MarshalAs(UnmanagedType.BStr)] string Name);
-
-        [PreserveSig]
-        new int get_FriendlyName([Out, MarshalAs(UnmanagedType.BStr)] out string Name);
-
-        [PreserveSig]
-        new int put_FriendlyName([In, MarshalAs(UnmanagedType.BStr)] string Name);
-
-        [PreserveSig]
-        new int get_CLSID([Out, MarshalAs(UnmanagedType.BStr)] out string SpaceCLSID);
-
-        [PreserveSig]
-        new int get_NetworkType([Out, MarshalAs(UnmanagedType.BStr)] out string NetworkTypeGuid);
-
-        [PreserveSig]
-        new int put_NetworkType([In, MarshalAs(UnmanagedType.BStr)] string NetworkTypeGuid);
-
-        [PreserveSig]
-        new int get__NetworkType([Out] out Guid NetworkTypeGuid);
-
-        [PreserveSig]
-        new int put__NetworkType([In, MarshalAs(UnmanagedType.LPStruct)] Guid NetworkTypeGuid);
-
-        [PreserveSig]
-        new int CreateTuneRequest([Out] out ITuneRequest TuneRequest);
-
-        [PreserveSig]
-        new int EnumCategoryGUIDs([Out, MarshalAs(UnmanagedType.IUnknown)] out object ppEnum); // IEnumGUID**
-
-        [PreserveSig]
-#if USING_NET11
-        new int EnumDeviceMonikers([Out] out UCOMIEnumMoniker ppEnum);
-#else
-        new int EnumDeviceMonikers([Out] out IEnumMoniker ppEnum);
-#endif
-
-        [PreserveSig]
-        new int get_DefaultPreferredComponentTypes([Out] out IComponentTypes ComponentTypes);
-
-        [PreserveSig]
-        new int put_DefaultPreferredComponentTypes([In] IComponentTypes NewComponentTypes);
-
-        [PreserveSig]
-        new int get_FrequencyMapping([Out, MarshalAs(UnmanagedType.BStr)] out string pMapping);
-
-        [PreserveSig]
-        new int put_FrequencyMapping([In, MarshalAs(UnmanagedType.BStr)] string Mapping);
-
-        [PreserveSig]
-        new int get_DefaultLocator([Out] out ILocator LocatorVal);
-
-        [PreserveSig]
-        new int put_DefaultLocator([In] ILocator LocatorVal);
-
-        [PreserveSig]
-        new int Clone([Out] out ITuningSpace NewTS);
-
-        #endregion
-
-        [PreserveSig]
-        int get_MinFrequency([Out] out int MinFrequencyVal);
-
-        [PreserveSig]
-        int put_MinFrequency([In] int NewMinFrequencyVal);
-
-        [PreserveSig]
-        int get_MaxFrequency([Out] out int MaxFrequencyVal);
-
-        [PreserveSig]
-        int put_MaxFrequency([In] int NewMaxFrequencyVal);
-
-        [PreserveSig]
-        int get_Step([Out] out int StepVal);
-
-        [PreserveSig]
-        int put_Step([In] int StepVal);
     }
 
     [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
@@ -1232,31 +810,6 @@ namespace DirectShowLib.BDA
 
         [PreserveSig]
         int AutoProgram();
-    }
-
-    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
-    Guid("E60DFA45-8D56-4e65-A8AB-D6BE9412C249"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface ITunerCap
-    {
-        [PreserveSig]
-        int get_SupportedNetworkTypes(
-          [In] int ulcNetworkTypesMax,
-          [Out] out int pulcNetworkTypes,
-          [In, Out, MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.Struct)] Guid[] pguidNetworkTypes
-          );
-
-        [PreserveSig]
-        int get_SupportedVideoFormats(
-          [Out] out AMTunerModeType pulAMTunerModeType,
-          [Out] out AnalogVideoStandard pulAnalogVideoStandard
-          );
-
-        [PreserveSig]
-        int get_AuxInputCount(
-          [Out] out int pulCompositeCount,
-          [Out] out int pulSvideoCount
-          );
     }
 
 #endif
@@ -3237,6 +2790,453 @@ namespace DirectShowLib.BDA
               [In] BDACompFlags dwFlags,
               [Out] out long Result
               );
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("19B595D8-839A-47F0-96DF-4F194F3C768C"),
+    InterfaceType(ComInterfaceType.InterfaceIsDual)]
+    public interface IDigitalLocator : ILocator
+    {
+        #region ILocator Methods
+
+        [PreserveSig]
+        new int get_CarrierFrequency([Out] out int Frequency);
+
+        [PreserveSig]
+        new int put_CarrierFrequency([In] int Frequency);
+
+        [PreserveSig]
+        new int get_InnerFEC([Out] out FECMethod FEC);
+
+        [PreserveSig]
+        new int put_InnerFEC([In] FECMethod FEC);
+
+        [PreserveSig]
+        new int get_InnerFECRate([Out] out BinaryConvolutionCodeRate FEC);
+
+        [PreserveSig]
+        new int put_InnerFECRate([In] BinaryConvolutionCodeRate FEC);
+
+        [PreserveSig]
+        new int get_OuterFEC([Out] out FECMethod FEC);
+
+        [PreserveSig]
+        new int put_OuterFEC([In] FECMethod FEC);
+
+        [PreserveSig]
+        new int get_OuterFECRate([Out] out BinaryConvolutionCodeRate FEC);
+
+        [PreserveSig]
+        new int put_OuterFECRate([In] BinaryConvolutionCodeRate FEC);
+
+        [PreserveSig]
+        new int get_Modulation([Out] out ModulationType Modulation);
+
+        [PreserveSig]
+        new int put_Modulation([In] ModulationType Modulation);
+
+        [PreserveSig]
+        new int get_SymbolRate([Out] out int Rate);
+
+        [PreserveSig]
+        new int put_SymbolRate([In] int Rate);
+
+        [PreserveSig]
+        new int Clone([Out] out ILocator NewLocator);
+
+        #endregion
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("3d9e3887-1929-423f-8021-43682de95448"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IBroadcastEventEx : IBroadcastEvent
+    {
+        #region IBroadcastEvent Methods
+
+        [PreserveSig]
+        new int Fire(Guid EventID);
+
+        #endregion
+
+        [PreserveSig]
+        int FireEx(
+          [In] Guid EventID,
+          [In] int Param1,
+          [In] int Param2,
+          [In] int Param3,
+          [In] int Param4
+          );
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("E60DFA45-8D56-4e65-A8AB-D6BE9412C249"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface ITunerCap
+    {
+        [PreserveSig]
+        int get_SupportedNetworkTypes(
+          [In] int ulcNetworkTypesMax,
+          [Out] out int pulcNetworkTypes,
+          [In, Out, MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.Struct)] Guid[] pguidNetworkTypes
+          );
+
+        [PreserveSig]
+        int get_SupportedVideoFormats(
+          [Out] out AMTunerModeType pulAMTunerModeType,
+          [Out] out AnalogVideoStandard pulAnalogVideoStandard
+          );
+
+        [PreserveSig]
+        int get_AuxInputCount(
+          [Out] out int pulCompositeCount,
+          [Out] out int pulSvideoCount
+          );
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("2A6E293B-2595-11d3-B64C-00C04F79498E"),
+    InterfaceType(ComInterfaceType.InterfaceIsDual)]
+    public interface IAnalogRadioTuningSpace : ITuningSpace
+    {
+        #region ITuningSpace Methods
+
+        [PreserveSig]
+        new int get_UniqueName([Out, MarshalAs(UnmanagedType.BStr)] out string Name);
+
+        [PreserveSig]
+        new int put_UniqueName([In, MarshalAs(UnmanagedType.BStr)] string Name);
+
+        [PreserveSig]
+        new int get_FriendlyName([Out, MarshalAs(UnmanagedType.BStr)] out string Name);
+
+        [PreserveSig]
+        new int put_FriendlyName([In, MarshalAs(UnmanagedType.BStr)] string Name);
+
+        [PreserveSig]
+        new int get_CLSID([Out, MarshalAs(UnmanagedType.BStr)] out string SpaceCLSID);
+
+        [PreserveSig]
+        new int get_NetworkType([Out, MarshalAs(UnmanagedType.BStr)] out string NetworkTypeGuid);
+
+        [PreserveSig]
+        new int put_NetworkType([In, MarshalAs(UnmanagedType.BStr)] string NetworkTypeGuid);
+
+        [PreserveSig]
+        new int get__NetworkType([Out] out Guid NetworkTypeGuid);
+
+        [PreserveSig]
+        new int put__NetworkType([In, MarshalAs(UnmanagedType.LPStruct)] Guid NetworkTypeGuid);
+
+        [PreserveSig]
+        new int CreateTuneRequest([Out] out ITuneRequest TuneRequest);
+
+        [PreserveSig]
+        new int EnumCategoryGUIDs([Out, MarshalAs(UnmanagedType.IUnknown)] out object ppEnum); // IEnumGUID**
+
+        [PreserveSig]
+#if USING_NET11
+        new int EnumDeviceMonikers([Out] out UCOMIEnumMoniker ppEnum);
+#else
+        new int EnumDeviceMonikers([Out] out IEnumMoniker ppEnum);
+#endif
+
+        [PreserveSig]
+        new int get_DefaultPreferredComponentTypes([Out] out IComponentTypes ComponentTypes);
+
+        [PreserveSig]
+        new int put_DefaultPreferredComponentTypes([In] IComponentTypes NewComponentTypes);
+
+        [PreserveSig]
+        new int get_FrequencyMapping([Out, MarshalAs(UnmanagedType.BStr)] out string pMapping);
+
+        [PreserveSig]
+        new int put_FrequencyMapping([In, MarshalAs(UnmanagedType.BStr)] string Mapping);
+
+        [PreserveSig]
+        new int get_DefaultLocator([Out] out ILocator LocatorVal);
+
+        [PreserveSig]
+        new int put_DefaultLocator([In] ILocator LocatorVal);
+
+        [PreserveSig]
+        new int Clone([Out] out ITuningSpace NewTS);
+
+        #endregion
+
+        [PreserveSig]
+        int get_MinFrequency([Out] out int MinFrequencyVal);
+
+        [PreserveSig]
+        int put_MinFrequency([In] int NewMinFrequencyVal);
+
+        [PreserveSig]
+        int get_MaxFrequency([Out] out int MaxFrequencyVal);
+
+        [PreserveSig]
+        int put_MaxFrequency([In] int NewMaxFrequencyVal);
+
+        [PreserveSig]
+        int get_Step([Out] out int StepVal);
+
+        [PreserveSig]
+        int put_Step([In] int StepVal);
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("39DD45DA-2DA8-46BA-8A8A-87E2B73D983A"),
+    InterfaceType(ComInterfaceType.InterfaceIsDual)]
+    public interface IAnalogRadioTuningSpace2 : IAnalogRadioTuningSpace
+    {
+        #region ITuningSpace Methods
+
+        [PreserveSig]
+        new int get_UniqueName([Out, MarshalAs(UnmanagedType.BStr)] out string Name);
+
+        [PreserveSig]
+        new int put_UniqueName([In, MarshalAs(UnmanagedType.BStr)] string Name);
+
+        [PreserveSig]
+        new int get_FriendlyName([Out, MarshalAs(UnmanagedType.BStr)] out string Name);
+
+        [PreserveSig]
+        new int put_FriendlyName([In, MarshalAs(UnmanagedType.BStr)] string Name);
+
+        [PreserveSig]
+        new int get_CLSID([Out, MarshalAs(UnmanagedType.BStr)] out string SpaceCLSID);
+
+        [PreserveSig]
+        new int get_NetworkType([Out, MarshalAs(UnmanagedType.BStr)] out string NetworkTypeGuid);
+
+        [PreserveSig]
+        new int put_NetworkType([In, MarshalAs(UnmanagedType.BStr)] string NetworkTypeGuid);
+
+        [PreserveSig]
+        new int get__NetworkType([Out] out Guid NetworkTypeGuid);
+
+        [PreserveSig]
+        new int put__NetworkType([In, MarshalAs(UnmanagedType.LPStruct)] Guid NetworkTypeGuid);
+
+        [PreserveSig]
+        new int CreateTuneRequest([Out] out ITuneRequest TuneRequest);
+
+        [PreserveSig]
+        new int EnumCategoryGUIDs([Out, MarshalAs(UnmanagedType.IUnknown)] out object ppEnum); // IEnumGUID**
+
+        [PreserveSig]
+#if USING_NET11
+        new int EnumDeviceMonikers([Out] out UCOMIEnumMoniker ppEnum);
+#else
+        new int EnumDeviceMonikers([Out] out IEnumMoniker ppEnum);
+#endif
+
+        [PreserveSig]
+        new int get_DefaultPreferredComponentTypes([Out] out IComponentTypes ComponentTypes);
+
+        [PreserveSig]
+        new int put_DefaultPreferredComponentTypes([In] IComponentTypes NewComponentTypes);
+
+        [PreserveSig]
+        new int get_FrequencyMapping([Out, MarshalAs(UnmanagedType.BStr)] out string pMapping);
+
+        [PreserveSig]
+        new int put_FrequencyMapping([In, MarshalAs(UnmanagedType.BStr)] string Mapping);
+
+        [PreserveSig]
+        new int get_DefaultLocator([Out] out ILocator LocatorVal);
+
+        [PreserveSig]
+        new int put_DefaultLocator([In] ILocator LocatorVal);
+
+        [PreserveSig]
+        new int Clone([Out] out ITuningSpace NewTS);
+
+        #endregion
+
+        #region IAnalogRadioTuningSpace Methods
+
+        [PreserveSig]
+        new int get_MinFrequency([Out] out int MinFrequencyVal);
+
+        [PreserveSig]
+        new int put_MinFrequency([In] int NewMinFrequencyVal);
+
+        [PreserveSig]
+        new int get_MaxFrequency([Out] out int MaxFrequencyVal);
+
+        [PreserveSig]
+        new int put_MaxFrequency([In] int NewMaxFrequencyVal);
+
+        [PreserveSig]
+        new int get_Step([Out] out int StepVal);
+
+        [PreserveSig]
+        new int put_Step([In] int StepVal);
+
+        #endregion
+
+        int get_CountryCode(
+            out int CountryCodeVal
+            );
+
+        int put_CountryCode(
+            int NewCountryCodeVal
+            );
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("612AA885-66CF-4090-BA0A-566F5312E4CA"),
+    InterfaceType(ComInterfaceType.InterfaceIsDual)]
+    public interface IATSCLocator2 : IATSCLocator
+    {
+        #region ILocator Methods
+
+        [PreserveSig]
+        new int get_CarrierFrequency([Out] out int Frequency);
+
+        [PreserveSig]
+        new int put_CarrierFrequency([In] int Frequency);
+
+        [PreserveSig]
+        new int get_InnerFEC([Out] out FECMethod FEC);
+
+        [PreserveSig]
+        new int put_InnerFEC([In] FECMethod FEC);
+
+        [PreserveSig]
+        new int get_InnerFECRate([Out] out BinaryConvolutionCodeRate FEC);
+
+        [PreserveSig]
+        new int put_InnerFECRate([In] BinaryConvolutionCodeRate FEC);
+
+        [PreserveSig]
+        new int get_OuterFEC([Out] out FECMethod FEC);
+
+        [PreserveSig]
+        new int put_OuterFEC([In] FECMethod FEC);
+
+        [PreserveSig]
+        new int get_OuterFECRate([Out] out BinaryConvolutionCodeRate FEC);
+
+        [PreserveSig]
+        new int put_OuterFECRate([In] BinaryConvolutionCodeRate FEC);
+
+        [PreserveSig]
+        new int get_Modulation([Out] out ModulationType Modulation);
+
+        [PreserveSig]
+        new int put_Modulation([In] ModulationType Modulation);
+
+        [PreserveSig]
+        new int get_SymbolRate([Out] out int Rate);
+
+        [PreserveSig]
+        new int put_SymbolRate([In] int Rate);
+
+        [PreserveSig]
+        new int Clone([Out] out ILocator NewLocator);
+
+        #endregion
+
+        #region IATSCLocator Methods
+
+        [PreserveSig]
+        new int get_PhysicalChannel([Out] out int PhysicalChannel);
+
+        [PreserveSig]
+        new int put_PhysicalChannel([In] int PhysicalChannel);
+
+        [PreserveSig]
+        new int get_TSID([Out] out int TSID);
+
+        [PreserveSig]
+        new int put_TSID([In] int TSID);
+
+        #endregion
+
+        [PreserveSig]
+        int get_ProgramNumber([Out] out int ProgramNumber);
+
+        [PreserveSig]
+        int put_ProgramNumber([In] int ProgramNumber);
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("B10931ED-8BFE-4AB0-9DCE-E469C29A9729"),
+    InterfaceType(ComInterfaceType.InterfaceIsDual)]
+    public interface IAuxInTuningSpace2 : IAuxInTuningSpace
+    {
+        #region ITuningSpace Methods
+
+        [PreserveSig]
+        new int get_UniqueName([Out, MarshalAs(UnmanagedType.BStr)] out string Name);
+
+        [PreserveSig]
+        new int put_UniqueName([In, MarshalAs(UnmanagedType.BStr)] string Name);
+
+        [PreserveSig]
+        new int get_FriendlyName([Out, MarshalAs(UnmanagedType.BStr)] out string Name);
+
+        [PreserveSig]
+        new int put_FriendlyName([In, MarshalAs(UnmanagedType.BStr)] string Name);
+
+        [PreserveSig]
+        new int get_CLSID([Out, MarshalAs(UnmanagedType.BStr)] out string SpaceCLSID);
+
+        [PreserveSig]
+        new int get_NetworkType([Out, MarshalAs(UnmanagedType.BStr)] out string NetworkTypeGuid);
+
+        [PreserveSig]
+        new int put_NetworkType([In, MarshalAs(UnmanagedType.BStr)] string NetworkTypeGuid);
+
+        [PreserveSig]
+        new int get__NetworkType([Out] out Guid NetworkTypeGuid);
+
+        [PreserveSig]
+        new int put__NetworkType([In, MarshalAs(UnmanagedType.LPStruct)] Guid NetworkTypeGuid);
+
+        [PreserveSig]
+        new int CreateTuneRequest([Out] out ITuneRequest TuneRequest);
+
+        [PreserveSig]
+        new int EnumCategoryGUIDs([Out, MarshalAs(UnmanagedType.IUnknown)] out object ppEnum); // IEnumGUID**
+
+        [PreserveSig]
+#if USING_NET11
+        new int EnumDeviceMonikers([Out] out UCOMIEnumMoniker ppEnum);
+#else
+        new int EnumDeviceMonikers([Out] out IEnumMoniker ppEnum);
+#endif
+
+        [PreserveSig]
+        new int get_DefaultPreferredComponentTypes([Out] out IComponentTypes ComponentTypes);
+
+        [PreserveSig]
+        new int put_DefaultPreferredComponentTypes([In] IComponentTypes NewComponentTypes);
+
+        [PreserveSig]
+        new int get_FrequencyMapping([Out, MarshalAs(UnmanagedType.BStr)] out string pMapping);
+
+        [PreserveSig]
+        new int put_FrequencyMapping([In, MarshalAs(UnmanagedType.BStr)] string Mapping);
+
+        [PreserveSig]
+        new int get_DefaultLocator([Out] out ILocator LocatorVal);
+
+        [PreserveSig]
+        new int put_DefaultLocator([In] ILocator LocatorVal);
+
+        [PreserveSig]
+        new int Clone([Out] out ITuningSpace NewTS);
+
+        #endregion
+
+        int get_CountryCode(
+            out int CountryCodeVal);
+
+        int put_CountryCode(
+            int NewCountryCodeVal
+            );
     }
 
     #endregion

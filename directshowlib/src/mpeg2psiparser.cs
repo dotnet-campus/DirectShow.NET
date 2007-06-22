@@ -50,27 +50,6 @@ namespace DirectShowLib.BDA
 #if ALLOW_UNTESTED_INTERFACES
 
     [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
-    Guid("6A5918F8-A77A-4f61-AED0-5702BDCDA3E6"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IGenericDescriptor
-    {
-        [PreserveSig]
-        int Initialize(
-          [In] IntPtr pbDesc,
-          [In] int bCount
-          );
-
-        [PreserveSig]
-        int GetTag([Out] out byte pbVal);
-
-        [PreserveSig]
-        int GetLength([Out] out byte pbVal);
-
-        [PreserveSig]
-        int GetBody([Out] out IntPtr ppbVal);
-    }
-
-    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("6623B511-4B5F-43c3-9A01-E8FF84188060"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPAT
@@ -119,6 +98,86 @@ namespace DirectShowLib.BDA
 
         [PreserveSig]
         int ConvertNextToCurrent();
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("D19BDB43-405B-4a7c-A791-C89110C33165"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface ITSDT
+    {
+        [PreserveSig]
+        int Initialize(
+          [In] ISectionList pSectionList,
+          [In] IMpeg2Data pMPEGData
+          );
+
+        [PreserveSig]
+        int GetVersionNumber([Out] out byte pbVal);
+
+        [PreserveSig]
+        int GetCountOfTableDescriptors([Out] out int pdwVal);
+
+        [PreserveSig]
+        int GetTableDescriptorByIndex(
+          [In] int dwIndex,
+          [Out] out IGenericDescriptor ppDescriptor
+          );
+
+        [PreserveSig]
+        int GetTableDescriptorByTag(
+          [In] byte bTag,
+          [In, Out] DsInt pdwCookie,
+          [Out] out IGenericDescriptor ppDescriptor
+          );
+
+        [PreserveSig]
+        int RegisterForNextTable([In] IntPtr hNextTableAvailable);
+
+        [PreserveSig]
+        int GetNextTable([Out] out ITSDT ppTSDT);
+
+        [PreserveSig]
+        int RegisterForWhenCurrent([In] IntPtr hNextTableIsCurrent);
+
+        [PreserveSig]
+        int ConvertNextToCurrent();
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("919F24C5-7B14-42ac-A4B0-2AE08DAF00AC"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IPSITables
+    {
+        [PreserveSig]
+        int GetTable(
+          [In] int dwTSID,
+          [In] int dwTID_PID,
+          [In] int dwHashedVer,
+          [In] int dwPara4,
+          [Out] out object ppIUnknown
+          );
+    }
+#endif
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("6A5918F8-A77A-4f61-AED0-5702BDCDA3E6"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IGenericDescriptor
+    {
+        [PreserveSig]
+        int Initialize(
+          [In] IntPtr pbDesc,
+          [In] int bCount
+          );
+
+        [PreserveSig]
+        int GetTag([Out] out byte pbVal);
+
+        [PreserveSig]
+        int GetLength([Out] out byte pbVal);
+
+        [PreserveSig]
+        int GetBody([Out] out IntPtr ppbVal);
     }
 
     [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
@@ -262,65 +321,6 @@ namespace DirectShowLib.BDA
         [PreserveSig]
         int ConvertNextToCurrent();
     }
-
-    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
-    Guid("D19BDB43-405B-4a7c-A791-C89110C33165"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface ITSDT
-    {
-        [PreserveSig]
-        int Initialize(
-          [In] ISectionList pSectionList,
-          [In] IMpeg2Data pMPEGData
-          );
-
-        [PreserveSig]
-        int GetVersionNumber([Out] out byte pbVal);
-
-        [PreserveSig]
-        int GetCountOfTableDescriptors([Out] out int pdwVal);
-
-        [PreserveSig]
-        int GetTableDescriptorByIndex(
-          [In] int dwIndex,
-          [Out] out IGenericDescriptor ppDescriptor
-          );
-
-        [PreserveSig]
-        int GetTableDescriptorByTag(
-          [In] byte bTag,
-          [In, Out] DsInt pdwCookie,
-          [Out] out IGenericDescriptor ppDescriptor
-          );
-
-        [PreserveSig]
-        int RegisterForNextTable([In] IntPtr hNextTableAvailable);
-
-        [PreserveSig]
-        int GetNextTable([Out] out ITSDT ppTSDT);
-
-        [PreserveSig]
-        int RegisterForWhenCurrent([In] IntPtr hNextTableIsCurrent);
-
-        [PreserveSig]
-        int ConvertNextToCurrent();
-    }
-
-    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
-    Guid("919F24C5-7B14-42ac-A4B0-2AE08DAF00AC"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IPSITables
-    {
-        [PreserveSig]
-        int GetTable(
-          [In] int dwTSID,
-          [In] int dwTID_PID,
-          [In] int dwHashedVer,
-          [In] int dwPara4,
-          [Out] out object ppIUnknown
-          );
-    }
-#endif
 
     #endregion
 

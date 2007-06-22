@@ -32,40 +32,6 @@ namespace DirectShowLib.BDA
 #if ALLOW_UNTESTED_INTERFACES
 
     /// <summary>
-    /// From EnTvRat_System
-    /// </summary>
-    public enum EnTvRat_System
-    {
-        MPAA = 0,
-        US_TV = 1,
-        Canadian_English = 2,
-        Canadian_French = 3,
-        Reserved4 = 4,
-        System5 = 5,
-        System6 = 6,
-        Reserved7 = 7,
-        TvRat_kSystems = 8,
-        TvRat_SystemDontKnow = 255
-    }
-
-    /// <summary>
-    /// From EnTvRat_GenericLevel
-    /// </summary>
-    public enum EnTvRat_GenericLevel
-    {
-        TvRat_0 = 0,
-        TvRat_1 = 1,
-        TvRat_2 = 2,
-        TvRat_3 = 3,
-        TvRat_4 = 4,
-        TvRat_5 = 5,
-        TvRat_6 = 6,
-        TvRat_7 = 7,
-        TvRat_kLevels = 8,
-        TvRat_LevelDontKnow = 255
-    }
-
-    /// <summary>
     /// From EnTvRat_MPAA
     /// </summary>
     public enum EnTvRat_MPAA
@@ -126,24 +92,6 @@ namespace DirectShowLib.BDA
     }
 
     /// <summary>
-    /// From BfEnTvRat_GenericAttributes
-    /// </summary>
-    [Flags]
-    public enum BfEnTvRat_GenericAttributes
-    {
-        BfAttrNone = 0,
-        BfIsBlocked = 1,
-        BfIsAttr_1 = 2,
-        BfIsAttr_2 = 4,
-        BfIsAttr_3 = 8,
-        BfIsAttr_4 = 16,
-        BfIsAttr_5 = 32,
-        BfIsAttr_6 = 64,
-        BfIsAttr_7 = 128,
-        BfValidAttrSubmask = 255
-    }
-
-    /// <summary>
     /// From BfEnTvRat_Attributes_US_TV
     /// </summary>
     [Flags]
@@ -197,12 +145,64 @@ namespace DirectShowLib.BDA
     {
     }
 
+#endif
+
+    /// <summary>
+    /// From EnTvRat_System
+    /// </summary>
+    public enum EnTvRat_System
+    {
+        MPAA = 0,
+        US_TV = 1,
+        Canadian_English = 2,
+        Canadian_French = 3,
+        Reserved4 = 4,
+        System5 = 5,
+        System6 = 6,
+        Reserved7 = 7,
+        TvRat_kSystems = 8,
+        TvRat_SystemDontKnow = 255
+    }
+
+    /// <summary>
+    /// From EnTvRat_GenericLevel
+    /// </summary>
+    public enum EnTvRat_GenericLevel
+    {
+        TvRat_0 = 0,
+        TvRat_1 = 1,
+        TvRat_2 = 2,
+        TvRat_3 = 3,
+        TvRat_4 = 4,
+        TvRat_5 = 5,
+        TvRat_6 = 6,
+        TvRat_7 = 7,
+        TvRat_kLevels = 8,
+        TvRat_LevelDontKnow = 255
+    }
+
+    /// <summary>
+    /// From BfEnTvRat_GenericAttributes
+    /// </summary>
+    [Flags]
+    public enum BfEnTvRat_GenericAttributes
+    {
+        BfAttrNone = 0,
+        BfIsBlocked = 1,
+        BfIsAttr_1 = 2,
+        BfIsAttr_2 = 4,
+        BfIsAttr_3 = 8,
+        BfIsAttr_4 = 16,
+        BfIsAttr_5 = 32,
+        BfIsAttr_6 = 64,
+        BfIsAttr_7 = 128,
+        BfValidAttrSubmask = 255
+    }
+
     [ComImport, Guid("C5C5C5F1-3ABC-11D6-B25B-00C04FA0C026")]
     public class EvalRat
     {
     }
-
-#endif
 
     #endregion
 
@@ -227,6 +227,8 @@ namespace DirectShowLib.BDA
             [Out] out BfEnTvRat_GenericAttributes plBfEnAttributes
             );
     }
+
+#endif
 
     [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("C5C5C5B1-3ABC-11D6-B25B-00C04FA0C026"),
@@ -273,8 +275,6 @@ namespace DirectShowLib.BDA
             [In] BfEnTvRat_GenericAttributes lbfEnShowAttributes
             );
     }
-
-#endif
 
     #endregion
 }

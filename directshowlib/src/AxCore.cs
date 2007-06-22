@@ -212,22 +212,6 @@ namespace DirectShowLib
 #if ALLOW_UNTESTED_INTERFACES
 
     [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
-    Guid("ebec459c-2eca-4d42-a8af-30df557614b8"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IReferenceClockTimerControl
-    {
-        [PreserveSig]
-        int SetDefaultTimerResolution(
-            long timerResolution
-            );
-
-        [PreserveSig]
-        int GetDefaultTimerResolution(
-            out long pTimerResolution
-            );
-    }
-
-    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("68961E68-832B-41ea-BC91-63593F3E70E3"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IMediaSample2Config
@@ -924,6 +908,22 @@ namespace DirectShowLib
         [PreserveSig]
         int ReleaseBuffer(
             [In] IMediaSample pBuffer
+            );
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("ebec459c-2eca-4d42-a8af-30df557614b8"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IReferenceClockTimerControl
+    {
+        [PreserveSig]
+        int SetDefaultTimerResolution(
+            long timerResolution
+            );
+
+        [PreserveSig]
+        int GetDefaultTimerResolution(
+            out long pTimerResolution
             );
     }
 

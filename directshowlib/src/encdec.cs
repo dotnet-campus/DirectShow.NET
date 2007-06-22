@@ -29,8 +29,6 @@ namespace DirectShowLib.BDA
 {
     #region Declarations
 
-#if ALLOW_UNTESTED_INTERFACES
-
     /// <summary>
     /// From ProtType
     /// </summary>
@@ -48,8 +46,6 @@ namespace DirectShowLib.BDA
         FreeSecure = 9,
         Invalid = 50
     }
-
-#endif
 
     #endregion
 
@@ -99,6 +95,90 @@ namespace DirectShowLib.BDA
     public interface IXDSCodecEvents
     {
     }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("C4C4C4B1-0049-4E2B-98FB-9537F6CE516D"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IETFilter
+    {
+        [PreserveSig]
+        int get_EvalRatObjOK(
+            out int pHrCoCreateRetVal
+            );
+
+        [PreserveSig]
+        int GetCurrRating(
+            out EnTvRat_System pEnSystem,
+            out EnTvRat_GenericLevel pEnRating,
+            out BfEnTvRat_GenericAttributes plbfEnAttr
+            );
+
+        [PreserveSig]
+        int GetCurrLicenseExpDate(
+            ProtType protType,
+            out int lpDateTime
+            );
+
+        [PreserveSig]
+        int GetLastErrorCode();
+
+        [PreserveSig]
+        int SetRecordingOn(
+            [MarshalAs(UnmanagedType.Bool)] bool fRecState
+            );
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("C4C4C4B3-0049-4E2B-98FB-9537F6CE516D"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IXDSCodec
+    {
+        [PreserveSig]
+        int get_XDSToRatObjOK(
+            out int pHrCoCreateRetVal
+                );
+
+        [PreserveSig]
+        int put_CCSubstreamService(
+            int SubstreamMask
+            );
+
+        [PreserveSig]
+        int get_CCSubstreamService(
+            out int pSubstreamMask
+            );
+
+        [PreserveSig]
+        int GetContentAdvisoryRating(
+            out int pRat,
+            out int pPktSeqID,
+            out int pCallSeqID,
+            out long pTimeStart,
+            out long pTimeEnd
+            );
+
+        [PreserveSig]
+        int GetXDSPacket(
+            out int pXDSClassPkt,
+            out int pXDSTypePkt,
+            [MarshalAs(UnmanagedType.BStr)] out string pBstrXDSPkt,
+            out int pPktSeqID,
+            out int pCallSeqID,
+            out long pTimeStart,
+            out long pTimeEnd
+            );
+
+        [PreserveSig]
+        int GetCurrLicenseExpDate(
+            ProtType protType,
+            out int lpDateTime
+            );
+
+        [PreserveSig]
+        int GetLastErrorCode();
+    }
+
+#endif
 
     [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("C4C4C4D3-0049-4E2B-98FB-9537F6CE516D"),
@@ -241,6 +321,33 @@ namespace DirectShowLib.BDA
     }
 
     [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("C4C4C4D1-0049-4E2B-98FB-9537F6CE516D"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IETFilterConfig
+    {
+        [PreserveSig]
+        int InitLicense(
+            int LicenseId
+            );
+
+        [PreserveSig]
+        int GetSecureChannelObject(
+            [MarshalAs(UnmanagedType.IUnknown)] out object ppUnkDRMSecureChannel
+            );
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("C4C4C4D2-0049-4E2B-98FB-9537F6CE516D"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IDTFilterConfig
+    {
+        [PreserveSig]
+        int GetSecureChannelObject(
+            [MarshalAs(UnmanagedType.IUnknown)] out object ppUnkDRMSecureChannel
+            );
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("513998cc-e929-4cdf-9fbd-bad1e0314866"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IDTFilter3 : IDTFilter2
@@ -329,117 +436,6 @@ namespace DirectShowLib.BDA
             [MarshalAs(UnmanagedType.BStr)] string bstrRights
             );
     }
-
-    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
-    Guid("C4C4C4D2-0049-4E2B-98FB-9537F6CE516D"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IDTFilterConfig
-    {
-        [PreserveSig]
-        int GetSecureChannelObject(
-            [MarshalAs(UnmanagedType.IUnknown)] out object ppUnkDRMSecureChannel
-            );
-    }
-
-    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
-    Guid("C4C4C4B1-0049-4E2B-98FB-9537F6CE516D"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IETFilter
-    {
-        [PreserveSig]
-        int get_EvalRatObjOK(
-            out int pHrCoCreateRetVal
-            );
-
-        [PreserveSig]
-        int GetCurrRating(
-            out EnTvRat_System pEnSystem,
-            out EnTvRat_GenericLevel pEnRating,
-            out BfEnTvRat_GenericAttributes plbfEnAttr
-            );
-
-        [PreserveSig]
-        int GetCurrLicenseExpDate(
-            ProtType protType,
-            out int lpDateTime
-            );
-
-        [PreserveSig]
-        int GetLastErrorCode();
-
-        [PreserveSig]
-        int SetRecordingOn(
-            [MarshalAs(UnmanagedType.Bool)] bool fRecState
-            );
-    }
-
-    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
-    Guid("C4C4C4D1-0049-4E2B-98FB-9537F6CE516D"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IETFilterConfig
-    {
-        [PreserveSig]
-        int InitLicense(
-            int LicenseId
-            );
-
-        [PreserveSig]
-        int GetSecureChannelObject(
-            [MarshalAs(UnmanagedType.IUnknown)] out object ppUnkDRMSecureChannel
-            );
-    }
-
-    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
-    Guid("C4C4C4B3-0049-4E2B-98FB-9537F6CE516D"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IXDSCodec
-    {
-        [PreserveSig]
-        int get_XDSToRatObjOK(
-            out int pHrCoCreateRetVal
-                );
-
-        [PreserveSig]
-        int put_CCSubstreamService(
-            int SubstreamMask
-            );
-
-        [PreserveSig]
-        int get_CCSubstreamService(
-            out int pSubstreamMask
-            );
-
-        [PreserveSig]
-        int GetContentAdvisoryRating(
-            out int pRat,
-            out int pPktSeqID,
-            out int pCallSeqID,
-            out long pTimeStart,
-            out long pTimeEnd
-            );
-
-        [PreserveSig]
-        int GetXDSPacket(
-            out int pXDSClassPkt,
-            out int pXDSTypePkt,
-            [MarshalAs(UnmanagedType.BStr)] out string pBstrXDSPkt,
-            out int pPktSeqID,
-            out int pCallSeqID,
-            out long pTimeStart,
-            out long pTimeEnd
-            );
-
-        [PreserveSig]
-        int GetCurrLicenseExpDate(
-            ProtType protType,
-            out int lpDateTime
-            );
-
-        [PreserveSig]
-        int GetLastErrorCode();
-    }
-
-#endif
 
     #endregion
 

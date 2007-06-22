@@ -209,8 +209,6 @@ namespace DirectShowLib.SBE
 
     #region Interfaces
 
-#if ALLOW_UNTESTED_INTERFACES
-
     [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("7E2D2A1E-7192-4bd7-80C1-061FD1D10402"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -278,8 +276,6 @@ namespace DirectShowLib.SBE
         [PreserveSig]
         int GetNamespace([Out, MarshalAs(UnmanagedType.LPWStr)] out string ppszNamespace);
     }
-
-#endif
 
     [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("9ce50f2d-6ba7-40fb-a034-50b1a674ec78"),
