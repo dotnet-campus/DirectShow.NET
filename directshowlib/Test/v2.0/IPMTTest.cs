@@ -11,8 +11,10 @@ namespace v2_0
   class IPMTTest
   {
     private BdaGraph graph;
+#if ALLOW_UNTESTED_INTERFACES
     private IDvbSiParser parser;
-    private IPMT pmt;
+#endif
+      private IPMT pmt;
 
     public void DoTests()
     {
@@ -189,6 +191,8 @@ namespace v2_0
 
     private void Config()
     {
+#if ALLOW_UNTESTED_INTERFACES
+
       int hr = 0;
 
       parser = (IDvbSiParser)new DvbSiParser();
@@ -221,12 +225,15 @@ namespace v2_0
 
       hr = parser.GetPMT(mapPid, progNumber, out pmt);
       Debug.Assert(pmt != null, "Can't get a PMT object");
+#endif
     }
 
     private void Unconfig()
     {
       Marshal.ReleaseComObject(pmt);
+#if ALLOW_UNTESTED_INTERFACES
       Marshal.ReleaseComObject(parser);
+#endif
       graph.DecomposeGraph();
     }
 

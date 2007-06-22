@@ -11,8 +11,10 @@ namespace v2_0
   class IDvbServiceDescriptorTest
   {
     private BdaGraph graph;
+#if ALLOW_UNTESTED_INTERFACES
     private IDvbSiParser parser;
     private IDvbServiceDescriptor dsDescriptor;
+#endif
 
     public void DoTests()
     {
@@ -31,6 +33,8 @@ namespace v2_0
 
     private void Config()
     {
+#if ALLOW_UNTESTED_INTERFACES
+
       int hr = 0;
       IDVB_BAT bat;
       IGenericDescriptor descriptor = null;
@@ -68,12 +72,15 @@ namespace v2_0
 
       dsDescriptor = descriptor as IDvbServiceDescriptor;
       Debug.Assert(dsDescriptor != null, "Can't get a DvbServiceDescriptor object");
+#endif
     }
 
     private void Unconfig()
     {
+#if ALLOW_UNTESTED_INTERFACES
       Marshal.ReleaseComObject(dsDescriptor);
       Marshal.ReleaseComObject(parser);
+#endif
       graph.DecomposeGraph();
     }
   }

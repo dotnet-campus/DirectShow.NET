@@ -11,7 +11,9 @@ namespace v2_0
   public class IDvbSatelliteDeliverySystemDescriptorTest
   {
     private BdaGraph graph;
+#if ALLOW_UNTESTED_INTERFACES
     private IDvbSiParser parser;
+#endif
     private IDvbSatelliteDeliverySystemDescriptor dsdsDescriptor;
 
     public void DoTests()
@@ -80,6 +82,8 @@ namespace v2_0
 
     private void Config()
     {
+#if ALLOW_UNTESTED_INTERFACES
+
       int hr = 0;
       IDVB_NIT nit;
       IGenericDescriptor descriptor = null;
@@ -119,12 +123,15 @@ namespace v2_0
 
       dsdsDescriptor = descriptor as IDvbSatelliteDeliverySystemDescriptor;
       Debug.Assert(dsdsDescriptor != null, "Can't get a IDvbSatelliteDeliverySystemDescriptor object");
+#endif
     }
 
     private void Unconfig()
     {
       Marshal.ReleaseComObject(dsdsDescriptor);
+#if ALLOW_UNTESTED_INTERFACES
       Marshal.ReleaseComObject(parser);
+#endif
       graph.DecomposeGraph();
     }
 

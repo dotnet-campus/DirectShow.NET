@@ -11,7 +11,9 @@ namespace v2_0
   class IDvbTerrestrialDeliverySystemDescriptorTest
   {
     private BdaGraph graph;
+#if ALLOW_UNTESTED_INTERFACES
     private IDvbSiParser parser;
+#endif
     private IDvbTerrestrialDeliverySystemDescriptor dtdsDescriptor;
 
     public void DoTests()
@@ -90,6 +92,8 @@ namespace v2_0
 
     private void Config()
     {
+#if ALLOW_UNTESTED_INTERFACES
+
       int hr = 0;
       IDVB_NIT nit;
 
@@ -122,12 +126,15 @@ namespace v2_0
 
       dtdsDescriptor = descriptor as IDvbTerrestrialDeliverySystemDescriptor;
       Debug.Assert(dtdsDescriptor != null, "Can't get a DvbTerrestrialDeliverySystemDescriptor object");
+#endif
     }
 
     private void Unconfig()
     {
       Marshal.ReleaseComObject(dtdsDescriptor);
+#if ALLOW_UNTESTED_INTERFACES
       Marshal.ReleaseComObject(parser);
+#endif
       graph.DecomposeGraph();
     }
   }

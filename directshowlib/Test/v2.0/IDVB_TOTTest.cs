@@ -11,8 +11,10 @@ namespace v2_0
   class IDVB_TOTTest
   {
     private BdaGraph graph;
+#if ALLOW_UNTESTED_INTERFACES
     private IDvbSiParser parser;
-    private IDVB_TOT tot;
+#endif
+      private IDVB_TOT tot;
 
     public void DoTests()
     {
@@ -81,6 +83,8 @@ namespace v2_0
 
     private void Config()
     {
+#if ALLOW_UNTESTED_INTERFACES
+
       int hr = 0;
 
       parser = (IDvbSiParser)new DvbSiParser();
@@ -94,12 +98,15 @@ namespace v2_0
 
       hr = parser.GetTOT(out tot);
       Debug.Assert(tot != null, "Can't get a TOT object");
+#endif
     }
 
     private void Unconfig()
     {
       Marshal.ReleaseComObject(tot);
+#if ALLOW_UNTESTED_INTERFACES
       Marshal.ReleaseComObject(parser);
+#endif
       graph.DecomposeGraph();
     }
   }

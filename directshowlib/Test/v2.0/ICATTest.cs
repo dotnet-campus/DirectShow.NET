@@ -12,7 +12,9 @@ namespace v2_0
   class ICATTest
   {
     private BdaGraph graph;
+#if ALLOW_UNTESTED_INTERFACES
     private IDvbSiParser parser;
+#endif
     private ICAT cat;
 
     public void DoTests()
@@ -106,6 +108,8 @@ namespace v2_0
 
     private void Config()
     {
+#if ALLOW_UNTESTED_INTERFACES
+
       int hr = 0;
 
       parser = (IDvbSiParser)new DvbSiParser();
@@ -119,12 +123,15 @@ namespace v2_0
 
       hr = parser.GetCAT(5*1000, out cat);
       Debug.Assert(cat != null, "Can't get a CAT object");
+#endif
     }
 
     private void Unconfig()
     {
       Marshal.ReleaseComObject(cat);
+#if ALLOW_UNTESTED_INTERFACES
       Marshal.ReleaseComObject(parser);
+#endif
       graph.DecomposeGraph();
     }
   }

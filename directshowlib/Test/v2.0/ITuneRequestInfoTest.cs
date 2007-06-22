@@ -1,3 +1,5 @@
+#if ALLOW_UNTESTED_INTERFACES
+
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -28,3 +30,4 @@ namespace v2_0
     }
 }
 
+#endif

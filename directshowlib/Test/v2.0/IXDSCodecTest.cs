@@ -1,3 +1,5 @@
+#if ALLOW_UNTESTED_INTERFACES
+
 // The only filter I know that supports this interface returns E_NOTIMPL for all methods
 
 using System;
@@ -118,3 +120,4 @@ namespace v2_0
     }
 }
 
+#endif

@@ -11,8 +11,10 @@ namespace v2_0
   class IDVB_SDTTest
   {
     private BdaGraph graph;
+#if ALLOW_UNTESTED_INTERFACES
     private IDvbSiParser parser;
-    private IDVB_SDT sdt;
+#endif
+      private IDVB_SDT sdt;
 
     public void DoTests()
     {
@@ -156,6 +158,8 @@ namespace v2_0
 
     private void Config()
     {
+#if ALLOW_UNTESTED_INTERFACES
+
       int hr = 0;
 
       parser = (IDvbSiParser)new DvbSiParser();
@@ -169,12 +173,15 @@ namespace v2_0
 
       hr = parser.GetSDT(0x42, null, out sdt);
       Debug.Assert(sdt != null, "Can't get a SDT object");
+#endif
     }
 
     private void Unconfig()
     {
       Marshal.ReleaseComObject(sdt);
+#if ALLOW_UNTESTED_INTERFACES
       Marshal.ReleaseComObject(parser);
+#endif
       graph.DecomposeGraph();
     }
 

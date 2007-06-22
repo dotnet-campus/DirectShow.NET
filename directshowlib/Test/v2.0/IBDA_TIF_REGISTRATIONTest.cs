@@ -1,3 +1,5 @@
+#if ALLOW_UNTESTED_INTERFACES
+
 // IBDA_TIF_REGISTRATION					2	"Applications do not use this interface."
 
 using System;
@@ -36,3 +38,5 @@ namespace v2_0
         }
 	}
 }
+
+#endif

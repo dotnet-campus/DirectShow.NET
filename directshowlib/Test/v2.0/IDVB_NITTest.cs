@@ -11,7 +11,9 @@ namespace v2_0
   class IDVB_NITTest
   {
     private BdaGraph graph;
+#if ALLOW_UNTESTED_INTERFACES
     private IDvbSiParser parser;
+#endif
     private IDVB_NIT nit;
 
     public void DoTests()
@@ -169,6 +171,8 @@ namespace v2_0
 
     private void Config()
     {
+#if ALLOW_UNTESTED_INTERFACES
+
       int hr = 0;
 
       parser = (IDvbSiParser)new DvbSiParser();
@@ -182,12 +186,15 @@ namespace v2_0
 
       hr = parser.GetNIT(0x40, null, out nit);
       Debug.Assert(nit != null, "Can't get a NIT object");
+#endif
     }
 
     private void Unconfig()
     {
       Marshal.ReleaseComObject(nit);
+#if ALLOW_UNTESTED_INTERFACES
       Marshal.ReleaseComObject(parser);
+#endif
       graph.DecomposeGraph();
     }
   }

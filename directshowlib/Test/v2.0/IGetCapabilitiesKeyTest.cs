@@ -1,3 +1,5 @@
+#if ALLOW_UNTESTED_INTERFACES
+
 using System;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
@@ -35,3 +37,5 @@ namespace v2_0
         }
     }
 }
+
+#endif

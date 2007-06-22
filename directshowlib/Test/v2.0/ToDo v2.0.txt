@@ -20,27 +20,17 @@ IAuxInTuningSpace2						2	snarfle		ready
 IAnalogRadioTuningSpace					6	snarfle		ready
 IKsTopologyInfo							8	snarfle		ready
 
-ICodecAPI								15	snarfle		Can't test Parameters methods, nothing supports
-IBDA_TransportStreamInfo				1	snarfle		All methods return E_NOTIMPL
-
 ----DvbSiParser stuff
-IDvbSiParser							15  nowinskie   (partially tested in the following tests)
 IDVB_BAT								16	nowinskie	snarfle
 ICAT									9	nowinskie	snarfle
-IDVB_DIT								2	nowinskie   KO (none of my channels broadcast that but a test is ready)
 IDVB_EIT								21	nowinskie	snarfle
 IDVB_NIT								17	nowinskie	snarfle
 IPAT									11	nowinskie	snarfle
 IPMT									19	nowinskie	snarfle
 IDVB_SDT								18	nowinskie	snarfle
-IDVB_ST									3	nowinskie   KO (none of my channels broadcast that but a test is ready)
-IDVB_TDT								2	nowinskie   KO (none of my channels broadcast that but a test is ready)
 IDVB_TOT								5	nowinskie	snarfle
-ITSDT									9	nowinskie   KO (none of my channels broadcast that but a test is ready)
-IDvbFrequencyListDescriptor				5   nowinskie   KO (none of my channels broadcast that but a test is ready)
 IDvbLogicalChannelDescriptor			5   nowinskie   snarfle
 IDvbSatelliteDeliverySystemDescriptor	9   nowinskie   snarfle
-IDvbServiceDescriptor					8	nowinskie   KO (none of my channels broadcast that but a test is ready)
 IDvbTerrestrialDeliverySystemDescriptor	11	nowinskie	snarfle
 IGenericDescriptor						4	nowinskie	snarfle
 
@@ -48,5 +38,17 @@ IGenericDescriptor						4	nowinskie	snarfle
 IStreamBufferConfigure3					4	nowinskie	snarfle
 
 ----HW dependent 
-IBDA_AutoDemodulateEx					3 nowinskie (no hw) can't test
-ITunerCap								3 nowinskie snarfle
+ITunerCap								3	nowinskie snarfle
+
+
+----Untested
+ITSDT									9	nowinskie   KO (none of my channels broadcast that but a test is ready)
+IDvbSiParser							15  nowinskie   (partially tested in the following tests)
+IDVB_DIT								2	nowinskie   KO (none of my channels broadcast that but a test is ready)
+IDVB_ST									3	nowinskie   KO (none of my channels broadcast that but a test is ready)
+IDVB_TDT								2	nowinskie   KO (none of my channels broadcast that but a test is ready)
+IDvbFrequencyListDescriptor				5   nowinskie   KO (none of my channels broadcast that but a test is ready)
+IDvbServiceDescriptor					8	nowinskie   KO (none of my channels broadcast that but a test is ready)
+IBDA_AutoDemodulateEx					3	nowinskie (no hw) can't test
+ICodecAPI								15	snarfle		Can't test Parameters methods, nothing supports
+IBDA_TransportStreamInfo				1	snarfle		All methods return E_NOTIMPL

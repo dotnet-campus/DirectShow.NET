@@ -11,7 +11,9 @@ namespace v2_0
   class IGenericDescriptorTest
   {
     private BdaGraph graph;
+#if ALLOW_UNTESTED_INTERFACES
     private IDvbSiParser parser;
+#endif
     private IGenericDescriptor descriptor;
 
     public void DoTests()
@@ -53,6 +55,8 @@ namespace v2_0
 
     private void Config()
     {
+#if ALLOW_UNTESTED_INTERFACES
+
       int hr = 0;
       IDVB_NIT nit;
 
@@ -81,12 +85,15 @@ namespace v2_0
       Marshal.ReleaseComObject(nit);
 
       Debug.Assert(descriptor != null, "Can't get a GenericDescriptor object");
+#endif
     }
 
     private void Unconfig()
     {
       Marshal.ReleaseComObject(descriptor);
+#if ALLOW_UNTESTED_INTERFACES
       Marshal.ReleaseComObject(parser);
+#endif
       graph.DecomposeGraph();
     }
   }

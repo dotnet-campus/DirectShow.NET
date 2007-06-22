@@ -1,3 +1,5 @@
+#if ALLOW_UNTESTED_INTERFACES
+
 // IBDA_NetworkProvider					7	????NetworkProvider doesn't seem to work
 
 using System;
@@ -30,3 +32,4 @@ namespace v2_0
     }
 }
 
+#endif

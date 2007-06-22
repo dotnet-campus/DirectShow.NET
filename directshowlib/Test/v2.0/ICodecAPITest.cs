@@ -1,3 +1,5 @@
+#if ALLOW_UNTESTED_INTERFACES
+
 // Can't test GetParameterRange
 
 using System;
@@ -215,4 +217,5 @@ namespace v2_0
             [Out] out Guid[] ChangedParam,
             [Out] out int ChangedParamCount
             );
+#endif
 #endif

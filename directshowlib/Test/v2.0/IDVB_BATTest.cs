@@ -12,7 +12,9 @@ namespace v2_0
   class IDVB_BATTest
   {
     private BdaGraph graph;
+#if ALLOW_UNTESTED_INTERFACES
     private IDvbSiParser parser;
+#endif
     private IDVB_BAT bat;
 
     public void DoTests()
@@ -164,6 +166,8 @@ namespace v2_0
 
     private void Config()
     {
+#if ALLOW_UNTESTED_INTERFACES
+
       int hr = 0;
 
       parser = (IDvbSiParser)new DvbSiParser();
@@ -177,12 +181,15 @@ namespace v2_0
 
       hr = parser.GetBAT(null, out bat);
       Debug.Assert(bat != null, "Can't get a BAT object");
+#endif
     }
 
     private void Unconfig()
     {
       Marshal.ReleaseComObject(bat);
+#if ALLOW_UNTESTED_INTERFACES
       Marshal.ReleaseComObject(parser);
+#endif
       graph.DecomposeGraph();
     }
 

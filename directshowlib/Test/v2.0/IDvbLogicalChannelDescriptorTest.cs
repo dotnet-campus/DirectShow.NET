@@ -11,8 +11,10 @@ namespace v2_0
   public class IDvbLogicalChannelDescriptorTest
   {
     private BdaGraph graph;
+#if ALLOW_UNTESTED_INTERFACES
     private IDvbSiParser parser;
-    private IDvbLogicalChannelDescriptor dlcDescriptor;
+#endif
+      private IDvbLogicalChannelDescriptor dlcDescriptor;
 
     public void DoTests()
     {
@@ -66,6 +68,8 @@ namespace v2_0
 
     private void Config()
     {
+#if ALLOW_UNTESTED_INTERFACES
+
       int hr = 0;
       IDVB_NIT nit;
       IGenericDescriptor descriptor = null;
@@ -105,12 +109,15 @@ namespace v2_0
 
       dlcDescriptor = descriptor as IDvbLogicalChannelDescriptor;
       Debug.Assert(dlcDescriptor != null, "Can't get a IDvbLogicalChannelDescriptor object");
+#endif
     }
 
     private void Unconfig()
     {
       Marshal.ReleaseComObject(dlcDescriptor);
+#if ALLOW_UNTESTED_INTERFACES
       Marshal.ReleaseComObject(parser);
+#endif
       graph.DecomposeGraph();
     }
 

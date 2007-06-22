@@ -63,7 +63,7 @@ namespace v2_0
 
     private void Config()
     {
-      int hr = 0;
+      //int hr = 0;
 
       graph = new BdaGraph();
       graph.InitializeGraph();
