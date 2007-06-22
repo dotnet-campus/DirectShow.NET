@@ -2,7 +2,7 @@
 
 /*
 DirectShowLib - Provide access to DirectShow interfaces via .NET
-Copyright (C) 2006
+Copyright (C) 2007
 http://sourceforge.net/projects/directshownet/
 
 This library is free software; you can redistribute it and/or
@@ -33,7 +33,7 @@ using System.Security.Permissions;
 [assembly : AssemblyConfiguration("")]
 [assembly : AssemblyCompany("")]
 [assembly : Guid("6D0386CE-37E6-4f77-B678-07C584105DC6")]
-[assembly : AssemblyVersion("1.5.0.*")]
+[assembly : AssemblyVersion("2.0.0.*")]
 #if DEBUG
 [assembly : AssemblyProduct("Debug Version")]
 #else

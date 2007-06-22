@@ -2,7 +2,7 @@
 
 /*
 DirectShowLib - Provide access to DirectShow interfaces via .NET
-Copyright (C) 2006
+Copyright (C) 2007
 http://sourceforge.net/projects/directshownet/
 
 This library is free software; you can redistribute it and/or
