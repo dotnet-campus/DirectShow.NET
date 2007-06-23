@@ -627,7 +627,7 @@ namespace DirectShowLib.Test
 			int hr;
 
 			// No way to check.  Just call it
-			hr = m_ivw.NotifyOwnerMessage((IntPtr) 1, 1, 0, 0);
+			hr = m_ivw.NotifyOwnerMessage((IntPtr) 1, 1, IntPtr.Zero, IntPtr.Zero);
 			Marshal.ThrowExceptionForHR(hr);
 		}
 

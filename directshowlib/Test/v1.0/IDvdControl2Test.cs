@@ -49,7 +49,8 @@ namespace DirectShowLib.Test
                     // If this is a windows media message
                 case WM_GRAPHNOTIFY:
                     EventCode eventCode;
-                    int p1, p2, hr;
+                    IntPtr p1, p2;
+                    int hr;
 
                     hr = m_mediaEvent.GetEvent(out eventCode, out p1, out p2, 0);
                     while (hr == 0)

@@ -3491,8 +3491,8 @@ namespace DirectShowLib
         [PreserveSig]
         int Notify(
             [In] EventCode evCode,
-            [In] int EventParam1,
-            [In] int EventParam2
+            [In] IntPtr EventParam1,
+            [In] IntPtr EventParam2
             );
     }
 

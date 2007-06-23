@@ -36,15 +36,15 @@ namespace DirectShowLib.Test
         private void TestNotify()
         {
             int hr;
-            int p1, p2;
-            int p3 = 0, p4 = 0;
+            IntPtr p1, p2;
+            IntPtr p3 = IntPtr.Zero, p4 = IntPtr.Zero;
             EventCode ec;
             bool bPassed = false;
             bool bDone = false;
 
             IMediaEvent pEvent = (IMediaEvent)m_FilterGraph;
 
-            hr = m_mes.Notify(EC_FileComplete, 1, 2);
+            hr = m_mes.Notify(EC_FileComplete, new IntPtr(1), new IntPtr(2));
             DsError.ThrowExceptionForHR(hr);
 
             ((IMediaControl)m_FilterGraph).Run();
@@ -74,7 +74,7 @@ namespace DirectShowLib.Test
                 }
             }
 
-            Debug.Assert(bPassed && p3 == 1 && p4 == 2, "Notify");
+            Debug.Assert(bPassed && p3.ToInt64() == 1 && p4.ToInt64() == 2, "Notify");
         }
 
         private void Configure()
