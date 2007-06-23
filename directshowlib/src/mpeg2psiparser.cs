@@ -50,57 +50,6 @@ namespace DirectShowLib.BDA
 #if ALLOW_UNTESTED_INTERFACES
 
     [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
-    Guid("6623B511-4B5F-43c3-9A01-E8FF84188060"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IPAT
-    {
-        [PreserveSig]
-        int Initialize(
-          [In] ISectionList pSectionList,
-          [In] IMpeg2Data pMPEGData
-          );
-
-        [PreserveSig]
-        int GetTransportStreamId([Out] out short pwVal);
-
-        [PreserveSig]
-        int GetVersionNumber([Out] out byte pbVal);
-
-        [PreserveSig]
-        int GetCountOfRecords([Out] out int pwVal);
-
-        [PreserveSig]
-        int GetRecordProgramNumber(
-          [In] int dwIndex,
-          [Out] out short pwVal
-          );
-
-        [PreserveSig]
-        int GetRecordProgramMapPid(
-          [In] int dwIndex,
-          [Out] out short pwVal
-          );
-
-        [PreserveSig]
-        int FindRecordProgramMapPid(
-          [In] short wProgramNumber,
-          [Out] out short pwVal
-          );
-
-        [PreserveSig]
-        int RegisterForNextTable([In] IntPtr hNextTableAvailable);
-
-        [PreserveSig]
-        int GetNextTable([Out] out IPAT ppPAT);
-
-        [PreserveSig]
-        int RegisterForWhenCurrent([In] IntPtr hNextTableIsCurrent);
-
-        [PreserveSig]
-        int ConvertNextToCurrent();
-    }
-
-    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("D19BDB43-405B-4a7c-A791-C89110C33165"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface ITSDT
@@ -314,6 +263,57 @@ namespace DirectShowLib.BDA
 
         [PreserveSig]
         int GetNextTable([Out] out IPMT ppPMT);
+
+        [PreserveSig]
+        int RegisterForWhenCurrent([In] IntPtr hNextTableIsCurrent);
+
+        [PreserveSig]
+        int ConvertNextToCurrent();
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("6623B511-4B5F-43c3-9A01-E8FF84188060"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IPAT
+    {
+        [PreserveSig]
+        int Initialize(
+          [In] ISectionList pSectionList,
+          [In] IMpeg2Data pMPEGData
+          );
+
+        [PreserveSig]
+        int GetTransportStreamId([Out] out short pwVal);
+
+        [PreserveSig]
+        int GetVersionNumber([Out] out byte pbVal);
+
+        [PreserveSig]
+        int GetCountOfRecords([Out] out int pwVal);
+
+        [PreserveSig]
+        int GetRecordProgramNumber(
+          [In] int dwIndex,
+          [Out] out short pwVal
+          );
+
+        [PreserveSig]
+        int GetRecordProgramMapPid(
+          [In] int dwIndex,
+          [Out] out short pwVal
+          );
+
+        [PreserveSig]
+        int FindRecordProgramMapPid(
+          [In] short wProgramNumber,
+          [Out] out short pwVal
+          );
+
+        [PreserveSig]
+        int RegisterForNextTable([In] IntPtr hNextTableAvailable);
+
+        [PreserveSig]
+        int GetNextTable([Out] out IPAT ppPAT);
 
         [PreserveSig]
         int RegisterForWhenCurrent([In] IntPtr hNextTableIsCurrent);

@@ -1,5 +1,3 @@
-#if ALLOW_UNTESTED_INTERFACES
-
 using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
@@ -13,7 +11,9 @@ namespace v2_0
   public class IPATTest
   {
     private BdaGraph graph;
+#if ALLOW_UNTESTED_INTERFACES
     private IDvbSiParser parser;
+#endif
     private IPAT pat;
 
     public void DoTests()
@@ -116,6 +116,8 @@ namespace v2_0
 
     private void Config()
     {
+#if ALLOW_UNTESTED_INTERFACES
+
       parser = (IDvbSiParser)new DvbSiParser();
       graph = new BdaGraph();
       graph.InitializeGraph();
@@ -127,17 +129,18 @@ namespace v2_0
 
       hr = parser.GetPAT(out pat);
       Debug.Assert(pat != null, "Can't get a PAT object");
+#endif
     }
 
     private void Unconfig()
     {
       Marshal.ReleaseComObject(pat);
+#if ALLOW_UNTESTED_INTERFACES
       Marshal.ReleaseComObject(parser);
+#endif
       graph.DecomposeGraph();
     }
   }
 
 
 }
-
-#endif
