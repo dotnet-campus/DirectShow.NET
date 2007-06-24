@@ -336,7 +336,7 @@ namespace DirectShowLib.Samples
     {
       int hr = 0;
       EventCode evCode;
-      int evParam1, evParam2;
+      IntPtr evParam1, evParam2;
 
       if (this.mediaEventEx == null)
         return;
@@ -366,7 +366,7 @@ namespace DirectShowLib.Samples
 
       // Pass this message to the video window for notification of system changes
       if (this.videoWindow != null)
-        this.videoWindow.NotifyOwnerMessage(m.HWnd, m.Msg, m.WParam.ToInt32(), m.LParam.ToInt32());
+          this.videoWindow.NotifyOwnerMessage(m.HWnd, m.Msg, m.WParam, m.LParam);
 
       base.WndProc (ref m);
     }

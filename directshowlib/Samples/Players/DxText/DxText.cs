@@ -187,7 +187,8 @@ namespace DxText
 		private void GraphNotifyEvent(ref Message m)
 		{
 			EventCode eventCode;
-			int p1, p2, hr;
+			IntPtr p1, p2;
+            int hr;
 			//bool closeCam = false;
 
 			hr = mediaEvent.GetEvent(out eventCode, out p1, out p2, 0);

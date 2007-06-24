@@ -367,7 +367,7 @@ namespace DirectShowLib.Sample
         IMediaEventEx eventEx = (IMediaEventEx) graphBuilder;
 
         EventCode evCode;
-        int param1, param2;
+        IntPtr param1, param2;
 
         while(eventEx.GetEvent(out evCode, out param1, out param2, 0) == 0)
         {

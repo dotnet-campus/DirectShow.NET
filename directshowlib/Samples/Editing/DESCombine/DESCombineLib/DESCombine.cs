@@ -808,7 +808,7 @@ namespace DESCombineLib
             const int E_ABORT = unchecked((int)0x80004004);
 
             int hr;
-            int p1, p2;
+            IntPtr p1, p2;
             EventCode ec;
             EventCode exitCode = 0;
 
@@ -840,7 +840,7 @@ namespace DESCombineLib
                         case EC_VideoFileComplete:
                             if (FileCompleted != null)
                             {
-                                MediaFile mf = m_Video.File(p1);
+                                MediaFile mf = m_Video.File(p1.ToInt32());
                                 FileCompletedArgs ca = new FileCompletedArgs(mf.FileName, FileCompletedArgs.FileType.Video);
                                 FileCompleted(this, ca);
                             }
@@ -850,7 +850,7 @@ namespace DESCombineLib
                         case EC_AudioFileComplete:
                             if (FileCompleted != null)
                             {
-                                MediaFile mf = m_Audio.File(p1);
+                                MediaFile mf = m_Audio.File(p1.ToInt32());
                                 FileCompletedArgs ca = new FileCompletedArgs(mf.FileName, FileCompletedArgs.FileType.Audio);
                                 FileCompleted(this, ca);
                             }
@@ -1384,7 +1384,7 @@ namespace DESCombineLib
             if (m_iCurFrame >= m_iMaxFrame)
             {
                 // Send the notification
-                int hr = m_pEventSink.Notify(m_ec, m_iCurFile, m_iCurFrame);
+                int hr = m_pEventSink.Notify(m_ec, new IntPtr(m_iCurFile), new IntPtr(m_iCurFrame));
 
                 // Find the next file
                 m_iCurFile++;

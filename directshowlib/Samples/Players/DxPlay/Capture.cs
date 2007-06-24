@@ -131,7 +131,7 @@ namespace DxPlay
             const int E_ABORT = unchecked((int)0x80004004);
 
             int hr;
-            int p1, p2;
+            IntPtr p1, p2;
             EventCode ec;
 
             do

@@ -745,7 +745,8 @@ namespace DVDPlayerNET
         /// <summary> DVD event message handler</summary>
         void OnDvdEvent()
         {
-            int p1, p2, hr = 0;
+            IntPtr p1, p2;
+            int hr = 0;
             EventCode code;
             do
             {
@@ -759,7 +760,7 @@ namespace DVDPlayerNET
                 {
                     case EventCode.DvdCurrentHmsfTime:
                     {
-                        byte[] ati = BitConverter.GetBytes( p1 );
+                        byte[] ati = BitConverter.GetBytes( p1.ToInt32() );
                         currnTime.bHours	= ati[0];
                         currnTime.bMinutes	= ati[1];
                         currnTime.bSeconds	= ati[2];
@@ -769,13 +770,13 @@ namespace DVDPlayerNET
                     }
                     case EventCode.DvdChapterStart:
                     {
-                        currnChapter = p1;
+                        currnChapter = p1.ToInt32();
                         UpdateFrameCaption();
                         break;
                     }
                     case EventCode.DvdTitleChange:
                     {
-                        currnTitle = p1;
+                        currnTitle = p1.ToInt32();
                         UpdateFrameCaption();
                         break;
                     }
@@ -798,7 +799,7 @@ namespace DVDPlayerNET
 
                     case EventCode.DvdStillOn:
                     {
-                        if( p1 == 0 )
+                        if( p1 == IntPtr.Zero )
                         {
                             menuMode = MenuMode.Buttons;
                         }
@@ -818,7 +819,7 @@ namespace DVDPlayerNET
                     }
                     case EventCode.DvdButtonChange:
                     {
-                        if( p1 <= 0 )
+                        if( p1.ToInt32() <= 0 )
                         {
                             menuMode = MenuMode.No;
                         }
@@ -870,7 +871,7 @@ namespace DVDPlayerNET
 
 
         /// <summary> asynchronous command completed </summary>
-        void OnCmdComplete( int p1, int hrg )
+        void OnCmdComplete( IntPtr p1, IntPtr hrg )
         {
             // Trace.WriteLine( "DVD OnCmdComplete.........." );
             if( (pendingCmd == false) || (dvdInfo == null) )
