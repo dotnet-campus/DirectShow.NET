@@ -82,7 +82,6 @@ Public Class Form1
 
         Try
             If ds Is Nothing Then
-                Dim i As Single
                 Dim ibfVideoCompressor As DirectShowLib.IBaseFilter
 
                 ' Get the video compressor
@@ -124,12 +123,13 @@ Public Class Form1
     Private Function GetVideoCompressor(ByVal sName As String) As DirectShowLib.IBaseFilter
 
         Dim dsd() As DsDevice = DsDevice.GetDevicesOfCat(FilterCategory.VideoCompressorCategory)
+        GetVideoCompressor = Nothing
 
         For Each dev As DsDevice In dsd
             If (dev.Name = sName) Then
 
                 ' Found it
-                Dim o As Object
+                Dim o As Object = Nothing
                 Dim grf As Guid = GetType(DirectShowLib.IBaseFilter).GUID
 
                 dev.Mon.BindToObject(Nothing, Nothing, grf, o)
