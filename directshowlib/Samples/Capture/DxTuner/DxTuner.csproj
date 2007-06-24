@@ -9,7 +9,7 @@
             <Settings
                 ApplicationIcon = ""
                 AssemblyKeyContainerName = ""
-                AssemblyName = "DxPropPages"
+                AssemblyName = "DxTuner"
                 AssemblyOriginatorKeyFile = ""
                 DefaultClientScript = "JScript"
                 DefaultHTMLPageLayout = "Grid"
@@ -18,7 +18,7 @@
                 OutputType = "WinExe"
                 PreBuildEvent = ""
                 PostBuildEvent = ""
-                RootNamespace = "DxPropPages"
+                RootNamespace = "DxTuner"
                 RunPostBuildEvent = "OnBuildSuccess"
                 StartupObject = ""
             >

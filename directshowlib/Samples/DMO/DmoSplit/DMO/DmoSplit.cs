@@ -16,7 +16,7 @@ using MediaObjectTemplate;
 using DirectShowLib;
 using DirectShowLib.DMO;
 
-namespace DmoFlip
+namespace DmoSplit
 {
     /// <exclude></exclude>
     [ComVisible(true), Guid("EAB6CBA9-78DD-4ae4-9A69-1CE1C55369F6"),

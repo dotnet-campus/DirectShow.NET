@@ -6,8 +6,8 @@ using System.Runtime.CompilerServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 //
-[assembly: AssemblyTitle("DmoFlip")]
-[assembly: AssemblyDescription("A DMO sample to flip video")]
+[assembly: AssemblyTitle("DmoSplit")]
+[assembly: AssemblyDescription("A DMO sample to split stereo audio to 2 mono streams")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("http://DirectShowNet.SourceForge.net")]
 [assembly: AssemblyProduct("")]
