@@ -57,7 +57,6 @@ protected:
 	CMediaType m_amt;
 	long m_lBufferSize;
 	IGenericSampleCB *m_Callback;
-    IUnknown *m_obj;
 
 public:
 
