@@ -132,7 +132,7 @@ namespace DxPlay
         {
             int hr;
 
-            hr = ((IMediaEventSink)m_graphBuilder).Notify(EventCode.UserAbort, 0, 0);
+            hr = ((IMediaEventSink)m_graphBuilder).Notify(EventCode.UserAbort, IntPtr.Zero, IntPtr.Zero);
             DsError.ThrowExceptionForHR( hr );
 
             hr = m_mediaCtrl.Stop();
@@ -289,7 +289,7 @@ namespace DxPlay
                 // Release the graph
                 if (m_graphBuilder != null)
                 {
-                    hr = ((IMediaEventSink)m_graphBuilder).Notify(EventCode.UserAbort, 0, 0);
+                    hr = ((IMediaEventSink)m_graphBuilder).Notify(EventCode.UserAbort, IntPtr.Zero, IntPtr.Zero);
 
                     Marshal.ReleaseComObject(m_graphBuilder);
                     m_graphBuilder = null;
@@ -308,7 +308,7 @@ namespace DxPlay
             const int E_ABORT = unchecked((int)0x80004004);
 
             int hr;
-            int p1, p2;
+            IntPtr p1, p2;
             EventCode ec;
             EventCode exitCode = 0;
 
