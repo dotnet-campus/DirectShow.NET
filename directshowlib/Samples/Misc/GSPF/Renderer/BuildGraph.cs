@@ -52,7 +52,7 @@ namespace DxPlayx
         /// <summary>
         /// graph builder interfaces
         /// </summary>
-        private IFilterGraph2 m_graphBuilder;
+        private IFilterGraph2 m_FilterGraph;
 
         /// <summary>
         /// Another graph builder interface
@@ -125,7 +125,7 @@ namespace DxPlayx
         {
             int hr;
 			
-            hr = ((IMediaEventSink)m_graphBuilder).Notify(EventCode.UserAbort, 0, 0);
+            hr = ((IMediaEventSink)m_FilterGraph).Notify(EventCode.UserAbort, 0, 0);
             DsError.ThrowExceptionForHR( hr );
 
             hr = m_mediaCtrl.Stop();
@@ -142,7 +142,7 @@ namespace DxPlayx
             int hr;
 
             // Get the graphbuilder object
-            m_graphBuilder = new FilterGraph() as IFilterGraph2;
+            m_FilterGraph = new FilterGraph() as IFilterGraph2;
 
             // Get a ICaptureGraphBuilder2 to help build the graph
             ICaptureGraphBuilder2 icgb2 = (ICaptureGraphBuilder2)new CaptureGraphBuilder2() ;
@@ -150,12 +150,12 @@ namespace DxPlayx
             try
             {
                 // Link the ICaptureGraphBuilder2 to the IFilterGraph2
-                hr = icgb2.SetFiltergraph(m_graphBuilder);
+                hr = icgb2.SetFiltergraph(m_FilterGraph);
                 DsError.ThrowExceptionForHR( hr );
 
 #if DEBUG
                 // Allows you to view the graph with GraphEdit File/Connect
-                m_DsRot = new DsROTEntry(m_graphBuilder);
+                m_DsRot = new DsROTEntry(m_FilterGraph);
 #endif
 
                 // Our graph source filter
@@ -177,7 +177,7 @@ namespace DxPlayx
                     Marshal.ReleaseComObject(gssfOut);
 
                     // Add the filter to the graph
-                    hr = m_graphBuilder.AddFilter(ipsb, "GenericSamplePullFilter");
+                    hr = m_FilterGraph.AddFilter(ipsb, "GenericSamplePullFilter");
                     Marshal.ThrowExceptionForHR( hr );
 
                     // Build the rest of the graph, outputting to the default renderer
@@ -194,7 +194,7 @@ namespace DxPlayx
                 }
 
                 // Grab some other interfaces
-                m_mediaCtrl = m_graphBuilder as IMediaControl;
+                m_mediaCtrl = m_FilterGraph as IMediaControl;
             }
             finally
             {
@@ -267,13 +267,13 @@ namespace DxPlayx
                 }
 #endif
 
-                hr = ((IMediaEventSink)m_graphBuilder).Notify(EventCode.UserAbort, 0, 0);
+                hr = ((IMediaEventSink)m_FilterGraph).Notify(EventCode.UserAbort, 0, 0);
 
                 // Release the graph
-                if (m_graphBuilder != null)
+                if (m_FilterGraph != null)
                 {
-                    Marshal.ReleaseComObject(m_graphBuilder);
-                    m_graphBuilder = null;
+                    Marshal.ReleaseComObject(m_FilterGraph);
+                    m_FilterGraph = null;
                 }
 
                 GC.Collect();
@@ -295,7 +295,7 @@ namespace DxPlayx
             EventCode ec;
             EventCode exitCode = 0;
 
-            IMediaEvent pEvent = (IMediaEvent)m_graphBuilder;
+            IMediaEvent pEvent = (IMediaEvent)m_FilterGraph;
 
             do
             {
