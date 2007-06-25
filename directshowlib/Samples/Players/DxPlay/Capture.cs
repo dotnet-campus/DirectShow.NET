@@ -39,7 +39,7 @@ namespace DxPlay
         private string m_sFileName;
 
         // graph builder interfaces
-        private IFilterGraph2 m_graphBuilder;
+        private IFilterGraph2 m_FilterGraph;
         private IMediaControl m_mediaCtrl;
         private IMediaEvent m_mediaEvent;
 
@@ -240,7 +240,7 @@ namespace DxPlay
         {
             int hr;
 
-            IMediaPosition imp = m_graphBuilder as IMediaPosition;
+            IMediaPosition imp = m_FilterGraph as IMediaPosition;
             hr = imp.put_CurrentPosition(0);
         }
 
@@ -291,7 +291,7 @@ namespace DxPlay
             int hr;
 
             // Get the graphbuilder object
-            m_graphBuilder = new FilterGraph() as IFilterGraph2;
+            m_FilterGraph = new FilterGraph() as IFilterGraph2;
 
             // Get a ICaptureGraphBuilder2 to help build the graph
             ICaptureGraphBuilder2 icgb2 = new CaptureGraphBuilder2() as ICaptureGraphBuilder2;
@@ -299,17 +299,17 @@ namespace DxPlay
             try
             {
                 // Link the ICaptureGraphBuilder2 to the IFilterGraph2
-                hr = icgb2.SetFiltergraph(m_graphBuilder);
+                hr = icgb2.SetFiltergraph(m_FilterGraph);
                 DsError.ThrowExceptionForHR( hr );
 
 #if DEBUG
                 // Allows you to view the graph with GraphEdit File/Connect
-                m_DsRot = new DsROTEntry(m_graphBuilder);
+                m_DsRot = new DsROTEntry(m_FilterGraph);
 #endif
                 // Add the filters necessary to render the file.  This function will
                 // work with a number of different file types.
                 IBaseFilter	sourceFilter = null;
-                hr = m_graphBuilder.AddSourceFilter(FileName, FileName, out sourceFilter);
+                hr = m_FilterGraph.AddSourceFilter(FileName, FileName, out sourceFilter);
                 DsError.ThrowExceptionForHR( hr );
 
                 // Get the SampleGrabber interface
@@ -320,7 +320,7 @@ namespace DxPlay
                 ConfigureSampleGrabber(m_sampGrabber);
 
                 // Add it to the filter
-                hr = m_graphBuilder.AddFilter( baseGrabFlt, "Ds.NET Grabber" );
+                hr = m_FilterGraph.AddFilter( baseGrabFlt, "Ds.NET Grabber" );
                 DsError.ThrowExceptionForHR( hr );
 
                 // Connect the pieces together, use the default renderer
@@ -331,12 +331,12 @@ namespace DxPlay
                 SaveSizeInfo(m_sampGrabber);
 
                 // Configure the Video Window
-                IVideoWindow videoWindow = m_graphBuilder as IVideoWindow;
+                IVideoWindow videoWindow = m_FilterGraph as IVideoWindow;
                 ConfigureVideoWindow(videoWindow, hWin);
 
                 // Grab some other interfaces
-                m_mediaEvent = m_graphBuilder as IMediaEvent;
-                m_mediaCtrl = m_graphBuilder as IMediaControl;
+                m_mediaEvent = m_FilterGraph as IMediaEvent;
+                m_mediaCtrl = m_FilterGraph as IMediaControl;
             }
             finally
             {
@@ -473,10 +473,10 @@ namespace DxPlay
                 }
 #endif
 
-                if (m_graphBuilder != null)
+                if (m_FilterGraph != null)
                 {
-                    Marshal.ReleaseComObject(m_graphBuilder);
-                    m_graphBuilder = null;
+                    Marshal.ReleaseComObject(m_FilterGraph);
+                    m_FilterGraph = null;
                 }
             }
             GC.Collect();

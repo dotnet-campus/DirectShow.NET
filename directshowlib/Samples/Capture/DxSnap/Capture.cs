@@ -25,7 +25,7 @@ namespace SnapShot
         #region Member variables
 
         /// <summary> graph builder interface. </summary>
-        private IFilterGraph2 m_graphBuilder = null;
+        private IFilterGraph2 m_FilterGraph = null;
 
         // Used to snap picture on Still pin
         private IAMVideoControl m_VidControl = null;
@@ -182,15 +182,15 @@ namespace SnapShot
             IPin pRenderIn = null;
 
             // Get the graphbuilder object
-            m_graphBuilder = new FilterGraph() as IFilterGraph2;
+            m_FilterGraph = new FilterGraph() as IFilterGraph2;
 
             try
             {
 #if DEBUG
-                m_rot = new DsROTEntry(m_graphBuilder);
+                m_rot = new DsROTEntry(m_FilterGraph);
 #endif
                 // add the video input device
-                hr = m_graphBuilder.AddSourceFilterForMoniker(dev.Mon, null, dev.Name, out capFilter);
+                hr = m_FilterGraph.AddSourceFilterForMoniker(dev.Mon, null, dev.Name, out capFilter);
                 DsError.ThrowExceptionForHR( hr );
 
                 // Find the still pin
@@ -218,7 +218,7 @@ namespace SnapShot
 
                     try
                     {
-                        hr = m_graphBuilder.AddFilter(iSmartTee, "SmartTee");
+                        hr = m_FilterGraph.AddFilter(iSmartTee, "SmartTee");
                         DsError.ThrowExceptionForHR( hr );
 
                         // Find the find the capture pin from the video device and the
@@ -226,7 +226,7 @@ namespace SnapShot
                         pRaw = DsFindPin.ByCategory(capFilter, PinCategory.Capture, 0);
                         pSmart = DsFindPin.ByDirection(iSmartTee, PinDirection.Input, 0);
 
-                        hr = m_graphBuilder.Connect(pRaw, pSmart);
+                        hr = m_FilterGraph.Connect(pRaw, pSmart);
                         DsError.ThrowExceptionForHR( hr );
 
                         // Now set the capture and still pins (from the splitter)
@@ -280,33 +280,33 @@ namespace SnapShot
 
                 // Get the default video renderer
                 IBaseFilter pRenderer = new VideoRendererDefault() as IBaseFilter;
-                hr = m_graphBuilder.AddFilter(pRenderer, "Renderer");
+                hr = m_FilterGraph.AddFilter(pRenderer, "Renderer");
                 DsError.ThrowExceptionForHR( hr );
 
                 pRenderIn = DsFindPin.ByDirection(pRenderer, PinDirection.Input, 0);
 
                 // Add the sample grabber to the graph
-                hr = m_graphBuilder.AddFilter( baseGrabFlt, "Ds.NET Grabber" );
+                hr = m_FilterGraph.AddFilter( baseGrabFlt, "Ds.NET Grabber" );
                 DsError.ThrowExceptionForHR( hr );
 
                 if (m_VidControl == null)
                 {
                     // Connect the Still pin to the sample grabber
-                    hr = m_graphBuilder.Connect(m_pinStill, pSampleIn);
+                    hr = m_FilterGraph.Connect(m_pinStill, pSampleIn);
                     DsError.ThrowExceptionForHR( hr );
 
                     // Connect the capture pin to the renderer
-                    hr = m_graphBuilder.Connect(pCaptureOut, pRenderIn);
+                    hr = m_FilterGraph.Connect(pCaptureOut, pRenderIn);
                     DsError.ThrowExceptionForHR( hr );
                 }
                 else
                 {
                     // Connect the capture pin to the renderer
-                    hr = m_graphBuilder.Connect(pCaptureOut, pRenderIn);
+                    hr = m_FilterGraph.Connect(pCaptureOut, pRenderIn);
                     DsError.ThrowExceptionForHR( hr );
 
                     // Connect the Still pin to the sample grabber
-                    hr = m_graphBuilder.Connect(m_pinStill, pSampleIn);
+                    hr = m_FilterGraph.Connect(m_pinStill, pSampleIn);
                     DsError.ThrowExceptionForHR( hr );
                 }
 
@@ -315,7 +315,7 @@ namespace SnapShot
                 ConfigVideoWindow(hControl);
 
                 // Start the graph
-                IMediaControl mediaCtrl = m_graphBuilder as IMediaControl;
+                IMediaControl mediaCtrl = m_FilterGraph as IMediaControl;
                 hr = mediaCtrl.Run();
                 DsError.ThrowExceptionForHR( hr );
             }
@@ -374,7 +374,7 @@ namespace SnapShot
         {
             int hr;
 
-            IVideoWindow ivw = m_graphBuilder as IVideoWindow;
+            IVideoWindow ivw = m_FilterGraph as IVideoWindow;
 
             // Set the parent
             hr = ivw.put_Owner(hControl.Handle);
@@ -472,9 +472,9 @@ namespace SnapShot
 
             try
             {
-                if( m_graphBuilder != null )
+                if( m_FilterGraph != null )
                 {
-                    IMediaControl mediaCtrl = m_graphBuilder as IMediaControl;
+                    IMediaControl mediaCtrl = m_FilterGraph as IMediaControl;
 
                     // Stop the graph
                     hr = mediaCtrl.Stop();
@@ -485,10 +485,10 @@ namespace SnapShot
                 Debug.WriteLine(ex);
             }
 
-            if (m_graphBuilder != null)
+            if (m_FilterGraph != null)
             {
-                Marshal.ReleaseComObject(m_graphBuilder);
-                m_graphBuilder = null;
+                Marshal.ReleaseComObject(m_FilterGraph);
+                m_FilterGraph = null;
             }
 
             if (m_VidControl != null)

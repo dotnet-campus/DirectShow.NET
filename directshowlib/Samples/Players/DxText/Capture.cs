@@ -27,7 +27,7 @@ namespace DxText
         #region Member variables
 
         /// <summary> graph builder interface. </summary>
-        private IFilterGraph2 m_graphBuilder;
+        private IFilterGraph2 m_FilterGraph;
 
         /// <summary> Dimensions of the image, calculated once in constructor. </summary>
         private int m_videoWidth;
@@ -120,7 +120,7 @@ namespace DxText
         /// <summary> capture the next image </summary>
         public void Start()
         {
-            IMediaControl mediaCtrl = m_graphBuilder as IMediaControl;
+            IMediaControl mediaCtrl = m_FilterGraph as IMediaControl;
 
             int hr = mediaCtrl.Run();
             DsError.ThrowExceptionForHR( hr );
@@ -133,7 +133,7 @@ namespace DxText
         {
             get
             {
-                return (IMediaEventEx) m_graphBuilder;
+                return (IMediaEventEx) m_FilterGraph;
             }
         }
 		
@@ -167,9 +167,9 @@ namespace DxText
             IPin iPinInDest = null;
 
             // Get the graphbuilder object
-            m_graphBuilder = new FilterGraph() as IFilterGraph2;
+            m_FilterGraph = new FilterGraph() as IFilterGraph2;
 #if DEBUG
-            m_rot = new DsROTEntry( m_graphBuilder );
+            m_rot = new DsROTEntry( m_FilterGraph );
 #endif
 
             try
@@ -178,7 +178,7 @@ namespace DxText
                 sampGrabber = new SampleGrabber() as ISampleGrabber;
 
                 // Add the video source
-                hr = m_graphBuilder.AddSourceFilter(FileName, "Ds.NET FileFilter", out capFilter);
+                hr = m_FilterGraph.AddSourceFilter(FileName, "Ds.NET FileFilter", out capFilter);
                 DsError.ThrowExceptionForHR( hr );
 
                 // Hopefully this will be the video pin
@@ -191,28 +191,28 @@ namespace DxText
                 iPinOutFilter = DsFindPin.ByDirection(baseGrabFlt, PinDirection.Output, 0);
 
                 // Add the frame grabber to the graph
-                hr = m_graphBuilder.AddFilter( baseGrabFlt, "Ds.NET Grabber" );
+                hr = m_FilterGraph.AddFilter( baseGrabFlt, "Ds.NET Grabber" );
                 DsError.ThrowExceptionForHR( hr );
 
-                hr = m_graphBuilder.Connect(iPinOutSource, iPinInFilter);
+                hr = m_FilterGraph.Connect(iPinOutSource, iPinInFilter);
                 DsError.ThrowExceptionForHR( hr );
 
                 // Get the default video renderer
                 ibfRenderer = (IBaseFilter) new VideoRendererDefault();
 
                 // Add it to the graph
-                hr = m_graphBuilder.AddFilter( ibfRenderer, "Ds.NET VideoRendererDefault" );
+                hr = m_FilterGraph.AddFilter( ibfRenderer, "Ds.NET VideoRendererDefault" );
                 DsError.ThrowExceptionForHR( hr );
                 iPinInDest = DsFindPin.ByDirection(ibfRenderer, PinDirection.Input, 0);
 
                 // Connect the graph.  Many other filters automatically get added here
-                hr = m_graphBuilder.Connect(iPinOutFilter, iPinInDest);
+                hr = m_FilterGraph.Connect(iPinOutFilter, iPinInDest);
                 DsError.ThrowExceptionForHR( hr );
 
                 SaveSizeInfo(sampGrabber);
 
                 // Set the output window
-                IVideoWindow videoWindow = m_graphBuilder as IVideoWindow;
+                IVideoWindow videoWindow = m_FilterGraph as IVideoWindow;
                 hr = videoWindow.put_Owner( hWin.Handle );
                 DsError.ThrowExceptionForHR( hr );
 
@@ -314,9 +314,9 @@ namespace DxText
 
             try
             {
-                if( m_graphBuilder != null )
+                if( m_FilterGraph != null )
                 {
-                    IMediaControl mediaCtrl = m_graphBuilder as IMediaControl;
+                    IMediaControl mediaCtrl = m_FilterGraph as IMediaControl;
 
                     // Stop the graph
                     hr = mediaCtrl.Stop();
@@ -334,10 +334,10 @@ namespace DxText
             }
 #endif
 
-            if (m_graphBuilder != null)
+            if (m_FilterGraph != null)
             {
-                Marshal.ReleaseComObject(m_graphBuilder);
-                m_graphBuilder = null;
+                Marshal.ReleaseComObject(m_FilterGraph);
+                m_FilterGraph = null;
             }
             GC.Collect();
         }

@@ -24,7 +24,7 @@ namespace WebCamService
         #region Member variables
 
         /// <summary> graph builder interface. </summary>
-        private IFilterGraph2 m_graphBuilder = null;
+        private IFilterGraph2 m_FilterGraph = null;
         private IMediaControl m_mediaCtrl = null;
 
         /// <summary> so we can wait for the async job to finish </summary>
@@ -204,8 +204,8 @@ namespace WebCamService
             ICaptureGraphBuilder2 capGraph = null;
 
             // Get the graphbuilder object
-            m_graphBuilder = (IFilterGraph2) new FilterGraph();
-            m_mediaCtrl = m_graphBuilder as IMediaControl;
+            m_FilterGraph = (IFilterGraph2) new FilterGraph();
+            m_mediaCtrl = m_FilterGraph as IMediaControl;
             try
             {
                 // Get the ICaptureGraphBuilder2
@@ -215,18 +215,18 @@ namespace WebCamService
                 sampGrabber = (ISampleGrabber) new SampleGrabber();
 
                 // Start building the graph
-                hr = capGraph.SetFiltergraph( m_graphBuilder );
+                hr = capGraph.SetFiltergraph( m_FilterGraph );
                 DsError.ThrowExceptionForHR( hr );
 
                 // Add the video device
-                hr = m_graphBuilder.AddSourceFilterForMoniker(dev.Mon, null, "Video input", out capFilter);
+                hr = m_FilterGraph.AddSourceFilterForMoniker(dev.Mon, null, "Video input", out capFilter);
                 DsError.ThrowExceptionForHR( hr );
 
                 IBaseFilter baseGrabFlt = (IBaseFilter)	sampGrabber;
                 ConfigureSampleGrabber(sampGrabber);
 
                 // Add the frame grabber to the graph
-                hr = m_graphBuilder.AddFilter( baseGrabFlt, "Ds.NET Grabber" );
+                hr = m_FilterGraph.AddFilter( baseGrabFlt, "Ds.NET Grabber" );
                 DsError.ThrowExceptionForHR( hr );
 
                 // If any of the default config items are set
@@ -377,10 +377,10 @@ namespace WebCamService
                 Debug.WriteLine(ex);
             }
 
-            if (m_graphBuilder != null)
+            if (m_FilterGraph != null)
             {
-                Marshal.ReleaseComObject(m_graphBuilder);
-                m_graphBuilder = null;
+                Marshal.ReleaseComObject(m_FilterGraph);
+                m_FilterGraph = null;
             }
         }
 

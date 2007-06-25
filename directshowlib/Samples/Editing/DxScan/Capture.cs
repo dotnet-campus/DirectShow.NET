@@ -23,7 +23,7 @@ namespace DxScan
         #region Member variables
 
         /// <summary> graph builder interface. </summary>
-        private IFilterGraph2 m_graphBuilder = null;
+        private IFilterGraph2 m_FilterGraph = null;
         IMediaControl m_mediaCtrl = null;
         IMediaEvent m_MediaEvent = null;
 
@@ -107,20 +107,20 @@ namespace DxScan
             IBaseFilter nullrenderer = null;
 
             // Get the graphbuilder object
-            m_graphBuilder = new FilterGraph() as IFilterGraph2;
-            m_mediaCtrl = m_graphBuilder as IMediaControl;
-            m_MediaEvent = m_graphBuilder as IMediaEvent;
+            m_FilterGraph = new FilterGraph() as IFilterGraph2;
+            m_mediaCtrl = m_FilterGraph as IMediaControl;
+            m_MediaEvent = m_FilterGraph as IMediaEvent;
 
-            IMediaFilter mediaFilt = m_graphBuilder as IMediaFilter;
+            IMediaFilter mediaFilt = m_FilterGraph as IMediaFilter;
 
             try
             {
 #if DEBUG
-                m_rot = new DsROTEntry( m_graphBuilder );
+                m_rot = new DsROTEntry( m_FilterGraph );
 #endif
 
                 // Add the video source
-                hr = m_graphBuilder.AddSourceFilter(FileName, "Ds.NET FileFilter", out capFilter);
+                hr = m_FilterGraph.AddSourceFilter(FileName, "Ds.NET FileFilter", out capFilter);
                 DsError.ThrowExceptionForHR( hr );
 
                 // Get the SampleGrabber interface
@@ -130,7 +130,7 @@ namespace DxScan
                 ConfigureSampleGrabber(sampGrabber);
 
                 // Add the frame grabber to the graph
-                hr = m_graphBuilder.AddFilter( baseGrabFlt, "Ds.NET Grabber" );
+                hr = m_FilterGraph.AddFilter( baseGrabFlt, "Ds.NET Grabber" );
                 DsError.ThrowExceptionForHR( hr );
 
                 // ---------------------------------
@@ -142,12 +142,12 @@ namespace DxScan
                 // Get the input pin from the sample grabber
                 IPin iPinIn = DsFindPin.ByDirection(baseGrabFlt, PinDirection.Input, 0);
 
-                hr = m_graphBuilder.Connect(iPinOut, iPinIn);
+                hr = m_FilterGraph.Connect(iPinOut, iPinIn);
                 DsError.ThrowExceptionForHR( hr );
 
                 // Add the null renderer to the graph
                 nullrenderer = new NullRenderer() as IBaseFilter;
-                hr = m_graphBuilder.AddFilter( nullrenderer, "Null renderer" );
+                hr = m_FilterGraph.AddFilter( nullrenderer, "Null renderer" );
                 DsError.ThrowExceptionForHR( hr );
 
                 // ---------------------------------
@@ -156,7 +156,7 @@ namespace DxScan
                 iPinOut = DsFindPin.ByDirection(baseGrabFlt, PinDirection.Output, 0);
                 iPinIn = DsFindPin.ByDirection(nullrenderer, PinDirection.Input, 0);
                 
-                hr = m_graphBuilder.Connect(iPinOut, iPinIn);
+                hr = m_FilterGraph.Connect(iPinOut, iPinIn);
                 DsError.ThrowExceptionForHR( hr );
 
                 // Turn off the clock.  This causes the frames to be sent
@@ -260,10 +260,10 @@ namespace DxScan
             }
 #endif
 
-            if (m_graphBuilder != null)
+            if (m_FilterGraph != null)
             {
-                Marshal.ReleaseComObject(m_graphBuilder);
-                m_graphBuilder = null;
+                Marshal.ReleaseComObject(m_FilterGraph);
+                m_FilterGraph = null;
             }
             GC.Collect();
         }

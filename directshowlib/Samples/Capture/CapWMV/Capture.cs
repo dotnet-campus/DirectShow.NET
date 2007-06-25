@@ -20,7 +20,7 @@ namespace AsfFilter
         #region Member variables
 
         /// <summary> graph builder interface. </summary>
-		private IFilterGraph2 m_graphBuilder = null;
+		private IFilterGraph2 m_FilterGraph = null;
         IMediaControl m_mediaCtrl = null;
 
         /// <summary> Set by async routine when it captures an image </summary>
@@ -95,7 +95,7 @@ namespace AsfFilter
         {
             if (m_bRunning)
             {
-                IMediaControl mediaCtrl = m_graphBuilder as IMediaControl;
+                IMediaControl mediaCtrl = m_FilterGraph as IMediaControl;
 
                 int hr = mediaCtrl.Pause();
                 Marshal.ThrowExceptionForHR( hr );
@@ -114,10 +114,10 @@ namespace AsfFilter
 		    ICaptureGraphBuilder2 capGraph = null;
 
             // Get the graphbuilder object
-            m_graphBuilder = (IFilterGraph2)new FilterGraph();
+            m_FilterGraph = (IFilterGraph2)new FilterGraph();
 
 #if DEBUG
-            m_rot = new DsROTEntry( m_graphBuilder );
+            m_rot = new DsROTEntry( m_FilterGraph );
 #endif
 
             try
@@ -126,11 +126,11 @@ namespace AsfFilter
                 capGraph = (ICaptureGraphBuilder2) new CaptureGraphBuilder2();
 
                 // Start building the graph
-                hr = capGraph.SetFiltergraph( m_graphBuilder );
+                hr = capGraph.SetFiltergraph( m_FilterGraph );
                 Marshal.ThrowExceptionForHR( hr );
 
                 // Add the capture device to the graph
-                hr = m_graphBuilder.AddSourceFilterForMoniker(dev.Mon, null, dev.Name, out capFilter);
+                hr = m_FilterGraph.AddSourceFilterForMoniker(dev.Mon, null, dev.Name, out capFilter);
                 Marshal.ThrowExceptionForHR( hr );
 
                 asfWriter = ConfigAsf(capGraph, szOutputFileName);
@@ -138,7 +138,7 @@ namespace AsfFilter
                 hr = capGraph.RenderStream(null, null, capFilter, null, asfWriter);
                 Marshal.ThrowExceptionForHR( hr );
 
-                m_mediaCtrl = m_graphBuilder as IMediaControl;
+                m_mediaCtrl = m_FilterGraph as IMediaControl;
             }
             finally
             {
@@ -214,10 +214,10 @@ namespace AsfFilter
             }
 #endif
 
-            if (m_graphBuilder != null)
+            if (m_FilterGraph != null)
             {
-                Marshal.ReleaseComObject(m_graphBuilder);
-                m_graphBuilder = null;
+                Marshal.ReleaseComObject(m_FilterGraph);
+                m_FilterGraph = null;
             }
         }
     }
