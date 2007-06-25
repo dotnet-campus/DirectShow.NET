@@ -47,7 +47,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="C:\Program Files\Microsoft SDKs\Windows\v1.0\samples\Multimedia\DirectShow\BaseClasses"
+				AdditionalIncludeDirectories="p:\Samples\Multimedia\DirectShow\BaseClasses"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;PUSHSOURCE_EXPORTS"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -81,7 +81,7 @@
 				OutputFile="Debug/GSSF.ax"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="&quot;C:\Program Files\Microsoft SDKs\Windows\v1.0\samples\Multimedia\DirectShow\BaseClasses\Debug&quot;"
+				AdditionalLibraryDirectories="P:\Samples\Multimedia\DirectShow\BaseClasses\debug"
 				IgnoreAllDefaultLibraries="true"
 				ModuleDefinitionFile=".\PushSource.def"
 				GenerateDebugInformation="true"

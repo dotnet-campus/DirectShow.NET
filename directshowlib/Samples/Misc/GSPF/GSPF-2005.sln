@@ -1,10 +1,10 @@
 Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual C++ Express 2005
+# Visual Studio 2005
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GenericSamplePushFilter", "filter\PullSource.vcproj", "{70B24BBF-E59F-4F91-A74B-01288E1DECB3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Renderer", "Renderer\Renderer.csproj", "{B02B2D12-F0F1-4E87-AC3D-8825FB4EEFFC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Renderer-2005", "Renderer\Renderer-2005.csproj", "{B02B2D12-F0F1-4E87-AC3D-8825FB4EEFFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reader", "Reader\Reader.csproj", "{F625A785-6696-4441-AA3B-C136A3E55648}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reader-2005", "Reader\Reader-2005.csproj", "{F625A785-6696-4441-AA3B-C136A3E55648}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
