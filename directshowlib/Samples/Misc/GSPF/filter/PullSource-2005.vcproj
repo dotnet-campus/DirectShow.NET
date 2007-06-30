@@ -48,7 +48,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="C:\Program Files\Microsoft SDKs\Windows\v1.0\samples\Multimedia\DirectShow\BaseClasses"
+				AdditionalIncludeDirectories="&quot;C:\Program Files\Microsoft SDKs\Windows\v6.0&quot;;&quot;C:\Program Files\Microsoft SDKs\Windows\v6.0\samples\Multimedia\DirectShow\BaseClasses&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;PUSHSOURCE_EXPORTS"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -151,7 +151,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="p:\include;&quot;C:\Program Files\Microsoft SDKs\Windows\v1.0\samples\Multimedia\DirectShow\BaseClasses&quot;"
+				AdditionalIncludeDirectories="&quot;C:\Program Files\Microsoft SDKs\Windows\v6.0\include&quot;;&quot;C:\Program Files\Microsoft SDKs\Windows\v6.0\samples\Multimedia\DirectShow\BaseClasses&quot;"
 				PreprocessorDefinitions="WIN32;UNICODE;NDEBUG;_WINDOWS;_MBCS;_USRDLL;PUSHSOURCE_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="0"
