@@ -159,7 +159,7 @@ Public Class Capture
             ConfigureSampleGrabber(sampGrabber)
 
             ' Add the frame grabber to the graph
-            hr = CType(m_graphBuilder, IGraphBuilder).AddFilter(baseGrabFlt, "Ds.NET Grabber")
+            hr = m_graphBuilder.AddFilter(baseGrabFlt, "Ds.NET Grabber")
             DsError.ThrowExceptionForHR(hr)
 
             ' If any of the default config items are set
@@ -171,7 +171,7 @@ Public Class Capture
             hr = capGraph.SetOutputFileName(MediaSubType.Avi, FileName, muxFilter, fileWriterFilter)
             DsError.ThrowExceptionForHR(hr)
 
-            hr = capGraph.RenderStream(New DsGuid(PinCategory.Capture), New DsGuid(MediaType.Video), capFilter, baseGrabFlt, muxFilter)
+            hr = capGraph.RenderStream(PinCategory.Capture, MediaType.Video, capFilter, baseGrabFlt, muxFilter)
             DsError.ThrowExceptionForHR(hr)
 
             SaveSizeInfo(sampGrabber)
@@ -244,17 +244,13 @@ Public Class Capture
     Private Sub SetConfigParms(ByVal capGraph As ICaptureGraphBuilder2, ByVal capFilter As IBaseFilter, ByVal iFrameRate As Integer, ByVal iWidth As Integer, ByVal iHeight As Integer)
         Dim hr As Integer
 
-        ' This one statement in c# takes these two complex statements in vb
-        ' Guid iid = typeof(IAMStreamConfig).GUID;
-        Dim IMyInterfaceAttribute As Attribute = Attribute.GetCustomAttribute(GetType(IAMStreamConfig), GetType(GuidAttribute))
-        Dim iid As Guid = New Guid(CType(IMyInterfaceAttribute, GuidAttribute).Value)
         Dim o As Object = Nothing
         Dim media As AMMediaType = Nothing
         Dim videoStreamConfig As IAMStreamConfig
         Dim videoControl As IAMVideoControl = DirectCast(capFilter, IAMVideoControl)
 
         ' Find the stream config interface
-        hr = capGraph.FindInterface(New DsGuid(PinCategory.Capture), New DsGuid(MediaType.Video), capFilter, iid, o)
+        hr = capGraph.FindInterface(PinCategory.Capture, MediaType.Video, capFilter, GetType(IAMStreamConfig).GUID, o)
 
         videoStreamConfig = DirectCast(o, IAMStreamConfig)
         Try
