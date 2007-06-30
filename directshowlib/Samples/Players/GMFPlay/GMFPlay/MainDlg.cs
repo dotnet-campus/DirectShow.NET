@@ -270,7 +270,10 @@ namespace GMFPlay
 
         private void MainDlg_FormClosing(object sender, FormClosingEventArgs e)
         {
-            m_pPlayer.Dispose();
+            if (m_pPlayer != null)
+            {
+                m_pPlayer.Dispose();
+            }
         }
     }
 }
