@@ -64,6 +64,12 @@ missing definition in your next re-compile.
    MpegContext & MPEGContext
    MpegStreamBuffer & MPEGStreamBuffer 
 
+We have also dropped support for VS2003.  Since VS2005 has been out for 2 years now (and is
+available for free!), it doesn't seem worth the effort to put time into keeping the vs2003 stuff
+active.  We haven't (to our knowledge) done anything to the library that will prevent it from working
+with 2003, but since none of the dev team still has it installed, we haven't tried it.  If you are 
+still using vs2003, you can check the cvs tree at sourceforge for the old .csproj and .sln files.
+
 And that's about it.  Now that MS has stopped development on DirectShow, we may call this library 
 done.  Barring bug fixes, of course.
 
