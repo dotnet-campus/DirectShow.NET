@@ -1,5 +1,5 @@
 -----------------------------------------------------------------
-v 2.0 - Upgrade with breaking changes
+v 2.0 - Upgrade with breaking changes (2007-07-15)
 
 In this release, we added the new interfaces introduced into DirectShow in Vista.  Obviously
 these interfaces will only work on Vista.
@@ -14,12 +14,12 @@ hardware.  The others are included as untested.
 
 We have added the System.Security.SuppressUnmanagedCodeSecurity attribute to the interfaces 
 as well.  This tends to improve performance in interfaces that are called frequently (ie many
-times a second).
+times a second).  No code change should be required.
 
 We have also corrected problems related 64 bit support.  Primarily fixing "pack" problems on
 structures, but a few interfaces have been changed to support 64 bit.  Primarily changing 
 parameters from int to IntPtr.  This will require code changes where you are using them, but 
-the changes are relatively obvious.
+the changes are relatively obvious, and are easily located with a re-compile.
 
    IMediaEventSink
    IMediaEvent
@@ -30,8 +30,8 @@ the changes are relatively obvious.
 
 We have also changed all the IEnumXXX interfaces so that param 3 is an IntPtr rather than
 an "out int."  This is consistent with Microsoft's implementations, and absolutely essential
-for cases where someone needs to *implement* the method, rather than just call it.  If you 
-are using any of these methods:
+for cases where someone needs to *implement* the method, rather than just call it.  The places
+we have made changes are easily located with a re-compile.  If you are using any of these methods:
 
    - If you are *not* using the value returned by the 3rd parameter, simply replace it with 
      IntPtr.Zero.
@@ -51,7 +51,8 @@ are using any of these methods:
       }
 
 We have also removed a few duplicate definitions.  If you were using one of these and we deleted
-the one you were using, you'll need to use the other one.
+the one you were using, you'll need to use the other one.  The compiler will complain about the
+missing definition in your next re-compile.
 
    AtscFilterOptions & ATSCFilterOptions
    DsmccFilterOptions & DSMCCFilterOptions
@@ -63,8 +64,8 @@ the one you were using, you'll need to use the other one.
    MpegContext & MPEGContext
    MpegStreamBuffer & MPEGStreamBuffer 
 
-And that's about it.  Now that MS has stopped development on DirectShow, we may actually be
-able to call this library done.  Barring bug fixes, of course.
+And that's about it.  Now that MS has stopped development on DirectShow, we may call this library 
+done.  Barring bug fixes, of course.
 
 
 -----------------------------------------------------------------
