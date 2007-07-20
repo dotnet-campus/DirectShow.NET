@@ -40,7 +40,7 @@ namespace DirectShowLib.Samples
         private System.ComponentModel.Container components = null;
 
         //A (modified) definition of OleCreatePropertyFrame found here: http://groups.google.no/group/microsoft.public.dotnet.languages.csharp/browse_thread/thread/db794e9779144a46/55dbed2bab4cd772?lnk=st&q=[DllImport(%22olepro32.dll%22)]&rnum=1&hl=no#55dbed2bab4cd772
-        [DllImport("oleaut32.dll")] 
+        [DllImport("olepro32.dll")] 
         public static extern int OleCreatePropertyFrame( 
             IntPtr hwndOwner, 
             int x, 
@@ -127,7 +127,7 @@ namespace DirectShowLib.Samples
         /// </summary>
         private void InitializeComponent()
         {
-            System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -213,11 +213,11 @@ namespace DirectShowLib.Samples
             this.nudChannel.Name = "nudChannel";
             this.nudChannel.Size = new System.Drawing.Size(40, 20);
             this.nudChannel.TabIndex = 8;
-            this.nudChannel.Value = new System.Decimal(new int[] {
-                                                                     5,
-                                                                     0,
-                                                                     0,
-                                                                     0});
+            this.nudChannel.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
             this.nudChannel.ValueChanged += new System.EventHandler(this.OnValueChanged);
             // 
             // label1
@@ -285,10 +285,12 @@ namespace DirectShowLib.Samples
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "DsTuner";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.nudChannel)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
         #endregion
@@ -613,6 +615,14 @@ namespace DirectShowLib.Samples
             mediaControl.Pause();
             DisplayPropertyPage(crossbar);
             mediaControl.Run();
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (button3.Text != "Record")
+            {
+                StopRecord();
+            }
         }
     }
 }
