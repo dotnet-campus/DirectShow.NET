@@ -425,8 +425,8 @@ namespace DxPlay
                 // Grab the size info
                 m_videoWidth = videoInfoHeader.BmiHeader.Width;
                 m_videoHeight = videoInfoHeader.BmiHeader.Height;
-                m_stride = m_videoWidth * (videoInfoHeader.BmiHeader.BitCount / 8);
-                m_ImageSize = m_videoWidth * m_videoHeight * 3;
+                m_stride = videoInfoHeader.BmiHeader.ImageSize / m_videoHeight;
+                m_ImageSize = videoInfoHeader.BmiHeader.ImageSize;
             }
             finally
             {
