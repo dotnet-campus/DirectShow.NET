@@ -263,10 +263,16 @@ namespace DxPlay
         // Called when the video is finished playing
         private void m_play_StopPlay(Object sender)
         {
+            // This isn't the right way to do this, but heck, it's only a sample
+            CheckForIllegalCrossThreadCalls = false;
+
             btnPause.Enabled = false;
             tbFileName.Enabled = true;
             btnStart.Text = "Start";
             btnPause.Text = "Pause";
+
+            CheckForIllegalCrossThreadCalls = true;
+
             m_State = State.Stopped;
 
             // Rewind clip to beginning to allow DxPlay.Start to work again.
