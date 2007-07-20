@@ -1,5 +1,13 @@
 DMOFlip - A sample DMO that flips video on either the x or y axis (or both).
 
+VISTA NOTE!  The debug build of the DMO attempts to create a log file at c:\.  In Vista,
+this doesn't work.  Either do a release build, or change the location of the logfile to a
+directory where you have create/write access.
+
+Also in Vista, the regasm call probably won't run as part of the build (due again to admin
+rights issues).  Remove the command from the build events window and run it in a cmd window
+that was started with Run as Administrator.
+
 The DMO in this directory is based on the abstract class contained in IMediaObjectImpl.cs.  
 The IMediaObjectImpl class is intended to be completely generic, and can be used to create 
 other DMOs.  See the readme in the parent directory for descriptions of the steps.
