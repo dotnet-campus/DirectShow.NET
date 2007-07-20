@@ -148,8 +148,13 @@ Public Class Form1
         ds.Dispose()
         ds = Nothing
 
+        ' This isn't the right way to do this, but hey, it's just a sample.
+        CheckForIllegalCrossThreadCalls = False
+
         ' Reset the button text
         Button1.Text = "Start"
+
+        CheckForIllegalCrossThreadCalls = True
 
         ' Show the results
         MessageBox.Show(e1.Result.ToString(), "Results")
