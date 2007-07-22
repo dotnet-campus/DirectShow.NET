@@ -75,6 +75,8 @@ namespace SnapShot
             this.button1 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -114,6 +116,9 @@ namespace SnapShot
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form1";
             this.Text = "DxSnap";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -150,6 +155,17 @@ namespace SnapShot
             pictureBox1.Image = b;
 
             Cursor.Current = Cursors.Default;
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            cam.Dispose();
+
+            if (m_ip != IntPtr.Zero)
+            {
+                Marshal.FreeCoTaskMem(m_ip);
+                m_ip = IntPtr.Zero;
+            }
         }
     }
 }

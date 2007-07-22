@@ -141,6 +141,7 @@ namespace SnapShot
             {
                 Marshal.FreeCoTaskMem(m_ipBuffer);
                 m_ipBuffer = IntPtr.Zero;
+                throw;
             }
 	
             // Got one
