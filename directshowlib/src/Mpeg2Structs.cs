@@ -184,93 +184,6 @@ namespace DirectShowLib.BDA
     }
 
     /// <summary>
-    /// From MPEG_PACKET_LIST
-    /// </summary>
-    [StructLayout(LayoutKind.Sequential, Pack = 2)]
-    public struct MpegPacketList
-    {
-        public short wPacketCount;
-        public IntPtr PacketList; // MPEG_RQST_PACKET array
-    }
-
-    /// <summary>
-    /// From DSMCC_FILTER_OPTIONS
-    /// </summary>
-    [StructLayout(LayoutKind.Sequential, Pack = 1)]
-    public struct DsmccFilterOptions
-    {
-        [MarshalAs(UnmanagedType.Bool)]
-        public bool fSpecifyProtocol;
-        public byte Protocol;
-        [MarshalAs(UnmanagedType.Bool)]
-        public bool fSpecifyType;
-        public byte Type;
-        [MarshalAs(UnmanagedType.Bool)]
-        public bool fSpecifyMessageId;
-        public short MessageId;
-        [MarshalAs(UnmanagedType.Bool)]
-        public bool fSpecifyTransactionId;
-        [MarshalAs(UnmanagedType.Bool)]
-        public bool fUseTrxIdMessageIdMask;
-        public int TransactionId;
-        [MarshalAs(UnmanagedType.Bool)]
-        public bool fSpecifyModuleVersion;
-        public byte ModuleVersion;
-        [MarshalAs(UnmanagedType.Bool)]
-        public bool fSpecifyBlockNumber;
-        public short BlockNumber;
-        [MarshalAs(UnmanagedType.Bool)]
-        public bool fGetModuleCall;
-        public short NumberOfBlocksInModule;
-    }
-
-    /// <summary>
-    /// From ATSC_FILTER_OPTIONS
-    /// </summary>
-    [StructLayout(LayoutKind.Sequential, Pack = 1)]
-    public struct AtscFilterOptions
-    {
-        [MarshalAs(UnmanagedType.Bool)]
-        public bool fSpecifyEtmId;
-        public int EtmId;
-    }
-
-    /// <summary>
-    /// From MPEG2_FILTER
-    /// </summary>
-    [StructLayout(LayoutKind.Sequential, Pack = 1)]
-    public struct Mpeg2Filter
-    {
-        public byte bVersionNumber;
-        public short wFilterSize;
-        [MarshalAs(UnmanagedType.Bool)]
-        public bool fUseRawFilteringBits;
-        [MarshalAs(UnmanagedType.ByValArray, ArraySubType = UnmanagedType.U1, SizeConst = 16)]
-        public byte[] Filter;
-        [MarshalAs(UnmanagedType.ByValArray, ArraySubType = UnmanagedType.U1, SizeConst = 16)]
-        public byte[] Mask;
-        [MarshalAs(UnmanagedType.Bool)]
-        public bool fSpecifyTableIdExtension;
-        public short TableIdExtension;
-        [MarshalAs(UnmanagedType.Bool)]
-        public bool fSpecifyVersion;
-        public byte Version;
-        [MarshalAs(UnmanagedType.Bool)]
-        public bool fSpecifySectionNumber;
-        public byte SectionNumber;
-        [MarshalAs(UnmanagedType.Bool)]
-        public bool fSpecifyCurrentNext;
-        [MarshalAs(UnmanagedType.Bool)]
-        public bool fNext;
-        [MarshalAs(UnmanagedType.Bool)]
-        public bool fSpecifyDsmccOptions;
-        public DsmccFilterOptions Dsmcc;
-        [MarshalAs(UnmanagedType.Bool)]
-        public bool fSpecifyAtscOptions;
-        public AtscFilterOptions Atsc;
-    }
-
-    /// <summary>
     /// From MPEG_DATE
     /// </summary>
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
@@ -287,28 +200,12 @@ namespace DirectShowLib.BDA
     }
 
     /// <summary>
-    /// From MPEG_REQUEST_TYPE
-    /// </summary>
-    public enum MpegRequestType
-    {
-        Unknown = 0,
-        GetSection,
-        GetSectionAsync,
-        GetTable,
-        GetTableAsync,
-        GetSectionsStream,
-        GetPesStream,
-        GetTsStream,
-        StartMpeStream,
-    }
-
-    /// <summary>
     /// From MPEG_SERVICE_REQUEST
     /// </summary>
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
     public class MpegServiceRequest
     {
-        public MpegRequestType Type;
+        public MPEGRequestType Type;
         public MPEGContext Context;
         public short Pid;
         public byte TableId;
