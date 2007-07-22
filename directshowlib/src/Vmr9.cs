@@ -55,7 +55,8 @@ namespace DirectShowLib
         DXVATarget = 0x0002,
         TextureSurface = 0x0004,
         OffscreenSurface = 0x0008,
-        UsageReserved = 0x00F0,
+        RGBDynamicSwitch = 0x0010,
+        UsageReserved = 0x00e0,
         UsageMask = 0x00FF
     }
 
