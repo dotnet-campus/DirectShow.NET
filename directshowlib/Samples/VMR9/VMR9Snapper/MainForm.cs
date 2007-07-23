@@ -36,7 +36,14 @@ namespace DirectShowLib.Sample
         private IVMRMixerBitmap9 mixerBitmap = null;
         private IVMRWindowlessControl9 windowlessCtrl = null;
         private bool handlersAdded = false;
-        private SaveFileDialog saveFileDialog; // Needed to remove delegates
+        private SaveFileDialog saveFileDialog;
+        private TableLayoutPanel tableLayoutPanelMain;
+        private TableLayoutPanel tableLayoutPanelButtons;
+        private Button btnSnap;
+        private Button btnOpen;
+        private Button btnPlay;
+        private Button btnPause;
+        private Panel panel1; // Needed to remove delegates
 
         // Menus stuff
         private MenuItem menuSnap;
@@ -48,9 +55,10 @@ namespace DirectShowLib.Sample
             // We paint the windows ourself
             this.SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint, true);
 
-            this.saveFileDialog.DefaultExt = ".bmp";
+            this.saveFileDialog.DefaultExt = ".jpg";
             this.saveFileDialog.AddExtension = true;
             this.saveFileDialog.CheckPathExists = true;
+            this.saveFileDialog.Filter += "Jpeg files (*.jpg)|*.jpg";
         }
 
         /// <summary>
@@ -90,6 +98,15 @@ namespace DirectShowLib.Sample
             this.menuFileExit = new System.Windows.Forms.MenuItem();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.tableLayoutPanelMain = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanelButtons = new System.Windows.Forms.TableLayoutPanel();
+            this.btnSnap = new System.Windows.Forms.Button();
+            this.btnOpen = new System.Windows.Forms.Button();
+            this.btnPause = new System.Windows.Forms.Button();
+            this.btnPlay = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanelMain.SuspendLayout();
+            this.tableLayoutPanelButtons.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainMenu
@@ -117,7 +134,7 @@ namespace DirectShowLib.Sample
             // menuSnap
             // 
             this.menuSnap.Index = 1;
-            this.menuSnap.Text = "Snap";
+            this.menuSnap.Text = "Save image...";
             this.menuSnap.Click += new System.EventHandler(this.menuSnap_Click);
             // 
             // menuFileClose
@@ -141,14 +158,108 @@ namespace DirectShowLib.Sample
             // 
             this.openFileDialog.Filter = resources.GetString("openFileDialog.Filter");
             // 
+            // tableLayoutPanelMain
+            // 
+            this.tableLayoutPanelMain.ColumnCount = 1;
+            this.tableLayoutPanelMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanelMain.Controls.Add(this.tableLayoutPanelButtons, 0, 1);
+            this.tableLayoutPanelMain.Controls.Add(this.panel1, 0, 0);
+            this.tableLayoutPanelMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanelMain.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanelMain.Name = "tableLayoutPanelMain";
+            this.tableLayoutPanelMain.RowCount = 2;
+            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 92.10526F));
+            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.894737F));
+            this.tableLayoutPanelMain.Size = new System.Drawing.Size(640, 480);
+            this.tableLayoutPanelMain.TabIndex = 0;
+            // 
+            // tableLayoutPanelButtons
+            // 
+            this.tableLayoutPanelButtons.ColumnCount = 4;
+            this.tableLayoutPanelButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanelButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanelButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanelButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanelButtons.Controls.Add(this.btnPlay, 0, 0);
+            this.tableLayoutPanelButtons.Controls.Add(this.btnSnap, 3, 0);
+            this.tableLayoutPanelButtons.Controls.Add(this.btnOpen, 2, 0);
+            this.tableLayoutPanelButtons.Controls.Add(this.btnPause, 1, 0);
+            this.tableLayoutPanelButtons.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanelButtons.Location = new System.Drawing.Point(3, 445);
+            this.tableLayoutPanelButtons.Name = "tableLayoutPanelButtons";
+            this.tableLayoutPanelButtons.RowCount = 1;
+            this.tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanelButtons.Size = new System.Drawing.Size(634, 32);
+            this.tableLayoutPanelButtons.TabIndex = 0;
+            // 
+            // btnSnap
+            // 
+            this.btnSnap.BackColor = System.Drawing.Color.Transparent;
+            this.btnSnap.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnSnap.Location = new System.Drawing.Point(477, 3);
+            this.btnSnap.Name = "btnSnap";
+            this.btnSnap.Size = new System.Drawing.Size(154, 26);
+            this.btnSnap.TabIndex = 0;
+            this.btnSnap.Text = "Save image ...";
+            this.btnSnap.UseVisualStyleBackColor = false;
+            this.btnSnap.Click += new System.EventHandler(this.btnSnap_Click);
+            // 
+            // btnOpen
+            // 
+            this.btnOpen.BackColor = System.Drawing.Color.Transparent;
+            this.btnOpen.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnOpen.Location = new System.Drawing.Point(319, 3);
+            this.btnOpen.Name = "btnOpen";
+            this.btnOpen.Size = new System.Drawing.Size(152, 26);
+            this.btnOpen.TabIndex = 1;
+            this.btnOpen.Text = "Open...";
+            this.btnOpen.UseVisualStyleBackColor = false;
+            this.btnOpen.Click += new System.EventHandler(this.btnOpen_Click);
+            // 
+            // btnPause
+            // 
+            this.btnPause.BackColor = System.Drawing.Color.Transparent;
+            this.btnPause.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPause.Location = new System.Drawing.Point(161, 3);
+            this.btnPause.Name = "btnPause";
+            this.btnPause.Size = new System.Drawing.Size(152, 26);
+            this.btnPause.TabIndex = 2;
+            this.btnPause.Text = "Pause";
+            this.btnPause.UseVisualStyleBackColor = false;
+            this.btnPause.Click += new System.EventHandler(this.btnPause_Click);
+            // 
+            // btnPlay
+            // 
+            this.btnPlay.BackColor = System.Drawing.Color.Transparent;
+            this.btnPlay.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPlay.Location = new System.Drawing.Point(3, 3);
+            this.btnPlay.Name = "btnPlay";
+            this.btnPlay.Size = new System.Drawing.Size(152, 26);
+            this.btnPlay.TabIndex = 3;
+            this.btnPlay.Text = "Play";
+            this.btnPlay.UseVisualStyleBackColor = false;
+            this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(3, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(634, 436);
+            this.panel1.TabIndex = 1;
+            // 
             // MainForm
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-            this.BackColor = System.Drawing.Color.Black;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.ClientSize = new System.Drawing.Size(640, 480);
+            this.Controls.Add(this.tableLayoutPanelMain);
             this.Menu = this.mainMenu;
             this.Name = "MainForm";
             this.Text = "VMR Snapper";
+            this.tableLayoutPanelMain.ResumeLayout(false);
+            this.tableLayoutPanelButtons.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -222,7 +333,7 @@ namespace DirectShowLib.Sample
             windowlessCtrl = (IVMRWindowlessControl9) vmr9;
 
             // Set "Parent" window
-            hr = windowlessCtrl.SetVideoClippingWindow(this.Handle);
+            hr = windowlessCtrl.SetVideoClippingWindow(this.panel1.Handle);
             DsError.ThrowExceptionForHR(hr);
 
             // Set Aspect-Ratio
@@ -277,6 +388,11 @@ namespace DirectShowLib.Sample
         // Menus click handlers
         private void menuFileOpen_Click(object sender, System.EventArgs e)
         {
+            openFile();
+        }
+
+        private void openFile()
+        {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 CloseInterfaces();
@@ -304,7 +420,7 @@ namespace DirectShowLib.Sample
             if (windowlessCtrl != null)
             {
                 IntPtr hdc = e.Graphics.GetHdc();
-                int hr = windowlessCtrl.RepaintVideo(this.Handle, hdc);
+                int hr = windowlessCtrl.RepaintVideo(this.panel1.Handle, hdc);
                 e.Graphics.ReleaseHdc(hdc);
             }
         }
@@ -313,7 +429,7 @@ namespace DirectShowLib.Sample
         {
             if (windowlessCtrl != null)
             {
-                int hr = windowlessCtrl.SetVideoPosition(null, DsRect.FromRectangle(this.ClientRectangle));
+                int hr = windowlessCtrl.SetVideoPosition(null, DsRect.FromRectangle(this.panel1.ClientRectangle));
             }
         }
 
@@ -336,25 +452,79 @@ namespace DirectShowLib.Sample
 
         private void menuSnap_Click(object sender, EventArgs e)
         {
+            snapImage();
+
+        }
+
+        private void snapImage()
+        {
             if (windowlessCtrl != null)
             {
-                IntPtr currentImage;
-                windowlessCtrl.GetCurrentImage(out currentImage);
-                BitmapInfoHeader structure = new BitmapInfoHeader();
-                Marshal.PtrToStructure(currentImage, structure);
+                IntPtr currentImage = IntPtr.Zero;
+                Bitmap bmp = null;
 
-                Bitmap bmp = new Bitmap(structure.Width, structure.Height, (structure.BitCount / 8) * structure.Width, System.Drawing.Imaging.PixelFormat.Format32bppArgb, currentImage);
-                bmp.RotateFlip(RotateFlipType.RotateNoneFlipY);
-
-                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                try
                 {
-                    bmp.Save(saveFileDialog.FileName.ToString());
+                    int hr = windowlessCtrl.GetCurrentImage(out currentImage);
+                    DsError.ThrowExceptionForHR(hr);
+
+                    if (currentImage != IntPtr.Zero)
+                    {
+                        BitmapInfoHeader structure = new BitmapInfoHeader();
+                        Marshal.PtrToStructure(currentImage, structure);
+
+                        bmp = new Bitmap(structure.Width, structure.Height, (structure.BitCount / 8) * structure.Width, System.Drawing.Imaging.PixelFormat.Format32bppArgb, currentImage);
+                        bmp.RotateFlip(RotateFlipType.RotateNoneFlipY);
+
+                        if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                        {
+                            bmp.Save(saveFileDialog.FileName.ToString(), System.Drawing.Imaging.ImageFormat.Jpeg);
+                        }
+                    }
                 }
+                catch (Exception anyException)
+                {
+                    MessageBox.Show("Failed getting image: " + anyException.Message);
+                }
+                finally
+                {
+                    if (bmp != null)
+                    {
+                        bmp.Dispose();
+                    }
 
-                bmp.Dispose();
-                Marshal.FreeCoTaskMem(currentImage);
+                    Marshal.FreeCoTaskMem(currentImage);
+                }
             }
+        }
 
+        private void btnPlay_Click(object sender, EventArgs e)
+        {
+            RunGraph();
+        }
+
+        private void btnPause_Click(object sender, EventArgs e)
+        {
+            pause();
+        }
+
+        private void pause()
+        {
+            if (mediaControl != null)
+            {
+                int hr = mediaControl.Pause();
+                DsError.ThrowExceptionForHR(hr);
+            }
+        }
+
+        private void btnOpen_Click(object sender, EventArgs e)
+        {
+            openFile();
+        }
+
+        private void btnSnap_Click(object sender, EventArgs e)
+        {
+            snapImage();
         }
 
     }
