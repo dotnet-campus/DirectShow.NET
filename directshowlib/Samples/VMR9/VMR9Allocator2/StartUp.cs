@@ -14,23 +14,37 @@ namespace DirectShowLib.Sample
   public class StartUp
   {
     public static string filename;
+    public static Configuration config;
 
     [STAThread]
     static void Main() 
     {
-      OpenFileDialog openDialog = new OpenFileDialog();
+      DialogResult result;
 
-      if (openDialog.ShowDialog() == DialogResult.OK)
+      Application.EnableVisualStyles();
+
+      using (ConfigForm form = new ConfigForm())
       {
-        filename = openDialog.FileName;
+        result = form.ShowDialog();
+        config = form.config;
+      }
 
-        Thread initThread = new Thread(new ThreadStart(StartUp.ApplicationLaunch));
+      if (result == DialogResult.OK)
+      {
+        OpenFileDialog openDialog = new OpenFileDialog();
+
+        if (openDialog.ShowDialog() == DialogResult.OK)
+        {
+          filename = openDialog.FileName;
+
+          Thread initThread = new Thread(new ThreadStart(StartUp.ApplicationLaunch));
 #if USING_NET20
-        initThread.SetApartmentState(ApartmentState.MTA);
+          initThread.SetApartmentState(ApartmentState.MTA);
 #else
-        initThread.ApartmentState = ApartmentState.MTA;
+          initThread.ApartmentState = ApartmentState.MTA;
 #endif
-        initThread.Start();
+          initThread.Start();
+        }
       }
     }
 
@@ -38,15 +52,13 @@ namespace DirectShowLib.Sample
     {
       Application.DoEvents();
 
-      using (MainForm form = new MainForm())
+      using (MainForm form = new MainForm(config))
       {
         form.Show();
 
         form.InitializeGraphics();
         form.InitVMR9(StartUp.filename);
         form.Focus();
-
-        Application.Idle += new EventHandler(form.OnApplicationIdle);
         Application.Run(form);
       }
     }

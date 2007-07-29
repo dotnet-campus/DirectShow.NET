@@ -11,6 +11,7 @@ using System.Drawing;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 using DirectShowLib;
@@ -156,9 +157,11 @@ namespace DirectShowLib.Sample
 
       Debug.WriteLine(string.Format("{0}x{1} : {2} / {3} / 0x{4:x}", lpAllocInfo.dwWidth, lpAllocInfo.dwHeight, FourCCToStr(lpAllocInfo.Format), lpAllocInfo.Pool, lpAllocInfo.dwFlags));
 
+      //lpAllocInfo.dwFlags |= (VMR9SurfaceAllocationFlags) 0x0010;
+
       // if format is YUV ? (note : 0x30303030 = "    ")
       if (lpAllocInfo.Format > 0x30303030)
-      {
+        {
         // Check if the hardware support format conversion from this YUV format to the RGB desktop format
         if (!Manager.CheckDeviceFormatConversion(creationParameters.AdapterOrdinal, creationParameters.DeviceType, (Format)lpAllocInfo.Format, adapterInfo.CurrentDisplayMode.Format))
         {
@@ -209,6 +212,7 @@ namespace DirectShowLib.Sample
 
           // Create it
           videoSurface = device.CreateOffscreenPlainSurface(lpAllocInfo.dwWidth, lpAllocInfo.dwHeight, (Format)lpAllocInfo.Format, (Pool)lpAllocInfo.Pool);
+
           // And get it unmanaged pointer
           unmanagedSurface = videoSurface.GetObjectByValue(DxMagicNumber);
 
@@ -276,12 +280,15 @@ namespace DirectShowLib.Sample
 
     public int TerminateDevice(IntPtr dwID)
     {
+      Debug.WriteLine("Dans TerminateDevice");
       DeleteSurfaces();
       return 0;
     }
 
     public int GetSurface(IntPtr dwUserID, int SurfaceIndex, int SurfaceFlags, out IntPtr lplpSurface)
     {
+      Debug.WriteLine("\tDans GetSurface");
+
       lplpSurface = IntPtr.Zero;
 
       // If the filter ask for an invalid buffer index, return an error.
@@ -300,7 +307,8 @@ namespace DirectShowLib.Sample
 
     public int AdviseNotify(IVMRSurfaceAllocatorNotify9 lpIVMRSurfAllocNotify)
     {
-      lock(this)
+      Debug.WriteLine("Dans AdviseNotify");
+      lock (this)
       {
         vmrSurfaceAllocatorNotify = lpIVMRSurfAllocNotify;
 
@@ -318,7 +326,8 @@ namespace DirectShowLib.Sample
 
     public int StartPresenting(IntPtr dwUserID)
     {
-      lock(this)
+      Debug.WriteLine("Dans StartPresenting");
+      lock (this)
       {
         if (device == null)
           return E_FAIL;
@@ -329,13 +338,16 @@ namespace DirectShowLib.Sample
 
     public int StopPresenting(IntPtr dwUserID)
     {
+      Debug.WriteLine("Dans StopPresenting");
       return 0;
     }
 
     public int PresentImage(IntPtr dwUserID, ref VMR9PresentationInfo lpPresInfo)
     {
-      lock(this)
+      Debug.WriteLine("\tDans PresentImage");
+      lock (this)
       {
+        //Debug.WriteLine(string.Format("[{0}] Into PresentImage", DateTime.Now.ToLongTimeString()));
         try
         {
           // If YUV mixing is activated, a surface copy is needed
