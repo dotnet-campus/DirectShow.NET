@@ -104,6 +104,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "atscpsipparser.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "austream.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -154,7 +159,17 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "dsattrib.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "DsUtils.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "dvbsiparser.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -165,6 +180,11 @@
                 />
                 <File
                     RelPath = "DynGraph.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "encdec.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -210,6 +230,16 @@
                 />
                 <File
                     RelPath = "Mpeg2Data.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "mpeg2psiparser.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Mpeg2Structs.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
