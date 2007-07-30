@@ -1,4 +1,4 @@
-DirectShowLib Samples 2006-04-12
+DirectShowLib Samples 2007-07-31
 
 http://SourceForgeNet.SourceForge.net
 
@@ -6,9 +6,20 @@ This package contains a selection of samples.  These samples were formerly bundl
 with the DirectShowLib library, but as of version 1.4, they have been split out to 
 this separate package.  
 
-Since version 1.3, the samples have all been updated to compile under both vs2003 
-and vs2005 (however, that may not be the case for future samples which may be 
-vs2005 only).  Also, the GSSF sample has been added.
+We have removed the build files for vs2003 in this release.  vs2005 has been available
+(for free!) for 2 years now.  Besides, no one on our dev team still has it installed.
+
+We have added a few samples:
+
+   DESCombineVB
+   GMFPreview
+   GMFPlay
+   PlayVB
+   DvrMsCutter2
+   VMR9Compositor
+   vMR9Snapper
+
+See the descriptions below.
 
 These samples should not be considered commercial quality applications.  They are just 
 intended to illustrate how to use some particular feature, or group of features in 
@@ -104,6 +115,11 @@ files (or pieces of files) into a single output file.  A help file (DESCombine.c
 is provided for using the class.
 
 
+Samples\Editing\DESCombineLib\DESCombineVB
+------------------------------------------
+Showing how to use the DESCombine sample (above) in VB.
+
+
 Samples\Editing\DxScan
 ----------------------
 A sample application scanning a media file looking for black frames.
@@ -114,6 +130,13 @@ Samples\Misc\DxWebCam
 A poor man's web cam program. This application runs as a Win32 Service.  It 
 takes the output of a capture graph, turns it into a stream of JPEG files, and 
 sends it thru TCP/IP to a client application.
+
+
+Samples\Misc\GMFPreview
+-----------------------
+A sample showing how to use Geraint's indispensible GMFBridge tool to allow part
+of a graph to be stopped while another part keeps running.  This is useful to allow
+preview windows to keep running while you start/stop capturing to disk.
 
 
 Samples\Misc\GSSF
@@ -145,6 +168,17 @@ A sample application showing how to superimpose text strings on a datastream.
 The stream is read from an avi file.
 
 
+Samples\Players\GMFPlay
+-----------------------
+A sample showing how to use Geraint's indispensible GMFBridge filter to play a collection
+of media files one after another.
+
+
+Samples\Players\PlayVB
+----------------------
+A simple player in VB.
+
+
 Samples\Players\PlayWnd
 -----------------------
 A translation of the DirectShow PlayWnd program to show how this would appear in C#.  PlayWnd 
@@ -154,6 +188,11 @@ is a simple media player application with a minimal user interface.
 Samples\SBE\DvrMsCutter
 -----------------------
 This sample extracts a segment of a dvr-ms file into another dvr-ms file.
+
+
+Samples\SBE\DvrMsCutter2
+------------------------
+This sample extracts multiple segments of a dvr-ms file into another dvr-ms file.
 
 
 Samples\VMR9\BitMapMixer
@@ -166,7 +205,17 @@ Samples\VMR9\VMR9Allocator
 A translation of the DirectShow VMR9Allocator program to show how this would appear in c#.
 
 
+Samples\VMR9\VMR9Compositor
+---------------------------
+This sample shows how to use the VMR9 custom compositor feature.
+
+
 Samples\VMR9\VMR9Allocator2
 ---------------------------
 An alternative to the DirectShow VMR9Allocator program.
+
+
+Samples\VMR9\vMR9Snapper
+------------------------
+This sample shows how to capture bitmaps from VMR9.
 
