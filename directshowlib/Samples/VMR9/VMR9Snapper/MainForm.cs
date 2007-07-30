@@ -33,7 +33,6 @@ namespace DirectShowLib.Sample
         private IFilterGraph2 graphBuilder = null; 
         private IMediaControl mediaControl = null; 
         private IBaseFilter vmr9 = null;
-        private IVMRMixerBitmap9 mixerBitmap = null;
         private IVMRWindowlessControl9 windowlessCtrl = null;
         private bool handlersAdded = false;
         private SaveFileDialog saveFileDialog;
@@ -278,7 +277,6 @@ namespace DirectShowLib.Sample
                 Marshal.ReleaseComObject(vmr9);
                 vmr9 = null;
                 windowlessCtrl = null;
-                mixerBitmap = null;
             }
 
             if (graphBuilder != null)
