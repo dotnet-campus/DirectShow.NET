@@ -30,7 +30,7 @@
   <ItemGroup>
     <Reference Include="DirectShowLib-2005, Version=1.5.0.40824, Culture=neutral, PublicKeyToken=67e7b740cdfc2d3f, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\src\bin\Debug\DirectShowLib-2005.dll</HintPath>
+      <HintPath>..\..\..\..\lib\DirectShowLib-2005.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
