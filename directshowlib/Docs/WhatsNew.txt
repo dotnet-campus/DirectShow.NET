@@ -31,7 +31,8 @@ the changes are relatively obvious, and are easily located with a re-compile.
 We have also changed all the IEnumXXX interfaces so that param 3 is an IntPtr rather than
 an "out int."  This is consistent with Microsoft's implementations, and absolutely essential
 for cases where someone needs to *implement* the method, rather than just call it.  The places
-we have made changes are easily located with a re-compile.  If you are using any of these methods:
+we have made changes are easily located with a re-compile.  If you are using any of these methods,
+here's what you'll need to change:
 
    - If you are *not* using the value returned by the 3rd parameter, simply replace it with 
      IntPtr.Zero.
