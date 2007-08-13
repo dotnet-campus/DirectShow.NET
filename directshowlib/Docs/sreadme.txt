@@ -1,6 +1,6 @@
 DirectShowLib Samples 2007-07-31
 
-http://SourceForgeNet.SourceForge.net
+http://DirectShowNet.SourceForge.net
 
 This package contains a selection of samples.  These samples were formerly bundled 
 with the DirectShowLib library, but as of version 1.4, they have been split out to 
