@@ -12,6 +12,7 @@ using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
+using Microsoft.DirectX;
 using Microsoft.DirectX.Direct3D;
 using Direct3D = Microsoft.DirectX.Direct3D;
 
@@ -26,7 +27,7 @@ namespace DirectShowLib.Sample
     private Sprite sprite;
     private Direct3D.Font d3dFont;
     private Texture spiderTex;
-    private Point spiderPos = Point.Empty;
+    private Vector3 spiderPos = new Vector3(0.0f, 0.0f, 0.5f);
     private Point spiderMove = new Point(+1, +1);
     private Size spiderSize;
 
@@ -79,7 +80,7 @@ namespace DirectShowLib.Sample
         device.BeginScene();
 
         // Init the sprite engine for AlphaBlending operations
-        sprite.Begin(SpriteFlags.AlphaBlend);
+        sprite.Begin(SpriteFlags.AlphaBlend | SpriteFlags.DoNotSaveState);
 
         // Write the current video time (using the sprite)...
         d3dFont.DrawText(sprite, timeStart.ToString(), Point.Empty, Color.White);
@@ -96,15 +97,20 @@ namespace DirectShowLib.Sample
         spiderPos.Y += spiderMove.Y;
 
         // Draw the spider
-        sprite.Draw2D(spiderTex, Rectangle.Empty, Rectangle.Empty, spiderPos, -1);
+        // sprite.Draw2D(spiderTex, Rectangle.Empty, Rectangle.Empty, spiderPos, -1);
+        // Draw2D seem buggy. Many thanks to Hitbox for finding that !
+        // https://sourceforge.net/forum/message.php?msg_id=4528466
+        sprite.Draw(spiderTex, Vector3.Empty, spiderPos, -1);
 
         // End the spite engine (drawings take place here)
+        sprite.Flush();
         sprite.End();
 
         // End the sceen. 
         device.EndScene();
 
         // No Present requiered because the rendering is on a render target... 
+        // device.Present();
 
         // Dispose the managed surface
         surface.Dispose();
@@ -118,7 +124,7 @@ namespace DirectShowLib.Sample
       {
         Debug.WriteLine(e.ToString());
       }
-      
+
       // return a success to the filter
       return 0;
     }
