@@ -124,19 +124,25 @@ namespace DirectShowLib.Sample
       }
       else
       {
+        // We want a fullscreen device
         presentParams.Windowed = false;
 
+        // One backbuffer should be enough
         presentParams.BackBufferCount = 2;
         presentParams.BackBufferWidth = config.Mode.Width;
         presentParams.BackBufferHeight = config.Mode.Height;
         presentParams.BackBufferFormat = config.Mode.Format;
         presentParams.FullScreenRefreshRateInHz = config.Mode.RefreshRate;
 
+        // Enable Z-Buffer
+        // This is not really needed in this sample but real applications generaly use it
         presentParams.EnableAutoDepthStencil = true;
         presentParams.AutoDepthStencilFormat = DepthFormat.D16;
 
+        // Hint to the Device Driver : This is a video playing application
         presentParams.PresentFlag = PresentFlag.Video;
 
+        // How to swap backbuffer in front and how many frames per screen refresh
         presentParams.SwapEffect = SwapEffect.Discard;
         presentParams.PresentationInterval = PresentInterval.One;
 
@@ -232,11 +238,11 @@ namespace DirectShowLib.Sample
       {
         // One stream is enough for this sample
         // This line also load the mixing componant
-        hr = filterConfig.SetNumberOfStreams(2);
+        hr = filterConfig.SetNumberOfStreams(1);
         DsError.ThrowExceptionForHR(hr);
 
         IVMRMixerControl9 mixerControl = (IVMRMixerControl9) vmr9;
-/*
+
         // Select the mixer mode : YUV or RGB
         if (config.UseYUVMixing)
         {
@@ -247,7 +253,7 @@ namespace DirectShowLib.Sample
           hr = mixerControl.SetMixingPrefs(VMR9MixerPrefs.RenderTargetRGB | VMR9MixerPrefs.NoDecimation | VMR9MixerPrefs.ARAdjustXorY | VMR9MixerPrefs.BiLinearFiltering);
         }
         DsError.ThrowExceptionForHR(hr);
-*/
+
         Debug.WriteLine("Using VMR9 mixing mode");
       }
 
@@ -367,8 +373,6 @@ namespace DirectShowLib.Sample
 
     private void RenderEnvironment()
     {
-      Debug.WriteLine("Dans RenderEnvironment");
-
       // Set the Render Target (the VMR9 change it)
       device.SetRenderTarget(0, renderTarget);
 
@@ -393,7 +397,6 @@ namespace DirectShowLib.Sample
 
       // Show what we draw
       device.Present();
-
 
       // A "Device Lost" exception can occure. This sample don't manage it...
     }

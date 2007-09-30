@@ -157,11 +157,14 @@ namespace DirectShowLib.Sample
 
       Debug.WriteLine(string.Format("{0}x{1} : {2} / {3} / 0x{4:x}", lpAllocInfo.dwWidth, lpAllocInfo.dwHeight, FourCCToStr(lpAllocInfo.Format), lpAllocInfo.Pool, lpAllocInfo.dwFlags));
 
-      //lpAllocInfo.dwFlags |= (VMR9SurfaceAllocationFlags) 0x0010;
+      // The allocator sometime call this method with invalid pool value (4 for me). Don't ask me why!
+      // If the pool is invalid, return an error now to avoid an exception later in the code.
+      if ((lpAllocInfo.Pool < 0) || (lpAllocInfo.Pool > 3))
+        return D3DERR_INVALIDCALL;
 
       // if format is YUV ? (note : 0x30303030 = "    ")
       if (lpAllocInfo.Format > 0x30303030)
-        {
+      {
         // Check if the hardware support format conversion from this YUV format to the RGB desktop format
         if (!Manager.CheckDeviceFormatConversion(creationParameters.AdapterOrdinal, creationParameters.DeviceType, (Format)lpAllocInfo.Format, adapterInfo.CurrentDisplayMode.Format))
         {
@@ -280,15 +283,12 @@ namespace DirectShowLib.Sample
 
     public int TerminateDevice(IntPtr dwID)
     {
-      Debug.WriteLine("Dans TerminateDevice");
       DeleteSurfaces();
       return 0;
     }
 
     public int GetSurface(IntPtr dwUserID, int SurfaceIndex, int SurfaceFlags, out IntPtr lplpSurface)
     {
-      Debug.WriteLine("\tDans GetSurface");
-
       lplpSurface = IntPtr.Zero;
 
       // If the filter ask for an invalid buffer index, return an error.
@@ -307,7 +307,6 @@ namespace DirectShowLib.Sample
 
     public int AdviseNotify(IVMRSurfaceAllocatorNotify9 lpIVMRSurfAllocNotify)
     {
-      Debug.WriteLine("Dans AdviseNotify");
       lock (this)
       {
         vmrSurfaceAllocatorNotify = lpIVMRSurfAllocNotify;
@@ -326,7 +325,6 @@ namespace DirectShowLib.Sample
 
     public int StartPresenting(IntPtr dwUserID)
     {
-      Debug.WriteLine("Dans StartPresenting");
       lock (this)
       {
         if (device == null)
@@ -338,16 +336,13 @@ namespace DirectShowLib.Sample
 
     public int StopPresenting(IntPtr dwUserID)
     {
-      Debug.WriteLine("Dans StopPresenting");
       return 0;
     }
 
     public int PresentImage(IntPtr dwUserID, ref VMR9PresentationInfo lpPresInfo)
     {
-      Debug.WriteLine("\tDans PresentImage");
       lock (this)
       {
-        //Debug.WriteLine(string.Format("[{0}] Into PresentImage", DateTime.Now.ToLongTimeString()));
         try
         {
           // If YUV mixing is activated, a surface copy is needed
@@ -361,7 +356,7 @@ namespace DirectShowLib.Sample
               new Rectangle(Point.Empty, videoSize),
               TextureFilter.None
               );
-          } 
+          }
         }
         catch(DirectXException e)
         {
