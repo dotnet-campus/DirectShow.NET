@@ -1061,7 +1061,7 @@ namespace WindowsMediaLib
             [Out] StringBuilder pwszName,
             ref short pcchNameLen,
             out AttrDataType pType,
-            out byte [] pValue,
+            IntPtr pValue,
             ref short pcbLength
             );
 
@@ -1070,7 +1070,7 @@ namespace WindowsMediaLib
             ref short pwStreamNum,
             [In] string pszName,
             out AttrDataType pType,
-            out byte [] pValue,
+            IntPtr pValue,
             ref short pcbLength
             );
 
@@ -1079,7 +1079,7 @@ namespace WindowsMediaLib
             [In] short wStreamNum,
             [In] string pszName,
             [In] AttrDataType Type,
-            [In] byte [] pValue,
+            [In] IntPtr pValue,
             [In] short cbLength
             );
 
@@ -1244,7 +1244,7 @@ namespace WindowsMediaLib
             [Out] StringBuilder pwszDescription,
             out CodecInfoType pCodecType,
             ref short pcbCodecInfo,
-            out byte [] pbCodecInfo
+            IntPtr pbCodecInfo
             );
     }
 
@@ -1387,7 +1387,7 @@ namespace WindowsMediaLib
             ref short pwNameLen,
             out AttrDataType pType,
             out short pwLangIndex,
-            out byte [] pValue,
+            IntPtr pValue,
             ref int pdwDataLength
             );
 
@@ -1397,7 +1397,7 @@ namespace WindowsMediaLib
             [In] short wIndex,
             [In] AttrDataType Type,
             [In] short wLangIndex,
-            [In] byte [] pValue,
+            [In] IntPtr pValue,
             [In] int dwLength
             );
 
@@ -1408,7 +1408,7 @@ namespace WindowsMediaLib
             out short pwIndex,
             [In] AttrDataType Type,
             [In] short wLangIndex,
-            [In] byte [] pValue,
+            [In] IntPtr pValue,
             [In] int dwLength
             );
 
@@ -1424,7 +1424,7 @@ namespace WindowsMediaLib
             [In] string pwszDescription,
             [In] CodecInfoType codecType,
             [In] short cbCodecInfo,
-            [In] byte [] pbCodecInfo
+            [In] IntPtr pbCodecInfo
             );
     }
 
