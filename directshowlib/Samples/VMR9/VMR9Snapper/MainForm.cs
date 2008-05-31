@@ -471,7 +471,7 @@ namespace DirectShowLib.Sample
                         BitmapInfoHeader structure = new BitmapInfoHeader();
                         Marshal.PtrToStructure(currentImage, structure);
 
-                        bmp = new Bitmap(structure.Width, structure.Height, (structure.BitCount / 8) * structure.Width, System.Drawing.Imaging.PixelFormat.Format32bppArgb, currentImage);
+                        bmp = new Bitmap(structure.Width, structure.Height, (structure.BitCount / 8) * structure.Width, System.Drawing.Imaging.PixelFormat.Format32bppArgb, new IntPtr(currentImage.ToInt64() + 40));
                         bmp.RotateFlip(RotateFlipType.RotateNoneFlipY);
 
                         if (saveFileDialog.ShowDialog() == DialogResult.OK)
