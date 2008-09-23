@@ -14,7 +14,6 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using System.Data;
 using System.Runtime.InteropServices;
-using System.Diagnostics;
 
 using DirectShowLib;
 
@@ -410,44 +409,6 @@ namespace DirectShowLib.Samples
             DsCAUUID caGUID;
             hr = pProp.GetPages(out caGUID);
             DsError.ThrowExceptionForHR(hr);
-
-            // Check for property pages on the output pin
-            IPin pPin = DsFindPin.ByDirection(dev, PinDirection.Output, 0);
-            ISpecifyPropertyPages pProp2 = pPin as ISpecifyPropertyPages;
-            if (pProp2 != null)
-            {
-                DsCAUUID caGUID2;
-                hr = pProp2.GetPages(out caGUID2);
-                DsError.ThrowExceptionForHR(hr);
-
-                if (caGUID2.cElems > 0)
-                {
-                    int soGuid = Marshal.SizeOf(typeof(Guid));
-
-                    // Create a new buffer to hold all the GUIDs
-                    IntPtr p1 = Marshal.AllocCoTaskMem((caGUID.cElems + caGUID2.cElems) * soGuid);
-
-                    // Copy over the pages from the Filter
-                    for (int x = 0; x < caGUID.cElems * soGuid; x++)
-                    {
-                        Marshal.WriteByte(p1, x, Marshal.ReadByte(caGUID.pElems, x));
-                    }
-
-                    // Add the pages from the pin
-                    for (int x = 0; x < caGUID2.cElems * soGuid; x++)
-                    {
-                        Marshal.WriteByte(p1, x + (caGUID.cElems * soGuid), Marshal.ReadByte(caGUID2.pElems, x));
-                    }
-
-                    // Release the old memory
-                    Marshal.FreeCoTaskMem(caGUID.pElems);
-                    Marshal.FreeCoTaskMem(caGUID2.pElems);
-
-                    // Reset caGUID to include both
-                    caGUID.pElems = p1;
-                    caGUID.cElems += caGUID2.cElems;
-                }
-            }
 
             // Create and display the OlePropertyFrame
 			object oDevice = (object)dev;
