@@ -638,6 +638,7 @@ namespace DirectShowLib
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IServiceProvider
     {
+        [PreserveSig]
         int QueryService(
             [In, MarshalAs(UnmanagedType.LPStruct)] DsGuid guidService,
             [In, MarshalAs(UnmanagedType.LPStruct)] DsGuid riid,
