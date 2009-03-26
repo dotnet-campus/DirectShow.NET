@@ -1094,9 +1094,20 @@ namespace DirectShowLib
                 // Build up the object to add to the table
                 int id = System.Diagnostics.Process.GetCurrentProcess().Id;
                 IntPtr iuPtr = Marshal.GetIUnknownForObject(graph);
-                int iuInt = (int) iuPtr;
-                Marshal.Release(iuPtr);
-                string item = string.Format("FilterGraph {0} pid {1}", iuInt.ToString("x8"), id.ToString("x8"));
+                string s;
+                try
+                {
+                    s = iuPtr.ToString("x");
+                }
+                catch
+                {
+                    s = "";
+                }
+                finally
+                {
+                    Marshal.Release(iuPtr);
+                }
+                string item = string.Format("FilterGraph {0} pid {1}", s, id.ToString("x8"));
                 hr = CreateItemMoniker("!", item, out mk);
                 DsError.ThrowExceptionForHR(hr);
 
@@ -1847,7 +1858,7 @@ namespace DirectShowLib
             pNativeData = (IntPtr)(pNativeData.ToInt64() + Marshal.SizeOf(typeof(DvdVideoAttributes)));
 
             // Copy in the value, and advance the pointer
-            dta.ulNumberOfAudioStreams = (int)Marshal.ReadInt32(pNativeData);
+            dta.ulNumberOfAudioStreams = Marshal.ReadInt32(pNativeData);
             pNativeData = (IntPtr)(pNativeData.ToInt64() + Marshal.SizeOf(typeof(int)));
 
             // Allocate a large enough array to hold all the returned structs.
@@ -1888,7 +1899,7 @@ namespace DirectShowLib
             pNativeData = (IntPtr)(pNativeData.ToInt64() + 4);
 
             // Copy in the value, and advance the pointer
-            dta.ulNumberOfSubpictureStreams = (int)Marshal.ReadInt32(pNativeData);
+            dta.ulNumberOfSubpictureStreams = Marshal.ReadInt32(pNativeData);
             pNativeData = (IntPtr)(pNativeData.ToInt64() + Marshal.SizeOf(typeof(int)));
 
             // Allocate a large enough array to hold all the returned structs.
