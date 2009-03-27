@@ -778,7 +778,7 @@ namespace MediaObjectTemplate
                         DMOOutputStreamInfo.Discardable |
                         DMOOutputStreamInfo.Optional)));
 
-                    if ((dwFlags & DMOOutputStreamInfo.Optional) > 0) 
+                    if ((dwFlags & DMOOutputStreamInfo.Optional) == 0) 
                     {
                         return false;
                     }
