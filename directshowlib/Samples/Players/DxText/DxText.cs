@@ -6,7 +6,6 @@
 //
 // Based in a large part upon the DxScan and DxPlayer samples by David Wohlferd
 //
-// Portions Copyright 2004 - David Wohlferd david@LimeGreenSocks.com
 // Portions Copyright 2005 - Richard L Rosenheim
 
 using System;
