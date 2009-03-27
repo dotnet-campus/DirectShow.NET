@@ -203,7 +203,7 @@ namespace DirectShowLib.Utils
             {
                 IBaseFilter[] filters = new IBaseFilter[1];
 
-                while(enumFilters.Next(filters.Length, filters, IntPtr.Zero) == 0)
+                while (enumFilters.Next(filters.Length, filters, IntPtr.Zero) == 0)
                 {
                     FilterInfo filterInfo;
 
@@ -629,7 +629,7 @@ namespace DirectShowLib.Utils
                     objs = new object[1];
                     objs[0] = filter;
 
-                    NativeMethods.OleCreatePropertyFrame(
+                    hr = NativeMethods.OleCreatePropertyFrame(
                         parent, 0, 0, 
                         filterInfo.achName, 
                         objs.Length, objs, 
@@ -637,6 +637,7 @@ namespace DirectShowLib.Utils
                         0, 0, 
                         IntPtr.Zero
                         );
+                        DsError.ThrowExceptionForHR(hr);
                 }
                 finally
                 {
