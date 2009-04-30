@@ -15,7 +15,7 @@ namespace DirectShowLib.Test
 		{
 		}
 
-    [DllImport("olepro32.dll", CharSet=CharSet.Unicode, ExactSpelling=true)]
+    [DllImport("oleaut32.dll", CharSet=CharSet.Unicode, ExactSpelling=true)]
     private static extern int OleCreatePropertyFrame(
       [In] IntPtr hwndOwner, 
       [In] int x, 
