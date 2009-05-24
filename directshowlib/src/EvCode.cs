@@ -61,10 +61,28 @@ namespace DirectShowLib
         SegmentStarted = 0x1D, // EC_SEGMENT_STARTED
         LengthChanged = 0x1E, // EC_LENGTH_CHANGED
         DeviceLost = 0x1f, // EC_DEVICE_LOST
+        SampleNeeded = 0x20, // EC_SAMPLE_NEEDED
+        ProcessingLatency = 0x21, // EC_PROCESSING_LATENCY
+        SampleLatency = 0x22, // EC_SAMPLE_LATENCY
+        ScrubTime = 0x23, // EC_SCRUB_TIME
         StepComplete = 0x24, // EC_STEP_COMPLETE
+        SkipFrames = 0x25, // EC_SKIP_FRAMES
+
         TimeCodeAvailable = 0x30, // EC_TIMECODE_AVAILABLE
         ExtDeviceModeChange = 0x31, // EC_EXTDEVICE_MODE_CHANGE
         StateChange = 0x32, // EC_STATE_CHANGE
+
+        PleaseReOpen = 0x40, // EC_PLEASE_REOPEN
+        Status = 0x41, // EC_STATUS
+        MarkerHit = 0x42, // EC_MARKER_HIT
+        LoadStatus = 0x43, // EC_LOADSTATUS
+        FileClosed = 0x44, // EC_FILE_CLOSED
+        ErrorAbortEx = 0x45, // EC_ERRORABORTEX
+        EOSSoon = 0x046, // EC_EOS_SOON
+        ContentPropertyChanged = 0x47, // EC_CONTENTPROPERTY_CHANGED
+        BandwidthChange = 0x48, // EC_BANDWIDTHCHANGE
+        VideoFrameReady = 0x49, // EC_VIDEOFRAMEREADY
+
         GraphChanged = 0x50, // EC_GRAPH_CHANGED
         ClockUnset = 0x51, // EC_CLOCK_UNSET
         VMRRenderDeviceSet = 0x53, // EC_VMR_RENDERDEVICE_SET
