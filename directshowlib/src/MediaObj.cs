@@ -25,6 +25,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 using System;
 using System.Text;
 using System.Runtime.InteropServices;
+using System.Security;
 
 namespace DirectShowLib.DMO
 {
@@ -179,7 +180,7 @@ namespace DirectShowLib.DMO
     /// <summary>
     /// From DMO_OUTPUT_DATA_BUFFER
     /// </summary>
-    [StructLayout(LayoutKind.Sequential, Pack=8)]
+    [StructLayout(LayoutKind.Sequential, Pack = 8)]
     public struct DMOOutputDataBuffer
     {
         [MarshalAs(UnmanagedType.Interface)]
@@ -229,62 +230,62 @@ namespace DirectShowLib.DMO
 
     sealed public class DMOUtils
     {
-        [DllImport("msdmo.dll")]
+        [DllImport("msdmo.dll", ExactSpelling = true), SuppressUnmanagedCodeSecurity]
         public static extern int DMOEnum(
             [MarshalAs(UnmanagedType.LPStruct)] Guid DMOCategory,
             DMOEnumerator dwFlags,
             int cInTypes,
-            [In] DMOPartialMediatype [] pInTypes,
+            [In] DMOPartialMediatype[] pInTypes,
             int cOutTypes,
-            [In] DMOPartialMediatype [] pOutTypes,
+            [In] DMOPartialMediatype[] pOutTypes,
             out IEnumDMO ppEnum
             );
 
-        [DllImport("msdmo.dll")]
+        [DllImport("msdmo.dll", ExactSpelling = true), SuppressUnmanagedCodeSecurity]
         public static extern int MoInitMediaType(
             [Out] DirectShowLib.AMMediaType pmt,
             int i
             );
 
-        [DllImport("msdmo.dll")]
+        [DllImport("msdmo.dll", ExactSpelling = true), SuppressUnmanagedCodeSecurity]
         public static extern int MoCopyMediaType(
             [Out, MarshalAs(UnmanagedType.LPStruct)] AMMediaType dst,
             [In, MarshalAs(UnmanagedType.LPStruct)] AMMediaType src
             );
 
-        [DllImport("MSDmo.dll")]
+        [DllImport("MSDmo.dll", CharSet = CharSet.Unicode, ExactSpelling = true), SuppressUnmanagedCodeSecurity]
         static extern public int DMORegister(
             [MarshalAs(UnmanagedType.LPWStr)] string szName,
             [In, MarshalAs(UnmanagedType.LPStruct)] Guid clsidDMO,
             [In, MarshalAs(UnmanagedType.LPStruct)] Guid DMOCategory,
             DMORegisterFlags dwFlags,
             int cInTypes,
-            [In] DMOPartialMediatype [] pInTypes,
+            [In] DMOPartialMediatype[] pInTypes,
             int cOutTypes,
-            [In] DMOPartialMediatype [] pOutTypes
+            [In] DMOPartialMediatype[] pOutTypes
             );
 
-        [DllImport("MSDmo.dll")]
+        [DllImport("MSDmo.dll", ExactSpelling = true), SuppressUnmanagedCodeSecurity]
         static extern public int DMOUnregister(
             [In, MarshalAs(UnmanagedType.LPStruct)] Guid clsidDMO,
             [In, MarshalAs(UnmanagedType.LPStruct)] Guid guidCategory
             );
 
-        [DllImport("MSDmo.dll")]
+        [DllImport("MSDmo.dll", CharSet = CharSet.Unicode, ExactSpelling = true), SuppressUnmanagedCodeSecurity]
         static extern public int DMOGetName(
             [In, MarshalAs(UnmanagedType.LPStruct)] Guid clsidDMO,
-            [Out, MarshalAs(UnmanagedType.LPWStr, SizeConst=80)] StringBuilder szName
+            [Out, MarshalAs(UnmanagedType.LPWStr, SizeConst = 80)] StringBuilder szName
             );
 
-        [DllImport("MSDmo.dll")]
+        [DllImport("MSDmo.dll", ExactSpelling = true), SuppressUnmanagedCodeSecurity]
         static extern public int DMOGetTypes(
             [In, MarshalAs(UnmanagedType.LPStruct)] Guid clsidDMO,
             int ulInputTypesRequested,
             out int pulInputTypesSupplied,
-            [Out] DMOPartialMediatype [] pInTypes,
+            [Out] DMOPartialMediatype[] pInTypes,
             int ulOutputTypesRequested,
             out int pulOutputTypesSupplied,
-            [Out] DMOPartialMediatype [] pOutTypes
+            [Out] DMOPartialMediatype[] pOutTypes
             );
 
         private DMOUtils()
@@ -304,11 +305,11 @@ namespace DirectShowLib.DMO
         }
 
         public const int E_InvalidStreamIndex = unchecked((int)0x80040201);
-        public const int E_InvalidType        = unchecked((int)0x80040202);
-        public const int E_TypeNotSet       = unchecked((int)0x80040203);
-        public const int E_NotAccepting       = unchecked((int)0x80040204);
-        public const int E_TypeNotAccepted  = unchecked((int)0x80040205);
-        public const int E_NoMoreItems      = unchecked((int)0x80040206);
+        public const int E_InvalidType = unchecked((int)0x80040202);
+        public const int E_TypeNotSet = unchecked((int)0x80040203);
+        public const int E_NotAccepting = unchecked((int)0x80040204);
+        public const int E_TypeNotAccepted = unchecked((int)0x80040205);
+        public const int E_NoMoreItems = unchecked((int)0x80040206);
     }
 
     sealed public class DMOError
@@ -322,7 +323,7 @@ namespace DirectShowLib.DMO
         {
             string sRet = null;
 
-            switch(hr)
+            switch (hr)
             {
                 case DMOResults.E_InvalidStreamIndex:
                     sRet = "Invalid stream index.";
@@ -416,8 +417,8 @@ namespace DirectShowLib.DMO
         [PreserveSig]
         int Next(
             int cItemsToFetch,
-            [Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] Guid[] pCLSID,
-            [Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0, ArraySubType=UnmanagedType.LPWStr)] string[] Names,
+            [Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 0)] Guid[] pCLSID,
+            [Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 0, ArraySubType = UnmanagedType.LPWStr)] string[] Names,
             [In] IntPtr pcItemsFetched
             );
 
@@ -604,7 +605,7 @@ namespace DirectShowLib.DMO
         int ProcessOutput(
             DMOProcessOutput dwFlags,
             int cOutputBufferCount,
-            [In, Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] DMOOutputDataBuffer [] pOutputBuffers,
+            [In, Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 1)] DMOOutputDataBuffer[] pOutputBuffers,
             out int pdwStatus
             );
 

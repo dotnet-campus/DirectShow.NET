@@ -30,6 +30,8 @@ using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Reflection;
+using System.Security;
+
 using DirectShowLib.Dvd;
 
 #if !USING_NET11
@@ -53,16 +55,16 @@ namespace DirectShowLib
     /// From BITMAPINFO
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct BitmapInfo 
-    { 
-        public BitmapInfoHeader bmiHeader; 
-        public int []         bmiColors;
+    public struct BitmapInfo
+    {
+        public BitmapInfoHeader bmiHeader;
+        public int[] bmiColors;
     }
 
     /// <summary>
     /// From BITMAPINFOHEADER
     /// </summary>
-    [StructLayout(LayoutKind.Sequential, Pack=2)]
+    [StructLayout(LayoutKind.Sequential, Pack = 2)]
     public class BitmapInfoHeader
     {
         public int Size;
@@ -126,10 +128,10 @@ namespace DirectShowLib
         {
             Guid[] retval = new Guid[this.cElems];
 
-            for (int i=0; i<this.cElems; i++)
+            for (int i = 0; i < this.cElems; i++)
             {
                 IntPtr ptr = new IntPtr(this.pElems.ToInt64() + (Marshal.SizeOf(typeof(Guid)) * i));
-                retval[i] = (Guid) Marshal.PtrToStructure(ptr, typeof(Guid));
+                retval[i] = (Guid)Marshal.PtrToStructure(ptr, typeof(Guid));
             }
 
             return retval;
@@ -146,7 +148,7 @@ namespace DirectShowLib
     public class DsLong
     {
         private long Value;
-    
+
         /// <summary>
         /// Constructor
         /// Initialize a new instance of DirectShowLib.DsLong with the Value parameter
@@ -363,88 +365,88 @@ namespace DirectShowLib
     [StructLayout(LayoutKind.Sequential)]
     public class DsInt
     {
-      private int Value;
+        private int Value;
 
-      /// <summary>
-      /// Constructor
-      /// Initialize a new instance of DirectShowLib.DsInt with the Value parameter
-      /// </summary>
-      /// <param name="Value">Value to assign to this new instance</param>
-      public DsInt(int Value)
-      {
-        this.Value = Value;
-      }
+        /// <summary>
+        /// Constructor
+        /// Initialize a new instance of DirectShowLib.DsInt with the Value parameter
+        /// </summary>
+        /// <param name="Value">Value to assign to this new instance</param>
+        public DsInt(int Value)
+        {
+            this.Value = Value;
+        }
 
-      /// <summary>
-      /// Get a string representation of this DirectShowLib.DsInt Instance.
-      /// </summary>
-      /// <returns>A string representing this instance</returns>
-      public override string ToString()
-      {
-        return this.Value.ToString();
-      }
+        /// <summary>
+        /// Get a string representation of this DirectShowLib.DsInt Instance.
+        /// </summary>
+        /// <returns>A string representing this instance</returns>
+        public override string ToString()
+        {
+            return this.Value.ToString();
+        }
 
-      public override int GetHashCode()
-      {
-        return this.Value.GetHashCode();
-      }
+        public override int GetHashCode()
+        {
+            return this.Value.GetHashCode();
+        }
 
-      /// <summary>
-      /// Define implicit cast between DirectShowLib.DsInt and System.Int64 for languages supporting this feature.
-      /// VB.Net doesn't support implicit cast. <see cref="DirectShowLib.DsInt.ToInt64"/> for similar functionality.
-      /// <code>
-      ///   // Define a new DsInt instance
-      ///   DsInt dsI = new DsInt(0x12345678);
-      ///   // Do implicit cast between DsInt and Int32
-      ///   int i = dsI;
-      ///
-      ///   Console.WriteLine(i.ToString());
-      /// </code>
-      /// </summary>
-      /// <param name="g">DirectShowLib.DsInt to be cast</param>
-      /// <returns>A casted System.Int32</returns>
-      public static implicit operator int(DsInt l)
-      {
-        return l.Value;
-      }
+        /// <summary>
+        /// Define implicit cast between DirectShowLib.DsInt and System.Int64 for languages supporting this feature.
+        /// VB.Net doesn't support implicit cast. <see cref="DirectShowLib.DsInt.ToInt64"/> for similar functionality.
+        /// <code>
+        ///   // Define a new DsInt instance
+        ///   DsInt dsI = new DsInt(0x12345678);
+        ///   // Do implicit cast between DsInt and Int32
+        ///   int i = dsI;
+        ///
+        ///   Console.WriteLine(i.ToString());
+        /// </code>
+        /// </summary>
+        /// <param name="g">DirectShowLib.DsInt to be cast</param>
+        /// <returns>A casted System.Int32</returns>
+        public static implicit operator int(DsInt l)
+        {
+            return l.Value;
+        }
 
-      /// <summary>
-      /// Define implicit cast between System.Int32 and DirectShowLib.DsInt for languages supporting this feature.
-      /// VB.Net doesn't support implicit cast. <see cref="DirectShowLib.DsGuid.FromInt32"/> for similar functionality.
-      /// <code>
-      ///   // Define a new Int32 instance
-      ///   int i = 0x12345678;
-      ///   // Do implicit cast between Int64 and DsInt
-      ///   DsInt dsI = i;
-      ///
-      ///   Console.WriteLine(dsI.ToString());
-      /// </code>
-      /// </summary>
-      /// <param name="g">System.Int32 to be cast</param>
-      /// <returns>A casted DirectShowLib.DsInt</returns>
-      public static implicit operator DsInt(int l)
-      {
-        return new DsInt(l);
-      }
+        /// <summary>
+        /// Define implicit cast between System.Int32 and DirectShowLib.DsInt for languages supporting this feature.
+        /// VB.Net doesn't support implicit cast. <see cref="DirectShowLib.DsGuid.FromInt32"/> for similar functionality.
+        /// <code>
+        ///   // Define a new Int32 instance
+        ///   int i = 0x12345678;
+        ///   // Do implicit cast between Int64 and DsInt
+        ///   DsInt dsI = i;
+        ///
+        ///   Console.WriteLine(dsI.ToString());
+        /// </code>
+        /// </summary>
+        /// <param name="g">System.Int32 to be cast</param>
+        /// <returns>A casted DirectShowLib.DsInt</returns>
+        public static implicit operator DsInt(int l)
+        {
+            return new DsInt(l);
+        }
 
-      /// <summary>
-      /// Get the System.Int32 equivalent to this DirectShowLib.DsInt instance.
-      /// </summary>
-      /// <returns>A System.Int32</returns>
-      public int ToInt32()
-      {
-        return this.Value;
-      }
+        /// <summary>
+        /// Get the System.Int32 equivalent to this DirectShowLib.DsInt instance.
+        /// </summary>
+        /// <returns>A System.Int32</returns>
+        public int ToInt32()
+        {
+            return this.Value;
+        }
 
-      /// <summary>
-      /// Get a new DirectShowLib.DsInt instance for a given System.Int32
-      /// </summary>
-      /// <param name="g">The System.Int32 to wrap into a DirectShowLib.DsInt</param>
-      /// <returns>A new instance of DirectShowLib.DsInt</returns>
-      public static DsInt FromInt32(int l)
-      {
-        return new DsInt(l);
-      }
+        /// <summary>
+        /// Get a new DirectShowLib.DsInt instance for a given System.Int32
+        /// </summary>
+        /// <param name="g">The System.Int32 to wrap into a DirectShowLib.DsInt</param>
+        /// <returns>A new instance of DirectShowLib.DsInt</returns>
+        public static DsInt FromInt32(int l)
+        {
+            return new DsInt(l);
+        }
     }
 
     /// <summary>
@@ -456,88 +458,88 @@ namespace DirectShowLib
     [StructLayout(LayoutKind.Sequential)]
     public class DsShort
     {
-      private short Value;
+        private short Value;
 
-      /// <summary>
-      /// Constructor
-      /// Initialize a new instance of DirectShowLib.DsShort with the Value parameter
-      /// </summary>
-      /// <param name="Value">Value to assign to this new instance</param>
-      public DsShort(short Value)
-      {
-        this.Value = Value;
-      }
+        /// <summary>
+        /// Constructor
+        /// Initialize a new instance of DirectShowLib.DsShort with the Value parameter
+        /// </summary>
+        /// <param name="Value">Value to assign to this new instance</param>
+        public DsShort(short Value)
+        {
+            this.Value = Value;
+        }
 
-      /// <summary>
-      /// Get a string representation of this DirectShowLib.DsShort Instance.
-      /// </summary>
-      /// <returns>A string representing this instance</returns>
-      public override string ToString()
-      {
-        return this.Value.ToString();
-      }
+        /// <summary>
+        /// Get a string representation of this DirectShowLib.DsShort Instance.
+        /// </summary>
+        /// <returns>A string representing this instance</returns>
+        public override string ToString()
+        {
+            return this.Value.ToString();
+        }
 
-      public override int GetHashCode()
-      {
-        return this.Value.GetHashCode();
-      }
+        public override int GetHashCode()
+        {
+            return this.Value.GetHashCode();
+        }
 
-      /// <summary>
-      /// Define implicit cast between DirectShowLib.DsShort and System.Int16 for languages supporting this feature.
-      /// VB.Net doesn't support implicit cast. <see cref="DirectShowLib.DsShort.ToInt64"/> for similar functionality.
-      /// <code>
-      ///   // Define a new DsShort instance
-      ///   DsShort dsS = new DsShort(0x1234);
-      ///   // Do implicit cast between DsShort and Int16
-      ///   short s = dsS;
-      ///
-      ///   Console.WriteLine(s.ToString());
-      /// </code>
-      /// </summary>
-      /// <param name="g">DirectShowLib.DsShort to be cast</param>
-      /// <returns>A casted System.Int16</returns>
-      public static implicit operator short(DsShort l)
-      {
-        return l.Value;
-      }
+        /// <summary>
+        /// Define implicit cast between DirectShowLib.DsShort and System.Int16 for languages supporting this feature.
+        /// VB.Net doesn't support implicit cast. <see cref="DirectShowLib.DsShort.ToInt64"/> for similar functionality.
+        /// <code>
+        ///   // Define a new DsShort instance
+        ///   DsShort dsS = new DsShort(0x1234);
+        ///   // Do implicit cast between DsShort and Int16
+        ///   short s = dsS;
+        ///
+        ///   Console.WriteLine(s.ToString());
+        /// </code>
+        /// </summary>
+        /// <param name="g">DirectShowLib.DsShort to be cast</param>
+        /// <returns>A casted System.Int16</returns>
+        public static implicit operator short(DsShort l)
+        {
+            return l.Value;
+        }
 
-      /// <summary>
-      /// Define implicit cast between System.Int16 and DirectShowLib.DsShort for languages supporting this feature.
-      /// VB.Net doesn't support implicit cast. <see cref="DirectShowLib.DsGuid.FromInt16"/> for similar functionality.
-      /// <code>
-      ///   // Define a new Int16 instance
-      ///   short s = 0x1234;
-      ///   // Do implicit cast between Int64 and DsShort
-      ///   DsShort dsS = s;
-      ///
-      ///   Console.WriteLine(dsS.ToString());
-      /// </code>
-      /// </summary>
-      /// <param name="g">System.Int16 to be cast</param>
-      /// <returns>A casted DirectShowLib.DsShort</returns>
-      public static implicit operator DsShort(short l)
-      {
-        return new DsShort(l);
-      }
+        /// <summary>
+        /// Define implicit cast between System.Int16 and DirectShowLib.DsShort for languages supporting this feature.
+        /// VB.Net doesn't support implicit cast. <see cref="DirectShowLib.DsGuid.FromInt16"/> for similar functionality.
+        /// <code>
+        ///   // Define a new Int16 instance
+        ///   short s = 0x1234;
+        ///   // Do implicit cast between Int64 and DsShort
+        ///   DsShort dsS = s;
+        ///
+        ///   Console.WriteLine(dsS.ToString());
+        /// </code>
+        /// </summary>
+        /// <param name="g">System.Int16 to be cast</param>
+        /// <returns>A casted DirectShowLib.DsShort</returns>
+        public static implicit operator DsShort(short l)
+        {
+            return new DsShort(l);
+        }
 
-      /// <summary>
-      /// Get the System.Int16 equivalent to this DirectShowLib.DsShort instance.
-      /// </summary>
-      /// <returns>A System.Int16</returns>
-      public short ToInt16()
-      {
-        return this.Value;
-      }
+        /// <summary>
+        /// Get the System.Int16 equivalent to this DirectShowLib.DsShort instance.
+        /// </summary>
+        /// <returns>A System.Int16</returns>
+        public short ToInt16()
+        {
+            return this.Value;
+        }
 
-      /// <summary>
-      /// Get a new DirectShowLib.DsShort instance for a given System.Int64
-      /// </summary>
-      /// <param name="g">The System.Int16 to wrap into a DirectShowLib.DsShort</param>
-      /// <returns>A new instance of DirectShowLib.DsShort</returns>
-      public static DsShort FromInt16(short l)
-      {
-        return new DsShort(l);
-      }
+        /// <summary>
+        /// Get a new DirectShowLib.DsShort instance for a given System.Int64
+        /// </summary>
+        /// <param name="g">The System.Int16 to wrap into a DirectShowLib.DsShort</param>
+        /// <returns>A new instance of DirectShowLib.DsShort</returns>
+        public static DsShort FromInt16(short l)
+        {
+            return new DsShort(l);
+        }
     }
 
     /// <summary>
@@ -607,6 +609,25 @@ namespace DirectShowLib
                 this.top.GetHashCode() |
                 this.right.GetHashCode() |
                 this.bottom.GetHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is DsRect)
+            {
+                DsRect cmp = (DsRect)obj;
+
+                return right == cmp.right && bottom == cmp.bottom && left == cmp.left && top == cmp.top;
+            }
+
+            if (obj is Rectangle)
+            {
+                Rectangle cmp = (Rectangle)obj;
+
+                return right == cmp.Right && bottom == cmp.Bottom && left == cmp.Left && top == cmp.Top;
+            }
+
+            return false;
         }
 
         /// <summary>
@@ -729,7 +750,7 @@ namespace DirectShowLib
             if (!(obj is NormalizedRect))
                 return false;
 
-            NormalizedRect other = (NormalizedRect) obj;
+            NormalizedRect other = (NormalizedRect)obj;
             return (this == other);
         }
 
@@ -909,7 +930,8 @@ namespace DirectShowLib
             // Prevent people from trying to instantiate this class
         }
 
-        [DllImport("quartz.dll", CharSet=CharSet.Auto)]
+        [DllImport("quartz.dll", CharSet = CharSet.Unicode, ExactSpelling = true, EntryPoint = "AMGetErrorTextW"),
+        SuppressUnmanagedCodeSecurity]
         public static extern int AMGetErrorText(int hr, StringBuilder buf, int max);
 
         /// <summary>
@@ -980,7 +1002,7 @@ namespace DirectShowLib
             Guid guidRet = Guid.Empty;
 
             // Memory to hold the returned guid
-            int iSize = Marshal.SizeOf(typeof (Guid));
+            int iSize = Marshal.SizeOf(typeof(Guid));
             IntPtr ipOut = Marshal.AllocCoTaskMem(iSize);
 
             try
@@ -999,7 +1021,7 @@ namespace DirectShowLib
                     DsError.ThrowExceptionForHR(hr);
 
                     // Marshal it to the return variable
-                    guidRet = (Guid) Marshal.PtrToStructure(ipOut, typeof (Guid));
+                    guidRet = (Guid)Marshal.PtrToStructure(ipOut, typeof(Guid));
                 }
             }
             finally
@@ -1051,7 +1073,7 @@ namespace DirectShowLib
     public class DsROTEntry : IDisposable
     {
         [Flags]
-            private enum ROTFlags
+        private enum ROTFlags
         {
             RegistrationKeepsAlive = 0x1,
             AllowAnyClient = 0x2
@@ -1060,14 +1082,14 @@ namespace DirectShowLib
         private int m_cookie = 0;
 
         #region APIs
-        [DllImport("ole32.dll", ExactSpelling=true)]
+        [DllImport("ole32.dll", ExactSpelling = true), SuppressUnmanagedCodeSecurity]
 #if USING_NET11
         private static extern int GetRunningObjectTable(int r, out UCOMIRunningObjectTable pprot);
 #else
         private static extern int GetRunningObjectTable(int r, out IRunningObjectTable pprot);
 #endif
 
-        [DllImport("ole32.dll", CharSet=CharSet.Unicode, ExactSpelling=true)]
+        [DllImport("ole32.dll", CharSet = CharSet.Unicode, ExactSpelling = true), SuppressUnmanagedCodeSecurity]
 #if USING_NET11
         private static extern int CreateItemMoniker(string delim, string item, out UCOMIMoniker ppmk);
 #else
@@ -1327,10 +1349,10 @@ namespace DirectShowLib
 
             try
             {
-                Guid bagId = typeof (IPropertyBag).GUID;
+                Guid bagId = typeof(IPropertyBag).GUID;
                 m_Mon.BindToStorage(null, null, ref bagId, out bagObj);
 
-                bag = (IPropertyBag) bagObj;
+                bag = (IPropertyBag)bagObj;
 
                 int hr = bag.Read("FriendlyName", out val, null);
                 DsError.ThrowExceptionForHR(hr);
@@ -1675,7 +1697,7 @@ namespace DirectShowLib
         private static string WalkClass(Type MyType, Guid guid)
         {
             object o = null;
-       
+
             // Read the fields from the class
             FieldInfo[] Fields = MyType.GetFields();
 
@@ -1732,7 +1754,7 @@ namespace DirectShowLib
             int iSize = GetNativeDataSize() + 3;
             IntPtr p = Marshal.AllocCoTaskMem(iSize);
 
-            for (int x=0; x < iSize / 4; x++)
+            for (int x = 0; x < iSize / 4; x++)
             {
                 Marshal.WriteInt32(p, x * 4, 0);
             }
@@ -1785,15 +1807,15 @@ namespace DirectShowLib
         // from MarshalManagedToNative.  The return value is unused.
         override public object MarshalNativeToManaged(IntPtr pNativeData)
         {
-            AMMediaType [] emt = m_obj as AMMediaType [];
+            AMMediaType[] emt = m_obj as AMMediaType[];
 
-            for (int x=0; x < emt.Length; x++)
+            for (int x = 0; x < emt.Length; x++)
             {
                 // Copy in the value, and advance the pointer
                 IntPtr p = Marshal.ReadIntPtr(pNativeData, x * IntPtr.Size);
                 if (p != IntPtr.Zero)
                 {
-                    emt[x] = (AMMediaType) Marshal.PtrToStructure(p, typeof (AMMediaType));
+                    emt[x] = (AMMediaType)Marshal.PtrToStructure(p, typeof(AMMediaType));
                 }
                 else
                 {
@@ -1854,7 +1876,7 @@ namespace DirectShowLib
             pNativeData = (IntPtr)(pNativeData.ToInt64() + Marshal.SizeOf(typeof(int)));
 
             // Copy in the value, and advance the pointer
-            dta.VideoAttributes = (DvdVideoAttributes) Marshal.PtrToStructure(pNativeData, typeof (DvdVideoAttributes));
+            dta.VideoAttributes = (DvdVideoAttributes)Marshal.PtrToStructure(pNativeData, typeof(DvdVideoAttributes));
             pNativeData = (IntPtr)(pNativeData.ToInt64() + Marshal.SizeOf(typeof(DvdVideoAttributes)));
 
             // Copy in the value, and advance the pointer
@@ -1863,22 +1885,22 @@ namespace DirectShowLib
 
             // Allocate a large enough array to hold all the returned structs.
             dta.AudioAttributes = new DvdAudioAttributes[8];
-            for (int x=0; x < 8; x++)
+            for (int x = 0; x < 8; x++)
             {
                 // Copy in the value, and advance the pointer
-                dta.AudioAttributes[x] = (DvdAudioAttributes) Marshal.PtrToStructure(pNativeData, typeof (DvdAudioAttributes));
+                dta.AudioAttributes[x] = (DvdAudioAttributes)Marshal.PtrToStructure(pNativeData, typeof(DvdAudioAttributes));
                 pNativeData = (IntPtr)(pNativeData.ToInt64() + Marshal.SizeOf(typeof(DvdAudioAttributes)));
             }
 
             // Allocate a large enough array to hold all the returned structs.
             dta.MultichannelAudioAttributes = new DvdMultichannelAudioAttributes[8];
-            for (int x=0; x < 8; x++)
+            for (int x = 0; x < 8; x++)
             {
                 // MultichannelAudioAttributes has nested ByValArrays.  They need to be individually copied.
 
                 dta.MultichannelAudioAttributes[x].Info = new DvdMUAMixingInfo[8];
 
-                for (int y=0; y < 8; y++)
+                for (int y = 0; y < 8; y++)
                 {
                     // Copy in the value, and advance the pointer
                     dta.MultichannelAudioAttributes[x].Info[y] = (DvdMUAMixingInfo)Marshal.PtrToStructure(pNativeData, typeof(DvdMUAMixingInfo));
@@ -1887,7 +1909,7 @@ namespace DirectShowLib
 
                 dta.MultichannelAudioAttributes[x].Coeff = new DvdMUACoeff[8];
 
-                for (int y=0; y < 8; y++)
+                for (int y = 0; y < 8; y++)
                 {
                     // Copy in the value, and advance the pointer
                     dta.MultichannelAudioAttributes[x].Coeff[y] = (DvdMUACoeff)Marshal.PtrToStructure(pNativeData, typeof(DvdMUACoeff));
@@ -1904,10 +1926,10 @@ namespace DirectShowLib
 
             // Allocate a large enough array to hold all the returned structs.
             dta.SubpictureAttributes = new DvdSubpictureAttributes[32];
-            for (int x=0; x < 32; x++)
+            for (int x = 0; x < 32; x++)
             {
                 // Copy in the value, and advance the pointer
-                dta.SubpictureAttributes[x] = (DvdSubpictureAttributes) Marshal.PtrToStructure(pNativeData, typeof (DvdSubpictureAttributes));
+                dta.SubpictureAttributes[x] = (DvdSubpictureAttributes)Marshal.PtrToStructure(pNativeData, typeof(DvdSubpictureAttributes));
                 pNativeData = (IntPtr)(pNativeData.ToInt64() + Marshal.SizeOf(typeof(DvdSubpictureAttributes)));
             }
 
@@ -1967,10 +1989,10 @@ namespace DirectShowLib
 
             // Allocate a large enough array to hold all the returned structs.
             dka.wChannelContents = new DvdKaraokeContents[8];
-            for (int x=0; x < 8; x++)
+            for (int x = 0; x < 8; x++)
             {
                 // Copy in the value, and advance the pointer
-                dka.wChannelContents[x] = (DvdKaraokeContents) Marshal.ReadInt16(pNativeData);
+                dka.wChannelContents[x] = (DvdKaraokeContents)Marshal.ReadInt16(pNativeData);
                 pNativeData = (IntPtr)(pNativeData.ToInt64() + Marshal.SizeOf(DvdKaraokeContents.GetUnderlyingType(typeof(DvdKaraokeContents))));
             }
 
@@ -1991,8 +2013,6 @@ namespace DirectShowLib
             return new DKAMarshaler(cookie);
         }
     }
-
-
 
     #endregion
 }
