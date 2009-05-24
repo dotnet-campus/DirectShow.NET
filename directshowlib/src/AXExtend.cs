@@ -267,7 +267,7 @@ namespace DirectShowLib
     /// From AMCOPPCommand
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct AMCOPPCommand
+    public class AMCOPPCommand
     {
         public Guid macKDI;
         public Guid guidCommandID;
@@ -280,7 +280,7 @@ namespace DirectShowLib
     /// From AMCOPPStatusInput
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct AMCOPPStatusInput
+    public class AMCOPPStatusInput
     {
         public Guid rApp;
         public Guid guidStatusRequestID;
@@ -2316,10 +2316,10 @@ namespace DirectShowLib
             );
 
         [PreserveSig]
-        int SessionSequenceStart([In] AMCOPPSignature pSig);
+        int SessionSequenceStart([In, MarshalAs(UnmanagedType.LPArray)] byte[] pSig);
 
         [PreserveSig]
-        int ProtectionCommand([In] AMCOPPCommand cmd);
+        int ProtectionCommand([In, MarshalAs(UnmanagedType.LPStruct)] AMCOPPCommand cmd);
 
         [PreserveSig]
         int ProtectionStatus(
