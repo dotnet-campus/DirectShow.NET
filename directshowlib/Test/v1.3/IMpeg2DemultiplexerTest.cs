@@ -45,7 +45,7 @@ namespace DirectShowLib.Test
         {
             int hr;
             AMMediaType amt = new AMMediaType();
-            amt.majorType = MediaType.Text;
+            amt.majorType = MediaType.Texts;
 
             hr = m_ism.SetOutputPinMediaType("Pin1", amt);
             DsError.ThrowExceptionForHR(hr);

@@ -40,7 +40,7 @@ namespace DirectShowLib.Test
             int pf;
             PIDMap [] m = new PIDMap[3];
 
-            hr = m_pm.Next(1, m, out pf);
+            hr = m_pm.Next(1, m, IntPtr.Zero);
             DsError.ThrowExceptionForHR(hr);
 
             //Debug.Assert(m[2] != null, "Next");
@@ -118,11 +118,11 @@ namespace DirectShowLib.Test
             hr = ism.CreateOutputPin(mt, "Pin1", out pPin);
             pm = pPin as IMPEG2PIDMap;
 
-            hr = pm.EnumPIDMap(out ip);
-            Marshal.QueryInterface(ip, ref g, out ip2);
-            Marshal.QueryInterface(ip2, ref g, out ip3);
-            o = System.Runtime.Remoting.Services.EnterpriseServicesHelper.WrapIUnknownWithComObject( ip );
-            m_pm = o as IEnumPIDMap;
+            hr = pm.EnumPIDMap(out epm2);
+            //Marshal.QueryInterface(ip, ref g, out ip2);
+            //Marshal.QueryInterface(ip2, ref g, out ip3);
+            //o = System.Runtime.Remoting.Services.EnterpriseServicesHelper.WrapIUnknownWithComObject( ip );
+            //m_pm = o as IEnumPIDMap;
             hr = m_pm.Reset();
             hr = m_pm.Skip(0);
             hr = m_pm.Clone(out epm2);
