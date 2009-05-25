@@ -38,7 +38,7 @@ namespace DirectShowLib.Samples
 		private System.ComponentModel.Container components = null;
 
 		//A (modified) definition of OleCreatePropertyFrame found here: http://groups.google.no/group/microsoft.public.dotnet.languages.csharp/browse_thread/thread/db794e9779144a46/55dbed2bab4cd772?lnk=st&q=[DllImport(%22olepro32.dll%22)]&rnum=1&hl=no#55dbed2bab4cd772
-		[DllImport(@"oleaut32.dll")] 
+		[DllImport("oleaut32.dll", CharSet=CharSet.Unicode, ExactSpelling=true)]
 		public static extern int OleCreatePropertyFrame( 
 			IntPtr hwndOwner, 
 			int x, 
