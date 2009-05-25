@@ -43,6 +43,12 @@ namespace AsfFilter
 		{
 			if( disposing )
 			{
+				if (cam != null)
+				{
+					cam.Dispose();
+					cam = null;
+				}
+
 				if (components != null) 
 				{
 					components.Dispose();
