@@ -96,6 +96,7 @@ namespace AsfFilter
             // 
             // Form1
             // 
+            this.AcceptButton = this.button1;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.ClientSize = new System.Drawing.Size(248, 162);
             this.Controls.Add(this.label1);
@@ -106,6 +107,7 @@ namespace AsfFilter
             this.Name = "Form1";
             this.Text = "AsfFilter";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 		#endregion
