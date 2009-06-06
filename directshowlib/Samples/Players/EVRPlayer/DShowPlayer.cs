@@ -542,7 +542,8 @@ namespace EVRPlayer
         {
             int hr;
 
-            // Our data source
+            // Our data source.  An error here means the GSSF2 sample hasn't
+            // been registered.
             IBaseFilter ipsb = (IBaseFilter)new GenericSampleSourceFilter2();
 
             try
@@ -768,6 +769,10 @@ namespace EVRPlayer
             if (m_clsidPresenter != Guid.Empty)
             {
                 Type type = Type.GetTypeFromCLSID(m_clsidPresenter);
+
+                // An error here means that the custom presenter sample from
+                // http://mfnet.sourceforge.net hasn't been installed or
+                // registered.
                 pPresenter = (IMFVideoPresenter)Activator.CreateInstance(type);
 
                 try
