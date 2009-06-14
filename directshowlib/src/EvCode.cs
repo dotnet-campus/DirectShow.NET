@@ -119,6 +119,15 @@ namespace DirectShowLib
         DvdDiscInserted = 0x119, // EC_DVD_DISC_INSERTED
         DvdCurrentHmsfTime = 0x11a, // EC_DVD_CURRENT_HMSF_TIME
         DvdKaraokeMode = 0x11b, // EC_DVD_KARAOKE_MODE
+        DvdProgramCellChange = 0x11c, // EC_DVD_PROGRAM_CELL_CHANGE
+        DvdTitleSetChange = 0x11d, // EC_DVD_TITLE_SET_CHANGE
+        DvdProgramChainChange = 0x11e, // EC_DVD_PROGRAM_CHAIN_CHANGE
+        DvdVOBU_Offset = 0x11f, // EC_DVD_VOBU_Offset
+        DvdVOBU_Timestamp = 0x120, // EC_DVD_VOBU_Timestamp
+        DvdGPRM_Change = 0x121, // EC_DVD_GPRM_Change
+        DvdSPRM_Change = 0x122, // EC_DVD_SPRM_Change
+        DvdBeginNavigationCommands = 0x123, // EC_DVD_BeginNavigationCommands
+        DvdNavigationCommand = 0x124, // EC_DVD_NavigationCommand
 
         // AudEvCod.h
         SNDDEVInError = 0x200, // EC_SNDDEV_IN_ERROR
