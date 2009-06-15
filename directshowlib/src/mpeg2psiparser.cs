@@ -106,6 +106,50 @@ namespace DirectShowLib.BDA
           [Out] out object ppIUnknown
           );
     }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("BF02FB7E-9792-4e10-A68D-033A2CC246A5"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IGenericDescriptor2 : IGenericDescriptor
+    {
+        #region IGenericDescriptor methods
+
+        [PreserveSig]
+        new int Initialize(
+          [In] IntPtr pbDesc,
+          [In] int bCount
+          );
+
+        [PreserveSig]
+        new int GetTag(
+            [Out] out byte pbVal
+            );
+
+        [PreserveSig]
+        new int GetLength(
+            [Out] out byte pbVal
+            );
+
+        [PreserveSig]
+        new int GetBody(
+            [Out] out IntPtr ppbVal
+            );
+
+        #endregion
+
+        [PreserveSig]
+        int Initialize( 
+            IntPtr pbDesc,
+            short wCount
+            );
+
+        [PreserveSig]
+        int  GetLength( 
+            out short pwVal
+            );
+        
+    };
+    
 #endif
 
     [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
