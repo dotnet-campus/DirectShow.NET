@@ -65,7 +65,19 @@ namespace DirectShowLib.SBE
         WriteFailure, // STREAMBUFFER_EC_WRITE_FAILURE
         ReadFailure, // STREAMBUFFER_EC_READ_FAILURE
         RateChanged, // STREAMBUFFER_EC_RATE_CHANGED
-        PrimaryAudio // STREAMBUFFER_EC_PRIMARY_AUDIO
+        PrimaryAudio, // STREAMBUFFER_EC_PRIMARY_AUDIO
+
+        // In Windows 7, Microsoft *RENUMBERED* the elements of the enum.  So, if
+        // you are using Vista, 0x32b is STREAMBUFFER_EC_READ_FAILURE.  In W7, it
+        // is STREAMBUFFER_EC_WRITE_FAILURE_CLEAR.  This also affects RateChanged,
+        // and PrimaryAudio.  If you are using a "case" statement to process events,
+        // you probably need entirely separate case statements for Vista/W7.
+        WriteFailureClear_W7 = 0x032b, // STREAMBUFFER_EC_WRITE_FAILURE_CLEAR
+        ReadFailure_W7,
+        RateChanged_W7,
+        PrimaryAudio_W7,
+        RateChangingForSetPositions, // STREAMBUFFER_EC_RATE_CHANGING_FOR_SETPOSITIONS
+        SetPositionsEventsDone // STREAMBUFFER_EC_SETPOSITIONS_EVENTS_DONE
     }
 
 
@@ -205,6 +217,63 @@ namespace DirectShowLib.SBE
         public long cTimestamps; //  number of timestamps
     }
 
+    public sealed class SBEEvent
+    {
+        /// <summary> EVENTID_SBE2RecControlStarted </summary>
+        public static readonly Guid RecControlStarted = new Guid(0x8966a89e, 0xf83e, 0x4c0e, 0xbc, 0x3b, 0xbf, 0xa7, 0x64, 0x9e, 0x4, 0xcb);
+
+        /// <summary> EVENTID_SBE2RecControlStopped </summary>
+        public static readonly Guid RecControlStopped = new Guid(0x454b1ec8, 0xc9b, 0x4caa, 0xb1, 0xa1, 0x1e, 0x7a, 0x26, 0x66, 0xf6, 0xc3);
+
+        /// <summary> SBE2_STREAM_DESC_EVENT </summary>
+        public static readonly Guid StreamDescEvent = new Guid(0x2313a4ed, 0xbf2d, 0x454f, 0xad, 0x8a, 0xd9, 0x5b, 0xa7, 0xf9, 0x1f, 0xee);
+
+        /// <summary> SBE2_V1_STREAMS_CREATION_EVENT </summary>
+        public static readonly Guid V1StreamsCreationEvent = new Guid(0xfcf09, 0x97f5, 0x46ac, 0x97, 0x69, 0x7a, 0x83, 0xb3, 0x53, 0x84, 0xfb);
+
+        /// <summary> SBE2_V2_STREAMS_CREATION_EVENT </summary>
+        public static readonly Guid V2StreamsCreationEvent = new Guid(0xa72530a3, 0x344, 0x4cab, 0xa2, 0xd0, 0xfe, 0x93, 0x7d, 0xbd, 0xca, 0xb3);
+    }
+
+    /// <summary>
+    /// From CROSSBAR_DEFAULT_FLAGS
+    /// </summary>
+    [Flags]
+    public enum CrossbarDefaultFlags
+    {
+        None = 0x0,
+        Profile = 0x0000001,
+        Streams = 0x0000002
+    }
+
+    /// <summary>
+    /// From SBE2_STREAM_DESC
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential)]
+    public class SBE2_STREAM_DESC
+    {
+        int Version;
+        int StreamId;
+        int Default;
+        int Reserved;
+    }
+
+    /// <summary>
+    /// From DVR_STREAM_DESC
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential)]
+    public struct DVRStreamDesc
+    {
+        int Version;
+        int StreamId;
+        bool Default;
+        bool Creation;
+        int Reserved;
+        Guid guidSubMediaType;
+        Guid guidFormatType;
+        AMMediaType MediaType;
+    }
+
     #endregion
 
     #region Interfaces
@@ -288,7 +357,7 @@ namespace DirectShowLib.SBE
         [PreserveSig]
         int SetSIDs(
             [In] int cSIDs,
-            [In, MarshalAs(UnmanagedType.LPArray)] IntPtr [] ppSID // PSID *
+            [In, MarshalAs(UnmanagedType.LPArray)] IntPtr[] ppSID // PSID *
             );
     }
 
@@ -480,7 +549,7 @@ namespace DirectShowLib.SBE
         [PreserveSig]
         int Next(
             [In] int cRequest,
-            [Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] StreamBufferAttribute[] pStreamBufferAttribute,
+            [Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 0)] StreamBufferAttribute[] pStreamBufferAttribute,
             [In] IntPtr pcReceived
             );
 
@@ -746,6 +815,186 @@ namespace DirectShowLib.SBE
 
         [PreserveSig]
         int ResetData();
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("caede759-b6b1-11db-a578-0018f3fa24c6"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface ISBE2GlobalEvent
+    {
+        [PreserveSig]
+        int GetEvent(
+            [In, MarshalAs(UnmanagedType.LPStruct)] Guid idEvt,
+            int param1,
+            int param2,
+            int param3,
+            int param4,
+            [MarshalAs(UnmanagedType.Bool)] out bool pSpanning,
+            out int pcb,
+            [Out] IntPtr pb
+            );
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("6D8309BF-00FE-4506-8B03-F8C65B5C9B39"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface ISBE2GlobalEvent2 : ISBE2GlobalEvent
+    {
+        #region ISBE2GlobalEvent methods
+
+        [PreserveSig]
+        new int GetEvent(
+            [In, MarshalAs(UnmanagedType.LPStruct)] Guid idEvt,
+            int param1,
+            int param2,
+            int param3,
+            int param4,
+            [MarshalAs(UnmanagedType.Bool)] out bool pSpanning,
+            out int pcb,
+            [Out] IntPtr pb
+            );
+
+        #endregion
+
+        [PreserveSig]
+        int GetEventEx(
+            [In, MarshalAs(UnmanagedType.LPStruct)] Guid idEvt,
+            int param1,
+            int param2,
+            int param3,
+            int param4,
+            [MarshalAs(UnmanagedType.Bool)] out bool pSpanning,
+            out int pcb,
+            [Out] IntPtr pb,
+            out long pStreamTime
+            );
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("caede760-b6b1-11db-a578-0018f3fa24c6"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface ISBE2SpanningEvent
+    {
+        [PreserveSig]
+        int GetEvent(
+            [In, MarshalAs(UnmanagedType.LPStruct)] Guid idEvt,
+            int streamId,
+            out int pcb,
+            IntPtr pb
+            );
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("547b6d26-3226-487e-8253-8aa168749434"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface ISBE2Crossbar
+    {
+        [PreserveSig]
+        int EnableDefaultMode(
+            CrossbarDefaultFlags DefaultFlags
+            );
+
+        [PreserveSig]
+        int GetInitialProfile(
+            out ISBE2MediaTypeProfile ppProfile
+            );
+
+        [PreserveSig]
+        int SetOutputProfile(
+            ISBE2MediaTypeProfile pProfile,
+            out int pcOutputPins,
+            IPin[] ppOutputPins
+            );
+
+        [PreserveSig]
+        int EnumStreams(
+            out ISBE2EnumStream ppStreams
+            );
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("667c7745-85b1-4c55-ae55-4e25056159fc"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface ISBE2StreamMap
+    {
+        [PreserveSig]
+        int MapStream(
+            int Stream
+            );
+
+        [PreserveSig]
+        int UnmapStream(
+            int Stream
+            );
+
+        [PreserveSig]
+        int EnumMappedStreams(
+            out ISBE2EnumStream ppStreams
+            );
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("f7611092-9fbc-46ec-a7c7-548ea78b71a4"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface ISBE2EnumStream
+    {
+        [PreserveSig]
+        int Next(
+            int cRequest,
+            SBE2_STREAM_DESC[] pStreamDesc,
+            IntPtr pcReceived
+            );
+
+        [PreserveSig]
+        int Skip(
+            int cRecords
+            );
+
+        [PreserveSig]
+        int Reset();
+
+        [PreserveSig]
+        int Clone(
+            out ISBE2EnumStream ppIEnumStream
+            );
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("f238267d-4671-40d7-997e-25dc32cfed2a"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface ISBE2MediaTypeProfile
+    {
+        [PreserveSig]
+        int GetStreamCount(
+            out int pCount
+            );
+
+        [PreserveSig]
+        int GetStream(
+            int Index,
+            out AMMediaType ppMediaType
+            );
+
+        [PreserveSig]
+        int AddStream(
+            [In, MarshalAs(UnmanagedType.LPStruct)] AMMediaType pMediaType
+            );
+
+        [PreserveSig]
+        int DeleteStream(
+            int Index
+            );
+    }
+    
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("3E2BF5A5-4F96-4899-A1A3-75E8BE9A5AC0"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface ISBE2FileScan
+    {
+        [PreserveSig]
+        int RepairFile(
+            [In, MarshalAs(UnmanagedType.LPWStr)] string filename
+            );
     }
 
     #endregion
