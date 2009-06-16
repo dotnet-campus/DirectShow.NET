@@ -115,9 +115,9 @@ namespace DirectShowLib.BDA
     public struct WMDRMProtectionInfo
     {
         [MarshalAs(UnmanagedType.LPWStr, SizeConst = 25)] string   wszKID;
-        long qwCounter;
-        long qwIndex;
-        byte bOffset;
+        public long qwCounter;
+        public long qwIndex;
+        public byte bOffset;
     }
 
     /// <summary>
@@ -125,7 +125,7 @@ namespace DirectShowLib.BDA
     /// </summary>
     public class BadSampleInfo
     {
-        int hrReason;
+        public int hrReason;
     } 
 
 #endif
