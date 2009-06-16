@@ -141,7 +141,9 @@ namespace DirectShowLib.BDA
         Other,
         DrmInitFailed,
         DrmNotPaired,
-        DrmRePairSoon
+        DrmRePairSoon,
+        Aborted,
+        NeedSDKUpdate
     }
 
 #endif

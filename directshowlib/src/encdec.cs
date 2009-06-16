@@ -128,6 +128,120 @@ namespace DirectShowLib.BDA
         public int hrReason;
     } 
 
+    /// <summary>
+    /// From COPPEventBlockReason
+    /// </summary>
+    public enum COPPEventBlockReason
+    {
+        Unknown = -1,
+        BadDriver = 0,
+        NoCardHDCPSupport = 1,
+        NoMonitorHDCPSupport = 2,
+        BadCertificate = 3,
+        InvalidBusProtection = 4,
+        AeroGlassOff = 5,
+        RogueApp = 6,
+        ForbiddenVideo = 7,
+        Activate = 8,
+        DigitalAudioUnprotected = 9
+    }
+
+    /// <summary>
+    /// From LicenseEventBlockReason
+    /// </summary>
+    public enum LicenseEventBlockReason
+    {
+        BadLicense = 0,
+        NeedIndiv = 1,
+        Expired = 2,
+        NeedActivation = 3,
+        ExtenderBlocked = 4
+    }
+
+    /// <summary>
+    /// From CPEventBitShift
+    /// </summary>
+    public enum CPEventBitShift
+    {
+        Ratings = 0,
+        COPP,
+        License,
+        Rollback,
+        SAC,
+        DownRes,
+        StubLib,
+        UntrustedGraph,
+        PendingCertificate,
+        NoPlayReady
+    }
+
+    /// <summary>
+    /// From CPEvents
+    /// </summary>
+    public enum CPEvents
+    {
+        None = 0,
+        Ratings,
+        COPP,
+        License,
+        Rollback,
+        SAC,
+        DownRes,
+        StubLib,
+        UntrustedGraph,
+        ProtectWindowed
+    }
+
+    /// <summary>
+    /// From EncDecEvents
+    /// </summary>
+    public enum EncDecEvents
+    {
+        CPEvent = 0,
+        RecordingStatus
+    }
+
+    /// <summary>
+    /// From CPRecordingStatus
+    /// </summary>
+    public enum CPRecordingStatus
+    {
+        Stopped = 0,
+        Started = 1
+    }
+
+/// <summary>
+/// From RevokedComponent
+/// </summary>
+    public enum RevokedComponent
+    {
+        COPP = 0,
+        SAC,
+        APPStub,
+        SecurePipeline,
+        MaxTypes
+    }
+
+    /// <summary>
+    /// From EnTag_Mode
+    /// </summary>
+    public enum EnTag_Mode
+    {
+        Remove = 0x0,
+        Once = 0x1,
+        Repeat = 0x2
+    }
+
+    /// <summary>
+    /// From DownResEventParam
+    /// </summary>
+    public enum DownResEventParam
+    {
+        Always = 0,
+        InWindowOnly = 1,
+        Undefined = 2
+    }
+
 #endif
 
     /// <summary>
