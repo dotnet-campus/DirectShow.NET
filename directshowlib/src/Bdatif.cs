@@ -332,12 +332,6 @@ namespace DirectShowLib.BDA
         );
     }
 
-    public interface IDVB_EIT2
-    {
-        // Placeholder to allow ISIInbandEPGEvent to compile.  Delete
-        // this when the real interface gets defined in dvbsiparser
-    }
-
     [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("7E47913A-5A89-423d-9A2B-E15168858934"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]

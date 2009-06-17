@@ -215,6 +215,20 @@ namespace DirectShowLib.BDA
         Locked = 0x02
     }
 
+    /// <summary>
+    /// From LNB_Source
+    /// </summary>
+    public enum LNB_Source
+    {
+        NOT_SET = -1,
+        NOT_DEFINED = 0,
+        A = 1,
+        B = 2,
+        C = 3,
+        D = 4,
+        MAX
+    }
+
 #endif
 
     #endregion
@@ -810,6 +824,834 @@ namespace DirectShowLib.BDA
 
         [PreserveSig]
         int AutoProgram();
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("C0A4A1D4-2B3C-491A-BA22-499FBADD4D12"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IBDACreateTuneRequestEx
+    {
+        [return: MarshalAs(UnmanagedType.Interface)]
+        [PreserveSig]
+        ITuneRequest CreateTuneRequestEx(
+            [In] ref Guid TuneRequestIID
+            );
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("156EFF60-86F4-4E28-89FC-109799FD57EE"),
+    InterfaceType(ComInterfaceType.InterfaceIsDual)]
+    public interface IChannelIDTuneRequest : ITuneRequest
+    {
+        [DispId(1)]
+        ITuningSpace TuningSpace { 
+            [return: MarshalAs(UnmanagedType.Interface)] [PreserveSig, DispId(1)] get; 
+        }
+
+        [DispId(2)]
+        IComponents Components { 
+            [return: MarshalAs(UnmanagedType.Interface)] [PreserveSig, DispId(2)] get; 
+        }
+
+        [return: MarshalAs(UnmanagedType.Interface)]
+        [PreserveSig, DispId(3)]
+        ITuneRequest Clone();
+
+        [DispId(4)]
+        ILocator Locator { 
+            [return: MarshalAs(UnmanagedType.Interface)] [PreserveSig, DispId(4)] get; 
+            [param: In, MarshalAs(UnmanagedType.Interface)] [PreserveSig, DispId(4)] set; 
+        }
+
+        [DispId(0x65)]
+        string ChannelID { 
+            [return: MarshalAs(UnmanagedType.BStr)] [PreserveSig, DispId(0x65)] get; 
+            [param: In, MarshalAs(UnmanagedType.BStr)] [PreserveSig, DispId(0x65)] set; 
+        }
+    }
+
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("6044634A-1733-4F99-B982-5FB12AFCE4F0"),
+    InterfaceType(ComInterfaceType.InterfaceIsDual)]
+    public interface IDVBSLocator2 : IDVBSLocator
+    {
+        [DispId(1)]
+        int CarrierFrequency { 
+            [PreserveSig, DispId(1)] get; 
+            [param: In] [PreserveSig, DispId(1)] set; 
+        }
+
+        [DispId(2)]
+        FECMethod InnerFEC { 
+            [PreserveSig, DispId(2)] get; 
+            [param: In] [PreserveSig, DispId(2)] set; 
+        }
+
+        [DispId(3)]
+        BinaryConvolutionCodeRate InnerFECRate { 
+            [PreserveSig, DispId(3)] get; 
+            [param: In] [PreserveSig, DispId(3)] set; 
+        }
+
+        [DispId(4)]
+        FECMethod OuterFEC { 
+            [PreserveSig, DispId(4)] get; 
+            [param: In] [PreserveSig, DispId(4)] set; 
+        }
+
+        [DispId(5)]
+        BinaryConvolutionCodeRate OuterFECRate { 
+            [PreserveSig, DispId(5)] get; 
+            [param: In] [PreserveSig, DispId(5)] set; 
+        }
+
+        [DispId(6)]
+        ModulationType Modulation { 
+            [PreserveSig, DispId(6)] get; 
+            [param: In] [PreserveSig, DispId(6)] set; 
+        }
+
+        [DispId(7)]
+        int SymbolRate { 
+            [PreserveSig, DispId(7)] get; 
+            [param: In] [PreserveSig, DispId(7)] set; 
+        }
+
+        [return: MarshalAs(UnmanagedType.Interface)]
+        [PreserveSig, DispId(8)]
+        ILocator Clone();
+
+        [DispId(0x191)]
+        Polarisation SignalPolarisation { 
+            [PreserveSig, DispId(0x191)] get; 
+            [param: In] [PreserveSig, DispId(0x191)] set; 
+        }
+
+        [DispId(0x192)]
+        bool WestPosition { 
+            [PreserveSig, DispId(0x192)] get; 
+            [param: In] [PreserveSig, DispId(0x192)] set; 
+        }
+
+        [DispId(0x193)]
+        int OrbitalPosition { 
+            [PreserveSig, DispId(0x193)] get; 
+            [param: In] [PreserveSig, DispId(0x193)] set; 
+        }
+
+        [DispId(0x194)]
+        int Azimuth { 
+            [PreserveSig, DispId(0x194)] get; 
+            [param: In] [PreserveSig, DispId(0x194)] set; 
+        }
+
+        [DispId(0x195)]
+        int Elevation { 
+            [PreserveSig, DispId(0x195)] get; 
+            [param: In] [PreserveSig, DispId(0x195)] set; 
+        }
+
+        [DispId(0x196)]
+        LNB_Source DiseqLNBSource { 
+            [PreserveSig, DispId(0x196)] get; 
+            [param: In] [PreserveSig, DispId(0x196)] set; 
+        }
+
+        [DispId(0x197)]
+        int LocalOscillatorOverrideLow { 
+            [PreserveSig, DispId(0x197)] get; 
+            [param: In] [PreserveSig, DispId(0x197)] set; 
+        }
+
+        [DispId(0x198)]
+        int LocalOscillatorOverrideHigh { 
+            [PreserveSig, DispId(0x198)] get; 
+            [param: In] [PreserveSig, DispId(0x198)] set; 
+        }
+
+        [DispId(0x199)]
+        int LocalLNBSwitchOverride { 
+            [PreserveSig, DispId(0x199)] get; 
+            [param: In] [PreserveSig, DispId(0x199)] set; 
+        }
+
+        [DispId(410)]
+        SpectralInversion LocalSpectralInversionOverride { 
+            [PreserveSig, DispId(410)] get; 
+            [param: In] [PreserveSig, DispId(410)] set; 
+        }
+
+        [DispId(0x19b)]
+        RollOff SignalRollOff { 
+            [PreserveSig, DispId(0x19b)] get; 
+            [param: In] [PreserveSig, DispId(0x19b)] set; 
+        }
+
+        [DispId(0x19c)]
+        Pilot SignalPilot { 
+            [PreserveSig, DispId(0x19c)] get; 
+            [param: In] [PreserveSig, DispId(0x19c)] set; 
+        }
+
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("6B80E96F-55E2-45AA-B754-0C23C8E7D5C1"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IESCloseMmiEvent : IESEvent
+    {
+        #region IESEvent Methods
+
+        [PreserveSig]
+        new int GetEventId();
+
+        [PreserveSig]
+        new Guid GetEventType();
+
+        [PreserveSig]
+        new int SetCompletionStatus([In] int dwResult);
+
+        [return: MarshalAs(UnmanagedType.SafeArray, SafeArraySubType = VarEnum.VT_UI1)]
+        [PreserveSig]
+        new byte[] GetData();
+
+        [return: MarshalAs(UnmanagedType.BStr)]
+        [PreserveSig]
+        new string GetStringData();
+
+        #endregion
+
+        [PreserveSig]
+        int GetDialogNumber();
+
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("1F0E5357-AF43-44E6-8547-654C645145D2"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IESEvent
+    {
+        [PreserveSig]
+        int GetEventId();
+
+        [PreserveSig]
+        Guid GetEventType();
+
+        [PreserveSig]
+        int SetCompletionStatus([In] int dwResult);
+
+        [return: MarshalAs(UnmanagedType.SafeArray, SafeArraySubType = VarEnum.VT_UI1)]
+        [PreserveSig]
+        byte[] GetData();
+
+        [return: MarshalAs(UnmanagedType.BStr)]
+        [PreserveSig]
+        string GetStringData();
+
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("506A09B8-7F86-4E04-AC05-3303BFE8FC49"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IESEventFactory
+    {
+        [return: MarshalAs(UnmanagedType.Interface)]
+        [PreserveSig]
+        IESEvent CreateESEvent([In, MarshalAs(UnmanagedType.IUnknown)] object pServiceProvider, [In] int dwEventId, [In] Guid guidEventType, [In] int dwEventDataLength, [In] ref byte pEventData, [In, MarshalAs(UnmanagedType.BStr)] string bstrBaseUrl, [In, MarshalAs(UnmanagedType.IUnknown)] object pInitContext);
+
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("ABD414BF-CFE5-4E5E-AF5B-4B4E49C5BFEB"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IESEvents
+    {
+        [PreserveSig]
+        int OnESEventReceived([In] Guid guidEventType, [In, MarshalAs(UnmanagedType.Interface)] IESEvent pESEvent);
+
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("ED89A619-4C06-4B2F-99EB-C7669B13047C"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IESEventService
+    {
+        [PreserveSig]
+        int FireESEvent([MarshalAs(UnmanagedType.Interface)] IESEvent pESEvent);
+
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("33B9DAAE-9309-491D-A051-BCAD2A70CD66"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown), TypeLibType((short)0x90)]
+    public interface IESEventServiceConfiguration
+    {
+        [PreserveSig]
+        int SetParent([MarshalAs(UnmanagedType.Interface)] IESEventService pEventService);
+
+        [PreserveSig]
+        int RemoveParent();
+
+        [PreserveSig]
+        int SetOwner([MarshalAs(UnmanagedType.Interface)] IESEvents pESEvents);
+
+        [PreserveSig]
+        int RemoveOwner();
+
+        [PreserveSig]
+        int SetGraph([MarshalAs(UnmanagedType.Interface)] IFilterGraph pGraph);
+
+        [PreserveSig]
+        int RemoveGraph([MarshalAs(UnmanagedType.Interface)] IFilterGraph pGraph);
+
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("BA9EDCB6-4D36-4CFE-8C56-87A6B0CA48E1"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IESFileExpiryDateEvent : IESEvent
+    {
+        #region IESEvent Methods
+
+        [PreserveSig]
+        new int GetEventId();
+
+        [PreserveSig]
+        new Guid GetEventType();
+
+        [PreserveSig]
+        new int SetCompletionStatus([In] int dwResult);
+
+        [return: MarshalAs(UnmanagedType.SafeArray, SafeArraySubType = VarEnum.VT_UI1)]
+        [PreserveSig]
+        new byte[] GetData();
+
+        [return: MarshalAs(UnmanagedType.BStr)]
+        [PreserveSig]
+        new string GetStringData();
+
+        #endregion
+
+        [PreserveSig]
+        Guid GetTunerId();
+
+        [PreserveSig]
+        long GetExpiryDate();
+
+        [PreserveSig]
+        long GetFinalExpiryDate();
+
+        [PreserveSig]
+        int GetMaxRenewalCount();
+
+        [PreserveSig]
+        int IsEntitlementTokenPresent();
+
+        [PreserveSig]
+        int DoesExpireAfterFirstUse();
+
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("2017CB03-DC0F-4C24-83CA-36307B2CD19F"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IESIsdbCasResponseEvent : IESEvent
+    {
+        #region IESEvent Methods
+
+        [PreserveSig]
+        new int GetEventId();
+
+        [PreserveSig]
+        new Guid GetEventType();
+
+        [PreserveSig]
+        new int SetCompletionStatus([In] int dwResult);
+
+        [return: MarshalAs(UnmanagedType.SafeArray, SafeArraySubType = VarEnum.VT_UI1)]
+        [PreserveSig]
+        new byte[] GetData();
+
+        [return: MarshalAs(UnmanagedType.BStr)]
+        [PreserveSig]
+        new string GetStringData();
+
+        #endregion
+
+        [PreserveSig]
+        int GetRequestId();
+
+        [PreserveSig]
+        int GetStatus();
+
+        [PreserveSig]
+        int GetDataLength();
+
+        [return: MarshalAs(UnmanagedType.SafeArray, SafeArraySubType = VarEnum.VT_UI1)]
+        [PreserveSig]
+        byte[] GetResponseData();
+
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("D5A48EF5-A81B-4DF0-ACAA-5E35E7EA45D4"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IESLicenseRenewalResultEvent : IESEvent
+    {
+        #region IESEvent Methods
+
+        [PreserveSig]
+        new int GetEventId();
+
+        [PreserveSig]
+        new Guid GetEventType();
+
+        [PreserveSig]
+        new int SetCompletionStatus([In] int dwResult);
+
+        [return: MarshalAs(UnmanagedType.SafeArray, SafeArraySubType = VarEnum.VT_UI1)]
+        [PreserveSig]
+        new byte[] GetData();
+
+        [return: MarshalAs(UnmanagedType.BStr)]
+        [PreserveSig]
+        new string GetStringData();
+
+        #endregion
+
+        [PreserveSig]
+        int GetCallersId();
+
+        [return: MarshalAs(UnmanagedType.BStr)]
+        [PreserveSig]
+        string GetFileName();
+
+        [PreserveSig]
+        int IsRenewalSuccessful();
+
+        [PreserveSig]
+        int IsCheckEntitlementCallRequired();
+
+        [PreserveSig]
+        int GetDescrambledStatus();
+
+        [PreserveSig]
+        int GetRenewalResultCode();
+
+        [PreserveSig]
+        int GetCASFailureCode();
+
+        [return: MarshalAs(UnmanagedType.Error)]
+        [PreserveSig]
+        int GetRenewalHResult();
+
+        [PreserveSig]
+        int GetEntitlementTokenLength();
+
+        [return: MarshalAs(UnmanagedType.SafeArray, SafeArraySubType = VarEnum.VT_UI1)]
+        [PreserveSig]
+        byte[] GetEntitlementToken();
+
+        [PreserveSig]
+        long GetExpiryDate();
+
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("BA4B6526-1A35-4635-8B56-3EC612746A8C"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IESOpenMmiEvent : IESEvent
+    {
+        #region IESEvent Methods
+
+        [PreserveSig]
+        new int GetEventId();
+
+        [PreserveSig]
+        new Guid GetEventType();
+
+        [PreserveSig]
+        new int SetCompletionStatus([In] int dwResult);
+
+        [return: MarshalAs(UnmanagedType.SafeArray, SafeArraySubType = VarEnum.VT_UI1)]
+        [PreserveSig]
+        new byte[] GetData();
+
+        [return: MarshalAs(UnmanagedType.BStr)]
+        [PreserveSig]
+        new string GetStringData();
+
+        #endregion
+
+        [PreserveSig]
+        int GetDialogNumber(out int pDialogRequest);
+
+        [PreserveSig]
+        Guid GetDialogType();
+
+        [return: MarshalAs(UnmanagedType.SafeArray, SafeArraySubType = VarEnum.VT_UI1)]
+        [PreserveSig]
+        byte[] GetDialogData();
+
+        [return: MarshalAs(UnmanagedType.BStr)]
+        [PreserveSig]
+        string GetDialogStringData([MarshalAs(UnmanagedType.BStr)] out string pbstrBaseUrl);
+
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("54C7A5E8-C3BB-4F51-AF14-E0E2C0E34C6D"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IESRequestTunerEvent : IESEvent
+    {
+        #region IESEvent Methods
+
+        [PreserveSig]
+        new int GetEventId();
+
+        [PreserveSig]
+        new Guid GetEventType();
+
+        [PreserveSig]
+        new int SetCompletionStatus([In] int dwResult);
+
+        [return: MarshalAs(UnmanagedType.SafeArray, SafeArraySubType = VarEnum.VT_UI1)]
+        [PreserveSig]
+        new byte[] GetData();
+
+        [return: MarshalAs(UnmanagedType.BStr)]
+        [PreserveSig]
+        new string GetStringData();
+
+        #endregion
+
+        [PreserveSig]
+        byte GetPriority();
+
+        [PreserveSig]
+        byte GetReason();
+
+        [PreserveSig]
+        byte GetConsequences();
+
+        [PreserveSig]
+        int GetEstimatedTime();
+
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("8A24C46E-BB63-4664-8602-5D9C718C146D"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IESValueUpdatedEvent : IESEvent
+    {
+        #region IESEvent Methods
+
+        [PreserveSig]
+        new int GetEventId();
+
+        [PreserveSig]
+        new Guid GetEventType();
+
+        [PreserveSig]
+        new int SetCompletionStatus([In] int dwResult);
+
+        [return: MarshalAs(UnmanagedType.SafeArray, SafeArraySubType = VarEnum.VT_UI1)]
+        [PreserveSig]
+        new byte[] GetData();
+
+        [return: MarshalAs(UnmanagedType.BStr)]
+        [PreserveSig]
+        new string GetStringData();
+
+        #endregion
+
+        [return: MarshalAs(UnmanagedType.SafeArray, SafeArraySubType = VarEnum.VT_BSTR)]
+        [PreserveSig]
+        string[] GetValueNames();
+
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("907E0B5C-E42D-4F04-91F0-26F401F36907"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IGpnvsCommonBase
+    {
+        [return: MarshalAs(UnmanagedType.BStr)]
+        [PreserveSig]
+        string GetValueUpdateName();
+
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("C9897087-E29C-473F-9E4B-7072123DEA14"),
+    InterfaceType(ComInterfaceType.InterfaceIsDual)]
+    public interface IISDBSLocator : IDVBSLocator
+    {
+        [DispId(1)]
+        int CarrierFrequency { 
+            [PreserveSig, DispId(1)] get; 
+            [param: In] [PreserveSig, DispId(1)] set; 
+        }
+
+        [DispId(2)]
+        FECMethod InnerFEC { 
+            [PreserveSig, DispId(2)] get; 
+            [param: In] [PreserveSig, DispId(2)] set; 
+        }
+
+        [DispId(3)]
+        BinaryConvolutionCodeRate InnerFECRate { 
+            [PreserveSig, DispId(3)] get; 
+            [param: In] [PreserveSig, DispId(3)] set; 
+        }
+
+        [DispId(4)]
+        FECMethod OuterFEC { 
+            [PreserveSig, DispId(4)] get; 
+            [param: In] [PreserveSig, DispId(4)] set; 
+        }
+
+        [DispId(5)]
+        BinaryConvolutionCodeRate OuterFECRate { 
+            [PreserveSig, DispId(5)] get; 
+            [param: In] [PreserveSig, DispId(5)] set; 
+        }
+
+        [DispId(6)]
+        ModulationType Modulation { 
+            [PreserveSig, DispId(6)] get; 
+            [param: In] [PreserveSig, DispId(6)] set;
+        }
+
+        [DispId(7)]
+        int SymbolRate { 
+            [PreserveSig, DispId(7)] get; 
+            [param: In] [PreserveSig, DispId(7)] set; 
+        }
+
+        [return: MarshalAs(UnmanagedType.Interface)]
+        [PreserveSig, DispId(8)]
+        ILocator Clone();
+
+        [DispId(0x191)]
+        Polarisation SignalPolarisation { 
+            [PreserveSig, DispId(0x191)] get; 
+            [param: In] [PreserveSig, DispId(0x191)] set; 
+        }
+
+        [DispId(0x192)]
+        bool WestPosition { 
+            [PreserveSig, DispId(0x192)] get; 
+            [param: In] [PreserveSig, DispId(0x192)] set; 
+        }
+
+        [DispId(0x193)]
+        int OrbitalPosition { 
+            [PreserveSig, DispId(0x193)] get; 
+            [param: In] [PreserveSig, DispId(0x193)] set; 
+        }
+
+        [DispId(0x194)]
+        int Azimuth { 
+            [PreserveSig, DispId(0x194)] get; 
+            [param: In] [PreserveSig, DispId(0x194)] set; 
+        }
+
+        [DispId(0x195)]
+        int Elevation { 
+            [PreserveSig, DispId(0x195)] get; 
+            [param: In] [PreserveSig, DispId(0x195)] set; 
+        }
+
+    }
+
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("0754CD31-8D15-47A9-8215-D20064157244"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IPersistTuneXml : IPersist
+    {
+        #region IPersist Methods
+
+        [PreserveSig]
+        new int GetClassID(
+            out Guid pClassID
+            );
+
+        #endregion
+
+        [PreserveSig]
+        int InitNew();
+
+        [PreserveSig]
+        int Load(
+            [In, MarshalAs(UnmanagedType.Struct)] object varValue
+            );
+
+        [PreserveSig]
+        int Save(
+            [MarshalAs(UnmanagedType.Struct)] out object pvarFragment
+            );
+
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("990237AE-AC11-4614-BE8F-DD217A4CB4CB"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IPersistTuneXmlUtility
+    {
+        [return: MarshalAs(UnmanagedType.IUnknown)]
+        [PreserveSig]
+        object Deserialize(
+            [In, MarshalAs(UnmanagedType.Struct)] object varValue
+            );
+
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("ED3E0C66-18C8-4EA6-9300-F6841FDD35DC"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface ITunerCapEx
+    {
+        [DispId(0x60010000)]
+        bool Has608_708Caption { 
+            [PreserveSig] get; 
+        }
+
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("448A2EDF-AE95-4b43-A3CC-747843C453D4"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IDVBTLocator2 : IDVBTLocator
+    {
+        #region ILocator Methods
+
+        [PreserveSig]
+        new int get_CarrierFrequency([Out] out int Frequency);
+
+        [PreserveSig]
+        new int put_CarrierFrequency([In] int Frequency);
+
+        [PreserveSig]
+        new int get_InnerFEC([Out] out FECMethod FEC);
+
+        [PreserveSig]
+        new int put_InnerFEC([In] FECMethod FEC);
+
+        [PreserveSig]
+        new int get_InnerFECRate([Out] out BinaryConvolutionCodeRate FEC);
+
+        [PreserveSig]
+        new int put_InnerFECRate([In] BinaryConvolutionCodeRate FEC);
+
+        [PreserveSig]
+        new int get_OuterFEC([Out] out FECMethod FEC);
+
+        [PreserveSig]
+        new int put_OuterFEC([In] FECMethod FEC);
+
+        [PreserveSig]
+        new int get_OuterFECRate([Out] out BinaryConvolutionCodeRate FEC);
+
+        [PreserveSig]
+        new int put_OuterFECRate([In] BinaryConvolutionCodeRate FEC);
+
+        [PreserveSig]
+        new int get_Modulation([Out] out ModulationType Modulation);
+
+        [PreserveSig]
+        new int put_Modulation([In] ModulationType Modulation);
+
+        [PreserveSig]
+        new int get_SymbolRate([Out] out int Rate);
+
+        [PreserveSig]
+        new int put_SymbolRate([In] int Rate);
+
+        [PreserveSig]
+        new int Clone([Out] out ILocator NewLocator);
+
+        #endregion
+
+        #region IDVBTLocator Methods
+
+        [PreserveSig]
+        new int get_Bandwidth([Out] out int BandwidthVal);
+
+        [PreserveSig]
+        new int put_Bandwidth([In] int BandwidthVal);
+
+        [PreserveSig]
+        new int get_LPInnerFEC([Out] out FECMethod FEC);
+
+        [PreserveSig]
+        new int put_LPInnerFEC([In] FECMethod FEC);
+
+        [PreserveSig]
+        new int get_LPInnerFECRate([Out] out BinaryConvolutionCodeRate FEC);
+
+        [PreserveSig]
+        new int put_LPInnerFECRate([In] BinaryConvolutionCodeRate FEC);
+
+        [PreserveSig]
+        new int get_HAlpha([Out] out HierarchyAlpha Alpha);
+
+        [PreserveSig]
+        new int put_HAlpha([In] HierarchyAlpha Alpha);
+
+        [PreserveSig]
+        new int get_Guard([Out] out GuardInterval GI);
+
+        [PreserveSig]
+        new int put_Guard([In] GuardInterval GI);
+
+        [PreserveSig]
+        new int get_Mode([Out] out TransmissionMode mode);
+
+        [PreserveSig]
+        new int put_Mode([In] TransmissionMode mode);
+
+        [PreserveSig]
+        new int get_OtherFrequencyInUse([Out, MarshalAs(UnmanagedType.VariantBool)] out bool OtherFrequencyInUseVal);
+
+        [PreserveSig]
+        new int put_OtherFrequencyInUse([In, MarshalAs(UnmanagedType.VariantBool)] bool OtherFrequencyInUseVal);
+
+        #endregion
+
+        [PreserveSig]
+        int get_PhysicalLayerPipeId( 
+            out int PhysicalLayerPipeIdVal
+            );
+        
+        [PreserveSig]
+        int put_PhysicalLayerPipeId( 
+            int PhysicalLayerPipeIdVal
+            );        
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("992E165F-EA24-4b2f-9A1D-009D92120451"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IPersistTuneXmlUtility2 : IPersistTuneXmlUtility
+    {
+        #region IPersistTuneXmlUtility Methods
+
+        [return: MarshalAs(UnmanagedType.IUnknown)]
+        [PreserveSig]
+        new object Deserialize(
+            [In, MarshalAs(UnmanagedType.Struct)] object varValue
+            );
+
+        #endregion
+
+        [PreserveSig]
+        int Serialize( 
+            ITuneRequest piTuneRequest,
+            [Out, MarshalAs(UnmanagedType.BStr)] out string pString
+            );
     }
 
 #endif
