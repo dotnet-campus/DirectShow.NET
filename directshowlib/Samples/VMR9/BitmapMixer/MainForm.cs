@@ -221,6 +221,8 @@ namespace DirectShowLib.Sample
 
         private void InitializeDirect3D()
         {
+          Device.IsUsingEventHandlers = false;
+
             // Basic Presentation Parameters...
             presentParams = new PresentParameters();
             presentParams.Windowed = true;
