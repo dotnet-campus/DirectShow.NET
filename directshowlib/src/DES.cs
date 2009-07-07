@@ -976,7 +976,7 @@ namespace DirectShowLib.DES
         int get_Size(
             out int piHeight,
             out int piWidth,
-            ResizeFlags pFlag
+            out ResizeFlags pFlag
             );
 
         [PreserveSig]
@@ -994,12 +994,12 @@ namespace DirectShowLib.DES
 
         [PreserveSig]
         int get_MediaType(
-            [MarshalAs(UnmanagedType.LPStruct)] out AMMediaType pmt
+            [Out, MarshalAs(UnmanagedType.LPStruct)] AMMediaType pmt
             );
 
         [PreserveSig]
         int put_MediaType(
-            [MarshalAs(UnmanagedType.LPStruct)] AMMediaType pmt
+            [In, MarshalAs(UnmanagedType.LPStruct)] AMMediaType pmt
             );
     }
 

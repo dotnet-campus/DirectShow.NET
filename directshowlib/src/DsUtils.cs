@@ -770,13 +770,8 @@ namespace DirectShowLib
 
     #region Utility Classes
 
-    sealed public class DsResults
+    static public class DsResults
     {
-        private DsResults()
-        {
-            // Prevent people from trying to instantiate this class
-        }
-
         public const int E_InvalidMediaType = unchecked((int)0x80040200);
         public const int E_InvalidSubType = unchecked((int)0x80040201);
         public const int E_NeedOwner = unchecked((int)0x80040202);
@@ -923,13 +918,8 @@ namespace DirectShowLib
     }
 
 
-    sealed public class DsError
+    static public class DsError
     {
-        private DsError()
-        {
-            // Prevent people from trying to instantiate this class
-        }
-
         [DllImport("quartz.dll", CharSet = CharSet.Unicode, ExactSpelling = true, EntryPoint = "AMGetErrorTextW"),
         SuppressUnmanagedCodeSecurity]
         public static extern int AMGetErrorText(int hr, StringBuilder buf, int max);
@@ -985,13 +975,8 @@ namespace DirectShowLib
     }
 
 
-    sealed public class DsUtils
+    static public class DsUtils
     {
-        private DsUtils()
-        {
-            // Prevent people from trying to instantiate this class
-        }
-
         /// <summary>
         /// Returns the PinCategory of the specified pin.  Usually a member of PinCategory.  Not all pins have a category.
         /// </summary>
@@ -1228,7 +1213,7 @@ namespace DirectShowLib
             {
                 if (m_Name == null)
                 {
-                    m_Name = GetFriendlyName();
+                    m_Name = GetPropBagValue("FriendlyName");
                 }
                 return m_Name;
             }
@@ -1254,6 +1239,22 @@ namespace DirectShowLib
                 return s;
             }
         }
+
+        /// <summary>
+        /// Returns the ClassID for a device
+        /// </summary>
+        public Guid ClassID
+        {
+            get
+            {
+                Guid g;
+
+                m_Mon.GetClassID(out g);
+
+                return g;
+            }
+        }
+
 
         /// <summary>
         /// Returns an array of DsDevices of type devcat.
@@ -1337,10 +1338,11 @@ namespace DirectShowLib
         }
 
         /// <summary>
-        /// Get the FriendlyName for a moniker
+        /// Get a specific PropertyBag value from a moniker
         /// </summary>
+        /// <param name="sPropName">The name of the value to retrieve</param>
         /// <returns>String or null on error</returns>
-        private string GetFriendlyName()
+        public string GetPropBagValue(string sPropName)
         {
             IPropertyBag bag = null;
             string ret = null;
@@ -1354,7 +1356,7 @@ namespace DirectShowLib
 
                 bag = (IPropertyBag)bagObj;
 
-                int hr = bag.Read("FriendlyName", out val, null);
+                int hr = bag.Read(sPropName, out val, null);
                 DsError.ThrowExceptionForHR(hr);
 
                 ret = val as string;
@@ -1382,20 +1384,14 @@ namespace DirectShowLib
             {
                 Marshal.ReleaseComObject(Mon);
                 m_Mon = null;
-                GC.SuppressFinalize(this);
             }
             m_Name = null;
         }
     }
 
 
-    sealed public class DsFindPin
+    static public class DsFindPin
     {
-        private DsFindPin()
-        {
-            // Prevent people from trying to instantiate this class
-        }
-
         /// <summary>
         /// Scans a filter's pins looking for a pin in the specified direction
         /// </summary>
@@ -1619,13 +1615,8 @@ namespace DirectShowLib
     }
 
 
-    sealed public class DsToString
+    static public class DsToString
     {
-        private DsToString()
-        {
-            // Prevent people from trying to instantiate this class
-        }
-
         /// <summary>
         /// Produces a usable string that describes the MediaType object
         /// </summary>
