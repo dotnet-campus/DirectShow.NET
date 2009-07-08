@@ -80,7 +80,6 @@ namespace DirectShowLib.SBE
         SetPositionsEventsDone // STREAMBUFFER_EC_SETPOSITIONS_EVENTS_DONE
     }
 
-
     /// <summary>
     /// From g_wszStreamBufferRecording* static const WCHAR
     /// </summary>
@@ -191,7 +190,6 @@ namespace DirectShowLib.SBE
         public readonly string NSCDescription = "NSC_Description";
     }
 
-
     /// <summary>
     /// From STREAMBUFFER_ATTRIBUTE
     /// </summary>
@@ -250,12 +248,12 @@ namespace DirectShowLib.SBE
     /// From SBE2_STREAM_DESC
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public class SBE2_STREAM_DESC
+    public class SBE2_StreamDesc
     {
-        int Version;
-        int StreamId;
-        int Default;
-        int Reserved;
+        public int Version;
+        public int StreamId;
+        public int Default;
+        public int Reserved;
     }
 
     /// <summary>
@@ -264,14 +262,14 @@ namespace DirectShowLib.SBE
     [StructLayout(LayoutKind.Sequential)]
     public struct DVRStreamDesc
     {
-        int Version;
-        int StreamId;
-        bool Default;
-        bool Creation;
-        int Reserved;
-        Guid guidSubMediaType;
-        Guid guidFormatType;
-        AMMediaType MediaType;
+        public int Version;
+        public int StreamId;
+        public bool Default;
+        public bool Creation;
+        public int Reserved;
+        public Guid guidSubMediaType;
+        public Guid guidFormatType;
+        public AMMediaType MediaType;
     }
 
     #endregion
@@ -902,8 +900,8 @@ namespace DirectShowLib.SBE
         [PreserveSig]
         int SetOutputProfile(
             ISBE2MediaTypeProfile pProfile,
-            out int pcOutputPins,
-            IPin[] ppOutputPins
+            ref int pcOutputPins,
+            [Out, MarshalAs(UnmanagedType.LPArray)] IPin[] ppOutputPins
             );
 
         [PreserveSig]
@@ -941,7 +939,7 @@ namespace DirectShowLib.SBE
         [PreserveSig]
         int Next(
             int cRequest,
-            SBE2_STREAM_DESC[] pStreamDesc,
+            [In, Out, MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(SDMarshaler))] SBE2_StreamDesc[] pStreamDesc,
             IntPtr pcReceived
             );
 
@@ -998,4 +996,73 @@ namespace DirectShowLib.SBE
     }
 
     #endregion
+
+    internal class SDMarshaler : ICustomMarshaler
+    {
+        SBE2_StreamDesc[] m_sd;
+
+        virtual public void CleanUpManagedData(object managedObj)
+        {
+            m_sd = null;
+        }
+
+        public void CleanUpNativeData(IntPtr pNativeData)
+        {
+            if (pNativeData != IntPtr.Zero)
+            {
+                Marshal.FreeCoTaskMem(pNativeData);
+            }
+        }
+
+        public int GetNativeDataSize()
+        {
+            return 0;
+        }
+
+        public IntPtr MarshalManagedToNative(object managedObj)
+        {
+            IntPtr ip;
+
+            m_sd = managedObj as SBE2_StreamDesc [];
+
+            int iSize = m_sd.Length * Marshal.SizeOf(typeof(SBE2_StreamDesc));
+
+            ip = Marshal.AllocCoTaskMem(iSize);
+
+#if DEBUG
+            for (int x = 0; x < iSize / 8; x++)
+            {
+                Marshal.WriteInt64(ip, x * 8, 0);
+            }
+#endif
+
+            return ip;
+        }
+
+        // Called just after invoking the COM method.  The IntPtr is the same one that just got returned
+        // from MarshalManagedToNative.  The return value is unused.
+        public object MarshalNativeToManaged(IntPtr pNativeData)
+        {
+            IntPtr ip = pNativeData;
+
+            for (int x = 0; x < m_sd.Length; x++)
+            {
+                //m_sd[x] = new SBE2_StreamDesc(); Marshal.PtrToStructure(ip, m_sd[x]);
+                m_sd[x] = (SBE2_StreamDesc)Marshal.PtrToStructure(ip, typeof(SBE2_StreamDesc));
+
+                ip = new IntPtr(ip.ToInt64() + Marshal.SizeOf(typeof(SBE2_StreamDesc)));
+            }
+
+            return null;
+        }
+
+        // This method is called by interop to create the custom marshaler.  The (optional)
+        // cookie is the value specified in MarshalCookie="asdf", or "" is none is specified.
+        public static ICustomMarshaler GetInstance(string cookie)
+        {
+            return new SDMarshaler();
+        }
+    }
+
+
 }
