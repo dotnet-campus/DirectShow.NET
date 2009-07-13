@@ -260,7 +260,7 @@ namespace DirectShowLib.SBE
     /// From DVR_STREAM_DESC
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct DVRStreamDesc
+    public class DVRStreamDesc
     {
         public int Version;
         public int StreamId;
@@ -828,7 +828,7 @@ namespace DirectShowLib.SBE
             int param3,
             int param4,
             [MarshalAs(UnmanagedType.Bool)] out bool pSpanning,
-            out int pcb,
+            ref int pcb,
             [Out] IntPtr pb
             );
     }
@@ -847,8 +847,8 @@ namespace DirectShowLib.SBE
             int param2,
             int param3,
             int param4,
-            [MarshalAs(UnmanagedType.Bool)] out bool pSpanning,
-            out int pcb,
+            [Out, MarshalAs(UnmanagedType.Bool)] out bool pSpanning,
+            ref int pcb,
             [Out] IntPtr pb
             );
 
@@ -862,7 +862,7 @@ namespace DirectShowLib.SBE
             int param3,
             int param4,
             [MarshalAs(UnmanagedType.Bool)] out bool pSpanning,
-            out int pcb,
+            ref int pcb,
             [Out] IntPtr pb,
             out long pStreamTime
             );
@@ -877,7 +877,7 @@ namespace DirectShowLib.SBE
         int GetEvent(
             [In, MarshalAs(UnmanagedType.LPStruct)] Guid idEvt,
             int streamId,
-            out int pcb,
+            ref int pcb,
             IntPtr pb
             );
     }
