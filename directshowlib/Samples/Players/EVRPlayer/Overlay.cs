@@ -595,10 +595,11 @@ namespace EVRPlayer
                 }
             }
             // Otherwise, rcTarget must be the same as our image size
-            else if (!pvi.TargetRect.Equals(rcImage))
+            else if (pvi.TargetRect != rcImage)
             {
                 return DsResults.E_InvalidMediaType;
             }
+
             // Finally, biWidth must be at least as wide as our image width.
             if (pvi.BmiHeader.Width < vihDesired.BmiHeader.Width)
             {
