@@ -205,6 +205,41 @@ namespace DirectShowLib.BDA
     {
     }
 
+    [ComImport, Guid("CC829A2F-3365-463f-AF13-81DBB6F3A555")]
+    public class ChannelIDTuningSpace
+    {
+    }
+
+    [ComImport, Guid("3A9428A7-31A4-45e9-9EFB-E055BF7BB3DB")]
+    public class ChannelIDTuneRequest
+    {
+    }
+
+    [ComImport, Guid("6504AFED-A629-455c-A7F1-04964DEA5CC4")]
+    public class ISDBSLocator
+    {
+    }
+
+    [ComImport, Guid("6438570B-0C08-4a25-9504-8012BB4D50CF")]
+    public class TunerMarshaler
+    {
+    }
+
+    [ComImport, Guid("E77026B0-B97F-4cbb-B7FB-F4F03AD69F11")]
+    public class PersistTuneXmlUtility
+    {
+    }
+
+    [ComImport, Guid("E77026B0-B97F-4cbb-B7FB-F4F03AD69F11")]
+    public class ESEventService
+    {
+    }
+
+    [ComImport, Guid("8E8A07DA-71F8-40c1-A929-5E3A868AC2C6")]
+    public class ESEventFactory
+    {
+    }
+    
     /// <summary>
     /// From TunerLockType
     /// </summary>
@@ -831,10 +866,10 @@ namespace DirectShowLib.BDA
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IBDACreateTuneRequestEx
     {
-        [return: MarshalAs(UnmanagedType.Interface)]
         [PreserveSig]
-        ITuneRequest CreateTuneRequestEx(
-            [In] ref Guid TuneRequestIID
+        int CreateTuneRequestEx(
+            [In, MarshalAs(UnmanagedType.LPStruct)] Guid TuneRequestIID,
+            [Out] out ITuneRequest ppTuneRequest
             );
     }
 
@@ -843,31 +878,30 @@ namespace DirectShowLib.BDA
     InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface IChannelIDTuneRequest : ITuneRequest
     {
-        [DispId(1)]
-        ITuningSpace TuningSpace { 
-            [return: MarshalAs(UnmanagedType.Interface)] [PreserveSig, DispId(1)] get; 
-        }
+        #region ITuneRequest Methods
 
-        [DispId(2)]
-        IComponents Components { 
-            [return: MarshalAs(UnmanagedType.Interface)] [PreserveSig, DispId(2)] get; 
-        }
+        [PreserveSig]
+        new int get_TuningSpace([Out] out ITuningSpace TuningSpace);
 
-        [return: MarshalAs(UnmanagedType.Interface)]
-        [PreserveSig, DispId(3)]
-        ITuneRequest Clone();
+        [PreserveSig]
+        new int get_Components([Out] out IComponents Components);
 
-        [DispId(4)]
-        ILocator Locator { 
-            [return: MarshalAs(UnmanagedType.Interface)] [PreserveSig, DispId(4)] get; 
-            [param: In, MarshalAs(UnmanagedType.Interface)] [PreserveSig, DispId(4)] set; 
-        }
+        [PreserveSig]
+        new int Clone([Out] out ITuneRequest NewTuneRequest);
 
-        [DispId(0x65)]
-        string ChannelID { 
-            [return: MarshalAs(UnmanagedType.BStr)] [PreserveSig, DispId(0x65)] get; 
-            [param: In, MarshalAs(UnmanagedType.BStr)] [PreserveSig, DispId(0x65)] set; 
-        }
+        [PreserveSig]
+        new int get_Locator([Out] out ILocator Locator);
+
+        [PreserveSig]
+        new int put_Locator([In] ILocator Locator);
+
+        #endregion
+
+        [PreserveSig]
+        int get_ChannelID([Out, MarshalAs(UnmanagedType.BStr)] out string ChannelID);
+
+        [PreserveSig]
+        int put_ChannelID([In, MarshalAs(UnmanagedType.BStr)] string ChannelID);
     }
 
 
@@ -1486,14 +1520,13 @@ namespace DirectShowLib.BDA
 
         [PreserveSig]
         int Load(
-            [In, MarshalAs(UnmanagedType.Struct)] object varValue
+            [In] object varValue
             );
 
         [PreserveSig]
         int Save(
-            [MarshalAs(UnmanagedType.Struct)] out object pvarFragment
+            [Out] out object pvarFragment
             );
-
     }
 
     [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
@@ -1501,12 +1534,11 @@ namespace DirectShowLib.BDA
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPersistTuneXmlUtility
     {
-        [return: MarshalAs(UnmanagedType.IUnknown)]
         [PreserveSig]
-        object Deserialize(
-            [In, MarshalAs(UnmanagedType.Struct)] object varValue
+        int Deserialize(
+            [In] object varValue,
+            [Out, MarshalAs(UnmanagedType.IUnknown)] out object ppObject
             );
-
     }
 
     [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
@@ -1639,10 +1671,10 @@ namespace DirectShowLib.BDA
     {
         #region IPersistTuneXmlUtility Methods
 
-        [return: MarshalAs(UnmanagedType.IUnknown)]
         [PreserveSig]
-        new object Deserialize(
-            [In, MarshalAs(UnmanagedType.Struct)] object varValue
+        new int Deserialize(
+            [In] object varValue,
+            [Out, MarshalAs(UnmanagedType.IUnknown)] out object ppObject
             );
 
         #endregion
