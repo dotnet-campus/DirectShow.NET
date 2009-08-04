@@ -76,7 +76,11 @@
   <ItemGroup>
     <Compile Include="IAMAsyncReaderTimestampScalingTest.cs" />
     <Compile Include="IAMPluginControlTest.cs" />
+    <Compile Include="IBDACreateTuneRequestExTest.cs" />
+    <Compile Include="IChannelIDTuneRequestTest.cs" />
     <Compile Include="IDigitalCableLocatorTest.cs" />
+    <Compile Include="IPersistTuneXmlTest.cs" />
+    <Compile Include="IPersistTuneXmlUtility2Test.cs" />
     <Compile Include="ISBE2GlobalEvent2Test.cs" />
     <Compile Include="ISBE2GlobalEventTest.cs" />
     <Compile Include="IAnalogAudioComponentTypeTest.cs" />
@@ -121,6 +125,18 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="MSXML2">
+      <Guid>{F5078F18-C551-11D3-89B9-0000F81FE221}</Guid>
+      <VersionMajor>3</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
   </ItemGroup>
 </Project>

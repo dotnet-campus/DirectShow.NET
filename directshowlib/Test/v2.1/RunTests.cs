@@ -7,8 +7,8 @@ namespace v2_1
         [MTAThread]
         static void Main(string[] args)
         {
-            ISBE2FileScanTest t01 = new ISBE2FileScanTest();
-            t01.DoTests();
+            //ISBE2FileScanTest t01 = new ISBE2FileScanTest();
+            //t01.DoTests();
 
             //ISBE2CrossbarTest t02 = new ISBE2CrossbarTest();
             //t02.DoTests();
@@ -57,6 +57,18 @@ namespace v2_1
 
             //IAnalogAudioComponentTypeTest t17 = new IAnalogAudioComponentTypeTest();
             //t17.DoTests();
+
+            //IBDACreateTuneRequestExTest t18 = new IBDACreateTuneRequestExTest();
+            //t18.DoTests();
+
+            //IChannelIDTuneRequestTest t19 = new IChannelIDTuneRequestTest();
+            //t19.DoTests();
+
+            //IPersistTuneXmlTest t20 = new IPersistTuneXmlTest();
+            //t20.DoTests();
+
+            IPersistTuneXmlUtility2Test t21 = new IPersistTuneXmlUtility2Test();
+            t21.DoTests();
         }
     }
 }

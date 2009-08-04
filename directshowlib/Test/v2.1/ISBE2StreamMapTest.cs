@@ -9,7 +9,7 @@ namespace v2_1
 {
     public class ISBE2StreamMapTest
     {
-        const string FILENAME = @"c:\foo.stub";
+        const string FILENAME = @"%TEMP%\foo.stub";
         private ISBE2StreamMap m_sm;
         private ISBE2Crossbar m_cb;
         IMediaControl m_imc2;
@@ -70,7 +70,7 @@ namespace v2_1
             hr = cgb.RenderStream(null, null, theDevice, null, sbs as IBaseFilter);
             DsError.ThrowExceptionForHR(hr);
 
-            hr = sbs.LockProfile(FILENAME);
+            hr = sbs.LockProfile(Environment.ExpandEnvironmentVariables(FILENAME));
             DsError.ThrowExceptionForHR(hr);
             SetupGraph2();
 
@@ -107,7 +107,7 @@ namespace v2_1
 
                 IFileSourceFilter sbfsf = (IFileSourceFilter)streamBuffer;
 
-                hr = sbfsf.Load(FILENAME, null);
+                hr = sbfsf.Load(Environment.ExpandEnvironmentVariables(FILENAME), null);
                 DsError.ThrowExceptionForHR(hr);
 
                 RenderPins(streamBuffer, icgb2);
