@@ -67,8 +67,8 @@ namespace v2_1
             //IPersistTuneXmlTest t20 = new IPersistTuneXmlTest();
             //t20.DoTests();
 
-            IPersistTuneXmlUtility2Test t21 = new IPersistTuneXmlUtility2Test();
-            t21.DoTests();
+            //IPersistTuneXmlUtility2Test t21 = new IPersistTuneXmlUtility2Test();
+            //t21.DoTests();
         }
     }
 }
