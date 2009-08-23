@@ -18,6 +18,7 @@ namespace v2_1
             Init,
             Run,
             Event,
+            WaitForDone,
             Exit
         }
 
@@ -59,14 +60,10 @@ namespace v2_1
 
         public void DoTests()
         {
-            //System.Threading.Thread.Sleep(50000);
-
             m_Q.Enqueue(new EventParams(EventCmd.Run));
             m_re.WaitOne();
 
-            IMediaEvent ime = m_mc as IMediaEvent;
-            EventCode ec;
-            ime.WaitForCompletion(-1, out ec);
+            System.Threading.Thread.Sleep(5000);
 
             m_Q.Enqueue(new EventParams(EventCmd.Exit));
             m_re.WaitOne();
@@ -94,8 +91,17 @@ namespace v2_1
                         break;
 
                     case EventCmd.Run:
-                        m_mc.Run();
+                        int hr = m_mc.Run();
+                        Debug.Assert(hr >= 0);
                         break;
+
+#if false
+                    case EventCmd.WaitForDone:
+                        EventCode ec;
+                        hr = ime.WaitForCompletion(-1, out ec);
+                        Debug.Assert(hr >= 0);
+                        break;
+#endif
 
                     case EventCmd.Event:
                         TryEvent(ep);
@@ -174,7 +180,7 @@ namespace v2_1
             RegisterForSBEGlobalEvents();
         }
 
-        private int HookupGraphEventService(IFilterGraph pGraph)
+        private void HookupGraphEventService(IFilterGraph pGraph)
         {
             object o;
             int hr;
@@ -200,16 +206,15 @@ namespace v2_1
                     spBroadcastEvent);
             }
 
-            return hr;
+            DsError.ThrowExceptionForHR(hr);
         }
 
         // Establish the connection point to receive events.
-        private int RegisterForSBEGlobalEvents()
+        private void RegisterForSBEGlobalEvents()
         {
             IConnectionPoint spConnectionPoint = (IConnectionPoint)spBroadcastEvent;
             spConnectionPoint.Advise((IBroadcastEventEx)(this),
                 out dwBroadcastEventCookie);
-            return 0;
         }
 
         #region IBroadcastEventEx Members
