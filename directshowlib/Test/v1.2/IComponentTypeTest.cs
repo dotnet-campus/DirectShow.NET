@@ -97,7 +97,7 @@ namespace DirectShowLib.Test
         private void TestMediaMajorType()
         {
             int hr;
-            string s = MediaType.Text.ToString("B").ToUpper();
+            string s = MediaType.Texts.ToString("B").ToUpper();
             string s2;
 
             hr = m_compType.put_MediaMajorType(s);
@@ -145,7 +145,7 @@ namespace DirectShowLib.Test
             hr = m_compType.get_MediaType(mt);
             DsError.ThrowExceptionForHR(hr);
 
-            Debug.Assert(mt.majorType == MediaType.Text, "get_MediaType");
+            Debug.Assert(mt.majorType == MediaType.Texts, "get_MediaType");
 
             hr = m_compType.put_MediaType(mt);
             DsError.ThrowExceptionForHR(hr);
