@@ -1,4 +1,21 @@
 -----------------------------------------------------------------
+v 2.1 - Upgrade with support for W7 interfaces (2010-02-21)
+
+   541 Defined
+   304 Tested
+
+   See Interfaces.txt for the current list of tested interfaces.
+
+Fixed 1 bug related to 64bit in DsRotEntry.
+
+W7 introduced a number of new interfaces.  Most of these had to do with digital TV, but
+there were a few that are generally useful:
+
+http://msdn.microsoft.com/en-us/library/dd390976%28VS.85%29.aspx
+
+These interfaces are defined in the library, but most of them are untested.
+
+-----------------------------------------------------------------
 v 2.0 - Upgrade with breaking changes (2007-07-15)
 
 In this release, we added the new interfaces introduced into DirectShow in Vista.  Obviously
