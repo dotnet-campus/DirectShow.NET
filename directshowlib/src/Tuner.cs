@@ -173,7 +173,25 @@ namespace DirectShowLib.BDA
     {
     }
 
-#if ALLOW_UNTESTED_INTERFACES
+    [ComImport, Guid("CC829A2F-3365-463f-AF13-81DBB6F3A555")]
+    public class ChannelIDTuningSpace
+    {
+    }
+
+    [ComImport, Guid("03C06416-D127-407A-AB4C-FDD279ABBE5D")]
+    public class DigitalCableLocator
+    {
+    }
+
+    [ComImport, Guid("E77026B0-B97F-4cbb-B7FB-F4F03AD69F11")]
+    public class PersistTuneXmlUtility
+    {
+    }
+
+    [ComImport, Guid("26EC0B63-AA90-458A-8DF4-5659F2C8A18A")]
+    public class DigitalCableTuneRequest
+    {
+    }
 
     [ComImport, Guid("D9BB4CEE-B87A-47F1-AC92-B08D9C7813FC")]
     public class DigitalCableTuningSpace
@@ -185,28 +203,15 @@ namespace DirectShowLib.BDA
     {
     }
 
-    [ComImport, Guid("26EC0B63-AA90-458A-8DF4-5659F2C8A18A")]
-    public class DigitalCableTuneRequest
-    {
-    }
-
-    [ComImport, Guid("6E50CC0D-C19B-4BF6-810B-5BD60761F5CC")]
-    public class DigitalLocator
-    {
-    }
-
     [ComImport, Guid("49638B91-48AB-48B7-A47A-7D0E75A08EDE")]
     public class AnalogLocator
     {
     }
 
-    [ComImport, Guid("03C06416-D127-407A-AB4C-FDD279ABBE5D")]
-    public class DigitalCableLocator
-    {
-    }
+#if ALLOW_UNTESTED_INTERFACES
 
-    [ComImport, Guid("CC829A2F-3365-463f-AF13-81DBB6F3A555")]
-    public class ChannelIDTuningSpace
+    [ComImport, Guid("6E50CC0D-C19B-4BF6-810B-5BD60761F5CC")]
+    public class DigitalLocator
     {
     }
 
@@ -222,11 +227,6 @@ namespace DirectShowLib.BDA
 
     [ComImport, Guid("6438570B-0C08-4a25-9504-8012BB4D50CF")]
     public class TunerMarshaler
-    {
-    }
-
-    [ComImport, Guid("E77026B0-B97F-4cbb-B7FB-F4F03AD69F11")]
-    public class PersistTuneXmlUtility
     {
     }
 
@@ -271,157 +271,6 @@ namespace DirectShowLib.BDA
     #region Interfaces
 
 #if ALLOW_UNTESTED_INTERFACES
-
-    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
-    Guid("013F9F9C-B449-4ec7-A6D2-9D4F2FC70AE5"),
-    InterfaceType(ComInterfaceType.InterfaceIsDual)]
-    public interface IDigitalCableTuningSpace : IATSCTuningSpace
-    {
-        #region ITuningSpace Methods
-
-        [PreserveSig]
-        new int get_UniqueName([Out, MarshalAs(UnmanagedType.BStr)] out string Name);
-
-        [PreserveSig]
-        new int put_UniqueName([In, MarshalAs(UnmanagedType.BStr)] string Name);
-
-        [PreserveSig]
-        new int get_FriendlyName([Out, MarshalAs(UnmanagedType.BStr)] out string Name);
-
-        [PreserveSig]
-        new int put_FriendlyName([In, MarshalAs(UnmanagedType.BStr)] string Name);
-
-        [PreserveSig]
-        new int get_CLSID([Out, MarshalAs(UnmanagedType.BStr)] out string SpaceCLSID);
-
-        [PreserveSig]
-        new int get_NetworkType([Out, MarshalAs(UnmanagedType.BStr)] out string NetworkTypeGuid);
-
-        [PreserveSig]
-        new int put_NetworkType([In, MarshalAs(UnmanagedType.BStr)] string NetworkTypeGuid);
-
-        [PreserveSig]
-        new int get__NetworkType([Out] out Guid NetworkTypeGuid);
-
-        [PreserveSig]
-        new int put__NetworkType([In, MarshalAs(UnmanagedType.LPStruct)] Guid NetworkTypeGuid);
-
-        [PreserveSig]
-        new int CreateTuneRequest([Out] out ITuneRequest TuneRequest);
-
-        [PreserveSig]
-        new int EnumCategoryGUIDs([Out, MarshalAs(UnmanagedType.IUnknown)] out object ppEnum); // IEnumGUID**
-
-        [PreserveSig]
-#if USING_NET11
-      new int EnumDeviceMonikers([Out] out UCOMIEnumMoniker ppEnum);
-#else
-        new int EnumDeviceMonikers([Out] out IEnumMoniker ppEnum);
-#endif
-
-        [PreserveSig]
-        new int get_DefaultPreferredComponentTypes([Out] out IComponentTypes ComponentTypes);
-
-        [PreserveSig]
-        new int put_DefaultPreferredComponentTypes([In] IComponentTypes NewComponentTypes);
-
-        [PreserveSig]
-        new int get_FrequencyMapping([Out, MarshalAs(UnmanagedType.BStr)] out string pMapping);
-
-        [PreserveSig]
-        new int put_FrequencyMapping([In, MarshalAs(UnmanagedType.BStr)] string Mapping);
-
-        [PreserveSig]
-        new int get_DefaultLocator([Out] out ILocator LocatorVal);
-
-        [PreserveSig]
-        new int put_DefaultLocator([In] ILocator LocatorVal);
-
-        [PreserveSig]
-        new int Clone([Out] out ITuningSpace NewTS);
-
-        #endregion
-
-        #region IAnalogTVTuningSpace Methods
-
-        [PreserveSig]
-        new int get_MinChannel([Out] out int MinChannelVal);
-
-        [PreserveSig]
-        new int put_MinChannel([In] int NewMinChannelVal);
-
-        [PreserveSig]
-        new int get_MaxChannel([Out] out int MaxChannelVal);
-
-        [PreserveSig]
-        new int put_MaxChannel([In] int NewMaxChannelVal);
-
-        [PreserveSig]
-        new int get_InputType([Out] out TunerInputType InputTypeVal);
-
-        [PreserveSig]
-        new int put_InputType([In] TunerInputType NewInputTypeVal);
-
-        [PreserveSig]
-        new int get_CountryCode([Out] out int CountryCodeVal);
-
-        [PreserveSig]
-        new int put_CountryCode([In] int NewCountryCodeVal);
-
-        #endregion
-
-        #region IATSCTuningSpace Methods
-
-        [PreserveSig]
-        new int get_MinMinorChannel([Out] out int MinMinorChannelVal);
-
-        [PreserveSig]
-        new int put_MinMinorChannel([In] int NewMinMinorChannelVal);
-
-        [PreserveSig]
-        new int get_MaxMinorChannel([Out] out int MaxMinorChannelVal);
-
-        [PreserveSig]
-        new int put_MaxMinorChannel([In] int NewMaxMinorChannelVal);
-
-        [PreserveSig]
-        new int get_MinPhysicalChannel([Out] out int MinPhysicalChannelVal);
-
-        [PreserveSig]
-        new int put_MinPhysicalChannel([In] int NewMinPhysicalChannelVal);
-
-        [PreserveSig]
-        new int get_MaxPhysicalChannel([Out] out int MaxPhysicalChannelVal);
-
-        [PreserveSig]
-        new int put_MaxPhysicalChannel([In] int NewMaxPhysicalChannelVal);
-
-        #endregion
-
-        [PreserveSig]
-        int get_MinMajorChannel([Out] out int MinMajorChannelVal);
-
-        [PreserveSig]
-        int put_MinMajorChannel([In] int NewMinMajorChannelVal);
-
-        [PreserveSig]
-        int get_MaxMajorChannel([Out] out int MaxMajorChannelVal);
-
-        [PreserveSig]
-        int put_MaxMajorChannel([In] int NewMaxMajorChannelVal);
-
-        [PreserveSig]
-        int get_MinSourceID([Out] out int MinSourceIDVal);
-
-        [PreserveSig]
-        int put_MinSourceID([In] int NewMinSourceIDVal);
-
-        [PreserveSig]
-        int get_MaxSourceID([Out] out int MaxSourceIDVal);
-
-        [PreserveSig]
-        int put_MaxSourceID([In] int NewMaxSourceIDVal);
-    }
 
     [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("BAD7753B-6B37-4810-AE57-3CE0C4A9E6CB"),
@@ -585,215 +434,6 @@ namespace DirectShowLib.BDA
     }
 
     [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
-    Guid("2CFEB2A8-1787-4A24-A941-C6EAEC39C842"),
-    InterfaceType(ComInterfaceType.InterfaceIsDual)]
-    public interface IAnalogAudioComponentType : IComponentType
-    {
-        #region IComponentType Methods
-
-        [PreserveSig]
-        new int get_Category([Out] out ComponentCategory Category);
-
-        [PreserveSig]
-        new int put_Category([In] ComponentCategory Category);
-
-        [PreserveSig]
-        new int get_MediaMajorType([Out, MarshalAs(UnmanagedType.BStr)] out string MediaMajorType);
-
-        [PreserveSig]
-        new int put_MediaMajorType([In, MarshalAs(UnmanagedType.BStr)] string MediaMajorType);
-
-        [PreserveSig]
-        new int get__MediaMajorType([Out] out Guid MediaMajorType);
-
-        [PreserveSig]
-        new int put__MediaMajorType([In, MarshalAs(UnmanagedType.LPStruct)] Guid MediaMajorType);
-
-        [PreserveSig]
-        new int get_MediaSubType([Out, MarshalAs(UnmanagedType.BStr)] out string MediaSubType);
-
-        [PreserveSig]
-        new int put_MediaSubType([In, MarshalAs(UnmanagedType.BStr)] string MediaSubType);
-
-        [PreserveSig]
-        new int get__MediaSubType([Out] out Guid MediaSubType);
-
-        [PreserveSig]
-        new int put__MediaSubType([In, MarshalAs(UnmanagedType.LPStruct)] Guid MediaSubType);
-
-        [PreserveSig]
-        new int get_MediaFormatType([Out, MarshalAs(UnmanagedType.BStr)] out string MediaFormatType);
-
-        [PreserveSig]
-        new int put_MediaFormatType([In, MarshalAs(UnmanagedType.BStr)] string MediaFormatType);
-
-        [PreserveSig]
-        new int get__MediaFormatType([Out] out Guid MediaFormatType);
-
-        [PreserveSig]
-        new int put__MediaFormatType([In, MarshalAs(UnmanagedType.LPStruct)] Guid MediaFormatType);
-
-        [PreserveSig]
-        new int get_MediaType([Out] AMMediaType MediaType);
-
-        [PreserveSig]
-        new int put_MediaType([In] AMMediaType MediaType);
-
-        [PreserveSig]
-        new int Clone([Out] out IComponentType NewCT);
-
-        #endregion
-
-        [PreserveSig]
-        int get_AnalogAudioMode([Out] out TVAudioMode Mode);
-
-        [PreserveSig]
-        int put_AnalogAudioMode([In] TVAudioMode Mode);
-    }
-
-    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
-    Guid("34D1F26B-E339-430D-ABCE-738CB48984DC"),
-    InterfaceType(ComInterfaceType.InterfaceIsDual)]
-    public interface IAnalogLocator : ILocator
-    {
-        #region ILocator Methods
-
-        [PreserveSig]
-        new int get_CarrierFrequency([Out] out int Frequency);
-
-        [PreserveSig]
-        new int put_CarrierFrequency([In] int Frequency);
-
-        [PreserveSig]
-        new int get_InnerFEC([Out] out FECMethod FEC);
-
-        [PreserveSig]
-        new int put_InnerFEC([In] FECMethod FEC);
-
-        [PreserveSig]
-        new int get_InnerFECRate([Out] out BinaryConvolutionCodeRate FEC);
-
-        [PreserveSig]
-        new int put_InnerFECRate([In] BinaryConvolutionCodeRate FEC);
-
-        [PreserveSig]
-        new int get_OuterFEC([Out] out FECMethod FEC);
-
-        [PreserveSig]
-        new int put_OuterFEC([In] FECMethod FEC);
-
-        [PreserveSig]
-        new int get_OuterFECRate([Out] out BinaryConvolutionCodeRate FEC);
-
-        [PreserveSig]
-        new int put_OuterFECRate([In] BinaryConvolutionCodeRate FEC);
-
-        [PreserveSig]
-        new int get_Modulation([Out] out ModulationType Modulation);
-
-        [PreserveSig]
-        new int put_Modulation([In] ModulationType Modulation);
-
-        [PreserveSig]
-        new int get_SymbolRate([Out] out int Rate);
-
-        [PreserveSig]
-        new int put_SymbolRate([In] int Rate);
-
-        [PreserveSig]
-        new int Clone([Out] out ILocator NewLocator);
-
-        #endregion
-
-        [PreserveSig]
-        int get_VideoStandard([Out] out AnalogVideoStandard AVS);
-
-        [PreserveSig]
-        int put_VideoStandard([In] AnalogVideoStandard AVS);
-    }
-
-    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
-    Guid("48F66A11-171A-419A-9525-BEEECD51584C"),
-    InterfaceType(ComInterfaceType.InterfaceIsDual)]
-    public interface IDigitalCableLocator : IATSCLocator2
-    {
-        #region ILocator Methods
-
-        [PreserveSig]
-        new int get_CarrierFrequency([Out] out int Frequency);
-
-        [PreserveSig]
-        new int put_CarrierFrequency([In] int Frequency);
-
-        [PreserveSig]
-        new int get_InnerFEC([Out] out FECMethod FEC);
-
-        [PreserveSig]
-        new int put_InnerFEC([In] FECMethod FEC);
-
-        [PreserveSig]
-        new int get_InnerFECRate([Out] out BinaryConvolutionCodeRate FEC);
-
-        [PreserveSig]
-        new int put_InnerFECRate([In] BinaryConvolutionCodeRate FEC);
-
-        [PreserveSig]
-        new int get_OuterFEC([Out] out FECMethod FEC);
-
-        [PreserveSig]
-        new int put_OuterFEC([In] FECMethod FEC);
-
-        [PreserveSig]
-        new int get_OuterFECRate([Out] out BinaryConvolutionCodeRate FEC);
-
-        [PreserveSig]
-        new int put_OuterFECRate([In] BinaryConvolutionCodeRate FEC);
-
-        [PreserveSig]
-        new int get_Modulation([Out] out ModulationType Modulation);
-
-        [PreserveSig]
-        new int put_Modulation([In] ModulationType Modulation);
-
-        [PreserveSig]
-        new int get_SymbolRate([Out] out int Rate);
-
-        [PreserveSig]
-        new int put_SymbolRate([In] int Rate);
-
-        [PreserveSig]
-        new int Clone([Out] out ILocator NewLocator);
-
-        #endregion
-
-        #region IATSCLocator Methods
-
-        [PreserveSig]
-        new int get_PhysicalChannel([Out] out int PhysicalChannel);
-
-        [PreserveSig]
-        new int put_PhysicalChannel([In] int PhysicalChannel);
-
-        [PreserveSig]
-        new int get_TSID([Out] out int TSID);
-
-        [PreserveSig]
-        new int put_TSID([In] int TSID);
-
-        #endregion
-
-        #region IATSCLocator2 Methods
-
-        [PreserveSig]
-        new int get_ProgramNumber([Out] out int ProgramNumber);
-
-        [PreserveSig]
-        new int put_ProgramNumber([In] int ProgramNumber);
-
-        #endregion
-    }
-
-    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("359B3901-572C-4854-BB49-CDEF66606A25"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IRegisterTuner
@@ -860,50 +500,6 @@ namespace DirectShowLib.BDA
         [PreserveSig]
         int AutoProgram();
     }
-
-    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
-    Guid("C0A4A1D4-2B3C-491A-BA22-499FBADD4D12"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IBDACreateTuneRequestEx
-    {
-        [PreserveSig]
-        int CreateTuneRequestEx(
-            [In, MarshalAs(UnmanagedType.LPStruct)] Guid TuneRequestIID,
-            [Out] out ITuneRequest ppTuneRequest
-            );
-    }
-
-    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
-    Guid("156EFF60-86F4-4E28-89FC-109799FD57EE"),
-    InterfaceType(ComInterfaceType.InterfaceIsDual)]
-    public interface IChannelIDTuneRequest : ITuneRequest
-    {
-        #region ITuneRequest Methods
-
-        [PreserveSig]
-        new int get_TuningSpace([Out] out ITuningSpace TuningSpace);
-
-        [PreserveSig]
-        new int get_Components([Out] out IComponents Components);
-
-        [PreserveSig]
-        new int Clone([Out] out ITuneRequest NewTuneRequest);
-
-        [PreserveSig]
-        new int get_Locator([Out] out ILocator Locator);
-
-        [PreserveSig]
-        new int put_Locator([In] ILocator Locator);
-
-        #endregion
-
-        [PreserveSig]
-        int get_ChannelID([Out, MarshalAs(UnmanagedType.BStr)] out string ChannelID);
-
-        [PreserveSig]
-        int put_ChannelID([In, MarshalAs(UnmanagedType.BStr)] string ChannelID);
-    }
-
 
     [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("6044634A-1733-4F99-B982-5FB12AFCE4F0"),
@@ -1500,47 +1096,6 @@ namespace DirectShowLib.BDA
 
     }
 
-
-    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
-    Guid("0754CD31-8D15-47A9-8215-D20064157244"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IPersistTuneXml : IPersist
-    {
-        #region IPersist Methods
-
-        [PreserveSig]
-        new int GetClassID(
-            out Guid pClassID
-            );
-
-        #endregion
-
-        [PreserveSig]
-        int InitNew();
-
-        [PreserveSig]
-        int Load(
-            [In] object varValue
-            );
-
-        [PreserveSig]
-        int Save(
-            [Out] out object pvarFragment
-            );
-    }
-
-    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
-    Guid("990237AE-AC11-4614-BE8F-DD217A4CB4CB"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IPersistTuneXmlUtility
-    {
-        [PreserveSig]
-        int Deserialize(
-            [In] object varValue,
-            [Out, MarshalAs(UnmanagedType.IUnknown)] out object ppObject
-            );
-    }
-
     [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("ED3E0C66-18C8-4EA6-9300-F6841FDD35DC"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -1662,28 +1217,6 @@ namespace DirectShowLib.BDA
         int put_PhysicalLayerPipeId( 
             int PhysicalLayerPipeIdVal
             );        
-    }
-
-    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
-    Guid("992E165F-EA24-4b2f-9A1D-009D92120451"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IPersistTuneXmlUtility2 : IPersistTuneXmlUtility
-    {
-        #region IPersistTuneXmlUtility Methods
-
-        [PreserveSig]
-        new int Deserialize(
-            [In] object varValue,
-            [Out, MarshalAs(UnmanagedType.IUnknown)] out object ppObject
-            );
-
-        #endregion
-
-        [PreserveSig]
-        int Serialize( 
-            ITuneRequest piTuneRequest,
-            [Out, MarshalAs(UnmanagedType.BStr)] out string pString
-            );
     }
 
 #endif
@@ -4111,6 +3644,471 @@ namespace DirectShowLib.BDA
         int put_CountryCode(
             int NewCountryCodeVal
             );
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("990237AE-AC11-4614-BE8F-DD217A4CB4CB"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IPersistTuneXmlUtility
+    {
+        [PreserveSig]
+        int Deserialize(
+            [In] object varValue,
+            [Out, MarshalAs(UnmanagedType.IUnknown)] out object ppObject
+            );
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("992E165F-EA24-4b2f-9A1D-009D92120451"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IPersistTuneXmlUtility2 : IPersistTuneXmlUtility
+    {
+        #region IPersistTuneXmlUtility Methods
+
+        [PreserveSig]
+        new int Deserialize(
+            [In] object varValue,
+            [Out, MarshalAs(UnmanagedType.IUnknown)] out object ppObject
+            );
+
+        #endregion
+
+        [PreserveSig]
+        int Serialize(
+            ITuneRequest piTuneRequest,
+            [Out, MarshalAs(UnmanagedType.BStr)] out string pString
+            );
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("0754CD31-8D15-47A9-8215-D20064157244"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IPersistTuneXml : IPersist
+    {
+        #region IPersist Methods
+
+        [PreserveSig]
+        new int GetClassID(
+            out Guid pClassID
+            );
+
+        #endregion
+
+        [PreserveSig]
+        int InitNew();
+
+        [PreserveSig]
+        int Load(
+            [In] object varValue
+            );
+
+        [PreserveSig]
+        int Save(
+            [Out] out object pvarFragment
+            );
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("C0A4A1D4-2B3C-491A-BA22-499FBADD4D12"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IBDACreateTuneRequestEx
+    {
+        [PreserveSig]
+        int CreateTuneRequestEx(
+            [In, MarshalAs(UnmanagedType.LPStruct)] Guid TuneRequestIID,
+            [Out] out ITuneRequest ppTuneRequest
+            );
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("48F66A11-171A-419A-9525-BEEECD51584C"),
+    InterfaceType(ComInterfaceType.InterfaceIsDual)]
+    public interface IDigitalCableLocator : IATSCLocator2
+    {
+        #region ILocator Methods
+
+        [PreserveSig]
+        new int get_CarrierFrequency([Out] out int Frequency);
+
+        [PreserveSig]
+        new int put_CarrierFrequency([In] int Frequency);
+
+        [PreserveSig]
+        new int get_InnerFEC([Out] out FECMethod FEC);
+
+        [PreserveSig]
+        new int put_InnerFEC([In] FECMethod FEC);
+
+        [PreserveSig]
+        new int get_InnerFECRate([Out] out BinaryConvolutionCodeRate FEC);
+
+        [PreserveSig]
+        new int put_InnerFECRate([In] BinaryConvolutionCodeRate FEC);
+
+        [PreserveSig]
+        new int get_OuterFEC([Out] out FECMethod FEC);
+
+        [PreserveSig]
+        new int put_OuterFEC([In] FECMethod FEC);
+
+        [PreserveSig]
+        new int get_OuterFECRate([Out] out BinaryConvolutionCodeRate FEC);
+
+        [PreserveSig]
+        new int put_OuterFECRate([In] BinaryConvolutionCodeRate FEC);
+
+        [PreserveSig]
+        new int get_Modulation([Out] out ModulationType Modulation);
+
+        [PreserveSig]
+        new int put_Modulation([In] ModulationType Modulation);
+
+        [PreserveSig]
+        new int get_SymbolRate([Out] out int Rate);
+
+        [PreserveSig]
+        new int put_SymbolRate([In] int Rate);
+
+        [PreserveSig]
+        new int Clone([Out] out ILocator NewLocator);
+
+        #endregion
+
+        #region IATSCLocator Methods
+
+        [PreserveSig]
+        new int get_PhysicalChannel([Out] out int PhysicalChannel);
+
+        [PreserveSig]
+        new int put_PhysicalChannel([In] int PhysicalChannel);
+
+        [PreserveSig]
+        new int get_TSID([Out] out int TSID);
+
+        [PreserveSig]
+        new int put_TSID([In] int TSID);
+
+        #endregion
+
+        #region IATSCLocator2 Methods
+
+        [PreserveSig]
+        new int get_ProgramNumber([Out] out int ProgramNumber);
+
+        [PreserveSig]
+        new int put_ProgramNumber([In] int ProgramNumber);
+
+        #endregion
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("156EFF60-86F4-4E28-89FC-109799FD57EE"),
+    InterfaceType(ComInterfaceType.InterfaceIsDual)]
+    public interface IChannelIDTuneRequest : ITuneRequest
+    {
+        #region ITuneRequest Methods
+
+        [PreserveSig]
+        new int get_TuningSpace([Out] out ITuningSpace TuningSpace);
+
+        [PreserveSig]
+        new int get_Components([Out] out IComponents Components);
+
+        [PreserveSig]
+        new int Clone([Out] out ITuneRequest NewTuneRequest);
+
+        [PreserveSig]
+        new int get_Locator([Out] out ILocator Locator);
+
+        [PreserveSig]
+        new int put_Locator([In] ILocator Locator);
+
+        #endregion
+
+        [PreserveSig]
+        int get_ChannelID([Out, MarshalAs(UnmanagedType.BStr)] out string ChannelID);
+
+        [PreserveSig]
+        int put_ChannelID([In, MarshalAs(UnmanagedType.BStr)] string ChannelID);
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("34D1F26B-E339-430D-ABCE-738CB48984DC"),
+    InterfaceType(ComInterfaceType.InterfaceIsDual)]
+    public interface IAnalogLocator : ILocator
+    {
+        #region ILocator Methods
+
+        [PreserveSig]
+        new int get_CarrierFrequency([Out] out int Frequency);
+
+        [PreserveSig]
+        new int put_CarrierFrequency([In] int Frequency);
+
+        [PreserveSig]
+        new int get_InnerFEC([Out] out FECMethod FEC);
+
+        [PreserveSig]
+        new int put_InnerFEC([In] FECMethod FEC);
+
+        [PreserveSig]
+        new int get_InnerFECRate([Out] out BinaryConvolutionCodeRate FEC);
+
+        [PreserveSig]
+        new int put_InnerFECRate([In] BinaryConvolutionCodeRate FEC);
+
+        [PreserveSig]
+        new int get_OuterFEC([Out] out FECMethod FEC);
+
+        [PreserveSig]
+        new int put_OuterFEC([In] FECMethod FEC);
+
+        [PreserveSig]
+        new int get_OuterFECRate([Out] out BinaryConvolutionCodeRate FEC);
+
+        [PreserveSig]
+        new int put_OuterFECRate([In] BinaryConvolutionCodeRate FEC);
+
+        [PreserveSig]
+        new int get_Modulation([Out] out ModulationType Modulation);
+
+        [PreserveSig]
+        new int put_Modulation([In] ModulationType Modulation);
+
+        [PreserveSig]
+        new int get_SymbolRate([Out] out int Rate);
+
+        [PreserveSig]
+        new int put_SymbolRate([In] int Rate);
+
+        [PreserveSig]
+        new int Clone([Out] out ILocator NewLocator);
+
+        #endregion
+
+        [PreserveSig]
+        int get_VideoStandard([Out] out AnalogVideoStandard AVS);
+
+        [PreserveSig]
+        int put_VideoStandard([In] AnalogVideoStandard AVS);
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("013F9F9C-B449-4ec7-A6D2-9D4F2FC70AE5"),
+    InterfaceType(ComInterfaceType.InterfaceIsDual)]
+    public interface IDigitalCableTuningSpace : IATSCTuningSpace
+    {
+        #region ITuningSpace Methods
+
+        [PreserveSig]
+        new int get_UniqueName([Out, MarshalAs(UnmanagedType.BStr)] out string Name);
+
+        [PreserveSig]
+        new int put_UniqueName([In, MarshalAs(UnmanagedType.BStr)] string Name);
+
+        [PreserveSig]
+        new int get_FriendlyName([Out, MarshalAs(UnmanagedType.BStr)] out string Name);
+
+        [PreserveSig]
+        new int put_FriendlyName([In, MarshalAs(UnmanagedType.BStr)] string Name);
+
+        [PreserveSig]
+        new int get_CLSID([Out, MarshalAs(UnmanagedType.BStr)] out string SpaceCLSID);
+
+        [PreserveSig]
+        new int get_NetworkType([Out, MarshalAs(UnmanagedType.BStr)] out string NetworkTypeGuid);
+
+        [PreserveSig]
+        new int put_NetworkType([In, MarshalAs(UnmanagedType.BStr)] string NetworkTypeGuid);
+
+        [PreserveSig]
+        new int get__NetworkType([Out] out Guid NetworkTypeGuid);
+
+        [PreserveSig]
+        new int put__NetworkType([In, MarshalAs(UnmanagedType.LPStruct)] Guid NetworkTypeGuid);
+
+        [PreserveSig]
+        new int CreateTuneRequest([Out] out ITuneRequest TuneRequest);
+
+        [PreserveSig]
+        new int EnumCategoryGUIDs([Out, MarshalAs(UnmanagedType.IUnknown)] out object ppEnum); // IEnumGUID**
+
+        [PreserveSig]
+#if USING_NET11
+      new int EnumDeviceMonikers([Out] out UCOMIEnumMoniker ppEnum);
+#else
+        new int EnumDeviceMonikers([Out] out IEnumMoniker ppEnum);
+#endif
+
+        [PreserveSig]
+        new int get_DefaultPreferredComponentTypes([Out] out IComponentTypes ComponentTypes);
+
+        [PreserveSig]
+        new int put_DefaultPreferredComponentTypes([In] IComponentTypes NewComponentTypes);
+
+        [PreserveSig]
+        new int get_FrequencyMapping([Out, MarshalAs(UnmanagedType.BStr)] out string pMapping);
+
+        [PreserveSig]
+        new int put_FrequencyMapping([In, MarshalAs(UnmanagedType.BStr)] string Mapping);
+
+        [PreserveSig]
+        new int get_DefaultLocator([Out] out ILocator LocatorVal);
+
+        [PreserveSig]
+        new int put_DefaultLocator([In] ILocator LocatorVal);
+
+        [PreserveSig]
+        new int Clone([Out] out ITuningSpace NewTS);
+
+        #endregion
+
+        #region IAnalogTVTuningSpace Methods
+
+        [PreserveSig]
+        new int get_MinChannel([Out] out int MinChannelVal);
+
+        [PreserveSig]
+        new int put_MinChannel([In] int NewMinChannelVal);
+
+        [PreserveSig]
+        new int get_MaxChannel([Out] out int MaxChannelVal);
+
+        [PreserveSig]
+        new int put_MaxChannel([In] int NewMaxChannelVal);
+
+        [PreserveSig]
+        new int get_InputType([Out] out TunerInputType InputTypeVal);
+
+        [PreserveSig]
+        new int put_InputType([In] TunerInputType NewInputTypeVal);
+
+        [PreserveSig]
+        new int get_CountryCode([Out] out int CountryCodeVal);
+
+        [PreserveSig]
+        new int put_CountryCode([In] int NewCountryCodeVal);
+
+        #endregion
+
+        #region IATSCTuningSpace Methods
+
+        [PreserveSig]
+        new int get_MinMinorChannel([Out] out int MinMinorChannelVal);
+
+        [PreserveSig]
+        new int put_MinMinorChannel([In] int NewMinMinorChannelVal);
+
+        [PreserveSig]
+        new int get_MaxMinorChannel([Out] out int MaxMinorChannelVal);
+
+        [PreserveSig]
+        new int put_MaxMinorChannel([In] int NewMaxMinorChannelVal);
+
+        [PreserveSig]
+        new int get_MinPhysicalChannel([Out] out int MinPhysicalChannelVal);
+
+        [PreserveSig]
+        new int put_MinPhysicalChannel([In] int NewMinPhysicalChannelVal);
+
+        [PreserveSig]
+        new int get_MaxPhysicalChannel([Out] out int MaxPhysicalChannelVal);
+
+        [PreserveSig]
+        new int put_MaxPhysicalChannel([In] int NewMaxPhysicalChannelVal);
+
+        #endregion
+
+        [PreserveSig]
+        int get_MinMajorChannel([Out] out int MinMajorChannelVal);
+
+        [PreserveSig]
+        int put_MinMajorChannel([In] int NewMinMajorChannelVal);
+
+        [PreserveSig]
+        int get_MaxMajorChannel([Out] out int MaxMajorChannelVal);
+
+        [PreserveSig]
+        int put_MaxMajorChannel([In] int NewMaxMajorChannelVal);
+
+        [PreserveSig]
+        int get_MinSourceID([Out] out int MinSourceIDVal);
+
+        [PreserveSig]
+        int put_MinSourceID([In] int NewMinSourceIDVal);
+
+        [PreserveSig]
+        int get_MaxSourceID([Out] out int MaxSourceIDVal);
+
+        [PreserveSig]
+        int put_MaxSourceID([In] int NewMaxSourceIDVal);
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("2CFEB2A8-1787-4A24-A941-C6EAEC39C842"),
+    InterfaceType(ComInterfaceType.InterfaceIsDual)]
+    public interface IAnalogAudioComponentType : IComponentType
+    {
+        #region IComponentType Methods
+
+        [PreserveSig]
+        new int get_Category([Out] out ComponentCategory Category);
+
+        [PreserveSig]
+        new int put_Category([In] ComponentCategory Category);
+
+        [PreserveSig]
+        new int get_MediaMajorType([Out, MarshalAs(UnmanagedType.BStr)] out string MediaMajorType);
+
+        [PreserveSig]
+        new int put_MediaMajorType([In, MarshalAs(UnmanagedType.BStr)] string MediaMajorType);
+
+        [PreserveSig]
+        new int get__MediaMajorType([Out] out Guid MediaMajorType);
+
+        [PreserveSig]
+        new int put__MediaMajorType([In, MarshalAs(UnmanagedType.LPStruct)] Guid MediaMajorType);
+
+        [PreserveSig]
+        new int get_MediaSubType([Out, MarshalAs(UnmanagedType.BStr)] out string MediaSubType);
+
+        [PreserveSig]
+        new int put_MediaSubType([In, MarshalAs(UnmanagedType.BStr)] string MediaSubType);
+
+        [PreserveSig]
+        new int get__MediaSubType([Out] out Guid MediaSubType);
+
+        [PreserveSig]
+        new int put__MediaSubType([In, MarshalAs(UnmanagedType.LPStruct)] Guid MediaSubType);
+
+        [PreserveSig]
+        new int get_MediaFormatType([Out, MarshalAs(UnmanagedType.BStr)] out string MediaFormatType);
+
+        [PreserveSig]
+        new int put_MediaFormatType([In, MarshalAs(UnmanagedType.BStr)] string MediaFormatType);
+
+        [PreserveSig]
+        new int get__MediaFormatType([Out] out Guid MediaFormatType);
+
+        [PreserveSig]
+        new int put__MediaFormatType([In, MarshalAs(UnmanagedType.LPStruct)] Guid MediaFormatType);
+
+        [PreserveSig]
+        new int get_MediaType([Out] AMMediaType MediaType);
+
+        [PreserveSig]
+        new int put_MediaType([In] AMMediaType MediaType);
+
+        [PreserveSig]
+        new int Clone([Out] out IComponentType NewCT);
+
+        #endregion
+
+        [PreserveSig]
+        int get_AnalogAudioMode([Out] out TVAudioMode Mode);
+
+        [PreserveSig]
+        int put_AnalogAudioMode([In] TVAudioMode Mode);
     }
 
     #endregion

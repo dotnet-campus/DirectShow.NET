@@ -2334,69 +2334,6 @@ namespace DirectShowLib
             );
     }
 
-    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
-    Guid("cf7b26fc-9a00-485b-8147-3e789d5e8f67"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IAMAsyncReaderTimestampScaling
-    {
-        [PreserveSig]
-        int GetTimestampMode(
-            [MarshalAs(UnmanagedType.Bool)] out bool pfRaw
-            );
-
-        [PreserveSig]
-        int SetTimestampMode(
-            [MarshalAs(UnmanagedType.Bool)] bool fRaw
-            );
-    }
-
-    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
-    Guid("0e26a181-f40c-4635-8786-976284b52981"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IAMPluginControl
-    {
-        [PreserveSig]
-        int GetPreferredClsid(
-            [In, MarshalAs(UnmanagedType.LPStruct)] Guid subType,
-            out Guid clsid
-            );
-
-        [PreserveSig]
-        int GetPreferredClsidByIndex(
-            int index,
-            out Guid subType,
-            out Guid clsid
-            );
-
-        [PreserveSig]
-        int SetPreferredClsid(
-            [In, MarshalAs(UnmanagedType.LPStruct)] Guid subType,
-            [In, MarshalAs(UnmanagedType.LPStruct)] DsGuid clsid
-            );
-
-        [PreserveSig]
-        int IsDisabled(
-            [In, MarshalAs(UnmanagedType.LPStruct)] Guid clsid
-            );
-
-        [PreserveSig]
-        int GetDisabledByIndex(
-            int index,
-            out Guid clsid
-            );
-
-        [PreserveSig]
-        int SetDisabled(
-            [In, MarshalAs(UnmanagedType.LPStruct)] Guid clsid,
-            bool disabled
-            );
-
-        [PreserveSig]
-        int IsLegacyDisabled(
-            [MarshalAs(UnmanagedType.LPWStr)] string dllName
-            );
-    }
-
 #endif
 
     [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
@@ -4304,6 +4241,69 @@ namespace DirectShowLib
             IBaseFilter pFilter
             );
 
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("0e26a181-f40c-4635-8786-976284b52981"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IAMPluginControl
+    {
+        [PreserveSig]
+        int GetPreferredClsid(
+            [In, MarshalAs(UnmanagedType.LPStruct)] Guid subType,
+            out Guid clsid
+            );
+
+        [PreserveSig]
+        int GetPreferredClsidByIndex(
+            int index,
+            out Guid subType,
+            out Guid clsid
+            );
+
+        [PreserveSig]
+        int SetPreferredClsid(
+            [In, MarshalAs(UnmanagedType.LPStruct)] Guid subType,
+            [In, MarshalAs(UnmanagedType.LPStruct)] DsGuid clsid
+            );
+
+        [PreserveSig]
+        int IsDisabled(
+            [In, MarshalAs(UnmanagedType.LPStruct)] Guid clsid
+            );
+
+        [PreserveSig]
+        int GetDisabledByIndex(
+            int index,
+            out Guid clsid
+            );
+
+        [PreserveSig]
+        int SetDisabled(
+            [In, MarshalAs(UnmanagedType.LPStruct)] Guid clsid,
+            bool disabled
+            );
+
+        [PreserveSig]
+        int IsLegacyDisabled(
+            [MarshalAs(UnmanagedType.LPWStr)] string dllName
+            );
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("cf7b26fc-9a00-485b-8147-3e789d5e8f67"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IAMAsyncReaderTimestampScaling
+    {
+        [PreserveSig]
+        int GetTimestampMode(
+            [MarshalAs(UnmanagedType.Bool)] out bool pfRaw
+            );
+
+        [PreserveSig]
+        int SetTimestampMode(
+            [MarshalAs(UnmanagedType.Bool)] bool fRaw
+            );
     }
 
     #endregion

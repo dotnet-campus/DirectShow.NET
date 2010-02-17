@@ -352,15 +352,6 @@ namespace DirectShowLib
     }
 
     [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
-    Guid("a8809222-07bb-48ea-951c-33158100625b"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IGetCapabilitiesKey
-    {
-        [PreserveSig]
-        int GetCapabilitiesKey( [Out] out IntPtr pHKey ); // HKEY
-    }
-
-    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("256A6A21-FBAD-11d1-82BF-00A0C9696C8F"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IAMVideoAcceleratorNotify
@@ -767,6 +758,15 @@ namespace DirectShowLib
         [PreserveSig]
         int ResetMultiPassState();
 
+    }
+
+    [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
+    Guid("a8809222-07bb-48ea-951c-33158100625b"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IGetCapabilitiesKey
+    {
+        [PreserveSig]
+        int GetCapabilitiesKey([Out] out IntPtr pHKey); // HKEY
     }
 
     #endregion
