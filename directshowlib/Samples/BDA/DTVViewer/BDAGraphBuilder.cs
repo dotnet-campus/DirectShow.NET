@@ -6,6 +6,7 @@ or FITNESS FOR A PARTICULAR PURPOSE.
 *****************************************************************************/
 
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
@@ -91,7 +92,7 @@ namespace DirectShowLib.Sample
       Guid genProviderClsId = new Guid("{B2F3A67C-29DA-4C78-8831-091ED509A475}");
       Guid networkProviderClsId;
 
-      // First test if the Generic Network Provider is available (only on MCE 2005 + Update Rollup 2)
+      // First test if the Generic Network Provider is available (only on MCE 2005 + Update Rollup 2 and higher)
       if (FilterGraphTools.IsThisComObjectInstalled(genProviderClsId))
       {
         this.networkProvider =  FilterGraphTools.AddFilterFromClsid(this.graphBuilder, genProviderClsId, "Generic Network Provider");
@@ -366,21 +367,146 @@ namespace DirectShowLib.Sample
       SystemEvents.DisplaySettingsChanged -= new EventHandler(DisplayChangedHandler); // for WM_DISPLAYCHANGE
     }
 
+    // This method changed to work with Windows 7
+    // Under this OS, the MPEG-2 Demux now have dozens of outputs pins. 
+    // Rendering all of them is not a good solution.
+    // The rendering process must be more smart...
     private void ConnectFilters()
     {
       int hr = 0;
-      IPin pinOut;
+      int pinNumber = 0;
+      IPin pinOut, pinIn;
 
-      // Connect the 5 MPEG-2 Demux output pins
-      for (int i = 0; i < 5; i++)
+      // After the rendering process, our 4 downstream filters must be rendered
+      bool bdaTIFRendered = false;
+      bool bdaSecTabRendered = false;
+      bool audioRendered = false;
+      bool videoRendered = false;
+
+      // for each output pins...
+      while (true)
       {
-        pinOut = DsFindPin.ByDirection(mpeg2Demux, PinDirection.Output, i);
+        pinOut = DsFindPin.ByDirection(mpeg2Demux, PinDirection.Output, pinNumber);
+        // Is the last pin reached ?
+        if (pinOut == null)
+          break;
 
-        hr = this.graphBuilder.Render(pinOut);
-        //DsError.ThrowExceptionForHR(hr);
-        // In fact the last pin don't render since i havn't added the BDA MPE Filter...
+        IEnumMediaTypes enumMediaTypes = null;
+        AMMediaType[] mediaTypes = new AMMediaType[1];
 
-        Marshal.ReleaseComObject(pinOut);
+        try
+        {
+          // Get Pin's MediaType enumerator
+          hr = pinOut.EnumMediaTypes(out enumMediaTypes);
+          DsError.ThrowExceptionForHR(hr);
+
+          // for each media types...
+          while (enumMediaTypes.Next(mediaTypes.Length, mediaTypes, IntPtr.Zero) == 0)
+          {
+            // Store the majortype and the subtype and free the structure
+            Guid majorType = mediaTypes[0].majorType;
+            Guid subType = mediaTypes[0].subType;
+            DsUtils.FreeAMMediaType(mediaTypes[0]);
+
+            if (majorType == MediaType.Audio)
+            {
+              // Is the Audio already rendered ?
+              if (!audioRendered)
+              {
+                // Get the first input pin
+                pinIn = DsFindPin.ByDirection(audioRenderer, PinDirection.Input, 0);
+
+                // Render it with IntelliConnect (a decoder should be added between the two filters.
+                hr = graphBuilder.Connect(pinOut, pinIn);
+                DsError.ThrowExceptionForHR(hr);
+
+                // Release the Pin
+                Marshal.ReleaseComObject(pinIn);
+                pinIn = null;
+
+                // Notify that the audio renderer is connected
+                audioRendered = true;
+              }
+            }
+            else if (majorType == MediaType.Video)
+            {
+              // Is the Video already rendered ?
+              if (!videoRendered)
+              {
+                // Get the first input pin
+                pinIn = DsFindPin.ByDirection(videoRenderer, PinDirection.Input, 0);
+
+                // Render it with IntelliConnect (a decoder should be added between the two filters.
+                hr = graphBuilder.Connect(pinOut, pinIn);
+                DsError.ThrowExceptionForHR(hr);
+
+                // Release the Pin
+                Marshal.ReleaseComObject(pinIn);
+                pinIn = null;
+
+                // Notify that the video renderer is connected
+                videoRendered = true;
+              }
+            }
+            else if (majorType == MediaType.Mpeg2Sections)
+            {
+              if (subType == MediaSubType.Mpeg2Data)
+              {
+                // Is the MPEG-2 Sections and Tables Filter already rendered ?
+                if (!bdaSecTabRendered)
+                {
+                  // Get the first input pin
+                  pinIn = DsFindPin.ByDirection(bdaSecTab, PinDirection.Input, 0);
+
+                  // A direct connection is enough
+                  hr = graphBuilder.ConnectDirect(pinOut, pinIn, null);
+                  DsError.ThrowExceptionForHR(hr);
+
+                  // Release the Pin
+                  Marshal.ReleaseComObject(pinIn);
+                  pinIn = null;
+
+                  // Notify that the MPEG-2 Sections and Tables Filter is connected
+                  bdaSecTabRendered = true;
+                }
+              }
+              // This sample only support DVB-T or DVB-S so only supporting this subtype is enough.
+              // If you want to support ATSC or ISDB, don't forget to handle these network types.
+              else if (subType == MediaSubType.DvbSI)
+              {
+                // Is the BDA MPEG-2 Transport Information Filter already rendered ?
+                if (!bdaTIFRendered)
+                {
+                  // Get the first input pin
+                  pinIn = DsFindPin.ByDirection(bdaTIF, PinDirection.Input, 0);
+
+                  // A direct connection is enough
+                  hr = graphBuilder.ConnectDirect(pinOut, pinIn, null);
+                  DsError.ThrowExceptionForHR(hr);
+
+                  // Release the Pin
+                  Marshal.ReleaseComObject(pinIn);
+                  pinIn = null;
+
+                  // Notify that the BDA MPEG-2 Transport Information Filter is connected
+                  bdaTIFRendered = true;
+                }
+              }
+            }
+          }
+        }
+        finally
+        {
+          // Free COM objects
+          Marshal.ReleaseComObject(enumMediaTypes);
+          enumMediaTypes = null;
+
+          Marshal.ReleaseComObject(pinOut);
+          pinOut = null;
+        }
+
+        // Next pin, please !
+        pinNumber++;
       }
     }
 
