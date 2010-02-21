@@ -225,22 +225,24 @@ namespace DirectShowLib
     /// <summary>
     /// From ACM_MPEG_LAYER* defines
     /// </summary>
+    [Flags]
     public enum AcmMpegHeadLayer : short
     {
         Layer1 = 1,
-        Layer2,
-        Layer3
+        Layer2 = 2,
+        Layer3 = 4
     }
 
     /// <summary>
     /// From ACM_MPEG_* defines
     /// </summary>
+    [Flags]
     public enum AcmMpegHeadMode : short
     {
         Stereo = 1,
-        JointStereo,
-        DualChannel,
-        SingleChannel
+        JointStereo = 2,
+        DualChannel = 4,
+        SingleChannel = 8
     }
 
     /// <summary>
