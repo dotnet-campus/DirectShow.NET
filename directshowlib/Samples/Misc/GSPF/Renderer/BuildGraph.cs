@@ -124,8 +124,8 @@ namespace DxPlayx
         public void Stop()
         {
             int hr;
-			
-            hr = ((IMediaEventSink)m_FilterGraph).Notify(EventCode.UserAbort, 0, 0);
+
+            hr = ((IMediaEventSink)m_FilterGraph).Notify(EventCode.UserAbort, IntPtr.Zero, IntPtr.Zero);
             DsError.ThrowExceptionForHR( hr );
 
             hr = m_mediaCtrl.Stop();
@@ -267,7 +267,7 @@ namespace DxPlayx
                 }
 #endif
 
-                hr = ((IMediaEventSink)m_FilterGraph).Notify(EventCode.UserAbort, 0, 0);
+                hr = ((IMediaEventSink)m_FilterGraph).Notify(EventCode.UserAbort, IntPtr.Zero, IntPtr.Zero);
 
                 // Release the graph
                 if (m_FilterGraph != null)
@@ -291,7 +291,7 @@ namespace DxPlayx
             const int E_ABORT = unchecked((int)0x80004004);
 
             int hr;
-            int p1, p2;
+            IntPtr p1, p2;
             EventCode ec;
             EventCode exitCode = 0;
 
@@ -321,8 +321,8 @@ namespace DxPlayx
                             break;
 
                         case EventCode.OleEvent:
-                            string s1 = Marshal.PtrToStringBSTR(new IntPtr(p1));
-                            string s2 = Marshal.PtrToStringBSTR(new IntPtr(p2));
+                            string s1 = Marshal.PtrToStringBSTR(p1);
+                            string s2 = Marshal.PtrToStringBSTR(p2);
                             string s3 = s2.Remove(s2.Length -1, 1);
 
                             Debug.WriteLine(string.Format("OleEvent Parms: {0} | {1}", s1, s3));
