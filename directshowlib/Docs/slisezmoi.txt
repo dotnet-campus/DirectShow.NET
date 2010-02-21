@@ -1,4 +1,4 @@
-Programmes d'exemples pour DirectShowLib 12/04/2006
+Programmes d'exemples pour DirectShowLib 2007-07-31
 
 http://SourceForgeNet.SourceForge.net
 

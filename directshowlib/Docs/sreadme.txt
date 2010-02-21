@@ -1,4 +1,4 @@
-DirectShowLib Samples 2007-07-31
+DirectShowLib Samples 2010-02-21
 
 http://DirectShowNet.SourceForge.net
 
@@ -9,15 +9,10 @@ this separate package.
 We have removed the build files for vs2003 in this release.  vs2005 has been available
 (for free!) for 2 years now.  Besides, no one on our dev team still has it installed.
 
-We have added a few samples:
+We have added one sample since the last release:
 
-   DESCombineVB
-   GMFPreview
-   GMFPlay
-   PlayVB
-   DvrMsCutter2
-   VMR9Compositor
-   vMR9Snapper
+   BlackList
+   EVRPlayer
 
 See the descriptions below.
 
@@ -173,6 +168,12 @@ Samples\Players\DxText
 ----------------------
 A sample application showing how to superimpose text strings on a datastream.  
 The stream is read from an avi file.
+
+
+Samples\Players\EVRPlayer
+-------------------------
+This project is a c# translation of the c++ EVRPlayer sample that ships with the Windows SDK.  It shows
+how to use the EVR renderer from DirectShow.
 
 
 Samples\Players\GMFPlay
