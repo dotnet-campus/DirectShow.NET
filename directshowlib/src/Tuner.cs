@@ -230,7 +230,7 @@ namespace DirectShowLib.BDA
     {
     }
 
-    [ComImport, Guid("E77026B0-B97F-4cbb-B7FB-F4F03AD69F11")]
+    [ComImport, Guid("C20447FC-EC60-475e-813F-D2B0A6DECEFE")]
     public class ESEventService
     {
     }
