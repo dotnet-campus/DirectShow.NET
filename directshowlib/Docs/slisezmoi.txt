@@ -1,4 +1,4 @@
-Programmes d'exemples pour DirectShowLib 2007-07-31
+Programmes d'exemples pour DirectShowLib 2010-02-21
 
 http://SourceForgeNet.SourceForge.net
 
@@ -6,9 +6,15 @@ Cette archive contient une sélection de programmes d'exemples. Ces programmes ét
 dans le passé inclus avec la bibliothèque DirectShowLib mais avec la version 1.4 ils 
 ont été dissociés de celle-ci.
 
-Depuis la version 1.3, les programmes ont été modifiés pour ce compiler aussi bien avec 
-VS2003 qu'avec VS2005 (ce ne sera peut-être plus le cas des nouveaux exemples à venir 
-qui ne supporteront que VS2005). De plus, l'exemple GSSF a été ajouté.
+Nous avons supprimé le support de vs2003 dans cette version. vs2005 est supporté depuis 
+deux ans mais il n'est plus installé par aucuns des développeurs.
+
+Nous avons ajoutés deux exemples depuis la précédente version :
+
+   BlackList
+   EVRPlayer
+
+Voir les descriptions ci-dessous.
 
 Ces programmes ne doivent pas être considérés comme des applications de qualité 
 commerciale. Ils ont juste pour but d'illustrer comment utiliser une ou un groupe de 
@@ -151,6 +157,23 @@ Samples\Players\DxText
 ----------------------
 Une application démontrant comment superposez un texte sur un flux de données. Le flux 
 est lu depuis un fichier avi.
+
+
+Samples\Players\EVRPlayer
+-------------------------
+Ce projet est une taduction en c# de l'exemple c++ EVRPlayer fournis avec le Windows SDK.  Il montre
+comment utiliser le filtre EVR dans DirectShow.
+
+
+Samples\Players\GMFPlay
+-----------------------
+Un exmple qui montre comment utliser l'indispensable filtre de Geraint, le GMFBridge filter, pour jouer une 
+serie de fichier multimedia l'un après l'autre.
+
+
+Samples\Players\PlayVB
+----------------------
+Un "player" simple en VB.
 
 
 Samples\Players\PlayWnd

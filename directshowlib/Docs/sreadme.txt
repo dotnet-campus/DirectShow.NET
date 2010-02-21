@@ -9,7 +9,7 @@ this separate package.
 We have removed the build files for vs2003 in this release.  vs2005 has been available
 (for free!) for 2 years now.  Besides, no one on our dev team still has it installed.
 
-We have added one sample since the last release:
+We have added two samples since the last release:
 
    BlackList
    EVRPlayer
