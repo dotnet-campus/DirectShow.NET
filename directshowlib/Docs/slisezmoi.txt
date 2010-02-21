@@ -110,6 +110,13 @@ Samples\Editing\DxScan
 Une application qui scanne un fichier à la recherche de trames noires.
 
 
+Samples\Misc\BlackList
+----------------------
+Cet exemple illustre comment utiliser l'interface IAMGraphBuilderCallback pour rejeter
+certains filtres durant la création d'un graph. Vous pouvez adapter cet exemple pour vos
+besoins si vous savez que certains filtres sont connus pour endommager votre application.
+
+
 Samples\Misc\DxWebCam
 ---------------------
 Le programme de WebCam du pauvre. Cette application s'exécute en tant que service Win32.

@@ -125,6 +125,13 @@ Samples\Editing\DxScan
 A sample application scanning a media file looking for black frames.
 
 
+Samples\Misc\BlackList
+----------------------
+This sample illustrate how to use the IAMGraphBuilderCallback interface to 
+reject some filters during the graph creation. You can adapt this sample for 
+your uses if some filters are known to break your application.
+
+
 Samples\Misc\DxWebCam
 ---------------------
 A poor man's web cam program. This application runs as a Win32 Service.  It 
