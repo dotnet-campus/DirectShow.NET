@@ -342,6 +342,19 @@ namespace DirectShowLib.Sample
       hr = windowlessControl.SetAspectRatioMode(VMR9AspectRatioMode.LetterBox);
       DsError.ThrowExceptionForHR(hr);
 
+      IVMRMixerControl9 mixerControl = this.videoRenderer as IVMRMixerControl9;
+      VMR9MixerPrefs mixerPrefs;
+
+      hr = mixerControl.GetMixingPrefs(out mixerPrefs);
+      DsError.ThrowExceptionForHR(hr);
+
+      // Configure the VMR9 filter to use YUV mixing
+      mixerPrefs &= ~VMR9MixerPrefs.RenderTargetMask;
+      mixerPrefs |= VMR9MixerPrefs.RenderTargetYUV;
+
+      hr = mixerControl.SetMixingPrefs(mixerPrefs);
+      DsError.ThrowExceptionForHR(hr);
+
       // Init the VMR-9 with default size values
       ResizeMoveHandler(null, null);
 
