@@ -12,7 +12,7 @@ using DirectShowLib.BDA;
 
 namespace DirectShowLib.Sample
 {
-	public interface ITuningSelector
+	public interface ITuningSelector : IDisposable
 	{
     ITuningSpace TuningSpace {get;}
     ITuneRequest TuneRequest {get;}
