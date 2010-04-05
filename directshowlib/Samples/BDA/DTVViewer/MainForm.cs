@@ -210,6 +210,7 @@ namespace DirectShowLib.Sample
 
     private void menuFileExit_Click(object sender, System.EventArgs e)
     {
+      this.menuDigitalTVDecomposeGraph_Click(sender, EventArgs.Empty);
       this.Close();
     }
 
@@ -267,6 +268,10 @@ namespace DirectShowLib.Sample
       this.menuDigitalTVBuildGraph.Enabled = false;
       this.menuDigitalTVDoTuneRequest.Enabled = false;
       this.menuDigitalTVDecomposeGraph.Enabled = false;
+
+      // Dispose the TuneSelector form to dispose the COM objects
+      this.tuningSelector.Dispose();
+      this.tuningSelector = null;
     }
 
     private void menuHelpAbout_Click(object sender, System.EventArgs e)
