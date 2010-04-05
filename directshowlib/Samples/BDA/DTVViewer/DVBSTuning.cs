@@ -87,7 +87,20 @@ namespace DirectShowLib.Sample
 				{
 					components.Dispose();
 				}
-			}
+
+        // Release the COM objects
+        if (this.tuneRequest != null)
+        {
+          Marshal.ReleaseComObject(this.tuneRequest);
+          this.tuneRequest = null;
+        }
+
+        if (this.tuningSpace != null)
+        {
+          Marshal.ReleaseComObject(this.tuningSpace);
+          this.tuningSpace = null;
+        }
+      }
 			base.Dispose( disposing );
 		}
 
