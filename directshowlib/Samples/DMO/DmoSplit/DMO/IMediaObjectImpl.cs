@@ -1399,7 +1399,7 @@ namespace MediaObjectTemplate
                         hr = DMOResults.E_InvalidStreamIndex;
                     }
 
-                    m_Log.WriteNoTS(string.Format(": {0}\r\n", hr));
+                    m_Log.WriteNoTS(string.Format(": 0x{0}\r\n", hr.ToString("x")));
                 }
             }
             catch (Exception e)
@@ -1452,7 +1452,7 @@ namespace MediaObjectTemplate
                         hr = DMOResults.E_InvalidStreamIndex;
                     }
 
-                    m_Log.WriteNoTS(string.Format("= {1}: {0}\r\n", hr, pdwFlags));
+                    m_Log.WriteNoTS(string.Format("= 0x{1}: {0}\r\n", hr.ToString("x"), pdwFlags));
                 }
             }
             catch (Exception e)
@@ -1505,7 +1505,7 @@ namespace MediaObjectTemplate
                     {
                         hr = DMOResults.E_InvalidStreamIndex;
                     }
-                    m_Log.WriteNoTS(string.Format("= {0}\r\n", hr));
+                    m_Log.WriteNoTS(string.Format("= 0x{0}\r\n", hr.ToString("x")));
                 }
             }
             catch (Exception e)
@@ -1559,7 +1559,7 @@ namespace MediaObjectTemplate
                         hr = DMOResults.E_InvalidStreamIndex;
                     }
 
-                    m_Log.WriteNoTS(string.Format(": {0}\r\n", hr));
+                    m_Log.WriteNoTS(string.Format(": 0x{0}\r\n", hr.ToString("x")));
                 }
             }
             catch (Exception e)
@@ -1715,7 +1715,7 @@ namespace MediaObjectTemplate
                     {
                         hr = DMOResults.E_InvalidStreamIndex;
                     }
-                    m_Log.WriteNoTS(string.Format("= {0} {1} {2} : {3}\r\n", pulSize, pcbMaxLookahead, pulAlignment, hr));
+                    m_Log.WriteNoTS(string.Format("= {0} {1} {2} : 0x{3}\r\n", pulSize, pcbMaxLookahead, pulAlignment, hr.ToString("x")));
                 }
             }
             catch (Exception e)
@@ -1883,7 +1883,7 @@ namespace MediaObjectTemplate
                         }
                     }
 
-                    m_Log.WriteNoTS(string.Format(":{0}\r\n", hr));
+                    m_Log.WriteNoTS(string.Format(":0x{0}\r\n", hr.ToString("x")));
                 }
             }
             catch (Exception e)
@@ -1991,7 +1991,7 @@ namespace MediaObjectTemplate
                         }
                     }
 
-                    m_Log.WriteNoTS(string.Format(":{0}\r\n", hr));
+                    m_Log.WriteNoTS(string.Format(":0x{0}\r\n", hr.ToString("x")));
                 }
             }
             catch (Exception e)
@@ -2231,7 +2231,7 @@ namespace MediaObjectTemplate
                     }
 
                     m_fFlushed = true;
-                    m_Log.WriteNoTS(string.Format(": {0}\r\n", hr));
+                    m_Log.WriteNoTS(string.Format(": 0x{0}\r\n", hr.ToString("x")));
                 }
             }
             catch (Exception e)
@@ -2284,7 +2284,7 @@ namespace MediaObjectTemplate
                         hr = DMOResults.E_TypeNotSet;
                     }
 
-                    m_Log.WriteNoTS(string.Format(":{0}\r\n", hr));
+                    m_Log.WriteNoTS(string.Format(":0x{0}\r\n", hr.ToString("x")));
                 }
             }
             catch (Exception e)
