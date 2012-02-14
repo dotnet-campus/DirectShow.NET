@@ -201,6 +201,16 @@ namespace DmoSplit
 
         #region IMediaObjImpl Members
 
+        override protected int InternalGetOutputStreamInfo(int dwOutputStreamIndex, out DMOOutputStreamInfo pdwFlags)
+        {
+            pdwFlags = DMOOutputStreamInfo.WholeSamples |
+                DMOOutputStreamInfo.Optional |
+                DMOOutputStreamInfo.SingleSamplePerBuffer |
+                DMOOutputStreamInfo.FixedSampleSize;
+
+            return S_OK;
+        }
+
         /// <summary>
         /// Given a specific AMMediaType, we are asked if we support it
         /// </summary>
@@ -345,6 +355,7 @@ namespace DmoSplit
                 {
                     // Copy the input type
                     pmt = MoCloneMediaType(pmt);
+                    pmt.sampleSize /= 2;
 
                     // Parse out the wave struct
                     WaveFormatEx wav = new WaveFormatEx();
