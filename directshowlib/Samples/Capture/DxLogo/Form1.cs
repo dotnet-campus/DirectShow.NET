@@ -82,6 +82,7 @@ namespace DxLogo
             this.textBox1.Location = new System.Drawing.Point(16, 224);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 3;
             this.textBox1.TabStop = false;
             this.textBox1.Text = "Not Running";
@@ -133,7 +134,9 @@ namespace DxLogo
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form1";
             this.Text = "DxLogo";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 		#endregion
@@ -173,6 +176,14 @@ namespace DxLogo
                 StartStop.Text = "Start";
             }
             Cursor.Current = Cursors.Default;
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (cam != null)
+            {
+                cam.Dispose();
+            }
         }
 	}
 }
