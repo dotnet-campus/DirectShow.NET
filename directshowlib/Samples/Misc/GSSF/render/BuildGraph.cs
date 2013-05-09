@@ -972,7 +972,7 @@ namespace DxPlay
             }
             Bass.BASS_ChannelGetAttributes(m_fChan, ref lFrequency, ref lVolume, ref lPan);
 
-            w.cbSize = (short)Marshal.SizeOf(typeof(WaveFormatEx));
+            w.cbSize = 0;
             w.nChannels = (short)lInfo.chans;
             w.nSamplesPerSec = lFrequency;
             w.wFormatTag = 1;
@@ -987,8 +987,8 @@ namespace DxPlay
             amt.majorType = MediaType.Audio;
             amt.subType = MediaSubType.PCM;
             amt.formatType = FormatType.WaveEx;
-            amt.formatPtr = Marshal.AllocCoTaskMem(w.cbSize);
-            amt.formatSize = w.cbSize;
+            amt.formatSize = Marshal.SizeOf(typeof(WaveFormatEx));
+            amt.formatPtr = Marshal.AllocCoTaskMem(amt.formatSize);
             Marshal.StructureToPtr(w, amt.formatPtr, false);
 
             int hr = psc.SetMediaTypeEx(amt, BUFSIZE);
