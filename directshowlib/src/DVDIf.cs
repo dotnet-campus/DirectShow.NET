@@ -510,6 +510,9 @@ namespace DirectShowLib.Dvd
         SubPic = 0x04
     }
 
+    /// <summary>
+    /// From AM_OVERLAY_NOTIFY_FLAGS
+    /// </summary>
     [Flags]
     public enum AMOverlayNotifyFlags
     {

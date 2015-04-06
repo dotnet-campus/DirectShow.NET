@@ -473,7 +473,7 @@ namespace DirectShowLib
     }
 
     /// <summary>
-    /// unnamed enum
+    /// From unnamed enum
     /// </summary>
     [Flags]
     public enum Merit

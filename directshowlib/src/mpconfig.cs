@@ -63,6 +63,9 @@ namespace DirectShowLib
         public int  dwReserved1;
     }
 
+    /// <summary>
+    /// From AM_ASPECT_RATIO_MODE
+    /// </summary>
     public enum AspectRatioMode
     {
         Stretched,

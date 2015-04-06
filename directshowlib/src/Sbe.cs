@@ -81,7 +81,7 @@ namespace DirectShowLib.SBE
     }
 
     /// <summary>
-    /// From g_wszStreamBufferRecording* static const WCHAR
+    /// from g_wszStreamBufferRecording* static const WCHAR
     /// </summary>
     sealed public class StreamBufferRecording
     {
@@ -983,7 +983,7 @@ namespace DirectShowLib.SBE
             int Index
             );
     }
-    
+
     [ComImport, System.Security.SuppressUnmanagedCodeSecurity,
     Guid("3E2BF5A5-4F96-4899-A1A3-75E8BE9A5AC0"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]

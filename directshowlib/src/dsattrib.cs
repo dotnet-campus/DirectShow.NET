@@ -32,7 +32,7 @@ namespace DirectShowLib.BDA
 #if ALLOW_UNTESTED_INTERFACES
 
     /// <summary>
-    /// Defines
+    /// From SAMPLE_SEQ_* defines
     /// </summary>
     public enum SAMPLE_SEQ
     {
@@ -46,7 +46,7 @@ namespace DirectShowLib.BDA
     }
 
     /// <summary>
-    /// Defines
+    /// From SAMPLE_SEQ_CONTENT* defines
     /// </summary>
     public enum SAMPLE_SEQ_CONTENT
     {
@@ -74,7 +74,7 @@ namespace DirectShowLib.BDA
     }
 
     /// <summary>
-    /// VA_COLOR_PRIMARIES
+    /// From VA_COLOR_PRIMARIES
     /// </summary>
     public enum VA_COLOR_PRIMARIES
     {
@@ -104,7 +104,7 @@ namespace DirectShowLib.BDA
     }
 
     /// <summary>
-    /// VA_MATRIX_COEFFICIENTS
+    /// From VA_MATRIX_COEFFICIENTS
     /// </summary>
     public enum VA_MATRIX_COEFFICIENTS
     {
@@ -118,8 +118,8 @@ namespace DirectShowLib.BDA
         H264_YCgCo = 8
     }
 
-    /// <summary> 
-    /// UDCR_TAG 
+    /// <summary>
+    /// From UDCR_TAG
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public class UDCR_TAG
@@ -160,7 +160,7 @@ namespace DirectShowLib.BDA
         public int PID;
         public long PCR;
         public long Value;
-    } 
+    }
 
     /// <summary>
     /// From PBDA_TAG_ATTRIBUTE
@@ -173,7 +173,7 @@ namespace DirectShowLib.BDA
         public short VersionNo;
         public int TableDataSize;
         public byte TableData; // Array of bytes
-    } 
+    }
 
     /// <summary>
     /// From CAPTURE_STREAMTIME
