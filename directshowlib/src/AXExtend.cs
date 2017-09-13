@@ -1324,7 +1324,20 @@ namespace DirectShowLib
         Zoom,
         Exposure,
         Iris,
-        Focus
+        Focus,
+        Scanmode,
+        Privacy,
+        PanTilt,
+        PanRelative,
+        TiltRelative,
+        RollRelative,
+        ZoomRelative,
+        ExposureRelative,
+        IrisRelative,
+        FocusRelative,
+        PanTiltRelative,
+        FocalLength,
+        AutoExposurePriority
     }
 
     /// <summary>
