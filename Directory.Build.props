@@ -9,7 +9,7 @@
     <RepositoryUrl>https://github.com/dotnet-campus/DirectShow.NET</RepositoryUrl>
     <PackageProjectUrl>https://github.com/dotnet-campus/DirectShow.NET</PackageProjectUrl>
 
-    <Description>.NET Interfaces for calling DirectShow.  See http://directshownet.sourceforge.net/</Description>
+    <Description>.NET Interfaces for calling DirectShow.  See http://directshownet.sourceforge.net/ </Description>
 
     <RepositoryType>git</RepositoryType>
     <Copyright>Copyright © 2020 dotnet campus, All Rights Reserved.</Copyright> 
