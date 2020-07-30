@@ -3,7 +3,6 @@
     <TargetFrameworks>netcoreapp3.1;net40</TargetFrameworks>
     <AssemblyName>DirectShowLib</AssemblyName>
     <Description>.NET Interfaces for calling DirectShow.  See http://directshownet.sourceforge.net/</Description>
-    <Version>2.1.0</Version>
     <PackageLicenseExpression>LGPL-2.1-only</PackageLicenseExpression>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>DShowNET.snk</AssemblyOriginatorKeyFile>
