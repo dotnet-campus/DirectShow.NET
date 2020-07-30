@@ -2,11 +2,9 @@
   <PropertyGroup>
     <TargetFrameworks>netcoreapp3.1;net40</TargetFrameworks>
     <AssemblyName>DirectShowLib</AssemblyName>
-    <Description>.NET Interfaces for calling DirectShow.  See http://directshownet.sourceforge.net/</Description>
     <PackageLicenseExpression>LGPL-2.1-only</PackageLicenseExpression>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>DShowNET.snk</AssemblyOriginatorKeyFile>
-    <PackageProjectUrl>https://github.com/kkwpsv/DirectShow.NET</PackageProjectUrl>
     <PackageId>dotnetCampus.DirectShowLib</PackageId>
     <Authors>dotnet-campus</Authors>
   </PropertyGroup>
