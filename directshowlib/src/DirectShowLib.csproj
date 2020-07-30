@@ -7,5 +7,6 @@
     <AssemblyOriginatorKeyFile>DShowNET.snk</AssemblyOriginatorKeyFile>
     <PackageId>dotnetCampus.DirectShowLib</PackageId>
     <Authors>dotnet-campus</Authors>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 </Project>
