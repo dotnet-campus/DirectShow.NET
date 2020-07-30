@@ -1,21 +1,25 @@
-Microsoft Visual Studio Solution File, Format Version 8.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirectShowLib", "DirectShowLib.csproj", "{CE009BFA-5EF6-4153-B2A1-2FA79698A9AE}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30320.27
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DirectShowLib", "DirectShowLib.csproj", "{BA534BAF-AB28-41E9-A962-AB0656B87328}"
 EndProject
 Global
-	GlobalSection(SolutionConfiguration) = preSolution
-		Debug = Debug
-		Release = Release
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(ProjectConfiguration) = postSolution
-		{CE009BFA-5EF6-4153-B2A1-2FA79698A9AE}.Debug.ActiveCfg = Debug|.NET
-		{CE009BFA-5EF6-4153-B2A1-2FA79698A9AE}.Debug.Build.0 = Debug|.NET
-		{CE009BFA-5EF6-4153-B2A1-2FA79698A9AE}.Release.ActiveCfg = Release|.NET
-		{CE009BFA-5EF6-4153-B2A1-2FA79698A9AE}.Release.Build.0 = Release|.NET
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BA534BAF-AB28-41E9-A962-AB0656B87328}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA534BAF-AB28-41E9-A962-AB0656B87328}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA534BAF-AB28-41E9-A962-AB0656B87328}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA534BAF-AB28-41E9-A962-AB0656B87328}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-	EndGlobalSection
-	GlobalSection(ExtensibilityAddIns) = postSolution
+		SolutionGuid = {207EE606-BD40-4B50-A843-F53BD2C04820}
 	EndGlobalSection
 EndGlobal
