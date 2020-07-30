@@ -2,7 +2,6 @@
   <PropertyGroup>
     <TargetFrameworks>netcoreapp3.1;net40</TargetFrameworks>
     <AssemblyName>DirectShowLib</AssemblyName>
-    <PackageLicenseExpression>LGPL-2.1-only</PackageLicenseExpression>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>DShowNET.snk</AssemblyOriginatorKeyFile>
     <PackageId>dotnetCampus.DirectShowLib</PackageId>

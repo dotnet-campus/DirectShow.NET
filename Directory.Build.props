@@ -12,6 +12,7 @@
     <Description>.NET Interfaces for calling DirectShow.  See http://directshownet.sourceforge.net/ </Description>
 
     <RepositoryType>git</RepositoryType>
-    <Copyright>Copyright © 2020 dotnet campus, All Rights Reserved.</Copyright> 
+    <PackageLicenseExpression>LGPL-2.1-only</PackageLicenseExpression>
+    <Copyright>This library is licensed under GNU LESSER GENERAL PUBLIC LICENSE, Version 2.1.  See license.txt for the complete text.</Copyright> 
   </PropertyGroup>
 </Project>
